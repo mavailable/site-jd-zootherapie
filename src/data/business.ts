@@ -1,0 +1,45 @@
+export const business = {
+  clientType: 'freelance-consultant' as const,
+  name: 'JD Zoothérapie',
+  alternateName: "Patt'es Tendres",
+  description: 'Jennifer De Groeve, zoothérapeute certifiée en Moselle. Séances de médiation animale à domicile et en structure pour enfants, adultes et personnes âgées. Accompagnement personnalisé avec des animaux médiateurs formés.',
+  tagline: 'Médiation animale en Moselle',
+  url: 'https://jd-zootherapie.fr',
+  phone: '+33754812122',
+  phoneDisplay: '07.54.81.21.22',
+  email: 'degroeve.j@gmail.com',
+  address: {
+    street: '17 rue Principale',
+    city: 'Vigny',
+    postalCode: '57420',
+    region: 'Grand Est',
+    country: 'FR',
+  },
+  geo: {
+    latitude: 49.015,
+    longitude: 6.195,
+  },
+  founder: 'Jennifer De Groeve',
+  founderTitle: 'Praticienne certifiée en médiation animale',
+  areaServed: '15 km autour de Verny (57420), ponctuellement Metz et Nancy',
+  priceRange: '60€',
+  social: {
+    instagram: '',
+    facebook: '',
+    googleBusiness: '',
+  },
+  affiliations: [
+    'Syndicat Français des Zoothérapeutes',
+    'Institut de Formation en Zoothérapie (IFZ)',
+  ],
+  animals: [
+    { name: 'Tips', breed: 'Finnois de Laponie', description: 'Doux et attentif' },
+    { name: 'Uxo', breed: 'Berger américain miniature', description: "Plein d'énergie" },
+    { name: 'Tap-Tap', breed: 'Lapin bélier', description: 'Idéal pour les moments de tendresse' },
+  ],
+  seo: {
+    defaultTitle: 'JD Zoothérapie — Médiation animale en Moselle | Jennifer De Groeve',
+    defaultDescription: 'Zoothérapeute certifiée en Moselle. Séances de médiation animale à domicile et en structure pour enfants, adultes et personnes âgées. Contactez Jennifer De Groeve.',
+    ogImage: '/images/og-default.jpg',
+  },
+} as const;

@@ -1,0 +1,33 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/layout/Header.astro';
+import Footer from '@components/layout/Footer.astro';
+import Button from '@components/ui/Button.astro';
+---
+
+<BaseLayout
+  title="Merci — JD Zoothérapie"
+  description="Votre message a bien été envoyé. Jennifer De Groeve vous recontactera dans les 48 heures."
+  noindex={true}
+>
+  <Header slot="header" />
+
+  <section class="py-20 md:py-28">
+    <div class="max-w-xl mx-auto px-4 sm:px-6 text-center">
+      <div class="inline-flex items-center justify-center w-16 h-16 bg-primary-100 text-primary-600 rounded-full mb-6">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+      </div>
+      <h1 class="font-heading font-bold text-3xl md:text-4xl text-primary-900 mb-4">
+        Merci pour votre message !
+      </h1>
+      <p class="text-neutral-700 leading-relaxed mb-8">
+        Votre demande a bien été envoyée. Jennifer vous recontactera dans les 48 heures. En attendant, vous pouvez découvrir nos actualités sur les réseaux sociaux.
+      </p>
+      <Button href="/" variant="primary">
+        Retour à l'accueil
+      </Button>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>

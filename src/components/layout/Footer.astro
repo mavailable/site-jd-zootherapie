@@ -1,0 +1,59 @@
+---
+import { business } from '@data/business';
+---
+
+<footer class="bg-primary-900 text-neutral-100">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
+
+      <!-- Col 1: Identité -->
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <span class="inline-flex items-center justify-center w-9 h-9 bg-primary-600 text-white rounded-full text-sm font-bold font-heading">JD</span>
+          <span class="font-heading font-bold text-lg text-white">Zoothérapie</span>
+        </div>
+        <p class="text-primary-200 text-sm leading-relaxed">
+          Médiation animale en Moselle. Séances à domicile et en structure pour enfants, adultes et personnes âgées.
+        </p>
+      </div>
+
+      <!-- Col 2: Coordonnées -->
+      <div>
+        <h3 class="font-heading font-semibold text-white mb-4 text-base">Coordonnées</h3>
+        <address class="not-italic text-sm text-primary-200 space-y-2">
+          <p>{business.address.street}<br />{business.address.postalCode} {business.address.city}</p>
+          <p>
+            <a href={`tel:${business.phone}`} class="hover:text-white transition-colors">
+              {business.phoneDisplay}
+            </a>
+          </p>
+          <p>
+            <a href={`mailto:${business.email}`} class="hover:text-white transition-colors">
+              {business.email}
+            </a>
+          </p>
+        </address>
+      </div>
+
+      <!-- Col 3: Liens -->
+      <div>
+        <h3 class="font-heading font-semibold text-white mb-4 text-base">Liens utiles</h3>
+        <nav aria-label="Liens du pied de page" class="flex flex-col gap-2 text-sm text-primary-200">
+          <a href="#services" class="hover:text-white transition-colors">Services</a>
+          <a href="#faq" class="hover:text-white transition-colors">Questions fréquentes</a>
+          <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+          <a href="/mentions-legales" class="hover:text-white transition-colors">Mentions légales</a>
+          <a href="/politique-confidentialite" class="hover:text-white transition-colors">Politique de confidentialité</a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="mt-10 pt-6 border-t border-primary-800 text-center text-sm text-primary-300">
+      <p>&copy; {new Date().getFullYear()} {business.name} — {business.founder} | Praticienne en médiation animale — {business.address.city} ({business.address.postalCode})</p>
+      <p class="mt-1">
+        Site créé par <a href="https://marcmuller.site" class="hover:text-white transition-colors underline" target="_blank" rel="noopener noreferrer">Marc Muller — Créateur de sites web</a>
+      </p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,82 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/layout/Header.astro';
+import Footer from '@components/layout/Footer.astro';
+import { business } from '@data/business';
+---
+
+<BaseLayout
+  title="Mentions légales — JD Zoothérapie"
+  description="Mentions légales du site jd-zootherapie.fr. Informations sur l'éditeur, l'hébergeur et la politique de confidentialité."
+>
+  <Header slot="header" />
+
+  <section class="py-16 md:py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="font-heading font-bold text-3xl md:text-4xl text-primary-900 mb-10">Mentions légales</h1>
+
+      <div class="prose prose-neutral max-w-none text-neutral-700 leading-relaxed space-y-8">
+
+        <article>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Éditeur du site</h2>
+          <p>
+            {business.name}<br />
+            {business.founder}<br />
+            {business.address.street}, {business.address.postalCode} {business.address.city}<br />
+            Téléphone : <a href={`tel:${business.phone}`} class="text-primary-600 hover:underline">{business.phoneDisplay}</a><br />
+            Email : <a href={`mailto:${business.email}`} class="text-primary-600 hover:underline">{business.email}</a><br />
+            <!-- SIRET : À compléter -->
+          </p>
+        </article>
+
+        <article>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Directrice de la publication</h2>
+          <p>{business.founder}</p>
+        </article>
+
+        <article>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Hébergement</h2>
+          <p>
+            Cloudflare, Inc.<br />
+            101 Townsend Street, San Francisco, CA 94107, USA<br />
+            Site web : <a href="https://www.cloudflare.com" class="text-primary-600 hover:underline" target="_blank" rel="noopener noreferrer">www.cloudflare.com</a>
+          </p>
+        </article>
+
+        <article>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Conception du site</h2>
+          <p>
+            Marc Muller — Créateur de sites web<br />
+            <a href="https://marcmuller.site" class="text-primary-600 hover:underline" target="_blank" rel="noopener noreferrer">marcmuller.site</a>
+          </p>
+        </article>
+
+        <article>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Propriété intellectuelle</h2>
+          <p>
+            L'ensemble du contenu de ce site (textes, images, logos, illustrations) est la propriété exclusive de {business.name} ou de ses partenaires et est protégé par le droit d'auteur. Toute reproduction, même partielle, est interdite sans autorisation préalable.
+          </p>
+        </article>
+
+        <article>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Données personnelles</h2>
+          <p>
+            Les données personnelles collectées via le formulaire de contact sont utilisées uniquement pour répondre à vos demandes. Elles ne sont ni vendues ni transmises à des tiers. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour exercer ces droits, contactez-nous à <a href={`mailto:${business.email}`} class="text-primary-600 hover:underline">{business.email}</a>.
+          </p>
+          <p>
+            Pour plus d'informations, consultez notre <a href="/politique-confidentialite" class="text-primary-600 hover:underline">politique de confidentialité</a>.
+          </p>
+        </article>
+
+        <article>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Cookies</h2>
+          <p>
+            Ce site utilise uniquement des cookies techniques nécessaires au bon fonctionnement du site. Aucun cookie publicitaire ou de suivi n'est déposé. Un outil d'analyse anonyme (Cloudflare Web Analytics) est utilisé pour mesurer la fréquentation du site, sans collecte de données personnelles.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>

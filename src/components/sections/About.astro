@@ -1,0 +1,53 @@
+---
+import { business } from '@data/business';
+---
+
+<section id="a-propos" class="bg-white py-16 md:py-20">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-10 items-center">
+
+      <!-- Photo column (2/5) -->
+      <div class="md:col-span-2 order-1">
+        <!-- TODO: Remplacer par la photo de Jennifer avec ses animaux (portrait.jpg) -->
+        <div class="w-full aspect-[3/4] bg-primary-100 rounded-xl flex items-center justify-center text-primary-500 text-sm">
+          Photo Jennifer + animaux
+        </div>
+      </div>
+
+      <!-- Text column (3/5) -->
+      <article class="md:col-span-3 order-2">
+        <h2 class="font-heading font-semibold text-2xl md:text-[2rem] text-primary-900 mb-6">
+          Jennifer De Groeve, praticienne en médiation animale
+        </h2>
+
+        <div class="text-neutral-700 leading-relaxed space-y-4">
+          <p>
+            Je m'appelle Jennifer De Groeve et je suis praticienne certifiée en médiation animale, installée à Vigny en Moselle.
+          </p>
+          <p>
+            Aide-soignante diplômée depuis plus de 20 ans, j'ai toujours été convaincue du pouvoir apaisant des animaux. Formée à l'Institut de Formation en Zoothérapie (IFZ), j'ai fait de cette conviction mon métier.
+          </p>
+          <p>
+            J'interviens avec trois compagnons : <strong class="text-primary-800">Tips</strong>, un finnois de Laponie doux et attentif ; <strong class="text-primary-800">Uxo</strong>, un berger américain miniature plein d'énergie ; et <strong class="text-primary-800">Tap-Tap</strong>, un lapin bélier idéal pour les moments de tendresse. Membre du Syndicat Français des Zoothérapeutes, je m'engage à rendre cette approche accessible à tous.
+          </p>
+        </div>
+
+        <!-- Badges -->
+        <div class="flex flex-wrap gap-3 mt-6">
+          <span class="inline-flex items-center gap-1.5 bg-secondary-100 text-secondary-800 px-3 py-1.5 rounded-full text-xs font-medium">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            Certifiée IFZ
+          </span>
+          <span class="inline-flex items-center gap-1.5 bg-secondary-100 text-secondary-800 px-3 py-1.5 rounded-full text-xs font-medium">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            Syndicat Français des Zoothérapeutes
+          </span>
+          <span class="inline-flex items-center gap-1.5 bg-secondary-100 text-secondary-800 px-3 py-1.5 rounded-full text-xs font-medium">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            +20 ans dans le soin
+          </span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

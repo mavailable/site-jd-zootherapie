@@ -1,0 +1,97 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/layout/Header.astro';
+import Footer from '@components/layout/Footer.astro';
+import Hero from '@components/sections/Hero.astro';
+import SocialProof from '@components/sections/SocialProof.astro';
+import Services from '@components/sections/Services.astro';
+import About from '@components/sections/About.astro';
+import FAQ from '@components/sections/FAQ.astro';
+import Contact from '@components/sections/Contact.astro';
+import CTABanner from '@components/sections/CTABanner.astro';
+import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
+---
+
+<BaseLayout>
+  <!-- Schema.org JSON-LD -->
+  <Fragment slot="schema">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "JD Zoothérapie",
+      "alternateName": "Patt'es Tendres",
+      "description": "Jennifer De Groeve, zoothérapeute certifiée en Moselle. Séances de médiation animale à domicile et en structure pour enfants, adultes et personnes âgées.",
+      "image": "https://jd-zootherapie.fr/images/og-default.jpg",
+      "url": "https://jd-zootherapie.fr",
+      "telephone": "+33754812122",
+      "email": "degroeve.j@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "17 rue Principale",
+        "addressLocality": "Vigny",
+        "postalCode": "57420",
+        "addressRegion": "Grand Est",
+        "addressCountry": "FR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 49.015,
+        "longitude": 6.195
+      },
+      "areaServed": [
+        { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 49.015, "longitude": 6.195 }, "geoRadius": "15000" },
+        { "@type": "City", "name": "Metz" },
+        { "@type": "City", "name": "Nancy" }
+      ],
+      "founder": {
+        "@type": "Person",
+        "name": "Jennifer De Groeve",
+        "jobTitle": "Praticienne certifiée en médiation animale",
+        "description": "Aide-soignante diplômée avec plus de 20 ans d'expérience dans le soin, formée à l'Institut de Formation en Zoothérapie (IFZ).",
+        "knowsAbout": ["Zoothérapie", "Médiation animale", "Maladies neurodégénératives", "Accompagnement enfants", "Accompagnement personnes âgées"]
+      },
+      "priceRange": "60€",
+      "currenciesAccepted": "EUR",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Ateliers de médiation animale",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Séance individuelle de médiation animale", "description": "Accompagnement personnalisé à domicile ou en structure." }, "price": "60", "priceCurrency": "EUR" },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ateliers collectifs en structure", "description": "Interventions en EHPAD, IME, foyers, écoles ou bibliothèques." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Accompagnement maladies neurodégénératives", "description": "Approche douce adaptée aux personnes atteintes d'Alzheimer, Parkinson ou troubles apparentés." } }
+        ]
+      },
+      "memberOf": { "@type": "Organization", "name": "Syndicat Français des Zoothérapeutes" },
+      "sameAs": []
+    })} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Qu'est-ce que la zoothérapie exactement ?", "acceptedAnswer": { "@type": "Answer", "text": "La zoothérapie, ou médiation animale, est une approche d'accompagnement qui utilise la présence de l'animal pour favoriser le bien-être physique, psychique et social." } },
+        { "@type": "Question", "name": "À qui s'adressent les séances de médiation animale ?", "acceptedAnswer": { "@type": "Answer", "text": "Les ateliers sont ouverts à tous : enfants dès 3 ans, adolescents, adultes et personnes âgées, avec ou sans handicap." } },
+        { "@type": "Question", "name": "Où intervenez-vous en Moselle ?", "acceptedAnswer": { "@type": "Answer", "text": "JD Zoothérapie intervient à domicile ou en structure, dans un rayon de 15 km autour de Verny (57420)." } },
+        { "@type": "Question", "name": "Combien coûte une séance de zoothérapie ?", "acceptedAnswer": { "@type": "Answer", "text": "Une séance individuelle est à 60 €, déplacement inclus dans le rayon de 15 km." } },
+        { "@type": "Question", "name": "Les animaux sont-ils formés pour la médiation ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui. Tous les animaux de JD Zoothérapie sont suivis vétérinairement, sociabilisés et encadrés selon les normes du Syndicat Français des Zoothérapeutes." } }
+      ]
+    })} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "JD Zoothérapie",
+      "url": "https://jd-zootherapie.fr",
+      "description": "Zoothérapeute certifiée en Moselle. Séances de médiation animale à domicile et en structure."
+    })} />
+  </Fragment>
+
+  <Header slot="header" />
+  <Hero />
+  <SocialProof />
+  <Services />
+  <About />
+  <FAQ />
+  <CTABanner />
+  <Contact />
+  <Footer slot="footer" />
+  <StickyMobileCTA />
+</BaseLayout>

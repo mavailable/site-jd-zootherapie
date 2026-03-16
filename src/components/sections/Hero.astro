@@ -1,0 +1,37 @@
+---
+import Button from '@components/ui/Button.astro';
+import { business } from '@data/business';
+---
+
+<section class="relative bg-primary-800 overflow-hidden">
+  <!-- Background: placeholder or photo -->
+  <div class="absolute inset-0">
+    <!-- TODO: Remplacer par la photo hero (hero.jpg) — Tips en séance -->
+    <div class="w-full h-full bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700"></div>
+    <div class="absolute inset-0 bg-primary-900/50"></div>
+  </div>
+
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 lg:py-32">
+    <div class="max-w-2xl">
+      <h1 class="font-heading font-bold text-3xl md:text-5xl leading-tight text-white mb-5">
+        Zoothérapeute en Moselle — Médiation animale à domicile et en structure
+      </h1>
+      <p class="text-primary-100 text-lg md:text-xl leading-relaxed mb-8">
+        Jennifer De Groeve, praticienne certifiée, accompagne enfants, adultes et personnes âgées grâce à la relation avec l'animal. Séances individuelles ou collectives adaptées à chaque besoin, dans un rayon de 15&nbsp;km autour de Verny.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 mb-5">
+        <Button variant="primary" size="lg" href="#contact">
+          Me contacter
+        </Button>
+        <Button variant="outline" size="lg" href="#services" class="border-white/80 text-white hover:bg-white/10 hover:text-white">
+          Découvrir mes ateliers
+        </Button>
+      </div>
+
+      <p class="text-primary-200 text-sm">
+        Premier échange téléphonique gratuit et sans engagement
+      </p>
+    </div>
+  </div>
+</section>

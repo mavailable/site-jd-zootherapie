@@ -1,0 +1,126 @@
+---
+import '@styles/global.css';
+import { business } from '@data/business';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonicalUrl?: string;
+  noindex?: boolean;
+}
+
+const {
+  title = business.seo.defaultTitle,
+  description = business.seo.defaultDescription,
+  ogImage = business.seo.ogImage,
+  canonicalUrl = Astro.url.href,
+  noindex = false,
+} = Astro.props;
+
+const fullOgImage = ogImage.startsWith('http') ? ogImage : `${business.url}${ogImage}`;
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={fullOgImage} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content={business.name} />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={fullOgImage} />
+
+  <!-- Polices locales -->
+  <link rel="preload" href="/fonts/lora-v37-latin-600.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/lora-v37-latin-700.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/dm-sans-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/dm-sans-v17-latin-500.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/dm-sans-v17-latin-600.woff2" as="font" type="font/woff2" crossorigin />
+
+  <!-- Schema.org JSON-LD -->
+  <slot name="schema" />
+
+  <!-- Head additionnel -->
+  <slot name="head" />
+
+  <style>
+    /* @font-face declarations — Lora */
+    @font-face {
+      font-family: 'Lora';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url('/fonts/lora-v37-latin-600.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Lora';
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url('/fonts/lora-v37-latin-700.woff2') format('woff2');
+    }
+    /* @font-face declarations — DM Sans */
+    @font-face {
+      font-family: 'DM Sans';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('/fonts/dm-sans-v17-latin-regular.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'DM Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url('/fonts/dm-sans-v17-latin-500.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'DM Sans';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url('/fonts/dm-sans-v17-latin-600.woff2') format('woff2');
+    }
+  </style>
+</head>
+<body class="bg-neutral-50 text-neutral-800 font-body antialiased">
+  <!-- Skip-to-content : accessibilité WCAG 2.1 AA -->
+  <a href="#main-content"
+     class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-accent-700 focus:text-white focus:px-4 focus:py-2 focus:rounded">
+    Aller au contenu principal
+  </a>
+
+  <!-- Header -->
+  <slot name="header" />
+
+  <!-- Contenu principal -->
+  <main id="main-content">
+    <slot />
+  </main>
+
+  <!-- Footer -->
+  <slot name="footer" />
+
+  <!-- Cloudflare Web Analytics (à activer après déploiement) -->
+  <!-- <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "VOTRE_TOKEN"}'></script> -->
+</body>
+</html>

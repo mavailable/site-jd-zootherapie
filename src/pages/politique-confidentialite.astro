@@ -1,0 +1,93 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/layout/Header.astro';
+import Footer from '@components/layout/Footer.astro';
+import { business } from '@data/business';
+---
+
+<BaseLayout
+  title="Politique de confidentialité — JD Zoothérapie"
+  description="Politique de confidentialité de JD Zoothérapie. Informations sur la collecte et le traitement de vos données personnelles."
+>
+  <Header slot="header" />
+
+  <section class="py-16 md:py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="font-heading font-bold text-3xl md:text-4xl text-primary-900 mb-10">Politique de confidentialité</h1>
+
+      <div class="prose prose-neutral max-w-none text-neutral-700 leading-relaxed space-y-8">
+
+        <article>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Responsable du traitement</h2>
+          <p>
+            {business.founder}<br />
+            {business.name}<br />
+            {business.address.street}, {business.address.postalCode} {business.address.city}<br />
+            Email : <a href={`mailto:${business.email}`} class="text-primary-600 hover:underline">{business.email}</a>
+          </p>
+        </article>
+
+        <article>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Données collectées</h2>
+          <p>
+            Nous collectons uniquement les données que vous nous transmettez volontairement via le formulaire de contact : nom, adresse email, numéro de téléphone (optionnel) et le contenu de votre message.
+          </p>
+        </article>
+
+        <article>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Finalité du traitement</h2>
+          <p>
+            Vos données sont utilisées exclusivement pour répondre à votre demande de contact ou de renseignement concernant nos prestations de médiation animale. Elles ne sont utilisées à aucune autre fin.
+          </p>
+        </article>
+
+        <article>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Base légale</h2>
+          <p>
+            Le traitement de vos données est fondé sur votre consentement (article 6.1.a du RGPD), donné lors de la soumission du formulaire de contact.
+          </p>
+        </article>
+
+        <article>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Durée de conservation</h2>
+          <p>
+            Vos données sont conservées pendant une durée maximale de 12 mois après votre dernier contact, puis supprimées.
+          </p>
+        </article>
+
+        <article>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Partage des données</h2>
+          <p>
+            Vos données ne sont jamais vendues, louées ou transmises à des tiers. Le formulaire de contact utilise le service Web3Forms pour l'envoi technique des messages. Web3Forms ne stocke pas vos données de manière permanente.
+          </p>
+        </article>
+
+        <article>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Vos droits</h2>
+          <p>
+            Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits suivants : accès à vos données, rectification, suppression, limitation du traitement, portabilité et opposition. Pour exercer ces droits, contactez-nous à <a href={`mailto:${business.email}`} class="text-primary-600 hover:underline">{business.email}</a>.
+          </p>
+          <p>
+            Vous pouvez également introduire une réclamation auprès de la CNIL (<a href="https://www.cnil.fr" class="text-primary-600 hover:underline" target="_blank" rel="noopener noreferrer">www.cnil.fr</a>).
+          </p>
+        </article>
+
+        <article>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Cookies et mesure d'audience</h2>
+          <p>
+            Ce site n'utilise aucun cookie publicitaire ni de suivi. Cloudflare Web Analytics est utilisé pour mesurer la fréquentation du site de manière anonyme, sans dépôt de cookie et sans collecte de données personnelles.
+          </p>
+        </article>
+
+        <article>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Mise à jour</h2>
+          <p>
+            Cette politique de confidentialité peut être mise à jour à tout moment. Dernière mise à jour : mars 2026.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
