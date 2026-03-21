@@ -2,78 +2,136 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Header from '@components/layout/Header.astro';
 import Footer from '@components/layout/Footer.astro';
-import { business } from '@data/business';
+import { getSiteInfo } from '@data/content';
+
+const siteInfo = getSiteInfo();
+const currentYear = new Date().getFullYear();
 ---
 
 <BaseLayout
   title="Mentions légales — JD Zoothérapie"
-  description="Mentions légales du site jd-zootherapie.fr. Informations sur l'éditeur, l'hébergeur et la politique de confidentialité."
+  description="Mentions légales du site jd-zootherapie.fr. Informations sur l'éditeur, l'hébergeur et les conditions d'utilisation."
 >
   <Header slot="header" />
 
   <section class="py-16 md:py-20">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 class="font-heading font-bold text-3xl md:text-4xl text-primary-900 mb-10">Mentions légales</h1>
 
-      <div class="prose prose-neutral max-w-none text-neutral-700 leading-relaxed space-y-8">
+      <!-- Breadcrumb -->
+      <nav aria-label="Fil d'Ariane" class="mb-8 text-sm text-neutral-500">
+        <ol class="flex items-center gap-2">
+          <li><a href="/" class="hover:text-primary-600 transition-colors">Accueil</a></li>
+          <li aria-hidden="true"><span class="text-neutral-300">›</span></li>
+          <li class="text-neutral-700 font-medium" aria-current="page">Mentions légales</li>
+        </ol>
+      </nav>
 
+      <h1 class="font-heading font-bold text-3xl md:text-4xl text-primary-900 mb-2">Mentions légales</h1>
+      <p class="text-neutral-500 text-sm mb-10">Conformément à la loi n° 2004-575 du 21 juin 2004 pour la confiance en l'économie numérique (LCEN)</p>
+
+      <div class="space-y-10 text-neutral-700 leading-relaxed">
+
+        <!-- Éditeur -->
         <article>
-          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Éditeur du site</h2>
-          <p>
-            {business.name}<br />
-            {business.founder}<br />
-            {business.address.street}, {business.address.postalCode} {business.address.city}<br />
-            Téléphone : <a href={`tel:${business.phone}`} class="text-primary-600 hover:underline">{business.phoneDisplay}</a><br />
-            Email : <a href={`mailto:${business.email}`} class="text-primary-600 hover:underline">{business.email}</a><br />
-            <!-- SIRET : À compléter -->
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-4 pb-2 border-b border-neutral-100">Éditeur du site</h2>
+          <p class="leading-loose">
+            <strong>{siteInfo.name}</strong><br />
+            Praticienne en médiation animale<br />
+            {siteInfo.address.street}<br />
+            {siteInfo.address.postalCode} {siteInfo.address.city}, {siteInfo.address.region}<br />
+            Téléphone : <a href={`tel:${siteInfo.phone}`} class="text-primary-600 hover:underline">{siteInfo.phoneDisplay}</a><br />
+            Email : <a href={`mailto:${siteInfo.email}`} class="text-primary-600 hover:underline">{siteInfo.email}</a><br />
+            SIRET : <em class="text-neutral-400">En cours de communication</em>
+          </p>
+          <p class="mt-3 text-sm text-neutral-500">
+            Micro-entreprise non assujettie à la TVA (article 293 B du CGI)
           </p>
         </article>
 
+        <!-- Directrice de la publication -->
         <article>
-          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Directrice de la publication</h2>
-          <p>{business.founder}</p>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-4 pb-2 border-b border-neutral-100">Directrice de la publication</h2>
+          <p>Jennifer De Groeve, en qualité de responsable de l'entreprise individuelle {siteInfo.name}.</p>
         </article>
 
+        <!-- Hébergeur -->
         <article>
-          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Hébergement</h2>
-          <p>
-            Cloudflare, Inc.<br />
-            101 Townsend Street, San Francisco, CA 94107, USA<br />
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-4 pb-2 border-b border-neutral-100">Hébergement</h2>
+          <p class="leading-loose">
+            <strong>Cloudflare, Inc.</strong><br />
+            101 Townsend Street, San Francisco, CA 94107, États-Unis<br />
+            Téléphone : +1 (650) 319-8930<br />
             Site web : <a href="https://www.cloudflare.com" class="text-primary-600 hover:underline" target="_blank" rel="noopener noreferrer">www.cloudflare.com</a>
           </p>
         </article>
 
+        <!-- Conception -->
         <article>
-          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Conception du site</h2>
-          <p>
-            Marc Muller — Créateur de sites web<br />
-            <a href="https://marcmuller.site" class="text-primary-600 hover:underline" target="_blank" rel="noopener noreferrer">marcmuller.site</a>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-4 pb-2 border-b border-neutral-100">Conception et réalisation</h2>
+          <p class="leading-loose">
+            <strong>Marc Muller</strong> — Créateur de sites web<br />
+            <a href="https://marcmuller.site" class="text-primary-600 hover:underline" target="_blank" rel="noopener noreferrer">marcmuller.site</a><br />
+            Email : <a href="mailto:marc@muller.im" class="text-primary-600 hover:underline">marc@muller.im</a>
           </p>
         </article>
 
+        <!-- Propriété intellectuelle -->
         <article>
-          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Propriété intellectuelle</h2>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-4 pb-2 border-b border-neutral-100">Propriété intellectuelle</h2>
           <p>
-            L'ensemble du contenu de ce site (textes, images, logos, illustrations) est la propriété exclusive de {business.name} ou de ses partenaires et est protégé par le droit d'auteur. Toute reproduction, même partielle, est interdite sans autorisation préalable.
+            L'ensemble du contenu de ce site (textes, images, logos, illustrations, mise en page) est la propriété exclusive de {siteInfo.name} — Jennifer De Groeve, ou de ses partenaires, et est protégé par les lois françaises et internationales relatives au droit d'auteur et à la propriété intellectuelle.
+          </p>
+          <p class="mt-3">
+            Toute reproduction, représentation, modification, publication ou adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite, sauf autorisation préalable et écrite de {siteInfo.name}.
           </p>
         </article>
 
+        <!-- Données personnelles -->
         <article>
-          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Données personnelles</h2>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-4 pb-2 border-b border-neutral-100">Données personnelles et RGPD</h2>
           <p>
-            Les données personnelles collectées via le formulaire de contact sont utilisées uniquement pour répondre à vos demandes. Elles ne sont ni vendues ni transmises à des tiers. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour exercer ces droits, contactez-nous à <a href={`mailto:${business.email}`} class="text-primary-600 hover:underline">{business.email}</a>.
+            Les données personnelles collectées via le formulaire de contact sont utilisées exclusivement pour répondre à vos demandes. Elles ne sont ni vendues, ni louées, ni transmises à des tiers à des fins commerciales.
           </p>
-          <p>
-            Pour plus d'informations, consultez notre <a href="/politique-confidentialite" class="text-primary-600 hover:underline">politique de confidentialité</a>.
+          <p class="mt-3">
+            Conformément au Règlement Général sur la Protection des Données (RGPD — UE 2016/679) et à la loi n° 78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés, vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation et de portabilité de vos données. Pour exercer ces droits, contactez-nous à <a href={`mailto:${siteInfo.email}`} class="text-primary-600 hover:underline">{siteInfo.email}</a>.
+          </p>
+          <p class="mt-3">
+            Pour plus d'informations, consultez notre <a href="/politique-confidentialite" class="text-primary-600 hover:underline font-medium">politique de confidentialité</a>.
           </p>
         </article>
 
+        <!-- Cookies -->
         <article>
-          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Cookies</h2>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-4 pb-2 border-b border-neutral-100">Cookies</h2>
           <p>
-            Ce site utilise uniquement des cookies techniques nécessaires au bon fonctionnement du site. Aucun cookie publicitaire ou de suivi n'est déposé. Un outil d'analyse anonyme (Cloudflare Web Analytics) est utilisé pour mesurer la fréquentation du site, sans collecte de données personnelles.
+            Ce site n'utilise aucun cookie publicitaire, de suivi ou de ciblage. Cloudflare Web Analytics est utilisé pour mesurer la fréquentation du site de manière anonyme, sans dépôt de cookie sur votre terminal et sans collecte de données personnelles identifiables.
+          </p>
+          <p class="mt-3">
+            Les seuls cookies susceptibles d'être déposés sont des cookies techniques strictement nécessaires au bon fonctionnement du site (ex : sécurité Cloudflare). Ils ne nécessitent pas de consentement préalable.
           </p>
         </article>
+
+        <!-- Liens hypertextes -->
+        <article>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-4 pb-2 border-b border-neutral-100">Liens hypertextes</h2>
+          <p>
+            Ce site peut contenir des liens vers d'autres sites internet. {siteInfo.name} n'exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu ou à leur politique de confidentialité.
+          </p>
+        </article>
+
+        <!-- Droit applicable -->
+        <article>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-4 pb-2 border-b border-neutral-100">Droit applicable et juridiction</h2>
+          <p>
+            Tout litige en relation avec l'utilisation du site est soumis au droit français. Les tribunaux français sont seuls compétents.
+          </p>
+        </article>
+
+        <!-- Mise à jour -->
+        <p class="text-sm text-neutral-400 pt-4 border-t border-neutral-100">
+          Dernière mise à jour : mars {currentYear}
+        </p>
+
       </div>
     </div>
   </section>

@@ -1,122 +1,135 @@
 ---
-import Button from '@components/ui/Button.astro';
-import { business } from '@data/business';
+import { getSiteInfo, getContact } from '@data/content';
+
+const siteInfo = getSiteInfo();
+const contact = getContact();
 ---
 
 <section id="contact" class="bg-white py-16 md:py-20">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 md:grid-cols-5 gap-10">
 
-      <!-- Info column (2/5) -->
+      <!-- Bloc coordonnées (2/5) -->
       <div class="md:col-span-2">
         <h2 class="font-heading font-semibold text-2xl md:text-[2rem] text-primary-900 mb-3">
-          Parlons de votre projet
+          {contact.title}
         </h2>
-        <p class="text-neutral-600 leading-relaxed mb-8">
-          Un premier échange téléphonique gratuit pour comprendre vos besoins et vous proposer un accompagnement adapté.
+        <p class="text-neutral-600 leading-relaxed mb-8 text-sm">
+          {contact.subtitle}
         </p>
 
-        <div class="space-y-4">
-          <!-- Phone -->
-          <a href={`tel:${business.phone}`} class="flex items-center gap-3 text-neutral-700 hover:text-primary-600 transition-colors group">
+        <!-- CTA téléphone principal -->
+        <a
+          href={`tel:${siteInfo.phone}`}
+          class="inline-flex items-center justify-center gap-2 w-full bg-accent-700 text-white px-6 py-3.5 rounded font-semibold text-base hover:bg-accent-800 transition-colors min-h-[44px] mb-6"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          Appeler le {siteInfo.phoneDisplay}
+        </a>
+
+        <!-- Infos de contact -->
+        <div class="space-y-3">
+          <a href={`mailto:${siteInfo.email}`} class="flex items-center gap-3 text-neutral-700 hover:text-primary-600 transition-colors group">
             <span class="inline-flex items-center justify-center w-10 h-10 bg-primary-100 text-primary-600 rounded-lg group-hover:bg-primary-200 transition-colors shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
             </span>
-            <span class="text-sm font-medium">{business.phoneDisplay}</span>
+            <span class="text-sm font-medium break-all">{siteInfo.email}</span>
           </a>
 
-          <!-- Email -->
-          <a href={`mailto:${business.email}`} class="flex items-center gap-3 text-neutral-700 hover:text-primary-600 transition-colors group">
-            <span class="inline-flex items-center justify-center w-10 h-10 bg-primary-100 text-primary-600 rounded-lg group-hover:bg-primary-200 transition-colors shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-            </span>
-            <span class="text-sm font-medium">{business.email}</span>
-          </a>
-
-          <!-- Address -->
           <div class="flex items-start gap-3 text-neutral-700">
             <span class="inline-flex items-center justify-center w-10 h-10 bg-primary-100 text-primary-600 rounded-lg shrink-0 mt-0.5">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
             </span>
             <div class="text-sm">
-              <p class="font-medium">{business.address.street}</p>
-              <p>{business.address.postalCode} {business.address.city}</p>
-              <p class="text-neutral-500 mt-1">Intervention dans un rayon de 15 km</p>
+              <p class="font-medium">{siteInfo.address.postalCode} {siteInfo.address.city}</p>
+              <p class="text-neutral-500 mt-0.5">Intervention dans un rayon de 15 km</p>
+              <p class="text-neutral-500">Metz et Nancy : interventions ponctuelles</p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Form column (3/5) -->
+      <!-- Formulaire (3/5) -->
       <div class="md:col-span-3">
-        <form action="https://api.web3forms.com/submit" method="POST" class="bg-neutral-50 border border-neutral-200 rounded-xl p-6 md:p-8">
-          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY" />
-          <input type="hidden" name="subject" value="Nouveau message depuis jd-zootherapie.fr" />
-          <input type="hidden" name="redirect" value="/merci" />
-          <!-- Honeypot -->
-          <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
+        <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-6 md:p-8">
+          <h3 class="font-heading font-semibold text-lg text-primary-900 mb-5">Ou envoyez un message</h3>
 
-          <div class="space-y-5">
+          <form action="https://api.web3forms.com/submit" method="POST" class="space-y-5">
+            <input type="hidden" name="access_key" value="aaaaa969-db18-4cb0-99c9-cc9eb258e7b3" />
+            <input type="hidden" name="from_name" value="JD Zoothérapie — Site web" />
+            <input type="hidden" name="subject" value="Nouveau message depuis jd-zootherapie.fr" />
+            <input type="hidden" name="redirect" value="https://jd-zootherapie.fr/merci" />
+            <!-- Honeypot anti-spam -->
+            <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" aria-hidden="true" />
+
             <div>
-              <label for="name" class="block text-sm font-medium text-neutral-800 mb-1.5">Nom complet</label>
+              <label for="contact-name" class="block text-sm font-medium text-neutral-800 mb-1.5">
+                Votre prénom et nom <span class="text-accent-700" aria-hidden="true">*</span>
+              </label>
               <input
                 type="text"
-                id="name"
+                id="contact-name"
                 name="name"
                 required
                 autocomplete="name"
-                class="w-full px-4 py-3 border border-neutral-300 rounded bg-white text-neutral-800 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm min-h-[44px]"
-                placeholder="Votre nom"
+                class="w-full px-4 py-3 border border-neutral-300 rounded bg-white text-neutral-800 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm min-h-[44px] transition-shadow"
+                placeholder="Marie Dupont"
               />
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
-                <label for="email" class="block text-sm font-medium text-neutral-800 mb-1.5">Email</label>
+                <label for="contact-phone" class="block text-sm font-medium text-neutral-800 mb-1.5">Téléphone</label>
                 <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  autocomplete="email"
-                  class="w-full px-4 py-3 border border-neutral-300 rounded bg-white text-neutral-800 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm min-h-[44px]"
-                  placeholder="votre@email.fr"
+                  type="tel"
+                  id="contact-phone"
+                  name="phone"
+                  autocomplete="tel"
+                  class="w-full px-4 py-3 border border-neutral-300 rounded bg-white text-neutral-800 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm min-h-[44px] transition-shadow"
+                  placeholder="06 00 00 00 00"
                 />
               </div>
               <div>
-                <label for="phone" class="block text-sm font-medium text-neutral-800 mb-1.5">Téléphone</label>
+                <label for="contact-email" class="block text-sm font-medium text-neutral-800 mb-1.5">Email</label>
                 <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  autocomplete="tel"
-                  class="w-full px-4 py-3 border border-neutral-300 rounded bg-white text-neutral-800 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm min-h-[44px]"
-                  placeholder="06 00 00 00 00"
+                  type="email"
+                  id="contact-email"
+                  name="email"
+                  autocomplete="email"
+                  class="w-full px-4 py-3 border border-neutral-300 rounded bg-white text-neutral-800 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm min-h-[44px] transition-shadow"
+                  placeholder="votre@email.fr"
                 />
               </div>
             </div>
 
             <div>
-              <label for="message" class="block text-sm font-medium text-neutral-800 mb-1.5">Votre message</label>
+              <label for="contact-message" class="block text-sm font-medium text-neutral-800 mb-1.5">
+                Votre message <span class="text-accent-700" aria-hidden="true">*</span>
+              </label>
               <textarea
-                id="message"
+                id="contact-message"
                 name="message"
                 required
                 rows="4"
-                class="w-full px-4 py-3 border border-neutral-300 rounded bg-white text-neutral-800 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm resize-y"
-                placeholder="Décrivez votre projet ou votre besoin..."
+                class="w-full px-4 py-3 border border-neutral-300 rounded bg-white text-neutral-800 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm resize-y transition-shadow"
+                placeholder="Décrivez votre situation en quelques mots..."
               ></textarea>
             </div>
 
-            <Button type="submit" variant="primary" size="md" class="w-full sm:w-auto">
-              Envoyer ma demande
-            </Button>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+              <button
+                type="submit"
+                class="inline-flex items-center justify-center gap-2 bg-accent-700 text-white px-7 py-3.5 rounded font-semibold text-base hover:bg-accent-800 transition-colors min-h-[44px] w-full sm:w-auto"
+              >
+                {contact.buttonText}
+              </button>
+            </div>
 
             <p class="text-neutral-500 text-xs leading-relaxed">
-              En soumettant ce formulaire, vous acceptez que vos données soient traitées conformément à notre <a href="/politique-confidentialite" class="underline hover:text-primary-600">politique de confidentialité</a>. Vos informations sont utilisées uniquement pour répondre à votre demande et ne seront jamais partagées avec des tiers.
+              {contact.rgpdText} <a href="/politique-confidentialite" class="underline hover:text-primary-600 transition-colors">Politique de confidentialité</a>.
             </p>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   </div>

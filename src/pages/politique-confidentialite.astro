@@ -2,89 +2,157 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Header from '@components/layout/Header.astro';
 import Footer from '@components/layout/Footer.astro';
-import { business } from '@data/business';
+import { getSiteInfo } from '@data/content';
+
+const siteInfo = getSiteInfo();
+const currentYear = new Date().getFullYear();
 ---
 
 <BaseLayout
   title="Politique de confidentialité — JD Zoothérapie"
-  description="Politique de confidentialité de JD Zoothérapie. Informations sur la collecte et le traitement de vos données personnelles."
+  description="Politique de confidentialité de JD Zoothérapie. Informations sur la collecte et le traitement de vos données personnelles conformément au RGPD."
 >
   <Header slot="header" />
 
   <section class="py-16 md:py-20">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 class="font-heading font-bold text-3xl md:text-4xl text-primary-900 mb-10">Politique de confidentialité</h1>
 
-      <div class="prose prose-neutral max-w-none text-neutral-700 leading-relaxed space-y-8">
+      <!-- Breadcrumb -->
+      <nav aria-label="Fil d'Ariane" class="mb-8 text-sm text-neutral-500">
+        <ol class="flex items-center gap-2">
+          <li><a href="/" class="hover:text-primary-600 transition-colors">Accueil</a></li>
+          <li aria-hidden="true"><span class="text-neutral-300">›</span></li>
+          <li class="text-neutral-700 font-medium" aria-current="page">Politique de confidentialité</li>
+        </ol>
+      </nav>
 
+      <h1 class="font-heading font-bold text-3xl md:text-4xl text-primary-900 mb-2">Politique de confidentialité</h1>
+      <p class="text-neutral-500 text-sm mb-10">Conformément au Règlement Général sur la Protection des Données (RGPD — UE 2016/679)</p>
+
+      <div class="space-y-10 text-neutral-700 leading-relaxed">
+
+        <!-- Responsable du traitement -->
         <article>
-          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Responsable du traitement</h2>
-          <p>
-            {business.founder}<br />
-            {business.name}<br />
-            {business.address.street}, {business.address.postalCode} {business.address.city}<br />
-            Email : <a href={`mailto:${business.email}`} class="text-primary-600 hover:underline">{business.email}</a>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-4 pb-2 border-b border-neutral-100">Responsable du traitement</h2>
+          <p class="leading-loose">
+            <strong>Jennifer De Groeve</strong><br />
+            {siteInfo.name}<br />
+            {siteInfo.address.street}, {siteInfo.address.postalCode} {siteInfo.address.city}<br />
+            Email : <a href={`mailto:${siteInfo.email}`} class="text-primary-600 hover:underline">{siteInfo.email}</a><br />
+            Téléphone : <a href={`tel:${siteInfo.phone}`} class="text-primary-600 hover:underline">{siteInfo.phoneDisplay}</a>
           </p>
         </article>
 
+        <!-- Données collectées -->
         <article>
-          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Données collectées</h2>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-4 pb-2 border-b border-neutral-100">Données collectées</h2>
           <p>
-            Nous collectons uniquement les données que vous nous transmettez volontairement via le formulaire de contact : nom, adresse email, numéro de téléphone (optionnel) et le contenu de votre message.
+            Nous collectons uniquement les données que vous nous transmettez volontairement via le formulaire de contact :
+          </p>
+          <ul class="mt-3 space-y-1 pl-5 list-disc text-neutral-600">
+            <li>Nom et prénom (obligatoire)</li>
+            <li>Adresse email (optionnel, pour vous répondre par écrit)</li>
+            <li>Numéro de téléphone (optionnel, pour vous rappeler)</li>
+            <li>Contenu de votre message (obligatoire)</li>
+          </ul>
+          <p class="mt-3 text-sm text-neutral-500">
+            Aucune autre donnée n'est collectée automatiquement (pas d'adresse IP, pas de cookies de tracking).
           </p>
         </article>
 
+        <!-- Finalité -->
         <article>
-          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Finalité du traitement</h2>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-4 pb-2 border-b border-neutral-100">Finalité du traitement</h2>
           <p>
-            Vos données sont utilisées exclusivement pour répondre à votre demande de contact ou de renseignement concernant nos prestations de médiation animale. Elles ne sont utilisées à aucune autre fin.
+            Vos données sont utilisées exclusivement pour répondre à votre demande de contact ou de renseignement concernant les prestations de médiation animale proposées par {siteInfo.name}. Elles ne sont utilisées à aucune autre fin commerciale ou publicitaire.
           </p>
         </article>
 
+        <!-- Base légale -->
         <article>
-          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Base légale</h2>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-4 pb-2 border-b border-neutral-100">Base légale</h2>
           <p>
-            Le traitement de vos données est fondé sur votre consentement (article 6.1.a du RGPD), donné lors de la soumission du formulaire de contact.
+            Le traitement de vos données est fondé sur votre <strong>consentement</strong> (article 6.1.a du RGPD), donné librement lors de la soumission du formulaire de contact. Vous pouvez retirer ce consentement à tout moment en nous contactant.
           </p>
         </article>
 
+        <!-- Durée de conservation -->
         <article>
-          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Durée de conservation</h2>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-4 pb-2 border-b border-neutral-100">Durée de conservation</h2>
           <p>
-            Vos données sont conservées pendant une durée maximale de 12 mois après votre dernier contact, puis supprimées.
+            Vos données sont conservées pendant une durée maximale de <strong>3 ans</strong> après votre dernier contact, conformément aux recommandations de la CNIL pour les données de prospection et de suivi client. Au-delà de cette durée, vos données sont supprimées ou anonymisées.
           </p>
         </article>
 
+        <!-- Partage des données -->
         <article>
-          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Partage des données</h2>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-4 pb-2 border-b border-neutral-100">Partage et transfert des données</h2>
           <p>
-            Vos données ne sont jamais vendues, louées ou transmises à des tiers. Le formulaire de contact utilise le service Web3Forms pour l'envoi technique des messages. Web3Forms ne stocke pas vos données de manière permanente.
+            Vos données ne sont jamais vendues, louées ou transmises à des tiers à des fins commerciales.
+          </p>
+          <p class="mt-3">
+            Le formulaire de contact utilise le service <strong>Web3Forms</strong> (web3forms.com) pour l'acheminement technique des messages. Web3Forms est utilisé comme prestataire de traitement et ne stocke pas vos données de manière permanente. Vous pouvez consulter leur politique de confidentialité sur <a href="https://web3forms.com/privacy" class="text-primary-600 hover:underline" target="_blank" rel="noopener noreferrer">web3forms.com/privacy</a>.
+          </p>
+          <p class="mt-3">
+            L'hébergement du site est assuré par Cloudflare, Inc. (États-Unis), société soumise au Data Privacy Framework EU–US.
           </p>
         </article>
 
+        <!-- Vos droits -->
         <article>
-          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Vos droits</h2>
-          <p>
-            Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits suivants : accès à vos données, rectification, suppression, limitation du traitement, portabilité et opposition. Pour exercer ces droits, contactez-nous à <a href={`mailto:${business.email}`} class="text-primary-600 hover:underline">{business.email}</a>.
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-4 pb-2 border-b border-neutral-100">Vos droits</h2>
+          <p>Conformément au RGPD, vous disposez des droits suivants sur vos données personnelles :</p>
+          <ul class="mt-3 space-y-2 pl-5 list-disc text-neutral-600">
+            <li><strong>Droit d'accès</strong> : obtenir une copie de vos données</li>
+            <li><strong>Droit de rectification</strong> : corriger des données inexactes</li>
+            <li><strong>Droit à l'effacement</strong> : demander la suppression de vos données</li>
+            <li><strong>Droit à la limitation</strong> : restreindre l'utilisation de vos données</li>
+            <li><strong>Droit à la portabilité</strong> : recevoir vos données dans un format lisible</li>
+            <li><strong>Droit d'opposition</strong> : vous opposer à tout traitement de vos données</li>
+          </ul>
+          <p class="mt-4">
+            Pour exercer ces droits, contactez-nous par email à <a href={`mailto:${siteInfo.email}`} class="text-primary-600 hover:underline font-medium">{siteInfo.email}</a>. Nous répondrons dans un délai d'un mois.
           </p>
-          <p>
-            Vous pouvez également introduire une réclamation auprès de la CNIL (<a href="https://www.cnil.fr" class="text-primary-600 hover:underline" target="_blank" rel="noopener noreferrer">www.cnil.fr</a>).
+          <p class="mt-3">
+            Si vous estimez que vos droits ne sont pas respectés, vous pouvez introduire une réclamation auprès de la <strong>CNIL</strong> (Commission Nationale de l'Informatique et des Libertés) : <a href="https://www.cnil.fr" class="text-primary-600 hover:underline" target="_blank" rel="noopener noreferrer">www.cnil.fr</a>.
           </p>
         </article>
 
+        <!-- Cookies et mesure d'audience -->
         <article>
-          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Cookies et mesure d'audience</h2>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-4 pb-2 border-b border-neutral-100">Cookies et mesure d'audience</h2>
           <p>
-            Ce site n'utilise aucun cookie publicitaire ni de suivi. Cloudflare Web Analytics est utilisé pour mesurer la fréquentation du site de manière anonyme, sans dépôt de cookie et sans collecte de données personnelles.
+            Ce site n'utilise <strong>aucun cookie publicitaire, de suivi ou de ciblage</strong>. Aucun outil de type Google Analytics n'est installé sur ce site.
+          </p>
+          <p class="mt-3">
+            <strong>Cloudflare Web Analytics</strong> est utilisé pour mesurer la fréquentation du site de manière anonyme, sans dépôt de cookie sur votre terminal et sans collecte de données personnelles identifiables. Ces statistiques sont agrégées et ne permettent pas de vous identifier.
+          </p>
+          <p class="mt-3">
+            Les seuls cookies susceptibles d'être présents sont des cookies techniques de sécurité déposés par Cloudflare, strictement nécessaires au fonctionnement du site, qui ne nécessitent pas de consentement préalable (article 5.3 de la directive ePrivacy).
+          </p>
+          <p class="mt-3 text-sm font-medium text-primary-600">
+            ✓ Aucune bannière cookies requise — aucun service tiers non essentiel sur ce site.
           </p>
         </article>
 
+        <!-- Sécurité -->
         <article>
-          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-3">Mise à jour</h2>
+          <h2 class="font-heading font-semibold text-xl text-primary-900 mb-4 pb-2 border-b border-neutral-100">Sécurité des données</h2>
           <p>
-            Cette politique de confidentialité peut être mise à jour à tout moment. Dernière mise à jour : mars 2026.
+            Nous mettons en œuvre toutes les mesures techniques et organisationnelles appropriées pour protéger vos données contre tout accès non autorisé, perte, destruction ou divulgation. Le site est servi exclusivement en HTTPS via le réseau Cloudflare.
           </p>
         </article>
+
+        <!-- Mise à jour -->
+        <div class="pt-4 border-t border-neutral-100">
+          <p class="text-sm text-neutral-400">
+            Dernière mise à jour : mars {currentYear}. Cette politique peut être modifiée à tout moment pour refléter les évolutions légales ou techniques. La date de mise à jour ci-dessus sera actualisée en conséquence.
+          </p>
+          <p class="mt-2 text-sm text-neutral-400">
+            Retour aux <a href="/mentions-legales" class="hover:text-neutral-600 underline">mentions légales</a>.
+          </p>
+        </div>
+
       </div>
     </div>
   </section>

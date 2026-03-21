@@ -1,43 +1,57 @@
 ---
-const faqs = [
-  {
-    question: 'Qu\'est-ce que la zoothérapie exactement ?',
-    answer: 'La zoothérapie, ou médiation animale, est une approche d\'accompagnement qui utilise la présence de l\'animal pour favoriser le bien-être physique, psychique et social. L\'animal intervient comme médiateur dans un cadre défini, respectueux et sans jugement.',
-  },
-  {
-    question: 'À qui s\'adressent vos séances ?',
-    answer: 'Mes ateliers sont ouverts à tous : enfants dès 3 ans, adolescents, adultes et personnes âgées, avec ou sans handicap. J\'interviens aussi bien auprès de particuliers qu\'en structure (EHPAD, IME, écoles, foyers).',
-  },
-  {
-    question: 'Où intervenez-vous ?',
-    answer: 'J\'interviens à domicile ou dans votre structure, dans un rayon de 15 km autour de Verny (57420). Au-delà, une participation de 0,50 €/km est demandée. J\'interviens ponctuellement jusqu\'à Metz et Nancy.',
-  },
-  {
-    question: 'Combien coûte une séance ?',
-    answer: 'Une séance individuelle est à 60 €, déplacement inclus dans le rayon de 15 km. Pour les séances de groupe ou les projets en structure, le tarif est établi sur devis en fonction du nombre de participants, de la durée et de la fréquence.',
-  },
-  {
-    question: 'Les animaux sont-ils formés pour la médiation ?',
-    answer: 'Oui. Tips, mon finnois de Laponie, est un chien médiateur formé spécifiquement pour la zoothérapie. Tous mes animaux sont suivis vétérinairement, sociabilisés et encadrés selon les normes du Syndicat Français des Zoothérapeutes.',
-  },
-];
+import { getFaq } from '@data/content';
+
+interface Props {
+  /** Nombre de questions à afficher. Défaut : toutes */
+  limit?: number;
+  /** Titre de section */
+  title?: string;
+  /** Afficher le CTA vers la page FAQ complète ? */
+  showLink?: boolean;
+}
+
+const {
+  limit,
+  title = 'Questions fréquentes',
+  showLink = false,
+} = Astro.props;
+
+const allFaqs = getFaq();
+const faqs = limit ? allFaqs.slice(0, limit) : allFaqs;
 ---
 
 <section id="faq" class="bg-primary-50 py-16 md:py-20">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="font-heading font-semibold text-2xl md:text-[2rem] text-primary-900 text-center mb-4">
-      Questions fréquentes
-    </h2>
-    <p class="text-neutral-600 text-center mb-10">
-      Tout ce que vous devez savoir sur la médiation animale et mes interventions.
-    </p>
+    <div class="text-center mb-10">
+      <h2 class="font-heading font-semibold text-2xl md:text-[2rem] text-primary-900 mb-3">
+        {title}
+      </h2>
+      <p class="text-neutral-600">
+        Tout ce que vous devez savoir sur la médiation animale et les séances de Jennifer.
+      </p>
+    </div>
 
     <div class="space-y-3">
       {faqs.map((faq, i) => (
-        <details class="group bg-white border border-neutral-200 rounded-lg overflow-hidden" {...(i === 0 ? { open: true } : {})}>
-          <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer list-none text-left font-semibold text-primary-900 hover:bg-primary-50 transition-colors min-h-[44px]">
-            <span class="text-sm md:text-base">{faq.question}</span>
-            <svg class="w-5 h-5 text-primary-500 shrink-0 transition-transform duration-200 group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        <details
+          class="group bg-white border border-neutral-200 rounded-xl overflow-hidden shadow-sm"
+          {...(i === 0 ? { open: true } : {})}
+        >
+          <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer list-none text-left font-semibold text-primary-900 hover:bg-primary-50 transition-colors min-h-[52px]">
+            <span class="text-sm md:text-base leading-snug">{faq.question}</span>
+            <svg
+              class="w-5 h-5 text-primary-500 shrink-0 transition-transform duration-200 group-open:rotate-180"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
           </summary>
           <div class="px-6 pb-5 text-neutral-700 text-sm leading-relaxed border-t border-neutral-100 pt-4">
             {faq.answer}
@@ -45,5 +59,14 @@ const faqs = [
         </details>
       ))}
     </div>
+
+    {showLink && (
+      <div class="text-center mt-8">
+        <a href="/faq" class="inline-flex items-center gap-1.5 text-primary-600 hover:text-primary-800 text-sm font-medium transition-colors">
+          Voir toutes les questions
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+    )}
   </div>
 </section>

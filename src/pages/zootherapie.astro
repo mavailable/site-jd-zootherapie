@@ -1,0 +1,153 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/layout/Header.astro';
+import Footer from '@components/layout/Footer.astro';
+import PageHero from '@components/sections/PageHero.astro';
+import CTABanner from '@components/sections/CTABanner.astro';
+import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
+---
+
+<BaseLayout
+  title="La médiation animale — Bienfaits et publics | JD Zoothérapie"
+  description="Découvrez les bienfaits de la zoothérapie : réduction du stress, stimulation cognitive, lien social. Une approche douce pour tous les âges, en Moselle."
+>
+  <Fragment slot="schema">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://jd-zootherapie.fr/" },
+        { "@type": "ListItem", "position": 2, "name": "La zoothérapie", "item": "https://jd-zootherapie.fr/zootherapie" }
+      ]
+    })} />
+  </Fragment>
+
+  <Header slot="header" />
+
+  <PageHero
+    h1="La zoothérapie : qu'est-ce que c'est et à qui ça s'adresse ?"
+    subtitle="Méthode douce et naturelle, la médiation animale utilise la présence de l'animal pour améliorer le bien-être physique, psychique et social — pour tous les âges, toutes les situations."
+  />
+
+  <!-- Fil d'Ariane -->
+  <nav aria-label="Fil d'Ariane" class="bg-white border-b border-neutral-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5">
+      <ol class="flex items-center gap-2 text-xs text-neutral-500">
+        <li><a href="/" class="hover:text-primary-600 transition-colors">Accueil</a></li>
+        <li aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></li>
+        <li class="text-primary-700 font-medium" aria-current="page">La zoothérapie</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Définition -->
+  <section class="bg-white py-14 md:py-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-heading font-semibold text-xl md:text-2xl text-primary-900 mb-5">
+        La médiation animale en quelques mots
+      </h2>
+      <div class="text-neutral-700 leading-relaxed space-y-4">
+        <p>La zoothérapie — aussi appelée <strong>médiation animale</strong> — est une approche d'accompagnement reconnue qui place l'animal au cœur de la relation thérapeutique. Ce n'est pas simplement jouer avec un chien : c'est une intervention structurée, avec des objectifs définis, encadrée par une praticienne certifiée.</p>
+        <p>L'animal intervient comme médiateur entre la praticienne et la personne accompagnée. Sa présence neutre, son affection inconditionnelle et sa capacité à « lire » l'état émotionnel de l'humain créent un cadre unique, propice à la confiance et à l'ouverture.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bienfaits — fond primary-50 -->
+  <section class="bg-primary-50 py-14 md:py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <h2 class="font-heading font-semibold text-xl md:text-2xl text-primary-900 mb-2">Des bénéfices documentés pour tous les publics</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <article class="bg-white border border-neutral-200 rounded-xl p-5 shadow-sm">
+          <div class="inline-flex items-center justify-center w-10 h-10 bg-accent-100 text-accent-700 rounded-lg mb-3 shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h3 class="font-heading font-semibold text-base text-primary-900 mb-2">Réduction du stress et de l'anxiété</h3>
+          <p class="text-neutral-700 text-sm leading-relaxed">Les caresses et les jeux avec l'animal libèrent de l'ocytocine, diminuent le cortisol et apaisent le système nerveux. Les effets sont perceptibles dès la première séance.</p>
+        </article>
+
+        <article class="bg-white border border-neutral-200 rounded-xl p-5 shadow-sm">
+          <div class="inline-flex items-center justify-center w-10 h-10 bg-primary-100 text-primary-600 rounded-lg mb-3 shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <h3 class="font-heading font-semibold text-base text-primary-900 mb-2">Stimulation cognitive et sensorielle</h3>
+          <p class="text-neutral-700 text-sm leading-relaxed">Toucher, nommer, observer, interagir — chaque séance sollicite la mémoire, l'attention, les sens. Particulièrement adapté aux personnes atteintes de troubles neurodégénératifs.</p>
+        </article>
+
+        <article class="bg-white border border-neutral-200 rounded-xl p-5 shadow-sm">
+          <div class="inline-flex items-center justify-center w-10 h-10 bg-secondary-100 text-secondary-700 rounded-lg mb-3 shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3 class="font-heading font-semibold text-base text-primary-900 mb-2">Développement des compétences sociales</h3>
+          <p class="text-neutral-700 text-sm leading-relaxed">L'animal facilite la communication, l'empathie et le lien. Il débloque ce que la parole ne peut pas toujours atteindre.</p>
+        </article>
+
+        <article class="bg-white border border-neutral-200 rounded-xl p-5 shadow-sm">
+          <div class="inline-flex items-center justify-center w-10 h-10 bg-accent-100 text-accent-700 rounded-lg mb-3 shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <h3 class="font-heading font-semibold text-base text-primary-900 mb-2">Renforcement de l'estime de soi</h3>
+          <p class="text-neutral-700 text-sm leading-relaxed">S'occuper d'un animal, le faire obéir, en prendre soin — chaque petite réussite booste la confiance en soi, notamment chez les enfants et les personnes en situation de handicap.</p>
+        </article>
+
+        <article class="bg-white border border-neutral-200 rounded-xl p-5 shadow-sm md:col-span-2 lg:col-span-1">
+          <div class="inline-flex items-center justify-center w-10 h-10 bg-primary-100 text-primary-600 rounded-lg mb-3 shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          </div>
+          <h3 class="font-heading font-semibold text-base text-primary-900 mb-2">Lutte contre l'isolement</h3>
+          <p class="text-neutral-700 text-sm leading-relaxed">La présence animale rompt l'isolement, rouvre la communication, apporte de la joie. Essentiel pour les personnes âgées vivant seules ou en institution.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Publics — fond blanc -->
+  <section class="bg-white py-14 md:py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+        <div>
+          <h2 class="font-heading font-semibold text-xl md:text-2xl text-primary-900 mb-5">À qui s'adresse la médiation animale ?</h2>
+          <p class="text-neutral-700 text-sm leading-relaxed mb-4">La médiation animale s'adresse à tous — de 3 à 99 ans. Elle est particulièrement efficace pour :</p>
+          <ul class="space-y-2.5">
+            {[
+              'Personnes atteintes d\'Alzheimer, Parkinson ou troubles apparentés',
+              'Enfants avec troubles du spectre autistique (TSA) ou TDAH',
+              'Personnes en situation de handicap moteur ou mental',
+              'Personnes souffrant d\'anxiété, dépression ou isolement social',
+              'Aidants familiaux en situation de surcharge émotionnelle',
+              'Enfants et adolescents avec des difficultés d\'apprentissage',
+            ].map((item) => (
+              <li class="flex items-start gap-2.5 text-sm text-neutral-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-primary-500 mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="bg-secondary-50 border border-secondary-200 rounded-2xl p-7">
+          <h3 class="font-heading font-semibold text-lg text-secondary-900 mb-3">Vous ne savez pas si c'est fait pour vous ?</h3>
+          <p class="text-neutral-700 text-sm leading-relaxed mb-5">Jennifer propose un premier échange téléphonique gratuit et sans engagement pour comprendre votre situation et vous orienter vers la formule la plus adaptée.</p>
+          <a href="tel:+33754812122" class="inline-flex items-center justify-center gap-2 bg-accent-700 text-white px-6 py-3 rounded font-semibold text-sm hover:bg-accent-800 transition-colors min-h-[44px] w-full">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Appeler Jennifer
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Prêt à découvrir la médiation animale ?"
+    text="Contactez Jennifer pour un premier échange gratuit."
+    ctaText="Appeler Jennifer"
+    ctaSecondaryText="Voir les ateliers"
+    ctaSecondaryHref="/ateliers"
+  />
+
+  <Footer slot="footer" />
+  <StickyMobileCTA />
+</BaseLayout>

@@ -1,25 +1,28 @@
 ---
-const stats = [
-  { value: '+20 ans', label: 'dans le soin et l\'accompagnement' },
-  { value: '3 animaux', label: 'médiateurs formés et encadrés' },
-  { value: 'Tous publics', label: 'de 3 à 99 ans, avec ou sans handicap' },
-];
+import { getTestimonials } from '@data/content';
 
-const testimonials = [
+const testimonials = getTestimonials();
+
+const stats = [
   {
-    quote: 'Depuis que Jennifer intervient auprès de mon père atteint d\'Alzheimer, il est plus apaisé et sourit à nouveau. Les séances avec Tips sont le moment fort de sa semaine.',
-    author: 'Marie-Claire D.',
-    context: 'Famille d\'un résident en EHPAD',
+    value: '+20 ans',
+    label: 'dans le soin et l\'accompagnement',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
   },
   {
-    quote: 'Mon fils avait du mal à gérer ses émotions. Grâce aux ateliers avec les animaux, il a gagné en confiance et en sérénité. Il réclame chaque séance !',
-    author: 'Sophie R.',
-    context: 'Maman d\'un enfant de 7 ans',
+    value: '3 animaux',
+    label: 'médiateurs formés et encadrés',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>`,
   },
   {
-    quote: 'Jennifer sait adapter ses interventions à chaque résident. Les animaux créent un lien immédiat, et les progrès sont visibles dès les premières séances.',
-    author: 'Équipe éducative',
-    context: 'IME de Moselle',
+    value: 'Tous âges',
+    label: 'de 3 à 99 ans, avec ou sans handicap',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+  },
+  {
+    value: '15 km',
+    label: 'rayon d\'intervention autour de Verny',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`,
   },
 ];
 ---
@@ -27,30 +30,34 @@ const testimonials = [
 <section class="bg-white py-16 md:py-20">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-    <!-- Section title -->
-    <h2 class="font-heading font-semibold text-2xl md:text-[2rem] text-primary-900 text-center mb-12">
-      Ce que la médiation animale apporte au quotidien
-    </h2>
+    <div class="text-center mb-12">
+      <h2 class="font-heading font-semibold text-2xl md:text-[2rem] text-primary-900 mb-3">
+        Ce que la médiation animale change au quotidien
+      </h2>
+      <p class="text-neutral-600 max-w-xl mx-auto text-base">
+        Des séances construites dans la douceur et la confiance, avec des animaux médiateurs formés.
+      </p>
+    </div>
 
-    <!-- Stats band -->
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
+    <!-- Stats band — fond primary-50 -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
       {stats.map((stat) => (
-        <div class="text-center p-6 bg-primary-50 rounded-lg">
-          <p class="font-heading font-bold text-2xl md:text-3xl text-primary-800 mb-1">{stat.value}</p>
-          <p class="text-neutral-600 text-sm">{stat.label}</p>
+        <div class="text-center p-5 bg-primary-50 rounded-xl border border-primary-100">
+          <div class="inline-flex items-center justify-center w-11 h-11 bg-primary-100 text-primary-600 rounded-lg mb-3" set:html={stat.icon} />
+          <p class="font-heading font-bold text-2xl md:text-3xl text-primary-800 leading-tight mb-1">{stat.value}</p>
+          <p class="text-neutral-600 text-xs leading-snug">{stat.label}</p>
         </div>
       ))}
     </div>
 
-    <!-- Testimonials -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+    <!-- Testimonials grid — fond secondary-50 -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
       {testimonials.map((t) => (
-        <article class="bg-secondary-50 border border-secondary-200 rounded-lg p-6 flex flex-col">
-          <!-- Decorative quote -->
-          <svg class="w-8 h-8 text-secondary-400 mb-3 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <article class="bg-secondary-50 border border-secondary-200 rounded-xl p-6 flex flex-col">
+          <svg class="w-8 h-8 text-secondary-400 mb-3 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"/>
           </svg>
-          <blockquote class="text-neutral-700 text-sm leading-relaxed mb-4 flex-1">
+          <blockquote class="text-neutral-700 text-sm leading-relaxed mb-4 flex-1 italic">
             {t.quote}
           </blockquote>
           <footer class="border-t border-secondary-200 pt-3 mt-auto">
@@ -60,5 +67,14 @@ const testimonials = [
         </article>
       ))}
     </div>
+
+    <!-- Lien vers page témoignages -->
+    <div class="text-center mt-8">
+      <a href="/temoignages" class="inline-flex items-center gap-1.5 text-primary-600 hover:text-primary-800 text-sm font-medium transition-colors">
+        Voir tous les témoignages
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+
   </div>
 </section>

@@ -1,5 +1,7 @@
 ---
-import { business } from '@data/business';
+import { getSiteInfo } from '@data/content';
+
+const siteInfo = getSiteInfo();
 ---
 
 <footer class="bg-primary-900 text-neutral-100">
@@ -8,49 +10,80 @@ import { business } from '@data/business';
 
       <!-- Col 1: Identité -->
       <div>
-        <div class="flex items-center gap-2 mb-4">
-          <span class="inline-flex items-center justify-center w-9 h-9 bg-primary-600 text-white rounded-full text-sm font-bold font-heading">JD</span>
-          <span class="font-heading font-bold text-lg text-white">Zoothérapie</span>
-        </div>
-        <p class="text-primary-200 text-sm leading-relaxed">
-          Médiation animale en Moselle. Séances à domicile et en structure pour enfants, adultes et personnes âgées.
+        <a href="/" class="flex items-center gap-2.5 mb-4 group" aria-label="JD Zoothérapie — Accueil">
+          <span class="inline-flex items-center justify-center w-9 h-9 bg-primary-600 text-white rounded-full text-sm font-bold font-heading shrink-0 group-hover:bg-primary-500 transition-colors">JD</span>
+          <span class="font-heading font-bold text-lg text-white group-hover:text-primary-200 transition-colors">Zoothérapie</span>
+        </a>
+        <p class="text-primary-200 text-sm leading-relaxed mb-5">
+          Médiation animale certifiée en Moselle. Séances individuelles et collectives à domicile ou en structure.
         </p>
+        <!-- Réseaux sociaux -->
+        <div class="flex gap-3">
+          {siteInfo.social.facebook && (
+            <a href={siteInfo.social.facebook} target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center justify-center w-9 h-9 bg-primary-800 text-primary-300 rounded-full hover:bg-primary-700 hover:text-white transition-colors"
+               aria-label="Page Facebook de JD Zoothérapie">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+          )}
+          {siteInfo.social.instagram && (
+            <a href={siteInfo.social.instagram} target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center justify-center w-9 h-9 bg-primary-800 text-primary-300 rounded-full hover:bg-primary-700 hover:text-white transition-colors"
+               aria-label="Instagram de JD Zoothérapie">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+          )}
+        </div>
       </div>
 
       <!-- Col 2: Coordonnées -->
       <div>
         <h3 class="font-heading font-semibold text-white mb-4 text-base">Coordonnées</h3>
-        <address class="not-italic text-sm text-primary-200 space-y-2">
-          <p>{business.address.street}<br />{business.address.postalCode} {business.address.city}</p>
+        <address class="not-italic text-sm text-primary-200 space-y-2.5">
+          <p class="leading-relaxed">
+            {siteInfo.address.street}<br />
+            {siteInfo.address.postalCode} {siteInfo.address.city}, {siteInfo.address.region}
+          </p>
           <p>
-            <a href={`tel:${business.phone}`} class="hover:text-white transition-colors">
-              {business.phoneDisplay}
+            <a href={`tel:${siteInfo.phone}`} class="hover:text-white transition-colors inline-flex items-center gap-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              {siteInfo.phoneDisplay}
             </a>
           </p>
           <p>
-            <a href={`mailto:${business.email}`} class="hover:text-white transition-colors">
-              {business.email}
+            <a href={`mailto:${siteInfo.email}`} class="hover:text-white transition-colors inline-flex items-center gap-1.5 break-all">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              {siteInfo.email}
             </a>
           </p>
+          <p class="text-primary-300 text-xs">Zone d'intervention : {siteInfo.areaServed}</p>
         </address>
       </div>
 
-      <!-- Col 3: Liens -->
+      <!-- Col 3: Navigation -->
       <div>
-        <h3 class="font-heading font-semibold text-white mb-4 text-base">Liens utiles</h3>
-        <nav aria-label="Liens du pied de page" class="flex flex-col gap-2 text-sm text-primary-200">
-          <a href="#services" class="hover:text-white transition-colors">Services</a>
-          <a href="#faq" class="hover:text-white transition-colors">Questions fréquentes</a>
-          <a href="#contact" class="hover:text-white transition-colors">Contact</a>
-          <a href="/mentions-legales" class="hover:text-white transition-colors">Mentions légales</a>
-          <a href="/politique-confidentialite" class="hover:text-white transition-colors">Politique de confidentialité</a>
+        <h3 class="font-heading font-semibold text-white mb-4 text-base">Navigation</h3>
+        <nav aria-label="Liens de navigation du pied de page" class="flex flex-col gap-2 text-sm text-primary-200">
+          <a href="/zootherapie" class="hover:text-white transition-colors">La zoothérapie</a>
+          <a href="/ateliers" class="hover:text-white transition-colors">Les ateliers</a>
+          <a href="/a-propos" class="hover:text-white transition-colors">Mon parcours</a>
+          <a href="/tarifs" class="hover:text-white transition-colors">Tarifs</a>
+          <a href="/temoignages" class="hover:text-white transition-colors">Témoignages</a>
+          <a href="/faq" class="hover:text-white transition-colors">FAQ</a>
+          <a href="/contact" class="hover:text-white transition-colors">Contact</a>
         </nav>
+        <div class="mt-5 pt-4 border-t border-primary-800">
+          <nav aria-label="Liens légaux" class="flex flex-col gap-1.5 text-xs text-primary-300">
+            <a href="/mentions-legales" class="hover:text-white transition-colors">Mentions légales</a>
+            <a href="/politique-confidentialite" class="hover:text-white transition-colors">Politique de confidentialité</a>
+          </nav>
+        </div>
       </div>
     </div>
 
     <!-- Bottom bar -->
-    <div class="mt-10 pt-6 border-t border-primary-800 text-center text-sm text-primary-300">
-      <p>&copy; {new Date().getFullYear()} {business.name} — {business.founder} | Praticienne en médiation animale — {business.address.city} ({business.address.postalCode})</p>
+    <div class="mt-10 pt-6 border-t border-primary-800 text-center text-xs text-primary-400">
+      <p>&copy; {new Date().getFullYear()} {siteInfo.name} — Jennifer De Groeve | Praticienne en médiation animale — {siteInfo.address.city} ({siteInfo.address.postalCode}), Moselle</p>
       <p class="mt-1">
         Site créé par <a href="https://marcmuller.site" class="hover:text-white transition-colors underline" target="_blank" rel="noopener noreferrer">Marc Muller — Créateur de sites web</a>
       </p>

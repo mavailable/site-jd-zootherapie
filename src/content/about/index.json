@@ -1,0 +1,28 @@
+{
+  "founderName": "Jennifer De Groeve",
+  "founderTitle": "Praticienne certifiée en médiation animale",
+  "paragraphs": [
+    "Je m'appelle Jennifer De Groeve. Je suis praticienne certifiée en médiation animale, installée à Vigny en Moselle, et j'interviens dans un rayon de 15 km autour de Verny.",
+    "Avant de fonder JD Zoothérapie, j'ai exercé plus de 20 ans comme aide-soignante diplômée. Ces années passées auprès de patients de tous âges m'ont appris une chose essentielle : le soin ne se résume pas à des gestes techniques. Il se construit dans la relation, dans le lien, dans la présence.",
+    "C'est au contact des animaux, et en observant leur effet sur les patients les plus isolés, les plus anxieux, les plus douloureux, que j'ai découvert la médiation animale. Un chien qui pose sa tête sur les genoux d'une personne atteinte d'Alzheimer et qui la fait sourire pour la première fois depuis des semaines. Ces moments-là, j'ai voulu en faire mon quotidien.",
+    "J'ai suivi une formation approfondie à l'Institut de Formation en Zoothérapie (IFZ), puis j'ai cofondé l'association Thérapattes. Je suis membre du Syndicat Français des Zoothérapeutes, car je crois dans l'importance de cadrer et de professionnaliser cette pratique pour qu'elle soit reconnue à sa juste valeur.",
+    "Mon objectif est simple : rendre la médiation animale accessible à tous, que vous soyez un enfant qui manque de confiance en lui, un parent aidant épuisé, une personne âgée qui vit seule, ou une équipe soignante qui cherche de nouveaux outils."
+  ],
+  "animals": [
+    {
+      "name": "Tips",
+      "breed": "Finnois de Laponie",
+      "role": "Chien médiateur certifié, formé pour la zoothérapie. Calme, doux, attentif. Idéal pour les personnes âgées et les séances de pleine présence."
+    },
+    {
+      "name": "Uxo",
+      "breed": "Berger américain miniature",
+      "role": "Plein d'énergie et de joie. Excellent pour les ateliers enfants et les séances collectives dynamiques."
+    },
+    {
+      "name": "Tap-Tap",
+      "breed": "Lapin bélier",
+      "role": "Doux et rassurant. Parfait pour les ateliers sensoriels, les personnes qui ont peur des chiens, et les moments de tendresse pure."
+    }
+  ]
+}

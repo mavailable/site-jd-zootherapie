@@ -1,52 +1,94 @@
 ---
-import { business } from '@data/business';
+import { getAbout } from '@data/content';
+
+interface Props {
+  /** Mode snippet pour la homepage (texte court) */
+  snippet?: boolean;
+}
+
+const { snippet = false } = Astro.props;
+const about = getAbout();
+
+// En mode snippet : 1 paragraphe + lien vers /a-propos
+// En mode complet : tous les paragraphes + section animaux
+const paragraphsToShow = snippet ? about.paragraphs.slice(0, 1) : about.paragraphs;
 ---
 
 <section id="a-propos" class="bg-white py-16 md:py-20">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 md:grid-cols-5 gap-10 items-center">
 
-      <!-- Photo column (2/5) -->
+      <!-- Photo (2/5) -->
       <div class="md:col-span-2 order-1">
-        <!-- TODO: Remplacer par la photo de Jennifer avec ses animaux (portrait.jpg) -->
-        <div class="w-full aspect-[3/4] bg-primary-100 rounded-xl flex items-center justify-center text-primary-500 text-sm">
-          Photo Jennifer + animaux
+        <!-- TODO: Remplacer par la photo Jennifer avec ses animaux (portrait.jpg) -->
+        <div class="w-full aspect-[3/4] bg-primary-100 rounded-2xl flex flex-col items-center justify-center text-primary-500 text-sm gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-primary-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span class="text-primary-400">Photo Jennifer + animaux</span>
+          <span class="text-primary-300 text-xs">(à remplacer en wf-08)</span>
         </div>
       </div>
 
-      <!-- Text column (3/5) -->
+      <!-- Texte (3/5) -->
       <article class="md:col-span-3 order-2">
         <h2 class="font-heading font-semibold text-2xl md:text-[2rem] text-primary-900 mb-6">
-          Jennifer De Groeve, praticienne en médiation animale
+          {about.founderName} — {about.founderTitle}
         </h2>
 
         <div class="text-neutral-700 leading-relaxed space-y-4">
-          <p>
-            Je m'appelle Jennifer De Groeve et je suis praticienne certifiée en médiation animale, installée à Vigny en Moselle.
-          </p>
-          <p>
-            Aide-soignante diplômée depuis plus de 20 ans, j'ai toujours été convaincue du pouvoir apaisant des animaux. Formée à l'Institut de Formation en Zoothérapie (IFZ), j'ai fait de cette conviction mon métier.
-          </p>
-          <p>
-            J'interviens avec trois compagnons : <strong class="text-primary-800">Tips</strong>, un finnois de Laponie doux et attentif ; <strong class="text-primary-800">Uxo</strong>, un berger américain miniature plein d'énergie ; et <strong class="text-primary-800">Tap-Tap</strong>, un lapin bélier idéal pour les moments de tendresse. Membre du Syndicat Français des Zoothérapeutes, je m'engage à rendre cette approche accessible à tous.
-          </p>
+          {paragraphsToShow.map((p) => (
+            <p set:html={p} />
+          ))}
         </div>
 
-        <!-- Badges -->
-        <div class="flex flex-wrap gap-3 mt-6">
+        <!-- Badges certifications -->
+        <div class="flex flex-wrap gap-2.5 mt-6">
           <span class="inline-flex items-center gap-1.5 bg-secondary-100 text-secondary-800 px-3 py-1.5 rounded-full text-xs font-medium">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
             Certifiée IFZ
           </span>
           <span class="inline-flex items-center gap-1.5 bg-secondary-100 text-secondary-800 px-3 py-1.5 rounded-full text-xs font-medium">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
             Syndicat Français des Zoothérapeutes
           </span>
           <span class="inline-flex items-center gap-1.5 bg-secondary-100 text-secondary-800 px-3 py-1.5 rounded-full text-xs font-medium">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
             +20 ans dans le soin
           </span>
         </div>
+
+        {snippet ? (
+          <div class="mt-6">
+            <a
+              href="/a-propos"
+              class="inline-flex items-center gap-2 bg-accent-700 text-white px-6 py-3 rounded font-semibold text-sm hover:bg-accent-800 transition-colors min-h-[44px]"
+            >
+              Découvrir mon parcours
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
+          </div>
+        ) : (
+          <>
+            {/* Section animaux — mode complet seulement */}
+            <div class="mt-8 pt-6 border-t border-neutral-100">
+              <h3 class="font-heading font-semibold text-lg text-primary-900 mb-4">
+                Les animaux médiateurs
+              </h3>
+              <div class="space-y-3">
+                {about.animals.map((animal) => (
+                  <div class="flex items-start gap-3 p-3.5 bg-primary-50 rounded-lg border border-primary-100">
+                    <div class="w-9 h-9 bg-primary-200 rounded-full flex items-center justify-center shrink-0 text-primary-700 font-heading font-bold text-sm">
+                      {animal.name[0]}
+                    </div>
+                    <div>
+                      <p class="font-semibold text-primary-900 text-sm">{animal.name} <span class="font-normal text-neutral-500">— {animal.breed}</span></p>
+                      <p class="text-neutral-600 text-xs mt-0.5">{animal.role}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </>
+        )}
       </article>
     </div>
   </div>

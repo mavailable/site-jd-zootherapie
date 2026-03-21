@@ -1,0 +1,62 @@
+---
+/**
+ * PageHero — Hero pour les pages internes
+ * Plus compact que le Hero d'accueil, sans CTA (la page a ses propres CTA)
+ */
+interface Props {
+  h1: string;
+  subtitle?: string;
+  /** Variante de fond : 'primary' (défaut, dark teal) | 'light' (teal clair) */
+  variant?: 'primary' | 'light';
+}
+
+const {
+  h1,
+  subtitle,
+  variant = 'primary',
+} = Astro.props;
+
+const bgClass = variant === 'light'
+  ? 'bg-primary-50'
+  : 'bg-primary-800';
+const titleClass = variant === 'light'
+  ? 'text-primary-900'
+  : 'text-white';
+const subtitleClass = variant === 'light'
+  ? 'text-neutral-600'
+  : 'text-primary-100';
+---
+
+<section class={`${bgClass} ${variant === 'primary' ? 'relative overflow-hidden' : ''} py-12 md:py-16`}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    {variant === 'primary' ? (
+      <>
+        <!-- Motif décoratif fond sombre -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+          <div class="absolute -top-16 -right-16 w-64 h-64 bg-primary-700/30 rounded-full"></div>
+        </div>
+        <div class="relative">
+          <h1 class={`font-heading font-bold text-2xl md:text-4xl leading-tight ${titleClass} mb-4`}>
+            {h1}
+          </h1>
+          {subtitle && (
+            <p class={`${subtitleClass} text-base md:text-lg leading-relaxed max-w-2xl`}>
+              {subtitle}
+            </p>
+          )}
+        </div>
+      </>
+    ) : (
+      <>
+        <h1 class={`font-heading font-bold text-2xl md:text-4xl leading-tight ${titleClass} mb-4`}>
+          {h1}
+        </h1>
+        {subtitle && (
+          <p class={`${subtitleClass} text-base md:text-lg leading-relaxed max-w-2xl`}>
+            {subtitle}
+          </p>
+        )}
+      </>
+    )}
+  </div>
+</section>

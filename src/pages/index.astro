@@ -4,15 +4,39 @@ import Header from '@components/layout/Header.astro';
 import Footer from '@components/layout/Footer.astro';
 import Hero from '@components/sections/Hero.astro';
 import SocialProof from '@components/sections/SocialProof.astro';
-import Services from '@components/sections/Services.astro';
 import About from '@components/sections/About.astro';
 import FAQ from '@components/sections/FAQ.astro';
-import Contact from '@components/sections/Contact.astro';
 import CTABanner from '@components/sections/CTABanner.astro';
 import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
+
+// ── Section Services aperçu (3 vignettes thématiques, homepage seulement) ────
+// Pas les 6 services Keystatic — juste 3 catégories grand public
+const servicesApercu = [
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
+    titre: 'Pour les particuliers',
+    texte: 'Séances individuelles à domicile pour enfants, adultes et personnes âgées. 60 € / séance, déplacement inclus.',
+    href: '/ateliers',
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+    titre: 'Pour les familles',
+    texte: 'Ateliers aidant-aidé ou en famille pour renforcer le lien et partager un moment unique avec les animaux.',
+    href: '/ateliers',
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+    titre: 'Pour les structures',
+    texte: 'Interventions en EHPAD, IME, école ou bibliothèque. Tarif sur projet, suivi régulier, co-construction avec vos équipes.',
+    href: '/contact',
+  },
+];
 ---
 
-<BaseLayout>
+<BaseLayout
+  title="JD Zoothérapie — Médiation animale en Moselle | Jennifer De Groeve"
+  description="Zoothérapeute certifiée en Moselle. Séances à domicile et en structure pour enfants, adultes, seniors. Premier échange gratuit. Jennifer De Groeve, Verny (57420)."
+>
   <!-- Schema.org JSON-LD -->
   <Fragment slot="schema">
     <script type="application/ld+json" set:html={JSON.stringify({
@@ -21,10 +45,10 @@ import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
       "name": "JD Zoothérapie",
       "alternateName": "Patt'es Tendres",
       "description": "Jennifer De Groeve, zoothérapeute certifiée en Moselle. Séances de médiation animale à domicile et en structure pour enfants, adultes et personnes âgées.",
-      "image": "https://jd-zootherapie.fr/images/og-default.jpg",
       "url": "https://jd-zootherapie.fr",
       "telephone": "+33754812122",
       "email": "degroeve.j@gmail.com",
+      "image": "https://jd-zootherapie.fr/images/og-default.jpg",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "17 rue Principale",
@@ -47,33 +71,12 @@ import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
         "@type": "Person",
         "name": "Jennifer De Groeve",
         "jobTitle": "Praticienne certifiée en médiation animale",
-        "description": "Aide-soignante diplômée avec plus de 20 ans d'expérience dans le soin, formée à l'Institut de Formation en Zoothérapie (IFZ).",
+        "description": "Aide-soignante diplômée avec plus de 20 ans d'expérience, formée à l'Institut de Formation en Zoothérapie (IFZ).",
         "knowsAbout": ["Zoothérapie", "Médiation animale", "Maladies neurodégénératives", "Accompagnement enfants", "Accompagnement personnes âgées"]
       },
       "priceRange": "60€",
       "currenciesAccepted": "EUR",
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Ateliers de médiation animale",
-        "itemListElement": [
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Séance individuelle de médiation animale", "description": "Accompagnement personnalisé à domicile ou en structure." }, "price": "60", "priceCurrency": "EUR" },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ateliers collectifs en structure", "description": "Interventions en EHPAD, IME, foyers, écoles ou bibliothèques." } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Accompagnement maladies neurodégénératives", "description": "Approche douce adaptée aux personnes atteintes d'Alzheimer, Parkinson ou troubles apparentés." } }
-        ]
-      },
-      "memberOf": { "@type": "Organization", "name": "Syndicat Français des Zoothérapeutes" },
-      "sameAs": []
-    })} />
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        { "@type": "Question", "name": "Qu'est-ce que la zoothérapie exactement ?", "acceptedAnswer": { "@type": "Answer", "text": "La zoothérapie, ou médiation animale, est une approche d'accompagnement qui utilise la présence de l'animal pour favoriser le bien-être physique, psychique et social." } },
-        { "@type": "Question", "name": "À qui s'adressent les séances de médiation animale ?", "acceptedAnswer": { "@type": "Answer", "text": "Les ateliers sont ouverts à tous : enfants dès 3 ans, adolescents, adultes et personnes âgées, avec ou sans handicap." } },
-        { "@type": "Question", "name": "Où intervenez-vous en Moselle ?", "acceptedAnswer": { "@type": "Answer", "text": "JD Zoothérapie intervient à domicile ou en structure, dans un rayon de 15 km autour de Verny (57420)." } },
-        { "@type": "Question", "name": "Combien coûte une séance de zoothérapie ?", "acceptedAnswer": { "@type": "Answer", "text": "Une séance individuelle est à 60 €, déplacement inclus dans le rayon de 15 km." } },
-        { "@type": "Question", "name": "Les animaux sont-ils formés pour la médiation ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui. Tous les animaux de JD Zoothérapie sont suivis vétérinairement, sociabilisés et encadrés selon les normes du Syndicat Français des Zoothérapeutes." } }
-      ]
+      "memberOf": { "@type": "Organization", "name": "Syndicat Français des Zoothérapeutes" }
     })} />
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
@@ -85,13 +88,71 @@ import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
   </Fragment>
 
   <Header slot="header" />
+
+  <!-- 1. Hero -->
   <Hero />
+
+  <!-- 2. Preuve sociale : stats + témoignages -->
   <SocialProof />
-  <Services />
-  <About />
-  <FAQ />
-  <CTABanner />
-  <Contact />
+
+  <!-- 3. Aperçu des services — fond primary-50, layout cards 3 colonnes -->
+  <section id="services" class="bg-primary-50 py-16 md:py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="font-heading font-semibold text-2xl md:text-[2rem] text-primary-900 mb-3">
+          Des ateliers pour tous les publics
+        </h2>
+        <p class="text-neutral-600 max-w-xl mx-auto">
+          Que vous soyez particulier, famille ou structure institutionnelle, la médiation animale s'adapte à vos besoins et à votre contexte.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        {servicesApercu.map((s) => (
+          <a
+            href={s.href}
+            class="group bg-white border border-neutral-200 rounded-xl p-6 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex flex-col"
+          >
+            <div
+              class="inline-flex items-center justify-center w-11 h-11 bg-primary-100 text-primary-600 rounded-lg mb-4 shrink-0 group-hover:bg-primary-200 transition-colors"
+              set:html={s.icon}
+            />
+            <h3 class="font-heading font-semibold text-base text-primary-900 mb-2 group-hover:text-primary-700 transition-colors">{s.titre}</h3>
+            <p class="text-neutral-700 text-sm leading-relaxed flex-1">{s.texte}</p>
+            <span class="mt-4 inline-flex items-center gap-1 text-primary-600 text-xs font-medium group-hover:gap-2 transition-all">
+              En savoir plus
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+
+      <div class="text-center mt-10">
+        <a
+          href="/ateliers"
+          class="inline-flex items-center justify-center gap-2 bg-accent-700 text-white px-7 py-3.5 rounded font-semibold text-base hover:bg-accent-800 transition-colors min-h-[44px]"
+        >
+          Voir tous les ateliers
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. À propos (snippet — fond blanc, asymétrique) -->
+  <About snippet={true} />
+
+  <!-- 5. FAQ (5 questions sur l'accueil) — fond primary-50 -->
+  <FAQ limit={5} showLink={true} />
+
+  <!-- 6. CTA bannière — fond primary-800 -->
+  <CTABanner
+    title="Prêt à découvrir la médiation animale ?"
+    text="Premier échange téléphonique gratuit et sans engagement. Jennifer vous répond sous 48 h."
+    ctaText="Appeler Jennifer"
+    ctaSecondaryText="Voir les ateliers"
+    ctaSecondaryHref="/ateliers"
+  />
+
   <Footer slot="footer" />
   <StickyMobileCTA />
 </BaseLayout>

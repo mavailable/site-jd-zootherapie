@@ -1,82 +1,81 @@
 ---
-import Button from '@components/ui/Button.astro';
+import { getServices } from '@data/content';
 
-const services = [
-  {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>`,
-    title: 'Séances individuelles',
-    description: 'Accompagnement sur mesure : soutien émotionnel, stimulation cognitive, développement moteur ou gestion des émotions.',
-    price: '60 € / séance',
-    priceNote: 'Déplacement inclus (15 km)',
-  },
-  {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`,
-    title: 'Personnes âgées',
-    description: 'Préservez autonomie et mémoire grâce à des moments de complicité avec nos animaux médiateurs. En EHPAD ou à domicile.',
-    price: null,
-    priceNote: null,
-  },
-  {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`,
-    title: 'Ateliers pour enfants',
-    description: 'Confiance en soi, gestion des émotions, concentration — en s\'amusant avec Tips, Uxo et Tap-Tap.',
-    price: null,
-    priceNote: null,
-  },
-  {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path></svg>`,
-    title: 'Maladies neurodégénératives',
-    description: 'Approche douce pour réduire l\'anxiété et retrouver des instants de joie. Adaptée aux personnes atteintes d\'Alzheimer ou Parkinson.',
-    price: null,
-    priceNote: null,
-  },
-  {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>`,
-    title: 'Ateliers en structure',
-    description: 'EHPAD, IME, foyers, écoles, bibliothèques. Projet co-construit avec votre équipe encadrante.',
-    price: 'Sur devis',
-    priceNote: null,
-  },
-  {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>`,
-    title: 'Atelier aidant-aidé',
-    description: 'Un temps partagé pour améliorer la relation, relâcher la pression et retrouver un moment de complicité.',
-    price: null,
-    priceNote: null,
-  },
-];
+interface Props {
+  /** Nombre de services à afficher. Défaut : tous */
+  limit?: number;
+  /** Afficher le CTA en bas ? */
+  showCTA?: boolean;
+  /** Titre de section personnalisé */
+  title?: string;
+  /** Sous-titre personnalisé */
+  subtitle?: string;
+}
+
+const {
+  limit,
+  showCTA = true,
+  title = 'Choisissez votre atelier',
+  subtitle = 'Particuliers, familles ou structures — chaque séance est construite autour de vos objectifs, avec des animaux médiateurs formés.',
+} = Astro.props;
+
+const allServices = getServices();
+const services = limit ? allServices.slice(0, limit) : allServices;
+
+// Icônes par slug de service
+const icons: Record<string, string> = {
+  'seance-individuelle': `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>`,
+  'personnes-agees': `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+  'enfants': `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>`,
+  'neurodegeneratives': `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>`,
+  'structures': `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+  'aidant-aide': `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>`,
+};
+
+const defaultIcon = `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>`;
 ---
 
 <section id="services" class="bg-primary-50 py-16 md:py-20">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-    <h2 class="font-heading font-semibold text-2xl md:text-[2rem] text-primary-900 text-center mb-4">
-      Des ateliers adaptés à chaque besoin
-    </h2>
-    <p class="text-neutral-600 text-center max-w-2xl mx-auto mb-12">
-      Chaque séance est construite autour de vos objectifs, en douceur et en confiance, avec des animaux médiateurs formés.
-    </p>
+    <div class="text-center mb-12">
+      <h2 class="font-heading font-semibold text-2xl md:text-[2rem] text-primary-900 mb-3">
+        {title}
+      </h2>
+      <p class="text-neutral-600 max-w-2xl mx-auto">
+        {subtitle}
+      </p>
+    </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
       {services.map((s) => (
-        <article class="bg-white border border-neutral-200 rounded-lg p-6 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex flex-col">
-          <div class="inline-flex items-center justify-center w-11 h-11 bg-primary-100 text-primary-600 rounded-lg mb-4 shrink-0" set:html={s.icon} />
-          <h3 class="font-heading font-semibold text-lg text-primary-900 mb-2">{s.title}</h3>
+        <article class="bg-white border border-neutral-200 rounded-xl p-6 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex flex-col">
+          <div
+            class="inline-flex items-center justify-center w-11 h-11 bg-primary-100 text-primary-600 rounded-lg mb-4 shrink-0"
+            set:html={icons[s.slug] ?? defaultIcon}
+          />
+          <h3 class="font-heading font-semibold text-base text-primary-900 mb-1">{s.title}</h3>
+          <p class="text-neutral-500 text-xs font-medium mb-2">{s.audience}</p>
           <p class="text-neutral-700 text-sm leading-relaxed flex-1">{s.description}</p>
           {s.price && (
-            <div class="mt-4 pt-3 border-t border-neutral-100">
+            <div class="mt-4 pt-3 border-t border-neutral-100 flex items-center justify-between">
               <p class="font-semibold text-accent-700 text-sm">{s.price}</p>
-              {s.priceNote && <p class="text-neutral-500 text-xs">{s.priceNote}</p>}
             </div>
           )}
         </article>
       ))}
     </div>
 
-    <div class="text-center mt-10">
-      <Button href="#contact" variant="primary">
-        Demander un devis
-      </Button>
-    </div>
+    {showCTA && (
+      <div class="text-center mt-10">
+        <a
+          href="/contact"
+          class="inline-flex items-center justify-center gap-2 bg-accent-700 text-white px-7 py-3.5 rounded font-semibold text-base hover:bg-accent-800 transition-colors min-h-[44px]"
+        >
+          Demander un devis gratuit
+        </a>
+        <p class="text-neutral-500 text-sm mt-3">Premier échange téléphonique gratuit et sans engagement</p>
+      </div>
+    )}
   </div>
 </section>
