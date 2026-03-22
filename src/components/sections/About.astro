@@ -12,6 +12,12 @@ const about = getAbout();
 // En mode snippet : 1 paragraphe + lien vers /a-propos
 // En mode complet : tous les paragraphes + section animaux
 const paragraphsToShow = snippet ? about.paragraphs.slice(0, 1) : about.paragraphs;
+
+const animalPhotos: Record<string, string> = {
+  'Tips':   '/images/animal-tips.jpg',
+  'Moric':  '/images/animal-moric.jpg',
+  'Grizou': '/images/animal-grizou.jpg',
+};
 ---
 
 <section id="a-propos" class="bg-white py-16 md:py-20">
@@ -85,12 +91,7 @@ const paragraphsToShow = snippet ? about.paragraphs.slice(0, 1) : about.paragrap
               </h3>
               <div class="space-y-3">
                 {about.animals.map((animal) => {
-                  const photoMap: Record<string, string> = {
-                    'Tips':   '/images/animal-tips.jpg',
-                    'Moric':  '/images/animal-moric.jpg',
-                    'Grizou': '/images/animal-grizou.jpg',
-                  };
-                  const photo = photoMap[animal.name];
+                  const photo = animalPhotos[animal.name];
                   return (
                   <div class="flex items-start gap-3 p-3.5 bg-primary-50 rounded-lg border border-primary-100">
                     {photo ? (
