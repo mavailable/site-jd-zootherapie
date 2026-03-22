@@ -4,6 +4,7 @@ import Header from '@components/layout/Header.astro';
 import Footer from '@components/layout/Footer.astro';
 import Hero from '@components/sections/Hero.astro';
 import SocialProof from '@components/sections/SocialProof.astro';
+import PhotoGallery from '@components/sections/PhotoGallery.astro';
 import About from '@components/sections/About.astro';
 import FAQ from '@components/sections/FAQ.astro';
 import CTABanner from '@components/sections/CTABanner.astro';
@@ -138,7 +139,10 @@ const servicesApercu = [
     </div>
   </section>
 
-  <!-- 4. À propos (snippet — fond blanc, asymétrique) -->
+  <!-- 4. Galerie photos — vrais moments de séances -->
+  <PhotoGallery />
+
+  <!-- 5. À propos (snippet — fond blanc, asymétrique) -->
   <About snippet={true} />
 
   <!-- 5. FAQ (5 questions sur l'accueil) — fond primary-50 -->
