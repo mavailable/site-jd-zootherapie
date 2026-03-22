@@ -23,10 +23,16 @@ const currentPath = Astro.url.pathname;
       <a href="/"
          class="flex items-center gap-2.5 text-primary-900 font-heading font-bold text-lg md:text-xl"
          aria-label="JD Zoothérapie — Retour à l'accueil">
-        <span class="inline-flex items-center justify-center w-9 h-9 bg-primary-800 text-white rounded-full text-sm font-bold shrink-0">JD</span>
-        <span class="hidden sm:block leading-tight">
-          <span class="block text-primary-900">Zoothérapie</span>
-        </span>
+        <img
+          src="/images/logo-sm.png"
+          alt="JD Zoothérapie"
+          class="h-11 w-11 object-contain shrink-0"
+          width="44"
+          height="44"
+          loading="eager"
+          decoding="async"
+        />
+        <span class="hidden sm:block leading-tight text-primary-900">Zoothérapie</span>
       </a>
 
       <!-- Desktop Nav -->

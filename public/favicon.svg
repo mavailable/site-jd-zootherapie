@@ -1,4 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <circle cx="16" cy="16" r="15" fill="#2D4B4E"/>
-  <text x="16" y="21" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="14" fill="#F0F7F7">JD</text>
+  <circle cx="16" cy="16" r="15.5" fill="#F6E5C7"/>
+  <circle cx="16" cy="16" r="14.5" fill="none" stroke="#1E3D42" stroke-width="2"/>
+  <text x="16" y="13" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="7.5" fill="#1E3D42" letter-spacing="0.5">JD</text>
+  <text x="16" y="22" text-anchor="middle" font-family="Georgia, serif" font-weight="400" font-size="5.5" fill="#1E3D42" letter-spacing="0.2">Zootp.</text>
 </svg>
