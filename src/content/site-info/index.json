@@ -13,6 +13,7 @@
     "country": "FR"
   },
   "areaServed": "15 km autour de Verny (57420), ponctuellement Metz et Nancy",
+  "lang": "fr",
   "social": {
     "instagram": "https://www.instagram.com/jenniferzootherapeute",
     "facebook": "https://www.facebook.com/profile.php?id=61573108913954",
@@ -25,6 +26,6 @@
   "seo": {
     "defaultTitle": "JD Zoothérapie — Médiation animale en Moselle | Jennifer De Groeve",
     "defaultDescription": "Zoothérapeute certifiée en Moselle. Séances de médiation animale à domicile et en structure pour enfants, adultes et personnes âgées. Contactez Jennifer De Groeve.",
-    "ogImage": "/images/og-default.jpg"
+    "ogImage": "/images/og-default.webp"
   }
 }

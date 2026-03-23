@@ -30,6 +30,7 @@ export interface SiteInfo {
   email: string;
   address: { street: string; city: string; postalCode: string; region: string; country: string };
   areaServed: string;
+  lang: string;
   social: { instagram: string; facebook: string; googleBusiness: string };
   affiliations: string[];
   seo: { defaultTitle: string; defaultDescription: string; ogImage: string };

@@ -1,18 +1,14 @@
 /**
  * business.ts
  *
- * Contient :
- * 1. Les données TECHNIQUES (legal, geo) — non éditables par le client
- * 2. Une ré-exportation de siteInfo pour la compatibilité avec les composants existants
- *    → WF-06 migrera chaque composant vers content.ts directement
+ * Données TECHNIQUES uniquement — non éditables par le client.
+ * Le contenu éditorial (nom, phone, email, adresse…) est dans src/content/site-info/index.json
+ * et lu via content.ts → getSiteInfo().
  */
 
-import fs from 'node:fs';
-import path from 'node:path';
-
-// Données légales (non éditables)
+// Données légales (à compléter avant mise en prod)
 export const legal = {
-  siret: '',   // À compléter avant mise en prod
+  siret: '',
   rcs: '',
   tva: '',
 } as const;
@@ -23,54 +19,5 @@ export const geo = {
   longitude: 6.7659488,
 } as const;
 
-// Domaine
+// URL de production
 export const siteUrl = 'https://jd-zootherapie.fr';
-
-// ── Compat shim (utilisé par les composants one-page en attendant wf-06) ──────
-
-interface SiteInfo {
-  name: string; alternateName: string; tagline: string;
-  phone: string; phoneDisplay: string; email: string;
-  address: { street: string; city: string; postalCode: string; region: string; country: string };
-  areaServed: string;
-  social: { instagram: string; facebook: string; googleBusiness: string };
-  affiliations: string[];
-  animals: Array<{ name: string; breed: string; role?: string; description?: string }>;
-  seo: { defaultTitle: string; defaultDescription: string; ogImage: string };
-  founder?: string; founderTitle?: string; priceRange?: string;
-}
-
-function loadSiteInfo(): SiteInfo {
-  const fullPath = path.join(process.cwd(), 'src/content/site-info/index.json');
-  const raw = JSON.parse(fs.readFileSync(fullPath, 'utf-8')) as SiteInfo;
-  return raw;
-}
-
-const _si = loadSiteInfo();
-
-/** @deprecated — Utiliser getSiteInfo() de content.ts. Supprimé en wf-06. */
-export const business = {
-  clientType: 'freelance-consultant' as const,
-  name: _si.name,
-  alternateName: _si.alternateName,
-  description: _si.seo.defaultDescription,
-  tagline: _si.tagline,
-  url: siteUrl,
-  phone: _si.phone,
-  phoneDisplay: _si.phoneDisplay,
-  email: _si.email,
-  address: _si.address,
-  geo,
-  founder: 'Jennifer De Groeve',
-  founderTitle: 'Praticienne certifiée en médiation animale',
-  areaServed: _si.areaServed,
-  priceRange: '€',
-  social: _si.social,
-  affiliations: _si.affiliations,
-  animals: [
-    { name: 'Tips', breed: 'Finnois de Laponie', description: "Doux et attentif" },
-    { name: 'Uxo', breed: 'Berger américain miniature', description: "Plein d'énergie" },
-    { name: 'Tap-Tap', breed: 'Lapin bélier', description: 'Idéal pour les moments de tendresse' },
-  ],
-  seo: _si.seo,
-};

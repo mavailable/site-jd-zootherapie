@@ -27,6 +27,7 @@ export default config({
           },
         }),
         areaServed: fields.text({ label: 'Zone d\'intervention' }),
+        lang: fields.text({ label: 'Code langue (ex: fr, en)', defaultValue: 'fr' }),
         social: fields.object({
           label: 'Réseaux sociaux',
           fields: {

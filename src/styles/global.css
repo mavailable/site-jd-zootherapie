@@ -73,7 +73,7 @@ html {
 
 body {
   font-family: var(--font-body);
-  color: var(--color-neutral-800);
+  /* color géré par la classe text-neutral-800 dans BaseLayout — pas de color global */
 }
 
 /* Headings — font-family uniquement, PAS de color (géré par chaque composant) */
