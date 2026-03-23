@@ -22,7 +22,7 @@
 ## Hero
 
 - **H1** : Zoothérapeute en Moselle — Médiation animale à domicile et en structure
-- **Sous-titre** : Jennifer De Groeve, praticienne certifiée, accompagne enfants, adultes et personnes âgées grâce à la relation avec l'animal. Séances individuelles ou collectives, adaptées à chaque besoin, dans un rayon de 15 km autour de Verny.
+- **Sous-titre** : Jennifer De Groeve, praticienne certifiée, accompagne enfants, adultes et personnes âgées grâce à la relation avec l'animal. Séances individuelles ou collectives, adaptées à chaque besoin, à Metz, Thionville et dans toute la Moselle.
 - **CTA principal** : Appeler Jennifer → `tel:+33754812122`
 - **CTA secondaire** : Découvrir les ateliers → `/ateliers`
 - **Réassurance** : Premier échange gratuit et sans engagement — Réponse sous 48 h
@@ -41,7 +41,7 @@
 
 ## Services (6)
 
-1. **Séance individuelle** — Particuliers, tous âges — 60 € / séance, déplacement inclus dans un rayon de 15 km
+1. **Séance individuelle** — Particuliers, tous âges — 60 € / séance, déplacement inclus en Moselle
    _"Un accompagnement sur mesure, en douceur et en confiance. Chaque séance est construite autour de vos objectifs : soutien émotionnel, stimulation cognitive, développement moteur ou gestion des émotions."_
 
 2. **Ateliers personnes âgées** — Seniors à domicile ou en EHPAD — tarif sur projet
@@ -115,7 +115,7 @@
 ## Footer
 
 - **Tagline** : Médiation animale en Moselle
-- **Description** : Zoothérapie certifiée à domicile et en structure, pour tous les publics, dans un rayon de 15 km autour de Verny.
+- **Description** : Zoothérapie certifiée à domicile et en structure, pour tous les publics, à Metz, Thionville et dans toute la Moselle.
 - **Navigation** : La zoothérapie · Les ateliers · Mon parcours · Tarifs · Témoignages · FAQ · Contact · Plaquette PDF
 - **Légal** : Mentions légales · Politique de confidentialité
 - **Crédit** : Marc M. · Création de sites web santé & bien-être
