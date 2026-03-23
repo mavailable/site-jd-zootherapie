@@ -14,9 +14,9 @@ const about = getAbout();
 const paragraphsToShow = snippet ? about.paragraphs.slice(0, 1) : about.paragraphs;
 
 const animalPhotos: Record<string, string> = {
-  'Tips':    '/images/animal-tips.jpg',
-  'Uxo':     '/images/animal-uxo.jpg',
-  'Tap-Tap': '/images/animal-tap-tap.jpg',
+  'Tips':    '/images/animal-tips.webp',
+  'Uxo':     '/images/animal-uxo.webp',
+  'Tap-Tap': '/images/animal-tap-tap.webp',
 };
 ---
 
@@ -28,7 +28,7 @@ const animalPhotos: Record<string, string> = {
       <div class="md:col-span-2 order-1">
         <div class="relative w-full rounded-2xl overflow-hidden shadow-xl">
           <img
-            src="/images/jennifer-pro.jpg"
+            src="/images/jennifer-pro.webp"
             alt="Jennifer De Groeve, zoothérapeute certifiée, avec ses animaux médiateurs — Tips, Uxo et Tap-Tap"
             class="w-full object-cover object-top"
             loading="lazy"
@@ -97,7 +97,7 @@ const animalPhotos: Record<string, string> = {
                     {photo ? (
                       <img
                         src={photo}
-                        alt={animal.name}
+                        alt={`${animal.name}, ${animal.breed} — animal médiateur de Jennifer De Groeve`}
                         class="w-10 h-10 rounded-full object-cover shrink-0 border-2 border-primary-200"
                         loading="lazy"
                         width="40"

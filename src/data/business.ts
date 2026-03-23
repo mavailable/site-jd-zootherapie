@@ -17,10 +17,10 @@ export const legal = {
   tva: '',
 } as const;
 
-// Coordonnées GPS (pour Schema.org)
+// Coordonnées GPS (pour Schema.org) — Verny 57420
 export const geo = {
-  latitude: 49.015,   // Estimé pour Vigny 57420 — à vérifier
-  longitude: 6.195,
+  latitude: 49.0208014,
+  longitude: 6.7659488,
 } as const;
 
 // Domaine
@@ -64,7 +64,7 @@ export const business = {
   founder: 'Jennifer De Groeve',
   founderTitle: 'Praticienne certifiée en médiation animale',
   areaServed: _si.areaServed,
-  priceRange: '60€',
+  priceRange: '€',
   social: _si.social,
   affiliations: _si.affiliations,
   animals: [
