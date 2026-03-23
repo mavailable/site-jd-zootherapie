@@ -74,11 +74,14 @@ const contact = getContact();
         <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-6 md:p-8">
           <h3 class="font-heading font-semibold text-lg text-primary-900 mb-5">Ou envoyez un message</h3>
 
+          <div aria-live="polite" aria-atomic="true" class="sr-only" id="form-status"></div>
           <form action="https://api.web3forms.com/submit" method="POST" class="space-y-5">
             <input type="hidden" name="access_key" value="aaaaa969-db18-4cb0-99c9-cc9eb258e7b3" />
             <input type="hidden" name="from_name" value="JD Zoothérapie — Site web" />
             <input type="hidden" name="subject" value="Nouveau message depuis jd-zootherapie.fr" />
             <input type="hidden" name="redirect" value="https://jd-zootherapie.fr/merci" />
+            <!-- Reply-to : utilise le champ email si rempli -->
+            <input type="hidden" name="replyto" value="" id="replyto-field" />
             <!-- Honeypot anti-spam -->
             <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" aria-hidden="true" />
 
@@ -149,6 +152,14 @@ const contact = getContact();
               {contact.rgpdText} <a href="/politique-confidentialite" class="underline hover:text-primary-600 transition-colors">Politique de confidentialité</a>.
             </p>
           </form>
+
+          <script>
+            const emailInput = document.getElementById('contact-email') as HTMLInputElement | null;
+            const replytoField = document.getElementById('replyto-field') as HTMLInputElement | null;
+            if (emailInput && replytoField) {
+              emailInput.addEventListener('input', () => { replytoField.value = emailInput.value; });
+            }
+          </script>
         </div>
       </div>
     </div>
