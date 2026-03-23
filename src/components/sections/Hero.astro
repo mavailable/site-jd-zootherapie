@@ -9,6 +9,8 @@ const hero = getHero();
   <div class="absolute inset-0" aria-hidden="true">
     <img
       src="/images/hero-bg.webp"
+      srcset="/images/hero-bg-mobile.webp 768w, /images/hero-bg.webp 1920w"
+      sizes="(max-width: 767px) 100vw, 100vw"
       alt=""
       class="w-full h-full object-cover object-center"
       loading="eager"
