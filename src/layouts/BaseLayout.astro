@@ -22,6 +22,7 @@ const {
 
 const siteUrl = 'https://jd-zootherapie.fr';
 const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
+const ogLocale = `${siteInfo.lang}_${siteInfo.address.country.toUpperCase()}`;
 ---
 
 <!DOCTYPE html>
@@ -47,7 +48,7 @@ const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}
   <meta property="og:image" content={fullOgImage} />
   <meta property="og:url" content={canonicalUrl} />
   <meta property="og:type" content="website" />
-  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:locale" content={ogLocale} />
   <meta property="og:site_name" content={siteInfo.name} />
 
   <!-- Twitter Card -->
