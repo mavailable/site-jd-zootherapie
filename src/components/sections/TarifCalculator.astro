@@ -1,0 +1,708 @@
+---
+// TarifCalculator.astro
+// Calculateur de tarif avec géocodage Nominatim + distance routière OSRM
+// Base : 60€, déplacement inclus ≤15km depuis Verny (57420), +0,40€/km au-delà
+interface Props {
+  compact?: boolean; // version réduite pour la homepage
+}
+const { compact = false } = Astro.props;
+const WEB3FORMS_KEY = 'aaaaa969-db18-4cb0-99c9-cc9eb258e7b3';
+---
+
+<section
+  id="calculateur-tarif"
+  class={compact
+    ? 'bg-primary-50 rounded-2xl p-6 md:p-8'
+    : 'bg-gradient-to-b from-primary-50 to-white py-16 md:py-20'}
+  aria-label="Calculateur de tarif et réservation"
+>
+  <div class={compact ? '' : 'max-w-3xl mx-auto px-4 sm:px-6 lg:px-8'}>
+
+    {!compact && (
+      <div class="text-center mb-10">
+        <span class="inline-block bg-primary-100 text-primary-700 text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full mb-4">Tarif personnalisé</span>
+        <h2 class="font-heading font-bold text-3xl md:text-4xl text-primary-900 mb-3">
+          Estimez votre tarif en quelques secondes
+        </h2>
+        <p class="text-neutral-600 text-lg max-w-xl mx-auto">
+          Entrez votre ville ou code postal — Jennifer calcule automatiquement le coût de déplacement.
+        </p>
+      </div>
+    )}
+
+    {compact && (
+      <div class="mb-6">
+        <span class="inline-block bg-primary-200 text-primary-800 text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full mb-3">Calculateur de tarif</span>
+        <h3 class="font-heading font-bold text-xl text-primary-900 mb-1">
+          Votre tarif personnalisé
+        </h3>
+        <p class="text-neutral-600 text-sm">
+          60 € la séance, déplacement inclus dans un rayon de 15 km. Saisissez votre ville pour savoir.
+        </p>
+      </div>
+    )}
+
+    <!-- Étape 1 : Calculateur -->
+    <div id="calc-step-1" class="bg-white rounded-2xl shadow-md border border-primary-100 overflow-hidden">
+
+      <!-- Barre de progression -->
+      <div class="h-1.5 bg-primary-100">
+        <div id="calc-progress" class="h-full bg-primary-500 transition-all duration-500" style="width: 33%"></div>
+      </div>
+
+      <div class="p-6 md:p-8">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-8 h-8 rounded-full bg-primary-500 text-white text-sm font-bold flex items-center justify-center shrink-0">1</div>
+          <p class="font-semibold text-primary-900">Votre ville ou code postal</p>
+        </div>
+
+        <!-- Input adresse -->
+        <div class="relative mb-4">
+          <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+            <svg class="w-5 h-5 text-primary-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <input
+            type="text"
+            id="calc-city-input"
+            placeholder="Ex : Metz, Nancy, 57420…"
+            autocomplete="postal-code"
+            class="w-full pl-12 pr-4 py-4 border-2 border-primary-200 rounded-xl text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-primary-500 focus:ring-4 focus:ring-primary-100 transition-all text-base"
+            aria-label="Votre ville ou code postal"
+          />
+          <!-- Suggestions dropdown -->
+          <ul
+            id="calc-suggestions"
+            class="absolute z-50 w-full mt-1 bg-white border border-neutral-200 rounded-xl shadow-lg hidden"
+            role="listbox"
+            aria-label="Suggestions de villes"
+          ></ul>
+        </div>
+
+        <!-- Bouton calculer -->
+        <button
+          id="calc-btn"
+          type="button"
+          class="w-full bg-primary-600 hover:bg-primary-700 active:bg-primary-800 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+          aria-live="polite"
+        >
+          <svg id="calc-icon" class="w-5 h-5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/>
+          </svg>
+          <svg id="calc-spinner" class="w-5 h-5 shrink-0 animate-spin hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
+          </svg>
+          <span id="calc-btn-label">Calculer mon tarif</span>
+        </button>
+
+        <!-- Message d'erreur -->
+        <p id="calc-error" class="hidden mt-3 text-red-600 text-sm text-center" role="alert" aria-live="assertive"></p>
+      </div>
+
+      <!-- Résultat -->
+      <div id="calc-result" class="hidden border-t border-primary-100 bg-primary-50/60 p-6 md:p-8">
+
+        <!-- Ville trouvée -->
+        <div class="flex items-center gap-2 mb-5">
+          <svg class="w-4 h-4 text-primary-500 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <p class="text-sm text-primary-700 font-medium" id="calc-city-found"></p>
+        </div>
+
+        <!-- Carte prix -->
+        <div class="bg-white rounded-xl border border-primary-200 p-5 shadow-sm mb-5">
+          <div class="flex items-baseline justify-between mb-4">
+            <span class="text-neutral-700 font-medium">Séance individuelle</span>
+            <span class="font-heading font-bold text-2xl text-accent-700" id="calc-total">— €</span>
+          </div>
+          <div class="space-y-2 text-sm text-neutral-600" id="calc-breakdown">
+            <!-- Rempli par JS -->
+          </div>
+        </div>
+
+        <!-- Message zone -->
+        <div id="calc-zone-msg" class="rounded-lg p-3.5 text-sm flex items-start gap-2.5 mb-5">
+          <!-- Rempli par JS -->
+        </div>
+
+        <!-- CTA réserver -->
+        <button
+          id="calc-go-booking"
+          type="button"
+          class="w-full bg-accent-600 hover:bg-accent-700 text-white font-semibold py-3.5 px-6 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 shadow-sm hover:shadow-md"
+        >
+          <svg class="w-5 h-5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+          Demander une séance — je suis disponible
+        </button>
+
+        <button
+          id="calc-reset"
+          type="button"
+          class="w-full mt-2 text-neutral-500 hover:text-primary-600 text-sm py-2 transition-colors"
+        >
+          ← Recalculer avec une autre adresse
+        </button>
+      </div>
+    </div>
+
+    <!-- Étape 2 : Formulaire de réservation -->
+    <div id="calc-step-2" class="hidden mt-4 bg-white rounded-2xl shadow-md border border-primary-100 overflow-hidden">
+
+      <!-- Barre de progression -->
+      <div class="h-1.5 bg-primary-100">
+        <div class="h-full bg-primary-500" style="width: 66%"></div>
+      </div>
+
+      <div class="p-6 md:p-8">
+        <div class="flex items-center gap-3 mb-1">
+          <div class="w-8 h-8 rounded-full bg-primary-500 text-white text-sm font-bold flex items-center justify-center shrink-0">2</div>
+          <p class="font-semibold text-primary-900">Votre demande de séance</p>
+        </div>
+        <p class="text-sm text-neutral-500 mb-6 ml-11">Jennifer vous recontactera pour confirmer la date.</p>
+
+        <!-- Récap tarif en tête de formulaire -->
+        <div id="booking-recap" class="bg-primary-50 border border-primary-200 rounded-xl px-4 py-3 flex items-center justify-between mb-6 text-sm">
+          <div class="flex items-center gap-2 text-primary-800">
+            <svg class="w-4 h-4 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span id="booking-city-label">Votre ville</span>
+          </div>
+          <span id="booking-total-label" class="font-bold text-accent-700 text-base">60 €</span>
+        </div>
+
+        <form id="booking-form" novalidate>
+          <input type="hidden" name="access_key" value={WEB3FORMS_KEY} />
+          <input type="hidden" name="subject" value="Demande de séance — JD Zoothérapie" />
+          <input type="hidden" name="redirect" value="https://jd-zootherapie.fr/merci" />
+          <input type="hidden" name="from_name" value="Site JD Zoothérapie" />
+          <input type="hidden" id="hidden-city" name="ville" value="" />
+          <input type="hidden" id="hidden-distance" name="distance_km" value="" />
+          <input type="hidden" id="hidden-tarif" name="tarif_estime" value="" />
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            <!-- Prénom + Nom -->
+            <div>
+              <label for="booking-prenom" class="block text-sm font-medium text-neutral-700 mb-1.5">Prénom <span class="text-red-500" aria-hidden="true">*</span></label>
+              <input
+                type="text"
+                id="booking-prenom"
+                name="prenom"
+                autocomplete="given-name"
+                required
+                class="w-full px-4 py-3 border border-neutral-300 rounded-xl text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-100 transition-all text-sm"
+                placeholder="Marie"
+              />
+            </div>
+            <div>
+              <label for="booking-nom" class="block text-sm font-medium text-neutral-700 mb-1.5">Nom <span class="text-red-500" aria-hidden="true">*</span></label>
+              <input
+                type="text"
+                id="booking-nom"
+                name="nom"
+                autocomplete="family-name"
+                required
+                class="w-full px-4 py-3 border border-neutral-300 rounded-xl text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-100 transition-all text-sm"
+                placeholder="Dupont"
+              />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            <!-- Téléphone + Email -->
+            <div>
+              <label for="booking-tel" class="block text-sm font-medium text-neutral-700 mb-1.5">Téléphone <span class="text-red-500" aria-hidden="true">*</span></label>
+              <input
+                type="tel"
+                id="booking-tel"
+                name="telephone"
+                autocomplete="tel"
+                required
+                class="w-full px-4 py-3 border border-neutral-300 rounded-xl text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-100 transition-all text-sm"
+                placeholder="06 12 34 56 78"
+              />
+            </div>
+            <div>
+              <label for="booking-email" class="block text-sm font-medium text-neutral-700 mb-1.5">E-mail</label>
+              <input
+                type="email"
+                id="booking-email"
+                name="email"
+                autocomplete="email"
+                class="w-full px-4 py-3 border border-neutral-300 rounded-xl text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-100 transition-all text-sm"
+                placeholder="marie@exemple.fr"
+              />
+            </div>
+          </div>
+
+          <!-- Date et heure souhaitées -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label for="booking-date" class="block text-sm font-medium text-neutral-700 mb-1.5">
+                <svg class="w-4 h-4 inline mr-1 -mt-0.5 text-primary-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Date souhaitée
+              </label>
+              <input
+                type="date"
+                id="booking-date"
+                name="date_souhaitee"
+                class="w-full px-4 py-3 border border-neutral-300 rounded-xl text-neutral-900 focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-100 transition-all text-sm"
+              />
+            </div>
+            <div>
+              <label for="booking-heure" class="block text-sm font-medium text-neutral-700 mb-1.5">
+                <svg class="w-4 h-4 inline mr-1 -mt-0.5 text-primary-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Heure préférée
+              </label>
+              <select
+                id="booking-heure"
+                name="heure_souhaitee"
+                class="w-full px-4 py-3 border border-neutral-300 rounded-xl text-neutral-900 focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-100 transition-all text-sm bg-white"
+              >
+                <option value="">— Indifférent</option>
+                <option value="matin (9h–12h)">Matin (9h–12h)</option>
+                <option value="déjeuner (12h–14h)">Pause déjeuner (12h–14h)</option>
+                <option value="après-midi (14h–17h)">Après-midi (14h–17h)</option>
+                <option value="fin d'après-midi (17h–19h)">Fin d'après-midi (17h–19h)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Pour qui -->
+          <div class="mb-4">
+            <label for="booking-pour" class="block text-sm font-medium text-neutral-700 mb-1.5">La séance est pour…</label>
+            <select
+              id="booking-pour"
+              name="beneficiaire"
+              class="w-full px-4 py-3 border border-neutral-300 rounded-xl text-neutral-900 focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-100 transition-all text-sm bg-white"
+            >
+              <option value="">— Choisir</option>
+              <option value="moi-même">Moi-même</option>
+              <option value="mon enfant">Mon enfant</option>
+              <option value="un proche (personne âgée)">Un proche (personne âgée)</option>
+              <option value="un proche (en situation de handicap)">Un proche (en situation de handicap)</option>
+              <option value="une structure / établissement">Une structure / établissement</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+
+          <!-- Message libre -->
+          <div class="mb-6">
+            <label for="booking-message" class="block text-sm font-medium text-neutral-700 mb-1.5">Votre message <span class="text-neutral-400 font-normal">(facultatif)</span></label>
+            <textarea
+              id="booking-message"
+              name="message"
+              rows="3"
+              class="w-full px-4 py-3 border border-neutral-300 rounded-xl text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-100 transition-all text-sm resize-none"
+              placeholder="Contexte, questions, objectifs particuliers…"
+            ></textarea>
+          </div>
+
+          <!-- RGPD -->
+          <div class="flex items-start gap-3 mb-6">
+            <input
+              type="checkbox"
+              id="booking-rgpd"
+              name="rgpd"
+              required
+              class="mt-0.5 w-4 h-4 rounded border-neutral-300 text-primary-600 focus:ring-primary-500 shrink-0 cursor-pointer"
+            />
+            <label for="booking-rgpd" class="text-xs text-neutral-500 cursor-pointer">
+              J'accepte que mes données soient utilisées pour traiter ma demande de séance, conformément à la <a href="/politique-confidentialite" class="text-primary-600 hover:underline">politique de confidentialité</a>.
+            </label>
+          </div>
+
+          <!-- Erreur formulaire -->
+          <p id="booking-form-error" class="hidden text-red-600 text-sm text-center mb-4" role="alert" aria-live="assertive"></p>
+
+          <!-- Boutons -->
+          <div class="flex flex-col sm:flex-row gap-3">
+            <button
+              type="button"
+              id="booking-back"
+              class="order-2 sm:order-1 flex-1 border border-neutral-300 text-neutral-600 hover:text-primary-700 hover:border-primary-300 font-medium py-3.5 px-6 rounded-xl transition-all text-sm"
+            >
+              ← Retour au calcul
+            </button>
+            <button
+              type="submit"
+              id="booking-submit"
+              class="order-1 sm:order-2 flex-[2] bg-accent-600 hover:bg-accent-700 text-white font-semibold py-3.5 px-6 rounded-xl transition-all flex items-center justify-center gap-2 shadow-md hover:shadow-lg disabled:opacity-50"
+            >
+              <svg id="booking-submit-icon" class="w-5 h-5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+              <svg id="booking-submit-spinner" class="w-5 h-5 shrink-0 animate-spin hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
+              </svg>
+              <span id="booking-submit-label">Envoyer ma demande</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Étape 3 : Confirmation -->
+    <div id="calc-step-3" class="hidden mt-4 bg-white rounded-2xl shadow-md border border-primary-100 overflow-hidden">
+      <div class="h-1.5 bg-primary-500"></div>
+      <div class="p-8 md:p-10 text-center">
+        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5">
+          <svg class="w-8 h-8 text-green-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3 class="font-heading font-bold text-xl text-primary-900 mb-2">Demande envoyée !</h3>
+        <p class="text-neutral-600 mb-6">Jennifer revient vers vous très vite pour confirmer votre séance. Merci de votre confiance.</p>
+        <div class="inline-flex items-center gap-2 bg-primary-50 border border-primary-200 rounded-xl px-5 py-3 text-sm text-primary-800">
+          <svg class="w-4 h-4 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.32C1.58 2.18 2.46 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.6 16z"/></svg>
+          Jennifer : <strong>07 49 25 02 09</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Aide contextuelle -->
+    {!compact && (
+      <p class="text-center text-xs text-neutral-400 mt-5">
+        Calcul basé sur la distance routière réelle · Gratuit, sans engagement
+      </p>
+    )}
+  </div>
+</section>
+
+<script>
+  // ─── Configuration ───────────────────────────────────────────────
+  const VERNY_LAT = 49.0208014;
+  const VERNY_LNG = 6.7659488;
+  const BASE_PRICE = 60;
+  const FREE_RADIUS_KM = 15;
+  const RATE_PER_KM = 0.40;
+  const NOMINATIM_URL = 'https://nominatim.openstreetmap.org/search';
+  const OSRM_URL = 'https://router.project-osrm.org/route/v1/driving';
+
+  // ─── Éléments DOM ────────────────────────────────────────────────
+  const input = document.getElementById('calc-city-input') as HTMLInputElement;
+  const btn = document.getElementById('calc-btn') as HTMLButtonElement;
+  const btnLabel = document.getElementById('calc-btn-label')!;
+  const btnIcon = document.getElementById('calc-icon')!;
+  const btnSpinner = document.getElementById('calc-spinner')!;
+  const errorEl = document.getElementById('calc-error')!;
+  const resultEl = document.getElementById('calc-result')!;
+  const cityFoundEl = document.getElementById('calc-city-found')!;
+  const totalEl = document.getElementById('calc-total')!;
+  const breakdownEl = document.getElementById('calc-breakdown')!;
+  const zoneMsgEl = document.getElementById('calc-zone-msg')!;
+  const suggestionsEl = document.getElementById('calc-suggestions')!;
+  const progressEl = document.getElementById('calc-progress')!;
+  const goBookingBtn = document.getElementById('calc-go-booking')!;
+  const resetBtn = document.getElementById('calc-reset')!;
+  const step2 = document.getElementById('calc-step-2')!;
+  const step3 = document.getElementById('calc-step-3')!;
+  const backBtn = document.getElementById('booking-back')!;
+  const bookingForm = document.getElementById('booking-form') as HTMLFormElement;
+  const bookingCityLabel = document.getElementById('booking-city-label')!;
+  const bookingTotalLabel = document.getElementById('booking-total-label')!;
+  const hiddenCity = document.getElementById('hidden-city') as HTMLInputElement;
+  const hiddenDistance = document.getElementById('hidden-distance') as HTMLInputElement;
+  const hiddenTarif = document.getElementById('hidden-tarif') as HTMLInputElement;
+  const formError = document.getElementById('booking-form-error')!;
+  const submitBtn = document.getElementById('booking-submit') as HTMLButtonElement;
+  const submitLabel = document.getElementById('booking-submit-label')!;
+  const submitIcon = document.getElementById('booking-submit-icon')!;
+  const submitSpinner = document.getElementById('booking-submit-spinner')!;
+
+  // ─── État ────────────────────────────────────────────────────────
+  let debounceTimer: ReturnType<typeof setTimeout>;
+  let selectedResult: { lat: number; lng: number; name: string } | null = null;
+  let calcDistanceKm = 0;
+  let calcTotal = 0;
+
+  // ─── Haversine (fallback si OSRM échoue) ─────────────────────────
+  function haversineKm(lat1: number, lng1: number, lat2: number, lng2: number): number {
+    const R = 6371;
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLng = (lng2 - lng1) * Math.PI / 180;
+    const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLng/2)**2;
+    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  }
+
+  // ─── Géocodage Nominatim ─────────────────────────────────────────
+  async function geocode(query: string): Promise<Array<{lat: number; lng: number; name: string}>> {
+    const params = new URLSearchParams({
+      q: query + ', France',
+      format: 'json',
+      limit: '5',
+      addressdetails: '1',
+      countrycodes: 'fr',
+    });
+    const res = await fetch(`${NOMINATIM_URL}?${params}`, {
+      headers: { 'Accept-Language': 'fr', 'User-Agent': 'JD-Zootherapie-Calculator/1.0' }
+    });
+    if (!res.ok) throw new Error('Erreur géocodage');
+    const data = await res.json() as Array<any>;
+    return data.map((d: any) => ({
+      lat: parseFloat(d.lat),
+      lng: parseFloat(d.lon),
+      name: d.display_name.split(',').slice(0, 2).join(', ').trim(),
+    }));
+  }
+
+  // ─── Distance routière OSRM ──────────────────────────────────────
+  async function getRouteDistanceKm(lat: number, lng: number): Promise<number> {
+    const url = `${OSRM_URL}/${VERNY_LNG},${VERNY_LAT};${lng},${lat}?overview=false`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('OSRM error');
+    const data = await res.json() as any;
+    if (data.code !== 'Ok' || !data.routes?.length) throw new Error('No route');
+    return data.routes[0].distance / 1000;
+  }
+
+  // ─── Calcul du tarif ─────────────────────────────────────────────
+  function computePrice(distKm: number): { total: number; extra: number; extraKm: number } {
+    if (distKm <= FREE_RADIUS_KM) {
+      return { total: BASE_PRICE, extra: 0, extraKm: 0 };
+    }
+    const extraKm = Math.ceil(distKm - FREE_RADIUS_KM);
+    const extra = Math.round(extraKm * RATE_PER_KM * 100) / 100;
+    return { total: BASE_PRICE + extra, extra, extraKm };
+  }
+
+  // ─── Affichage des suggestions ───────────────────────────────────
+  function showSuggestions(results: Array<{lat: number; lng: number; name: string}>) {
+    if (!results.length) { suggestionsEl.classList.add('hidden'); return; }
+    suggestionsEl.innerHTML = results.map((r, i) =>
+      `<li role="option" class="px-4 py-3 cursor-pointer hover:bg-primary-50 text-sm text-neutral-800 border-b border-neutral-100 last:border-0 flex items-center gap-2" data-idx="${i}">
+        <svg class="w-4 h-4 text-neutral-400 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        ${r.name}
+      </li>`
+    ).join('');
+    suggestionsEl.classList.remove('hidden');
+    results.forEach((r, i) => {
+      suggestionsEl.children[i].addEventListener('click', () => selectSuggestion(r));
+    });
+  }
+
+  function selectSuggestion(r: {lat: number; lng: number; name: string}) {
+    selectedResult = r;
+    input.value = r.name;
+    suggestionsEl.classList.add('hidden');
+  }
+
+  // ─── Erreur ──────────────────────────────────────────────────────
+  function showError(msg: string) {
+    errorEl.textContent = msg;
+    errorEl.classList.remove('hidden');
+    setLoading(false);
+  }
+  function clearError() { errorEl.classList.add('hidden'); }
+
+  // ─── Chargement ──────────────────────────────────────────────────
+  function setLoading(loading: boolean) {
+    btn.disabled = loading;
+    btnIcon.classList.toggle('hidden', loading);
+    btnSpinner.classList.toggle('hidden', !loading);
+    btnLabel.textContent = loading ? 'Calcul en cours…' : 'Calculer mon tarif';
+  }
+
+  // ─── Affichage résultat ──────────────────────────────────────────
+  function showResult(cityName: string, distKm: number, price: ReturnType<typeof computePrice>) {
+    calcDistanceKm = distKm;
+    calcTotal = price.total;
+
+    cityFoundEl.textContent = `Distance depuis Verny : ${Math.round(distKm * 10) / 10} km (route)`;
+    totalEl.textContent = `${price.total} €`;
+
+    // Breakdown
+    let html = `
+      <div class="flex justify-between py-1.5 border-b border-neutral-100">
+        <span>Séance individuelle</span>
+        <span class="font-medium text-neutral-800">${BASE_PRICE} €</span>
+      </div>`;
+
+    if (price.extraKm > 0) {
+      html += `
+      <div class="flex justify-between py-1.5 border-b border-neutral-100">
+        <span>Déplacement (${price.extraKm} km × ${RATE_PER_KM.toFixed(2).replace('.', ',')} €)</span>
+        <span class="font-medium text-neutral-800">+${price.extra.toFixed(2).replace('.', ',')} €</span>
+      </div>`;
+    } else {
+      html += `
+      <div class="flex justify-between py-1.5 border-b border-neutral-100">
+        <span>Déplacement (rayon 15 km)</span>
+        <span class="font-medium text-green-600">Inclus ✓</span>
+      </div>`;
+    }
+
+    html += `
+      <div class="flex justify-between pt-2">
+        <span class="font-semibold text-neutral-900">Total estimé</span>
+        <span class="font-bold text-accent-700 text-base">${price.total} €</span>
+      </div>`;
+    breakdownEl.innerHTML = html;
+
+    // Message zone
+    if (distKm <= FREE_RADIUS_KM) {
+      zoneMsgEl.className = 'rounded-lg p-3.5 text-sm flex items-start gap-2.5 mb-5 bg-green-50 text-green-800 border border-green-200';
+      zoneMsgEl.innerHTML = `
+        <svg class="w-4 h-4 mt-0.5 shrink-0 text-green-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>Vous êtes dans la zone d'intervention principale de Jennifer — le déplacement est <strong>inclus</strong> dans le tarif.</span>`;
+    } else if (distKm <= 50) {
+      zoneMsgEl.className = 'rounded-lg p-3.5 text-sm flex items-start gap-2.5 mb-5 bg-amber-50 text-amber-900 border border-amber-200';
+      zoneMsgEl.innerHTML = `
+        <svg class="w-4 h-4 mt-0.5 shrink-0 text-amber-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span>Hors zone principale — des frais de déplacement de <strong>${RATE_PER_KM.toFixed(2).replace('.', ',')} €/km</strong> s'appliquent au-delà de 15 km. Tarif indicatif, confirmé lors de l'échange.</span>`;
+    } else {
+      zoneMsgEl.className = 'rounded-lg p-3.5 text-sm flex items-start gap-2.5 mb-5 bg-neutral-100 text-neutral-700 border border-neutral-200';
+      zoneMsgEl.innerHTML = `
+        <svg class="w-4 h-4 mt-0.5 shrink-0 text-neutral-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span>Distance importante — Jennifer étudie les demandes au-delà de 50 km au cas par cas. N'hésitez pas à la contacter directement.</span>`;
+    }
+
+    resultEl.classList.remove('hidden');
+    progressEl.style.width = '66%';
+
+    // Update hidden fields for booking form
+    hiddenCity.value = cityName;
+    hiddenDistance.value = `${Math.round(distKm * 10) / 10} km`;
+    hiddenTarif.value = `${price.total} €`;
+    bookingCityLabel.textContent = cityName;
+    bookingTotalLabel.textContent = `${price.total} €`;
+  }
+
+  // ─── Action calculer ─────────────────────────────────────────────
+  async function calculate() {
+    clearError();
+    const query = (selectedResult?.name || input.value).trim();
+    if (!query) { showError('Veuillez saisir une ville ou un code postal.'); return; }
+
+    setLoading(true);
+    try {
+      let lat: number, lng: number, name: string;
+      if (selectedResult) {
+        ({ lat, lng, name } = selectedResult);
+      } else {
+        const results = await geocode(query);
+        if (!results.length) { showError('Ville introuvable. Essayez avec le code postal.'); setLoading(false); return; }
+        ({ lat, lng, name } = results[0]);
+      }
+
+      // Distance routière (avec fallback haversine)
+      let distKm: number;
+      try {
+        distKm = await getRouteDistanceKm(lat, lng);
+      } catch {
+        distKm = haversineKm(VERNY_LAT, VERNY_LNG, lat, lng) * 1.25; // correction forfaitaire
+      }
+
+      const price = computePrice(distKm);
+      showResult(name, distKm, price);
+      setLoading(false);
+    } catch (e) {
+      showError('Erreur de calcul. Veuillez réessayer ou nous contacter directement.');
+      setLoading(false);
+    }
+  }
+
+  // ─── Autocomplete ────────────────────────────────────────────────
+  input.addEventListener('input', () => {
+    selectedResult = null;
+    clearTimeout(debounceTimer);
+    const q = input.value.trim();
+    if (q.length < 2) { suggestionsEl.classList.add('hidden'); return; }
+    debounceTimer = setTimeout(async () => {
+      try {
+        const results = await geocode(q);
+        showSuggestions(results.slice(0, 4));
+      } catch { /* silent */ }
+    }, 350);
+  });
+
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); suggestionsEl.classList.add('hidden'); calculate(); }
+    if (e.key === 'Escape') { suggestionsEl.classList.add('hidden'); }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!input.contains(e.target as Node) && !suggestionsEl.contains(e.target as Node)) {
+      suggestionsEl.classList.add('hidden');
+    }
+  });
+
+  // ─── Bouton calculer ─────────────────────────────────────────────
+  btn.addEventListener('click', () => { suggestionsEl.classList.add('hidden'); calculate(); });
+
+  // ─── Reset ───────────────────────────────────────────────────────
+  resetBtn.addEventListener('click', () => {
+    resultEl.classList.add('hidden');
+    step2.classList.add('hidden');
+    step3.classList.add('hidden');
+    input.value = '';
+    selectedResult = null;
+    progressEl.style.width = '33%';
+    input.focus();
+  });
+
+  // ─── Aller au formulaire ─────────────────────────────────────────
+  goBookingBtn.addEventListener('click', () => {
+    step2.classList.remove('hidden');
+    step2.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    progressEl.style.width = '66%';
+  });
+
+  // ─── Retour ──────────────────────────────────────────────────────
+  backBtn.addEventListener('click', () => {
+    step2.classList.add('hidden');
+    step3.classList.add('hidden');
+  });
+
+  // ─── Soumission formulaire ───────────────────────────────────────
+  bookingForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    formError.classList.add('hidden');
+
+    // Validation basique
+    const prenom = (document.getElementById('booking-prenom') as HTMLInputElement).value.trim();
+    const nom = (document.getElementById('booking-nom') as HTMLInputElement).value.trim();
+    const tel = (document.getElementById('booking-tel') as HTMLInputElement).value.trim();
+    const rgpd = (document.getElementById('booking-rgpd') as HTMLInputElement).checked;
+
+    if (!prenom || !nom) { formError.textContent = 'Merci de renseigner votre prénom et votre nom.'; formError.classList.remove('hidden'); return; }
+    if (!tel) { formError.textContent = 'Votre numéro de téléphone est requis.'; formError.classList.remove('hidden'); return; }
+    if (!rgpd) { formError.textContent = 'Merci d\'accepter la politique de confidentialité.'; formError.classList.remove('hidden'); return; }
+
+    // Chargement
+    submitBtn.disabled = true;
+    submitIcon.classList.add('hidden');
+    submitSpinner.classList.remove('hidden');
+    submitLabel.textContent = 'Envoi en cours…';
+
+    try {
+      const fd = new FormData(bookingForm);
+      const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd });
+      const data = await res.json() as any;
+      if (data.success) {
+        step2.classList.add('hidden');
+        step3.classList.remove('hidden');
+        progressEl.style.width = '100%';
+        step3.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        throw new Error('Web3Forms error');
+      }
+    } catch {
+      formError.textContent = 'Erreur d\'envoi. Veuillez réessayer ou appeler Jennifer au 07 49 25 02 09.';
+      formError.classList.remove('hidden');
+    } finally {
+      submitBtn.disabled = false;
+      submitIcon.classList.remove('hidden');
+      submitSpinner.classList.add('hidden');
+      submitLabel.textContent = 'Envoyer ma demande';
+    }
+  });
+
+  // ─── Date min (aujourd'hui) ───────────────────────────────────────
+  const dateInput = document.getElementById('booking-date') as HTMLInputElement;
+  if (dateInput) {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth()+1).padStart(2,'0');
+    const dd = String(today.getDate()).padStart(2,'0');
+    dateInput.min = `${yyyy}-${mm}-${dd}`;
+  }
+</script>

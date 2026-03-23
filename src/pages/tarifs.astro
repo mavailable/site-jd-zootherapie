@@ -5,6 +5,7 @@ import Footer from '@components/layout/Footer.astro';
 import PageHero from '@components/sections/PageHero.astro';
 import CTABanner from '@components/sections/CTABanner.astro';
 import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
+import TarifCalculator from '@components/sections/TarifCalculator.astro';
 ---
 
 <BaseLayout
@@ -119,13 +120,16 @@ import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-neutral-500 mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
           <div class="text-sm text-neutral-700">
             <p class="font-semibold text-neutral-800 mb-1">Déplacement</p>
-            <p>Inclus dans un rayon de 15 km autour de Verny (57420). Au-delà : 0,50 €/km. Interventions ponctuelles possibles jusqu'à Metz et Nancy.</p>
+            <p>Inclus dans un rayon de 15 km autour de Verny (57420). Au-delà : 0,40 €/km. Interventions ponctuelles possibles jusqu'à Metz et Nancy.</p>
           </div>
         </div>
 
       </div>
     </div>
   </section>
+
+  <!-- Calculateur de tarif -->
+  <TarifCalculator />
 
   <CTABanner
     title="Demander un devis gratuit"

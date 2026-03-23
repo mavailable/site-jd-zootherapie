@@ -9,6 +9,7 @@ import About from '@components/sections/About.astro';
 import FAQ from '@components/sections/FAQ.astro';
 import CTABanner from '@components/sections/CTABanner.astro';
 import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
+import TarifCalculator from '@components/sections/TarifCalculator.astro';
 
 // ── Section Services aperçu (3 vignettes thématiques, homepage seulement) ────
 // Pas les 6 services Keystatic — juste 3 catégories grand public
@@ -146,7 +147,14 @@ const servicesApercu = [
     </div>
   </section>
 
-  <!-- 4. Galerie photos — vrais moments de séances -->
+  <!-- 4. Calculateur de tarif — compact, entre services et galerie -->
+  <section class="bg-white py-14 md:py-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <TarifCalculator compact={true} />
+    </div>
+  </section>
+
+  <!-- 5. Galerie photos — vrais moments de séances -->
   <PhotoGallery />
 
   <!-- 5. À propos (snippet — fond blanc, asymétrique) -->

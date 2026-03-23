@@ -4,6 +4,7 @@ import Header from '@components/layout/Header.astro';
 import Footer from '@components/layout/Footer.astro';
 import PageHero from '@components/sections/PageHero.astro';
 import Contact from '@components/sections/Contact.astro';
+import TarifCalculator from '@components/sections/TarifCalculator.astro';
 import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
 ---
 
@@ -41,7 +42,10 @@ import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
     </div>
   </nav>
 
-  <!-- Formulaire + coordonnées -->
+  <!-- Calculateur de tarif avant le formulaire -->
+  <TarifCalculator />
+
+  <!-- Formulaire général + coordonnées -->
   <Contact />
 
   <Footer slot="footer" />
