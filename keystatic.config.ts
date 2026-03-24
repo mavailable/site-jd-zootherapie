@@ -2,7 +2,7 @@ import { config, fields, singleton, collection } from '@keystatic/core';
 
 export default config({
   storage: { kind: 'cloud' },
-  cloud: { project: 'web-factory/jd-zootherapie' },
+  cloud: { project: 'jd-zootherapeute/site-jd-zootherapie' },
 
   singletons: {
     siteInfo: singleton({
