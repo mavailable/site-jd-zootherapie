@@ -14,7 +14,7 @@ import Footer from '@components/layout/Footer.astro';
   <Header slot="header" />
 
   <section class="py-16 md:py-20">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <h1 class="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
         Modifier votre site
@@ -181,6 +181,21 @@ import Footer from '@components/layout/Footer.astro';
             <span>En cas de doute, n'hésitez pas : mieux vaut demander que casser quelque chose !</span>
           </li>
         </ul>
+      </div>
+
+      <!-- Statistiques du site -->
+      <div class="mb-12">
+        <h2 class="text-2xl font-bold text-neutral-900 mb-2">Statistiques de votre site</h2>
+        <p class="text-neutral-500 mb-6">Nombre de visiteurs, pages les plus vues, sources de trafic — en temps réel et 100 % anonyme.</p>
+        <div class="rounded-2xl overflow-hidden border border-neutral-200">
+          <iframe
+            src="https://cloud.umami.is/share/7qxMncBLuGRFA5uK"
+            class="w-full border-0"
+            style="height: 700px;"
+            title="Statistiques du site jdzootherapeute.fr"
+            loading="lazy"
+          ></iframe>
+        </div>
       </div>
 
       <!-- Contact webmaster -->
