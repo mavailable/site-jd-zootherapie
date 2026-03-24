@@ -79,4 +79,14 @@ const siteInfo = getSiteInfo();
   </section>
 
   <Footer slot="footer" />
+
+  <script>
+    if (typeof window.umami !== 'undefined') {
+      window.umami.track('404-error');
+    } else {
+      document.addEventListener('DOMContentLoaded', () => {
+        if (typeof window.umami !== 'undefined') window.umami.track('404-error');
+      });
+    }
+  </script>
 </BaseLayout>
