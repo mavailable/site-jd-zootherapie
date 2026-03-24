@@ -129,36 +129,9 @@ const ogLocale = `${siteInfo.lang}_${siteInfo.address.country.toUpperCase()}`;
   <slot name="footer" />
 
   <!-- Umami Analytics — sans cookies, RGPD-exempt (pas de bannière requise) -->
-  <script defer src="https://cloud.umami.is/script.js" data-website-id="96fd46e0-47fa-4c79-abda-447fa79bd0f4"></script>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="96fd46e0-47fa-4c79-abda-447fa79bd0f4" integrity="sha384-OLBgp1GsljhM2TJ+sbHjaiH9txEUvgdDTAzHv2P24donTt6/529l+9Ua0vFImLlb" crossorigin="anonymous"></script>
 
   <!-- Tracking conversions : téléphone, email, CTA, formulaire -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const track = (event, props) => {
-        if (typeof window.umami !== 'undefined') window.umami.track(event, props);
-      };
-
-      // Clics téléphone
-      document.querySelectorAll('a[href^="tel:"]').forEach(link => {
-        link.addEventListener('click', () => track('phone-click', { page: window.location.pathname }));
-      });
-
-      // Clics email
-      document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
-        link.addEventListener('click', () => track('email-click', { page: window.location.pathname }));
-      });
-
-      // Clics CTA principaux (boutons avec data-track="cta")
-      document.querySelectorAll('[data-track="cta"]').forEach(btn => {
-        btn.addEventListener('click', () => track('cta-click', { label: btn.textContent?.trim() }));
-      });
-
-      // Soumission formulaire contact
-      const contactForm = document.querySelector('form[action*="web3forms"]');
-      if (contactForm) {
-        contactForm.addEventListener('submit', () => track('form-submit', { page: window.location.pathname }));
-      }
-    });
-  </script>
+  <script defer src="/js/analytics.js"></script>
 </body>
 </html>

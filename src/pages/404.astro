@@ -80,13 +80,5 @@ const siteInfo = getSiteInfo();
 
   <Footer slot="footer" />
 
-  <script>
-    if (typeof window.umami !== 'undefined') {
-      window.umami.track('404-error');
-    } else {
-      document.addEventListener('DOMContentLoaded', () => {
-        if (typeof window.umami !== 'undefined') window.umami.track('404-error');
-      });
-    }
-  </script>
+  <script defer src="/js/404-track.js"></script>
 </BaseLayout>
