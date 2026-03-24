@@ -1,0 +1,183 @@
+---
+export const prerender = true;
+
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/layout/Header.astro';
+import Footer from '@components/layout/Footer.astro';
+import PageHero from '@components/sections/PageHero.astro';
+import CTABanner from '@components/sections/CTABanner.astro';
+import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
+import BlogCard from '@components/blog/BlogCard.astro';
+import BlogCardFeatured from '@components/blog/BlogCardFeatured.astro';
+
+const allPosts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+const [featuredPost, ...otherPosts] = allPosts;
+
+// Extract unique categories
+const categories = [...new Set(allPosts.map(post => post.data.category))];
+---
+
+<BaseLayout
+  title="Blog — Zoothérapie, récits et conseils | JD Zoothérapie"
+  description="Articles sur la médiation animale : récits de terrain, recherche scientifique, conseils pratiques. Le blog de Jennifer De Groeve, zoothérapeute en Moselle."
+>
+  <Fragment slot="schema">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "Blog JD Zoothérapie",
+      "description": "Articles sur la médiation animale et la zoothérapie en Moselle",
+      "url": "https://jdzootherapeute.fr/blog",
+      "author": {
+        "@type": "Person",
+        "name": "Jennifer De Groeve",
+        "jobTitle": "Zoothérapeute certifiée IFZ"
+      },
+      "blogPost": allPosts.map(post => ({
+        "@type": "BlogPosting",
+        "headline": post.data.title,
+        "description": post.data.description,
+        "datePublished": post.data.date.toISOString().split('T')[0],
+        "url": `https://jdzootherapeute.fr/blog/${post.id}`,
+        "author": {
+          "@type": "Person",
+          "name": "Jennifer De Groeve"
+        }
+      }))
+    })} />
+  </Fragment>
+
+  <Header slot="header" />
+
+  <PageHero
+    h1="Le blog"
+    subtitle="Récits de terrain, recherche et réflexions sur la médiation animale — par Jennifer De Groeve, zoothérapeute en Moselle."
+  />
+
+  <!-- Breadcrumb -->
+  <nav aria-label="Fil d'Ariane" class="bg-white border-b border-neutral-100">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5">
+      <ol class="flex items-center gap-2 text-xs text-neutral-500">
+        <li><a href="/" class="hover:text-primary-600 transition-colors">Accueil</a></li>
+        <li aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></li>
+        <li class="text-primary-700 font-medium" aria-current="page">Blog</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Filters + Articles -->
+  <section class="bg-neutral-50 py-12 md:py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Category Filters -->
+      <div class="flex flex-wrap gap-2 mb-10" role="tablist" aria-label="Filtrer par catégorie">
+        <button
+          class="filter-btn active px-4 py-2 rounded-full text-sm font-medium transition-all bg-primary-700 text-white shadow-sm"
+          data-filter="all"
+          role="tab"
+          aria-selected="true"
+        >
+          Tous les articles
+        </button>
+        {categories.map(cat => (
+          <button
+            class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all bg-white text-neutral-600 border border-neutral-200 hover:border-primary-300 hover:text-primary-700"
+            data-filter={cat}
+            role="tab"
+            aria-selected="false"
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <!-- Featured Post -->
+      {featuredPost && (
+        <div class="mb-8 blog-article" data-category={featuredPost.data.category}>
+          <BlogCardFeatured
+            title={featuredPost.data.title}
+            description={featuredPost.data.description}
+            date={featuredPost.data.date}
+            category={featuredPost.data.category}
+            slug={featuredPost.id}
+          />
+        </div>
+      )}
+
+      <!-- Other Posts Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="blog-grid">
+        {otherPosts.map(post => (
+          <div class="blog-article" data-category={post.data.category}>
+            <BlogCard
+              title={post.data.title}
+              description={post.data.description}
+              date={post.data.date}
+              category={post.data.category}
+              slug={post.id}
+            />
+          </div>
+        ))}
+      </div>
+
+      <!-- Empty state -->
+      <div id="empty-state" class="hidden text-center py-12">
+        <p class="text-neutral-500 text-sm">Aucun article dans cette catégorie pour le moment.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <CTABanner
+    title="Une question sur la médiation animale ?"
+    text="Jennifer vous répond par téléphone — premier échange gratuit et sans engagement."
+    ctaText="Appeler Jennifer"
+    ctaSecondaryText="Envoyer un message"
+    ctaSecondaryHref="/contact"
+  />
+
+  <Footer slot="footer" />
+  <StickyMobileCTA />
+</BaseLayout>
+
+<script>
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const articles = document.querySelectorAll('.blog-article');
+  const emptyState = document.getElementById('empty-state');
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = (btn as HTMLElement).dataset.filter;
+
+      // Update active button
+      filterButtons.forEach(b => {
+        b.classList.remove('active', 'bg-primary-700', 'text-white', 'shadow-sm');
+        b.classList.add('bg-white', 'text-neutral-600', 'border', 'border-neutral-200');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active', 'bg-primary-700', 'text-white', 'shadow-sm');
+      btn.classList.remove('bg-white', 'text-neutral-600', 'border', 'border-neutral-200');
+      btn.setAttribute('aria-selected', 'true');
+
+      // Filter articles
+      let visibleCount = 0;
+      articles.forEach(article => {
+        const el = article as HTMLElement;
+        if (filter === 'all' || el.dataset.category === filter) {
+          el.style.display = '';
+          visibleCount++;
+        } else {
+          el.style.display = 'none';
+        }
+      });
+
+      // Toggle empty state
+      if (emptyState) {
+        emptyState.classList.toggle('hidden', visibleCount > 0);
+      }
+    });
+  });
+</script>

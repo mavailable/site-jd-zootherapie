@@ -1,0 +1,59 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  category: string;
+  slug: string;
+}
+
+const { title, description, date, category, slug } = Astro.props;
+
+const categoryColors: Record<string, { bg: string; text: string; dot: string }> = {
+  'Récits de terrain': { bg: 'bg-primary-50', text: 'text-primary-700', dot: 'bg-primary-500' },
+  'Science & recherche': { bg: 'bg-secondary-50', text: 'text-secondary-700', dot: 'bg-secondary-500' },
+  'Conseils pratiques': { bg: 'bg-accent-50', text: 'text-accent-700', dot: 'bg-accent-500' },
+  'Idées reçues': { bg: 'bg-neutral-100', text: 'text-neutral-700', dot: 'bg-neutral-500' },
+};
+
+const colors = categoryColors[category] || categoryColors['Récits de terrain'];
+
+const formattedDate = date.toLocaleDateString('fr-FR', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<article class="group bg-white border border-neutral-200 rounded-xl overflow-hidden hover:border-primary-300 hover:shadow-md transition-all duration-200" data-category={category}>
+  <a href={`/blog/${slug}`} class="block p-6">
+    <!-- Category badge -->
+    <div class="flex items-center gap-2 mb-3">
+      <span class={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium ${colors.bg} ${colors.text}`}>
+        <span class={`w-1.5 h-1.5 rounded-full ${colors.dot}`} aria-hidden="true"></span>
+        {category}
+      </span>
+    </div>
+
+    <!-- Title -->
+    <h3 class="font-heading font-semibold text-lg text-primary-900 group-hover:text-primary-700 transition-colors mb-2 leading-snug">
+      {title}
+    </h3>
+
+    <!-- Excerpt -->
+    <p class="text-neutral-600 text-sm leading-relaxed mb-4 line-clamp-3">
+      {description}
+    </p>
+
+    <!-- Footer: date + read more -->
+    <div class="flex items-center justify-between">
+      <time datetime={date.toISOString().split('T')[0]} class="text-xs text-neutral-400">
+        {formattedDate}
+      </time>
+      <span class="text-sm font-medium text-primary-600 group-hover:text-primary-700 inline-flex items-center gap-1 transition-colors">
+        Lire
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </span>
+    </div>
+  </a>
+</article>

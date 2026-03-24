@@ -1,0 +1,62 @@
+---
+title: "Trois ans, un lapin et un premier mot"
+description: "L'histoire d'un petit garçon qui ne parlait pas — et de Tap-Tap, le lapin qui a changé la donne. Un récit de médiation animale en Moselle."
+date: 2026-03-03
+category: "Récits de terrain"
+---
+
+Je vais appeler cet enfant Lucas. Ce n'est pas son vrai prénom — confidentialité oblige — mais l'histoire est vraie, et ses parents m'ont autorisée à la raconter.
+
+Lucas a trois ans quand sa maman m'appelle. Il ne parle pas. Pas un mot. Pas "maman", pas "non", rien. Il communique par gestes, par cris, par le regard — mais aucune syllabe ne sort. Les examens médicaux n'ont rien révélé de structurel : pas de surdité, pas de lésion, pas de trouble neurologique identifié. L'orthophoniste suit la situation, la pédiatre aussi. Tout le monde attend que "ça vienne". Mais ça ne vient pas.
+
+Sa mère a entendu parler de la zoothérapie par une amie dont la fille, atteinte de troubles autistiques, avait progressé en séances de médiation animale. Elle m'appelle sans trop y croire. "Je tente tout", me dit-elle. Je reconnais ce mélange d'épuisement et d'espoir prudent — je l'entends souvent.
+
+## La première rencontre
+
+Lucas arrive à la séance accroché à la jambe de sa mère. Il ne pleure pas, mais il ne regarde rien. Il fixe le sol. Je connais bien cette posture chez les enfants en retrait — le monde extérieur est trop, alors on se replie.
+
+Tips et Uxo sont dans la pièce. Lucas ne leur accorde pas un regard. Quand Uxo s'approche en remuant la queue — c'est plus fort que lui, il adore les enfants — Lucas se recroqueville un peu plus. Je rappelle Uxo. Ce n'est pas le bon moment.
+
+Alors je sors Tap-Tap.
+
+Mon lapin bélier a cette capacité extraordinaire de simplement *être là*. Je le pose sur une couverture au sol, à deux mètres de Lucas. Tap-Tap fait ce que font les lapins : il reste immobile, le nez qui frétille, les oreilles tombantes. Il ne demande rien. Il n'attend rien. Il existe, c'est tout.
+
+Au bout de cinq minutes, Lucas lève les yeux.
+
+Au bout de dix, il lâche la jambe de sa mère.
+
+Au bout de quinze, il est assis par terre, à un mètre du lapin, et il le regarde. Vraiment. Avec cette intensité que seuls les enfants ont — comme s'il essayait de comprendre ce que c'est, cette petite chose vivante et silencieuse qui partage l'espace sans rien exiger.
+
+Je ne dis rien. Sa mère non plus. On respire à peine.
+
+## Les séances suivantes
+
+Deuxième séance : Lucas touche Tap-Tap. Du bout des doigts d'abord, sur le dos, puis il pose toute sa paume sur la fourrure. Il la retire, la repose. Le geste se répète, se prolonge. Je lui montre comment caresser dans le sens du poil. Il imite. Tap-Tap reste parfaitement calme.
+
+Troisième séance : Lucas porte Tap-Tap sur ses genoux. C'est un moment important — l'enfant accepte le poids et la chaleur d'un être vivant contre lui. Je commence à nommer les choses : "Tu sens ses oreilles ? Elles sont douces. Et là, c'est son nez. Et ça, ses pattes." Lucas écoute. Il ne répète pas, mais il touche chaque partie que je nomme.
+
+Quatrième séance : je lui demande de me montrer les oreilles de Tap-Tap. Il les touche sans hésiter. Le nez ? Pareil. Les pattes ? Il les soulève délicatement. Ses yeux brillent. Pour la première fois depuis qu'il vient, je le vois sourire — pas un sourire poli, un vrai sourire de gamin fier de lui.
+
+## Le déclic
+
+Cinquième séance. Lucas est assis par terre avec Tap-Tap sur les genoux. Je lui demande : "Qu'est-ce que c'est ?" en montrant les oreilles du lapin.
+
+Silence.
+
+Puis, très doucement, presque inaudible : *"Oei."*
+
+Oreilles. Il a dit oreilles. À sa façon, déformé, mais c'est là. Un mot. Le premier.
+
+Je garde mon calme — c'est professionnel, il ne faut pas surréagir et risquer de braquer l'enfant. Mais sa mère, derrière, pleure sans bruit.
+
+Les séances suivantes, les mots arrivent. Pas en torrent — en gouttes. "Apin" pour lapin. "Dou" pour doux. "Cor" pour encore. Chaque mot est adressé à Tap-Tap, pas aux adultes. Le lapin est le premier interlocuteur que Lucas a choisi. Nous, on vient après.
+
+## Ce que cette histoire m'a appris
+
+Je fais ce métier depuis plusieurs années, et chaque enfant me rappelle la même chose : **on ne peut pas forcer la parole**. On peut créer les conditions pour qu'elle émerge — un cadre sûr, un lien de confiance, un être vivant qui ne juge pas et n'attend pas de performance.
+
+Tap-Tap n'a rien fait de spectaculaire. Il s'est assis sur une couverture. Il s'est laissé toucher. Il a été patient. Mais cette patience sans attente, cette présence sans pression — c'est exactement ce dont Lucas avait besoin pour oser.
+
+Aujourd'hui, Lucas a quatre ans. Il parle. Pas autant que certains enfants de son âge, mais il parle. Il va à l'école, il a des copains, il dit "maman" et "encore des pâtes" et "je veux pas dormir". Des phrases ordinaires, magnifiques.
+
+Il demande encore des nouvelles de Tap-Tap.

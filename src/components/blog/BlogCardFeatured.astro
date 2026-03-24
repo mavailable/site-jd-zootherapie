@@ -1,0 +1,72 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  category: string;
+  slug: string;
+}
+
+const { title, description, date, category, slug } = Astro.props;
+
+const categoryColors: Record<string, { bg: string; text: string; dot: string }> = {
+  'Récits de terrain': { bg: 'bg-primary-50', text: 'text-primary-700', dot: 'bg-primary-500' },
+  'Science & recherche': { bg: 'bg-secondary-50', text: 'text-secondary-700', dot: 'bg-secondary-500' },
+  'Conseils pratiques': { bg: 'bg-accent-50', text: 'text-accent-700', dot: 'bg-accent-500' },
+  'Idées reçues': { bg: 'bg-neutral-100', text: 'text-neutral-700', dot: 'bg-neutral-500' },
+};
+
+const colors = categoryColors[category] || categoryColors['Récits de terrain'];
+
+const formattedDate = date.toLocaleDateString('fr-FR', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<article class="group relative bg-white border border-neutral-200 rounded-2xl overflow-hidden hover:border-primary-300 hover:shadow-lg transition-all duration-200" data-category={category}>
+  <a href={`/blog/${slug}`} class="block md:flex">
+    <!-- Decorative side panel -->
+    <div class="hidden md:flex md:w-48 lg:w-56 bg-primary-800 items-center justify-center shrink-0 relative overflow-hidden">
+      <div class="absolute inset-0 bg-primary-700/30">
+        <div class="absolute -top-8 -right-8 w-32 h-32 bg-primary-600/20 rounded-full"></div>
+        <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-primary-600/15 rounded-full"></div>
+      </div>
+      <div class="relative text-center px-4">
+        <div class="text-primary-200 text-xs font-medium uppercase tracking-wider mb-1">Dernier article</div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-primary-300 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="flex-1 p-6 md:p-8">
+      <!-- Category + date row -->
+      <div class="flex flex-wrap items-center gap-3 mb-4">
+        <span class={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium ${colors.bg} ${colors.text}`}>
+          <span class={`w-1.5 h-1.5 rounded-full ${colors.dot}`} aria-hidden="true"></span>
+          {category}
+        </span>
+        <time datetime={date.toISOString().split('T')[0]} class="text-xs text-neutral-400">
+          {formattedDate}
+        </time>
+      </div>
+
+      <!-- Title -->
+      <h3 class="font-heading font-bold text-xl md:text-2xl text-primary-900 group-hover:text-primary-700 transition-colors mb-3 leading-snug">
+        {title}
+      </h3>
+
+      <!-- Excerpt -->
+      <p class="text-neutral-600 text-sm md:text-base leading-relaxed mb-5 max-w-2xl">
+        {description}
+      </p>
+
+      <!-- CTA -->
+      <span class="inline-flex items-center gap-2 text-sm font-semibold text-primary-600 group-hover:text-primary-700 transition-colors">
+        Lire l'article
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </span>
+    </div>
+  </a>
+</article>

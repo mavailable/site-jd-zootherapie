@@ -146,5 +146,28 @@ export default config({
         order: fields.integer({ label: 'Ordre d\'affichage', defaultValue: 0 }),
       },
     }),
+
+    blog: collection({
+      label: 'Articles de blog',
+      slugField: 'title',
+      path: 'src/content/blog/*',
+      format: { contentField: 'content' },
+      schema: {
+        title: fields.slug({ name: { label: 'Titre de l\'article' } }),
+        description: fields.text({ label: 'Description (extrait)', multiline: true }),
+        date: fields.date({ label: 'Date de publication' }),
+        category: fields.select({
+          label: 'Catégorie',
+          options: [
+            { label: 'Récits de terrain', value: 'Récits de terrain' },
+            { label: 'Science & recherche', value: 'Science & recherche' },
+            { label: 'Conseils pratiques', value: 'Conseils pratiques' },
+            { label: 'Idées reçues', value: 'Idées reçues' },
+          ],
+          defaultValue: 'Récits de terrain',
+        }),
+        content: fields.markdoc({ label: 'Contenu de l\'article' }),
+      },
+    }),
   },
 });

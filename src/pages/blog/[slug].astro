@@ -1,0 +1,180 @@
+---
+export const prerender = true;
+
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/layout/Header.astro';
+import Footer from '@components/layout/Footer.astro';
+import CTABanner from '@components/sections/CTABanner.astro';
+import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
+import BlogCard from '@components/blog/BlogCard.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const allPosts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+const relatedPosts = allPosts
+  .filter(p => p.id !== post.id)
+  .slice(0, 2);
+
+const categoryColors: Record<string, { bg: string; text: string; dot: string }> = {
+  'Récits de terrain': { bg: 'bg-primary-50', text: 'text-primary-700', dot: 'bg-primary-500' },
+  'Science & recherche': { bg: 'bg-secondary-50', text: 'text-secondary-700', dot: 'bg-secondary-500' },
+  'Conseils pratiques': { bg: 'bg-accent-50', text: 'text-accent-700', dot: 'bg-accent-500' },
+  'Idées reçues': { bg: 'bg-neutral-100', text: 'text-neutral-700', dot: 'bg-neutral-500' },
+};
+const colors = categoryColors[post.data.category] || categoryColors['Récits de terrain'];
+
+const formattedDate = post.data.date.toLocaleDateString('fr-FR', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+
+// Estimate reading time from raw body
+const wordCount = post.body?.split(/\s+/).length ?? 0;
+const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+---
+
+<BaseLayout
+  title={`${post.data.title} | Blog JD Zoothérapie`}
+  description={post.data.description}
+>
+  <Fragment slot="schema">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": post.data.title,
+      "description": post.data.description,
+      "datePublished": post.data.date.toISOString().split('T')[0],
+      "url": `https://jdzootherapeute.fr/blog/${post.id}`,
+      "author": {
+        "@type": "Person",
+        "name": "Jennifer De Groeve",
+        "jobTitle": "Zoothérapeute certifiée IFZ",
+        "url": "https://jdzootherapeute.fr/a-propos"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "JD Zoothérapie",
+        "url": "https://jdzootherapeute.fr"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": `https://jdzootherapeute.fr/blog/${post.id}`
+      }
+    })} />
+  </Fragment>
+
+  <Header slot="header" />
+
+  <!-- Article Header -->
+  <section class="bg-primary-800 relative overflow-hidden py-12 md:py-16">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <div class="absolute -top-16 -right-16 w-64 h-64 bg-primary-700/30 rounded-full"></div>
+    </div>
+    <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Category + reading time -->
+      <div class="flex flex-wrap items-center gap-3 mb-5">
+        <span class={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium ${colors.bg} ${colors.text}`}>
+          <span class={`w-1.5 h-1.5 rounded-full ${colors.dot}`} aria-hidden="true"></span>
+          {post.data.category}
+        </span>
+        <span class="text-primary-300 text-xs">{readingTime} min de lecture</span>
+      </div>
+
+      <!-- Title -->
+      <h1 class="font-heading font-bold text-2xl md:text-4xl leading-tight text-white mb-4">
+        {post.data.title}
+      </h1>
+
+      <!-- Meta -->
+      <div class="flex items-center gap-4 text-primary-200 text-sm">
+        <span>Jennifer De Groeve</span>
+        <span aria-hidden="true" class="w-1 h-1 rounded-full bg-primary-400"></span>
+        <time datetime={post.data.date.toISOString().split('T')[0]}>{formattedDate}</time>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <nav aria-label="Fil d'Ariane" class="bg-white border-b border-neutral-100">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5">
+      <ol class="flex items-center gap-2 text-xs text-neutral-500">
+        <li><a href="/" class="hover:text-primary-600 transition-colors">Accueil</a></li>
+        <li aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></li>
+        <li><a href="/blog" class="hover:text-primary-600 transition-colors">Blog</a></li>
+        <li aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></li>
+        <li class="text-primary-700 font-medium truncate max-w-[200px]" aria-current="page">{post.data.title}</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Article Body -->
+  <article class="bg-white py-10 md:py-14">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="prose text-base md:text-lg">
+        <Content />
+      </div>
+    </div>
+  </article>
+
+  <!-- Author Card -->
+  <section class="bg-neutral-50 border-t border-neutral-100 py-10">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white border border-neutral-200 rounded-xl p-6 flex flex-col sm:flex-row gap-5 items-start">
+        <div class="w-14 h-14 rounded-full bg-primary-100 flex items-center justify-center shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-primary-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <div>
+          <p class="font-heading font-semibold text-primary-900 mb-1">Jennifer De Groeve</p>
+          <p class="text-sm text-neutral-500 mb-2">Zoothérapeute certifiée IFZ — Moselle (57)</p>
+          <p class="text-sm text-neutral-600 leading-relaxed">
+            Praticienne en médiation animale depuis plusieurs années, Jennifer intervient auprès de tous les publics avec Tips, Uxo et Tap-Tap. Elle partage ici ses observations de terrain et ses réflexions sur le métier.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Articles -->
+  {relatedPosts.length > 0 && (
+    <section class="bg-neutral-50 pb-12">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading font-semibold text-xl text-primary-900 mb-6">À lire aussi</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {relatedPosts.map(related => (
+            <BlogCard
+              title={related.data.title}
+              description={related.data.description}
+              date={related.data.date}
+              category={related.data.category}
+              slug={related.id}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <CTABanner
+    title="Envie d'en savoir plus ?"
+    text="Jennifer vous répond par téléphone — premier échange gratuit et sans engagement."
+    ctaText="Appeler Jennifer"
+    ctaSecondaryText="Voir les ateliers"
+    ctaSecondaryHref="/ateliers"
+  />
+
+  <Footer slot="footer" />
+  <StickyMobileCTA />
+</BaseLayout>
