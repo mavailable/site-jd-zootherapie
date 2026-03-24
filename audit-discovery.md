@@ -1,7 +1,7 @@
 # Audit Discovery — JD Zoothérapie
 
 **Date** : 2026-03-23
-**URL** : https://jd-zootherapie.fr
+**URL** : https://jdzootherapeute.fr
 **Projet** : `/sessions/dazzling-wizardly-knuth/mnt/jd-zootherapeute/site`
 **Git** : `https://github.com/mavailable/site-jd-zootherapie.git`
 **Objectif** : Audit complet avant livraison finale — détecter les problèmes résiduels après la phase de construction

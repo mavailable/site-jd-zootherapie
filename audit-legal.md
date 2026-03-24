@@ -40,9 +40,9 @@
 
 **Web3Forms** :
 - `access_key` : ✅ `aaaaa969-db18-4cb0-99c9-cc9eb258e7b3`
-- `redirect` : ✅ → `https://jd-zootherapie.fr/merci`
+- `redirect` : ✅ → `https://jdzootherapeute.fr/merci`
 - `from_name` : ✅ → `JD Zoothérapie — Site web`
-- `subject` : ✅ → `Nouveau message depuis jd-zootherapie.fr`
+- `subject` : ✅ → `Nouveau message depuis jdzootherapeute.fr`
 - `replyto` : ✅ **ajouté** (syncronisé avec le champ email via JS)
 
 **Accessibilité** :

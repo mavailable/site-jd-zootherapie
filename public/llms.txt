@@ -6,14 +6,14 @@
 
 ## Pages principales
 
-- [Accueil](https://jd-zootherapie.fr/): Présentation de JD Zoothérapie, médiation animale en Moselle, Jennifer De Groeve
-- [La zoothérapie](https://jd-zootherapie.fr/zootherapie): Définition, bienfaits et publics de la médiation animale
-- [Les ateliers](https://jd-zootherapie.fr/ateliers): Séances individuelles, ateliers collectifs, accompagnement toutes situations
-- [Mon parcours](https://jd-zootherapie.fr/a-propos): Biographie Jennifer De Groeve, animaux médiateurs, formations
-- [Tarifs](https://jd-zootherapie.fr/tarifs): 60 € la séance individuelle, groupes et structures sur projet
-- [Témoignages](https://jd-zootherapie.fr/temoignages): Avis et retours de familles et structures accompagnées
-- [FAQ](https://jd-zootherapie.fr/faq): Questions fréquentes sur la zoothérapie et les séances
-- [Contact](https://jd-zootherapie.fr/contact): Formulaire de contact, téléphone, adresse
+- [Accueil](https://jdzootherapeute.fr/): Présentation de JD Zoothérapie, médiation animale en Moselle, Jennifer De Groeve
+- [La zoothérapie](https://jdzootherapeute.fr/zootherapie): Définition, bienfaits et publics de la médiation animale
+- [Les ateliers](https://jdzootherapeute.fr/ateliers): Séances individuelles, ateliers collectifs, accompagnement toutes situations
+- [Mon parcours](https://jdzootherapeute.fr/a-propos): Biographie Jennifer De Groeve, animaux médiateurs, formations
+- [Tarifs](https://jdzootherapeute.fr/tarifs): 60 € la séance individuelle, groupes et structures sur projet
+- [Témoignages](https://jdzootherapeute.fr/temoignages): Avis et retours de familles et structures accompagnées
+- [FAQ](https://jdzootherapeute.fr/faq): Questions fréquentes sur la zoothérapie et les séances
+- [Contact](https://jdzootherapeute.fr/contact): Formulaire de contact, téléphone, adresse
 
 ## Informations clés
 

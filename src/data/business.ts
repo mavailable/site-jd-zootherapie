@@ -20,4 +20,4 @@ export const geo = {
 } as const;
 
 // URL de production
-export const siteUrl = 'https://jd-zootherapie.fr';
+export const siteUrl = 'https://jdzootherapeute.fr';

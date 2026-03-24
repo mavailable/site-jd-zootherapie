@@ -9,11 +9,14 @@ const react = isKeystatic ? (await import('@astrojs/react')).default : null;
 const cloudflare = isKeystatic ? (await import('@astrojs/cloudflare')).default : null;
 
 export default defineConfig({
-  site: 'https://jd-zootherapie.fr',
+  site: 'https://jdzootherapeute.fr',
   output: isKeystatic ? 'server' : 'static',
   adapter: isKeystatic && cloudflare ? cloudflare() : undefined,
   integrations: [
-    sitemap({ i18n: { defaultLocale: 'fr', locales: { fr: 'fr-FR' } } }),
+    sitemap({
+      i18n: { defaultLocale: 'fr', locales: { fr: 'fr-FR' } },
+      filter: (page) => !page.includes('/aide') && !page.includes('/merci'),
+    }),
     ...(isKeystatic && react ? [react()] : []),
     ...(isKeystatic && keystatic ? [keystatic()] : []),
   ],

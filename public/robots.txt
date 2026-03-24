@@ -16,4 +16,4 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-Sitemap: https://jd-zootherapie.fr/sitemap-index.xml
+Sitemap: https://jdzootherapeute.fr/sitemap-index.xml

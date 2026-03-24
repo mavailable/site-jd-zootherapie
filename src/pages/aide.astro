@@ -1,0 +1,202 @@
+---
+export const prerender = true;
+
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/layout/Header.astro';
+import Footer from '@components/layout/Footer.astro';
+---
+
+<BaseLayout
+  title="Aide — Modifier votre site"
+  description="Guide pour modifier le contenu de votre site JD Zoothérapie."
+  noindex={true}
+>
+  <Header slot="header" />
+
+  <section class="py-16 md:py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <h1 class="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
+        Modifier votre site
+      </h1>
+      <p class="text-lg text-neutral-600 mb-10">
+        Bienvenue Jennifer ! Ce guide vous explique comment modifier les textes et contenus de votre site en toute autonomie.
+      </p>
+
+      <!-- Accès -->
+      <div class="bg-primary-50 border border-primary-200 rounded-2xl p-6 mb-10">
+        <h2 class="text-xl font-semibold text-primary-800 mb-2">Accéder à l'administration</h2>
+        <p class="text-neutral-700 mb-3">
+          Rendez-vous sur votre espace d'administration :
+        </p>
+        <a
+          href="/keystatic"
+          class="inline-flex items-center gap-2 bg-primary-600 text-white font-medium px-5 py-2.5 rounded-lg hover:bg-primary-700 transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+          Ouvrir l'administration
+        </a>
+      </div>
+
+      <!-- Comment ça marche -->
+      <div class="mb-12">
+        <h2 class="text-2xl font-bold text-neutral-900 mb-4">Comment ça marche</h2>
+        <ol class="space-y-4 text-neutral-700">
+          <li class="flex gap-3">
+            <span class="flex-shrink-0 w-8 h-8 bg-primary-100 text-primary-700 font-bold rounded-full flex items-center justify-center text-sm">1</span>
+            <span>Cliquez sur l'élément à modifier dans le <strong>menu de gauche</strong></span>
+          </li>
+          <li class="flex gap-3">
+            <span class="flex-shrink-0 w-8 h-8 bg-primary-100 text-primary-700 font-bold rounded-full flex items-center justify-center text-sm">2</span>
+            <span>Modifiez les champs que vous souhaitez (textes, prix, descriptions...)</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="flex-shrink-0 w-8 h-8 bg-primary-100 text-primary-700 font-bold rounded-full flex items-center justify-center text-sm">3</span>
+            <span>Cliquez sur le bouton <strong>Save</strong> en haut à droite</span>
+          </li>
+        </ol>
+        <p class="mt-4 text-sm text-neutral-500">Les modifications sont publiées automatiquement en quelques minutes.</p>
+      </div>
+
+      <!-- Collections -->
+      <div class="mb-12">
+        <h2 class="text-2xl font-bold text-neutral-900 mb-2">Collections</h2>
+        <p class="text-neutral-500 mb-6">Des listes d'éléments que vous pouvez <strong>ajouter, modifier ou supprimer</strong>.</p>
+
+        <div class="space-y-6">
+          <!-- Services -->
+          <div class="border border-neutral-200 rounded-xl p-5">
+            <h3 class="text-lg font-semibold text-neutral-900 mb-1">Services / Ateliers</h3>
+            <p class="text-neutral-600 mb-3">Vos 6 prestations. Pour chaque service, vous pouvez modifier :</p>
+            <ul class="space-y-1.5 text-sm text-neutral-600">
+              <li class="flex items-start gap-2">
+                <span class="text-primary-500 mt-0.5">&#10003;</span>
+                <span><strong>Titre</strong> — le nom du service (ex : "Séance individuelle")</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-primary-500 mt-0.5">&#10003;</span>
+                <span><strong>Public</strong> — à qui s'adresse le service (ex : "Particuliers — tous âges")</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-primary-500 mt-0.5">&#10003;</span>
+                <span><strong>Description</strong> — le texte qui décrit le service</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-primary-500 mt-0.5">&#10003;</span>
+                <span><strong>Tarif</strong> — le prix affiché (ex : "60 € / séance — déplacement inclus en Moselle")</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Témoignages -->
+          <div class="border border-neutral-200 rounded-xl p-5">
+            <h3 class="text-lg font-semibold text-neutral-900 mb-1">Témoignages</h3>
+            <p class="text-neutral-600 mb-3">Les avis de vos clients. Pour chaque témoignage :</p>
+            <ul class="space-y-1.5 text-sm text-neutral-600">
+              <li class="flex items-start gap-2">
+                <span class="text-primary-500 mt-0.5">&#10003;</span>
+                <span><strong>Auteur</strong> — le prénom et initiale (ex : "Arlette P.")</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-primary-500 mt-0.5">&#10003;</span>
+                <span><strong>Contexte</strong> — la situation (ex : "Patiente accompagnée, janvier 2026")</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-primary-500 mt-0.5">&#10003;</span>
+                <span><strong>Citation</strong> — le texte de l'avis</span>
+              </li>
+            </ul>
+            <p class="text-sm text-neutral-500 mt-3">Vous pouvez aussi <strong>ajouter de nouveaux témoignages</strong> avec le bouton "Create".</p>
+          </div>
+
+          <!-- FAQ -->
+          <div class="border border-neutral-200 rounded-xl p-5">
+            <h3 class="text-lg font-semibold text-neutral-900 mb-1">FAQ</h3>
+            <p class="text-neutral-600 mb-3">Les questions fréquentes. Pour chaque question :</p>
+            <ul class="space-y-1.5 text-sm text-neutral-600">
+              <li class="flex items-start gap-2">
+                <span class="text-primary-500 mt-0.5">&#10003;</span>
+                <span><strong>Question</strong> — la question posée</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-primary-500 mt-0.5">&#10003;</span>
+                <span><strong>Réponse</strong> — le texte de la réponse</span>
+              </li>
+            </ul>
+            <p class="text-sm text-neutral-500 mt-3">Vous pouvez ajouter, modifier ou supprimer des questions.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Singletons -->
+      <div class="mb-12">
+        <h2 class="text-2xl font-bold text-neutral-900 mb-2">Sections uniques</h2>
+        <p class="text-neutral-500 mb-6">Des pages ou sections qui existent en un seul exemplaire. Vous pouvez <strong>modifier leur contenu</strong>.</p>
+
+        <div class="space-y-6">
+          <!-- Infos générales -->
+          <div class="border border-neutral-200 rounded-xl p-5">
+            <h3 class="text-lg font-semibold text-neutral-900 mb-1">Informations générales</h3>
+            <p class="text-sm text-neutral-600">Votre nom, numéro de téléphone, adresse email, adresse postale, zone d'intervention, liens vers vos réseaux sociaux.</p>
+          </div>
+
+          <!-- Hero -->
+          <div class="border border-neutral-200 rounded-xl p-5">
+            <h3 class="text-lg font-semibold text-neutral-900 mb-1">Section Hero (Accueil)</h3>
+            <p class="text-sm text-neutral-600">Le grand bandeau visible en arrivant sur le site : titre principal, sous-titre, texte des boutons d'appel à l'action, phrase de réassurance.</p>
+          </div>
+
+          <!-- À Propos -->
+          <div class="border border-neutral-200 rounded-xl p-5">
+            <h3 class="text-lg font-semibold text-neutral-900 mb-1">Section À Propos</h3>
+            <p class="text-sm text-neutral-600">Votre présentation personnelle, vos paragraphes de parcours, et les fiches de vos animaux (Tips, Uxo, Tap-Tap) avec leur rôle et race.</p>
+          </div>
+
+          <!-- Contact -->
+          <div class="border border-neutral-200 rounded-xl p-5">
+            <h3 class="text-lg font-semibold text-neutral-900 mb-1">Section Contact</h3>
+            <p class="text-sm text-neutral-600">Le titre et le texte d'introduction de la page contact, le texte du bouton d'envoi.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conseils -->
+      <div class="bg-amber-50 border border-amber-200 rounded-2xl p-6 mb-10">
+        <h2 class="text-xl font-semibold text-amber-800 mb-3">Quelques conseils</h2>
+        <ul class="space-y-2 text-sm text-neutral-700">
+          <li class="flex items-start gap-2">
+            <span class="text-amber-500 mt-0.5">&#9679;</span>
+            <span>Pensez à <strong>sauvegarder</strong> après chaque modification (bouton Save).</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-500 mt-0.5">&#9679;</span>
+            <span>Pas de panique : si vous faites une erreur, les anciennes versions sont conservées. Contactez-moi pour restaurer.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-500 mt-0.5">&#9679;</span>
+            <span>Pour les <strong>photos, le design ou la structure du site</strong>, contactez-moi directement.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-amber-500 mt-0.5">&#9679;</span>
+            <span>En cas de doute, n'hésitez pas : mieux vaut demander que casser quelque chose !</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Contact webmaster -->
+      <div class="text-center border-t border-neutral-200 pt-8">
+        <p class="text-neutral-500 text-sm">
+          Une question ? Un souci ? Contactez votre webmaster :
+        </p>
+        <p class="mt-2">
+          <a href="mailto:marc@marc-muller.com" class="text-primary-600 font-medium hover:text-primary-700 transition-colors">
+            marc@marc-muller.com
+          </a>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
