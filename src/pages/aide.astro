@@ -13,233 +13,179 @@ import Footer from '@components/layout/Footer.astro';
 >
   <Header slot="header" />
 
-  <!-- ─── Hero compact ─── -->
-  <section class="bg-primary-50/60 py-6 border-b border-primary-100">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-      <div>
-        <h1 class="font-heading text-xl font-bold text-neutral-900">Espace privé — Jennifer</h1>
-        <p class="text-sm text-neutral-500">Gérez votre site, vos avis Google et vos statistiques.</p>
-      </div>
-      <nav class="flex gap-2 text-sm">
-        <a href="#modifier" class="px-3 py-1.5 rounded-lg bg-white border border-neutral-200 text-neutral-700 hover:border-primary-300 hover:text-primary-700 transition-colors">Modifier</a>
-        <a href="#google" class="px-3 py-1.5 rounded-lg bg-white border border-neutral-200 text-neutral-700 hover:border-primary-300 hover:text-primary-700 transition-colors">Fiche Google</a>
-        <a href="#statistiques" class="px-3 py-1.5 rounded-lg bg-white border border-neutral-200 text-neutral-700 hover:border-primary-300 hover:text-primary-700 transition-colors">Statistiques</a>
-      </nav>
+  <!-- ─── Sticky tab bar ─── -->
+  <nav class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-neutral-200" id="tab-bar">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-1 h-12 text-sm overflow-x-auto">
+      <button data-tab="modifier" class="tab-btn px-4 py-1.5 rounded-lg font-medium whitespace-nowrap transition-colors text-primary-700 bg-primary-50">Modifier le site</button>
+      <button data-tab="google" class="tab-btn px-4 py-1.5 rounded-lg font-medium whitespace-nowrap transition-colors text-neutral-500 hover:text-neutral-700">Fiche Google</button>
+      <button data-tab="statistiques" class="tab-btn px-4 py-1.5 rounded-lg font-medium whitespace-nowrap transition-colors text-neutral-500 hover:text-neutral-700">Statistiques</button>
+      <span class="ml-auto text-xs text-neutral-400 hidden sm:block">Espace privé — Jennifer</span>
     </div>
-  </section>
+  </nav>
 
   <!-- ═══════════════════════════════════════════════ -->
-  <!-- SECTION 1 : MODIFIER LE SITE                   -->
+  <!-- TAB 1 : MODIFIER LE SITE                        -->
   <!-- ═══════════════════════════════════════════════ -->
-  <section id="modifier" class="py-16 md:py-20">
+  <section id="modifier" class="tab-panel py-10 md:py-14">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      <!-- Titre section -->
-      <div class="mb-10">
-        <h2 class="font-heading text-2xl md:text-3xl font-bold text-neutral-900 mb-2">Modifier le site</h2>
-        <p class="text-neutral-500">Connectez-vous à l'administration pour modifier vos contenus en toute autonomie.</p>
+      <!-- Bouton CMS -->
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-10">
+        <div>
+          <h1 class="font-heading text-2xl font-bold text-neutral-900 mb-1">Modifier le site</h1>
+          <p class="text-sm text-neutral-500">Modifiez vos textes, tarifs, témoignages et informations en quelques clics.</p>
+        </div>
+        <a
+          href="/keystatic"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="shrink-0 inline-flex items-center gap-2 bg-primary-600 text-white font-medium px-5 py-2.5 rounded-xl hover:bg-primary-700 transition-colors text-sm"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+          Modifier mes contenus
+        </a>
       </div>
 
-      <!-- Bouton CMS bien visible -->
-      <a
-        href="/keystatic"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center gap-3 bg-primary-600 text-white font-medium px-7 py-3.5 rounded-xl hover:bg-primary-700 transition-colors shadow-sm hover:shadow-md mb-12 text-base"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-        Modifier mes contenus
-      </a>
-
-      <!-- Comment faire : 3 étapes -->
-      <div class="mb-14">
-        <h3 class="text-sm font-semibold text-neutral-400 uppercase tracking-wider mb-5">Comment faire</h3>
-        <div class="grid md:grid-cols-3 gap-4">
-          <div class="relative bg-neutral-50 rounded-xl p-5">
-            <span class="absolute -top-3 left-5 inline-flex items-center justify-center w-7 h-7 bg-primary-600 text-white font-bold rounded-full text-xs">1</span>
-            <p class="text-neutral-700 text-sm mt-1">Choisissez l'élément à modifier dans le <strong>menu de gauche</strong></p>
-          </div>
-          <div class="relative bg-neutral-50 rounded-xl p-5">
-            <span class="absolute -top-3 left-5 inline-flex items-center justify-center w-7 h-7 bg-primary-600 text-white font-bold rounded-full text-xs">2</span>
-            <p class="text-neutral-700 text-sm mt-1">Modifiez les champs souhaités (textes, prix, descriptions...)</p>
-          </div>
-          <div class="relative bg-neutral-50 rounded-xl p-5">
-            <span class="absolute -top-3 left-5 inline-flex items-center justify-center w-7 h-7 bg-primary-600 text-white font-bold rounded-full text-xs">3</span>
-            <p class="text-neutral-700 text-sm mt-1">Cliquez sur <strong>Save</strong> en haut à droite — c'est en ligne en 2 minutes</p>
-          </div>
+      <!-- 3 étapes inline -->
+      <div class="grid grid-cols-3 gap-3 mb-10 text-center">
+        <div class="bg-neutral-50 rounded-lg px-3 py-3">
+          <span class="inline-flex items-center justify-center w-6 h-6 bg-primary-600 text-white font-bold rounded-full text-xs mb-1.5">1</span>
+          <p class="text-neutral-600 text-xs">Menu de gauche</p>
+        </div>
+        <div class="bg-neutral-50 rounded-lg px-3 py-3">
+          <span class="inline-flex items-center justify-center w-6 h-6 bg-primary-600 text-white font-bold rounded-full text-xs mb-1.5">2</span>
+          <p class="text-neutral-600 text-xs">Modifier les champs</p>
+        </div>
+        <div class="bg-neutral-50 rounded-lg px-3 py-3">
+          <span class="inline-flex items-center justify-center w-6 h-6 bg-primary-600 text-white font-bold rounded-full text-xs mb-1.5">3</span>
+          <p class="text-neutral-600 text-xs">Cliquer Save</p>
         </div>
       </div>
 
-      <!-- Ce que vous pouvez modifier -->
-      <h3 class="text-sm font-semibold text-neutral-400 uppercase tracking-wider mb-5">Ce que vous pouvez modifier</h3>
-
-      <!-- Tableau récap simple -->
-      <div class="overflow-hidden rounded-2xl border border-neutral-200 mb-8">
+      <!-- Tableau récap -->
+      <div class="overflow-hidden rounded-xl border border-neutral-200 mb-8">
         <table class="w-full text-sm">
           <thead>
             <tr class="bg-neutral-50 border-b border-neutral-200">
-              <th class="text-left px-5 py-3 font-semibold text-neutral-700">Rubrique</th>
-              <th class="text-left px-5 py-3 font-semibold text-neutral-700">Ce que vous pouvez changer</th>
-              <th class="text-center px-5 py-3 font-semibold text-neutral-700 hidden sm:table-cell">Ajouter / Supprimer</th>
+              <th class="text-left px-4 py-2.5 font-semibold text-neutral-700">Rubrique</th>
+              <th class="text-left px-4 py-2.5 font-semibold text-neutral-700">Champs modifiables</th>
+              <th class="text-center px-4 py-2.5 font-semibold text-neutral-700 hidden sm:table-cell">+/−</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-neutral-100">
-            <tr class="bg-white">
-              <td class="px-5 py-3 font-medium text-neutral-900">Services / Ateliers</td>
-              <td class="px-5 py-3 text-neutral-600">Titre, public ciblé, description, tarif</td>
-              <td class="px-5 py-3 text-center hidden sm:table-cell"><span class="text-green-600 font-medium">Oui</span></td>
+            <tr>
+              <td class="px-4 py-2.5 font-medium text-neutral-900">Services / Ateliers</td>
+              <td class="px-4 py-2.5 text-neutral-600">Titre, public, description, tarif</td>
+              <td class="px-4 py-2.5 text-center hidden sm:table-cell"><span class="text-green-600">Oui</span></td>
             </tr>
-            <tr class="bg-white">
-              <td class="px-5 py-3 font-medium text-neutral-900">Témoignages</td>
-              <td class="px-5 py-3 text-neutral-600">Auteur, contexte, citation</td>
-              <td class="px-5 py-3 text-center hidden sm:table-cell"><span class="text-green-600 font-medium">Oui</span></td>
+            <tr>
+              <td class="px-4 py-2.5 font-medium text-neutral-900">Témoignages</td>
+              <td class="px-4 py-2.5 text-neutral-600">Auteur, contexte, citation</td>
+              <td class="px-4 py-2.5 text-center hidden sm:table-cell"><span class="text-green-600">Oui</span></td>
             </tr>
-            <tr class="bg-white">
-              <td class="px-5 py-3 font-medium text-neutral-900">FAQ</td>
-              <td class="px-5 py-3 text-neutral-600">Question, réponse</td>
-              <td class="px-5 py-3 text-center hidden sm:table-cell"><span class="text-green-600 font-medium">Oui</span></td>
-            </tr>
-            <tr class="bg-neutral-50/50">
-              <td class="px-5 py-3 font-medium text-neutral-900">Informations générales</td>
-              <td class="px-5 py-3 text-neutral-600">Nom, téléphone, email, adresse, réseaux sociaux</td>
-              <td class="px-5 py-3 text-center hidden sm:table-cell"><span class="text-neutral-400">—</span></td>
+            <tr>
+              <td class="px-4 py-2.5 font-medium text-neutral-900">FAQ</td>
+              <td class="px-4 py-2.5 text-neutral-600">Question, réponse</td>
+              <td class="px-4 py-2.5 text-center hidden sm:table-cell"><span class="text-green-600">Oui</span></td>
             </tr>
             <tr class="bg-neutral-50/50">
-              <td class="px-5 py-3 font-medium text-neutral-900">Bandeau d'accueil</td>
-              <td class="px-5 py-3 text-neutral-600">Titre, sous-titre, boutons, phrase de réassurance</td>
-              <td class="px-5 py-3 text-center hidden sm:table-cell"><span class="text-neutral-400">—</span></td>
+              <td class="px-4 py-2.5 font-medium text-neutral-900">Infos générales</td>
+              <td class="px-4 py-2.5 text-neutral-600">Nom, téléphone, email, adresse, réseaux</td>
+              <td class="px-4 py-2.5 text-center hidden sm:table-cell"><span class="text-neutral-300">—</span></td>
             </tr>
             <tr class="bg-neutral-50/50">
-              <td class="px-5 py-3 font-medium text-neutral-900">À propos</td>
-              <td class="px-5 py-3 text-neutral-600">Votre parcours, fiches animaux (Tips, Uxo, Tap-Tap)</td>
-              <td class="px-5 py-3 text-center hidden sm:table-cell"><span class="text-neutral-400">—</span></td>
+              <td class="px-4 py-2.5 font-medium text-neutral-900">Bandeau d'accueil</td>
+              <td class="px-4 py-2.5 text-neutral-600">Titre, sous-titre, boutons, réassurance</td>
+              <td class="px-4 py-2.5 text-center hidden sm:table-cell"><span class="text-neutral-300">—</span></td>
             </tr>
             <tr class="bg-neutral-50/50">
-              <td class="px-5 py-3 font-medium text-neutral-900">Section contact</td>
-              <td class="px-5 py-3 text-neutral-600">Titre, texte d'introduction, texte du bouton</td>
-              <td class="px-5 py-3 text-center hidden sm:table-cell"><span class="text-neutral-400">—</span></td>
+              <td class="px-4 py-2.5 font-medium text-neutral-900">À propos</td>
+              <td class="px-4 py-2.5 text-neutral-600">Parcours, fiches animaux</td>
+              <td class="px-4 py-2.5 text-center hidden sm:table-cell"><span class="text-neutral-300">—</span></td>
+            </tr>
+            <tr class="bg-neutral-50/50">
+              <td class="px-4 py-2.5 font-medium text-neutral-900">Contact</td>
+              <td class="px-4 py-2.5 text-neutral-600">Titre, texte intro, bouton</td>
+              <td class="px-4 py-2.5 text-center hidden sm:table-cell"><span class="text-neutral-300">—</span></td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <!-- Légende mobile -->
-      <p class="text-xs text-neutral-400 mb-10 sm:hidden">Les 3 premières rubriques (Services, Témoignages, FAQ) permettent aussi d'ajouter ou supprimer des éléments.</p>
-
-      <!-- Conseils -->
-      <div class="bg-amber-50/70 border border-amber-200 rounded-2xl p-5 md:p-6">
-        <h3 class="font-semibold text-amber-800 mb-3 text-sm">Bon à savoir</h3>
-        <ul class="space-y-2 text-sm text-neutral-700">
-          <li class="flex items-start gap-2">
-            <span class="text-amber-400 mt-0.5 shrink-0">&#10148;</span>
-            <span>N'oubliez pas de cliquer <strong>Save</strong> après chaque modification.</span>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-amber-400 mt-0.5 shrink-0">&#10148;</span>
-            <span>Pas de panique en cas d'erreur : les anciennes versions sont conservées, je peux restaurer.</span>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-amber-400 mt-0.5 shrink-0">&#10148;</span>
-            <span>Pour les <strong>photos, le design ou la structure du site</strong>, contactez-moi.</span>
-          </li>
-        </ul>
+      <!-- Conseils compacts -->
+      <div class="bg-amber-50/70 border border-amber-200 rounded-xl px-4 py-3 text-sm text-neutral-700">
+        <span class="font-semibold text-amber-800">Bon à savoir :</span>
+        Cliquez Save après chaque modif. En cas d'erreur, les anciennes versions sont conservées.
+        Pour les photos ou le design, contactez-moi.
       </div>
 
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════ -->
-  <!-- SECTION 2 : FICHE GOOGLE                        -->
+  <!-- TAB 2 : FICHE GOOGLE                            -->
   <!-- ═══════════════════════════════════════════════ -->
-  <section id="google" class="py-16 md:py-20 border-t border-neutral-200">
+  <section id="google" class="tab-panel hidden py-10 md:py-14">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      <div class="mb-10">
-        <h2 class="font-heading text-2xl md:text-3xl font-bold text-neutral-900 mb-2">Votre fiche Google</h2>
-        <p class="text-neutral-500">Votre fiche Google est ce que les gens voient en premier quand ils vous cherchent. Plus elle est complète et a d'avis, plus vous êtes visible.</p>
-      </div>
+      <h1 class="font-heading text-2xl font-bold text-neutral-900 mb-1">Votre fiche Google</h1>
+      <p class="text-sm text-neutral-500 mb-8">Plus votre fiche est complète et a d'avis, plus vous êtes visible sur Google.</p>
 
-      <div class="grid sm:grid-cols-2 gap-5">
+      <div class="grid sm:grid-cols-2 gap-5 mb-8">
         <!-- Gérer la fiche -->
-        <div class="bg-white border border-neutral-200 rounded-2xl p-6">
-          <div class="flex items-center justify-center w-10 h-10 bg-blue-50 text-blue-600 rounded-xl mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        <div class="bg-white border border-neutral-200 rounded-xl p-5">
+          <div class="flex items-center justify-center w-9 h-9 bg-blue-50 text-blue-600 rounded-lg mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           </div>
-          <h3 class="font-semibold text-neutral-900 mb-2">Gérer votre fiche</h3>
-          <p class="text-sm text-neutral-500 mb-4">Modifiez vos horaires, ajoutez des photos, répondez aux avis, publiez des actualités.</p>
-          <a
-            href="https://business.google.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 text-blue-600 font-medium text-sm hover:text-blue-700 transition-colors"
-          >
+          <h3 class="font-semibold text-neutral-900 text-sm mb-1">Gérer votre fiche</h3>
+          <p class="text-xs text-neutral-500 mb-3">Horaires, photos, actualités, réponses aux avis.</p>
+          <a href="https://business.google.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-blue-600 font-medium text-xs hover:text-blue-700 transition-colors">
             Ouvrir Google Business
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
           </a>
         </div>
 
         <!-- Demander un avis -->
-        <div class="bg-white border border-neutral-200 rounded-2xl p-6">
-          <div class="flex items-center justify-center w-10 h-10 bg-amber-50 text-amber-600 rounded-xl mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+        <div class="bg-white border border-neutral-200 rounded-xl p-5">
+          <div class="flex items-center justify-center w-9 h-9 bg-amber-50 text-amber-600 rounded-lg mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
           </div>
-          <h3 class="font-semibold text-neutral-900 mb-2">Demander un avis</h3>
-          <p class="text-sm text-neutral-500 mb-4">Envoyez ce lien à vos clients après une séance pour qu'ils laissent un avis Google.</p>
+          <h3 class="font-semibold text-neutral-900 text-sm mb-1">Demander un avis</h3>
+          <p class="text-xs text-neutral-500 mb-3">Envoyez ce lien par SMS après une séance :</p>
           <div class="flex items-center gap-2">
-            <input
-              type="text"
-              readonly
-              value="https://search.google.com/local/writereview?placeid=Cgj5KKd-mumURxIIOMig01Ww6gY"
-              class="w-full text-xs bg-neutral-50 border border-neutral-200 rounded-lg px-3 py-2 text-neutral-600 select-all"
-              id="review-link"
-            />
-            <button
-              type="button"
-              onclick="navigator.clipboard.writeText(document.getElementById('review-link').value);this.textContent='Copié !';setTimeout(()=>this.textContent='Copier',2000)"
-              class="shrink-0 bg-amber-500 text-white text-xs font-medium px-3 py-2 rounded-lg hover:bg-amber-600 transition-colors"
-            >
-              Copier
-            </button>
+            <input type="text" readonly value="https://search.google.com/local/writereview?placeid=Cgj5KKd-mumURxIIOMig01Ww6gY" class="w-full text-xs bg-neutral-50 border border-neutral-200 rounded-lg px-3 py-2 text-neutral-500 select-all" id="review-link" />
+            <button type="button" onclick="navigator.clipboard.writeText(document.getElementById('review-link').value);this.textContent='OK';setTimeout(()=>this.textContent='Copier',2000)" class="shrink-0 bg-amber-500 text-white text-xs font-medium px-3 py-2 rounded-lg hover:bg-amber-600 transition-colors">Copier</button>
           </div>
         </div>
       </div>
 
-      <!-- Conseils Google -->
-      <div class="bg-blue-50/50 border border-blue-200 rounded-2xl p-5 md:p-6 mt-8">
-        <h3 class="font-semibold text-blue-800 mb-3 text-sm">Astuces pour plus d'avis</h3>
-        <ul class="space-y-2 text-sm text-neutral-700">
-          <li class="flex items-start gap-2">
-            <span class="text-blue-400 mt-0.5 shrink-0">&#10148;</span>
-            <span>Demandez un avis <strong>juste après la séance</strong>, quand l'émotion est encore présente.</span>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-blue-400 mt-0.5 shrink-0">&#10148;</span>
-            <span>Envoyez le lien par <strong>SMS</strong> — c'est plus efficace qu'un email.</span>
-          </li>
-          <li class="flex items-start gap-2">
-            <span class="text-blue-400 mt-0.5 shrink-0">&#10148;</span>
-            <span><strong>Répondez à chaque avis</strong> (même un simple "Merci") — Google valorise les fiches actives.</span>
-          </li>
-        </ul>
+      <!-- Astuces -->
+      <div class="bg-blue-50/50 border border-blue-200 rounded-xl px-4 py-3 text-sm text-neutral-700">
+        <span class="font-semibold text-blue-800">Astuces :</span>
+        Demandez un avis juste après la séance. Envoyez le lien par SMS (plus efficace qu'un email). Répondez à chaque avis, même un simple "Merci".
       </div>
 
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════ -->
-  <!-- SECTION 3 : STATISTIQUES                        -->
+  <!-- TAB 3 : STATISTIQUES                            -->
   <!-- ═══════════════════════════════════════════════ -->
-  <section id="statistiques" class="bg-neutral-50 py-16 md:py-20 border-t border-neutral-200">
+  <section id="statistiques" class="tab-panel hidden py-10 md:py-14">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      <!-- Titre section -->
-      <div class="max-w-4xl mb-10">
-        <h2 class="font-heading text-2xl md:text-3xl font-bold text-neutral-900 mb-2">Statistiques de visites</h2>
-        <p class="text-neutral-500">Combien de personnes visitent votre site, quelles pages elles consultent, d'où elles viennent — en temps réel et 100 % anonyme.</p>
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+        <div>
+          <h1 class="font-heading text-2xl font-bold text-neutral-900 mb-1">Statistiques de visites</h1>
+          <p class="text-sm text-neutral-500">Visiteurs, pages vues, sources de trafic — en temps réel, 100 % anonyme.</p>
+        </div>
+        <a href="https://cloud.umami.is/share/7qxMncBLuGRFA5uK" target="_blank" rel="noopener noreferrer" class="shrink-0 inline-flex items-center gap-2 bg-white text-primary-600 font-medium px-4 py-2 rounded-lg border border-primary-200 hover:bg-primary-50 transition-colors text-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          Plein écran
+        </a>
       </div>
 
-      <!-- Iframe stats -->
-      <div class="rounded-2xl overflow-hidden border border-neutral-200 bg-white shadow-sm">
+      <div class="rounded-xl overflow-hidden border border-neutral-200 bg-white shadow-sm">
         <iframe
           src="https://cloud.umami.is/share/7qxMncBLuGRFA5uK"
           class="w-full border-0"
@@ -249,35 +195,32 @@ import Footer from '@components/layout/Footer.astro';
         ></iframe>
       </div>
 
-      <!-- Lien plein écran -->
-      <div class="mt-5 text-center">
-        <a
-          href="https://cloud.umami.is/share/7qxMncBLuGRFA5uK"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 bg-white text-primary-600 font-medium px-5 py-2.5 rounded-lg border border-primary-200 hover:bg-primary-50 transition-colors text-sm"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-          Ouvrir en plein écran
-        </a>
-      </div>
-
     </div>
   </section>
 
   <!-- ─── Contact webmaster ─── -->
-  <section class="py-10 border-t border-neutral-200">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <p class="text-neutral-400 text-sm">
-        Besoin d'aide ou envie de faire évoluer votre site ?
-      </p>
-      <p class="mt-1">
-        <a href="mailto:marc@marc-muller.com" class="text-primary-600 font-medium hover:text-primary-700 transition-colors">
-          marc@marc-muller.com
-        </a>
-      </p>
-    </div>
-  </section>
+  <div class="text-center py-6 border-t border-neutral-100 text-xs text-neutral-400">
+    Besoin d'aide ?
+    <a href="mailto:marc@marc-muller.com" class="text-primary-600 font-medium hover:text-primary-700 transition-colors">marc@marc-muller.com</a>
+  </div>
 
   <Footer slot="footer" />
+
+  <!-- Tab switching -->
+  <script is:inline>
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.tab;
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
+        document.getElementById(target).classList.remove('hidden');
+        document.querySelectorAll('.tab-btn').forEach(b => {
+          b.classList.remove('text-primary-700', 'bg-primary-50');
+          b.classList.add('text-neutral-500');
+        });
+        btn.classList.remove('text-neutral-500');
+        btn.classList.add('text-primary-700', 'bg-primary-50');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+  </script>
 </BaseLayout>
