@@ -10,7 +10,7 @@ const cloudflare = isKeystatic ? (await import('@astrojs/cloudflare')).default :
 
 export default defineConfig({
   site: 'https://jd-zootherapie.fr',
-  output: isKeystatic ? 'hybrid' : 'static',
+  output: isKeystatic ? 'server' : 'static',
   adapter: isKeystatic && cloudflare ? cloudflare() : undefined,
   integrations: [
     sitemap({ i18n: { defaultLocale: 'fr', locales: { fr: 'fr-FR' } } }),
