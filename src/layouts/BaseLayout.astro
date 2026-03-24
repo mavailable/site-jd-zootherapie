@@ -10,6 +10,10 @@ interface Props {
   ogImage?: string;
   canonicalUrl?: string;
   noindex?: boolean;
+  /** 'website' (défaut) ou 'article' pour les articles de blog */
+  ogType?: 'website' | 'article';
+  /** Date de publication ISO (pour og:type article) */
+  articleDate?: string;
 }
 
 const {
@@ -18,11 +22,14 @@ const {
   ogImage = siteInfo.seo.ogImage,
   canonicalUrl = Astro.url.href,
   noindex = false,
+  ogType = 'website',
+  articleDate,
 } = Astro.props;
 
 const siteUrl = 'https://jdzootherapeute.fr';
 const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 const ogLocale = `${siteInfo.lang}_${siteInfo.address.country.toUpperCase()}`;
+const ogImageType = fullOgImage.endsWith('.png') ? 'image/png' : fullOgImage.endsWith('.webp') ? 'image/webp' : 'image/jpeg';
 ---
 
 <!DOCTYPE html>
@@ -46,16 +53,27 @@ const ogLocale = `${siteInfo.lang}_${siteInfo.address.country.toUpperCase()}`;
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:image" content={fullOgImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content={ogImageType} />
+  <meta property="og:image:alt" content={title} />
   <meta property="og:url" content={canonicalUrl} />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content={ogType} />
   <meta property="og:locale" content={ogLocale} />
   <meta property="og:site_name" content={siteInfo.name} />
+  {ogType === 'article' && articleDate && (
+    <meta property="article:published_time" content={articleDate} />
+  )}
+  {ogType === 'article' && (
+    <meta property="article:author" content="Jennifer De Groeve" />
+  )}
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={fullOgImage} />
+  <meta name="twitter:image:alt" content={title} />
 
   <!-- Polices locales -->
   <link rel="preload" href="/fonts/lora-v37-latin-600.woff2" as="font" type="font/woff2" crossorigin />

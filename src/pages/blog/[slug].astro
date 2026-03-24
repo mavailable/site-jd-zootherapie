@@ -49,6 +49,8 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 <BaseLayout
   title={`${post.data.title} | Blog JD Zoothérapie`}
   description={post.data.description}
+  ogType="article"
+  articleDate={post.data.date.toISOString().split('T')[0]}
 >
   <Fragment slot="schema">
     <script type="application/ld+json" set:html={JSON.stringify({
