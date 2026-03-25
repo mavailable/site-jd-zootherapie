@@ -1,6 +1,11 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
+import { execSync } from 'node:child_process';
+
+// Sync blog JSON → MD before build (works even if called via `astro build` directly)
+try { execSync('node scripts/sync-blog.mjs', { stdio: 'inherit' }); } catch {}
+
 
 const isKeystatic = process.env.KEYSTATIC === 'true';
 
