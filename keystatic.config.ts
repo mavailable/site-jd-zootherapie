@@ -151,7 +151,7 @@ export default config({
       label: 'Articles de blog',
       slugField: 'title',
       path: 'src/content/blog/*',
-      format: { contentField: 'content' },
+      format: { data: 'json' },
       schema: {
         title: fields.slug({ name: { label: 'Titre de l\'article' } }),
         description: fields.text({ label: 'Description (extrait)', multiline: true }),
@@ -166,7 +166,7 @@ export default config({
           ],
           defaultValue: 'Récits de terrain',
         }),
-        content: fields.markdoc({ label: 'Contenu de l\'article' }),
+        body: fields.text({ label: 'Contenu de l\'article (Markdown)', multiline: true }),
       },
     }),
   },

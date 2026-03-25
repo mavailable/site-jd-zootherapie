@@ -1,26 +1,32 @@
 /**
  * sync-blog.mjs
- * Synchronise les articles de blog entre Keystatic (.mdoc) et Astro (.md).
- * Keystatic écrit dans blog/slug/index.mdoc, Astro lit blog/slug.md.
- * Ce script copie les .mdoc en .md plats pour le build Astro.
+ * Génère les fichiers .md (pour Astro) à partir des .json (Keystatic).
+ * Source de vérité : blog/*.json → Génère : blog/*.md
  */
 import fs from 'node:fs';
 import path from 'node:path';
 
 const blogDir = path.resolve('src/content/blog');
-
 if (!fs.existsSync(blogDir)) process.exit(0);
 
-const entries = fs.readdirSync(blogDir, { withFileTypes: true });
+let count = 0;
+for (const file of fs.readdirSync(blogDir)) {
+  if (!file.endsWith('.json')) continue;
+  const slug = file.replace('.json', '');
+  const json = JSON.parse(fs.readFileSync(path.join(blogDir, file), 'utf-8'));
 
-for (const entry of entries) {
-  if (!entry.isDirectory()) continue;
-  const mdocPath = path.join(blogDir, entry.name, 'index.mdoc');
-  const mdPath = path.join(blogDir, `${entry.name}.md`);
+  const md = `---
+title: "${json.title}"
+description: "${json.description}"
+date: ${json.date}
+category: "${json.category}"
+---
 
-  if (fs.existsSync(mdocPath)) {
-    fs.copyFileSync(mdocPath, mdPath);
-  }
+${json.body}
+`;
+
+  fs.writeFileSync(path.join(blogDir, `${slug}.md`), md);
+  count++;
 }
 
-console.log(`[sync-blog] ${entries.filter(e => e.isDirectory()).length} articles synchronisés`);
+console.log(`[sync-blog] ${count} articles synchronisés`);
