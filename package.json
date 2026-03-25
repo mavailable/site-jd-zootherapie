@@ -8,7 +8,7 @@
     "predev": "node scripts/sync-blog.mjs",
     "dev": "astro dev",
     "dev:cms": "KEYSTATIC=true astro dev",
-    "build": "astro build",
+    "build": "node scripts/sync-blog.mjs && astro build",
     "build:cms": "KEYSTATIC=true astro build",
     "preview": "astro preview"
   },
