@@ -6,11 +6,10 @@
  * et lu via content.ts → getSiteInfo().
  */
 
-// Données légales (à compléter avant mise en prod)
+// Données légales
 export const legal = {
-  siret: '',
-  rcs: '',
-  tva: '',
+  siret: '947 868 576 00010',
+  tvaExempt: true, // Micro-entreprise, article 293 B du CGI
 } as const;
 
 // Coordonnées GPS (pour Schema.org) — Verny 57420

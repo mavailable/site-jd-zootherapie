@@ -414,6 +414,13 @@ const WEB3FORMS_KEY = 'aaaaa969-db18-4cb0-99c9-cc9eb258e7b3';
   let calcDistanceKm = 0;
   let calcTotal = 0;
 
+  // ─── Fetch avec timeout ──────────────────────────────────────────
+  function fetchWithTimeout(url: string, options: RequestInit = {}, timeoutMs = 5000): Promise<Response> {
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), timeoutMs);
+    return fetch(url, { ...options, signal: controller.signal }).finally(() => clearTimeout(id));
+  }
+
   // ─── Haversine (fallback si OSRM échoue) ─────────────────────────
   function haversineKm(lat1: number, lng1: number, lat2: number, lng2: number): number {
     const R = 6371;
@@ -432,7 +439,7 @@ const WEB3FORMS_KEY = 'aaaaa969-db18-4cb0-99c9-cc9eb258e7b3';
       addressdetails: '1',
       countrycodes: 'fr',
     });
-    const res = await fetch(`${NOMINATIM_URL}?${params}`, {
+    const res = await fetchWithTimeout(`${NOMINATIM_URL}?${params}`, {
       headers: { 'Accept-Language': 'fr', 'User-Agent': 'JD-Zootherapie-Calculator/1.0' }
     });
     if (!res.ok) throw new Error('Erreur géocodage');
@@ -447,7 +454,7 @@ const WEB3FORMS_KEY = 'aaaaa969-db18-4cb0-99c9-cc9eb258e7b3';
   // ─── Distance routière OSRM ──────────────────────────────────────
   async function getRouteDistanceKm(lat: number, lng: number): Promise<number> {
     const url = `${OSRM_URL}/${VERNY_LNG},${VERNY_LAT};${lng},${lat}?overview=false`;
-    const res = await fetch(url);
+    const res = await fetchWithTimeout(url);
     if (!res.ok) throw new Error('OSRM error');
     const data = await res.json() as any;
     if (data.code !== 'Ok' || !data.routes?.length) throw new Error('No route');
@@ -675,7 +682,7 @@ const WEB3FORMS_KEY = 'aaaaa969-db18-4cb0-99c9-cc9eb258e7b3';
 
     try {
       const fd = new FormData(bookingForm);
-      const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd });
+      const res = await fetchWithTimeout('https://api.web3forms.com/submit', { method: 'POST', body: fd }, 10000);
       const data = await res.json() as any;
       if (data.success) {
         step2.classList.add('hidden');

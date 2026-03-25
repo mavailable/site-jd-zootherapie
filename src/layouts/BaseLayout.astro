@@ -1,6 +1,7 @@
 ---
 import '@styles/global.css';
 import { getSiteInfo } from '@data/content';
+import { siteUrl } from '@data/business';
 
 const siteInfo = getSiteInfo();
 
@@ -26,7 +27,6 @@ const {
   articleDate,
 } = Astro.props;
 
-const siteUrl = 'https://jdzootherapeute.fr';
 const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 const ogLocale = `${siteInfo.lang}_${siteInfo.address.country.toUpperCase()}`;
 const ogImageType = fullOgImage.endsWith('.png') ? 'image/png' : fullOgImage.endsWith('.webp') ? 'image/webp' : 'image/jpeg';
@@ -76,11 +76,9 @@ const ogImageType = fullOgImage.endsWith('.png') ? 'image/png' : fullOgImage.end
   <meta name="twitter:image" content={fullOgImage} />
   <meta name="twitter:image:alt" content={title} />
 
-  <!-- Polices locales -->
-  <link rel="preload" href="/fonts/lora-v37-latin-600.woff2" as="font" type="font/woff2" crossorigin />
+  <!-- Polices critiques (above-the-fold) — les autres se chargent via font-display: swap -->
   <link rel="preload" href="/fonts/lora-v37-latin-700.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/dm-sans-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="/fonts/dm-sans-v17-latin-500.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/dm-sans-v17-latin-600.woff2" as="font" type="font/woff2" crossorigin />
 
   <!-- Schema.org JSON-LD -->

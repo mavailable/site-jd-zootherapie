@@ -5,6 +5,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import Header from '@components/layout/Header.astro';
 import Footer from '@components/layout/Footer.astro';
 import { getSiteInfo } from '@data/content';
+import { legal } from '@data/business';
 
 const siteInfo = getSiteInfo();
 const currentYear = new Date().getFullYear();
@@ -43,7 +44,7 @@ const currentYear = new Date().getFullYear();
             {siteInfo.address.postalCode} {siteInfo.address.city}, {siteInfo.address.region}<br />
             Téléphone : <a href={`tel:${siteInfo.phone}`} class="text-primary-600 hover:underline">{siteInfo.phoneDisplay}</a><br />
             Email : <a href={`mailto:${siteInfo.email}`} class="text-primary-600 hover:underline">{siteInfo.email}</a><br />
-            SIRET : 947 868 576 00010
+            SIRET : {legal.siret}
           </p>
           <p class="mt-3 text-sm text-neutral-500">
             Micro-entreprise non assujettie à la TVA (article 293 B du CGI)
@@ -72,7 +73,7 @@ const currentYear = new Date().getFullYear();
           <h2 class="font-heading font-semibold text-xl text-primary-900 mb-4 pb-2 border-b border-neutral-100">Conception et réalisation</h2>
           <p class="leading-loose">
             <strong>Marc Muller</strong> — Créateur de sites web<br />
-            <a href="https://marcmuller.site" class="text-primary-600 hover:underline" target="_blank" rel="noopener noreferrer">marcmuller.site</a><br />
+            <a href="https://marcm.fr" class="text-primary-600 hover:underline" target="_blank" rel="noopener noreferrer">marcm.fr</a><br />
             Email : <a href="mailto:marc@muller.im" class="text-primary-600 hover:underline">marc@muller.im</a>
           </p>
         </article>

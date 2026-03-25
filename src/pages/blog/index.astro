@@ -74,12 +74,11 @@ const categories = [...new Set(allPosts.map(post => post.data.category))];
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <!-- Category Filters -->
-      <div class="flex flex-wrap gap-2 mb-10" role="tablist" aria-label="Filtrer par catégorie">
+      <div class="flex flex-wrap gap-2 mb-10" aria-label="Filtrer par catégorie">
         <button
           class="filter-btn active px-4 py-2 rounded-full text-sm font-medium transition-all bg-primary-700 text-white shadow-sm"
           data-filter="all"
-          role="tab"
-          aria-selected="true"
+          aria-pressed="true"
         >
           Tous les articles
         </button>
@@ -87,8 +86,7 @@ const categories = [...new Set(allPosts.map(post => post.data.category))];
           <button
             class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all bg-white text-neutral-600 border border-neutral-200 hover:border-primary-300 hover:text-primary-700"
             data-filter={cat}
-            role="tab"
-            aria-selected="false"
+            aria-pressed="false"
           >
             {cat}
           </button>
@@ -156,11 +154,11 @@ const categories = [...new Set(allPosts.map(post => post.data.category))];
       filterButtons.forEach(b => {
         b.classList.remove('active', 'bg-primary-700', 'text-white', 'shadow-sm');
         b.classList.add('bg-white', 'text-neutral-600', 'border', 'border-neutral-200');
-        b.setAttribute('aria-selected', 'false');
+        b.setAttribute('aria-pressed', 'false');
       });
       btn.classList.add('active', 'bg-primary-700', 'text-white', 'shadow-sm');
       btn.classList.remove('bg-white', 'text-neutral-600', 'border', 'border-neutral-200');
-      btn.setAttribute('aria-selected', 'true');
+      btn.setAttribute('aria-pressed', 'true');
 
       // Filter articles
       let visibleCount = 0;

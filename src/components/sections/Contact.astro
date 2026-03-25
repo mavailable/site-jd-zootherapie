@@ -138,6 +138,15 @@ const contact = getContact();
               ></textarea>
             </div>
 
+            <div class="flex items-start gap-2">
+              <input type="checkbox" id="contact-consent" name="consent" required
+                class="mt-1 w-4 h-4 rounded border-neutral-300 text-primary-600 focus:ring-primary-500" />
+              <label for="contact-consent" class="text-neutral-500 text-xs leading-relaxed">
+                J'accepte que mes données soient utilisées pour répondre à ma demande.
+                <a href="/politique-confidentialite" class="underline hover:text-primary-600 transition-colors">Politique de confidentialité</a>.
+              </label>
+            </div>
+
             <div class="flex flex-col sm:flex-row sm:items-center gap-4">
               <button
                 type="submit"
@@ -146,10 +155,6 @@ const contact = getContact();
                 {contact.buttonText}
               </button>
             </div>
-
-            <p class="text-neutral-500 text-xs leading-relaxed">
-              {contact.rgpdText} <a href="/politique-confidentialite" class="underline hover:text-primary-600 transition-colors">Politique de confidentialité</a>.
-            </p>
           </form>
 
           <script>
