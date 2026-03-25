@@ -9,7 +9,7 @@
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Resource-Policy: same-site
 
-/aide-601302f4/*
+/aide-601302f4
   ! Content-Security-Policy
   ! X-Frame-Options
   Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://cloud.umami.is; style-src 'self' 'unsafe-inline'; img-src 'self' https: blob:; font-src 'self'; connect-src 'self' https://cloud.umami.is https://api-gateway.umami.dev https://api.web3forms.com https://nominatim.openstreetmap.org https://router.project-osrm.org; frame-src https://cloud.umami.is; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; frame-ancestors 'none'; upgrade-insecure-requests
