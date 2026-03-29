@@ -7,71 +7,94 @@ const contact = getContact();
 
 <section id="contact" class="bg-white py-16 md:py-20">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 md:grid-cols-5 gap-10">
 
-      <!-- Bloc coordonnées (2/5) -->
-      <div class="md:col-span-2">
-        <h2 class="font-heading font-semibold text-2xl md:text-[2rem] text-primary-900 mb-3">
-          {contact.title}
-        </h2>
-        <p class="text-neutral-600 leading-relaxed mb-8 text-sm">
-          {contact.subtitle}
-        </p>
+    <div class="text-center mb-10">
+      <h2 class="font-heading font-semibold text-2xl md:text-[2rem] text-primary-900 mb-3">
+        {contact.title}
+      </h2>
+      <p class="text-neutral-600 leading-relaxed max-w-xl mx-auto text-sm">
+        {contact.subtitle}
+      </p>
+    </div>
 
-        <!-- CTA téléphone principal -->
-        <a
-          href={`tel:${siteInfo.phone}`}
-          class="inline-flex items-center justify-center gap-2 w-full bg-accent-700 text-white px-6 py-3.5 rounded font-semibold text-base hover:bg-accent-800 transition-colors min-h-[44px] mb-6"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-          Appeler le {siteInfo.phoneDisplay}
-        </a>
+    <!-- 3 cartes de contact -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-12 max-w-4xl mx-auto">
 
-        <!-- Infos de contact -->
-        <div class="space-y-3">
-          <a href={`mailto:${siteInfo.email}`} class="flex items-center gap-3 text-neutral-700 hover:text-primary-600 transition-colors group">
-            <span class="inline-flex items-center justify-center w-10 h-10 bg-primary-100 text-primary-600 rounded-lg group-hover:bg-primary-200 transition-colors shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-            </span>
-            <span class="text-sm font-medium break-all">{siteInfo.email}</span>
-          </a>
-
-          <div class="flex items-start gap-3 text-neutral-700">
-            <span class="inline-flex items-center justify-center w-10 h-10 bg-primary-100 text-primary-600 rounded-lg shrink-0 mt-0.5">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-            </span>
-            <div class="text-sm">
-              <p class="font-medium">{siteInfo.address.postalCode} {siteInfo.address.city}</p>
-              <p class="text-neutral-500 mt-0.5">Metz, Thionville et toute la Moselle</p>
-            </div>
-          </div>
+      <!-- Carte 1 : Réserver un appel (cal.eu) — mise en avant -->
+      <a
+        href="https://cal.eu/jdzootherapie/30min"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group bg-accent-50 border-2 border-accent-200 rounded-xl p-6 text-center hover:border-accent-400 hover:shadow-md transition-all"
+      >
+        <div class="inline-flex items-center justify-center w-12 h-12 bg-accent-100 text-accent-700 rounded-xl mb-4 group-hover:bg-accent-200 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         </div>
+        <h3 class="font-heading font-semibold text-primary-900 mb-1">Réserver un appel</h3>
+        <p class="text-xs text-neutral-500 mb-3">Choisissez un créneau de 30 min — Jennifer vous rappelle.</p>
+        <span class="inline-flex items-center gap-1 text-accent-700 font-semibold text-sm group-hover:gap-2 transition-all">
+          Prendre RDV
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+        </span>
+      </a>
 
-        <!-- Télécharger la plaquette -->
-        <div class="mt-5 pt-5 border-t border-primary-100">
-          <a
-            href="/plaquette-jd-zootherapie.pdf"
-            download="Plaquette-JD-Zootherapie.pdf"
-            class="inline-flex items-center gap-2.5 text-primary-700 hover:text-primary-900 font-medium text-sm group transition-colors"
-            aria-label="Télécharger la plaquette de présentation de JD Zoothérapie (PDF)"
-          >
-            <span class="inline-flex items-center justify-center w-9 h-9 bg-primary-100 rounded-lg shrink-0 group-hover:bg-primary-200 transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-primary-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                <polyline points="7 10 12 15 17 10"/>
-                <line x1="12" y1="15" x2="12" y2="3"/>
-              </svg>
-            </span>
-            <span>Télécharger la plaquette de présentation <span class="text-neutral-400 font-normal text-xs">PDF</span></span>
-          </a>
+      <!-- Carte 2 : Appeler -->
+      <a
+        href={`tel:${siteInfo.phone}`}
+        class="group bg-white border-2 border-primary-200 rounded-xl p-6 text-center hover:border-primary-400 hover:shadow-md transition-all"
+      >
+        <div class="inline-flex items-center justify-center w-12 h-12 bg-primary-100 text-primary-600 rounded-xl mb-4 group-hover:bg-primary-200 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
         </div>
+        <h3 class="font-heading font-semibold text-primary-900 mb-1">Appeler Jennifer</h3>
+        <p class="text-xs text-neutral-500 mb-3">Réponse immédiate aux heures ouvrables.</p>
+        <span class="inline-flex items-center gap-1 text-primary-600 font-semibold text-sm">
+          {siteInfo.phoneDisplay}
+        </span>
+      </a>
 
+      <!-- Carte 3 : Formulaire (scroll vers le bas) -->
+      <button
+        type="button"
+        onclick="document.getElementById('contact-form-section').scrollIntoView({behavior:'smooth'})"
+        class="group bg-white border-2 border-neutral-200 rounded-xl p-6 text-center hover:border-primary-300 hover:shadow-md transition-all cursor-pointer text-left"
+      >
+        <div class="inline-flex items-center justify-center w-12 h-12 bg-neutral-100 text-neutral-600 rounded-xl mb-4 group-hover:bg-primary-100 group-hover:text-primary-600 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <h3 class="font-heading font-semibold text-primary-900 mb-1">Envoyer un message</h3>
+        <p class="text-xs text-neutral-500 mb-3">Pour les demandes détaillées ou les structures.</p>
+        <span class="inline-flex items-center gap-1 text-primary-600 font-semibold text-sm group-hover:gap-2 transition-all">
+          Écrire
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+        </span>
+      </button>
+    </div>
+
+    <!-- Infos complémentaires -->
+    <div class="flex flex-wrap justify-center gap-6 mb-12 text-sm text-neutral-600">
+      <div class="flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-primary-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        <span>{siteInfo.address.postalCode} {siteInfo.address.city} — Metz, Thionville et toute la Moselle</span>
       </div>
+      <a href={`mailto:${siteInfo.email}`} class="flex items-center gap-2 hover:text-primary-600 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-primary-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span>{siteInfo.email}</span>
+      </a>
+      <a
+        href="/plaquette-jd-zootherapie.pdf"
+        download="Plaquette-JD-Zootherapie.pdf"
+        class="flex items-center gap-2 hover:text-primary-600 transition-colors"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-primary-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Plaquette PDF</span>
+      </a>
+    </div>
 
-      <!-- Formulaire (3/5) -->
-      <div class="md:col-span-3">
-        <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-6 md:p-8">
-          <h3 class="font-heading font-semibold text-lg text-primary-900 mb-5">Ou envoyez un message</h3>
+    <!-- Formulaire -->
+    <div id="contact-form-section" class="max-w-2xl mx-auto">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-6 md:p-8">
+        <h3 class="font-heading font-semibold text-lg text-primary-900 mb-5">Envoyer un message</h3>
 
           <div aria-live="polite" aria-atomic="true" class="sr-only" id="form-status"></div>
           <form action="https://api.web3forms.com/submit" method="POST" class="space-y-5">
