@@ -1,7 +1,7 @@
 ---
 // TarifCalculator.astro
 // Calculateur de tarif avec géocodage Nominatim + distance routière OSRM
-// Base : 60€, déplacement inclus ≤15km depuis Verny (57420), +0,40€/km au-delà
+// Base : 60€, déplacement inclus ≤50km depuis Verny (57420), +0,40€/km au-delà
 interface Props {
   compact?: boolean; // version réduite pour la homepage
 }
@@ -172,7 +172,7 @@ const { compact = false } = Astro.props;
   const VERNY_LAT = 49.0208014;
   const VERNY_LNG = 6.7659488;
   const BASE_PRICE = 60;
-  const FREE_RADIUS_KM = 15;
+  const FREE_RADIUS_KM = 50;
   const RATE_PER_KM = 0.40;
   const NOMINATIM_URL = 'https://nominatim.openstreetmap.org/search';
   const OSRM_URL = 'https://router.project-osrm.org/route/v1/driving';
@@ -312,7 +312,7 @@ const { compact = false } = Astro.props;
     } else {
       html += `
       <div class="flex justify-between py-1.5 border-b border-neutral-100">
-        <span>Déplacement (rayon 15 km)</span>
+        <span>Déplacement (rayon 50 km)</span>
         <span class="font-medium text-green-600">Inclus ✓</span>
       </div>`;
     }
@@ -334,7 +334,7 @@ const { compact = false } = Astro.props;
       zoneMsgEl.className = 'rounded-lg p-3.5 text-sm flex items-start gap-2.5 mb-5 bg-amber-50 text-amber-900 border border-amber-200';
       zoneMsgEl.innerHTML = `
         <svg class="w-4 h-4 mt-0.5 shrink-0 text-amber-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <span>Hors zone principale — des frais de déplacement de <strong>${RATE_PER_KM.toFixed(2).replace('.', ',')} €/km</strong> s'appliquent au-delà de 15 km. Tarif indicatif, confirmé lors de l'échange.</span>`;
+        <span>Hors zone principale — des frais de déplacement de <strong>${RATE_PER_KM.toFixed(2).replace('.', ',')} €/km</strong> s'appliquent au-delà de 50 km. Tarif indicatif, confirmé lors de l'échange.</span>`;
     } else {
       zoneMsgEl.className = 'rounded-lg p-3.5 text-sm flex items-start gap-2.5 mb-5 bg-neutral-100 text-neutral-700 border border-neutral-200';
       zoneMsgEl.innerHTML = `
