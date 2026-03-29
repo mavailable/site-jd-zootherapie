@@ -1,0 +1,560 @@
+---
+export const prerender = true;
+
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/layout/Header.astro';
+import Footer from '@components/layout/Footer.astro';
+
+// ── Données personas ──
+const personas = [
+  {
+    id: 1, nom: 'Francoise', age: 68, situation: 'Retraitee, vit seule a Verny',
+    canal: 'Google', maturite: 'Comparaison', device: 'Desktop',
+    contexte: 'Isolee depuis le deces de son mari. Sa fille lui a parle de la zootherapie.',
+    attentes: 'Comprendre si c\'est pour elle, voir des temoignages de seniors, prix',
+    parcours: ['Accueil', 'Zootherapie', 'Ateliers', 'Tarifs', 'Temoignages'],
+    issue: 'hesite',
+    questionCle: 'La zootherapie, c\'est pour quelqu\'un comme moi ?',
+    reponse: 'partiel',
+    frictionPrincipale: 'Pas de temoignage de senior isole a domicile',
+    scores: { exp: 7, conf: 7, clarte: 8 },
+  },
+  {
+    id: 2, nom: 'Nadia', age: 42, situation: 'Cadre de sante EHPAD, Courcelles-Chaussy',
+    canal: 'Google Maps', maturite: 'Decision', device: 'Mobile',
+    contexte: 'Cherche un prestataire pour le projet d\'etablissement 2026-2027.',
+    attentes: 'Infos structures, certifications, devis',
+    parcours: ['Accueil', 'Ateliers', 'A propos', 'Tarifs', 'Contact'],
+    issue: 'convertit',
+    questionCle: 'Jennifer peut-elle s\'integrer a notre projet d\'etablissement ?',
+    reponse: 'partiel',
+    frictionPrincipale: 'Pas de page dediee structures / plaquette PDF',
+    scores: { exp: 7, conf: 8, clarte: 6 },
+  },
+  {
+    id: 3, nom: 'Thomas', age: 35, situation: 'Papa d\'un garcon de 6 ans TDAH, Metz',
+    canal: 'ChatGPT', maturite: 'Comparaison', device: 'Mobile',
+    contexte: 'Le pedopsychiatre a suggere des approches complementaires.',
+    attentes: 'Preuves d\'efficacite pour le TDAH, certifications, tarif',
+    parcours: ['Accueil', 'Zootherapie', 'Ateliers', 'A propos', 'FAQ', 'Tarifs'],
+    issue: 'hesite',
+    questionCle: 'La zootherapie a-t-elle des resultats pour les enfants TDAH ?',
+    reponse: 'non',
+    frictionPrincipale: 'Aucune preuve ou temoignage specifique TDAH',
+    scores: { exp: 6, conf: 5, clarte: 7 },
+  },
+  {
+    id: 4, nom: 'Celine', age: 51, situation: 'Aidante de sa mere (82 ans, Parkinson), Peltre',
+    canal: 'Facebook', maturite: 'Decouverte', device: 'Mobile',
+    contexte: 'Epuisee, a vu une photo de Tap-Tap sur Facebook. Touchee.',
+    attentes: 'Savoir si ca aide sa mere ET elle-meme',
+    parcours: ['Accueil', 'Ateliers', 'Tarifs'],
+    issue: 'hesite',
+    questionCle: 'Ca peut aider ma mere ET me soulager, moi aussi ?',
+    reponse: 'oui',
+    frictionPrincipale: 'Budget serre, formulaire trop formel (pas de Messenger)',
+    scores: { exp: 8, conf: 7, clarte: 7 },
+  },
+  {
+    id: 5, nom: 'Mehdi', age: 29, situation: 'Educateur specialise en IME, Nancy',
+    canal: 'Google', maturite: 'Decouverte', device: 'Mobile',
+    contexte: 'Cherche une formation en mediation animale, pas un prestataire.',
+    attentes: 'Infos sur une formation',
+    parcours: ['Accueil', 'Zootherapie'],
+    issue: 'quitte',
+    questionCle: 'Proposez-vous des formations ?',
+    reponse: 'non',
+    frictionPrincipale: 'Besoin incompatible (formation vs prestation)',
+    scores: { exp: 4, conf: 6, clarte: 8 },
+  },
+  {
+    id: 6, nom: 'Christine', age: 74, situation: 'Retraitee, benevole bibliotheque Marly',
+    canal: 'Bouche-a-oreille', maturite: 'Decision', device: 'Tablette',
+    contexte: 'A vu Jennifer a la bibliotheque. Veut offrir des seances a son petit-fils.',
+    attentes: 'Trouver le tarif et le numero de telephone',
+    parcours: ['Accueil', 'Ateliers', 'Tarifs', 'Contact'],
+    issue: 'convertit',
+    questionCle: 'Comment reserver pour mon petit-fils ?',
+    reponse: 'partiel',
+    frictionPrincipale: 'Aucun frein majeur',
+    scores: { exp: 8, conf: 9, clarte: 7 },
+  },
+  {
+    id: 7, nom: 'Aurelie', age: 38, situation: 'Maman solo de 2 filles, Augny',
+    canal: 'Instagram', maturite: 'Comparaison', device: 'Mobile',
+    contexte: 'Sa fille ainee a des difficultes emotionnelles depuis la separation.',
+    attentes: 'Comprendre les seances enfants, verifier le budget',
+    parcours: ['Accueil', 'Ateliers', 'Zootherapie', 'Tarifs', 'FAQ', 'Temoignages'],
+    issue: 'hesite',
+    questionCle: 'La zootherapie peut aider ma fille a gerer ses emotions ?',
+    reponse: 'partiel',
+    frictionPrincipale: 'Pas d\'info sur le remboursement ou la frequence recommandee',
+    scores: { exp: 7, conf: 7, clarte: 6 },
+  },
+  {
+    id: 8, nom: 'Patrick', age: 62, situation: 'Directeur de foyer medicalise, Ars-sur-Moselle',
+    canal: 'Google', maturite: 'Comparaison', device: 'Desktop',
+    contexte: 'Enrichir le programme d\'activites de son foyer.',
+    attentes: 'Preuves de professionnalisme, format collectif, budget',
+    parcours: ['Accueil', 'A propos', 'Ateliers', 'Tarifs', 'Temoignages', 'Contact'],
+    issue: 'hesite',
+    questionCle: 'Experience avec des publics en handicap lourd ?',
+    reponse: 'partiel',
+    frictionPrincipale: 'Pas de page structures, pas de plaquette PDF, tarif groupes vague',
+    scores: { exp: 6, conf: 6, clarte: 5 },
+  },
+  {
+    id: 9, nom: 'Lea', age: 26, situation: 'Etudiante en psychologie, Nancy',
+    canal: 'Perplexity', maturite: 'Decouverte', device: 'Mobile',
+    contexte: 'Prepare un memoire sur les therapies assistees par l\'animal.',
+    attentes: 'Infos sur le parcours, certifications, pour une interview',
+    parcours: ['Accueil', 'A propos', 'Zootherapie', 'FAQ', 'Contact'],
+    issue: 'convertit',
+    questionCle: 'Formation et structuration des interventions ?',
+    reponse: 'partiel',
+    frictionPrincipale: 'Pas de references academiques ni lien vers l\'IFZ',
+    scores: { exp: 6, conf: 7, clarte: 6 },
+  },
+  {
+    id: 10, nom: 'Jean-Marc', age: 55, situation: 'Medecin generaliste a Verny',
+    canal: 'Google Maps', maturite: 'Comparaison', device: 'Mobile',
+    contexte: 'Un patient lui a parle de Jennifer. Veut verifier avant de recommander.',
+    attentes: 'Certifications, rigueur methodologique, cadre deontologique',
+    parcours: ['Accueil', 'A propos', 'Zootherapie', 'FAQ', 'Tarifs'],
+    issue: 'hesite',
+    questionCle: 'Suffisamment qualifiee pour que je la recommande ?',
+    reponse: 'partiel',
+    frictionPrincipale: 'Pas de disclaimer medical ni section pro de sante',
+    scores: { exp: 6, conf: 5, clarte: 6 },
+  },
+  {
+    id: 11, nom: 'Sandrine', age: 44, situation: 'Directrice d\'ecole, Pournoy-la-Grasse',
+    canal: 'Email', maturite: 'Comparaison', device: 'Desktop',
+    contexte: 'Cherche un intervenant pour la Semaine du bien-etre a l\'ecole.',
+    attentes: 'Infos ateliers scolaires, securite animaux, budget',
+    parcours: ['Accueil', 'Ateliers', 'A propos', 'Tarifs', 'Contact'],
+    issue: 'hesite',
+    questionCle: 'Intervention en ecole avec cadre pedagogique adapte ?',
+    reponse: 'partiel',
+    frictionPrincipale: 'Pas de contenu scolaire specifique ni temoignage enseignant',
+    scores: { exp: 6, conf: 7, clarte: 6 },
+  },
+  {
+    id: 12, nom: 'Antoine', age: 31, situation: 'Kine liberal a Metz',
+    canal: 'Google', maturite: 'Decouverte', device: 'Mobile',
+    contexte: 'Un patient lui a parle de ses seances. Curieux mais sceptique.',
+    attentes: 'Donnees factuelles, references scientifiques',
+    parcours: ['Accueil', 'Zootherapie'],
+    issue: 'quitte',
+    questionCle: 'Quelles preuves scientifiques ?',
+    reponse: 'non',
+    frictionPrincipale: 'Zero reference scientifique sur le site',
+    scores: { exp: 4, conf: 5, clarte: 7 },
+  },
+  {
+    id: 13, nom: 'Monique', age: 71, situation: 'Retraitee ex-infirmiere, Marieulles',
+    canal: 'Bouche-a-oreille', maturite: 'Decision', device: 'Mobile',
+    contexte: 'Sa fille (45 ans, sclerose en plaques) vit un episode difficile.',
+    attentes: 'Numero de tel, deplacement domicile, adapte a la SEP ?',
+    parcours: ['Accueil', 'FAQ', 'Ateliers', 'Contact'],
+    issue: 'convertit',
+    questionCle: 'La zootherapie peut aider ma fille atteinte de SEP ?',
+    reponse: 'partiel',
+    frictionPrincipale: 'Sclerose en plaques non mentionnee explicitement',
+    scores: { exp: 8, conf: 8, clarte: 7 },
+  },
+  {
+    id: 14, nom: 'Elodie', age: 33, situation: 'Maman d\'un garcon autiste (4 ans), Fey',
+    canal: 'Facebook', maturite: 'Comparaison', device: 'Mobile',
+    contexte: 'L\'orthophoniste a suggere la mediation animale. Recommandation Facebook.',
+    attentes: 'Experience TSA, deroulement seance enfant peur du contact',
+    parcours: ['Accueil', 'Zootherapie', 'Ateliers', 'A propos', 'FAQ', 'Tarifs', 'Contact'],
+    issue: 'convertit',
+    questionCle: 'Comment se passe une seance avec un enfant autiste ?',
+    reponse: 'partiel',
+    frictionPrincipale: 'Pas de page dediee TSA ni temoignage parent TSA',
+    scores: { exp: 7, conf: 8, clarte: 7 },
+  },
+  {
+    id: 15, nom: 'Karim', age: 47, situation: 'Chef de chantier, Pont-a-Mousson',
+    canal: 'Google', maturite: 'Comparaison', device: 'Desktop',
+    contexte: 'Cherche un eleveur de finnois de Laponie. Arrive par erreur.',
+    attentes: 'Infos elevage / adoption',
+    parcours: ['Accueil', 'A propos'],
+    issue: 'quitte',
+    questionCle: 'Ou trouver un finnois de Laponie ?',
+    reponse: 'non',
+    frictionPrincipale: 'Hors cible — besoin incompatible',
+    scores: { exp: 5, conf: 7, clarte: 9 },
+  },
+  {
+    id: 16, nom: 'Isabelle', age: 58, situation: 'Psychologue clinicienne, Metz',
+    canal: 'Google Maps', maturite: 'Decision', device: 'Mobile',
+    contexte: 'Patiente 79 ans isolee ne progresse plus en therapie. Cherche un relais.',
+    attentes: 'Qualifications, complementarite avec suivi psy',
+    parcours: ['Accueil', 'A propos', 'Ateliers', 'Zootherapie', 'Contact'],
+    issue: 'convertit',
+    questionCle: 'Peut-on travailler ensemble en parcours de soin coordonne ?',
+    reponse: 'partiel',
+    frictionPrincipale: 'Pas de mention collaboration interprofessionnelle',
+    scores: { exp: 7, conf: 8, clarte: 8 },
+  },
+  {
+    id: 17, nom: 'Lucas', age: 22, situation: 'Etudiant BTS SP3S, Metz',
+    canal: 'Claude', maturite: 'Decouverte', device: 'Mobile',
+    contexte: 'Prepare un expose sur les therapies non conventionnelles.',
+    attentes: 'Infos factuelles pour son expose',
+    parcours: ['Accueil', 'Zootherapie', 'A propos', 'FAQ'],
+    issue: 'quitte',
+    questionCle: 'Comment la zootherapie s\'integre dans le parcours de soin ?',
+    reponse: 'partiel',
+    frictionPrincipale: 'Pas de sources academiques, visite documentaire',
+    scores: { exp: 6, conf: 7, clarte: 8 },
+  },
+  {
+    id: 18, nom: 'Marie-Therese', age: 81, situation: 'Veuve, Alzheimer leger, Verny',
+    canal: 'Bouche-a-oreille', maturite: 'Decision', device: 'Tablette',
+    contexte: 'Son fils a envoye le lien sur conseil du medecin traitant.',
+    attentes: 'Voir les animaux, etre rassuree sur la douceur',
+    parcours: ['Accueil', 'A propos'],
+    issue: 'convertit',
+    questionCle: 'Les animaux sont gentils ? Ca fait peur ?',
+    reponse: 'partiel',
+    frictionPrincipale: 'Navigation trop complexe, vocabulaire difficile',
+    scores: { exp: 4, conf: 6, clarte: 4 },
+  },
+  {
+    id: 19, nom: 'Stephanie', age: 40, situation: 'Infirmiere EHPAD, Marly',
+    canal: 'QR code flyer', maturite: 'Decouverte', device: 'Mobile',
+    contexte: 'Touchee par un atelier a Marly. Se demande si c\'est aussi pour elle.',
+    attentes: 'Seances pour pro du soin en burn-out',
+    parcours: ['Accueil', 'Ateliers', 'Zootherapie', 'Tarifs'],
+    issue: 'hesite',
+    questionCle: 'Je peux venir juste pour moi, sans probleme particulier ?',
+    reponse: 'non',
+    frictionPrincipale: 'Le site ne dit jamais "c\'est aussi pour vous"',
+    scores: { exp: 5, conf: 7, clarte: 5 },
+  },
+  {
+    id: 20, nom: 'David', age: 46, situation: 'Responsable qualite, Pont-a-Mousson',
+    canal: 'LinkedIn', maturite: 'Comparaison', device: 'Desktop',
+    contexte: 'Cherche des idees bien-etre pour la Semaine QVT de son entreprise.',
+    attentes: 'Offre mediation animale en entreprise',
+    parcours: ['Accueil', 'Ateliers', 'Tarifs'],
+    issue: 'quitte',
+    questionCle: 'Interventions en entreprise pour evenements QVT ?',
+    reponse: 'non',
+    frictionPrincipale: 'Aucune offre entreprise/QVT',
+    scores: { exp: 4, conf: 7, clarte: 7 },
+  },
+];
+
+const recommendations = [
+  {
+    priorite: 'haute',
+    items: [
+      { titre: 'Collecter des temoignages diversifies', detail: 'Parent enfant TDAH/TSA, aidant epuise, directeur EHPAD, senior isole a domicile.', personas: [1,3,4,7,8,10,11,14], action: 'Demander a Jennifer apres chaque seance' },
+      { titre: 'Ajouter les infos budget et frequence', detail: 'Frequence recommandee (ex : 6-8 seances bimensuelles), mention aides (CESU, APA, mutuelles), forfait eventuel.', personas: [1,4,7,8,11,19], action: 'Ajouter sur /tarifs et FAQ' },
+      { titre: 'Section dediee structures et professionnels', detail: 'Protocole, assurance RC Pro, suivi veto, plaquette PDF, formulaire devis dedie.', personas: [2,8,10,11,16], action: 'Creer un encart sur /ateliers ou une page /structures' },
+    ]
+  },
+  {
+    priorite: 'moyenne',
+    items: [
+      { titre: 'Disclaimer medical', detail: '"La mediation animale est complementaire et ne remplace pas un suivi medical."', personas: [10,12,16], action: 'Ajouter sur /zootherapie et footer' },
+      { titre: 'References scientifiques (2-3)', detail: 'Meta-analyses, revues Cochrane, en note sur la section bienfaits.', personas: [3,10,12,17], action: 'Ajouter sur /zootherapie' },
+      { titre: 'Formulaire de contact contextualise', detail: 'Champ "Objet" : Particulier / Structure / Pro de sante / Autre.', personas: [4,8,9,11], action: 'Modifier le composant Contact' },
+      { titre: 'Collaboration interprofessionnelle', detail: '"Je travaille en lien avec medecins, psychologues et equipes soignantes."', personas: [3,10,16], action: 'Ajouter sur /a-propos' },
+    ]
+  },
+  {
+    priorite: 'basse',
+    items: [
+      { titre: 'Ajouter la SEP et maladies chroniques', detail: 'Un mot dans la FAQ pathologies suffit.', personas: [13], action: 'Modifier la FAQ' },
+      { titre: 'Atelier "Apprends a parler chien"', detail: 'Present sur le flyer mais absent du site.', personas: [11], action: 'Ajouter sur /ateliers' },
+      { titre: 'Message inclusif bien-etre sans pathologie', detail: '"Pas besoin d\'un probleme pour un moment de douceur."', personas: [19,7], action: 'Ajouter sur /ateliers ou /zootherapie' },
+    ]
+  },
+  {
+    priorite: 'decision',
+    items: [
+      { titre: 'Offre entreprise / QVT ?', detail: 'Nouveau marche potentiel. Necessite un 7e atelier et une page dediee.', personas: [20], action: 'A discuter avec Jennifer' },
+      { titre: 'Canal Messenger / WhatsApp ?', detail: 'Pour capter les visiteurs Facebook en soiree.', personas: [4], action: 'A discuter avec Jennifer' },
+      { titre: 'Adultes sans pathologie ?', detail: 'Communiquer sur le bien-etre "tout public" ou rester positionne medico-social.', personas: [19], action: 'A discuter avec Jennifer' },
+    ]
+  },
+];
+
+const issueColors: Record<string, { bg: string; text: string; label: string }> = {
+  convertit: { bg: 'bg-green-100', text: 'text-green-700', label: 'Convertit' },
+  hesite: { bg: 'bg-amber-100', text: 'text-amber-700', label: 'Hesite' },
+  quitte: { bg: 'bg-red-100', text: 'text-red-700', label: 'Quitte' },
+};
+
+const reponseLabels: Record<string, { bg: string; text: string; label: string }> = {
+  oui: { bg: 'bg-green-100', text: 'text-green-700', label: 'Oui' },
+  partiel: { bg: 'bg-amber-100', text: 'text-amber-700', label: 'Partiel' },
+  non: { bg: 'bg-red-100', text: 'text-red-700', label: 'Non' },
+};
+
+const prioriteStyles: Record<string, { bg: string; border: string; badge: string; badgeText: string; label: string }> = {
+  haute: { bg: 'bg-red-50', border: 'border-red-200', badge: 'bg-red-600', badgeText: 'text-white', label: 'Priorite haute' },
+  moyenne: { bg: 'bg-amber-50', border: 'border-amber-200', badge: 'bg-amber-500', badgeText: 'text-white', label: 'Priorite moyenne' },
+  basse: { bg: 'bg-blue-50', border: 'border-blue-200', badge: 'bg-blue-500', badgeText: 'text-white', label: 'Priorite basse' },
+  decision: { bg: 'bg-neutral-50', border: 'border-neutral-200', badge: 'bg-neutral-600', badgeText: 'text-white', label: 'Decision business' },
+};
+
+// Stats
+const convertis = personas.filter(p => p.issue === 'convertit').length;
+const hesitent = personas.filter(p => p.issue === 'hesite').length;
+const quittent = personas.filter(p => p.issue === 'quitte').length;
+const avgExp = (personas.reduce((s, p) => s + p.scores.exp, 0) / 20).toFixed(1);
+const avgConf = (personas.reduce((s, p) => s + p.scores.conf, 0) / 20).toFixed(1);
+const avgClarte = (personas.reduce((s, p) => s + p.scores.clarte, 0) / 20).toFixed(1);
+
+const pageMap: Record<string, string> = {
+  'Accueil': '/', 'Zootherapie': '/zootherapie', 'Ateliers': '/ateliers',
+  'A propos': '/a-propos', 'Tarifs': '/tarifs', 'Temoignages': '/temoignages',
+  'FAQ': '/faq', 'Contact': '/contact',
+};
+---
+
+<BaseLayout
+  title="Personas — Qui visite votre site ?"
+  description="20 profils de visiteurs types, leur parcours et les recommandations pour ameliorer votre site."
+  noindex={true}
+>
+  <Header slot="header" />
+
+  <!-- ─── Back link ─── -->
+  <div class="bg-white border-b border-neutral-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5">
+      <a href="/aide-601302f4" class="inline-flex items-center gap-1.5 text-xs text-neutral-500 hover:text-primary-600 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        Retour a l'espace administration
+      </a>
+    </div>
+  </div>
+
+  <!-- ─── Hero ─── -->
+  <section class="bg-primary-800 py-10 md:py-14">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="font-heading text-2xl md:text-3xl font-bold text-white mb-2">Qui visite votre site ?</h1>
+      <p class="text-primary-200 text-sm md:text-base max-w-2xl">20 profils de visiteurs simules pour comprendre comment les gens decouvrent et utilisent votre site — et ce qu'on peut ameliorer.</p>
+    </div>
+  </section>
+
+  <!-- ─── Stats globales ─── -->
+  <section class="bg-white py-8 border-b border-neutral-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+        <div class="text-center">
+          <div class="text-2xl font-bold text-green-600">{convertis}</div>
+          <div class="text-xs text-neutral-500 mt-0.5">Convertissent</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl font-bold text-amber-500">{hesitent}</div>
+          <div class="text-xs text-neutral-500 mt-0.5">Hesitent</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl font-bold text-red-500">{quittent}</div>
+          <div class="text-xs text-neutral-500 mt-0.5">Quittent</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl font-bold text-primary-600">{avgExp}<span class="text-sm font-normal text-neutral-400">/10</span></div>
+          <div class="text-xs text-neutral-500 mt-0.5">Experience</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl font-bold text-primary-600">{avgConf}<span class="text-sm font-normal text-neutral-400">/10</span></div>
+          <div class="text-xs text-neutral-500 mt-0.5">Confiance</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl font-bold text-primary-600">{avgClarte}<span class="text-sm font-normal text-neutral-400">/10</span></div>
+          <div class="text-xs text-neutral-500 mt-0.5">Clarte</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Filtres (JS) ─── -->
+  <section class="bg-neutral-50 border-b border-neutral-100 py-3 sticky top-16 md:top-20 z-30">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center gap-2">
+      <span class="text-xs text-neutral-400 font-medium mr-1">Filtrer :</span>
+      <button data-filter="all" class="filter-btn text-xs px-3 py-1 rounded-full font-medium bg-primary-600 text-white">Tous (20)</button>
+      <button data-filter="convertit" class="filter-btn text-xs px-3 py-1 rounded-full font-medium bg-white text-neutral-600 border border-neutral-200 hover:border-green-300">Convertit ({convertis})</button>
+      <button data-filter="hesite" class="filter-btn text-xs px-3 py-1 rounded-full font-medium bg-white text-neutral-600 border border-neutral-200 hover:border-amber-300">Hesite ({hesitent})</button>
+      <button data-filter="quitte" class="filter-btn text-xs px-3 py-1 rounded-full font-medium bg-white text-neutral-600 border border-neutral-200 hover:border-red-300">Quitte ({quittent})</button>
+    </div>
+  </section>
+
+  <!-- ─── Grille des personas ─── -->
+  <section class="bg-neutral-50 py-8 md:py-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="persona-grid">
+        {personas.map((p) => {
+          const issue = issueColors[p.issue];
+          const rep = reponseLabels[p.reponse];
+          return (
+            <article
+              class="persona-card bg-white border border-neutral-200 rounded-xl overflow-hidden hover:shadow-md transition-shadow"
+              data-issue={p.issue}
+            >
+              {/* Header card */}
+              <div class="flex items-center justify-between px-5 py-3.5 border-b border-neutral-100">
+                <div class="flex items-center gap-3">
+                  <div class="w-9 h-9 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center font-bold text-sm shrink-0">
+                    {p.id}
+                  </div>
+                  <div>
+                    <h3 class="font-semibold text-neutral-900 text-sm">{p.nom}, {p.age} ans</h3>
+                    <p class="text-xs text-neutral-500">{p.situation}</p>
+                  </div>
+                </div>
+                <span class={`text-[11px] font-semibold px-2.5 py-1 rounded-full ${issue.bg} ${issue.text}`}>{issue.label}</span>
+              </div>
+
+              {/* Body */}
+              <div class="px-5 py-4 space-y-3.5">
+                {/* Meta : canal, device, maturite */}
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="text-[11px] bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-medium">{p.canal}</span>
+                  <span class="text-[11px] bg-neutral-100 text-neutral-600 px-2 py-0.5 rounded">{p.device}</span>
+                  <span class="text-[11px] bg-neutral-100 text-neutral-600 px-2 py-0.5 rounded">{p.maturite}</span>
+                </div>
+
+                {/* Contexte */}
+                <p class="text-xs text-neutral-600 leading-relaxed">{p.contexte}</p>
+
+                {/* Parcours */}
+                <div>
+                  <div class="text-[10px] text-neutral-400 font-semibold uppercase tracking-wider mb-1.5">Parcours</div>
+                  <div class="flex flex-wrap items-center gap-1">
+                    {p.parcours.map((page, i) => (
+                      <>
+                        <a href={pageMap[page] || '#'} class="text-[11px] bg-primary-50 text-primary-700 px-2 py-0.5 rounded hover:bg-primary-100 transition-colors">{page}</a>
+                        {i < p.parcours.length - 1 && (
+                          <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-neutral-300 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                        )}
+                      </>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Question cle */}
+                <div class="bg-neutral-50 rounded-lg p-3">
+                  <div class="flex items-start justify-between gap-2">
+                    <p class="text-xs text-neutral-700 italic flex-1">"{p.questionCle}"</p>
+                    <span class={`text-[10px] font-semibold px-2 py-0.5 rounded-full shrink-0 ${rep.bg} ${rep.text}`}>{rep.label}</span>
+                  </div>
+                </div>
+
+                {/* Friction */}
+                <div class="flex items-start gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+                  <p class="text-xs text-neutral-600">{p.frictionPrincipale}</p>
+                </div>
+
+                {/* Scores mini */}
+                <div class="flex gap-4 pt-1">
+                  <div class="flex items-center gap-1.5">
+                    <div class="w-16 h-1.5 bg-neutral-100 rounded-full overflow-hidden">
+                      <div class="h-full bg-primary-500 rounded-full" style={`width: ${p.scores.exp * 10}%`}></div>
+                    </div>
+                    <span class="text-[10px] text-neutral-400">Exp {p.scores.exp}</span>
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <div class="w-16 h-1.5 bg-neutral-100 rounded-full overflow-hidden">
+                      <div class="h-full bg-primary-500 rounded-full" style={`width: ${p.scores.conf * 10}%`}></div>
+                    </div>
+                    <span class="text-[10px] text-neutral-400">Conf {p.scores.conf}</span>
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <div class="w-16 h-1.5 bg-neutral-100 rounded-full overflow-hidden">
+                      <div class="h-full bg-primary-500 rounded-full" style={`width: ${p.scores.clarte * 10}%`}></div>
+                    </div>
+                    <span class="text-[10px] text-neutral-400">Clarte {p.scores.clarte}</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Recommandations ─── -->
+  <section class="bg-white py-10 md:py-14" id="recommandations">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-heading text-xl md:text-2xl font-bold text-neutral-900 mb-2">Recommandations</h2>
+      <p class="text-sm text-neutral-500 mb-8">Actions concretes pour ameliorer l'experience des visiteurs, classees par impact.</p>
+
+      <div class="space-y-6">
+        {recommendations.map((group) => {
+          const style = prioriteStyles[group.priorite];
+          return (
+            <div>
+              <div class="flex items-center gap-2 mb-3">
+                <span class={`text-[11px] font-semibold px-2.5 py-1 rounded-full ${style.badge} ${style.badgeText}`}>{style.label}</span>
+                <span class="text-xs text-neutral-400">{group.items.length} actions</span>
+              </div>
+              <div class="space-y-3">
+                {group.items.map((item) => (
+                  <div class={`${style.bg} border ${style.border} rounded-xl p-4`}>
+                    <div class="flex items-start justify-between gap-3 mb-2">
+                      <h3 class="font-semibold text-neutral-900 text-sm">{item.titre}</h3>
+                      <div class="flex items-center gap-1 shrink-0">
+                        {item.personas.map((pid) => (
+                          <span class="w-5 h-5 rounded-full bg-white border border-neutral-200 text-[10px] font-medium text-neutral-600 flex items-center justify-center">{pid}</span>
+                        ))}
+                      </div>
+                    </div>
+                    <p class="text-xs text-neutral-600 mb-2">{item.detail}</p>
+                    <div class="flex items-center gap-1.5">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 text-primary-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                      <span class="text-xs text-primary-700 font-medium">{item.action}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Contact webmaster ─── -->
+  <div class="text-center py-6 border-t border-neutral-100 text-xs text-neutral-400">
+    Questions ? <a href="mailto:marc@muller.im" class="text-primary-600 font-medium hover:text-primary-700 transition-colors">marc@muller.im</a>
+  </div>
+
+  <Footer slot="footer" />
+
+  <!-- ─── Filter script ─── -->
+  <script is:inline>
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.persona-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-primary-600', 'text-white');
+          b.classList.add('bg-white', 'text-neutral-600', 'border', 'border-neutral-200');
+        });
+        btn.classList.remove('bg-white', 'text-neutral-600', 'border', 'border-neutral-200');
+        btn.classList.add('bg-primary-600', 'text-white');
+
+        cards.forEach(card => {
+          if (filter === 'all' || card.dataset.issue === filter) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</BaseLayout>
