@@ -5,38 +5,38 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import Header from '@components/layout/Header.astro';
 import Footer from '@components/layout/Footer.astro';
 
-// ── Données personas ──
+// ── Donnees personas ──
 const personas = [
-  { id: 1, nom: 'Francoise', age: 68, emoji: '👵', situation: 'Retraitee, vit seule a Verny', canal: 'Google', device: 'Ordinateur', contexte: 'Isolee depuis le deces de son mari. Sa fille lui a parle de zootherapie.', parcours: ['Accueil', 'Zootherapie', 'Ateliers', 'Tarifs', 'Temoignages'], issue: 'hesite', questionCle: 'La zootherapie, c\'est pour quelqu\'un comme moi ?', reponse: 'partiel', frein: 'Pas de temoignage de senior isole a domicile, pas d\'info sur le remboursement' },
-  { id: 2, nom: 'Nadia', age: 42, emoji: '👩‍⚕️', situation: 'Cadre de sante EHPAD', canal: 'Google Maps', device: 'Mobile', contexte: 'Cherche un prestataire pour le projet d\'etablissement de son EHPAD.', parcours: ['Accueil', 'Ateliers', 'A propos', 'Tarifs', 'Contact'], issue: 'convertit', questionCle: 'Jennifer peut-elle s\'integrer a notre projet ?', reponse: 'partiel', frein: 'Pas de page dediee aux structures, pas de plaquette PDF' },
-  { id: 3, nom: 'Thomas', age: 35, emoji: '👨‍💻', situation: 'Papa d\'un enfant TDAH, Metz', canal: 'ChatGPT', device: 'Mobile', contexte: 'Le pedopsychiatre a suggere des approches complementaires pour son fils.', parcours: ['Accueil', 'Zootherapie', 'Ateliers', 'A propos', 'FAQ', 'Tarifs'], issue: 'hesite', questionCle: 'Ca marche vraiment pour les enfants TDAH ?', reponse: 'non', frein: 'Aucune preuve ou temoignage specifique TDAH' },
-  { id: 4, nom: 'Celine', age: 51, emoji: '🤱', situation: 'Aidante de sa mere (Parkinson)', canal: 'Facebook', device: 'Mobile', contexte: 'Epuisee par son role d\'aidante, touchee par une photo de Tap-Tap sur Facebook.', parcours: ['Accueil', 'Ateliers', 'Tarifs'], issue: 'hesite', questionCle: 'Ca peut aider ma mere ET me soulager, moi ?', reponse: 'oui', frein: 'Budget serre, le formulaire fait trop "officiel" (elle aurait prefere Messenger)' },
-  { id: 5, nom: 'Mehdi', age: 29, emoji: '👨‍🏫', situation: 'Educateur specialise, Nancy', canal: 'Google', device: 'Mobile', contexte: 'Cherche une FORMATION en mediation animale, pas un prestataire.', parcours: ['Accueil', 'Zootherapie'], issue: 'quitte', questionCle: 'Proposez-vous des formations ?', reponse: 'non', frein: 'Le site ne propose pas de formation — besoin incompatible' },
-  { id: 6, nom: 'Christine', age: 74, emoji: '👵', situation: 'Benevole bibliotheque Marly', canal: 'Bouche-a-oreille', device: 'Tablette', contexte: 'A deja vu Jennifer a la bibliotheque. Veut offrir des seances a son petit-fils.', parcours: ['Accueil', 'Ateliers', 'Tarifs', 'Contact'], issue: 'convertit', questionCle: 'Comment reserver pour mon petit-fils ?', reponse: 'partiel', frein: 'Aucun frein — elle etait deja convaincue' },
-  { id: 7, nom: 'Aurelie', age: 38, emoji: '👩', situation: 'Maman solo, 2 filles, Augny', canal: 'Instagram', device: 'Mobile', contexte: 'Sa fille ainee a des difficultes emotionnelles depuis la separation.', parcours: ['Accueil', 'Ateliers', 'Zootherapie', 'Tarifs', 'FAQ', 'Temoignages'], issue: 'hesite', questionCle: 'La zootherapie peut aider ma fille a gerer ses emotions ?', reponse: 'partiel', frein: 'Pas d\'info sur le remboursement ni la frequence des seances' },
-  { id: 8, nom: 'Patrick', age: 62, emoji: '👨‍💼', situation: 'Directeur foyer medicalise', canal: 'Google', device: 'Ordinateur', contexte: 'Veut enrichir le programme d\'activites de son foyer.', parcours: ['Accueil', 'A propos', 'Ateliers', 'Tarifs', 'Temoignages', 'Contact'], issue: 'hesite', questionCle: 'Avez-vous de l\'experience avec le handicap lourd ?', reponse: 'partiel', frein: 'Pas de page structures, pas de plaquette PDF, tarif groupes trop vague' },
-  { id: 9, nom: 'Lea', age: 26, emoji: '👩‍🎓', situation: 'Etudiante en psychologie, Nancy', canal: 'Perplexity', device: 'Mobile', contexte: 'Prepare un memoire et cherche un professionnel a interviewer.', parcours: ['Accueil', 'A propos', 'Zootherapie', 'FAQ', 'Contact'], issue: 'convertit', questionCle: 'Quelle est votre formation et votre methode ?', reponse: 'partiel', frein: 'Pas de references academiques' },
-  { id: 10, nom: 'Jean-Marc', age: 55, emoji: '🩺', situation: 'Medecin generaliste, Verny', canal: 'Google Maps', device: 'Mobile', contexte: 'Un patient lui a parle de Jennifer. Il verifie avant de recommander.', parcours: ['Accueil', 'A propos', 'Zootherapie', 'FAQ', 'Tarifs'], issue: 'hesite', questionCle: 'Est-elle assez qualifiee pour que je la recommande ?', reponse: 'partiel', frein: 'Pas de disclaimer medical, pas de section pour les pro de sante' },
-  { id: 11, nom: 'Sandrine', age: 44, emoji: '👩‍🏫', situation: 'Directrice d\'ecole primaire', canal: 'Email', device: 'Ordinateur', contexte: 'Cherche un intervenant pour la Semaine du bien-etre a l\'ecole.', parcours: ['Accueil', 'Ateliers', 'A propos', 'Tarifs', 'Contact'], issue: 'hesite', questionCle: 'Intervention en ecole avec un cadre pedagogique ?', reponse: 'partiel', frein: 'Pas de contenu scolaire, pas de temoignage enseignant, budget flou' },
-  { id: 12, nom: 'Antoine', age: 31, emoji: '💪', situation: 'Kine liberal, Metz', canal: 'Google', device: 'Mobile', contexte: 'Un patient lui a parle de ses seances. Curieux mais sceptique.', parcours: ['Accueil', 'Zootherapie'], issue: 'quitte', questionCle: 'Quelles preuves scientifiques ?', reponse: 'non', frein: 'Zero reference scientifique — ce n\'est pas ce qu\'il cherche' },
-  { id: 13, nom: 'Monique', age: 71, emoji: '👵', situation: 'Ex-infirmiere, Marieulles', canal: 'Bouche-a-oreille', device: 'Mobile', contexte: 'Sa fille (sclerose en plaques) vit un episode difficile. Recommandation de confiance.', parcours: ['Accueil', 'FAQ', 'Ateliers', 'Contact'], issue: 'convertit', questionCle: 'Ca peut aider ma fille atteinte de sclerose en plaques ?', reponse: 'partiel', frein: 'La SEP n\'est pas mentionnee sur le site' },
-  { id: 14, nom: 'Elodie', age: 33, emoji: '👩', situation: 'Maman d\'un enfant autiste, Fey', canal: 'Facebook', device: 'Mobile', contexte: 'L\'orthophoniste a suggere la mediation animale. Recommandee sur un groupe Facebook.', parcours: ['Accueil', 'Zootherapie', 'Ateliers', 'A propos', 'FAQ', 'Tarifs', 'Contact'], issue: 'convertit', questionCle: 'Comment se passe une seance avec un enfant autiste ?', reponse: 'partiel', frein: 'Pas de page dediee TSA ni de temoignage de parent d\'enfant autiste' },
-  { id: 15, nom: 'Karim', age: 47, emoji: '👷', situation: 'Chef de chantier BTP', canal: 'Google', device: 'Ordinateur', contexte: 'Cherche un ELEVEUR de finnois de Laponie. Arrive sur le site par erreur.', parcours: ['Accueil', 'A propos'], issue: 'quitte', questionCle: 'Ou trouver un finnois de Laponie ?', reponse: 'non', frein: 'Visiteur hors cible — le site est clair, il part vite' },
-  { id: 16, nom: 'Isabelle', age: 58, emoji: '🧠', situation: 'Psychologue clinicienne, Metz', canal: 'Google Maps', device: 'Mobile', contexte: 'Patiente agee en impasse therapeutique. Cherche un relais complementaire.', parcours: ['Accueil', 'A propos', 'Ateliers', 'Zootherapie', 'Contact'], issue: 'convertit', questionCle: 'Peut-on travailler ensemble ?', reponse: 'partiel', frein: 'Pas de mention de collaboration avec d\'autres pro de sante' },
-  { id: 17, nom: 'Lucas', age: 22, emoji: '👨‍🎓', situation: 'Etudiant BTS, Metz', canal: 'Claude (IA)', device: 'Mobile', contexte: 'Prepare un expose. Cherche un exemple concret de zootherapeute.', parcours: ['Accueil', 'Zootherapie', 'A propos', 'FAQ'], issue: 'quitte', questionCle: 'Comment ca s\'integre dans le parcours de soin ?', reponse: 'partiel', frein: 'Visite documentaire — il repart avec ses notes' },
-  { id: 18, nom: 'Marie-Therese', age: 81, emoji: '👵', situation: 'Alzheimer leger, Verny', canal: 'Bouche-a-oreille', device: 'Tablette', contexte: 'Son fils lui a envoye le lien par WhatsApp, sur conseil du medecin.', parcours: ['Accueil', 'A propos'], issue: 'convertit', questionCle: 'Les animaux sont gentils ?', reponse: 'partiel', frein: 'Navigation et vocabulaire trop complexes pour elle — c\'est son fils qui appelle' },
-  { id: 19, nom: 'Stephanie', age: 40, emoji: '👩‍⚕️', situation: 'Infirmiere EHPAD, Marly', canal: 'QR code flyer', device: 'Mobile', contexte: 'Touchee par un atelier a Marly. Se demande si c\'est aussi pour ELLE, pas ses patients.', parcours: ['Accueil', 'Ateliers', 'Zootherapie', 'Tarifs'], issue: 'hesite', questionCle: 'Je peux venir juste pour moi, sans probleme ?', reponse: 'non', frein: 'Le site ne dit jamais "c\'est aussi pour vous, sans pathologie"' },
-  { id: 20, nom: 'David', age: 46, emoji: '👔', situation: 'Responsable qualite entreprise', canal: 'LinkedIn', device: 'Ordinateur', contexte: 'Cherche des idees bien-etre pour la Semaine QVT de son entreprise.', parcours: ['Accueil', 'Ateliers', 'Tarifs'], issue: 'quitte', questionCle: 'Interventions en entreprise ?', reponse: 'non', frein: 'Aucune offre entreprise sur le site' },
+  { id: 1, nom: 'Francoise', age: 68, emoji: '👵', situation: 'Retraitee, vit seule a Verny', canal: 'Google', contexte: 'Isolee depuis le deces de son mari. Sa fille lui a parle de zootherapie.', parcours: ['Accueil', 'Zootherapie', 'Ateliers', 'Tarifs', 'Temoignages'], issue: 'hesite', questionCle: 'La zootherapie, c\'est pour quelqu\'un comme moi ?', frein: 'Pas de temoignage de senior isole a domicile' },
+  { id: 2, nom: 'Nadia', age: 42, emoji: '👩‍⚕️', situation: 'Cadre de sante EHPAD', canal: 'Google Maps', contexte: 'Cherche un prestataire pour le projet d\'etablissement de son EHPAD.', parcours: ['Accueil', 'Ateliers', 'A propos', 'Tarifs', 'Contact'], issue: 'convertit', questionCle: 'Jennifer peut-elle s\'integrer a notre projet ?', frein: 'Pas de page dediee aux structures' },
+  { id: 3, nom: 'Thomas', age: 35, emoji: '👨‍💻', situation: 'Papa d\'un enfant TDAH, Metz', canal: 'ChatGPT', contexte: 'Le pedopsychiatre a suggere des approches complementaires pour son fils.', parcours: ['Accueil', 'Zootherapie', 'Ateliers', 'FAQ', 'Tarifs'], issue: 'hesite', questionCle: 'Ca marche vraiment pour les enfants TDAH ?', frein: 'Aucune preuve ou temoignage TDAH' },
+  { id: 4, nom: 'Celine', age: 51, emoji: '🤱', situation: 'Aidante de sa mere (Parkinson)', canal: 'Facebook', contexte: 'Epuisee, touchee par une photo de Tap-Tap sur Facebook.', parcours: ['Accueil', 'Ateliers', 'Tarifs'], issue: 'hesite', questionCle: 'Ca peut aider ma mere ET me soulager ?', frein: 'Budget serre, formulaire trop formel' },
+  { id: 5, nom: 'Mehdi', age: 29, emoji: '👨‍🏫', situation: 'Educateur specialise, Nancy', canal: 'Google', contexte: 'Cherche une formation, pas un prestataire.', parcours: ['Accueil', 'Zootherapie'], issue: 'quitte', questionCle: 'Proposez-vous des formations ?', frein: 'Besoin incompatible' },
+  { id: 6, nom: 'Christine', age: 74, emoji: '👵', situation: 'Benevole bibliotheque Marly', canal: 'Bouche-a-oreille', contexte: 'A deja vu Jennifer. Veut offrir des seances a son petit-fils.', parcours: ['Accueil', 'Ateliers', 'Tarifs', 'Contact'], issue: 'convertit', questionCle: 'Comment reserver pour mon petit-fils ?', frein: '' },
+  { id: 7, nom: 'Aurelie', age: 38, emoji: '👩', situation: 'Maman solo, 2 filles, Augny', canal: 'Instagram', contexte: 'Sa fille a des difficultes emotionnelles depuis la separation.', parcours: ['Accueil', 'Ateliers', 'Tarifs', 'FAQ', 'Temoignages'], issue: 'hesite', questionCle: 'La zootherapie peut aider ma fille ?', frein: 'Pas d\'info remboursement ni frequence' },
+  { id: 8, nom: 'Patrick', age: 62, emoji: '👨‍💼', situation: 'Directeur foyer medicalise', canal: 'Google', contexte: 'Veut enrichir le programme d\'activites de son foyer.', parcours: ['Accueil', 'A propos', 'Ateliers', 'Tarifs', 'Contact'], issue: 'hesite', questionCle: 'Experience avec le handicap lourd ?', frein: 'Pas de page structures, tarif groupes vague' },
+  { id: 9, nom: 'Lea', age: 26, emoji: '👩‍🎓', situation: 'Etudiante en psychologie, Nancy', canal: 'Perplexity', contexte: 'Cherche un professionnel a interviewer pour son memoire.', parcours: ['Accueil', 'A propos', 'FAQ', 'Contact'], issue: 'convertit', questionCle: 'Quelle est votre formation ?', frein: '' },
+  { id: 10, nom: 'Jean-Marc', age: 55, emoji: '🩺', situation: 'Medecin generaliste, Verny', canal: 'Google Maps', contexte: 'Verifie le profil de Jennifer avant de la recommander.', parcours: ['Accueil', 'A propos', 'Zootherapie', 'FAQ'], issue: 'hesite', questionCle: 'Assez qualifiee pour que je recommande ?', frein: 'Pas de disclaimer medical' },
+  { id: 11, nom: 'Sandrine', age: 44, emoji: '👩‍🏫', situation: 'Directrice d\'ecole primaire', canal: 'Email', contexte: 'Cherche un intervenant pour la Semaine du bien-etre.', parcours: ['Accueil', 'Ateliers', 'Tarifs', 'Contact'], issue: 'hesite', questionCle: 'Intervention en ecole ?', frein: 'Pas de contenu scolaire specifique' },
+  { id: 12, nom: 'Antoine', age: 31, emoji: '💪', situation: 'Kine liberal, Metz', canal: 'Google', contexte: 'Curieux mais sceptique. Cherche des preuves scientifiques.', parcours: ['Accueil', 'Zootherapie'], issue: 'quitte', questionCle: 'Quelles preuves scientifiques ?', frein: 'Zero reference scientifique' },
+  { id: 13, nom: 'Monique', age: 71, emoji: '👵', situation: 'Ex-infirmiere, Marieulles', canal: 'Bouche-a-oreille', contexte: 'Sa fille (sclerose en plaques) vit un episode difficile.', parcours: ['Accueil', 'FAQ', 'Ateliers', 'Contact'], issue: 'convertit', questionCle: 'Ca aide pour la sclerose en plaques ?', frein: 'La SEP n\'est pas mentionnee' },
+  { id: 14, nom: 'Elodie', age: 33, emoji: '👩', situation: 'Maman d\'un enfant autiste, Fey', canal: 'Facebook', contexte: 'Recommandee sur un groupe Facebook de parents.', parcours: ['Accueil', 'Zootherapie', 'Ateliers', 'A propos', 'FAQ', 'Contact'], issue: 'convertit', questionCle: 'Seance avec un enfant autiste ?', frein: 'Pas de temoignage parent TSA' },
+  { id: 15, nom: 'Karim', age: 47, emoji: '👷', situation: 'Chef de chantier BTP', canal: 'Google', contexte: 'Cherche un eleveur de finnois de Laponie. Erreur.', parcours: ['Accueil', 'A propos'], issue: 'quitte', questionCle: 'Ou trouver un finnois de Laponie ?', frein: 'Visiteur hors cible' },
+  { id: 16, nom: 'Isabelle', age: 58, emoji: '🧠', situation: 'Psychologue clinicienne, Metz', canal: 'Google Maps', contexte: 'Patiente en impasse therapeutique. Cherche un relais.', parcours: ['Accueil', 'A propos', 'Ateliers', 'Contact'], issue: 'convertit', questionCle: 'Peut-on travailler ensemble ?', frein: 'Pas de mention collaboration pro' },
+  { id: 17, nom: 'Lucas', age: 22, emoji: '👨‍🎓', situation: 'Etudiant BTS, Metz', canal: 'Claude (IA)', contexte: 'Cherche un exemple concret pour son expose.', parcours: ['Accueil', 'Zootherapie', 'A propos', 'FAQ'], issue: 'quitte', questionCle: 'Integration dans le parcours de soin ?', frein: 'Visite documentaire uniquement' },
+  { id: 18, nom: 'Marie-Therese', age: 81, emoji: '👵', situation: 'Alzheimer leger, Verny', canal: 'Bouche-a-oreille', contexte: 'Son fils lui a envoye le lien sur conseil du medecin.', parcours: ['Accueil', 'A propos'], issue: 'convertit', questionCle: 'Les animaux sont gentils ?', frein: 'Navigation trop complexe — son fils appelle' },
+  { id: 19, nom: 'Stephanie', age: 40, emoji: '👩‍⚕️', situation: 'Infirmiere EHPAD, Marly', canal: 'QR code flyer', contexte: 'Se demande si c\'est aussi pour elle, pas ses patients.', parcours: ['Accueil', 'Ateliers', 'Zootherapie', 'Tarifs'], issue: 'hesite', questionCle: 'Je peux venir juste pour moi ?', frein: 'Le site ne dit jamais "c\'est aussi pour vous"' },
+  { id: 20, nom: 'David', age: 46, emoji: '👔', situation: 'Responsable qualite entreprise', canal: 'LinkedIn', contexte: 'Cherche du bien-etre pour la Semaine QVT.', parcours: ['Accueil', 'Ateliers', 'Tarifs'], issue: 'quitte', questionCle: 'Interventions en entreprise ?', frein: 'Aucune offre entreprise' },
 ];
 
 const convertis = personas.filter(p => p.issue === 'convertit');
 const hesitent = personas.filter(p => p.issue === 'hesite');
 const quittent = personas.filter(p => p.issue === 'quitte');
 
-const pageMap: Record<string, string> = {
-  'Accueil': '/', 'Zootherapie': '/zootherapie', 'Ateliers': '/ateliers',
-  'A propos': '/a-propos', 'Tarifs': '/tarifs', 'Temoignages': '/temoignages',
-  'FAQ': '/faq', 'Contact': '/contact',
+const issueStyle: Record<string, { bg: string; text: string; label: string; dot: string }> = {
+  convertit: { bg: 'bg-green-50', text: 'text-green-700', label: 'Vous contacte', dot: 'bg-green-500' },
+  hesite: { bg: 'bg-amber-50', text: 'text-amber-700', label: 'Hesite', dot: 'bg-amber-400' },
+  quitte: { bg: 'bg-red-50', text: 'text-red-600', label: 'Repart', dot: 'bg-red-400' },
 };
 ---
 
@@ -49,7 +49,7 @@ const pageMap: Record<string, string> = {
 
   <!-- ─── Back link ─── -->
   <div class="bg-white border-b border-neutral-100">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5">
       <a href="/aide-601302f4" class="inline-flex items-center gap-1.5 text-xs text-neutral-500 hover:text-primary-600 transition-colors">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
         Retour
@@ -57,304 +57,360 @@ const pageMap: Record<string, string> = {
     </div>
   </div>
 
-  <!-- ─── Hero simplifie ─── -->
-  <section class="bg-primary-800 py-10 md:py-12">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="font-heading text-2xl md:text-3xl font-bold text-white mb-3">Qui visite votre site ?</h1>
-      <p class="text-primary-200 text-sm md:text-base max-w-xl mx-auto mb-8">Nous avons imagine 20 visiteurs realistes pour tester votre site. Voici ce qu'ils font, ce qu'ils cherchent, et ce qui les bloque.</p>
-
-      <!-- 3 gros chiffres -->
-      <div class="flex justify-center gap-6 md:gap-10">
-        <a href="#contactent" class="group text-center">
-          <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-green-500/20 border-2 border-green-400 flex items-center justify-center mx-auto mb-2 group-hover:scale-105 transition-transform">
-            <span class="text-2xl md:text-3xl font-bold text-green-300">{convertis.length}</span>
-          </div>
-          <div class="text-xs text-green-300 font-medium">vous contactent</div>
-        </a>
-        <a href="#hesitent" class="group text-center">
-          <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-amber-500/20 border-2 border-amber-400 flex items-center justify-center mx-auto mb-2 group-hover:scale-105 transition-transform">
-            <span class="text-2xl md:text-3xl font-bold text-amber-300">{hesitent.length}</span>
-          </div>
-          <div class="text-xs text-amber-300 font-medium">hesitent</div>
-        </a>
-        <a href="#partent" class="group text-center">
-          <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-red-500/20 border-2 border-red-400 flex items-center justify-center mx-auto mb-2 group-hover:scale-105 transition-transform">
-            <span class="text-2xl md:text-3xl font-bold text-red-300">{quittent.length}</span>
-          </div>
-          <div class="text-xs text-red-300 font-medium">partent</div>
-        </a>
-      </div>
+  <!-- ─── Hero compact ─── -->
+  <section class="bg-primary-800 py-8 md:py-10">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="font-heading text-2xl md:text-3xl font-bold text-white mb-2">Qui visite votre site ?</h1>
+      <p class="text-primary-200 text-sm max-w-lg mx-auto">20 visiteurs types simules pour comprendre ce qui fonctionne et ce qu'on peut ameliorer.</p>
     </div>
   </section>
 
-  <!-- ─── Navigation ancres ─── -->
-  <nav class="sticky top-16 md:top-20 z-30 bg-white border-b border-neutral-200 shadow-sm">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-1 h-11 text-sm overflow-x-auto" style="-webkit-overflow-scrolling: touch; scrollbar-width: none;">
-      <a href="#contactent" class="px-3 py-1.5 rounded-lg font-medium whitespace-nowrap text-green-700 bg-green-50 hover:bg-green-100 transition-colors text-xs">Vous contactent ({convertis.length})</a>
-      <a href="#hesitent" class="px-3 py-1.5 rounded-lg font-medium whitespace-nowrap text-amber-700 bg-amber-50 hover:bg-amber-100 transition-colors text-xs">Hesitent ({hesitent.length})</a>
-      <a href="#partent" class="px-3 py-1.5 rounded-lg font-medium whitespace-nowrap text-red-700 bg-red-50 hover:bg-red-100 transition-colors text-xs">Partent ({quittent.length})</a>
-      <a href="#ameliorer" class="px-3 py-1.5 rounded-lg font-medium whitespace-nowrap text-primary-700 bg-primary-50 hover:bg-primary-100 transition-colors text-xs ml-auto">Ce qu'on peut ameliorer</a>
+  <!-- ─── Tab bar ─── -->
+  <nav class="sticky top-16 md:top-20 z-40 bg-white/95 backdrop-blur border-b border-neutral-200" id="tab-bar">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2 h-12 text-sm">
+      <button data-tab="0" class="tab-btn px-5 py-1.5 rounded-lg font-medium whitespace-nowrap transition-colors text-primary-700 bg-primary-50">
+        Visiteurs
+        <span class="ml-1 text-xs text-primary-400">20</span>
+      </button>
+      <button data-tab="1" class="tab-btn px-5 py-1.5 rounded-lg font-medium whitespace-nowrap transition-colors text-neutral-500 hover:text-neutral-700">
+        Ameliorations
+        <span class="ml-1 text-xs text-neutral-400">13</span>
+      </button>
     </div>
   </nav>
 
-  <!-- ══════════════════════════════════════════════ -->
-  <!-- SECTION 1 : CEUX QUI VOUS CONTACTENT          -->
-  <!-- ══════════════════════════════════════════════ -->
-  <section id="contactent" class="py-10 md:py-12 bg-white scroll-mt-28">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center gap-3 mb-2">
-        <div class="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center shrink-0">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+  <!-- ─── Swipeable panels ─── -->
+  <div id="panels" class="flex overflow-x-auto snap-x snap-mandatory" style="-webkit-overflow-scrolling: touch; scrollbar-width: none;">
+
+    <!-- ══════ PANEL 1 : VISITEURS ══════ -->
+    <section class="tab-panel min-w-full w-full snap-start snap-always shrink-0">
+
+      <!-- Stats row -->
+      <div class="bg-white py-6 border-b border-neutral-100">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center gap-8 md:gap-14">
+          <div class="text-center">
+            <div class="text-3xl font-bold text-green-600">{convertis.length}</div>
+            <div class="text-xs text-neutral-500 mt-1">vous contactent</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-amber-500">{hesitent.length}</div>
+            <div class="text-xs text-neutral-500 mt-1">hesitent</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-red-400">{quittent.length}</div>
+            <div class="text-xs text-neutral-500 mt-1">repartent</div>
+          </div>
         </div>
-        <h2 class="font-heading text-xl md:text-2xl font-bold text-neutral-900">Ceux qui vous contactent</h2>
       </div>
-      <p class="text-sm text-neutral-500 mb-6 ml-11">Ces visiteurs appellent ou envoient un message. Votre site fait son travail.</p>
 
-      <div class="space-y-4">
-        {convertis.map((p) => (
-          <article class="border border-green-200 bg-green-50/50 rounded-xl p-5">
-            <div class="flex items-start gap-4">
-              <div class="text-2xl shrink-0 mt-0.5">{p.emoji}</div>
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center justify-between gap-2 mb-1">
-                  <h3 class="font-semibold text-neutral-900 text-sm">{p.nom}, {p.age} ans — {p.situation}</h3>
-                  <span class="text-[11px] bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-medium shrink-0">{p.canal}</span>
-                </div>
-                <p class="text-xs text-neutral-600 mb-3">{p.contexte}</p>
-
-                {/* Parcours */}
-                <div class="flex flex-wrap items-center gap-1 mb-3">
-                  {p.parcours.map((page, i) => (
-                    <>
-                      <span class="text-[11px] bg-white text-primary-700 px-2 py-0.5 rounded border border-primary-100">{page}</span>
-                      {i < p.parcours.length - 1 && <span class="text-neutral-300 text-xs">›</span>}
-                    </>
-                  ))}
-                  <span class="text-[11px] bg-green-600 text-white px-2 py-0.5 rounded font-medium ml-1">Appelle / ecrit</span>
-                </div>
-
-                {/* Ce qui reste a ameliorer */}
-                {p.frein !== 'Aucun frein — elle etait deja convaincue' && (
-                  <div class="bg-white rounded-lg px-3 py-2 border border-neutral-100">
-                    <span class="text-[10px] text-neutral-400 font-semibold uppercase tracking-wider">Point d'amelioration</span>
-                    <p class="text-xs text-neutral-600 mt-0.5">{p.frein}</p>
+      <!-- Ceux qui convertissent -->
+      <div class="bg-white py-8">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center gap-2.5 mb-5">
+            <span class="w-2.5 h-2.5 rounded-full bg-green-500 shrink-0"></span>
+            <h2 class="font-heading text-lg font-bold text-neutral-900">Ceux qui vous contactent</h2>
+            <span class="text-xs text-neutral-400 ml-1">{convertis.length} visiteurs</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {convertis.map((p) => (
+              <article class="border border-green-200 bg-green-50/40 rounded-xl p-4 flex gap-3">
+                <div class="text-xl shrink-0 mt-0.5">{p.emoji}</div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center gap-2 mb-0.5">
+                    <h3 class="font-semibold text-neutral-900 text-sm">{p.nom}, {p.age} ans</h3>
+                    <span class="text-[11px] text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">{p.canal}</span>
                   </div>
-                )}
-              </div>
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════════ -->
-  <!-- SECTION 2 : CEUX QUI HESITENT                 -->
-  <!-- ══════════════════════════════════════════════ -->
-  <section id="hesitent" class="py-10 md:py-12 bg-neutral-50 scroll-mt-28">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center gap-3 mb-2">
-        <div class="w-8 h-8 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center shrink-0">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01"/></svg>
+                  <p class="text-xs text-neutral-500 mb-2">{p.situation}</p>
+                  <p class="text-xs text-neutral-600 mb-2.5">{p.contexte}</p>
+                  <div class="flex flex-wrap items-center gap-1">
+                    {p.parcours.map((page, i) => (
+                      <>
+                        <span class="text-[10px] text-primary-700 bg-white border border-primary-100 px-1.5 py-0.5 rounded">{page}</span>
+                        {i < p.parcours.length - 1 && <span class="text-neutral-300 text-[10px]">›</span>}
+                      </>
+                    ))}
+                    <span class="text-[10px] bg-green-600 text-white px-1.5 py-0.5 rounded font-medium ml-0.5">Appelle</span>
+                  </div>
+                  {p.frein && (
+                    <p class="text-[11px] text-amber-700 mt-2 leading-snug">A noter : {p.frein}</p>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
-        <h2 class="font-heading text-xl md:text-2xl font-bold text-neutral-900">Ceux qui hesitent</h2>
       </div>
-      <p class="text-sm text-neutral-500 mb-6 ml-11">Interesses mais pas convaincus. C'est ici qu'on peut progresser le plus.</p>
 
-      <div class="space-y-4">
-        {hesitent.map((p) => (
-          <article class="border border-amber-200 bg-white rounded-xl p-5">
-            <div class="flex items-start gap-4">
-              <div class="text-2xl shrink-0 mt-0.5">{p.emoji}</div>
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center justify-between gap-2 mb-1">
-                  <h3 class="font-semibold text-neutral-900 text-sm">{p.nom}, {p.age} ans — {p.situation}</h3>
-                  <span class="text-[11px] bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-medium shrink-0">{p.canal}</span>
+      <!-- Ceux qui hesitent -->
+      <div class="bg-neutral-50 py-8">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center gap-2.5 mb-1">
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-400 shrink-0"></span>
+            <h2 class="font-heading text-lg font-bold text-neutral-900">Ceux qui hesitent</h2>
+            <span class="text-xs text-neutral-400 ml-1">{hesitent.length} visiteurs</span>
+          </div>
+          <p class="text-xs text-neutral-500 mb-5 ml-5">Interesses mais pas convaincus — c'est la ou on peut progresser le plus.</p>
+          <div class="space-y-3">
+            {hesitent.map((p) => (
+              <article class="border border-amber-200 bg-white rounded-xl p-4 flex gap-3">
+                <div class="text-xl shrink-0 mt-0.5">{p.emoji}</div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center gap-2 mb-0.5 flex-wrap">
+                    <h3 class="font-semibold text-neutral-900 text-sm">{p.nom}, {p.age} ans — {p.situation}</h3>
+                    <span class="text-[11px] text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">{p.canal}</span>
+                  </div>
+                  <p class="text-xs text-neutral-600 mb-3">{p.contexte}</p>
+                  <div class="flex flex-wrap items-center gap-1 mb-3">
+                    {p.parcours.map((page, i) => (
+                      <>
+                        <span class="text-[10px] text-primary-700 bg-neutral-50 border border-neutral-200 px-1.5 py-0.5 rounded">{page}</span>
+                        {i < p.parcours.length - 1 && <span class="text-neutral-300 text-[10px]">›</span>}
+                      </>
+                    ))}
+                    <span class="text-[10px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded font-medium ml-0.5">Hesite…</span>
+                  </div>
+                  <div class="bg-amber-50 rounded-lg px-3 py-2 border border-amber-100">
+                    <p class="text-xs text-neutral-700 italic mb-1">"{p.questionCle}"</p>
+                    <p class="text-xs text-amber-700 font-medium">{p.frein}</p>
+                  </div>
                 </div>
-                <p class="text-xs text-neutral-600 mb-3">{p.contexte}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
 
-                {/* Parcours */}
-                <div class="flex flex-wrap items-center gap-1 mb-3">
-                  {p.parcours.map((page, i) => (
-                    <>
-                      <span class="text-[11px] bg-neutral-50 text-primary-700 px-2 py-0.5 rounded border border-neutral-200">{page}</span>
-                      {i < p.parcours.length - 1 && <span class="text-neutral-300 text-xs">›</span>}
-                    </>
-                  ))}
-                  <span class="text-[11px] bg-amber-100 text-amber-700 px-2 py-0.5 rounded font-medium ml-1">Hesite…</span>
-                </div>
-
-                {/* Question + ce qui bloque */}
-                <div class="bg-amber-50 rounded-lg px-3 py-2.5 border border-amber-100 space-y-1.5">
+      <!-- Ceux qui partent -->
+      <div class="bg-white py-8">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center gap-2.5 mb-1">
+            <span class="w-2.5 h-2.5 rounded-full bg-red-400 shrink-0"></span>
+            <h2 class="font-heading text-lg font-bold text-neutral-900">Ceux qui repartent</h2>
+            <span class="text-xs text-neutral-400 ml-1">{quittent.length} visiteurs</span>
+          </div>
+          <p class="text-xs text-neutral-500 mb-5 ml-5">Ils ne cherchaient pas ce que vous proposez. C'est normal.</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+            {quittent.map((p) => (
+              <article class="border border-neutral-200 bg-neutral-50/50 rounded-xl p-3.5">
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="text-lg">{p.emoji}</span>
                   <div>
-                    <span class="text-[10px] text-neutral-400 font-semibold uppercase tracking-wider">Sa question</span>
-                    <p class="text-xs text-neutral-700 italic">"{p.questionCle}"</p>
-                  </div>
-                  <div>
-                    <span class="text-[10px] text-amber-600 font-semibold uppercase tracking-wider">Ce qui bloque</span>
-                    <p class="text-xs text-neutral-700">{p.frein}</p>
+                    <h3 class="font-semibold text-neutral-800 text-xs">{p.nom}, {p.age} ans</h3>
+                    <span class="text-[11px] text-blue-600">{p.canal}</span>
                   </div>
                 </div>
-              </div>
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════════ -->
-  <!-- SECTION 3 : CEUX QUI PARTENT                   -->
-  <!-- ══════════════════════════════════════════════ -->
-  <section id="partent" class="py-10 md:py-12 bg-white scroll-mt-28">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center gap-3 mb-2">
-        <div class="w-8 h-8 rounded-full bg-red-100 text-red-500 flex items-center justify-center shrink-0">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                <p class="text-xs text-neutral-500 mb-1.5">{p.contexte}</p>
+                <p class="text-[11px] text-red-500 italic">{p.frein}</p>
+              </article>
+            ))}
+          </div>
         </div>
-        <h2 class="font-heading text-xl md:text-2xl font-bold text-neutral-900">Ceux qui partent</h2>
       </div>
-      <p class="text-sm text-neutral-500 mb-6 ml-11">Ils ne cherchaient pas ce que vous proposez. C'est normal — pas tous sont des clients potentiels.</p>
 
-      <div class="space-y-3">
-        {quittent.map((p) => (
-          <article class="border border-neutral-200 bg-neutral-50/50 rounded-xl p-4">
-            <div class="flex items-center gap-3">
-              <div class="text-xl shrink-0">{p.emoji}</div>
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-2 flex-wrap">
-                  <h3 class="font-semibold text-neutral-900 text-sm">{p.nom}, {p.age} ans</h3>
-                  <span class="text-[11px] bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-medium">{p.canal}</span>
+    </section>
+
+    <!-- ══════ PANEL 2 : AMELIORATIONS ══════ -->
+    <section class="tab-panel min-w-full w-full snap-start snap-always shrink-0 py-10 md:py-12">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <h2 class="font-heading text-2xl font-bold text-neutral-900 mb-1">Ameliorations proposees</h2>
+        <p class="text-sm text-neutral-500 mb-8">Actions concretes pour transformer les hesitants en clients, classees par importance.</p>
+
+        <!-- ── Le plus important ── -->
+        <div class="mb-10">
+          <div class="flex items-center gap-2.5 mb-4">
+            <span class="w-2.5 h-2.5 rounded-full bg-red-500 shrink-0"></span>
+            <h3 class="font-bold text-neutral-900 text-sm uppercase tracking-wider">Le plus important</h3>
+          </div>
+          <div class="space-y-4">
+
+            <div class="bg-white border-2 border-red-200 rounded-xl p-5 shadow-sm">
+              <h4 class="font-semibold text-neutral-900 mb-2">Collecter plus de temoignages</h4>
+              <p class="text-sm text-neutral-600 mb-3">8 visiteurs sur 20 cherchent un temoignage qui ressemble a leur situation. Il manque :</p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
+                <div class="flex items-center gap-2 bg-red-50 rounded-lg px-3 py-2">
+                  <span class="text-sm">👨‍👦</span>
+                  <span class="text-xs text-neutral-700">Parent d'enfant TDAH ou autiste</span>
                 </div>
-                <p class="text-xs text-neutral-500 mt-1">{p.contexte}</p>
+                <div class="flex items-center gap-2 bg-red-50 rounded-lg px-3 py-2">
+                  <span class="text-sm">🤱</span>
+                  <span class="text-xs text-neutral-700">Aidant familial epuise</span>
+                </div>
+                <div class="flex items-center gap-2 bg-red-50 rounded-lg px-3 py-2">
+                  <span class="text-sm">👨‍💼</span>
+                  <span class="text-xs text-neutral-700">Directeur d'EHPAD ou de foyer</span>
+                </div>
+                <div class="flex items-center gap-2 bg-red-50 rounded-lg px-3 py-2">
+                  <span class="text-sm">👵</span>
+                  <span class="text-xs text-neutral-700">Personne agee suivie a domicile</span>
+                </div>
               </div>
-              <div class="shrink-0 hidden sm:block max-w-[200px]">
-                <p class="text-xs text-red-600 italic text-right">{p.frein}</p>
+              <div class="bg-primary-50 rounded-lg px-3 py-2.5 flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-primary-600 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                <p class="text-xs text-primary-800">Jennifer peut demander un avis apres chaque seance — meme 2-3 phrases suffisent. Le lien d'avis Google est sur votre <a href="/aide-601302f4" class="underline">page d'aide</a>.</p>
               </div>
             </div>
-            <p class="text-xs text-red-600 italic mt-2 sm:hidden">{p.frein}</p>
-          </article>
-        ))}
+
+            <div class="bg-white border-2 border-red-200 rounded-xl p-5 shadow-sm">
+              <h4 class="font-semibold text-neutral-900 mb-2">Ajouter les infos budget et frequence</h4>
+              <p class="text-sm text-neutral-600 mb-3">6 visiteurs ne savent pas combien de seances prevoir ni si c'est rembourse.</p>
+              <div class="space-y-2 mb-4">
+                <div class="flex items-start gap-2 text-sm text-neutral-700">
+                  <span class="text-primary-500 mt-0.5 shrink-0">+</span>
+                  <span>"En moyenne 6 a 8 seances, toutes les 2 semaines"</span>
+                </div>
+                <div class="flex items-start gap-2 text-sm text-neutral-700">
+                  <span class="text-primary-500 mt-0.5 shrink-0">+</span>
+                  <span>"Renseignez-vous aupres de votre mutuelle" (certaines remboursent)</span>
+                </div>
+                <div class="flex items-start gap-2 text-sm text-neutral-700">
+                  <span class="text-primary-500 mt-0.5 shrink-0">+</span>
+                  <span>Ajouter une FAQ : "Est-ce rembourse ?"</span>
+                </div>
+              </div>
+              <div class="bg-primary-50 rounded-lg px-3 py-2.5 flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-primary-600 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                <p class="text-xs text-primary-800">A ajouter sur la page Tarifs et dans la FAQ.</p>
+              </div>
+            </div>
+
+            <div class="bg-white border-2 border-red-200 rounded-xl p-5 shadow-sm">
+              <h4 class="font-semibold text-neutral-900 mb-2">Mieux parler aux structures</h4>
+              <p class="text-sm text-neutral-600 mb-3">5 visiteurs (directeurs EHPAD, ecole, medecins) cherchent un dossier a presenter. On peut ajouter :</p>
+              <div class="space-y-2 mb-4">
+                <div class="flex items-start gap-2 text-sm text-neutral-700">
+                  <span class="text-primary-500 mt-0.5 shrink-0">+</span>
+                  <span>Un encart "Vous etes une structure ?" sur la page Ateliers</span>
+                </div>
+                <div class="flex items-start gap-2 text-sm text-neutral-700">
+                  <span class="text-primary-500 mt-0.5 shrink-0">+</span>
+                  <span>Mention de l'assurance et du suivi veterinaire</span>
+                </div>
+                <div class="flex items-start gap-2 text-sm text-neutral-700">
+                  <span class="text-primary-500 mt-0.5 shrink-0">+</span>
+                  <span>Une plaquette PDF a telecharger</span>
+                </div>
+              </div>
+              <div class="bg-primary-50 rounded-lg px-3 py-2.5 flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-primary-600 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                <p class="text-xs text-primary-800">Marc peut creer l'encart et la plaquette.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Utile aussi ── -->
+        <div class="mb-10">
+          <div class="flex items-center gap-2.5 mb-4">
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-400 shrink-0"></span>
+            <h3 class="font-bold text-neutral-900 text-sm uppercase tracking-wider">Utile aussi</h3>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="bg-white border border-neutral-200 rounded-xl p-4">
+              <h4 class="font-semibold text-neutral-900 text-sm mb-1.5">Disclaimer medical</h4>
+              <p class="text-xs text-neutral-600">"La mediation animale est complementaire et ne remplace pas un suivi medical." Les medecins qui visitent le site le cherchent.</p>
+            </div>
+            <div class="bg-white border border-neutral-200 rounded-xl p-4">
+              <h4 class="font-semibold text-neutral-900 text-sm mb-1.5">Collaboration interpro</h4>
+              <p class="text-xs text-neutral-600">Ajouter : "Je travaille en lien avec medecins et psychologues." Ca rassure les prescripteurs.</p>
+            </div>
+            <div class="bg-white border border-neutral-200 rounded-xl p-4">
+              <h4 class="font-semibold text-neutral-900 text-sm mb-1.5">Ajouter la SEP dans la FAQ</h4>
+              <p class="text-xs text-neutral-600">Un mot suffit dans la liste des pathologies. Une visiteuse le cherchait pour sa fille.</p>
+            </div>
+            <div class="bg-white border border-neutral-200 rounded-xl p-4">
+              <h4 class="font-semibold text-neutral-900 text-sm mb-1.5">"Apprends a parler chien"</h4>
+              <p class="text-xs text-neutral-600">Cet atelier est sur votre flyer mais absent du site. Une directrice d'ecole le cherchait.</p>
+            </div>
+            <div class="bg-white border border-neutral-200 rounded-xl p-4 sm:col-span-2">
+              <h4 class="font-semibold text-neutral-900 text-sm mb-1.5">Bien-etre sans pathologie</h4>
+              <p class="text-xs text-neutral-600">Une infirmiere epuisee hesitait car le site semble reserve aux personnes avec un diagnostic. Un simple message "Pas besoin d'un probleme pour un moment de douceur" pourrait debloquer ce type de visiteur.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── A discuter ensemble ── -->
+        <div>
+          <div class="flex items-center gap-2.5 mb-4">
+            <span class="w-2.5 h-2.5 rounded-full bg-neutral-400 shrink-0"></span>
+            <h3 class="font-bold text-neutral-900 text-sm uppercase tracking-wider">A discuter ensemble</h3>
+          </div>
+          <div class="space-y-3">
+            <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-4 flex gap-3">
+              <span class="text-lg shrink-0">🏢</span>
+              <div>
+                <h4 class="font-semibold text-neutral-900 text-sm mb-0.5">Mediation animale en entreprise ?</h4>
+                <p class="text-xs text-neutral-600">Un visiteur cherchait du bien-etre au travail (Semaine QVT). Nouveau marche — est-ce que ca vous interesse ?</p>
+              </div>
+            </div>
+            <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-4 flex gap-3">
+              <span class="text-lg shrink-0">💬</span>
+              <div>
+                <h4 class="font-semibold text-neutral-900 text-sm mb-0.5">Messenger ou WhatsApp ?</h4>
+                <p class="text-xs text-neutral-600">Certains visiteurs arrivent depuis Facebook en soiree et n'osent pas remplir le formulaire.</p>
+              </div>
+            </div>
+            <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-4 flex gap-3">
+              <span class="text-lg shrink-0">🌿</span>
+              <div>
+                <h4 class="font-semibold text-neutral-900 text-sm mb-0.5">Bien-etre "tout public" ?</h4>
+                <p class="text-xs text-neutral-600">Faut-il communiquer sur la zootherapie pour tous, y compris sans pathologie, ou rester positionne medico-social ?</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ══════════════════════════════════════════════ -->
-  <!-- SECTION 4 : CE QU'ON PEUT AMELIORER            -->
-  <!-- ══════════════════════════════════════════════ -->
-  <section id="ameliorer" class="py-10 md:py-14 bg-primary-50 scroll-mt-28">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center gap-3 mb-2">
-        <div class="w-8 h-8 rounded-full bg-primary-200 text-primary-700 flex items-center justify-center shrink-0">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-        </div>
-        <h2 class="font-heading text-xl md:text-2xl font-bold text-neutral-900">Ce qu'on peut ameliorer</h2>
-      </div>
-      <p class="text-sm text-neutral-500 mb-8 ml-11">Actions concretes pour transformer les hesitants en clients.</p>
-
-      <!-- Priorite haute -->
-      <div class="mb-8">
-        <div class="flex items-center gap-2 mb-4">
-          <span class="text-xs font-bold text-red-700 bg-red-100 px-3 py-1 rounded-full">Le plus important</span>
-        </div>
-        <div class="space-y-3">
-          <div class="bg-white border border-red-200 rounded-xl p-5 shadow-sm">
-            <h3 class="font-semibold text-neutral-900 mb-1">Collecter plus de temoignages</h3>
-            <p class="text-sm text-neutral-600 mb-3">Beaucoup de visiteurs cherchent un temoignage qui ressemble a leur situation. Aujourd'hui il manque :</p>
-            <ul class="space-y-1.5 text-sm text-neutral-600">
-              <li class="flex items-start gap-2"><span class="text-red-400 mt-0.5">•</span>Un parent d'enfant TDAH ou autiste</li>
-              <li class="flex items-start gap-2"><span class="text-red-400 mt-0.5">•</span>Un aidant familial epuise</li>
-              <li class="flex items-start gap-2"><span class="text-red-400 mt-0.5">•</span>Un directeur d'EHPAD ou de foyer</li>
-              <li class="flex items-start gap-2"><span class="text-red-400 mt-0.5">•</span>Une personne agee suivie a domicile</li>
-            </ul>
-            <p class="text-xs text-primary-700 font-medium mt-3 flex items-center gap-1">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-              Jennifer peut demander un avis apres chaque seance — meme 2-3 phrases suffisent
-            </p>
-          </div>
-
-          <div class="bg-white border border-red-200 rounded-xl p-5 shadow-sm">
-            <h3 class="font-semibold text-neutral-900 mb-1">Ajouter des infos sur la frequence et les aides</h3>
-            <p class="text-sm text-neutral-600 mb-2">Les visiteurs ne savent pas combien de seances prevoir ni si c'est rembourse. On peut ajouter :</p>
-            <ul class="space-y-1.5 text-sm text-neutral-600">
-              <li class="flex items-start gap-2"><span class="text-red-400 mt-0.5">•</span>"En moyenne 6 a 8 seances, toutes les 2 semaines"</li>
-              <li class="flex items-start gap-2"><span class="text-red-400 mt-0.5">•</span>"Renseignez-vous aupres de votre mutuelle" (certaines remboursent)</li>
-              <li class="flex items-start gap-2"><span class="text-red-400 mt-0.5">•</span>FAQ : "Est-ce rembourse ?"</li>
-            </ul>
-            <p class="text-xs text-primary-700 font-medium mt-3 flex items-center gap-1">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-              A ajouter sur la page Tarifs et dans la FAQ
-            </p>
-          </div>
-
-          <div class="bg-white border border-red-200 rounded-xl p-5 shadow-sm">
-            <h3 class="font-semibold text-neutral-900 mb-1">Mieux parler aux structures (EHPAD, ecoles, foyers)</h3>
-            <p class="text-sm text-neutral-600 mb-2">Les directeurs d'etablissement cherchent un dossier a presenter a leur direction. On peut ajouter :</p>
-            <ul class="space-y-1.5 text-sm text-neutral-600">
-              <li class="flex items-start gap-2"><span class="text-red-400 mt-0.5">•</span>Un encart "Vous etes une structure ?" sur la page Ateliers</li>
-              <li class="flex items-start gap-2"><span class="text-red-400 mt-0.5">•</span>Mention de l'assurance RC Pro et du suivi veterinaire</li>
-              <li class="flex items-start gap-2"><span class="text-red-400 mt-0.5">•</span>Une plaquette PDF a telecharger</li>
-            </ul>
-            <p class="text-xs text-primary-700 font-medium mt-3 flex items-center gap-1">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-              Marc peut creer l'encart et la plaquette
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Priorite moyenne -->
-      <div class="mb-8">
-        <div class="flex items-center gap-2 mb-4">
-          <span class="text-xs font-bold text-amber-700 bg-amber-100 px-3 py-1 rounded-full">Utile aussi</span>
-        </div>
-        <div class="space-y-3">
-          <div class="bg-white border border-neutral-200 rounded-xl p-4">
-            <h3 class="font-semibold text-neutral-900 text-sm mb-1">Ajouter un disclaimer medical</h3>
-            <p class="text-xs text-neutral-600">"La mediation animale est une approche complementaire et ne remplace pas un suivi medical." Les medecins qui visitent le site le cherchent.</p>
-          </div>
-          <div class="bg-white border border-neutral-200 rounded-xl p-4">
-            <h3 class="font-semibold text-neutral-900 text-sm mb-1">Mentionner la collaboration avec les pros de sante</h3>
-            <p class="text-xs text-neutral-600">Ajouter sur la page A propos : "Je travaille en lien avec les medecins et psychologues qui suivent mes patients." Ca rassure les prescripteurs.</p>
-          </div>
-          <div class="bg-white border border-neutral-200 rounded-xl p-4">
-            <h3 class="font-semibold text-neutral-900 text-sm mb-1">Ajouter la sclerose en plaques dans la FAQ</h3>
-            <p class="text-xs text-neutral-600">Un mot suffit dans la liste des pathologies. Actuellement seuls Alzheimer et Parkinson sont mentionnes.</p>
-          </div>
-          <div class="bg-white border border-neutral-200 rounded-xl p-4">
-            <h3 class="font-semibold text-neutral-900 text-sm mb-1">Ajouter l'atelier "Apprends a parler chien"</h3>
-            <p class="text-xs text-neutral-600">Il est sur votre flyer mais absent du site. Une directrice d'ecole le cherchait.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Questions a discuter -->
-      <div>
-        <div class="flex items-center gap-2 mb-4">
-          <span class="text-xs font-bold text-neutral-600 bg-neutral-200 px-3 py-1 rounded-full">A discuter ensemble</span>
-        </div>
-        <div class="space-y-3">
-          <div class="bg-white border border-neutral-200 rounded-xl p-4">
-            <h3 class="font-semibold text-neutral-900 text-sm mb-1">Proposer la mediation animale en entreprise ?</h3>
-            <p class="text-xs text-neutral-600">Un visiteur cherchait du bien-etre au travail (Semaine QVT). C'est un nouveau marche — est-ce que ca vous interesse ?</p>
-          </div>
-          <div class="bg-white border border-neutral-200 rounded-xl p-4">
-            <h3 class="font-semibold text-neutral-900 text-sm mb-1">Etre contactable par Messenger ou WhatsApp ?</h3>
-            <p class="text-xs text-neutral-600">Certains visiteurs arrivent depuis Facebook en soiree et n'osent pas remplir un formulaire. Un simple lien Messenger pourrait les capter.</p>
-          </div>
-          <div class="bg-white border border-neutral-200 rounded-xl p-4">
-            <h3 class="font-semibold text-neutral-900 text-sm mb-1">Communiquer sur le bien-etre "tout public" ?</h3>
-            <p class="text-xs text-neutral-600">Une infirmiere epuisee hesitait car le site semble reserve aux personnes avec un diagnostic. Faut-il ajouter un message "La mediation animale, c'est aussi pour vous" ?</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  </div><!-- /panels -->
 
   <!-- ─── Contact webmaster ─── -->
   <div class="text-center py-6 border-t border-neutral-100 text-xs text-neutral-400">
-    Des questions sur cette page ? <a href="mailto:marc@muller.im" class="text-primary-600 font-medium hover:text-primary-700 transition-colors">marc@muller.im</a>
+    Questions ? <a href="mailto:marc@muller.im" class="text-primary-600 font-medium hover:text-primary-700 transition-colors">marc@muller.im</a>
   </div>
 
   <Footer slot="footer" />
+
+  <style is:inline>
+    #panels { -ms-overflow-style: none; }
+    #panels::-webkit-scrollbar { display: none; }
+  </style>
+
+  <!-- Tab + swipe sync (meme pattern que la page aide) -->
+  <script is:inline>
+    const panels = document.getElementById('panels');
+    const tabs = document.querySelectorAll('.tab-btn');
+    const sections = panels.querySelectorAll('.tab-panel');
+
+    function activateTab(index) {
+      tabs.forEach((b, i) => {
+        if (i === index) {
+          b.classList.remove('text-neutral-500');
+          b.classList.add('text-primary-700', 'bg-primary-50');
+        } else {
+          b.classList.remove('text-primary-700', 'bg-primary-50');
+          b.classList.add('text-neutral-500');
+        }
+      });
+    }
+
+    tabs.forEach((btn, i) => {
+      btn.addEventListener('click', () => {
+        sections[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+        activateTab(i);
+      });
+    });
+
+    let scrollTimeout;
+    panels.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        const scrollLeft = panels.scrollLeft;
+        const panelWidth = panels.offsetWidth;
+        const index = Math.round(scrollLeft / panelWidth);
+        activateTab(index);
+      }, 50);
+    }, { passive: true });
+  </script>
 </BaseLayout>
