@@ -7,7 +7,7 @@ import Footer from '@components/layout/Footer.astro';
 import { getSiteInfo } from '@data/content';
 import { legal } from '@data/business';
 
-const siteInfo = getSiteInfo();
+const siteInfo = await getSiteInfo();
 const currentYear = new Date().getFullYear();
 ---
 

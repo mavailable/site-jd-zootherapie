@@ -11,11 +11,14 @@ export default defineConfig({
   adapter: cloudflare(),
   integrations: [
     sitemap({
-      i18n: { defaultLocale: 'fr', locales: { fr: 'fr-FR' } },
       filter: (page) =>
-        !page.includes('/aide') &&
         !page.includes('/merci') &&
-        !page.includes('/keystatic'),
+        !page.includes('/404') &&
+        !page.includes('/aide-'),
+      i18n: {
+        defaultLocale: 'fr',
+        locales: { fr: 'fr-FR' },
+      },
     }),
     react(),
     keystatic(),

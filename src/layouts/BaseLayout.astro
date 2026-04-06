@@ -3,7 +3,7 @@ import '@styles/global.css';
 import { getSiteInfo } from '@data/content';
 import { siteUrl } from '@data/business';
 
-const siteInfo = getSiteInfo();
+const siteInfo = await getSiteInfo();
 
 interface Props {
   title?: string;

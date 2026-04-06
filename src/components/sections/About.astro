@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { snippet = false } = Astro.props;
-const about = getAbout();
+const about = await getAbout();
 
 // En mode snippet : 1 paragraphe + lien vers /a-propos
 // En mode complet : tous les paragraphes + section animaux

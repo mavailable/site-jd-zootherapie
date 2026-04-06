@@ -19,7 +19,7 @@ const {
   subtitle = 'Particuliers, familles ou structures — chaque séance est construite autour de vos objectifs, avec des animaux médiateurs formés.',
 } = Astro.props;
 
-const allServices = getServices();
+const allServices = await getServices();
 const services = limit ? allServices.slice(0, limit) : allServices;
 
 // Icônes par slug de service

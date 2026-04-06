@@ -10,7 +10,7 @@ import CTABanner from '@components/sections/CTABanner.astro';
 import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
 import { getFaq } from '@data/content';
 
-const faqs = getFaq();
+const faqs = await getFaq();
 ---
 
 <BaseLayout

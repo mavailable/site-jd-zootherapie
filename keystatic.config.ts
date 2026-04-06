@@ -5,7 +5,7 @@ export default config({
   cloud: { project: 'jd-zootherapeute/site-jd-zootherapie' },
 
   singletons: {
-    siteInfo: singleton({
+    'site-info': singleton({
       label: 'Informations générales',
       path: 'src/content/site-info/index',
       format: { data: 'json' },

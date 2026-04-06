@@ -16,7 +16,7 @@ const {
   showLink = false,
 } = Astro.props;
 
-const allFaqs = getFaq();
+const allFaqs = await getFaq();
 const faqs = limit ? allFaqs.slice(0, limit) : allFaqs;
 ---
 

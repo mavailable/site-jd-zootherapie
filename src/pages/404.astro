@@ -6,7 +6,7 @@ import Header from '@components/layout/Header.astro';
 import Footer from '@components/layout/Footer.astro';
 import { getSiteInfo } from '@data/content';
 
-const siteInfo = getSiteInfo();
+const siteInfo = await getSiteInfo();
 ---
 
 <BaseLayout
