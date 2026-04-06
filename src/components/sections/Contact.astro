@@ -98,7 +98,7 @@ const contact = await getContact();
 
           <div aria-live="polite" aria-atomic="true" class="sr-only" id="form-status"></div>
           <form action="https://api.web3forms.com/submit" method="POST" class="space-y-5">
-            <input type="hidden" name="access_key" value="9b6f8df0-5af1-4802-92f1-1ec224519398" />
+            <input type="hidden" name="access_key" value={import.meta.env.PUBLIC_WEB3FORMS_KEY} />
             <input type="hidden" name="from_name" value="JD Zoothérapie — Site web" />
             <input type="hidden" name="subject" value="Nouveau message depuis jdzootherapeute.fr" />
             <input type="hidden" name="redirect" value="https://jdzootherapeute.fr/merci" />

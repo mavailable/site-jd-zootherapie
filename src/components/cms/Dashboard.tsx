@@ -50,12 +50,11 @@ export function Dashboard({ config }: DashboardProps) {
         <h1 style={styles.welcomeTitle}>Bienvenue sur votre espace</h1>
         <p style={styles.welcomeText}>Modifiez le contenu de votre site en quelques clics.</p>
         <div style={styles.quickActions}>
-          <button onClick={() => navigate('#/collection/projects/new')} style={styles.quickBtn}>
-            + Ajouter un projet
-          </button>
-          <button onClick={() => navigate('#/collection/blog/new')} style={styles.quickBtnSecondary}>
-            + Ecrire un article
-          </button>
+          {collectionEntries.slice(0, 2).map(([key, col]) => (
+            <button key={key} onClick={() => navigate(`#/collection/${key}/new`)} style={styles.quickBtn}>
+              + {col.label}
+            </button>
+          ))}
         </div>
       </section>
 
@@ -174,17 +173,6 @@ const styles: Record<string, React.CSSProperties> = {
     borderRadius: '10px',
     cursor: 'pointer',
     transition: 'transform 0.1s, box-shadow 0.15s',
-  },
-  quickBtnSecondary: {
-    padding: '0.625rem 1.25rem',
-    fontSize: '0.875rem',
-    fontWeight: 600,
-    color: '#fff',
-    background: 'rgba(255,255,255,0.2)',
-    border: '1px solid rgba(255,255,255,0.4)',
-    borderRadius: '10px',
-    cursor: 'pointer',
-    transition: 'transform 0.1s, background 0.15s',
   },
   section: { marginBottom: '2rem' },
   sectionTitle: {

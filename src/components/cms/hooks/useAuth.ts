@@ -42,9 +42,13 @@ export function useAuth() {
     }
   }, []);
 
-  const logout = useCallback(() => {
-    // Supprimer le cookie côté client (le serveur l'invalidera aussi)
-    document.cookie = 'cms_session=; Path=/; Max-Age=0';
+  const logout = useCallback(async () => {
+    try {
+      await fetch('/api/cms/logout', { method: 'POST' });
+    } catch {
+      // fallback: clear cookie client-side
+      document.cookie = 'cms_session=; Path=/; Max-Age=0';
+    }
     setState({ checking: false, authenticated: false });
   }, []);
 

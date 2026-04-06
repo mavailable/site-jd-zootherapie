@@ -86,14 +86,14 @@ export async function requireAuth(request, env) {
  * Crée le header Set-Cookie pour la session
  */
 export function createSessionCookie(token) {
-  return `cms_session=${token}; Secure; SameSite=Strict; Path=/; Max-Age=${SESSION_DURATION}`;
+  return `cms_session=${token}; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=${SESSION_DURATION}`;
 }
 
 /**
  * Crée le header Set-Cookie pour supprimer la session
  */
 export function clearSessionCookie() {
-  return 'cms_session=; Secure; SameSite=Strict; Path=/; Max-Age=0';
+  return 'cms_session=; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=0';
 }
 
 /**

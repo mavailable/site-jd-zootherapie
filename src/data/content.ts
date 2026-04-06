@@ -1,5 +1,5 @@
 /**
- * Content helpers — reads Keystatic JSON flat files via Astro Content API
+ * Content helpers — reads CMS JSON flat files via Astro Content API
  */
 import { getCollection, getEntry } from 'astro:content';
 
