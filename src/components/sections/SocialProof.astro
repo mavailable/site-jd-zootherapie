@@ -87,12 +87,15 @@ const stats = [
           <svg class="w-8 h-8 text-secondary-400 mb-3 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"/>
           </svg>
-          <blockquote class="text-neutral-700 text-sm leading-relaxed mb-4 flex-1 italic">
+          <blockquote class="text-neutral-700 text-sm leading-relaxed mb-4 flex-1 italic"
+                      data-cms-field={`testimonials:${t.slug}.quote`} data-cms-type="text">
             {t.quote}
           </blockquote>
           <footer class="border-t border-secondary-200 pt-3 mt-auto">
-            <p class="font-semibold text-primary-900 text-sm">{t.author}</p>
-            <p class="text-neutral-500 text-xs">{t.context}</p>
+            <p class="font-semibold text-primary-900 text-sm"
+               data-cms-field={`testimonials:${t.slug}.author`} data-cms-type="text">{t.author}</p>
+            <p class="text-neutral-500 text-xs"
+               data-cms-field={`testimonials:${t.slug}.context`} data-cms-type="text">{t.context}</p>
           </footer>
         </article>
       ))}

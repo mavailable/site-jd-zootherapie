@@ -1,0 +1,101 @@
+// POST /api/cms/save — Sauvegarder un fichier (commit GitHub)
+import { requireAuth, checkOrigin, jsonHeaders } from './_auth-helpers.js';
+
+export async function onRequestPost({ request, env }) {
+  try {
+    await requireAuth(request, env);
+  } catch (response) {
+    return response;
+  }
+
+  if (!checkOrigin(request)) {
+    return new Response(
+      JSON.stringify({ error: 'Origine non autorisée' }),
+      { status: 403, headers: jsonHeaders() }
+    );
+  }
+
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return new Response(
+      JSON.stringify({ error: 'Corps de requête invalide' }),
+      { status: 400, headers: jsonHeaders() }
+    );
+  }
+
+  const { path, content, sha, message } = body;
+
+  // Validation du chemin
+  if (!path || !path.startsWith('src/content/') || !path.endsWith('.json')) {
+    return new Response(
+      JSON.stringify({ error: 'Chemin invalide' }),
+      { status: 400, headers: jsonHeaders() }
+    );
+  }
+
+  if (!content || typeof content !== 'object') {
+    return new Response(
+      JSON.stringify({ error: 'Contenu invalide' }),
+      { status: 400, headers: jsonHeaders() }
+    );
+  }
+
+  try {
+    const jsonString = JSON.stringify(content, null, 2) + '\n';
+    const bytes = new TextEncoder().encode(jsonString);
+    const encoded = btoa(String.fromCharCode(...bytes));
+
+    const payload = {
+      message: message || `[CMS] Mise à jour ${path.split('/').pop()}`,
+      content: encoded,
+      branch: env.CMS_BRANCH || 'master',
+    };
+
+    // sha requis pour mise à jour (pas pour création)
+    if (sha) {
+      payload.sha = sha;
+    }
+
+    const response = await fetch(
+      `https://api.github.com/repos/${env.CMS_REPO}/contents/${path}`,
+      {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${env.GITHUB_TOKEN}`,
+          Accept: 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json',
+          'User-Agent': 'WebFactory-CMS',
+        },
+        body: JSON.stringify(payload),
+      }
+    );
+
+    if (!response.ok) {
+      const error = await response.json();
+      if (response.status === 409) {
+        return new Response(
+          JSON.stringify({ error: 'Conflit — le fichier a été modifié. Rechargez la page.' }),
+          { status: 409, headers: jsonHeaders() }
+        );
+      }
+      throw new Error(`GitHub API error: ${response.status} — ${JSON.stringify(error)}`);
+    }
+
+    const data = await response.json();
+
+    return new Response(
+      JSON.stringify({
+        sha: data.content.sha,
+        commit: data.commit.sha,
+      }),
+      { status: 200, headers: jsonHeaders() }
+    );
+  } catch (err) {
+    return new Response(
+      JSON.stringify({ error: 'Erreur lors de la sauvegarde' }),
+      { status: 500, headers: jsonHeaders() }
+    );
+  }
+}

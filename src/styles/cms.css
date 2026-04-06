@@ -1,0 +1,102 @@
+/* Styles pour le CMS admin — chargés uniquement sur /admin */
+
+/* Animations */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* TipTap editor styles */
+.tiptap {
+  outline: none;
+}
+
+.tiptap p {
+  margin: 0 0 0.5em;
+}
+
+.tiptap h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 1em 0 0.5em;
+  color: #0f172a;
+}
+
+.tiptap h3 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin: 0.75em 0 0.375em;
+  color: #1e293b;
+}
+
+.tiptap ul,
+.tiptap ol {
+  margin: 0.5em 0;
+  padding-left: 1.5em;
+}
+
+.tiptap li {
+  margin-bottom: 0.25em;
+}
+
+.tiptap a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.tiptap strong {
+  font-weight: 600;
+}
+
+.tiptap em {
+  font-style: italic;
+}
+
+/* Focus states */
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Card hover */
+button[style*="border: 1px solid"]:hover,
+button[style*="border:1px solid"]:hover {
+  border-color: #bfdbfe !important;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+  transform: translateY(-1px);
+}
+
+/* Button hover */
+button:not(:disabled):hover {
+  opacity: 0.9;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+}

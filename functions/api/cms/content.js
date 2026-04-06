@@ -1,0 +1,59 @@
+// GET /api/cms/content?path=src/content/hero/index.json — Lire un fichier JSON
+import { requireAuth, jsonHeaders } from './_auth-helpers.js';
+
+export async function onRequestGet({ request, env }) {
+  try {
+    await requireAuth(request, env);
+  } catch (response) {
+    return response;
+  }
+
+  const url = new URL(request.url);
+  const path = url.searchParams.get('path');
+
+  // Validation du chemin
+  if (!path || !path.startsWith('src/content/') || !path.endsWith('.json')) {
+    return new Response(
+      JSON.stringify({ error: 'Chemin invalide' }),
+      { status: 400, headers: jsonHeaders() }
+    );
+  }
+
+  try {
+    const response = await fetch(
+      `https://api.github.com/repos/${env.CMS_REPO}/contents/${path}?ref=${env.CMS_BRANCH || 'master'}`,
+      {
+        headers: {
+          Authorization: `Bearer ${env.GITHUB_TOKEN}`,
+          Accept: 'application/vnd.github.v3+json',
+          'User-Agent': 'WebFactory-CMS',
+        },
+      }
+    );
+
+    if (!response.ok) {
+      if (response.status === 404) {
+        return new Response(
+          JSON.stringify({ error: 'Fichier introuvable' }),
+          { status: 404, headers: jsonHeaders() }
+        );
+      }
+      throw new Error(`GitHub API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    const bytes = Uint8Array.from(atob(data.content), (c) => c.charCodeAt(0));
+    const text = new TextDecoder().decode(bytes);
+    const content = JSON.parse(text);
+
+    return new Response(
+      JSON.stringify({ content, sha: data.sha }),
+      { status: 200, headers: jsonHeaders() }
+    );
+  } catch (err) {
+    return new Response(
+      JSON.stringify({ error: 'Erreur lors de la lecture du fichier' }),
+      { status: 500, headers: jsonHeaders() }
+    );
+  }
+}

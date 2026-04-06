@@ -38,7 +38,8 @@ const faqs = limit ? allFaqs.slice(0, limit) : allFaqs;
           {...(i === 0 ? { open: true } : {})}
         >
           <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer list-none text-left font-semibold text-primary-900 hover:bg-primary-50 transition-colors min-h-[52px]">
-            <span class="text-sm md:text-base leading-snug">{faq.question}</span>
+            <span class="text-sm md:text-base leading-snug"
+                  data-cms-field={`faq:${faq.slug}.question`} data-cms-type="text">{faq.question}</span>
             <svg
               class="w-5 h-5 text-primary-500 shrink-0 transition-transform duration-200 group-open:rotate-180"
               xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +54,8 @@ const faqs = limit ? allFaqs.slice(0, limit) : allFaqs;
               <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
           </summary>
-          <div class="px-6 pb-5 text-neutral-700 text-sm leading-relaxed border-t border-neutral-100 pt-4">
+          <div class="px-6 pb-5 text-neutral-700 text-sm leading-relaxed border-t border-neutral-100 pt-4"
+               data-cms-field={`faq:${faq.slug}.answer`} data-cms-type="text">
             {faq.answer}
           </div>
         </details>
