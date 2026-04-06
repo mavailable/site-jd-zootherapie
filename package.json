@@ -4,12 +4,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "prebuild": "node scripts/sync-blog.mjs",
-    "predev": "node scripts/sync-blog.mjs",
     "dev": "astro dev",
-    "dev:cms": "KEYSTATIC=true astro dev",
-    "build": "node scripts/sync-blog.mjs && astro build",
-    "build:cms": "KEYSTATIC=true astro build",
+    "build": "astro build",
     "preview": "astro preview"
   },
   "dependencies": {
@@ -19,6 +15,7 @@
     "@keystatic/astro": "^5.0.0",
     "@keystatic/core": "^0.5.0",
     "astro": "^5.7.0",
+    "marked": "^17.0.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

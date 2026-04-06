@@ -2,7 +2,7 @@
 interface Props {
   title: string;
   description: string;
-  date: Date;
+  date: string;
   category: string;
   slug: string;
 }
@@ -18,7 +18,7 @@ const categoryColors: Record<string, { bg: string; text: string; dot: string }> 
 
 const colors = categoryColors[category] || categoryColors['Récits de terrain'];
 
-const formattedDate = date.toLocaleDateString('fr-FR', {
+const formattedDate = new Date(date).toLocaleDateString('fr-FR', {
   day: 'numeric',
   month: 'long',
   year: 'numeric',
@@ -47,7 +47,7 @@ const formattedDate = date.toLocaleDateString('fr-FR', {
           <span class={`w-1.5 h-1.5 rounded-full ${colors.dot}`} aria-hidden="true"></span>
           {category}
         </span>
-        <time datetime={date.toISOString().split('T')[0]} class="text-xs text-neutral-400">
+        <time datetime={date} class="text-xs text-neutral-400">
           {formattedDate}
         </time>
       </div>

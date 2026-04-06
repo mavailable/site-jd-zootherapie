@@ -1,7 +1,8 @@
 ---
 export const prerender = true;
 
-import { getCollection, render } from 'astro:content';
+import { getCollection } from 'astro:content';
+import { marked } from 'marked';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Header from '@components/layout/Header.astro';
 import Footer from '@components/layout/Footer.astro';
@@ -18,10 +19,10 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+const htmlContent = await marked(post.data.body);
 
 const allPosts = (await getCollection('blog')).sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
 );
 const relatedPosts = allPosts
   .filter(p => p.id !== post.id)
@@ -35,14 +36,15 @@ const categoryColors: Record<string, { bg: string; text: string; dot: string }> 
 };
 const colors = categoryColors[post.data.category] || categoryColors['Récits de terrain'];
 
-const formattedDate = post.data.date.toLocaleDateString('fr-FR', {
+const dateObj = new Date(post.data.date);
+const formattedDate = dateObj.toLocaleDateString('fr-FR', {
   day: 'numeric',
   month: 'long',
   year: 'numeric',
 });
 
 // Estimate reading time from raw body
-const wordCount = post.body?.split(/\s+/).length ?? 0;
+const wordCount = post.data.body?.split(/\s+/).length ?? 0;
 const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 ---
 
@@ -50,7 +52,7 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
   title={`${post.data.title} | Blog JD Zoothérapie`}
   description={post.data.description}
   ogType="article"
-  articleDate={post.data.date.toISOString().split('T')[0]}
+  articleDate={post.data.date}
 >
   <Fragment slot="schema">
     <script type="application/ld+json" set:html={JSON.stringify({
@@ -58,7 +60,7 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
       "@type": "BlogPosting",
       "headline": post.data.title,
       "description": post.data.description,
-      "datePublished": post.data.date.toISOString().split('T')[0],
+      "datePublished": post.data.date,
       "url": `https://jdzootherapeute.fr/blog/${post.id}`,
       "author": {
         "@type": "Person",
@@ -104,7 +106,7 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
       <div class="flex items-center gap-4 text-primary-200 text-sm">
         <span>Jennifer De Groeve</span>
         <span aria-hidden="true" class="w-1 h-1 rounded-full bg-primary-400"></span>
-        <time datetime={post.data.date.toISOString().split('T')[0]}>{formattedDate}</time>
+        <time datetime={post.data.date}>{formattedDate}</time>
       </div>
     </div>
   </section>
@@ -125,8 +127,7 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
   <!-- Article Body -->
   <article class="bg-white py-10 md:py-14">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="prose text-base md:text-lg">
-        <Content />
+      <div class="prose text-base md:text-lg" set:html={htmlContent}>
       </div>
     </div>
   </article>

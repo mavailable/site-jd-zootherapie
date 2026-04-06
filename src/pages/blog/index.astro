@@ -12,7 +12,7 @@ import BlogCard from '@components/blog/BlogCard.astro';
 import BlogCardFeatured from '@components/blog/BlogCardFeatured.astro';
 
 const allPosts = (await getCollection('blog')).sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
 );
 
 const [featuredPost, ...otherPosts] = allPosts;
@@ -41,7 +41,7 @@ const categories = [...new Set(allPosts.map(post => post.data.category))];
         "@type": "BlogPosting",
         "headline": post.data.title,
         "description": post.data.description,
-        "datePublished": post.data.date.toISOString().split('T')[0],
+        "datePublished": post.data.date,
         "url": `https://jdzootherapeute.fr/blog/${post.id}`,
         "author": {
           "@type": "Person",
