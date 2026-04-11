@@ -2,6 +2,7 @@
 import '@styles/global.css';
 import { getSiteInfo } from '@data/content';
 import { siteUrl } from '@data/business';
+import { getPageSeo, getSeoGlobal } from '../data/seo';
 
 const siteInfo = await getSiteInfo();
 
@@ -27,7 +28,23 @@ const {
   articleDate,
 } = Astro.props;
 
-const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
+// C2 — Resolution SEO : seo.json gagne sur les props (pour que les edits
+// client via /admin#/seo soient visibles). Les props (deja resolus par la
+// destructure avec fallback sur siteInfo.seo.defaults) restent en fallback
+// pour les pages dynamiques (blog/[slug]) pas encore dans seo.json.
+// NOTE jd-zoo : pas de buildTitle — les titres n'ont pas de pattern uniforme
+// (home = "JD Zoothérapie — Médiation animale...", pages = "Page — JD Zoothérapie [| subtitle]"),
+// le seo.json contient donc les titres complets.
+const routePath = Astro.url.pathname === '/' ? '/' : Astro.url.pathname.replace(/\/$/, '');
+const pageSeo = getPageSeo(routePath);
+const seoGlobal = getSeoGlobal();
+
+const resolvedTitle = pageSeo?.title ?? title;
+const resolvedDescription = pageSeo?.description ?? description;
+const resolvedOgImage = pageSeo?.ogImage || ogImage || seoGlobal?.defaultOgImage || '';
+const resolvedNoindex = pageSeo?.noindex ?? noindex;
+
+const fullOgImage = resolvedOgImage.startsWith('http') ? resolvedOgImage : `${siteUrl}${resolvedOgImage}`;
 const ogLocale = `${siteInfo.lang}_${siteInfo.address.country.toUpperCase()}`;
 const ogImageType = fullOgImage.endsWith('.png') ? 'image/png' : fullOgImage.endsWith('.webp') ? 'image/webp' : 'image/jpeg';
 ---
@@ -38,10 +55,10 @@ const ogImageType = fullOgImage.endsWith('.png') ? 'image/png' : fullOgImage.end
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="format-detection" content="telephone=no" />
-  <title>{title}</title>
-  <meta name="description" content={description} />
+  <title>{resolvedTitle}</title>
+  <meta name="description" content={resolvedDescription} />
   <link rel="canonical" href={canonicalUrl} />
-  {noindex && <meta name="robots" content="noindex, nofollow" />}
+  {resolvedNoindex && <meta name="robots" content="noindex, nofollow" />}
 
   <!-- Favicon & PWA -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -51,14 +68,14 @@ const ogImageType = fullOgImage.endsWith('.png') ? 'image/png' : fullOgImage.end
   <meta name="theme-color" content="#2D4B4E" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content={title} />
-  <meta property="og:description" content={description} />
+  <meta property="og:title" content={resolvedTitle} />
+  <meta property="og:description" content={resolvedDescription} />
   <meta property="og:image" content={fullOgImage} />
   <meta property="og:image:secure_url" content={fullOgImage} />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:type" content={ogImageType} />
-  <meta property="og:image:alt" content={title} />
+  <meta property="og:image:alt" content={resolvedTitle} />
   <meta property="og:url" content={canonicalUrl} />
   <meta property="og:type" content={ogType} />
   <meta property="og:locale" content={ogLocale} />
@@ -72,10 +89,10 @@ const ogImageType = fullOgImage.endsWith('.png') ? 'image/png' : fullOgImage.end
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={title} />
-  <meta name="twitter:description" content={description} />
+  <meta name="twitter:title" content={resolvedTitle} />
+  <meta name="twitter:description" content={resolvedDescription} />
   <meta name="twitter:image" content={fullOgImage} />
-  <meta name="twitter:image:alt" content={title} />
+  <meta name="twitter:image:alt" content={resolvedTitle} />
 
   <!-- Polices critiques (above-the-fold) — les autres se chargent via font-display: swap -->
   <link rel="preload" href="/fonts/lora-v37-latin-700.woff2" as="font" type="font/woff2" crossorigin />

@@ -1,0 +1,81 @@
+{
+  "global": {
+    "siteName": "JD Zoothérapie",
+    "separator": " — ",
+    "defaultOgImage": "/images/og-default.jpg"
+  },
+  "pages": {
+    "/": {
+      "title": "JD Zoothérapie — Médiation animale en Moselle | Jennifer De Groeve",
+      "description": "Zoothérapeute certifiée en Moselle. Séances à domicile et en structure pour enfants, adultes, seniors. Premier échange gratuit. Verny (57420).",
+      "ogImage": "",
+      "noindex": false
+    },
+    "/a-propos": {
+      "title": "Jennifer De Groeve — Praticienne en médiation animale, Moselle",
+      "description": "Aide-soignante diplômée reconvertie, Jennifer De Groeve allie 20 ans d'expérience du soin et sa passion pour les animaux. Praticienne certifiée IFZ, Moselle.",
+      "ogImage": "",
+      "noindex": false
+    },
+    "/ateliers": {
+      "title": "Ateliers de médiation animale en Moselle | JD Zoothérapie",
+      "description": "6 types d'ateliers adaptés à chaque public : seniors, enfants, maladies neurodégénératives, familles, aidants. Interventions en Moselle. Devis gratuit.",
+      "ogImage": "",
+      "noindex": false
+    },
+    "/contact": {
+      "title": "Contact — JD Zoothérapie | Jennifer De Groeve, Verny Moselle",
+      "description": "Contactez Jennifer De Groeve pour un premier échange gratuit. Appelez le 07 54 81 21 22 ou envoyez un message. Réponse sous 48 h, sans engagement.",
+      "ogImage": "",
+      "noindex": false
+    },
+    "/faq": {
+      "title": "FAQ — Questions sur la zoothérapie | JD Zoothérapie",
+      "description": "Toutes vos questions sur la zoothérapie : définition, tarifs, zone d'intervention, animaux médiateurs, publics concernés. Jennifer De Groeve répond.",
+      "ogImage": "",
+      "noindex": false
+    },
+    "/tarifs": {
+      "title": "Tarifs — Médiation animale à domicile | JD Zoothérapie",
+      "description": "Séance individuelle à 60 €, déplacement inclus (rayon 50 km Verny). Groupes et structures sur devis. Transparent, sans surprise. Jennifer De Groeve.",
+      "ogImage": "",
+      "noindex": false
+    },
+    "/temoignages": {
+      "title": "Témoignages — Familles et structures en Moselle | JD Zoothérapie",
+      "description": "Témoignages de familles, équipes soignantes et structures ayant fait appel à JD Zoothérapie en Moselle. Des résultats concrets, des sourires réels.",
+      "ogImage": "",
+      "noindex": false
+    },
+    "/zootherapie": {
+      "title": "La médiation animale — Bienfaits et publics | JD Zoothérapie",
+      "description": "Découvrez les bienfaits de la zoothérapie : réduction du stress, stimulation cognitive, lien social. Une approche douce pour tous les âges, en Moselle.",
+      "ogImage": "",
+      "noindex": false
+    },
+    "/mentions-legales": {
+      "title": "Mentions légales — JD Zoothérapie",
+      "description": "Mentions légales du site jdzootherapeute.fr. Informations sur l'éditeur, l'hébergeur et les conditions d'utilisation.",
+      "ogImage": "",
+      "noindex": false
+    },
+    "/politique-confidentialite": {
+      "title": "Politique de confidentialité — JD Zoothérapie",
+      "description": "Politique de confidentialité de JD Zoothérapie. Informations sur la collecte et le traitement de vos données personnelles conformément au RGPD.",
+      "ogImage": "",
+      "noindex": false
+    },
+    "/merci": {
+      "title": "Message envoyé — JD Zoothérapie",
+      "description": "Votre message a bien été envoyé. Jennifer De Groeve vous recontactera dans les 48 heures.",
+      "ogImage": "",
+      "noindex": true
+    },
+    "/404": {
+      "title": "Page introuvable (404) — JD Zoothérapie",
+      "description": "La page que vous cherchez n'existe pas ou a été déplacée.",
+      "ogImage": "",
+      "noindex": true
+    }
+  }
+}

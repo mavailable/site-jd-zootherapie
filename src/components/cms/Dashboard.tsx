@@ -120,6 +120,14 @@ export function Dashboard({ config }: DashboardProps) {
             <div style={styles.cardDesc}>Gerer les images du site</div>
             <div style={styles.cardAction}>Ouvrir →</div>
           </button>
+          <button onClick={() => navigate('#/seo')} style={styles.card}>
+            <div style={styles.cardHeader}>
+              <span style={styles.toolIcon}>&#128269;</span>
+              <div style={styles.cardTitle}>SEO</div>
+            </div>
+            <div style={styles.cardDesc}>Titres, descriptions et images de partage</div>
+            <div style={styles.cardAction}>Optimiser →</div>
+          </button>
         </div>
       </section>
     </div>
