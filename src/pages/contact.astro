@@ -7,6 +7,12 @@ import PageHero from '@components/sections/PageHero.astro';
 import Contact from '@components/sections/Contact.astro';
 import TarifCalculator from '@components/sections/TarifCalculator.astro';
 import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
+import { getBreadcrumbSchema } from '@data/schemas';
+
+const breadcrumbSchema = getBreadcrumbSchema([
+  { name: 'Accueil', url: 'https://jdzootherapeute.fr/' },
+  { name: 'Contact', url: '/contact' },
+]);
 ---
 
 <BaseLayout
@@ -14,14 +20,7 @@ import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
   description="Contactez Jennifer De Groeve pour un premier échange gratuit. Appelez le 07 54 81 21 22 ou envoyez un message. Réponse sous 48 h, sans engagement."
 >
   <Fragment slot="schema">
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://jdzootherapeute.fr/" },
-        { "@type": "ListItem", "position": 2, "name": "Contact", "item": "https://jdzootherapeute.fr/contact" }
-      ]
-    })} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   </Fragment>
 
   <Header slot="header" />

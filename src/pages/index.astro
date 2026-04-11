@@ -11,6 +11,21 @@ import FAQ from '@components/sections/FAQ.astro';
 import CTABanner from '@components/sections/CTABanner.astro';
 import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
 import TarifCalculator from '@components/sections/TarifCalculator.astro';
+import {
+  getProfessionalServiceSchema,
+  getWebsiteSchema,
+  getBreadcrumbSchema,
+  getSpeakableSchema,
+} from '@data/schemas';
+import { siteUrl } from '@data/business';
+
+// Schemas centralises — doctrine C1 wf-00-cms §7
+const title = "JD Zoothérapie — Médiation animale en Moselle | Jennifer De Groeve";
+const description = "Zoothérapeute certifiée en Moselle. Séances à domicile et en structure pour enfants, adultes, seniors. Premier échange gratuit. Verny (57420).";
+const professionalServiceSchema = getProfessionalServiceSchema();
+const websiteSchema = getWebsiteSchema();
+const breadcrumbSchema = getBreadcrumbSchema([{ name: 'Accueil', url: siteUrl }]);
+const speakableSchema = getSpeakableSchema(title, description, siteUrl);
 
 // ── Section Services aperçu (3 vignettes thématiques, homepage seulement) ────
 // Pas les 6 services CMS — juste 3 catégories grand public
@@ -36,78 +51,19 @@ const servicesApercu = [
 ];
 ---
 
-<BaseLayout
-  title="JD Zoothérapie — Médiation animale en Moselle | Jennifer De Groeve"
-  description="Zoothérapeute certifiée en Moselle. Séances à domicile et en structure pour enfants, adultes, seniors. Premier échange gratuit. Verny (57420)."
->
+<BaseLayout title={title} description={description}>
   <!-- Preload hero image pour LCP (responsive) -->
   <link rel="preload" as="image" href="/images/hero-bg.webp"
     imagesrcset="/images/hero-bg-mobile.webp 768w, /images/hero-bg.webp 1920w"
     imagesizes="(max-width: 767px) 100vw, 100vw"
     slot="head" />
 
-  <!-- Schema.org JSON-LD -->
+  <!-- Schema.org JSON-LD — doctrine C1 helpers centralisés -->
   <Fragment slot="schema">
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "JD Zoothérapie",
-      "alternateName": "Patt'es Tendres",
-      "description": "Jennifer De Groeve, zoothérapeute certifiée en Moselle. Séances de médiation animale à domicile et en structure pour enfants, adultes et personnes âgées.",
-      "url": "https://jdzootherapeute.fr",
-      "telephone": "+33754812122",
-      "email": "degroeve.j@gmail.com",
-      "image": "https://jdzootherapeute.fr/images/og-default.jpg",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "17 rue Principale",
-        "addressLocality": "Vigny",
-        "postalCode": "57420",
-        "addressRegion": "Grand Est",
-        "addressCountry": "FR"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 49.0208014,
-        "longitude": 6.7659488
-      },
-      "areaServed": [
-        { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 49.0208014, "longitude": 6.7659488 }, "geoRadius": "15000" },
-        { "@type": "City", "name": "Metz" },
-        { "@type": "City", "name": "Nancy" }
-      ],
-      "founder": {
-        "@type": "Person",
-        "name": "Jennifer De Groeve",
-        "jobTitle": "Praticienne certifiée en médiation animale",
-        "description": "Aide-soignante diplômée avec plus de 20 ans d'expérience, formée à l'Institut de Formation en Zoothérapie (IFZ).",
-        "knowsAbout": ["Zoothérapie", "Médiation animale", "Maladies neurodégénératives", "Accompagnement enfants", "Accompagnement personnes âgées"]
-      },
-      "priceRange": "60€",
-      "currenciesAccepted": "EUR",
-      "logo": "https://jdzootherapeute.fr/favicon.svg",
-      "memberOf": { "@type": "Organization", "name": "Syndicat Français des Zoothérapeutes" },
-      "sameAs": [
-        "https://www.facebook.com/profile.php?id=61573108913954",
-        "https://www.instagram.com/jenniferzootherapeute",
-        "https://www.google.com/maps/place/De+Groeve+Jennifer+zootherapie+-+m%C3%A8diation+animale/@49.0208014,6.7659488,17z"
-      ],
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "5.0",
-        "bestRating": "5",
-        "worstRating": "1",
-        "reviewCount": "9" /* ← mettre à jour manuellement */
-      }
-    })} />
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "JD Zoothérapie",
-      "url": "https://jdzootherapeute.fr",
-      "description": "Zoothérapeute certifiée en Moselle. Séances de médiation animale à domicile et en structure.",
-      "inLanguage": "fr"
-    })} />
+    <script type="application/ld+json" set:html={JSON.stringify(professionalServiceSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(speakableSchema)} />
   </Fragment>
 
   <Header slot="header" />

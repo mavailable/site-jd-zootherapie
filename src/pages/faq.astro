@@ -8,8 +8,14 @@ import FAQ from '@components/sections/FAQ.astro';
 import CTABanner from '@components/sections/CTABanner.astro';
 import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
 import { getFaq } from '@data/content';
+import { getFAQPageSchema, getBreadcrumbSchema } from '@data/schemas';
 
 const faqs = await getFaq();
+const faqSchema = await getFAQPageSchema();
+const breadcrumbSchema = getBreadcrumbSchema([
+  { name: 'Accueil', url: 'https://jdzootherapeute.fr/' },
+  { name: 'FAQ', url: '/faq' },
+]);
 ---
 
 <BaseLayout
@@ -17,23 +23,8 @@ const faqs = await getFaq();
   description="Toutes vos questions sur la zoothérapie : définition, tarifs, zone d'intervention, animaux médiateurs, publics concernés. Jennifer De Groeve répond."
 >
   <Fragment slot="schema">
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": faqs.map(f => ({
-        "@type": "Question",
-        "name": f.question,
-        "acceptedAnswer": { "@type": "Answer", "text": f.answer }
-      }))
-    })} />
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://jdzootherapeute.fr/" },
-        { "@type": "ListItem", "position": 2, "name": "FAQ", "item": "https://jdzootherapeute.fr/faq" }
-      ]
-    })} />
+    {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   </Fragment>
 
   <Header slot="header" />

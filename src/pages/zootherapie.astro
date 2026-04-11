@@ -6,6 +6,12 @@ import Footer from '@components/layout/Footer.astro';
 import PageHero from '@components/sections/PageHero.astro';
 import CTABanner from '@components/sections/CTABanner.astro';
 import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
+import { getBreadcrumbSchema } from '@data/schemas';
+
+const breadcrumbSchema = getBreadcrumbSchema([
+  { name: 'Accueil', url: 'https://jdzootherapeute.fr/' },
+  { name: 'La zoothérapie', url: '/zootherapie' },
+]);
 ---
 
 <BaseLayout
@@ -13,14 +19,7 @@ import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
   description="Découvrez les bienfaits de la zoothérapie : réduction du stress, stimulation cognitive, lien social. Une approche douce pour tous les âges, en Moselle."
 >
   <Fragment slot="schema">
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://jdzootherapeute.fr/" },
-        { "@type": "ListItem", "position": 2, "name": "La zoothérapie", "item": "https://jdzootherapeute.fr/zootherapie" }
-      ]
-    })} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   </Fragment>
 
   <Header slot="header" />
