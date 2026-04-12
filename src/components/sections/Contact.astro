@@ -12,7 +12,7 @@ const contact = await getContact();
       <h2 class="font-heading font-semibold text-2xl md:text-[2rem] text-primary-900 mb-3" data-cms-field="contact.title" data-cms-type="text">
         {contact.title}
       </h2>
-      <p class="text-neutral-600 leading-relaxed max-w-xl mx-auto text-sm">
+      <p class="text-neutral-600 leading-relaxed max-w-xl mx-auto text-sm" data-cms-field="contact.subtitle" data-cms-type="text">
         {contact.subtitle}
       </p>
     </div>
@@ -175,7 +175,7 @@ const contact = await getContact();
                 type="submit"
                 class="inline-flex items-center justify-center gap-2 bg-accent-700 text-white px-7 py-3.5 rounded font-semibold text-base hover:bg-accent-800 transition-colors min-h-[44px] w-full sm:w-auto"
               >
-                {contact.buttonText}
+                <span data-cms-field="contact.buttonText" data-cms-type="text">{contact.buttonText}</span>
               </button>
             </div>
           </form>

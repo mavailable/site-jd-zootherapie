@@ -31,6 +31,7 @@ const animalPhotos: Record<string, string> = {
             src="/images/jennifer-pro.webp"
             alt="Jennifer De Groeve, zoothérapeute certifiée, avec ses animaux médiateurs — Tips, Uxo et Tap-Tap"
             class="w-full object-cover object-top"
+            data-cms-field="about.founderPhoto" data-cms-type="image"
             loading="lazy"
             decoding="async"
             width="800"
@@ -46,13 +47,13 @@ const animalPhotos: Record<string, string> = {
 
       <!-- Texte (3/5) -->
       <article class="md:col-span-3 order-2">
-        <h2 class="font-heading font-semibold text-2xl md:text-[2rem] text-primary-900 mb-6" data-cms-field="about.founderName" data-cms-type="text">
-          {about.founderName} — {about.founderTitle}
+        <h2 class="font-heading font-semibold text-2xl md:text-[2rem] text-primary-900 mb-6">
+          <span data-cms-field="about.founderName" data-cms-type="text">{about.founderName}</span> — <span data-cms-field="about.founderTitle" data-cms-type="text">{about.founderTitle}</span>
         </h2>
 
         <div class="text-neutral-700 leading-relaxed space-y-4">
-          {paragraphsToShow.map((p) => (
-            <p set:html={p} />
+          {paragraphsToShow.map((p, i) => (
+            <p data-cms-field={`about.paragraphs[${i}]`} data-cms-type="text" set:html={p} />
           ))}
         </div>
 
@@ -109,8 +110,8 @@ const animalPhotos: Record<string, string> = {
                       </div>
                     )}
                     <div>
-                      <p class="font-semibold text-primary-900 text-sm">{animal.name} <span class="font-normal text-neutral-500">— {animal.breed}</span></p>
-                      <p class="text-neutral-600 text-xs mt-0.5">{animal.role}</p>
+                      <p class="font-semibold text-primary-900 text-sm"><span data-cms-field={`about.animals[${about.animals.indexOf(animal)}].name`} data-cms-type="text">{animal.name}</span> <span class="font-normal text-neutral-500">— <span data-cms-field={`about.animals[${about.animals.indexOf(animal)}].breed`} data-cms-type="text">{animal.breed}</span></span></p>
+                      <p class="text-neutral-600 text-xs mt-0.5" data-cms-field={`about.animals[${about.animals.indexOf(animal)}].role`} data-cms-type="text">{animal.role}</p>
                     </div>
                   </div>
                   );
