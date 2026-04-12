@@ -135,8 +135,8 @@
       var field = el.getAttribute('data-cms-field');
       var type = el.getAttribute('data-cms-type') || 'text';
 
-      if (type === 'text' || type === 'richtext') {
-        originalValues[field] = type === 'richtext' ? (el.innerHTML || '') : (el.textContent || '');
+      if (type === 'text') {
+        originalValues[field] = el.textContent || '';
         el.setAttribute('contenteditable', 'true');
         el.classList.add('cms-editable');
         el._cmsHandlers = { focus: handleFocus, blur: handleBlur, input: handleInput, keydown: handleKeydown };
@@ -171,7 +171,7 @@
 
     document.querySelectorAll('[data-cms-field]').forEach(function (el) {
       var type = el.getAttribute('data-cms-type') || 'text';
-      if (type === 'text' || type === 'richtext') {
+      if (type === 'text') {
         el.removeAttribute('contenteditable');
         el.classList.remove('cms-editable', 'cms-editable-focus');
         if (el._cmsHandlers) {
@@ -204,7 +204,6 @@
       if (!el) continue;
       var type = el.getAttribute('data-cms-type') || 'text';
       if (type === 'text') el.textContent = originalValues[field];
-      if (type === 'richtext') el.innerHTML = originalValues[field];
       if (type === 'image') el.setAttribute('src', originalValues[field]);
     }
     // Restaurer couleurs
@@ -237,8 +236,7 @@
   function handleInput(e) {
     var el = e.target;
     var field = el.getAttribute('data-cms-field');
-    var type = el.getAttribute('data-cms-type') || 'text';
-    var newValue = type === 'richtext' ? (el.innerHTML || '') : (el.textContent || '');
+    var newValue = el.textContent || '';
     if (newValue !== originalValues[field]) {
       modifications[field] = newValue;
     } else {
