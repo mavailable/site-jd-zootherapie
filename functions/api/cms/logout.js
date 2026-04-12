@@ -1,5 +1,5 @@
 // POST /api/cms/logout — Déconnexion
-import { clearSessionCookie, clearSessionFlag, checkOrigin, jsonHeaders } from './_auth-helpers.js';
+import { clearSessionCookies, checkOrigin, jsonHeaders } from './_auth-helpers.js';
 
 export async function onRequestPost({ request }) {
   // CSRF check
@@ -10,9 +10,9 @@ export async function onRequestPost({ request }) {
     );
   }
 
+  const cookies = clearSessionCookies();
   const headers = new Headers({ 'Content-Type': 'application/json' });
-  headers.append('Set-Cookie', clearSessionCookie());
-  headers.append('Set-Cookie', clearSessionFlag());
+  cookies.forEach(c => headers.append('Set-Cookie', c));
 
   return new Response(JSON.stringify({ ok: true }), {
     status: 200,
