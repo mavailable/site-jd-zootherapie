@@ -67,7 +67,7 @@
 
   // --- Init ---
   function init() {
-    if (!document.cookie.includes('cms_session')) return;
+    if (!document.cookie.includes('cms_logged_in')) return;
     if (window.location.pathname.startsWith('/admin')) return;
 
     // Charger la config CMS (couleurs, noms de pages)

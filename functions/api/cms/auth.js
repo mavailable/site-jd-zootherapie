@@ -1,5 +1,5 @@
 // POST /api/cms/auth — Login
-import { signSession, createSessionCookie, checkRateLimit, resetRateLimit, checkOrigin, jsonHeaders } from './_auth-helpers.js';
+import { signSession, createSessionCookie, createSessionFlag, checkRateLimit, resetRateLimit, checkOrigin, jsonHeaders } from './_auth-helpers.js';
 
 export async function onRequestPost({ request, env }) {
   const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
@@ -43,11 +43,12 @@ export async function onRequestPost({ request, env }) {
   const timestamp = Math.floor(Date.now() / 1000);
   const token = await signSession(timestamp, env.CMS_SESSION_SECRET);
 
+  const headers = new Headers(jsonHeaders());
+  headers.append('Set-Cookie', createSessionCookie(token));
+  headers.append('Set-Cookie', createSessionFlag());
+
   return new Response(JSON.stringify({ ok: true }), {
     status: 200,
-    headers: {
-      ...jsonHeaders(),
-      'Set-Cookie': createSessionCookie(token),
-    },
+    headers,
   });
 }

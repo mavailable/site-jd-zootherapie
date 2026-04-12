@@ -90,10 +90,21 @@ export function createSessionCookie(token) {
 }
 
 /**
+ * Cookie flag lisible par JS (non-HttpOnly) — permet à cms-edit.js de détecter la session
+ */
+export function createSessionFlag() {
+  return `cms_logged_in=1; Secure; SameSite=Strict; Path=/; Max-Age=${SESSION_DURATION}`;
+}
+
+/**
  * Crée le header Set-Cookie pour supprimer la session
  */
 export function clearSessionCookie() {
   return 'cms_session=; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=0';
+}
+
+export function clearSessionFlag() {
+  return 'cms_logged_in=; Secure; SameSite=Strict; Path=/; Max-Age=0';
 }
 
 /**
