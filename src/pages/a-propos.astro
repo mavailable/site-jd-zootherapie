@@ -7,7 +7,10 @@ import PageHero from '@components/sections/PageHero.astro';
 import About from '@components/sections/About.astro';
 import CTABanner from '@components/sections/CTABanner.astro';
 import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
+import { getPageAPropos } from '@data/content';
 import { getBreadcrumbSchema } from '@data/schemas';
+
+const page = await getPageAPropos();
 
 // Schema.org Breadcrumb centralise — doctrine C1
 const breadcrumbSchema = getBreadcrumbSchema([
@@ -27,8 +30,8 @@ const breadcrumbSchema = getBreadcrumbSchema([
   <Header slot="header" />
 
   <PageHero
-    h1="Jennifer De Groeve — Une vocation née du soin et de l'amour des animaux"
-    subtitle="Aide-soignante diplômée, praticienne certifiée en médiation animale, membre du Syndicat Français des Zoothérapeutes — Jennifer a fait de ses deux passions un métier."
+    h1={page.heroH1}
+    subtitle={page.heroSubtitle}
   />
 
   <!-- Fil d'Ariane -->
@@ -46,10 +49,11 @@ const breadcrumbSchema = getBreadcrumbSchema([
   <About snippet={false} />
 
   <CTABanner
-    title="Envie de nous rencontrer ?"
-    text="Jennifer et ses animaux se déplacent à domicile ou dans votre structure. Réservez un appel découverte gratuit."
-    ctaSecondaryText="Voir les ateliers"
+    title={page.ctaTitle}
+    text={page.ctaText}
+    ctaSecondaryText={page.ctaSecondaryText}
     ctaSecondaryHref="/ateliers"
+    cmsPrefix="page-a-propos"
   />
 
   <Footer slot="footer" />

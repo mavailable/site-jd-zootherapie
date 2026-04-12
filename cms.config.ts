@@ -97,6 +97,98 @@ const cmsConfig: CmsConfig = {
         rgpdText: { type: 'text', label: 'Mention RGPD', multiline: true },
       },
     },
+
+    'page-zootherapie': {
+      label: 'Page Zoothérapie',
+      description: 'Contenu de la page La zoothérapie',
+      path: 'src/content/page-zootherapie/index.json',
+      fields: {
+        heroH1: { type: 'text', label: 'Titre hero' },
+        heroSubtitle: { type: 'text', label: 'Sous-titre hero', multiline: true },
+        introHeading: { type: 'text', label: 'Titre introduction' },
+        introParagraphs: { type: 'array', label: 'Paragraphes intro', itemLabel: '', item: { type: 'text', label: 'Paragraphe', multiline: true } },
+        benefitsHeading: { type: 'text', label: 'Titre bénéfices' },
+        benefits: { type: 'array', label: 'Bénéfices', itemLabel: 'title', item: { type: 'object', label: 'Bénéfice', fields: { title: { type: 'text', label: 'Titre' }, description: { type: 'text', label: 'Description', multiline: true } } } },
+        publicsHeading: { type: 'text', label: 'Titre publics' },
+        publicsIntro: { type: 'text', label: 'Intro publics', multiline: true },
+        publicsList: { type: 'array', label: 'Liste publics', itemLabel: '', item: { type: 'text', label: 'Public' } },
+        sidebarHeading: { type: 'text', label: 'Titre sidebar' },
+        sidebarText: { type: 'text', label: 'Texte sidebar', multiline: true },
+        sidebarCta: { type: 'text', label: 'CTA sidebar' },
+        ctaTitle: { type: 'text', label: 'CTA bannière titre' },
+        ctaText: { type: 'text', label: 'CTA bannière texte' },
+        ctaSecondaryText: { type: 'text', label: 'CTA secondaire' },
+      },
+    },
+
+    'page-ateliers': {
+      label: 'Page Ateliers',
+      description: 'Contenu de la page Les ateliers',
+      path: 'src/content/page-ateliers/index.json',
+      fields: {
+        heroH1: { type: 'text', label: 'Titre hero' },
+        heroSubtitle: { type: 'text', label: 'Sous-titre hero', multiline: true },
+        servicesTitle: { type: 'text', label: 'Titre section services' },
+        servicesSubtitle: { type: 'text', label: 'Sous-titre services', multiline: true },
+        ctaTitle: { type: 'text', label: 'CTA bannière titre' },
+        ctaText: { type: 'text', label: 'CTA bannière texte' },
+        ctaSecondaryText: { type: 'text', label: 'CTA secondaire' },
+      },
+    },
+
+    'page-tarifs': {
+      label: 'Page Tarifs',
+      description: 'Contenu de la page Tarifs',
+      path: 'src/content/page-tarifs/index.json',
+      fields: {
+        heroH1: { type: 'text', label: 'Titre hero' },
+        heroSubtitle: { type: 'text', label: 'Sous-titre hero', multiline: true },
+        ctaTitle: { type: 'text', label: 'CTA bannière titre' },
+        ctaText: { type: 'text', label: 'CTA bannière texte' },
+      },
+    },
+
+    'page-temoignages': {
+      label: 'Page Témoignages',
+      description: 'Contenu de la page Témoignages',
+      path: 'src/content/page-temoignages/index.json',
+      fields: {
+        heroH1: { type: 'text', label: 'Titre hero' },
+        heroSubtitle: { type: 'text', label: 'Sous-titre hero', multiline: true },
+        noteText: { type: 'text', label: 'Note bas de page', multiline: true },
+        shareCta: { type: 'text', label: 'CTA partage' },
+        pressHeading: { type: 'text', label: 'Titre section presse' },
+        ctaTitle: { type: 'text', label: 'CTA bannière titre' },
+        ctaText: { type: 'text', label: 'CTA bannière texte' },
+        ctaSecondaryText: { type: 'text', label: 'CTA secondaire' },
+      },
+    },
+
+    'page-a-propos': {
+      label: 'Page À propos',
+      description: 'Contenu de la page Mon parcours',
+      path: 'src/content/page-a-propos/index.json',
+      fields: {
+        heroH1: { type: 'text', label: 'Titre hero' },
+        heroSubtitle: { type: 'text', label: 'Sous-titre hero', multiline: true },
+        ctaTitle: { type: 'text', label: 'CTA bannière titre' },
+        ctaText: { type: 'text', label: 'CTA bannière texte' },
+        ctaSecondaryText: { type: 'text', label: 'CTA secondaire' },
+      },
+    },
+
+    gallery: {
+      label: 'Galerie photos',
+      description: 'Photos et légendes de la galerie',
+      path: 'src/content/gallery/index.json',
+      fields: {
+        sectionLabel: { type: 'text', label: 'Label section' },
+        heading: { type: 'text', label: 'Titre' },
+        description: { type: 'text', label: 'Description', multiline: true },
+        quote: { type: 'text', label: 'Citation', multiline: true },
+        quoteAttribution: { type: 'text', label: 'Attribution citation' },
+      },
+    },
   },
 
   collections: {

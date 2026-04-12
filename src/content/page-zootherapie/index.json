@@ -1,0 +1,48 @@
+{
+  "heroH1": "La zoothérapie : qu'est-ce que c'est et à qui ça s'adresse ?",
+  "heroSubtitle": "Méthode douce et naturelle, la médiation animale utilise la présence de l'animal pour améliorer le bien-être physique, psychique et social — pour tous les âges, toutes les situations.",
+  "introHeading": "La médiation animale en quelques mots",
+  "introParagraphs": [
+    "La zoothérapie — aussi appelée médiation animale — est une approche d'accompagnement reconnue qui place l'animal au cœur de la relation thérapeutique. Ce n'est pas simplement jouer avec un chien : c'est une intervention structurée, avec des objectifs définis, encadrée par une praticienne certifiée.",
+    "L'animal intervient comme médiateur entre la praticienne et la personne accompagnée. Sa présence neutre, son affection inconditionnelle et sa capacité à « lire » l'état émotionnel de l'humain créent un cadre unique, propice à la confiance et à l'ouverture."
+  ],
+  "benefitsHeading": "Des bénéfices documentés pour tous les publics",
+  "benefits": [
+    {
+      "title": "Réduction du stress et de l'anxiété",
+      "description": "Les caresses et les jeux avec l'animal libèrent de l'ocytocine, diminuent le cortisol et apaisent le système nerveux. Les effets sont perceptibles dès la première séance."
+    },
+    {
+      "title": "Stimulation cognitive et sensorielle",
+      "description": "Toucher, nommer, observer, interagir — chaque séance sollicite la mémoire, l'attention, les sens. Particulièrement adapté aux personnes atteintes de troubles neurodégénératifs."
+    },
+    {
+      "title": "Développement des compétences sociales",
+      "description": "L'animal facilite la communication, l'empathie et le lien. Il débloque ce que la parole ne peut pas toujours atteindre."
+    },
+    {
+      "title": "Renforcement de l'estime de soi",
+      "description": "S'occuper d'un animal, le faire obéir, en prendre soin — chaque petite réussite booste la confiance en soi, notamment chez les enfants et les personnes en situation de handicap."
+    },
+    {
+      "title": "Lutte contre l'isolement",
+      "description": "La présence animale rompt l'isolement, rouvre la communication, apporte de la joie. Essentiel pour les personnes âgées vivant seules ou en institution."
+    }
+  ],
+  "publicsHeading": "À qui s'adresse la médiation animale ?",
+  "publicsIntro": "La médiation animale s'adresse à tous — de 3 à 99 ans. Elle est particulièrement efficace pour :",
+  "publicsList": [
+    "Personnes atteintes d'Alzheimer, Parkinson ou troubles apparentés",
+    "Enfants avec troubles du spectre autistique (TSA) ou TDAH",
+    "Personnes en situation de handicap moteur ou mental",
+    "Personnes souffrant d'anxiété, dépression ou isolement social",
+    "Aidants familiaux en situation de surcharge émotionnelle",
+    "Enfants et adolescents avec des difficultés d'apprentissage"
+  ],
+  "sidebarHeading": "Vous ne savez pas si c'est fait pour vous ?",
+  "sidebarText": "Jennifer propose un premier échange gratuit et sans engagement pour comprendre votre situation et vous orienter vers la formule la plus adaptée.",
+  "sidebarCta": "Réserver un appel découverte",
+  "ctaTitle": "Prêt à découvrir la médiation animale ?",
+  "ctaText": "Réservez un appel découverte gratuit avec Jennifer.",
+  "ctaSecondaryText": "Voir les ateliers"
+}

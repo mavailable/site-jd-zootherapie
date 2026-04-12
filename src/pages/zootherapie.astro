@@ -7,11 +7,22 @@ import PageHero from '@components/sections/PageHero.astro';
 import CTABanner from '@components/sections/CTABanner.astro';
 import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
 import { getBreadcrumbSchema } from '@data/schemas';
+import { getPageZootherapie } from '@data/content';
+
+const page = await getPageZootherapie();
 
 const breadcrumbSchema = getBreadcrumbSchema([
   { name: 'Accueil', url: 'https://jdzootherapeute.fr/' },
   { name: 'La zoothérapie', url: '/zootherapie' },
 ]);
+
+const benefitIcons = [
+  { bg: 'bg-accent-100', text: 'text-accent-700', svg: '<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>' },
+  { bg: 'bg-primary-100', text: 'text-primary-600', svg: '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>' },
+  { bg: 'bg-secondary-100', text: 'text-secondary-700', svg: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>' },
+  { bg: 'bg-accent-100', text: 'text-accent-700', svg: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>' },
+  { bg: 'bg-primary-100', text: 'text-primary-600', svg: '<circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>' },
+];
 ---
 
 <BaseLayout
@@ -25,8 +36,8 @@ const breadcrumbSchema = getBreadcrumbSchema([
   <Header slot="header" />
 
   <PageHero
-    h1="La zoothérapie : qu'est-ce que c'est et à qui ça s'adresse ?"
-    subtitle="Méthode douce et naturelle, la médiation animale utilise la présence de l'animal pour améliorer le bien-être physique, psychique et social — pour tous les âges, toutes les situations."
+    h1={page.heroH1}
+    subtitle={page.heroSubtitle}
   />
 
   <!-- Fil d'Ariane -->
@@ -43,12 +54,13 @@ const breadcrumbSchema = getBreadcrumbSchema([
   <!-- Définition -->
   <section class="bg-white py-14 md:py-16">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="font-heading font-semibold text-xl md:text-2xl text-primary-900 mb-5">
-        La médiation animale en quelques mots
+      <h2 data-cms-field="page-zootherapie.introHeading" data-cms-type="text" class="font-heading font-semibold text-xl md:text-2xl text-primary-900 mb-5">
+        {page.introHeading}
       </h2>
       <div class="text-neutral-700 leading-relaxed space-y-4">
-        <p>La zoothérapie — aussi appelée <strong>médiation animale</strong> — est une approche d'accompagnement reconnue qui place l'animal au cœur de la relation thérapeutique. Ce n'est pas simplement jouer avec un chien : c'est une intervention structurée, avec des objectifs définis, encadrée par une praticienne certifiée.</p>
-        <p>L'animal intervient comme médiateur entre la praticienne et la personne accompagnée. Sa présence neutre, son affection inconditionnelle et sa capacité à « lire » l'état émotionnel de l'humain créent un cadre unique, propice à la confiance et à l'ouverture.</p>
+        {page.introParagraphs.map((p: string, i: number) => (
+          <p data-cms-field={`page-zootherapie.introParagraphs[${i}]`} data-cms-type="text" set:html={p} />
+        ))}
       </div>
     </div>
   </section>
@@ -57,49 +69,19 @@ const breadcrumbSchema = getBreadcrumbSchema([
   <section class="bg-primary-50 py-14 md:py-16">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-10">
-        <h2 class="font-heading font-semibold text-xl md:text-2xl text-primary-900 mb-2">Des bénéfices documentés pour tous les publics</h2>
+        <h2 data-cms-field="page-zootherapie.benefitsHeading" data-cms-type="text" class="font-heading font-semibold text-xl md:text-2xl text-primary-900 mb-2">{page.benefitsHeading}</h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
 
-        <article class="bg-white border border-neutral-200 rounded-xl p-5 shadow-sm">
-          <div class="inline-flex items-center justify-center w-10 h-10 bg-accent-100 text-accent-700 rounded-lg mb-3 shrink-0">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          </div>
-          <h3 class="font-heading font-semibold text-base text-primary-900 mb-2">Réduction du stress et de l'anxiété</h3>
-          <p class="text-neutral-700 text-sm leading-relaxed">Les caresses et les jeux avec l'animal libèrent de l'ocytocine, diminuent le cortisol et apaisent le système nerveux. Les effets sont perceptibles dès la première séance.</p>
-        </article>
-
-        <article class="bg-white border border-neutral-200 rounded-xl p-5 shadow-sm">
-          <div class="inline-flex items-center justify-center w-10 h-10 bg-primary-100 text-primary-600 rounded-lg mb-3 shrink-0">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          </div>
-          <h3 class="font-heading font-semibold text-base text-primary-900 mb-2">Stimulation cognitive et sensorielle</h3>
-          <p class="text-neutral-700 text-sm leading-relaxed">Toucher, nommer, observer, interagir — chaque séance sollicite la mémoire, l'attention, les sens. Particulièrement adapté aux personnes atteintes de troubles neurodégénératifs.</p>
-        </article>
-
-        <article class="bg-white border border-neutral-200 rounded-xl p-5 shadow-sm">
-          <div class="inline-flex items-center justify-center w-10 h-10 bg-secondary-100 text-secondary-700 rounded-lg mb-3 shrink-0">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <h3 class="font-heading font-semibold text-base text-primary-900 mb-2">Développement des compétences sociales</h3>
-          <p class="text-neutral-700 text-sm leading-relaxed">L'animal facilite la communication, l'empathie et le lien. Il débloque ce que la parole ne peut pas toujours atteindre.</p>
-        </article>
-
-        <article class="bg-white border border-neutral-200 rounded-xl p-5 shadow-sm">
-          <div class="inline-flex items-center justify-center w-10 h-10 bg-accent-100 text-accent-700 rounded-lg mb-3 shrink-0">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </div>
-          <h3 class="font-heading font-semibold text-base text-primary-900 mb-2">Renforcement de l'estime de soi</h3>
-          <p class="text-neutral-700 text-sm leading-relaxed">S'occuper d'un animal, le faire obéir, en prendre soin — chaque petite réussite booste la confiance en soi, notamment chez les enfants et les personnes en situation de handicap.</p>
-        </article>
-
-        <article class="bg-white border border-neutral-200 rounded-xl p-5 shadow-sm md:col-span-2 lg:col-span-1">
-          <div class="inline-flex items-center justify-center w-10 h-10 bg-primary-100 text-primary-600 rounded-lg mb-3 shrink-0">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
-          </div>
-          <h3 class="font-heading font-semibold text-base text-primary-900 mb-2">Lutte contre l'isolement</h3>
-          <p class="text-neutral-700 text-sm leading-relaxed">La présence animale rompt l'isolement, rouvre la communication, apporte de la joie. Essentiel pour les personnes âgées vivant seules ou en institution.</p>
-        </article>
+        {page.benefits.map((b: { title: string; description: string }, i: number) => (
+          <article class={`bg-white border border-neutral-200 rounded-xl p-5 shadow-sm${i === 4 ? ' md:col-span-2 lg:col-span-1' : ''}`}>
+            <div class={`inline-flex items-center justify-center w-10 h-10 ${benefitIcons[i].bg} ${benefitIcons[i].text} rounded-lg mb-3 shrink-0`}>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={benefitIcons[i].svg} />
+            </div>
+            <h3 data-cms-field={`page-zootherapie.benefits[${i}].title`} data-cms-type="text" class="font-heading font-semibold text-base text-primary-900 mb-2">{b.title}</h3>
+            <p data-cms-field={`page-zootherapie.benefits[${i}].description`} data-cms-type="text" class="text-neutral-700 text-sm leading-relaxed">{b.description}</p>
+          </article>
+        ))}
 
       </div>
     </div>
@@ -110,18 +92,11 @@ const breadcrumbSchema = getBreadcrumbSchema([
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
         <div>
-          <h2 class="font-heading font-semibold text-xl md:text-2xl text-primary-900 mb-5">À qui s'adresse la médiation animale ?</h2>
-          <p class="text-neutral-700 text-sm leading-relaxed mb-4">La médiation animale s'adresse à tous — de 3 à 99 ans. Elle est particulièrement efficace pour :</p>
+          <h2 data-cms-field="page-zootherapie.publicsHeading" data-cms-type="text" class="font-heading font-semibold text-xl md:text-2xl text-primary-900 mb-5">{page.publicsHeading}</h2>
+          <p data-cms-field="page-zootherapie.publicsIntro" data-cms-type="text" class="text-neutral-700 text-sm leading-relaxed mb-4">{page.publicsIntro}</p>
           <ul class="space-y-2.5">
-            {[
-              'Personnes atteintes d\'Alzheimer, Parkinson ou troubles apparentés',
-              'Enfants avec troubles du spectre autistique (TSA) ou TDAH',
-              'Personnes en situation de handicap moteur ou mental',
-              'Personnes souffrant d\'anxiété, dépression ou isolement social',
-              'Aidants familiaux en situation de surcharge émotionnelle',
-              'Enfants et adolescents avec des difficultés d\'apprentissage',
-            ].map((item) => (
-              <li class="flex items-start gap-2.5 text-sm text-neutral-700">
+            {page.publicsList.map((item: string, i: number) => (
+              <li data-cms-field={`page-zootherapie.publicsList[${i}]`} data-cms-type="text" class="flex items-start gap-2.5 text-sm text-neutral-700">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-primary-500 mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
                 {item}
               </li>
@@ -129,11 +104,11 @@ const breadcrumbSchema = getBreadcrumbSchema([
           </ul>
         </div>
         <div class="bg-secondary-50 border border-secondary-200 rounded-2xl p-7">
-          <h3 class="font-heading font-semibold text-lg text-secondary-900 mb-3">Vous ne savez pas si c'est fait pour vous ?</h3>
-          <p class="text-neutral-700 text-sm leading-relaxed mb-5">Jennifer propose un premier échange gratuit et sans engagement pour comprendre votre situation et vous orienter vers la formule la plus adaptée.</p>
+          <h3 data-cms-field="page-zootherapie.sidebarHeading" data-cms-type="text" class="font-heading font-semibold text-lg text-secondary-900 mb-3">{page.sidebarHeading}</h3>
+          <p data-cms-field="page-zootherapie.sidebarText" data-cms-type="text" class="text-neutral-700 text-sm leading-relaxed mb-5">{page.sidebarText}</p>
           <a href="https://cal.eu/jdzootherapie/30min" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-accent-700 text-white px-6 py-3 rounded font-semibold text-sm hover:bg-accent-800 transition-colors min-h-[44px] w-full">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            Réserver un appel découverte
+            <span data-cms-field="page-zootherapie.sidebarCta" data-cms-type="text">{page.sidebarCta}</span>
           </a>
         </div>
       </div>
@@ -141,10 +116,11 @@ const breadcrumbSchema = getBreadcrumbSchema([
   </section>
 
   <CTABanner
-    title="Prêt à découvrir la médiation animale ?"
-    text="Réservez un appel découverte gratuit avec Jennifer."
-    ctaSecondaryText="Voir les ateliers"
+    title={page.ctaTitle}
+    text={page.ctaText}
+    ctaSecondaryText={page.ctaSecondaryText}
     ctaSecondaryHref="/ateliers"
+    cmsPrefix="page-zootherapie"
   />
 
   <Footer slot="footer" />

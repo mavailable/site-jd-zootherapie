@@ -6,10 +6,11 @@ import Footer from '@components/layout/Footer.astro';
 import PageHero from '@components/sections/PageHero.astro';
 import CTABanner from '@components/sections/CTABanner.astro';
 import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
-import { getTestimonials } from '@data/content';
+import { getTestimonials, getPageTemoignages } from '@data/content';
 import { getBreadcrumbSchema } from '@data/schemas';
 
 const testimonials = await getTestimonials();
+const page = await getPageTemoignages();
 
 const breadcrumbSchema = getBreadcrumbSchema([
   { name: 'Accueil', url: 'https://jdzootherapeute.fr/' },
@@ -28,8 +29,8 @@ const breadcrumbSchema = getBreadcrumbSchema([
   <Header slot="header" />
 
   <PageHero
-    h1="Ce que disent ceux qui ont fait appel à Jennifer"
-    subtitle="Témoignages de familles, de structures et d'équipes soignantes qui ont expérimenté la médiation animale avec JD Zoothérapie."
+    h1={page.heroH1}
+    subtitle={page.heroSubtitle}
   />
 
   <!-- Fil d'Ariane -->
@@ -66,8 +67,8 @@ const breadcrumbSchema = getBreadcrumbSchema([
       <!-- Note collecte témoignages -->
       <div class="mt-10 p-5 bg-neutral-50 border border-neutral-200 rounded-xl text-center">
         <p class="text-neutral-600 text-sm">
-          D'autres témoignages seront ajoutés prochainement. Vous avez fait appel à Jennifer ?
-          <a href="/contact" class="text-primary-600 hover:text-primary-800 font-medium underline underline-offset-2 transition-colors ml-1">Partagez votre expérience</a>
+          <span data-cms-field="page-temoignages.noteText" data-cms-type="text">{page.noteText}</span>
+          <a href="/contact" class="text-primary-600 hover:text-primary-800 font-medium underline underline-offset-2 transition-colors ml-1" data-cms-field="page-temoignages.shareCta" data-cms-type="text">{page.shareCta}</a>
         </p>
       </div>
     </div>
@@ -76,39 +77,32 @@ const breadcrumbSchema = getBreadcrumbSchema([
   <!-- Section presse — fond primary-50 -->
   <section class="bg-primary-50 py-14 md:py-16">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="font-heading font-semibold text-xl md:text-2xl text-primary-900 mb-8">
-        La médiation animale dans la presse
+      <h2 class="font-heading font-semibold text-xl md:text-2xl text-primary-900 mb-8" data-cms-field="page-temoignages.pressHeading" data-cms-type="text">
+        {page.pressHeading}
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <article class="bg-white border border-neutral-200 rounded-xl p-6 shadow-sm">
-          <div class="flex items-center gap-2 mb-3">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-neutral-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>
-            <span class="text-xs text-neutral-400 font-medium">Bibliothèque de Marly</span>
-          </div>
-          <h3 class="font-heading font-semibold text-base text-primary-900 mb-2">
-            "Et si un chien aidait vos enfants à lire ?"
-          </h3>
-          <p class="text-neutral-700 text-sm leading-relaxed">Atelier de lecture assistée par l'animal avec Tips et Uxo. Un format innovant qui attire les enfants qui n'aiment pas lire.</p>
-        </article>
-        <article class="bg-white border border-neutral-200 rounded-xl p-6 shadow-sm">
-          <div class="flex items-center gap-2 mb-3">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-neutral-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>
-            <span class="text-xs text-neutral-400 font-medium">Presse locale Moselle</span>
-          </div>
-          <h3 class="font-heading font-semibold text-base text-primary-900 mb-2">
-            La médiation animale à l'honneur
-          </h3>
-          <p class="text-neutral-700 text-sm leading-relaxed">Article de presse consacré à l'engagement de Jennifer et à l'impact de ses interventions sur le terrain.</p>
-        </article>
+        {page.pressCards.map((card: { source: string; title: string; description: string }, i: number) => (
+          <article class="bg-white border border-neutral-200 rounded-xl p-6 shadow-sm">
+            <div class="flex items-center gap-2 mb-3">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-neutral-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>
+              <span class="text-xs text-neutral-400 font-medium" data-cms-field={`page-temoignages.pressCards[${i}].source`} data-cms-type="text">{card.source}</span>
+            </div>
+            <h3 class="font-heading font-semibold text-base text-primary-900 mb-2" data-cms-field={`page-temoignages.pressCards[${i}].title`} data-cms-type="text">
+              {card.title}
+            </h3>
+            <p class="text-neutral-700 text-sm leading-relaxed" data-cms-field={`page-temoignages.pressCards[${i}].description`} data-cms-type="text">{card.description}</p>
+          </article>
+        ))}
       </div>
     </div>
   </section>
 
   <CTABanner
-    title="Prêt à vivre l'expérience ?"
-    text="Réservez un appel découverte gratuit pour construire votre projet de médiation animale."
-    ctaSecondaryText="Voir les ateliers"
+    title={page.ctaTitle}
+    text={page.ctaText}
+    ctaSecondaryText={page.ctaSecondaryText}
     ctaSecondaryHref="/ateliers"
+    cmsPrefix="page-temoignages"
   />
 
   <Footer slot="footer" />

@@ -37,3 +37,33 @@ export async function getFaq() {
   const entries = await getCollection('faq');
   return entries.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0)).map(e => e.data);
 }
+
+export async function getPageZootherapie() {
+  const entry = await getEntry('page-zootherapie', 'index');
+  return entry!.data;
+}
+
+export async function getPageAteliers() {
+  const entry = await getEntry('page-ateliers', 'index');
+  return entry!.data;
+}
+
+export async function getPageTarifs() {
+  const entry = await getEntry('page-tarifs', 'index');
+  return entry!.data;
+}
+
+export async function getPageTemoignages() {
+  const entry = await getEntry('page-temoignages', 'index');
+  return entry!.data;
+}
+
+export async function getPageAPropos() {
+  const entry = await getEntry('page-a-propos', 'index');
+  return entry!.data;
+}
+
+export async function getGallery() {
+  const entry = await getEntry('gallery', 'index');
+  return entry!.data;
+}

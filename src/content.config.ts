@@ -113,6 +113,36 @@ const blog = defineCollection({
   }),
 });
 
+const pageZootherapie = defineCollection({
+  type: 'data',
+  schema: z.object({}).passthrough(),
+});
+
+const pageAteliers = defineCollection({
+  type: 'data',
+  schema: z.object({}).passthrough(),
+});
+
+const pageTarifs = defineCollection({
+  type: 'data',
+  schema: z.object({}).passthrough(),
+});
+
+const pageTemoignages = defineCollection({
+  type: 'data',
+  schema: z.object({}).passthrough(),
+});
+
+const pageAPropos = defineCollection({
+  type: 'data',
+  schema: z.object({}).passthrough(),
+});
+
+const gallery = defineCollection({
+  type: 'data',
+  schema: z.object({}).passthrough(),
+});
+
 export const collections = {
   'site-info': siteInfo,
   hero,
@@ -122,4 +152,10 @@ export const collections = {
   testimonials,
   faq,
   blog,
+  'page-zootherapie': pageZootherapie,
+  'page-ateliers': pageAteliers,
+  'page-tarifs': pageTarifs,
+  'page-temoignages': pageTemoignages,
+  'page-a-propos': pageAPropos,
+  gallery,
 };

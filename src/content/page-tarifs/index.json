@@ -1,0 +1,38 @@
+{
+  "heroH1": "Tarifs de médiation animale — Transparence et accompagnement sur mesure",
+  "heroSubtitle": "Chaque rencontre est unique. Jennifer construit ses interventions autour de vos besoins réels, pas d'un chronomètre.",
+  "pricingCards": [
+    {
+      "badge": "Le plus choisi",
+      "title": "Séance individuelle",
+      "price": "60 €",
+      "description": "Un temps dédié, en douceur et en confiance. Chaque séance est construite autour de vos objectifs personnels : soutien émotionnel, développement moteur ou cognitif, gestion des émotions.",
+      "features": [
+        "Durée adaptée à la personne accompagnée",
+        "Déplacement inclus en Moselle",
+        "Facture fournie sur demande"
+      ]
+    },
+    {
+      "badge": null,
+      "title": "Séances de groupe",
+      "price": "Tarif sur projet",
+      "description": "Chaque groupe est différent. Le tarif est établi en fonction du nombre de participants, de la durée, des objectifs et de la fréquence des séances. Jennifer co-construit le projet avec votre équipe.",
+      "features": [
+        "EHPAD, IME, foyers, écoles, bibliothèques",
+        "Devis gratuit, sans engagement"
+      ]
+    },
+    {
+      "badge": null,
+      "title": "Accompagnement sur mesure",
+      "price": "Sur devis",
+      "description": "Pour les structures qui souhaitent intégrer la médiation animale dans leur projet d'établissement. Parcours mêlant séances individuelles et collectives, suivi régulier et évolutif.",
+      "features": []
+    }
+  ],
+  "deploymentTitle": "Déplacement",
+  "deploymentText": "Interventions à Metz, Thionville et dans toute la Moselle. Au-delà : 0,40 €/km selon la distance. Utilisez le simulateur pour connaître le tarif exact.",
+  "ctaTitle": "Demander un devis gratuit",
+  "ctaText": "Réservez un créneau pour un échange gratuit — Jennifer vous propose une formule adaptée."
+}

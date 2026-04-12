@@ -8,6 +8,8 @@ interface Props {
   ctaHref?: string;
   ctaSecondaryText?: string;
   ctaSecondaryHref?: string;
+  /** CMS collection prefix for inline editing annotations (e.g. "page-ateliers") */
+  cmsPrefix?: string;
 }
 
 const siteInfo = await getSiteInfo();
@@ -19,16 +21,23 @@ const {
   ctaHref = 'https://cal.eu/jdzootherapie/30min',
   ctaSecondaryText = 'Appeler directement',
   ctaSecondaryHref = `tel:${siteInfo.phone}`,
+  cmsPrefix,
 } = Astro.props;
 ---
 
 <section class="bg-primary-800 py-14 md:py-16">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <h2 class="font-heading font-semibold text-2xl md:text-3xl text-white mb-4">
+    <h2
+      class="font-heading font-semibold text-2xl md:text-3xl text-white mb-4"
+      {...(cmsPrefix ? { 'data-cms-field': `${cmsPrefix}.ctaTitle`, 'data-cms-type': 'text' } : {})}
+    >
       {title}
     </h2>
     {text && (
-      <p class="text-primary-100 mb-8 max-w-xl mx-auto leading-relaxed">
+      <p
+        class="text-primary-100 mb-8 max-w-xl mx-auto leading-relaxed"
+        {...(cmsPrefix ? { 'data-cms-field': `${cmsPrefix}.ctaText`, 'data-cms-type': 'text' } : {})}
+      >
         {text}
       </p>
     )}
@@ -50,6 +59,7 @@ const {
       <a
         href={ctaSecondaryHref}
         class="inline-flex items-center justify-center border-2 border-white/70 text-white px-7 py-3.5 rounded font-semibold text-base hover:bg-white/10 transition-colors min-h-[44px]"
+        {...(cmsPrefix ? { 'data-cms-field': `${cmsPrefix}.ctaSecondaryText`, 'data-cms-type': 'text' } : {})}
       >
         {ctaSecondaryText}
       </a>
