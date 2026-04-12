@@ -18,7 +18,9 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const htmlContent = await marked(post.data.body);
+// Body peut etre du markdown (original) ou du HTML (apres edition inline CMS)
+const body = post.data.body || '';
+const htmlContent = body.trimStart().startsWith('<') ? body : await marked(body);
 
 const allPosts = (await getCollection('blog')).sort(
   (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
@@ -97,7 +99,8 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
       </div>
 
       <!-- Title -->
-      <h1 class="font-heading font-bold text-2xl md:text-4xl leading-tight text-white mb-4">
+      <h1 class="font-heading font-bold text-2xl md:text-4xl leading-tight text-white mb-4"
+          data-cms-field={`blog:${post.id}.title`} data-cms-type="text">
         {post.data.title}
       </h1>
 
@@ -126,7 +129,9 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
   <!-- Article Body -->
   <article class="bg-white py-10 md:py-14">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="prose text-base md:text-lg" set:html={htmlContent}>
+      <div class="prose text-base md:text-lg"
+           data-cms-field={`blog:${post.id}.body`} data-cms-type="richtext"
+           set:html={htmlContent}>
       </div>
     </div>
   </article>

@@ -1,9 +1,22 @@
 /**
- * CMS Inline Editor — Phase 3 + Images + Styles
- * Charge uniquement quand le cookie cms_session existe.
- * - Texte : contenteditable inline
- * - Images : overlay "Changer" → galerie + upload
- * - Styles : panneau lateral couleurs/radius → preview live + save theme.json
+ * CMS Inline Editor v1.0
+ * Edition visuelle inline pour le CMS maison Web Factory.
+ *
+ * Charge uniquement quand le cookie cms_logged_in existe (injection conditionnelle
+ * dans BaseLayout.astro). Aucun impact perf/SEO pour les visiteurs normaux.
+ *
+ * Fonctionnalites :
+ * - Texte : contenteditable inline sur les champs data-cms-field/data-cms-type="text"
+ * - Images : overlay "Changer" sur data-cms-type="image" (galerie R2 + upload)
+ * - Styles : panneau lateral couleurs/radius, preview live + save theme.json
+ * - Save batch : regroupe par fichier JSON, fetch sha, merge, POST /api/cms/save
+ * - Mobile-first : toolbar responsive, boutons tactiles
+ *
+ * Conventions data-cms-field :
+ * - Singleton : "hero.title" -> src/content/hero/index.json .title
+ * - Collection : "faq:budget.question" -> src/content/faq/budget.json .question
+ * - Array item : "painpoints.questions[2]" -> src/content/painpoints/index.json .questions[2]
+ * - Array obj  : "process.phases[0].title" -> src/content/process/index.json .phases[0].title
  */
 (function () {
   'use strict';
@@ -20,25 +33,21 @@
   var themeOriginal = null;
   var themeModifications = {};
 
-  // --- Config (chargée depuis /cms-config.json) ---
+  // --- Config (chargee depuis /cms-config.json, optionnel) ---
   var cmsConfig = {
-    colors: { primary: '#5736b4', accent: '#dd8b13', dark: '#1e1b3a' },
+    colors: { primary: '#2563eb', accent: '#059669', dark: '#0f172a' },
     pageNames: {},
   };
 
   // --- Field path parser ---
-  // Singleton:   "hero.title"                → {filePath: ".../hero/index.json", field: "title"}
-  // Collection:  "faq:budget.question"       → {filePath: ".../faq/budget.json", field: "question"}
-  // Array item:  "painpoints.questions[2]"   → {filePath: ".../painpoints/index.json", field: "questions", index: 2}
-  // Array obj:   "process.phases[0].title"   → {filePath: ".../process/index.json", field: "phases", index: 0, subfield: "title"}
   function parseFieldPath(fieldPath) {
     if (!fieldPath || (fieldPath.indexOf('.') === -1 && fieldPath.indexOf(':') === -1)) {
-      console.warn('CMS: Invalid field path:', fieldPath);
+      console.warn('CMS: Chemin de champ invalide:', fieldPath);
       return null;
     }
     var colonIndex = fieldPath.indexOf(':');
     if (colonIndex !== -1) {
-      // Collection pattern
+      // Collection: "faq:budget.question" -> src/content/faq/budget.json
       var collection = fieldPath.substring(0, colonIndex);
       var rest = fieldPath.substring(colonIndex + 1);
       var dotIndex = rest.indexOf('.');
@@ -47,7 +56,7 @@
       return { filePath: 'src/content/' + collection + '/' + slug + '.json', field: field };
     }
 
-    // Check for array pattern: "singleton.field[index]" or "singleton.field[index].subfield"
+    // Array: "singleton.field[index]" or "singleton.field[index].subfield"
     var bracketMatch = fieldPath.match(/^([^.]+)\.([^[]+)\[(\d+)\](?:\.(.+))?$/);
     if (bracketMatch) {
       return {
@@ -58,7 +67,7 @@
       };
     }
 
-    // Singleton pattern
+    // Singleton: "hero.title" -> src/content/hero/index.json
     var dotIndex = fieldPath.indexOf('.');
     var singleton = fieldPath.substring(0, dotIndex);
     var field = fieldPath.substring(dotIndex + 1);
@@ -70,7 +79,7 @@
     if (!document.cookie.includes('cms_logged_in')) return;
     if (window.location.pathname.startsWith('/admin')) return;
 
-    // Charger la config CMS (couleurs, noms de pages)
+    // Charger la config (optionnelle, fallback silencieux)
     fetch('/cms-config.json')
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (data) {
@@ -81,24 +90,25 @@
         createEditButton();
       })
       .catch(function () {
-        // Fallback silencieux si le fichier n'existe pas
         createEditButton();
       });
   }
 
-  // ═══════════════════════════════════════════
-  // BOUTON FLOTTANT
-  // ═══════════════════════════════════════════
+  // =========================================================
+  // BOUTON FLOTTANT (FAB)
+  // =========================================================
 
   function createEditButton() {
     editButton = document.createElement('button');
     editButton.textContent = 'Modifier';
+    editButton.setAttribute('aria-label', 'Activer le mode edition');
     Object.assign(editButton.style, {
       position: 'fixed', bottom: '24px', right: '24px', zIndex: '9999',
       padding: '12px 24px', background: cmsConfig.colors.primary, color: '#fff',
       border: 'none', borderRadius: '12px', fontSize: '14px', fontWeight: '600',
       cursor: 'pointer', boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
       transition: 'all 0.2s ease',
+      fontFamily: 'system-ui, -apple-system, sans-serif',
     });
     editButton.addEventListener('mouseenter', function () { editButton.style.transform = 'scale(1.05)'; });
     editButton.addEventListener('mouseleave', function () { editButton.style.transform = 'scale(1)'; });
@@ -106,9 +116,9 @@
     document.body.appendChild(editButton);
   }
 
-  // ═══════════════════════════════════════════
+  // =========================================================
   // MODE EDITION
-  // ═══════════════════════════════════════════
+  // =========================================================
 
   function activateEditMode() {
     if (editMode) return;
@@ -125,11 +135,10 @@
       var field = el.getAttribute('data-cms-field');
       var type = el.getAttribute('data-cms-type') || 'text';
 
-      if (type === 'text') {
-        originalValues[field] = el.textContent || '';
+      if (type === 'text' || type === 'richtext') {
+        originalValues[field] = type === 'richtext' ? (el.innerHTML || '') : (el.textContent || '');
         el.setAttribute('contenteditable', 'true');
         el.classList.add('cms-editable');
-        // Stocker les refs pour cleanup propre
         el._cmsHandlers = { focus: handleFocus, blur: handleBlur, input: handleInput, keydown: handleKeydown };
         el.addEventListener('focus', el._cmsHandlers.focus);
         el.addEventListener('blur', el._cmsHandlers.blur);
@@ -146,15 +155,7 @@
     createToolbar();
     injectStyles();
 
-    // Scroll vers le premier champ editable
-    var firstEditable = document.querySelector('[data-cms-field]');
-    if (firstEditable) {
-      setTimeout(function () {
-        firstEditable.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 300);
-    }
-
-    // Flash highlight pour montrer les champs editables
+    // Flash pour montrer les champs editables
     editables.forEach(function (el) {
       el.classList.add('cms-editable-flash');
     });
@@ -170,10 +171,9 @@
 
     document.querySelectorAll('[data-cms-field]').forEach(function (el) {
       var type = el.getAttribute('data-cms-type') || 'text';
-      if (type === 'text') {
+      if (type === 'text' || type === 'richtext') {
         el.removeAttribute('contenteditable');
         el.classList.remove('cms-editable', 'cms-editable-focus');
-        // Cleanup event listeners
         if (el._cmsHandlers) {
           el.removeEventListener('focus', el._cmsHandlers.focus);
           el.removeEventListener('blur', el._cmsHandlers.blur);
@@ -184,7 +184,7 @@
       }
     });
 
-    // Retirer les overlays image
+    // Retirer overlays image
     document.querySelectorAll('.cms-image-overlay').forEach(function (o) { o.remove(); });
 
     if (toolbar) { toolbar.remove(); toolbar = null; }
@@ -198,12 +198,13 @@
   }
 
   function cancelChanges() {
-    // Restaurer textes
+    // Restaurer textes et images
     for (var field in originalValues) {
       var el = document.querySelector('[data-cms-field="' + field + '"]');
       if (!el) continue;
       var type = el.getAttribute('data-cms-type') || 'text';
       if (type === 'text') el.textContent = originalValues[field];
+      if (type === 'richtext') el.innerHTML = originalValues[field];
       if (type === 'image') el.setAttribute('src', originalValues[field]);
     }
     // Restaurer couleurs
@@ -214,9 +215,21 @@
     showToast('Modifications annul\u00e9es', 'info');
   }
 
-  // ═══════════════════════════════════════════
-  // TEXTE — Event handlers
-  // ═══════════════════════════════════════════
+  function quitEditMode() {
+    var modCount = Object.keys(modifications).length + Object.keys(themeModifications).length;
+    if (modCount > 0) {
+      if (!window.confirm('Vous avez ' + modCount + ' modification(s) non enregistr\u00e9e(s). Quitter sans sauvegarder ?')) {
+        return;
+      }
+      cancelChanges();
+    } else {
+      deactivateEditMode();
+    }
+  }
+
+  // =========================================================
+  // TEXTE -- Event handlers
+  // =========================================================
 
   function handleFocus(e) { e.target.classList.add('cms-editable-focus'); }
   function handleBlur(e) { e.target.classList.remove('cms-editable-focus'); }
@@ -224,7 +237,8 @@
   function handleInput(e) {
     var el = e.target;
     var field = el.getAttribute('data-cms-field');
-    var newValue = el.textContent || '';
+    var type = el.getAttribute('data-cms-type') || 'text';
+    var newValue = type === 'richtext' ? (el.innerHTML || '') : (el.textContent || '');
     if (newValue !== originalValues[field]) {
       modifications[field] = newValue;
     } else {
@@ -235,16 +249,18 @@
 
   function handleKeydown(e) {
     var type = e.target.getAttribute('data-cms-type');
+    // Pas de retour a la ligne dans les champs text (seulement richtext)
     if (type === 'text' && e.key === 'Enter') e.preventDefault();
+    // Cmd+S / Ctrl+S pour sauvegarder
     if ((e.metaKey || e.ctrlKey) && e.key === 's') {
       e.preventDefault();
       saveChanges();
     }
   }
 
-  // ═══════════════════════════════════════════
-  // IMAGES — Overlay + Modal galerie/upload
-  // ═══════════════════════════════════════════
+  // =========================================================
+  // IMAGES -- Overlay + Modal galerie/upload
+  // =========================================================
 
   function addImageOverlay(imgEl, field) {
     var wrapper = imgEl.parentElement;
@@ -320,6 +336,7 @@
 
     var closeBtn = document.createElement('button');
     closeBtn.textContent = '\u2715';
+    closeBtn.setAttribute('aria-label', 'Fermer');
     Object.assign(closeBtn.style, {
       background: 'none', border: 'none', fontSize: '20px',
       cursor: 'pointer', color: '#71717a', padding: '4px 8px',
@@ -339,7 +356,7 @@
     });
     uploadZone.innerHTML = '<p style="margin:0;color:#71717a;font-size:14px;">' +
       '\ud83d\udcc1 Glissez une image ici ou <strong>parcourir</strong></p>' +
-      '<p style="margin:4px 0 0;color:#a0a0a8;font-size:12px;">JPG, PNG, WebP, SVG, GIF — max 5 Mo</p>';
+      '<p style="margin:4px 0 0;color:#a0a0a8;font-size:12px;">JPG, PNG, WebP, SVG, GIF</p>';
 
     var fileInput = document.createElement('input');
     fileInput.type = 'file';
@@ -369,7 +386,7 @@
     panel.appendChild(uploadZone);
     panel.appendChild(fileInput);
 
-    // Galerie — titre
+    // Galerie
     var galTitle = document.createElement('p');
     galTitle.textContent = 'Images existantes';
     Object.assign(galTitle.style, {
@@ -377,7 +394,6 @@
     });
     panel.appendChild(galTitle);
 
-    // Galerie — grille (chargement async)
     var grid = document.createElement('div');
     Object.assign(grid.style, {
       display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))',
@@ -385,7 +401,6 @@
     });
     panel.appendChild(grid);
 
-    // Loader
     var loader = document.createElement('p');
     loader.textContent = 'Chargement...';
     Object.assign(loader.style, { color: '#94a3b8', fontSize: '13px', textAlign: 'center' });
@@ -394,12 +409,11 @@
     imageModal.appendChild(panel);
     document.body.appendChild(imageModal);
 
-    // Clic en dehors pour fermer
+    // Fermer en cliquant en dehors
     imageModal.addEventListener('click', function (e) {
       if (e.target === imageModal) { imageModal.remove(); imageModal = null; }
     });
 
-    // Charger les images existantes
     loadImageGallery(grid, targetImg);
   }
 
@@ -422,7 +436,7 @@
           });
           var imgEl = document.createElement('img');
           imgEl.src = img.url;
-          imgEl.alt = img.name;
+          imgEl.alt = img.name || '';
           imgEl.style.cssText = 'width:100%;height:100%;object-fit:cover;';
           thumb.appendChild(imgEl);
           thumb.addEventListener('mouseenter', function () { thumb.style.borderColor = cmsConfig.colors.primary; });
@@ -465,9 +479,9 @@
     if (imageModal) { imageModal.remove(); imageModal = null; }
   }
 
-  // ═══════════════════════════════════════════
-  // STYLES — Panneau lateral
-  // ═══════════════════════════════════════════
+  // =========================================================
+  // STYLES -- Panneau lateral
+  // =========================================================
 
   function toggleThemePanel() {
     if (themePanel) {
@@ -479,7 +493,6 @@
   }
 
   function createThemePanel() {
-    // Charger le theme actuel
     fetch('/api/cms/content?path=' + encodeURIComponent('src/content/theme/index.json'))
       .then(function (r) { return r.json(); })
       .then(function (data) {
@@ -487,13 +500,13 @@
         renderThemePanel(data.content);
       })
       .catch(function () {
-        // Fallback si theme.json n'existe pas encore
+        // Fallback generique si theme.json n'existe pas
         themeOriginal = {
-          primaryColor: '#5736b4',
-          accentColor: '#dd8b13',
+          primaryColor: cmsConfig.colors.primary,
+          accentColor: cmsConfig.colors.accent,
           darkBg: '#242b31',
           bodyText: '#272727',
-          borderRadius: '50',
+          borderRadius: '8',
         };
         renderThemePanel(themeOriginal);
       });
@@ -524,6 +537,7 @@
     Object.assign(h3.style, { margin: '0', fontSize: '18px', fontWeight: '600', color: cmsConfig.colors.dark });
     var closeBtn = document.createElement('button');
     closeBtn.textContent = '\u2715';
+    closeBtn.setAttribute('aria-label', 'Fermer le panneau styles');
     Object.assign(closeBtn.style, {
       background: 'none', border: 'none', fontSize: '18px',
       cursor: 'pointer', color: '#71717a',
@@ -574,13 +588,11 @@
         borderRadius: '8px', fontSize: '13px', fontFamily: 'monospace',
       });
 
-      // Sync color → hex
       colorInput.addEventListener('input', function () {
         hexInput.value = colorInput.value;
         applyThemeColor(c.key, c.cssVar, colorInput.value);
       });
 
-      // Sync hex → color
       hexInput.addEventListener('input', function () {
         if (/^#[0-9a-fA-F]{6}$/.test(hexInput.value)) {
           colorInput.value = hexInput.value;
@@ -613,11 +625,11 @@
     radiusSlider.type = 'range';
     radiusSlider.min = '0';
     radiusSlider.max = '50';
-    radiusSlider.value = theme.borderRadius || '50';
+    radiusSlider.value = theme.borderRadius || '8';
     Object.assign(radiusSlider.style, { flex: '1', accentColor: cmsConfig.colors.primary });
 
     var radiusValue = document.createElement('span');
-    radiusValue.textContent = (theme.borderRadius || '50') + 'px';
+    radiusValue.textContent = (theme.borderRadius || '8') + 'px';
     Object.assign(radiusValue.style, {
       fontSize: '13px', fontFamily: 'monospace', color: '#71717a', minWidth: '36px',
     });
@@ -625,8 +637,7 @@
     radiusSlider.addEventListener('input', function () {
       radiusValue.textContent = radiusSlider.value + 'px';
       themeModifications.borderRadius = radiusSlider.value;
-      // Preview live sur les boutons
-      document.querySelectorAll('.btn-gradient, .btn-outline-light').forEach(function (btn) {
+      document.querySelectorAll('.btn-gradient, .btn-outline-light, .btn-primary, .btn-secondary').forEach(function (btn) {
         btn.style.borderRadius = radiusSlider.value + 'px';
       });
       updateToolbarCount();
@@ -638,7 +649,7 @@
     radiusGroup.appendChild(radiusRow);
     inner.appendChild(radiusGroup);
 
-    // Reset button
+    // Reset
     var resetBtn = document.createElement('button');
     resetBtn.textContent = 'R\u00e9initialiser';
     Object.assign(resetBtn.style, {
@@ -650,15 +661,14 @@
       if (themeOriginal) {
         applyThemeColors(themeOriginal);
         themeModifications = {};
-        // Reset les inputs
         themePanel.querySelectorAll('input[type="color"]').forEach(function (inp, i) {
           var key = colors[i].key;
           inp.value = themeOriginal[key];
           inp.nextElementSibling.value = themeOriginal[key];
         });
-        radiusSlider.value = themeOriginal.borderRadius || '50';
-        radiusValue.textContent = (themeOriginal.borderRadius || '50') + 'px';
-        document.querySelectorAll('.btn-gradient, .btn-outline-light').forEach(function (btn) {
+        radiusSlider.value = themeOriginal.borderRadius || '8';
+        radiusValue.textContent = (themeOriginal.borderRadius || '8') + 'px';
+        document.querySelectorAll('.btn-gradient, .btn-outline-light, .btn-primary, .btn-secondary').forEach(function (btn) {
           btn.style.borderRadius = '';
         });
         updateToolbarCount();
@@ -669,7 +679,6 @@
     themePanel.appendChild(inner);
     document.body.appendChild(themePanel);
 
-    // Slide in
     requestAnimationFrame(function () {
       themePanel.style.transform = 'translateX(0)';
     });
@@ -682,62 +691,31 @@
     // Preview live via CSS custom property
     document.documentElement.style.setProperty(cssVar, value);
 
-    // Les composants utilisent des hex hardcodes dans Tailwind,
-    // donc on applique aussi directement sur les elements
-    var selectors = {
-      primaryColor: {
-        bg: ['bg-[#5736b4]', 'bg-\\[\\#5736b4\\]'],
-        text: ['text-[#5736b4]', 'text-\\[\\#5736b4\\]'],
-        hex: '#5736b4',
-      },
-      accentColor: {
-        bg: ['bg-[#dd8b13]'],
-        text: ['text-[#dd8b13]', 'text-\\[\\#dd8b13\\]'],
-        hex: '#dd8b13',
-      },
-      darkBg: {
-        bg: ['bg-[#242b31]'],
-        hex: '#242b31',
-      },
-      bodyText: {
-        text: ['text-[#272727]', 'text-\\[\\#272727\\]'],
-        hex: '#272727',
-      },
+    // Appliquer aussi directement sur les elements avec hex hardcode dans Tailwind
+    var mapping = {
+      primaryColor: { prop: 'primary', hex: null },
+      accentColor: { prop: 'accent', hex: null },
+      darkBg: { prop: 'dark', hex: null },
+      bodyText: { prop: 'body', hex: null },
     };
 
-    var s = selectors[key];
-    if (!s) return;
-
-    // Appliquer directement sur les elements avec les classes Tailwind hardcodees
-    if (s.bg) {
-      document.querySelectorAll('[class*="' + s.hex + '"]').forEach(function (el) {
+    // Detecter la couleur d'origine pour les selectors Tailwind
+    if (themeOriginal && themeOriginal[key]) {
+      var origHex = themeOriginal[key].toLowerCase();
+      document.querySelectorAll('[class*="' + origHex + '"]').forEach(function (el) {
         var classes = el.className || '';
-        if (classes.indexOf('bg-[' + s.hex + ']') !== -1) {
+        if (classes.indexOf('bg-[' + origHex + ']') !== -1) {
           el.style.backgroundColor = value;
         }
-        if (classes.indexOf('text-[' + s.hex + ']') !== -1) {
+        if (classes.indexOf('text-[' + origHex + ']') !== -1) {
           el.style.color = value;
         }
-        // Hover overlays
-        if (classes.indexOf('bg-[' + s.hex + ']/') !== -1) {
-          // Extract opacity
-          var match = classes.match(new RegExp('bg-\\[' + s.hex + '\\]/(\\d+)'));
-          if (match) {
-            var opacity = parseInt(match[1]) / 100;
-            el.style.backgroundColor = hexToRgba(value, opacity);
-          }
+        // Opacite (bg-[#hex]/50)
+        var match = classes.match(new RegExp('bg-\\[' + origHex.replace('#', '\\#') + '\\]/(\\d+)'));
+        if (match) {
+          var opacity = parseInt(match[1]) / 100;
+          el.style.backgroundColor = hexToRgba(value, opacity);
         }
-      });
-    }
-
-    // Bouton gradient (accent)
-    if (key === 'accentColor') {
-      document.querySelectorAll('.btn-gradient').forEach(function (btn) {
-        btn.style.backgroundImage = 'linear-gradient(90deg, ' + value + ', #f2e1b5 53%, ' + value + ' 102%)';
-      });
-      // h4 color
-      document.querySelectorAll('h4').forEach(function (h) {
-        h.style.color = value;
       });
     }
   }
@@ -763,14 +741,13 @@
     return 'rgba(' + r + ',' + g + ',' + b + ',' + alpha + ')';
   }
 
-  // ═══════════════════════════════════════════
+  // =========================================================
   // TOOLBAR
-  // ═══════════════════════════════════════════
+  // =========================================================
 
   function getPageName() {
     var p = window.location.pathname.replace(/\/$/, '') || '/';
     if (cmsConfig.pageNames[p]) return cmsConfig.pageNames[p];
-    // Fallback: capitaliser le segment de path
     var segment = p.replace(/^\//, '').split('/')[0] || 'Accueil';
     return segment.charAt(0).toUpperCase() + segment.slice(1);
   }
@@ -779,18 +756,26 @@
     toolbar = document.createElement('div');
     toolbar.id = 'cms-toolbar';
     toolbar.innerHTML =
-      '<div style="display:flex;align-items:center;gap:12px;">' +
+      '<div style="display:flex;align-items:center;gap:12px;min-width:0;">' +
         '<span style="font-size:18px;">&#9998;</span>' +
         '<span class="cms-toolbar-label" style="font-weight:600;font-size:14px;">Mode \u00e9dition</span>' +
-        '<span class="cms-toolbar-label" style="font-size:12px;color:#94a3b8;opacity:0.7;">\u2014 ' + getPageName() + '</span>' +
-        '<span id="cms-toolbar-count" style="font-size:13px;color:#94a3b8;"></span>' +
+        '<span class="cms-toolbar-label" style="font-size:12px;color:#94a3b8;opacity:0.7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"> ' + getPageName() + '</span>' +
+        '<span id="cms-toolbar-count" style="font-size:13px;color:#94a3b8;white-space:nowrap;"></span>' +
       '</div>' +
-      '<div style="display:flex;gap:8px;">' +
+      '<div style="display:flex;gap:8px;flex-shrink:0;">' +
+        '<a id="cms-admin" href="/admin" title="Panneau d\'administration" style="' +
+          'display:inline-flex;align-items:center;padding:8px 12px;background:transparent;color:#fff;' +
+          'text-decoration:none;border:1px solid rgba(255,255,255,0.3);border-radius:8px;' +
+          'font-size:13px;cursor:pointer;"><span class="cms-toolbar-label">Admin</span><span class="cms-toolbar-icon">&#9881;</span></a>' +
         '<button id="cms-theme-btn" title="Styles" style="' +
           'padding:8px 12px;background:transparent;color:#fff;' +
           'border:1px solid rgba(255,255,255,0.3);border-radius:8px;' +
           'font-size:16px;cursor:pointer;">\ud83c\udfa8</button>' +
-        '<button id="cms-cancel" title="Annuler" style="' +
+        '<button id="cms-quit" title="Quitter le mode \u00e9dition" style="' +
+          'padding:8px 12px;background:transparent;color:#fff;' +
+          'border:1px solid rgba(255,255,255,0.3);border-radius:8px;' +
+          'font-size:13px;cursor:pointer;"><span class="cms-toolbar-label">Quitter</span><span class="cms-toolbar-icon">\u2715</span></button>' +
+        '<button id="cms-cancel" title="Annuler les modifications" style="' +
           'padding:8px 16px;background:transparent;color:#fff;' +
           'border:1px solid rgba(255,255,255,0.3);border-radius:8px;' +
           'font-size:13px;cursor:pointer;"><span class="cms-toolbar-label">Annuler</span><span class="cms-toolbar-icon">\u21a9</span></button>' +
@@ -811,6 +796,7 @@
     toolbar.querySelector('#cms-cancel').addEventListener('click', cancelChanges);
     toolbar.querySelector('#cms-save').addEventListener('click', saveChanges);
     toolbar.querySelector('#cms-theme-btn').addEventListener('click', toggleThemePanel);
+    toolbar.querySelector('#cms-quit').addEventListener('click', quitEditMode);
 
     updateToolbarCount();
   }
@@ -822,15 +808,16 @@
     if (n === 0) {
       var total = document.querySelectorAll('[data-cms-field]').length;
       count.textContent = total + ' champ' + (total > 1 ? 's' : '') + ' \u00e9ditable' + (total > 1 ? 's' : '');
+      count.style.color = '#94a3b8';
     } else {
       count.textContent = n + ' modification' + (n > 1 ? 's' : '');
       count.style.color = cmsConfig.colors.accent;
     }
   }
 
-  // ═══════════════════════════════════════════
+  // =========================================================
   // SAUVEGARDE EN BATCH
-  // ═══════════════════════════════════════════
+  // =========================================================
 
   function saveChanges() {
     var modKeys = Object.keys(modifications);
@@ -845,7 +832,7 @@
     if (saveBtn) { saveBtn.disabled = true; saveBtn.textContent = 'Enregistrement...'; }
     if (cancelBtn) cancelBtn.disabled = true;
 
-    // --- Grouper les modifs texte/image par fichier JSON ---
+    // Grouper les modifs texte/image par fichier JSON
     var fileGroups = {};
     modKeys.forEach(function (fieldPath) {
       var parsed = parseFieldPath(fieldPath);
@@ -859,7 +846,7 @@
       });
     });
 
-    // --- Ajouter le theme si modifie ---
+    // Ajouter le theme si modifie
     if (themeKeys.length > 0) {
       var themePath = 'src/content/theme/index.json';
       if (!fileGroups[themePath]) fileGroups[themePath] = [];
@@ -874,7 +861,6 @@
     function processNext() {
       if (index >= filePaths.length) {
         showToast('Modifications enregistr\u00e9es ! Le site se met \u00e0 jour...', 'success');
-        // Mettre a jour les originaux
         modKeys.forEach(function (field) { originalValues[field] = modifications[field]; });
         modifications = {};
         themeModifications = {};
@@ -895,14 +881,15 @@
           var content = data.content;
           var sha = data.sha;
 
-          // Appliquer chaque operation
           ops.forEach(function (op) {
             if (op.index !== undefined && op.index !== null) {
               // Array item
-              if (op.subfield) {
-                content[op.field][op.index][op.subfield] = op.value;
-              } else {
-                content[op.field][op.index] = op.value;
+              if (Array.isArray(content[op.field])) {
+                if (op.subfield) {
+                  content[op.field][op.index][op.subfield] = op.value;
+                } else {
+                  content[op.field][op.index] = op.value;
+                }
               }
             } else {
               content[op.field] = op.value;
@@ -915,7 +902,7 @@
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               path: filePath, content: content, sha: sha,
-              message: '\u00c9dition inline : ' + fieldNames,
+              message: '\u00c9dition visuelle : ' + fieldNames,
             }),
           });
         })
@@ -936,9 +923,9 @@
     processNext();
   }
 
-  // ═══════════════════════════════════════════
+  // =========================================================
   // TOAST
-  // ═══════════════════════════════════════════
+  // =========================================================
 
   function showToast(message, type) {
     var existing = document.getElementById('cms-toast');
@@ -947,6 +934,8 @@
     var toast = document.createElement('div');
     toast.id = 'cms-toast';
     toast.textContent = message;
+    toast.setAttribute('role', 'status');
+    toast.setAttribute('aria-live', 'polite');
 
     var bgColor = type === 'success' ? '#16a34a' : type === 'error' ? '#dc2626' : '#475569';
 
@@ -971,15 +960,14 @@
     }, 4000);
   }
 
-  // ═══════════════════════════════════════════
+  // =========================================================
   // STYLES INJECTES
-  // ═══════════════════════════════════════════
+  // =========================================================
 
   function injectStyles() {
     if (document.getElementById('cms-edit-styles')) return;
     var style = document.createElement('style');
     style.id = 'cms-edit-styles';
-    // Injecter la couleur accent comme CSS custom property
     document.documentElement.style.setProperty('--cms-accent', cmsConfig.colors.accent);
     style.textContent =
       '.cms-editable{outline:2px dashed transparent;outline-offset:4px;' +
@@ -989,17 +977,17 @@
       'background-color:color-mix(in srgb,var(--cms-accent) 8%,transparent)}' +
       'body:has(#cms-toolbar){padding-bottom:64px}' +
       '.cms-image-overlay:hover{opacity:1!important}' +
-      // Flash highlight animation
       '.cms-editable-flash{animation:cms-flash 1.5s ease-out}' +
       '@keyframes cms-flash{0%{outline-color:var(--cms-accent);outline-style:solid}' +
       '100%{outline-color:transparent;outline-style:dashed}}' +
-      // Mobile responsive toolbar
       '.cms-toolbar-icon{display:none}' +
       '@media(max-width:640px){' +
       '.cms-toolbar-label{display:none!important}' +
       '.cms-toolbar-icon{display:inline!important}' +
       '#cms-toolbar{padding:10px 16px!important}' +
       '#cms-toolbar-count{font-size:12px!important}' +
+      '#cms-theme-panel{width:100%!important;max-width:100%!important}' +
+      '#cms-image-modal>div{width:95vw!important;padding:16px!important}' +
       '}';
     document.head.appendChild(style);
   }
