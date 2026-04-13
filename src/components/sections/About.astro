@@ -59,18 +59,12 @@ const animalPhotos: Record<string, string> = {
 
         <!-- Badges certifications -->
         <div class="flex flex-wrap gap-2.5 mt-6">
-          <span class="inline-flex items-center gap-1.5 bg-secondary-100 text-secondary-800 px-3 py-1.5 rounded-full text-xs font-medium">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-            Certifiée IFZ
-          </span>
-          <span class="inline-flex items-center gap-1.5 bg-secondary-100 text-secondary-800 px-3 py-1.5 rounded-full text-xs font-medium">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-            Syndicat Français des Zoothérapeutes
-          </span>
-          <span class="inline-flex items-center gap-1.5 bg-secondary-100 text-secondary-800 px-3 py-1.5 rounded-full text-xs font-medium">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-            +20 ans dans le soin
-          </span>
+          {(about.badges ?? []).map((badge, i) => (
+            <span class="inline-flex items-center gap-1.5 bg-secondary-100 text-secondary-800 px-3 py-1.5 rounded-full text-xs font-medium">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              <span data-cms-field={`about.badges[${i}].label`} data-cms-type="text">{badge.label}</span>
+            </span>
+          ))}
         </div>
 
         {snippet ? (

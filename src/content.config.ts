@@ -56,6 +56,10 @@ const about = defineCollection({
       breed: z.string(),
       role: z.string(),
     })),
+    badges: z.array(z.object({
+      icon: z.string(),
+      label: z.string(),
+    })).optional(),
   }),
 });
 
@@ -66,6 +70,9 @@ const contact = defineCollection({
     subtitle: z.string(),
     buttonText: z.string(),
     rgpdText: z.string(),
+    bookingLabel: z.string().optional(),
+    phoneLabel: z.string().optional(),
+    emailLabel: z.string().optional(),
   }),
 });
 
@@ -109,7 +116,21 @@ const blog = defineCollection({
     description: z.string(),
     date: z.string(),
     category: z.string(),
+    image: z.string().optional(),
     body: z.string(),
+  }),
+});
+
+const socialProof = defineCollection({
+  type: 'data',
+  schema: z.object({
+    sectionTitle: z.string(),
+    sectionSubtitle: z.string(),
+    googleBadge: z.string(),
+    stats: z.array(z.object({
+      value: z.string(),
+      label: z.string(),
+    })),
   }),
 });
 
@@ -152,6 +173,7 @@ export const collections = {
   testimonials,
   faq,
   blog,
+  'social-proof': socialProof,
   'page-zootherapie': pageZootherapie,
   'page-ateliers': pageAteliers,
   'page-tarifs': pageTarifs,

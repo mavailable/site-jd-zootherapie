@@ -126,6 +126,20 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
     </div>
   </nav>
 
+  <!-- Article Image -->
+  {post.data.image && (
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
+      <img
+        src={post.data.image}
+        alt={post.data.title}
+        class="w-full rounded-xl object-cover aspect-[16/9]"
+        data-cms-field={`blog:${post.id}.image`}
+        data-cms-type="image"
+        loading="eager"
+      />
+    </div>
+  )}
+
   <!-- Article Body -->
   <article class="bg-white py-10 md:py-14">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -167,6 +181,7 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
               date={related.data.date}
               category={related.data.category}
               slug={related.id}
+              image={related.data.image}
             />
           ))}
         </div>

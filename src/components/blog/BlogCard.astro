@@ -5,9 +5,10 @@ interface Props {
   date: string;
   category: string;
   slug: string;
+  image?: string;
 }
 
-const { title, description, date, category, slug } = Astro.props;
+const { title, description, date, category, slug, image } = Astro.props;
 
 const categoryColors: Record<string, { bg: string; text: string; dot: string }> = {
   'Récits de terrain': { bg: 'bg-primary-50', text: 'text-primary-700', dot: 'bg-primary-500' },
@@ -26,6 +27,13 @@ const formattedDate = new Date(date).toLocaleDateString('fr-FR', {
 ---
 
 <article class="group bg-white border border-neutral-200 rounded-xl overflow-hidden hover:border-primary-300 hover:shadow-md transition-all duration-200" data-category={category}>
+  {image && (
+    <a href={`/blog/${slug}`} class="block">
+      <div class="aspect-[16/9] overflow-hidden">
+        <img src={image} alt={title} class="w-full h-full object-cover" loading="lazy" />
+      </div>
+    </a>
+  )}
   <a href={`/blog/${slug}`} class="block p-6">
     <!-- Category badge -->
     <div class="flex items-center gap-2 mb-3">

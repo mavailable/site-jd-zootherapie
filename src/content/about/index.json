@@ -24,5 +24,10 @@
       "breed": "Lapin bélier",
       "role": "Doux et rassurant. Parfait pour les ateliers sensoriels, les personnes qui ont peur des chiens, et les moments de tendresse pure."
     }
+  ],
+  "badges": [
+    { "icon": "certification", "label": "Certifiee IFZ" },
+    { "icon": "syndicat", "label": "Syndicat Francais des Zootherapeutes" },
+    { "icon": "experience", "label": "+20 ans dans le soin" }
   ]
 }

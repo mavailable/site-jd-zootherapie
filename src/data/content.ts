@@ -38,6 +38,11 @@ export async function getFaq() {
   return entries.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0)).map(e => e.data);
 }
 
+export async function getSocialProof() {
+  const entry = await getEntry('social-proof', 'index');
+  return entry!.data;
+}
+
 export async function getPageZootherapie() {
   const entry = await getEntry('page-zootherapie', 'index');
   return entry!.data;
