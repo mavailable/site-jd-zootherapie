@@ -59,11 +59,6 @@ export async function onRequestPost({ request, env }) {
     role = 'admin';
   }
 
-  // 3. Fallback : ancien systeme CMS_PASSWORD (retrocompatibilite)
-  if (!role && env.CMS_PASSWORD && password === env.CMS_PASSWORD) {
-    role = 'admin';
-  }
-
   if (!role) {
     return new Response(
       JSON.stringify({ error: 'Mot de passe incorrect' }),

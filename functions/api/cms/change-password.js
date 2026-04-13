@@ -60,9 +60,7 @@ export async function onRequestPost({ request, env }) {
   // Verifier le mot de passe actuel
   // On accepte soit le mot de passe client KV, soit le mot de passe admin
   const isClientPassword = await verifyClientPassword(currentPassword, env);
-  const isAdminPassword =
-    (env.CMS_ADMIN_PASSWORD && currentPassword === env.CMS_ADMIN_PASSWORD) ||
-    (env.CMS_PASSWORD && currentPassword === env.CMS_PASSWORD);
+  const isAdminPassword = env.CMS_ADMIN_PASSWORD && currentPassword === env.CMS_ADMIN_PASSWORD;
 
   if (!isClientPassword && !isAdminPassword) {
     return new Response(
