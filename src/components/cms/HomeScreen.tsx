@@ -11,11 +11,14 @@ interface HomeScreenProps {
   config: CmsConfig;
 }
 
+const WEB3FORMS_DEFAULT_KEY = '9667fcf8-c7da-4b7a-8432-0ec25215c75e';
+
 export function HomeScreen({ config }: HomeScreenProps) {
-  const { fetchList } = useContent();
+  const { fetchList, fetchFile } = useContent();
   const [counts, setCounts] = useState<Record<string, number>>({});
   const [loading, setLoading] = useState(true);
   const [showMore, setShowMore] = useState(false);
+  const [needsW3fKey, setNeedsW3fKey] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -33,7 +36,15 @@ export function HomeScreen({ config }: HomeScreenProps) {
       setCounts(newCounts);
       setLoading(false);
     });
-  }, [config.collections, fetchList]);
+
+    // Check if Web3Forms key needs to be configured
+    if (config.singletons.contact) {
+      fetchFile(config.singletons.contact.path).then((data) => {
+        const key = data?.content?.web3formsKey;
+        setNeedsW3fKey(!key || key === WEB3FORMS_DEFAULT_KEY);
+      }).catch(() => {});
+    }
+  }, [config.collections, config.singletons, fetchList, fetchFile]);
 
   if (loading) return <SkeletonDashboard />;
 
@@ -98,6 +109,22 @@ export function HomeScreen({ config }: HomeScreenProps) {
     <div style={styles.fadeIn}>
       <HealthCard config={config} />
       <OnboardingChecklist config={config} />
+
+      {needsW3fKey && (
+        <div style={styles.w3fAlert}>
+          <div style={styles.w3fAlertContent}>
+            <strong>Recevez vos demandes de contact directement</strong>
+            <p style={styles.w3fAlertText}>
+              Votre formulaire de contact envoie les messages a votre webmaster.
+              Creez votre cle gratuite sur <a href="https://web3forms.com" target="_blank" rel="noopener noreferrer" style={styles.w3fLink}>web3forms.com</a>,
+              puis collez-la dans la section Contact.
+            </p>
+          </div>
+          <button onClick={() => navigate('#/singleton/contact')} style={styles.w3fBtn}>
+            Configurer
+          </button>
+        </div>
+      )}
 
       <InlineHelp tipId="home-tip">
         Cliquez sur une carte pour modifier son contenu. Vos changements seront visibles apres avoir
@@ -282,4 +309,35 @@ const styles: Record<string, React.CSSProperties> = {
   toolIcon: { fontSize: '1rem', opacity: 0.7, marginTop: '2px' },
   cardTitleSmall: { fontSize: '0.875rem', fontWeight: 600, color: '#0f172a' },
   cardDescSmall: { fontSize: '0.75rem', color: '#64748b', lineHeight: 1.4, marginTop: '2px' },
+  // Web3Forms alert
+  w3fAlert: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '1rem',
+    background: '#fffbeb',
+    border: '1px solid #fde68a',
+    borderRadius: '12px',
+    padding: '1rem 1.25rem',
+    marginBottom: '1.5rem',
+  },
+  w3fAlertContent: { flex: 1 },
+  w3fAlertText: {
+    fontSize: '0.8125rem',
+    color: '#78350f',
+    margin: '0.375rem 0 0',
+    lineHeight: 1.5,
+  },
+  w3fLink: { color: '#d97706', fontWeight: 600 },
+  w3fBtn: {
+    flexShrink: 0,
+    padding: '0.625rem 1.25rem',
+    fontSize: '0.8125rem',
+    fontWeight: 600,
+    color: '#92400e',
+    background: '#fef3c7',
+    border: '1px solid #fde68a',
+    borderRadius: '8px',
+    cursor: 'pointer',
+    whiteSpace: 'nowrap' as const,
+  },
 };
