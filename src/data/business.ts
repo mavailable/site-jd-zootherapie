@@ -90,3 +90,8 @@ export const schemaData = {
     'https://www.google.com/maps/place/De+Groeve+Jennifer+zootherapie+-+m%C3%A8diation+animale/@49.0208014,6.7659488,17z',
   ],
 } as const;
+
+// Web3Forms API key — cascade: CMS content → env var → cle Marc (defaut agence)
+const WEB3FORMS_DEFAULT = '9667fcf8-c7da-4b7a-8432-0ec25215c75e';
+export const web3formsDefault = WEB3FORMS_DEFAULT;
+export const web3formsKey = import.meta.env.WEB3FORMS_KEY || WEB3FORMS_DEFAULT;

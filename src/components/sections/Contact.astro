@@ -1,8 +1,18 @@
 ---
 import { getSiteInfo, getContact } from '@data/content';
+import { web3formsKey as fallbackKey } from '@data/business';
+import fs from 'node:fs';
 
 const siteInfo = await getSiteInfo();
 const contact = await getContact();
+
+// Web3Forms cascade: CMS content → env var → cle Marc (defaut agence)
+let cmsKey = '';
+try {
+  const raw = fs.readFileSync('src/content/contact/index.json', 'utf-8');
+  cmsKey = JSON.parse(raw).web3formsKey || '';
+} catch {}
+const web3formsKey = cmsKey || fallbackKey;
 ---
 
 <section id="contact" class="bg-white py-16 md:py-20">
@@ -98,7 +108,7 @@ const contact = await getContact();
 
           <div aria-live="polite" aria-atomic="true" class="sr-only" id="form-status"></div>
           <form action="https://api.web3forms.com/submit" method="POST" class="space-y-5">
-            <input type="hidden" name="access_key" value={import.meta.env.PUBLIC_WEB3FORMS_KEY} />
+            <input type="hidden" name="access_key" value={web3formsKey} />
             <input type="hidden" name="from_name" value="JD Zoothérapie — Site web" />
             <input type="hidden" name="subject" value="Nouveau message depuis jdzootherapeute.fr" />
             <input type="hidden" name="redirect" value="https://jdzootherapeute.fr/merci" />

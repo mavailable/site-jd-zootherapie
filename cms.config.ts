@@ -95,6 +95,7 @@ const cmsConfig: CmsConfig = {
         subtitle: { type: 'text', label: 'Sous-titre', multiline: true },
         buttonText: { type: 'text', label: 'Texte du bouton' },
         rgpdText: { type: 'text', label: 'Mention RGPD', multiline: true },
+        web3formsKey: { type: 'text', label: 'Cle Web3Forms (formulaire)', description: 'Creez votre cle gratuite sur web3forms.com puis collez-la ici pour recevoir vos formulaires directement.' },
       },
     },
 
