@@ -116,8 +116,8 @@ export function HomeScreen({ config }: HomeScreenProps) {
             <strong>Recevez vos demandes de contact directement</strong>
             <p style={styles.w3fAlertText}>
               Votre formulaire de contact envoie les messages a votre webmaster.
-              Creez votre cle gratuite sur <a href="https://web3forms.com" target="_blank" rel="noopener noreferrer" style={styles.w3fLink}>web3forms.com</a>,
-              puis collez-la dans la section Contact.
+              Configurez votre propre cle pour les recevoir directement.{' '}
+              <a href="https://marcm.fr/aide/web3forms/" target="_blank" rel="noopener noreferrer" style={styles.w3fLink}>Voir le guide</a>
             </p>
           </div>
           <button onClick={() => navigate('#/singleton/contact')} style={styles.w3fBtn}>
