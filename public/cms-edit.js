@@ -858,7 +858,7 @@
 
     function processNext() {
       if (index >= filePaths.length) {
-        showToast('Modifications enregistr\u00e9es ! Le site se met \u00e0 jour...', 'success');
+        showToast('Enregistre ! Votre site se met a jour.', 'success');
         modKeys.forEach(function (field) { originalValues[field] = modifications[field]; });
         modifications = {};
         themeModifications = {};

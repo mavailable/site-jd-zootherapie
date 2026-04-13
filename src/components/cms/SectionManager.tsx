@@ -34,7 +34,7 @@ export function SectionManager() {
       );
       setSha(result.sha);
       setClean();
-      addToast('Sections mises à jour !', 'success');
+      addToast('Enregistre ! Votre site se met a jour.', 'success');
     } catch (err) {
       addToast(err instanceof Error ? err.message : 'Erreur de sauvegarde', 'error');
     } finally {

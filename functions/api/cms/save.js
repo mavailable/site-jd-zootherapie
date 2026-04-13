@@ -85,6 +85,25 @@ export async function onRequestPost({ request, env }) {
 
     const data = await response.json();
 
+    // Auto-publish: fast-forward prod branch to this commit
+    const devBranch = env.CMS_BRANCH || 'master';
+    const prodBranch = env.CMS_PROD_BRANCH || 'master';
+    if (devBranch !== prodBranch && env.AUTO_PUBLISH !== 'false') {
+      fetch(
+        `https://api.github.com/repos/${env.CMS_REPO}/git/refs/heads/${prodBranch}`,
+        {
+          method: 'PATCH',
+          headers: {
+            Authorization: `Bearer ${env.GITHUB_TOKEN}`,
+            Accept: 'application/vnd.github+json',
+            'Content-Type': 'application/json',
+            'User-Agent': 'WebFactory-CMS',
+          },
+          body: JSON.stringify({ sha: data.commit.sha, force: false }),
+        }
+      ).catch(() => {});
+    }
+
     return new Response(
       JSON.stringify({
         sha: data.content.sha,

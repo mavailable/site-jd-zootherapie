@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useContent } from './hooks/useContent';
-import { navigate } from './CmsApp';
+import { navigate, useToastContext } from './CmsApp';
 import { HealthCard } from './HealthCard';
 import { OnboardingChecklist } from './OnboardingChecklist';
 import { InlineHelp } from './ui/InlineHelp';
@@ -19,6 +19,32 @@ export function HomeScreen({ config }: HomeScreenProps) {
   const [loading, setLoading] = useState(true);
   const [showMore, setShowMore] = useState(false);
   const [needsW3fKey, setNeedsW3fKey] = useState(false);
+  const [syncStatus, setSyncStatus] = useState<'loading' | 'synced' | 'pending'>('loading');
+  const [publishing, setPublishing] = useState(false);
+  const { addToast } = useToastContext();
+
+  useEffect(() => {
+    fetch('/api/cms/sync-status')
+      .then(res => res.json())
+      .then(data => setSyncStatus(data.synced ? 'synced' : 'pending'))
+      .catch(() => setSyncStatus('synced'));
+  }, []);
+
+  const handleManualPublish = useCallback(async () => {
+    setPublishing(true);
+    try {
+      const res = await fetch('/api/publish', { method: 'POST' });
+      if (res.ok) {
+        setSyncStatus('synced');
+        addToast('Site mis a jour !', 'success');
+      } else {
+        addToast('Erreur de publication. Contactez Marc.', 'error');
+      }
+    } catch {
+      addToast('Impossible de contacter le serveur.', 'error');
+    }
+    setPublishing(false);
+  }, [addToast]);
 
   useEffect(() => {
     setLoading(true);
@@ -110,6 +136,27 @@ export function HomeScreen({ config }: HomeScreenProps) {
       <HealthCard config={config} />
       <OnboardingChecklist config={config} />
 
+      {/* Sync status */}
+      {syncStatus === 'pending' && (
+        <div style={styles.syncPending}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <span style={{ fontSize: '1.25rem' }}>&#9888;</span>
+            <span style={{ fontSize: '0.875rem', color: '#9a3412' }}>
+              Des modifications n'ont pas ete publiees.
+            </span>
+          </div>
+          <button onClick={handleManualPublish} disabled={publishing} style={styles.syncBtn}>
+            {publishing ? 'Publication...' : 'Mettre en ligne'}
+          </button>
+        </div>
+      )}
+      {syncStatus === 'synced' && (
+        <div style={styles.syncOk}>
+          <span style={{ fontSize: '1rem', color: '#166534' }}>&#10003;</span>
+          <span style={{ fontSize: '0.8125rem', color: '#166534' }}>Site a jour</span>
+        </div>
+      )}
+
       {needsW3fKey && (
         <div style={styles.w3fAlert}>
           <div style={styles.w3fAlertContent}>
@@ -127,8 +174,8 @@ export function HomeScreen({ config }: HomeScreenProps) {
       )}
 
       <InlineHelp tipId="home-tip">
-        Cliquez sur une carte pour modifier son contenu. Vos changements seront visibles apres avoir
-        clique "Enregistrer", puis "Mettre en ligne" dans Mon Compte.
+        Cliquez sur une carte pour modifier son contenu. Vos changements seront en ligne
+        environ une minute apres avoir clique "Enregistrer".
       </InlineHelp>
 
       <section style={styles.section}>
@@ -328,6 +375,38 @@ const styles: Record<string, React.CSSProperties> = {
     lineHeight: 1.5,
   },
   w3fLink: { color: '#d97706', fontWeight: 600 },
+  syncPending: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: '1rem',
+    background: '#fff7ed',
+    border: '1px solid #fed7aa',
+    borderRadius: '12px',
+    padding: '1rem 1.25rem',
+    marginBottom: '1.5rem',
+  },
+  syncBtn: {
+    background: '#f97316',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '8px',
+    padding: '0.5rem 1rem',
+    fontSize: '0.8125rem',
+    fontWeight: 600,
+    cursor: 'pointer',
+    whiteSpace: 'nowrap' as const,
+  },
+  syncOk: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.5rem',
+    background: '#f0fdf4',
+    border: '1px solid #bbf7d0',
+    borderRadius: '12px',
+    padding: '0.75rem 1.25rem',
+    marginBottom: '1.5rem',
+  },
   w3fBtn: {
     flexShrink: 0,
     padding: '0.625rem 1.25rem',

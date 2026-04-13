@@ -116,7 +116,7 @@ export function CollectionEditor({ config, collectionKey, slug }: CollectionEdit
       setSha(result.sha);
       setOriginalFileName(fileName);
       setClean();
-      addToast(isNew ? `« ${label} » créé !` : 'Modifications enregistrées !', 'success');
+      addToast(isNew ? `« ${label} » cree !` : 'Enregistre ! Votre site se met a jour.', 'success');
 
       if (isNew) {
         const newSlug = fileName.replace('.json', '');

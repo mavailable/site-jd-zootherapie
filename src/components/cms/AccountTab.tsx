@@ -200,24 +200,7 @@ function KitLancementSection({ config }: { config: CmsConfig }) {
 export function AccountTab({ config, onLogout }: AccountTabProps) {
   const { addToast } = useToastContext();
   const [showPasswordForm, setShowPasswordForm] = useState(false);
-  const [publishing, setPublishing] = useState(false);
   const site = config.site;
-
-  const handlePublish = useCallback(async () => {
-    setPublishing(true);
-    try {
-      const res = await fetch('/api/publish', { method: 'POST' });
-      if (res.ok) {
-        addToast('Modifications publiees avec succes !', 'success');
-      } else {
-        const data = await res.json();
-        addToast(data.error || 'Erreur lors de la publication.', 'error');
-      }
-    } catch {
-      addToast('Impossible de contacter le serveur.', 'error');
-    }
-    setPublishing(false);
-  }, [addToast]);
 
   const marcPhone = site?.contactMarc?.phone || '06 88 76 66 48';
   const marcEmail = site?.contactMarc?.email || 'marc@muller.im';
@@ -240,18 +223,9 @@ export function AccountTab({ config, onLogout }: AccountTabProps) {
               </a>
             </div>
           )}
-          {site?.previewUrl && (
-            <div style={styles.infoRow}>
-              <span style={styles.infoLabel}>Preview :</span>
-              <a href={site.previewUrl} target="_blank" rel="noopener noreferrer" style={styles.infoLink}>
-                Voir la preview &#8599;
-              </a>
-            </div>
-          )}
-          <div style={styles.publishDivider} />
-          <button onClick={handlePublish} disabled={publishing} style={styles.publishBtn}>
-            {publishing ? 'Publication en cours...' : 'Mettre en ligne mes modifications'}
-          </button>
+          <div style={{ marginTop: '0.75rem', fontSize: '0.8125rem', color: '#64748b' }}>
+            Vos modifications sont publiees automatiquement apres chaque enregistrement.
+          </div>
         </div>
       </section>
 
@@ -396,11 +370,6 @@ const styles: Record<string, React.CSSProperties> = {
   infoRow: { display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.375rem', fontSize: '0.875rem' },
   infoLabel: { color: '#64748b' },
   infoLink: { color: '#2563eb', textDecoration: 'none', fontWeight: 500 },
-  publishDivider: { borderTop: '1px solid #e2e8f0', margin: '1rem 0' },
-  publishBtn: {
-    width: '100%', padding: '0.875rem', fontSize: '0.9375rem', fontWeight: 600,
-    color: '#fff', background: '#f97316', border: 'none', borderRadius: '10px', cursor: 'pointer',
-  },
   actionBtn: {
     fontSize: '0.875rem', fontWeight: 500, color: '#2563eb', background: '#eff6ff',
     border: '1px solid #bfdbfe', borderRadius: '10px', padding: '0.75rem 1.25rem',
