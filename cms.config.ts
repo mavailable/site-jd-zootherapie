@@ -189,6 +189,23 @@ const cmsConfig: CmsConfig = {
         quoteAttribution: { type: 'text', label: 'Attribution citation' },
       },
     },
+
+    seo: {
+      label: 'SEO / Referencement',
+      description: 'Nom du site et image de partage reseaux sociaux',
+      path: 'src/content/seo/index.json',
+      fields: {
+        global: {
+          type: 'object',
+          label: 'Parametres globaux',
+          fields: {
+            siteName: { type: 'text', label: 'Nom du site (onglets navigateur)' },
+            separator: { type: 'text', label: 'Separateur titre (ex: —)' },
+            defaultOgImage: { type: 'image', label: 'Image de partage par defaut' },
+          },
+        },
+      },
+    },
   },
 
   collections: {
