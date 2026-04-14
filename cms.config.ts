@@ -15,6 +15,8 @@ const cmsConfig: CmsConfig = {
     clientType: 'freelance-consultant',
     tagline: 'Zoothérapeute en Moselle',
     calUrl: 'https://cal.eu/jdzootherapie/30min',
+    umamiSiteId: '96fd46e0-47fa-4c79-abda-447fa79bd0f4',
+    umamiShareUrl: 'https://cloud.umami.is/share/7qxMncBLuGRFA5uK/jdzootherapeute.fr',
     contactMarc: {
       phone: '06 88 76 66 48',
       whatsapp: '33688766648',
