@@ -6,7 +6,7 @@ import { requireAuth, checkOrigin, jsonHeaders } from './_auth-helpers.js';
 // Rejette : <script|iframe|object|embed|form|style|link|meta|frame>, handlers
 // on*=, protocole javascript:.
 const DANGEROUS_TAG_RE = /<\s*(script|iframe|object|embed|form|style|link|meta|frame|framest|applet)\b/i;
-const DANGEROUS_HANDLER_RE = /\son[a-z]+\s*=/i;
+const DANGEROUS_HANDLER_RE = /(^|\s|<[a-z][^>]*\s)on[a-z]+\s*=/i;
 const JAVASCRIPT_PROTO_RE = /javascript\s*:/i;
 
 function stringHasDangerousHtml(str) {
