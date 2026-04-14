@@ -8,6 +8,9 @@ import CTABanner from '@components/sections/CTABanner.astro';
 import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
 import TarifCalculator from '@components/sections/TarifCalculator.astro';
 import { getBreadcrumbSchema } from '@data/schemas';
+import { getPageTarifs } from '@data/content';
+
+const page = await getPageTarifs();
 
 const breadcrumbSchema = getBreadcrumbSchema([
   { name: 'Accueil', url: 'https://jdzootherapeute.fr/' },
@@ -26,8 +29,8 @@ const breadcrumbSchema = getBreadcrumbSchema([
   <Header slot="header" />
 
   <PageHero
-    h1="Tarifs de médiation animale — Transparence et accompagnement sur mesure"
-    subtitle="Chaque rencontre est unique. Jennifer construit ses interventions autour de vos besoins réels, pas d'un chronomètre."
+    h1={page.heroH1}
+    subtitle={page.heroSubtitle}
   />
 
   <!-- Fil d'Ariane -->
@@ -46,36 +49,44 @@ const breadcrumbSchema = getBreadcrumbSchema([
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="space-y-5">
 
-        <!-- Séance individuelle — mise en avant -->
+        {/* Séance individuelle — mise en avant */}
         <article class="bg-primary-50 border-2 border-primary-300 rounded-2xl p-7 relative overflow-hidden">
-          <div class="absolute top-4 right-4">
-            <span class="inline-flex items-center gap-1 bg-accent-700 text-white text-xs font-semibold px-3 py-1 rounded-full">
-              Le plus choisi
-            </span>
-          </div>
+          {page.pricingCards[0].badge && (
+            <div class="absolute top-4 right-4">
+              <span class="inline-flex items-center gap-1 bg-accent-700 text-white text-xs font-semibold px-3 py-1 rounded-full"
+                data-cms-field="page-tarifs.pricingCards[0].badge" data-cms-type="text">
+                {page.pricingCards[0].badge}
+              </span>
+            </div>
+          )}
           <div class="flex items-start gap-5">
             <div class="inline-flex items-center justify-center w-12 h-12 bg-primary-200 text-primary-700 rounded-xl shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
             </div>
             <div class="flex-1">
               <div class="flex items-baseline gap-3 flex-wrap mb-2">
-                <h2 class="font-heading font-semibold text-xl text-primary-900">Séance individuelle</h2>
-                <span class="font-heading font-bold text-2xl text-accent-700">60 €</span>
+                <h2 class="font-heading font-semibold text-xl text-primary-900"
+                  data-cms-field="page-tarifs.pricingCards[0].title" data-cms-type="text">{page.pricingCards[0].title}</h2>
+                <span class="font-heading font-bold text-2xl text-accent-700"
+                  data-cms-field="page-tarifs.pricingCards[0].price" data-cms-type="text">{page.pricingCards[0].price}</span>
               </div>
-              <p class="text-neutral-700 text-sm leading-relaxed mb-4">Un temps dédié, en douceur et en confiance. Chaque séance est construite autour de vos objectifs personnels : soutien émotionnel, développement moteur ou cognitif, gestion des émotions.</p>
-              <ul class="space-y-1.5">
-                {['Durée adaptée à la personne accompagnée', 'Déplacement inclus en Moselle', 'Facture fournie sur demande'].map((item) => (
-                  <li class="flex items-center gap-2 text-sm text-neutral-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-primary-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              <p class="text-neutral-700 text-sm leading-relaxed mb-4"
+                data-cms-field="page-tarifs.pricingCards[0].description" data-cms-type="text">{page.pricingCards[0].description}</p>
+              {page.pricingCards[0].features.length > 0 && (
+                <ul class="space-y-1.5">
+                  {page.pricingCards[0].features.map((item: string, i: number) => (
+                    <li class="flex items-center gap-2 text-sm text-neutral-700">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-primary-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                      <span data-cms-field={`page-tarifs.pricingCards[0].features[${i}]`} data-cms-type="text">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           </div>
         </article>
 
-        <!-- Séances de groupe -->
+        {/* Séances de groupe */}
         <article class="bg-white border border-neutral-200 rounded-xl p-6 shadow-sm">
           <div class="flex items-start gap-5">
             <div class="inline-flex items-center justify-center w-12 h-12 bg-secondary-100 text-secondary-700 rounded-xl shrink-0">
@@ -83,23 +94,28 @@ const breadcrumbSchema = getBreadcrumbSchema([
             </div>
             <div class="flex-1">
               <div class="flex items-baseline gap-3 flex-wrap mb-2">
-                <h2 class="font-heading font-semibold text-lg text-primary-900">Séances de groupe</h2>
-                <span class="font-semibold text-neutral-600">Tarif sur projet</span>
+                <h2 class="font-heading font-semibold text-lg text-primary-900"
+                  data-cms-field="page-tarifs.pricingCards[1].title" data-cms-type="text">{page.pricingCards[1].title}</h2>
+                <span class="font-semibold text-neutral-600"
+                  data-cms-field="page-tarifs.pricingCards[1].price" data-cms-type="text">{page.pricingCards[1].price}</span>
               </div>
-              <p class="text-neutral-700 text-sm leading-relaxed mb-4">Chaque groupe est différent. Le tarif est établi en fonction du nombre de participants, de la durée, des objectifs et de la fréquence des séances. Jennifer co-construit le projet avec votre équipe.</p>
-              <ul class="space-y-1.5">
-                {['EHPAD, IME, foyers, écoles, bibliothèques', 'Devis gratuit, sans engagement'].map((item) => (
-                  <li class="flex items-center gap-2 text-sm text-neutral-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-neutral-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              <p class="text-neutral-700 text-sm leading-relaxed mb-4"
+                data-cms-field="page-tarifs.pricingCards[1].description" data-cms-type="text">{page.pricingCards[1].description}</p>
+              {page.pricingCards[1].features.length > 0 && (
+                <ul class="space-y-1.5">
+                  {page.pricingCards[1].features.map((item: string, i: number) => (
+                    <li class="flex items-center gap-2 text-sm text-neutral-700">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-neutral-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                      <span data-cms-field={`page-tarifs.pricingCards[1].features[${i}]`} data-cms-type="text">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           </div>
         </article>
 
-        <!-- Accompagnement sur mesure -->
+        {/* Accompagnement sur mesure */}
         <article class="bg-white border border-neutral-200 rounded-xl p-6 shadow-sm">
           <div class="flex items-start gap-5">
             <div class="inline-flex items-center justify-center w-12 h-12 bg-accent-100 text-accent-700 rounded-xl shrink-0">
@@ -107,20 +123,24 @@ const breadcrumbSchema = getBreadcrumbSchema([
             </div>
             <div class="flex-1">
               <div class="flex items-baseline gap-3 flex-wrap mb-2">
-                <h2 class="font-heading font-semibold text-lg text-primary-900">Accompagnement sur mesure</h2>
-                <span class="font-semibold text-neutral-600">Sur devis</span>
+                <h2 class="font-heading font-semibold text-lg text-primary-900"
+                  data-cms-field="page-tarifs.pricingCards[2].title" data-cms-type="text">{page.pricingCards[2].title}</h2>
+                <span class="font-semibold text-neutral-600"
+                  data-cms-field="page-tarifs.pricingCards[2].price" data-cms-type="text">{page.pricingCards[2].price}</span>
               </div>
-              <p class="text-neutral-700 text-sm leading-relaxed">Pour les structures qui souhaitent intégrer la médiation animale dans leur projet d'établissement. Parcours mêlant séances individuelles et collectives, suivi régulier et évolutif.</p>
+              <p class="text-neutral-700 text-sm leading-relaxed"
+                data-cms-field="page-tarifs.pricingCards[2].description" data-cms-type="text">{page.pricingCards[2].description}</p>
             </div>
           </div>
         </article>
 
-        <!-- Déplacement -->
+        {/* Déplacement */}
         <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-5 flex items-start gap-4">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-neutral-500 mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
           <div class="text-sm text-neutral-700">
-            <p class="font-semibold text-neutral-800 mb-1">Déplacement</p>
-            <p>Interventions à Metz, Thionville et dans toute la Moselle. Au-delà : 0,40 €/km selon la distance. Utilisez le simulateur pour connaître le tarif exact.</p>
+            <p class="font-semibold text-neutral-800 mb-1"
+              data-cms-field="page-tarifs.deploymentTitle" data-cms-type="text">{page.deploymentTitle}</p>
+            <p data-cms-field="page-tarifs.deploymentText" data-cms-type="text">{page.deploymentText}</p>
           </div>
         </div>
 
@@ -132,8 +152,9 @@ const breadcrumbSchema = getBreadcrumbSchema([
   <TarifCalculator />
 
   <CTABanner
-    title="Demander un devis gratuit"
-    text="Réservez un créneau pour un échange gratuit — Jennifer vous propose une formule adaptée."
+    title={page.ctaTitle}
+    text={page.ctaText}
+    cmsPrefix="page-tarifs"
   />
 
   <Footer slot="footer" />

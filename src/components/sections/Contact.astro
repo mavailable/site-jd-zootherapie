@@ -1,8 +1,18 @@
 ---
 import { getSiteInfo, getContact } from '@data/content';
+import { web3formsKey as fallbackKey } from '@data/business';
+import fs from 'node:fs';
 
 const siteInfo = await getSiteInfo();
 const contact = await getContact();
+
+// Web3Forms cascade: CMS content → env var → cle Marc (defaut agence)
+let cmsKey = '';
+try {
+  const raw = fs.readFileSync('src/content/contact/index.json', 'utf-8');
+  cmsKey = JSON.parse(raw).web3formsKey || '';
+} catch {}
+const web3formsKey = cmsKey || fallbackKey;
 ---
 
 <section id="contact" class="bg-white py-16 md:py-20">
@@ -12,7 +22,7 @@ const contact = await getContact();
       <h2 class="font-heading font-semibold text-2xl md:text-[2rem] text-primary-900 mb-3" data-cms-field="contact.title" data-cms-type="text">
         {contact.title}
       </h2>
-      <p class="text-neutral-600 leading-relaxed max-w-xl mx-auto text-sm">
+      <p class="text-neutral-600 leading-relaxed max-w-xl mx-auto text-sm" data-cms-field="contact.subtitle" data-cms-type="text">
         {contact.subtitle}
       </p>
     </div>
@@ -30,7 +40,8 @@ const contact = await getContact();
         <div class="inline-flex items-center justify-center w-12 h-12 bg-accent-100 text-accent-700 rounded-xl mb-4 group-hover:bg-accent-200 transition-colors">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         </div>
-        <h3 class="font-heading font-semibold text-primary-900 mb-1">Réserver un appel</h3>
+        <h3 class="font-heading font-semibold text-primary-900 mb-1"
+            data-cms-field="contact.bookingLabel" data-cms-type="text">{contact.bookingLabel || 'Réserver un appel'}</h3>
         <p class="text-xs text-neutral-500 mb-3">Choisissez un créneau de 30 min — Jennifer vous rappelle.</p>
         <span class="inline-flex items-center gap-1 text-accent-700 font-semibold text-sm group-hover:gap-2 transition-all">
           Prendre RDV
@@ -46,7 +57,8 @@ const contact = await getContact();
         <div class="inline-flex items-center justify-center w-12 h-12 bg-primary-100 text-primary-600 rounded-xl mb-4 group-hover:bg-primary-200 transition-colors">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
         </div>
-        <h3 class="font-heading font-semibold text-primary-900 mb-1">Appeler Jennifer</h3>
+        <h3 class="font-heading font-semibold text-primary-900 mb-1"
+            data-cms-field="contact.phoneLabel" data-cms-type="text">{contact.phoneLabel || 'Appeler Jennifer'}</h3>
         <p class="text-xs text-neutral-500 mb-3">Réponse immédiate aux heures ouvrables.</p>
         <span class="inline-flex items-center gap-1 text-primary-600 font-semibold text-sm">
           {siteInfo.phoneDisplay}
@@ -62,7 +74,8 @@ const contact = await getContact();
         <div class="inline-flex items-center justify-center w-12 h-12 bg-neutral-100 text-neutral-600 rounded-xl mb-4 group-hover:bg-primary-100 group-hover:text-primary-600 transition-colors">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </div>
-        <h3 class="font-heading font-semibold text-primary-900 mb-1">Envoyer un message</h3>
+        <h3 class="font-heading font-semibold text-primary-900 mb-1"
+            data-cms-field="contact.emailLabel" data-cms-type="text">{contact.emailLabel || 'Envoyer un message'}</h3>
         <p class="text-xs text-neutral-500 mb-3">Pour les demandes détaillées ou les structures.</p>
         <span class="inline-flex items-center gap-1 text-primary-600 font-semibold text-sm group-hover:gap-2 transition-all">
           Écrire
@@ -98,7 +111,7 @@ const contact = await getContact();
 
           <div aria-live="polite" aria-atomic="true" class="sr-only" id="form-status"></div>
           <form action="https://api.web3forms.com/submit" method="POST" class="space-y-5">
-            <input type="hidden" name="access_key" value={import.meta.env.PUBLIC_WEB3FORMS_KEY} />
+            <input type="hidden" name="access_key" value={web3formsKey} />
             <input type="hidden" name="from_name" value="JD Zoothérapie — Site web" />
             <input type="hidden" name="subject" value="Nouveau message depuis jdzootherapeute.fr" />
             <input type="hidden" name="redirect" value="https://jdzootherapeute.fr/merci" />
@@ -175,7 +188,7 @@ const contact = await getContact();
                 type="submit"
                 class="inline-flex items-center justify-center gap-2 bg-accent-700 text-white px-7 py-3.5 rounded font-semibold text-base hover:bg-accent-800 transition-colors min-h-[44px] w-full sm:w-auto"
               >
-                {contact.buttonText}
+                <span data-cms-field="contact.buttonText" data-cms-type="text">{contact.buttonText}</span>
               </button>
             </div>
           </form>

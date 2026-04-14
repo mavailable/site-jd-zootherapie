@@ -1,0 +1,27 @@
+{
+  "heroH1": "Des ateliers de médiation animale adaptés à chaque situation",
+  "heroSubtitle": "Particuliers, familles ou structures — Jennifer De Groeve propose des interventions sur mesure, avec ses animaux médiateurs, à Metz, Thionville et dans toute la Moselle.",
+  "servicesTitle": "Choisissez votre atelier",
+  "servicesSubtitle": "Particuliers, familles ou structures — chaque séance est construite autour de vos objectifs, en douceur et en confiance, avec des animaux médiateurs formés.",
+  "zoneHeading": "Zone d'intervention",
+  "zoneCards": [
+    {
+      "title": "Rayon principal : 50 km autour de Verny",
+      "description": "Déplacement inclus dans le tarif de la séance. Jennifer se déplace à domicile ou dans votre structure."
+    },
+    {
+      "title": "Au-delà : 0,40 €/km",
+      "description": "Interventions ponctuelles possibles jusqu'à Metz et Nancy sur demande."
+    }
+  ],
+  "firstSessionHeading": "Comment se déroule une première séance ?",
+  "firstSessionSteps": [
+    "Un premier échange téléphonique gratuit pour comprendre votre situation et vos objectifs",
+    "Jennifer prépare une intervention sur mesure avec le ou les animaux adaptés",
+    "La première rencontre est douce et progressive — pas d'obligation, pas de performance",
+    "Un bilan est réalisé après chaque séance pour suivre les progrès"
+  ],
+  "ctaTitle": "Vous ne savez pas quel atelier choisir ?",
+  "ctaText": "Réservez un appel découverte gratuit — Jennifer vous guidera vers la formule la plus adaptée.",
+  "ctaSecondaryText": "Voir les tarifs"
+}

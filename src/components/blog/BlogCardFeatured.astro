@@ -5,9 +5,10 @@ interface Props {
   date: string;
   category: string;
   slug: string;
+  image?: string;
 }
 
-const { title, description, date, category, slug } = Astro.props;
+const { title, description, date, category, slug, image } = Astro.props;
 
 const categoryColors: Record<string, { bg: string; text: string; dot: string }> = {
   'Récits de terrain': { bg: 'bg-primary-50', text: 'text-primary-700', dot: 'bg-primary-500' },
@@ -27,16 +28,22 @@ const formattedDate = new Date(date).toLocaleDateString('fr-FR', {
 
 <article class="group relative bg-white border border-neutral-200 rounded-2xl overflow-hidden hover:border-primary-300 hover:shadow-lg transition-all duration-200" data-category={category}>
   <a href={`/blog/${slug}`} class="block md:flex">
-    <!-- Decorative side panel -->
+    <!-- Side panel: image or decorative -->
     <div class="hidden md:flex md:w-48 lg:w-56 bg-primary-800 items-center justify-center shrink-0 relative overflow-hidden">
-      <div class="absolute inset-0 bg-primary-700/30">
-        <div class="absolute -top-8 -right-8 w-32 h-32 bg-primary-600/20 rounded-full"></div>
-        <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-primary-600/15 rounded-full"></div>
-      </div>
-      <div class="relative text-center px-4">
-        <div class="text-primary-200 text-xs font-medium uppercase tracking-wider mb-1">Dernier article</div>
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-primary-300 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
-      </div>
+      {image ? (
+        <img src={image} alt={title} class="w-full h-full object-cover" loading="lazy" />
+      ) : (
+        <>
+          <div class="absolute inset-0 bg-primary-700/30">
+            <div class="absolute -top-8 -right-8 w-32 h-32 bg-primary-600/20 rounded-full"></div>
+            <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-primary-600/15 rounded-full"></div>
+          </div>
+          <div class="relative text-center px-4">
+            <div class="text-primary-200 text-xs font-medium uppercase tracking-wider mb-1">Dernier article</div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-primary-300 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+          </div>
+        </>
+      )}
     </div>
 
     <!-- Content -->

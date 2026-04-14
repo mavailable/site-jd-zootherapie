@@ -8,6 +8,9 @@ import Services from '@components/sections/Services.astro';
 import CTABanner from '@components/sections/CTABanner.astro';
 import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
 import { getBreadcrumbSchema } from '@data/schemas';
+import { getPageAteliers } from '@data/content';
+
+const page = await getPageAteliers();
 
 const breadcrumbSchema = getBreadcrumbSchema([
   { name: 'Accueil', url: 'https://jdzootherapeute.fr/' },
@@ -26,8 +29,8 @@ const breadcrumbSchema = getBreadcrumbSchema([
   <Header slot="header" />
 
   <PageHero
-    h1="Des ateliers de médiation animale adaptés à chaque situation"
-    subtitle="Particuliers, familles ou structures — Jennifer De Groeve propose des interventions sur mesure, avec ses animaux médiateurs, à Metz, Thionville et dans toute la Moselle."
+    h1={page.heroH1}
+    subtitle={page.heroSubtitle}
   />
 
   <!-- Fil d'Ariane -->
@@ -43,9 +46,10 @@ const breadcrumbSchema = getBreadcrumbSchema([
 
   <!-- Tous les ateliers via composant Services -->
   <Services
-    title="Choisissez votre atelier"
-    subtitle="Particuliers, familles ou structures — chaque séance est construite autour de vos objectifs, en douceur et en confiance, avec des animaux médiateurs formés."
+    title={page.servicesTitle}
+    subtitle={page.servicesSubtitle}
     showCTA={false}
+    cmsPrefix="page-ateliers"
   />
 
   <!-- Zone d'intervention — fond blanc, layout asymétrique -->
@@ -53,39 +57,39 @@ const breadcrumbSchema = getBreadcrumbSchema([
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         <div>
-          <h2 class="font-heading font-semibold text-xl md:text-2xl text-primary-900 mb-5">
-            Zone d'intervention
+          <h2 class="font-heading font-semibold text-xl md:text-2xl text-primary-900 mb-5"
+            data-cms-field="page-ateliers.zoneHeading" data-cms-type="text">
+            {page.zoneHeading}
           </h2>
           <div class="space-y-4 text-neutral-700 text-sm leading-relaxed">
             <div class="flex items-start gap-3 p-4 bg-primary-50 rounded-xl border border-primary-100">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-primary-600 mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
               <div>
-                <p class="font-semibold text-primary-900 mb-1">Rayon principal : 50 km autour de Verny</p>
-                <p>Déplacement inclus dans le tarif de la séance. Jennifer se déplace à domicile ou dans votre structure.</p>
+                <p class="font-semibold text-primary-900 mb-1"
+                  data-cms-field="page-ateliers.zoneCards[0].title" data-cms-type="text">{page.zoneCards[0].title}</p>
+                <p data-cms-field="page-ateliers.zoneCards[0].description" data-cms-type="text">{page.zoneCards[0].description}</p>
               </div>
             </div>
             <div class="flex items-start gap-3 p-4 bg-neutral-50 rounded-xl border border-neutral-200">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-neutral-500 mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
               <div>
-                <p class="font-semibold text-neutral-800 mb-1">Au-delà : 0,40 €/km</p>
-                <p class="text-neutral-600">Interventions ponctuelles possibles jusqu'à Metz et Nancy sur demande.</p>
+                <p class="font-semibold text-neutral-800 mb-1"
+                  data-cms-field="page-ateliers.zoneCards[1].title" data-cms-type="text">{page.zoneCards[1].title}</p>
+                <p class="text-neutral-600"
+                  data-cms-field="page-ateliers.zoneCards[1].description" data-cms-type="text">{page.zoneCards[1].description}</p>
               </div>
             </div>
           </div>
         </div>
         <!-- Encart comment ça se passe -->
         <div class="bg-secondary-50 border border-secondary-200 rounded-2xl p-7">
-          <h3 class="font-heading font-semibold text-lg text-secondary-900 mb-3">Comment se déroule une première séance ?</h3>
+          <h3 class="font-heading font-semibold text-lg text-secondary-900 mb-3"
+            data-cms-field="page-ateliers.firstSessionHeading" data-cms-type="text">{page.firstSessionHeading}</h3>
           <ol class="space-y-3">
-            {[
-              'Un premier échange téléphonique gratuit pour comprendre votre situation et vos objectifs',
-              'Jennifer prépare une intervention sur mesure avec le ou les animaux adaptés',
-              'La première rencontre est douce et progressive — pas d\'obligation, pas de performance',
-              'Un bilan est réalisé après chaque séance pour suivre les progrès',
-            ].map((step, i) => (
+            {page.firstSessionSteps.map((step: string, i: number) => (
               <li class="flex items-start gap-3 text-sm text-neutral-700">
                 <span class="inline-flex items-center justify-center w-6 h-6 bg-secondary-300 text-secondary-900 rounded-full text-xs font-bold shrink-0 mt-0.5">{i + 1}</span>
-                {step}
+                <span data-cms-field={`page-ateliers.firstSessionSteps[${i}]`} data-cms-type="text">{step}</span>
               </li>
             ))}
           </ol>
@@ -95,10 +99,11 @@ const breadcrumbSchema = getBreadcrumbSchema([
   </section>
 
   <CTABanner
-    title="Vous ne savez pas quel atelier choisir ?"
-    text="Réservez un appel découverte gratuit — Jennifer vous guidera vers la formule la plus adaptée."
-    ctaSecondaryText="Voir les tarifs"
+    title={page.ctaTitle}
+    text={page.ctaText}
+    ctaSecondaryText={page.ctaSecondaryText}
     ctaSecondaryHref="/tarifs"
+    cmsPrefix="page-ateliers"
   />
 
   <Footer slot="footer" />

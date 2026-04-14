@@ -94,7 +94,116 @@ const cmsConfig: CmsConfig = {
         title: { type: 'text', label: 'Titre' },
         subtitle: { type: 'text', label: 'Sous-titre', multiline: true },
         buttonText: { type: 'text', label: 'Texte du bouton' },
-        rgpdText: { type: 'text', label: 'Mention RGPD', multiline: true },
+        web3formsKey: { type: 'text', label: 'Cle Web3Forms (formulaire)', description: 'Collez votre cle pour recevoir vos formulaires directement. Guide : marcm.fr/aide/web3forms' },
+      },
+    },
+
+    'page-zootherapie': {
+      label: 'Page Zoothérapie',
+      description: 'Contenu de la page La zoothérapie',
+      path: 'src/content/page-zootherapie/index.json',
+      fields: {
+        heroH1: { type: 'text', label: 'Titre hero' },
+        heroSubtitle: { type: 'text', label: 'Sous-titre hero', multiline: true },
+        introHeading: { type: 'text', label: 'Titre introduction' },
+        introParagraphs: { type: 'array', label: 'Paragraphes intro', itemLabel: '', item: { type: 'text', label: 'Paragraphe', multiline: true } },
+        benefitsHeading: { type: 'text', label: 'Titre bénéfices' },
+        benefits: { type: 'array', label: 'Bénéfices', itemLabel: 'title', item: { type: 'object', label: 'Bénéfice', fields: { title: { type: 'text', label: 'Titre' }, description: { type: 'text', label: 'Description', multiline: true } } } },
+        publicsHeading: { type: 'text', label: 'Titre publics' },
+        publicsIntro: { type: 'text', label: 'Intro publics', multiline: true },
+        publicsList: { type: 'array', label: 'Liste publics', itemLabel: '', item: { type: 'text', label: 'Public' } },
+        sidebarHeading: { type: 'text', label: 'Titre sidebar' },
+        sidebarText: { type: 'text', label: 'Texte sidebar', multiline: true },
+        sidebarCta: { type: 'text', label: 'CTA sidebar' },
+        ctaTitle: { type: 'text', label: 'CTA bannière titre' },
+        ctaText: { type: 'text', label: 'CTA bannière texte' },
+        ctaSecondaryText: { type: 'text', label: 'CTA secondaire' },
+      },
+    },
+
+    'page-ateliers': {
+      label: 'Page Ateliers',
+      description: 'Contenu de la page Les ateliers',
+      path: 'src/content/page-ateliers/index.json',
+      fields: {
+        heroH1: { type: 'text', label: 'Titre hero' },
+        heroSubtitle: { type: 'text', label: 'Sous-titre hero', multiline: true },
+        servicesTitle: { type: 'text', label: 'Titre section services' },
+        servicesSubtitle: { type: 'text', label: 'Sous-titre services', multiline: true },
+        ctaTitle: { type: 'text', label: 'CTA bannière titre' },
+        ctaText: { type: 'text', label: 'CTA bannière texte' },
+        ctaSecondaryText: { type: 'text', label: 'CTA secondaire' },
+      },
+    },
+
+    'page-tarifs': {
+      label: 'Page Tarifs',
+      description: 'Contenu de la page Tarifs',
+      path: 'src/content/page-tarifs/index.json',
+      fields: {
+        heroH1: { type: 'text', label: 'Titre hero' },
+        heroSubtitle: { type: 'text', label: 'Sous-titre hero', multiline: true },
+        ctaTitle: { type: 'text', label: 'CTA bannière titre' },
+        ctaText: { type: 'text', label: 'CTA bannière texte' },
+      },
+    },
+
+    'page-temoignages': {
+      label: 'Page Témoignages',
+      description: 'Contenu de la page Témoignages',
+      path: 'src/content/page-temoignages/index.json',
+      fields: {
+        heroH1: { type: 'text', label: 'Titre hero' },
+        heroSubtitle: { type: 'text', label: 'Sous-titre hero', multiline: true },
+        noteText: { type: 'text', label: 'Note bas de page', multiline: true },
+        shareCta: { type: 'text', label: 'CTA partage' },
+        pressHeading: { type: 'text', label: 'Titre section presse' },
+        ctaTitle: { type: 'text', label: 'CTA bannière titre' },
+        ctaText: { type: 'text', label: 'CTA bannière texte' },
+        ctaSecondaryText: { type: 'text', label: 'CTA secondaire' },
+      },
+    },
+
+    'page-a-propos': {
+      label: 'Page À propos',
+      description: 'Contenu de la page Mon parcours',
+      path: 'src/content/page-a-propos/index.json',
+      fields: {
+        heroH1: { type: 'text', label: 'Titre hero' },
+        heroSubtitle: { type: 'text', label: 'Sous-titre hero', multiline: true },
+        ctaTitle: { type: 'text', label: 'CTA bannière titre' },
+        ctaText: { type: 'text', label: 'CTA bannière texte' },
+        ctaSecondaryText: { type: 'text', label: 'CTA secondaire' },
+      },
+    },
+
+    gallery: {
+      label: 'Galerie photos',
+      description: 'Photos et légendes de la galerie',
+      path: 'src/content/gallery/index.json',
+      fields: {
+        sectionLabel: { type: 'text', label: 'Label section' },
+        heading: { type: 'text', label: 'Titre' },
+        description: { type: 'text', label: 'Description', multiline: true },
+        quote: { type: 'text', label: 'Citation', multiline: true },
+        quoteAttribution: { type: 'text', label: 'Attribution citation' },
+      },
+    },
+
+    seo: {
+      label: 'SEO / Referencement',
+      description: 'Nom du site et image de partage reseaux sociaux',
+      path: 'src/content/seo/index.json',
+      fields: {
+        global: {
+          type: 'object',
+          label: 'Parametres globaux',
+          fields: {
+            siteName: { type: 'text', label: 'Nom du site (onglets navigateur)' },
+            separator: { type: 'text', label: 'Separateur titre (ex: —)' },
+            defaultOgImage: { type: 'image', label: 'Image de partage par defaut' },
+          },
+        },
       },
     },
   },

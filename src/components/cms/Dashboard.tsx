@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useContent } from './hooks/useContent';
+import { useToastContext } from './CmsApp';
 import { navigate } from './CmsApp';
 import { SkeletonDashboard } from './ui/Skeleton';
 import type { CmsConfig } from '../../../cms.types';
@@ -8,10 +9,110 @@ interface DashboardProps {
   config: CmsConfig;
 }
 
+function ChangePasswordModal({ onClose, onSuccess }: { onClose: () => void; onSuccess: () => void }) {
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+
+    if (newPassword.length < 6) {
+      setError('Le nouveau mot de passe doit contenir au moins 6 caracteres.');
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
+      setError('Les mots de passe ne correspondent pas.');
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      const res = await fetch('/api/cms/change-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ currentPassword, newPassword }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        onSuccess();
+      } else {
+        setError(data.error || 'Une erreur est survenue.');
+      }
+    } catch {
+      setError('Impossible de contacter le serveur.');
+    }
+    setSubmitting(false);
+  }, [currentPassword, newPassword, confirmPassword, onSuccess]);
+
+  return (
+    <div style={modalStyles.overlay} onClick={onClose}>
+      <div style={modalStyles.modal} onClick={(e) => e.stopPropagation()}>
+        <div style={modalStyles.header}>
+          <h3 style={modalStyles.title}>Changer mon mot de passe</h3>
+          <button onClick={onClose} style={modalStyles.closeBtn} aria-label="Fermer">&times;</button>
+        </div>
+        <form onSubmit={handleSubmit}>
+          {error && <div style={modalStyles.error}>{error}</div>}
+          <label style={modalStyles.label}>
+            Mot de passe actuel
+            <input
+              type="password"
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+              style={modalStyles.input}
+              autoComplete="current-password"
+              autoFocus
+              required
+            />
+          </label>
+          <label style={modalStyles.label}>
+            Nouveau mot de passe
+            <input
+              type="password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              style={modalStyles.input}
+              autoComplete="new-password"
+              minLength={6}
+              required
+            />
+            <span style={modalStyles.hint}>6 caracteres minimum</span>
+          </label>
+          <label style={modalStyles.label}>
+            Confirmer le nouveau mot de passe
+            <input
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              style={modalStyles.input}
+              autoComplete="new-password"
+              minLength={6}
+              required
+            />
+          </label>
+          <div style={modalStyles.actions}>
+            <button type="button" onClick={onClose} style={modalStyles.cancelBtn}>Annuler</button>
+            <button type="submit" disabled={submitting} style={modalStyles.submitBtn}>
+              {submitting ? 'Modification...' : 'Modifier'}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
 export function Dashboard({ config }: DashboardProps) {
   const { fetchList } = useContent();
+  const { addToast } = useToastContext();
   const [counts, setCounts] = useState<Record<string, number>>({});
   const [loading, setLoading] = useState(true);
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -128,8 +229,26 @@ export function Dashboard({ config }: DashboardProps) {
             <div style={styles.cardDesc}>Titres, descriptions et images de partage</div>
             <div style={styles.cardAction}>Optimiser →</div>
           </button>
+          <button onClick={() => setShowPasswordModal(true)} style={styles.card}>
+            <div style={styles.cardHeader}>
+              <span style={styles.toolIcon}>&#128274;</span>
+              <div style={styles.cardTitle}>Mot de passe</div>
+            </div>
+            <div style={styles.cardDesc}>Changer votre mot de passe d'acces</div>
+            <div style={styles.cardAction}>Modifier →</div>
+          </button>
         </div>
       </section>
+
+      {showPasswordModal && (
+        <ChangePasswordModal
+          onClose={() => setShowPasswordModal(false)}
+          onSuccess={() => {
+            setShowPasswordModal(false);
+            addToast('Mot de passe modifie avec succes.', 'success');
+          }}
+        />
+      )}
     </div>
   );
 }
@@ -252,5 +371,108 @@ const styles: Record<string, React.CSSProperties> = {
     fontWeight: 500,
     color: '#2563eb',
     marginTop: '0.5rem',
+  },
+};
+
+const modalStyles: Record<string, React.CSSProperties> = {
+  overlay: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: 'rgba(0,0,0,0.4)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 100,
+    padding: '1rem',
+  },
+  modal: {
+    width: '100%',
+    maxWidth: '420px',
+    background: '#fff',
+    borderRadius: '12px',
+    padding: '1.5rem',
+    boxShadow: '0 4px 24px rgba(0,0,0,0.15)',
+  },
+  header: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: '1rem',
+  },
+  title: {
+    fontSize: '1.125rem',
+    fontWeight: 700,
+    color: '#0f172a',
+    margin: 0,
+  },
+  closeBtn: {
+    background: 'none',
+    border: 'none',
+    fontSize: '1.5rem',
+    color: '#94a3b8',
+    cursor: 'pointer',
+    padding: '0 0.25rem',
+    lineHeight: 1,
+  },
+  error: {
+    background: '#fef2f2',
+    color: '#dc2626',
+    padding: '0.75rem 1rem',
+    borderRadius: '8px',
+    fontSize: '0.875rem',
+    marginBottom: '1rem',
+  },
+  label: {
+    display: 'block',
+    fontSize: '0.875rem',
+    fontWeight: 500,
+    color: '#374151',
+    marginBottom: '1rem',
+  },
+  input: {
+    display: 'block',
+    width: '100%',
+    marginTop: '0.5rem',
+    padding: '0.625rem 0.875rem',
+    fontSize: '0.9375rem',
+    border: '1px solid #d1d5db',
+    borderRadius: '8px',
+    outline: 'none',
+  },
+  hint: {
+    display: 'block',
+    marginTop: '0.25rem',
+    fontSize: '0.75rem',
+    color: '#94a3b8',
+    fontWeight: 400 as const,
+  },
+  actions: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    gap: '0.75rem',
+    marginTop: '0.5rem',
+  },
+  cancelBtn: {
+    padding: '0.625rem 1.25rem',
+    fontSize: '0.875rem',
+    fontWeight: 500,
+    color: '#64748b',
+    background: '#fff',
+    border: '1px solid #e2e8f0',
+    borderRadius: '8px',
+    cursor: 'pointer',
+  },
+  submitBtn: {
+    padding: '0.625rem 1.25rem',
+    fontSize: '0.875rem',
+    fontWeight: 600,
+    color: '#fff',
+    background: '#2563eb',
+    border: 'none',
+    borderRadius: '8px',
+    cursor: 'pointer',
   },
 };

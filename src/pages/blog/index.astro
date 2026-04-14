@@ -101,6 +101,7 @@ const categories = [...new Set(allPosts.map(post => post.data.category))];
             date={featuredPost.data.date}
             category={featuredPost.data.category}
             slug={featuredPost.id}
+            image={featuredPost.data.image}
           />
         </div>
       )}
@@ -115,6 +116,7 @@ const categories = [...new Set(allPosts.map(post => post.data.category))];
               date={post.data.date}
               category={post.data.category}
               slug={post.id}
+              image={post.data.image}
             />
           </div>
         ))}

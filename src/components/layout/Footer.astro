@@ -22,8 +22,8 @@ const siteInfo = await getSiteInfo();
           />
           <span class="font-heading font-bold text-lg text-white group-hover:text-primary-200 transition-colors">Zoothérapie</span>
         </a>
-        <p class="text-primary-200 text-sm leading-relaxed mb-5">
-          Médiation animale certifiée en Moselle. Séances individuelles et collectives à domicile ou en structure.
+        <p class="text-primary-200 text-sm leading-relaxed mb-5" data-cms-field="site-info.description" data-cms-type="text">
+          {siteInfo.description}
         </p>
         <!-- Réseaux sociaux -->
         <div class="flex gap-3">
@@ -62,22 +62,22 @@ const siteInfo = await getSiteInfo();
         <h3 class="font-heading font-semibold text-white mb-4 text-base">Coordonnées</h3>
         <address class="not-italic text-sm text-primary-200 space-y-2.5">
           <p class="leading-relaxed">
-            {siteInfo.address.street}<br />
-            {siteInfo.address.postalCode} {siteInfo.address.city}, {siteInfo.address.region}
+            <span data-cms-field="site-info.address.street" data-cms-type="text">{siteInfo.address.street}</span><br />
+            <span data-cms-field="site-info.address.postalCode" data-cms-type="text">{siteInfo.address.postalCode}</span> <span data-cms-field="site-info.address.city" data-cms-type="text">{siteInfo.address.city}</span>, <span data-cms-field="site-info.address.region" data-cms-type="text">{siteInfo.address.region}</span>
           </p>
           <p>
             <a href={`tel:${siteInfo.phone}`} class="hover:text-white transition-colors inline-flex items-center gap-1.5">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-              {siteInfo.phoneDisplay}
+              <span data-cms-field="site-info.phoneDisplay" data-cms-type="text">{siteInfo.phoneDisplay}</span>
             </a>
           </p>
           <p>
             <a href={`mailto:${siteInfo.email}`} class="hover:text-white transition-colors inline-flex items-center gap-1.5 break-all">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-              {siteInfo.email}
+              <span data-cms-field="site-info.email" data-cms-type="text">{siteInfo.email}</span>
             </a>
           </p>
-          <p class="text-primary-300 text-xs">Zone d'intervention : {siteInfo.areaServed}</p>
+          <p class="text-primary-300 text-xs">Zone d'intervention : <span data-cms-field="site-info.areaServed" data-cms-type="text">{siteInfo.areaServed}</span></p>
         </address>
       </div>
 

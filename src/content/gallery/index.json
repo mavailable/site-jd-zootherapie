@@ -1,0 +1,33 @@
+{
+  "sectionLabel": "En images",
+  "heading": "Des moments vrais, au cœur des séances",
+  "description": "Chaque séance est unique. Ces photos témoignent de la qualité de présence et de la douceur des animaux médiateurs.",
+  "photos": [
+    {
+      "src": "/images/session-senior.webp",
+      "alt": "Séance de médiation animale avec un monsieur âgé et Uxo, le Berger américain miniature médiateur",
+      "caption": "Stimulation cognitive avec Tips",
+      "cols": 1
+    },
+    {
+      "src": "/images/hero-bg.webp",
+      "alt": "Mains d'une personne âgée caressant Uxo, le Berger américain miniature médiateur, lors d'une séance à domicile",
+      "caption": "La connexion au cœur de chaque séance",
+      "cols": 2
+    },
+    {
+      "src": "/images/session-cuddle.webp",
+      "alt": "Uxo, le Berger américain miniature médiateur, blotti contre un patient en séance de bien-être",
+      "caption": "Apaisement et bien-être",
+      "cols": 2
+    },
+    {
+      "src": "/images/session-enfant.webp",
+      "alt": "Enfant accompagnant le chien médiateur en laisse lors d'une promenade thérapeutique",
+      "caption": "Promenade thérapeutique avec un enfant",
+      "cols": 1
+    }
+  ],
+  "quote": "L'animal ne juge pas. Il offre une présence pure, qui permet à chacun de s'ouvrir à son propre rythme.",
+  "quoteAttribution": "Jennifer De Groeve, zoothérapeute"
+}

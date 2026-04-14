@@ -1,0 +1,10 @@
+{
+  "colors": {
+    "primary": "#2563eb",
+    "accent": "#059669",
+    "dark": "#0f172a"
+  },
+  "pageNames": {
+    "/": "Accueil"
+  }
+}
