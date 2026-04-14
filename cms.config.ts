@@ -5,6 +5,23 @@ const cmsConfig: CmsConfig = {
   branch: 'dev',
   siteName: 'JD Zoothérapie',
 
+  site: {
+    ownerName: 'Jennifer De Groeve',
+    phone: '+33754812122',
+    phoneDisplay: '07 54 81 21 22',
+    email: 'degroeve.j@gmail.com',
+    siteUrl: 'https://jdzootherapeute.fr',
+    previewUrl: 'https://site-jd-zootherapie.pages.dev',
+    clientType: 'freelance-consultant',
+    tagline: 'Zoothérapeute en Moselle',
+    calUrl: 'https://cal.eu/jdzootherapie/30min',
+    contactMarc: {
+      phone: '06 88 76 66 48',
+      whatsapp: '33688766648',
+      email: 'marc@muller.im',
+    },
+  },
+
   singletons: {
     'site-info': {
       label: 'Infos du site',

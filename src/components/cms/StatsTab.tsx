@@ -60,7 +60,6 @@ function StarRating({ rating }: { rating: number }) {
 export function StatsTab({ config }: StatsTabProps) {
   const site = config.site;
   const isLocal = site?.clientType === 'entreprise-locale';
-  const isSolo = site?.clientType === 'freelance-consultant';
   const reviewUrl = site?.reviewUrl;
   const calUrl = site?.calUrl;
   const hasReviews = !!config.collections?.reviews;
@@ -298,8 +297,8 @@ export function StatsTab({ config }: StatsTabProps) {
         </section>
       )}
 
-      {/* ── SECTION 3 : Prise de RDV Cal.com (freelance uniquement) ── */}
-      {isSolo && calUrl && (
+      {/* ── SECTION 3 : Prise de RDV Cal.com (affichée si calUrl défini, tous types de clients) ── */}
+      {calUrl && (
         <section style={styles.section}>
           <h2 style={styles.sectionTitle}>Prise de RDV Cal.com</h2>
 
