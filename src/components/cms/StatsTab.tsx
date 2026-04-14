@@ -60,7 +60,9 @@ function StarRating({ rating }: { rating: number }) {
 export function StatsTab({ config }: StatsTabProps) {
   const site = config.site;
   const isLocal = site?.clientType === 'entreprise-locale';
+  const isSolo = site?.clientType === 'freelance-consultant';
   const reviewUrl = site?.reviewUrl;
+  const calUrl = site?.calUrl;
   const hasReviews = !!config.collections?.reviews;
   const hasBlog = !!config.collections?.blog;
   const siteName = config.siteName;
@@ -80,6 +82,7 @@ export function StatsTab({ config }: StatsTabProps) {
   // Copy states
   const [copiedSms1, setCopiedSms1] = useState(false);
   const [copiedSms2, setCopiedSms2] = useState(false);
+  const [copiedCal, setCopiedCal] = useState(false);
 
   // Upcoming holiday
   const upcomingHoliday = getUpcomingHoliday();
@@ -292,6 +295,47 @@ export function StatsTab({ config }: StatsTabProps) {
               </div>
             </div>
           )}
+        </section>
+      )}
+
+      {/* ── SECTION 3 : Prise de RDV Cal.com (freelance uniquement) ── */}
+      {isSolo && calUrl && (
+        <section style={styles.section}>
+          <h2 style={styles.sectionTitle}>Prise de RDV Cal.com</h2>
+
+          <div style={styles.card}>
+            <div style={styles.cardLabel}>Votre lien de reservation</div>
+            <p style={styles.cardHint}>
+              Partagez ce lien a vos prospects pour qu&rsquo;ils reservent un creneau directement dans votre agenda.
+            </p>
+
+            <div style={styles.reviewLinkBox}>{calUrl}</div>
+
+            <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.875rem', flexWrap: 'wrap' }}>
+              <button
+                style={styles.copyBtn}
+                onClick={() => copyText(calUrl, setCopiedCal)}
+              >
+                {copiedCal ? 'Copie !' : 'Copier le lien'}
+              </button>
+              <a
+                href={calUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ ...styles.copyBtn, textDecoration: 'none', display: 'inline-block' }}
+              >
+                Ouvrir &#8599;
+              </a>
+              <a
+                href="https://app.cal.com/event-types"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ ...styles.copyBtn, textDecoration: 'none', display: 'inline-block' }}
+              >
+                Gerer mes disponibilites &#8599;
+              </a>
+            </div>
+          </div>
         </section>
       )}
 

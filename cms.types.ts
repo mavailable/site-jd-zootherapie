@@ -91,6 +91,7 @@ export interface CmsCollection {
 
 export interface CmsSiteConfig {
   ownerName?: string;
+  tagline?: string;
   phone?: string;
   phoneDisplay?: string;
   email?: string;
@@ -98,6 +99,9 @@ export interface CmsSiteConfig {
   previewUrl?: string;
   gbpUrl?: string;
   reviewUrl?: string;
+  facebookUrl?: string;
+  linkedinUrl?: string;
+  calUrl?: string;
   clientType?: string;
   umamiShareUrl?: string;
   umamiSiteId?: string;
