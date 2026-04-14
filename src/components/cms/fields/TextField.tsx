@@ -7,13 +7,13 @@ interface TextFieldProps {
 }
 
 function FieldDescription({ text }: { text: string }) {
-  const urlRegex = /(https?:\/\/[^\s]+|[a-z0-9-]+\.[a-z]{2,}(?:\/[^\s]*)?)/gi;
-  const parts = text.split(urlRegex);
+  const splitRegex = /(https?:\/\/[^\s]+|[a-z0-9-]+\.[a-z]{2,}(?:\/[^\s]*)?)/gi;
+  const urlTestRegex = /^(https?:\/\/[^\s]+|[a-z0-9-]+\.[a-z]{2,}(?:\/[^\s]*)?)$/i;
+  const parts = text.split(splitRegex);
   return (
     <p style={{ fontSize: '12px', color: '#94a3b8', margin: '0 0 4px' }}>
       {parts.map((part, i) =>
-        urlRegex.lastIndex = 0,
-        urlRegex.test(part) ? (
+        urlTestRegex.test(part) ? (
           <a key={i} href={part.startsWith('http') ? part : `https://${part}`} target="_blank" rel="noopener noreferrer" style={{ color: '#2563eb', textDecoration: 'underline' }}>{part}</a>
         ) : (
           <span key={i}>{part}</span>
