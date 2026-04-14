@@ -51,7 +51,7 @@ export function SingletonEditor({ config, singletonKey }: SingletonEditorProps) 
       );
       setSha(result.sha);
       setClean();
-      addToast('Modifications enregistrées !', 'success');
+      addToast('Enregistre ! Votre site se met a jour.', 'success');
     } catch (err) {
       const msg = err instanceof Error ? err.message : 'Erreur lors de la sauvegarde';
       addToast(msg, 'error');

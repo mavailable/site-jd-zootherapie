@@ -1,0 +1,285 @@
+---
+// Page de configuration du mot de passe client — ne pas indexer
+// Accessible via un lien unique avec token (genere par l'admin)
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Configurez votre acces</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+          sans-serif;
+        background: #f8fafc;
+        color: #1e293b;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+      }
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 1rem;
+      }
+      .card {
+        width: 100%;
+        max-width: 420px;
+        background: #fff;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 4px 20px rgba(0,0,0,0.06);
+      }
+      .title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+        color: #0f172a;
+      }
+      .subtitle {
+        font-size: 0.875rem;
+        color: #64748b;
+        margin-bottom: 1.5rem;
+      }
+      .field {
+        display: block;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #374151;
+        margin-bottom: 1rem;
+      }
+      .field input {
+        display: block;
+        width: 100%;
+        margin-top: 0.5rem;
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        outline: none;
+        transition: border-color 0.15s;
+      }
+      .field input:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+      }
+      .hint {
+        display: block;
+        margin-top: 0.25rem;
+        font-size: 0.75rem;
+        color: #94a3b8;
+        font-weight: 400;
+      }
+      .btn {
+        width: 100%;
+        padding: 0.75rem;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #fff;
+        background: #2563eb;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.15s;
+        margin-top: 0.5rem;
+      }
+      .btn:hover { background: #1d4ed8; }
+      .btn:disabled {
+        background: #94a3b8;
+        cursor: not-allowed;
+      }
+      .error {
+        background: #fef2f2;
+        color: #dc2626;
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        margin-bottom: 1rem;
+        display: none;
+      }
+      .error.visible { display: block; }
+      .success {
+        text-align: center;
+        display: none;
+      }
+      .success.visible { display: block; }
+      .success-icon {
+        width: 64px;
+        height: 64px;
+        background: #ecfdf5;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        font-size: 1.75rem;
+      }
+      .success h2 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 0.5rem;
+      }
+      .success p {
+        font-size: 0.875rem;
+        color: #64748b;
+        margin-bottom: 1.5rem;
+      }
+      .success a {
+        display: inline-block;
+        padding: 0.75rem 2rem;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #fff;
+        background: #2563eb;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: background 0.15s;
+      }
+      .success a:hover { background: #1d4ed8; }
+      .unavailable {
+        text-align: center;
+        display: none;
+      }
+      .unavailable.visible { display: block; }
+      .unavailable p {
+        font-size: 0.9375rem;
+        color: #64748b;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <!-- Formulaire -->
+        <div id="form-section">
+          <h1 class="title">Configurez votre acces</h1>
+          <p class="subtitle">Choisissez un mot de passe pour acceder a votre espace d'administration.</p>
+
+          <div id="error-msg" class="error"></div>
+
+          <form id="setup-form">
+            <label class="field">
+              Choisissez votre mot de passe
+              <input type="password" id="password" minlength="6" required autocomplete="new-password" />
+              <span class="hint">6 caracteres minimum</span>
+            </label>
+
+            <label class="field">
+              Confirmez votre mot de passe
+              <input type="password" id="password-confirm" minlength="6" required autocomplete="new-password" />
+            </label>
+
+            <button type="submit" class="btn" id="submit-btn">Valider</button>
+          </form>
+        </div>
+
+        <!-- Succes -->
+        <div id="success-section" class="success">
+          <div class="success-icon">&#10003;</div>
+          <h2>Mot de passe configure</h2>
+          <p>Vous pouvez maintenant acceder a votre espace d'administration.</p>
+          <a href="/admin">Acceder a mon espace</a>
+        </div>
+
+        <!-- Configuration non disponible -->
+        <div id="unavailable-section" class="unavailable">
+          <h1 class="title" style="margin-bottom: 0.75rem;">Configuration non disponible</h1>
+          <p>Cette fonctionnalite n'est pas encore activee pour ce site. Contactez votre webmaster.</p>
+        </div>
+      </div>
+    </div>
+
+    <script is:inline>
+      (function () {
+        var formSection = document.getElementById('form-section');
+        var successSection = document.getElementById('success-section');
+        var unavailableSection = document.getElementById('unavailable-section');
+        var errorMsg = document.getElementById('error-msg');
+        var form = document.getElementById('setup-form');
+        var submitBtn = document.getElementById('submit-btn');
+        var passwordInput = document.getElementById('password');
+        var confirmInput = document.getElementById('password-confirm');
+
+        // Lire le token depuis l'URL
+        var params = new URLSearchParams(window.location.search);
+        var token = params.get('token');
+
+        if (!token) {
+          formSection.style.display = 'none';
+          unavailableSection.classList.add('visible');
+          return;
+        }
+
+        function showError(msg) {
+          errorMsg.textContent = msg;
+          errorMsg.classList.add('visible');
+        }
+
+        function hideError() {
+          errorMsg.classList.remove('visible');
+        }
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          hideError();
+
+          var password = passwordInput.value;
+          var confirm = confirmInput.value;
+
+          if (password.length < 6) {
+            showError('Le mot de passe doit contenir au moins 6 caracteres.');
+            return;
+          }
+
+          if (password !== confirm) {
+            showError('Les mots de passe ne correspondent pas.');
+            confirmInput.focus();
+            return;
+          }
+
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Configuration en cours...';
+
+          fetch('/api/cms/setup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ password: password, token: token }),
+          })
+            .then(function (res) {
+              return res.json().then(function (data) {
+                return { ok: res.ok, data: data };
+              });
+            })
+            .then(function (result) {
+              if (result.ok) {
+                formSection.style.display = 'none';
+                successSection.classList.add('visible');
+              } else {
+                showError(result.data.error || 'Une erreur est survenue.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Valider';
+              }
+            })
+            .catch(function () {
+              showError('Impossible de contacter le serveur. Verifiez votre connexion.');
+              submitBtn.disabled = false;
+              submitBtn.textContent = 'Valider';
+            });
+        });
+      })();
+    </script>
+  </body>
+</html>

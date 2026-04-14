@@ -31,6 +31,15 @@ export function LoginForm({ onLogin }: LoginFormProps) {
 
         {error && <div style={styles.error}>{error}</div>}
 
+        <input
+          type="text"
+          name="username"
+          autoComplete="username"
+          style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden', opacity: 0 }}
+          tabIndex={-1}
+          aria-hidden="true"
+        />
+
         <label style={styles.label}>
           Mot de passe
           <input
@@ -61,10 +70,10 @@ const styles: Record<string, React.CSSProperties> = {
   },
   form: {
     width: '100%',
-    maxWidth: '380px',
+    maxWidth: '400px',
     background: '#fff',
-    borderRadius: '12px',
-    padding: '2rem',
+    borderRadius: '16px',
+    padding: '2.5rem',
     boxShadow: '0 1px 3px rgba(0,0,0,0.1), 0 4px 20px rgba(0,0,0,0.06)',
   },
   title: {

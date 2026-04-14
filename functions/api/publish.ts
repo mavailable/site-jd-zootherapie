@@ -1,6 +1,6 @@
 import { requireAuth, checkOrigin, jsonHeaders } from './cms/_auth-helpers.js';
 
-export const onRequestPost: PagesFunction<{ GITHUB_TOKEN: string; CMS_SESSION_SECRET: string; CMS_REPO: string }> = async ({ request, env }) => {
+export const onRequestPost: PagesFunction<{ GITHUB_TOKEN: string; CMS_SESSION_SECRET: string; CMS_REPO: string; CMS_DEV_BRANCH?: string; CMS_PROD_BRANCH?: string }> = async ({ request, env }) => {
   // Auth check
   try {
     await requireAuth(request, env);
@@ -30,20 +30,23 @@ export const onRequestPost: PagesFunction<{ GITHUB_TOKEN: string; CMS_SESSION_SE
     'User-Agent': `${repo.split('/')[1]}-publish`,
   };
 
-  // 1. Récupère le SHA actuel de dev
+  const devBranch = env.CMS_DEV_BRANCH || 'dev';
+  const prodBranch = env.CMS_PROD_BRANCH || 'master';
+
+  // 1. Récupère le SHA actuel de la branche source
   const devRes = await fetch(
-    `https://api.github.com/repos/${repo}/git/refs/heads/dev`,
+    `https://api.github.com/repos/${repo}/git/refs/heads/${devBranch}`,
     { headers }
   );
   if (!devRes.ok) {
-    return Response.json({ ok: false, error: 'Impossible de lire la branche dev' }, { status: 500 });
+    return Response.json({ ok: false, error: `Impossible de lire la branche ${devBranch}` }, { status: 500 });
   }
   const devData = await devRes.json() as { object: { sha: string } };
   const sha = devData.object.sha;
 
-  // 2. Tente de mettre à jour master
+  // 2. Tente de mettre à jour la branche de production
   const patchRes = await fetch(
-    `https://api.github.com/repos/${repo}/git/refs/heads/master`,
+    `https://api.github.com/repos/${repo}/git/refs/heads/${prodBranch}`,
     { method: 'PATCH', headers, body: JSON.stringify({ sha, force: false }) }
   );
 
@@ -51,17 +54,17 @@ export const onRequestPost: PagesFunction<{ GITHUB_TOKEN: string; CMS_SESSION_SE
     return Response.json({ ok: true });
   }
 
-  // 3. Si master n'existe pas (422), on la crée
+  // 3. Si la branche prod n'existe pas (422), on la crée
   if (patchRes.status === 422) {
     const createRes = await fetch(
       `https://api.github.com/repos/${repo}/git/refs`,
-      { method: 'POST', headers, body: JSON.stringify({ ref: 'refs/heads/master', sha }) }
+      { method: 'POST', headers, body: JSON.stringify({ ref: `refs/heads/${prodBranch}`, sha }) }
     );
     if (createRes.ok) {
       return Response.json({ ok: true });
     }
     const err = await createRes.json() as { message?: string };
-    return Response.json({ ok: false, error: err.message ?? 'Erreur création master' }, { status: 500 });
+    return Response.json({ ok: false, error: err.message ?? `Erreur creation ${prodBranch}` }, { status: 500 });
   }
 
   const err = await patchRes.json() as { message?: string };

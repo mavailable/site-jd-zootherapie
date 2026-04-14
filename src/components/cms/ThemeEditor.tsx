@@ -49,7 +49,7 @@ export function ThemeEditor() {
       const result = await saveFile(THEME_PATH, data as unknown as Record<string, unknown>, sha, '[CMS] Mise à jour thème');
       setSha(result.sha);
       setClean();
-      addToast('Thème mis à jour !', 'success');
+      addToast('Enregistre ! Votre site se met a jour.', 'success');
     } catch (err) {
       addToast(err instanceof Error ? err.message : 'Erreur', 'error');
     } finally {

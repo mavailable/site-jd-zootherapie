@@ -89,10 +89,30 @@ export interface CmsCollection {
   fields: Record<string, CmsField>;
 }
 
+export interface CmsSiteConfig {
+  ownerName?: string;
+  phone?: string;
+  phoneDisplay?: string;
+  email?: string;
+  siteUrl?: string;
+  previewUrl?: string;
+  gbpUrl?: string;
+  reviewUrl?: string;
+  clientType?: string;
+  umamiShareUrl?: string;
+  umamiSiteId?: string;
+  contactMarc?: {
+    phone?: string;
+    whatsapp?: string;
+    email?: string;
+  };
+}
+
 export interface CmsConfig {
   repo: string; // ex: "marcmuller/site-jd-zootherapie"
   branch: string; // ex: "master"
   siteName: string; // nom du site affiché dans l'admin
   singletons: Record<string, CmsSingleton>;
   collections: Record<string, CmsCollection>;
+  site?: CmsSiteConfig;
 }

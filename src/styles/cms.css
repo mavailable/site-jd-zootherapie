@@ -1,5 +1,10 @@
 /* Styles pour le CMS admin — chargés uniquement sur /admin */
 
+/* Box-sizing reset (global — les styles Astro scoped ne touchent pas les composants React) */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 /* Animations */
 @keyframes spin {
   to {
@@ -79,8 +84,9 @@
 input:focus,
 textarea:focus,
 select:focus {
+  outline: none !important;
   border-color: #3b82f6 !important;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
 }
 
 /* Card hover */
@@ -99,4 +105,34 @@ button:not(:disabled):hover {
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed !important;
+}
+
+/* ─── Unified admin: responsive tab bars ─── */
+
+/* Desktop: show top tabs, hide bottom tabs */
+@media (min-width: 769px) {
+  .cms-tabs-desktop { display: flex !important; }
+  .cms-tabs-mobile { display: none !important; }
+  .cms-umami-desktop { display: block !important; }
+  .cms-umami-mobile { display: none !important; }
+}
+
+/* Mobile: hide top tabs, show bottom tabs */
+@media (max-width: 768px) {
+  .cms-tabs-desktop { display: none !important; }
+  .cms-tabs-mobile { display: flex !important; }
+  .cms-umami-desktop { display: none !important; }
+  .cms-umami-mobile { display: block !important; }
+}
+
+/* Tab hover */
+.cms-tabs-desktop a:hover {
+  color: #2563eb !important;
+}
+
+/* Mobile safe area for bottom bar */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .cms-tabs-mobile {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
 }

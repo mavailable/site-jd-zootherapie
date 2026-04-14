@@ -46,7 +46,7 @@ export function SeoEditor() {
       const result = await saveFile(SEO_PATH, data as unknown as Record<string, unknown>, sha, '[CMS] Mise à jour SEO');
       setSha(result.sha);
       setClean();
-      addToast('SEO mis à jour !', 'success');
+      addToast('Enregistre ! Votre site se met a jour.', 'success');
     } catch (err) {
       addToast(err instanceof Error ? err.message : 'Erreur', 'error');
     } finally {

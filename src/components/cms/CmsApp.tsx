@@ -2,7 +2,10 @@ import { useState, useEffect, useCallback, createContext, useContext } from 'rea
 import { useAuth } from './hooks/useAuth';
 import { useToast, type Toast } from './hooks/useToast';
 import { LoginForm } from './LoginForm';
-import { Dashboard } from './Dashboard';
+import { HomeScreen } from './HomeScreen';
+import { StatsTab } from './StatsTab';
+import { AnalyticsTab } from './AnalyticsTab';
+import { AccountTab } from './AccountTab';
 import { SingletonEditor } from './SingletonEditor';
 import { CollectionList } from './CollectionList';
 import { CollectionEditor } from './CollectionEditor';
@@ -15,8 +18,10 @@ import cmsConfig from '../../../cms.config';
 
 // ─── Route parsing ───────────────────────────────────────────────
 
+type TabId = 'site' | 'stats' | 'analytics' | 'account';
+
 interface Route {
-  view: 'dashboard' | 'singleton' | 'collection' | 'collection-edit' | 'media' | 'sections' | 'seo' | 'theme';
+  view: 'home' | 'singleton' | 'collection' | 'collection-edit' | 'media' | 'sections' | 'seo' | 'theme' | 'stats' | 'analytics' | 'account';
   key?: string;
   slug?: string;
 }
@@ -25,6 +30,9 @@ function parseHash(): Route {
   const hash = window.location.hash.slice(1) || '/';
   const parts = hash.split('/').filter(Boolean);
 
+  if (parts[0] === 'stats') return { view: 'stats' };
+  if (parts[0] === 'analytics') return { view: 'analytics' };
+  if (parts[0] === 'account') return { view: 'account' };
   if (parts[0] === 'media') return { view: 'media' };
   if (parts[0] === 'sections') return { view: 'sections' };
   if (parts[0] === 'seo') return { view: 'seo' };
@@ -32,7 +40,14 @@ function parseHash(): Route {
   if (parts[0] === 'singleton' && parts[1]) return { view: 'singleton', key: parts[1] };
   if (parts[0] === 'collection' && parts[1] && parts[2]) return { view: 'collection-edit', key: parts[1], slug: parts[2] };
   if (parts[0] === 'collection' && parts[1]) return { view: 'collection', key: parts[1] };
-  return { view: 'dashboard' };
+  return { view: 'home' };
+}
+
+function getActiveTab(view: Route['view']): TabId {
+  if (view === 'stats') return 'stats';
+  if (view === 'analytics') return 'analytics';
+  if (view === 'account') return 'account';
+  return 'site';
 }
 
 export function navigate(hash: string) {
@@ -56,7 +71,7 @@ export function useToastContext() {
 function getBreadcrumbs(route: Route): Array<{ label: string; hash: string }> {
   const crumbs: Array<{ label: string; hash: string }> = [];
 
-  if (route.view === 'dashboard') return crumbs;
+  if (route.view === 'home' || route.view === 'stats' || route.view === 'analytics' || route.view === 'account') return crumbs;
 
   if (route.view === 'singleton' && route.key) {
     const s = cmsConfig.singletons[route.key];
@@ -77,11 +92,20 @@ function getBreadcrumbs(route: Route): Array<{ label: string; hash: string }> {
 
   if (route.view === 'media') crumbs.push({ label: 'Images', hash: '#/media' });
   if (route.view === 'sections') crumbs.push({ label: 'Sections', hash: '#/sections' });
-  if (route.view === 'seo') crumbs.push({ label: 'SEO', hash: '#/seo' });
+  if (route.view === 'seo') crumbs.push({ label: 'Referencement', hash: '#/seo' });
   if (route.view === 'theme') crumbs.push({ label: 'Apparence', hash: '#/theme' });
 
   return crumbs;
 }
+
+// ─── Tabs ────────────────────────────────────────────────────────
+
+const TABS: Array<{ id: TabId; label: string; icon: string; hash: string }> = [
+  { id: 'site', label: 'Mon Site', icon: '\u{1F3E0}', hash: '#/' },
+  { id: 'stats', label: 'Mon Activite', icon: '\u{2B50}', hash: '#/stats' },
+  { id: 'analytics', label: 'Statistiques', icon: '\u{1F4CA}', hash: '#/analytics' },
+  { id: 'account', label: 'Mon Compte', icon: '\u{1F464}', hash: '#/account' },
+];
 
 // ─── App ─────────────────────────────────────────────────────────
 
@@ -115,7 +139,8 @@ export function CmsApp() {
   }
 
   const breadcrumbs = getBreadcrumbs(route);
-  const isHome = route.view === 'dashboard';
+  const activeTab = getActiveTab(route.view);
+  const isSubView = breadcrumbs.length > 0;
 
   // Authenticated
   return (
@@ -124,7 +149,7 @@ export function CmsApp() {
         {/* Header */}
         <header style={styles.header}>
           <div style={styles.headerLeft}>
-            <a href="#/" style={styles.headerHome} title="Retour au tableau de bord">
+            <a href="#/" style={styles.headerHome} title="Retour a l'accueil">
               {cmsConfig.siteName}
             </a>
             {breadcrumbs.map((crumb, i) => (
@@ -139,8 +164,8 @@ export function CmsApp() {
             ))}
           </div>
           <div style={styles.headerRight}>
-            {!isHome && (
-              <button onClick={() => navigate('#/')} style={styles.backBtn} title="Tableau de bord">
+            {isSubView && (
+              <button onClick={() => navigate('#/')} style={styles.backBtn} title="Retour">
                 <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                 </svg>
@@ -149,15 +174,31 @@ export function CmsApp() {
             <a href="/" target="_blank" rel="noopener" style={styles.viewSiteBtn} title="Voir le site">
               Voir le site &#8599;
             </a>
-            <button onClick={logout} style={styles.logoutBtn}>
-              Deconnexion
-            </button>
           </div>
         </header>
 
+        {/* Tab bar — desktop */}
+        <nav style={styles.tabBar} className="cms-tabs-desktop">
+          {TABS.map((tab) => (
+            <a
+              key={tab.id}
+              href={tab.hash}
+              style={{
+                ...styles.tab,
+                ...(activeTab === tab.id ? styles.tabActive : {}),
+              }}
+            >
+              {tab.label}
+            </a>
+          ))}
+        </nav>
+
         {/* Content */}
         <main style={styles.main} key={route.view + (route.key || '') + (route.slug || '')}>
-          {route.view === 'dashboard' && <Dashboard config={cmsConfig} />}
+          {route.view === 'home' && <HomeScreen config={cmsConfig} />}
+          {route.view === 'stats' && <StatsTab config={cmsConfig} />}
+          {route.view === 'analytics' && <AnalyticsTab config={cmsConfig} />}
+          {route.view === 'account' && <AccountTab config={cmsConfig} onLogout={logout} />}
           {route.view === 'media' && <MediaLibrary />}
           {route.view === 'sections' && <SectionManager />}
           {route.view === 'seo' && <SeoEditor />}
@@ -175,6 +216,23 @@ export function CmsApp() {
             <CollectionEditor config={cmsConfig} collectionKey={route.key} slug={route.slug} />
           )}
         </main>
+
+        {/* Tab bar — mobile (bottom) */}
+        <nav style={styles.tabBarMobile} className="cms-tabs-mobile">
+          {TABS.map((tab) => (
+            <a
+              key={tab.id}
+              href={tab.hash}
+              style={{
+                ...styles.tabMobile,
+                ...(activeTab === tab.id ? styles.tabMobileActive : {}),
+              }}
+            >
+              <span style={styles.tabIcon}>{tab.icon}</span>
+              <span style={styles.tabLabel}>{tab.label}</span>
+            </a>
+          ))}
+        </nav>
 
         <ToastContainer toasts={toasts} onDismiss={removeToast} />
       </div>
@@ -203,6 +261,7 @@ const styles: Record<string, React.CSSProperties> = {
   app: {
     minHeight: '100vh',
     background: '#f8fafc',
+    paddingBottom: '72px',
   },
   header: {
     display: 'flex',
@@ -279,14 +338,66 @@ const styles: Record<string, React.CSSProperties> = {
     borderRadius: '8px',
     fontWeight: 500,
   },
-  logoutBtn: {
-    fontSize: '0.8125rem',
+  // Desktop tab bar
+  tabBar: {
+    display: 'flex',
+    gap: '0',
+    background: '#fff',
+    borderBottom: '1px solid #e2e8f0',
+    padding: '0 1.25rem',
+    position: 'sticky' as const,
+    top: '45px',
+    zIndex: 49,
+  },
+  tab: {
+    padding: '0.75rem 1.25rem',
+    fontSize: '0.875rem',
+    fontWeight: 500,
     color: '#64748b',
-    background: 'none',
-    border: '1px solid #e2e8f0',
-    borderRadius: '8px',
-    padding: '0.375rem 0.75rem',
-    cursor: 'pointer',
+    textDecoration: 'none',
+    borderBottom: '2px solid transparent',
+    transition: 'color 0.15s, border-color 0.15s',
+  },
+  tabActive: {
+    color: '#2563eb',
+    fontWeight: 600,
+    borderBottomColor: '#2563eb',
+  },
+  // Mobile bottom tab bar
+  tabBarMobile: {
+    display: 'none',
+    position: 'fixed' as const,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    background: '#fff',
+    borderTop: '1px solid #e2e8f0',
+    zIndex: 50,
+    padding: '0.375rem 0',
+    paddingBottom: 'env(safe-area-inset-bottom)',
+  },
+  tabMobile: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    alignItems: 'center',
+    gap: '2px',
+    flex: 1,
+    padding: '0.5rem 0',
+    fontSize: '0.625rem',
+    fontWeight: 500,
+    color: '#94a3b8',
+    textDecoration: 'none',
+  },
+  tabMobileActive: {
+    color: '#2563eb',
+    fontWeight: 600,
+  },
+  tabIcon: {
+    fontSize: '1.25rem',
+    lineHeight: 1,
+  },
+  tabLabel: {
+    lineHeight: 1,
   },
   main: {
     maxWidth: '800px',

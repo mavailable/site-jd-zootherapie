@@ -83,17 +83,26 @@ export async function requireAuth(request, env) {
 }
 
 /**
- * Crée le header Set-Cookie pour la session
+ * Crée les headers Set-Cookie pour la session
+ * Retourne un array de 2 cookies :
+ * - cms_session : HttpOnly (securite, non lisible par JS)
+ * - cms_logged_in : non-HttpOnly (flag pour cms-edit.js, aucun secret)
  */
-export function createSessionCookie(token) {
-  return `cms_session=${token}; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=${SESSION_DURATION}`;
+export function createSessionCookies(token) {
+  return [
+    `cms_session=${token}; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=${SESSION_DURATION}`,
+    `cms_logged_in=1; Secure; SameSite=Strict; Path=/; Max-Age=${SESSION_DURATION}`,
+  ];
 }
 
 /**
- * Crée le header Set-Cookie pour supprimer la session
+ * Crée les headers Set-Cookie pour supprimer la session
  */
-export function clearSessionCookie() {
-  return 'cms_session=; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=0';
+export function clearSessionCookies() {
+  return [
+    'cms_session=; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=0',
+    'cms_logged_in=; Secure; SameSite=Strict; Path=/; Max-Age=0',
+  ];
 }
 
 /**
@@ -122,6 +131,73 @@ export function checkRateLimit(ip) {
  */
 export function resetRateLimit(ip) {
   loginAttempts.delete(ip);
+}
+
+/**
+ * Hash un mot de passe avec SHA-256
+ * Retourne le hash en hexadecimal
+ */
+export async function hashPassword(password) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password);
+  const hash = await crypto.subtle.digest('SHA-256', data);
+  return Array.from(new Uint8Array(hash))
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('');
+}
+
+/**
+ * Verifie un mot de passe client contre le hash stocke en KV
+ * Retourne true si le mot de passe correspond, false sinon
+ * Retourne false si KV non configure ou pas de mot de passe client
+ */
+export async function verifyClientPassword(password, env) {
+  if (!env.CMS_AUTH) return false;
+  const storedHash = await env.CMS_AUTH.get('client_password_hash');
+  if (!storedHash) return false;
+  const hash = await hashPassword(password);
+  // Comparaison timing-safe
+  if (hash.length !== storedHash.length) return false;
+  let mismatch = 0;
+  for (let i = 0; i < hash.length; i++) {
+    mismatch |= hash.charCodeAt(i) ^ storedHash.charCodeAt(i);
+  }
+  return mismatch === 0;
+}
+
+/**
+ * Genere un token de setup (HMAC-SHA256 du timestamp)
+ * Format : "timestamp.signature"
+ * Expire apres 48h (verifie par verifySetupToken)
+ */
+export async function generateSetupToken(secret) {
+  const timestamp = Math.floor(Date.now() / 1000);
+  return signSession(timestamp, secret);
+}
+
+/**
+ * Verifie un token de setup
+ * Retourne true si valide et non expire (48h), false sinon
+ */
+export async function verifySetupToken(token, secret) {
+  if (!token) return false;
+  const parts = token.split('.');
+  if (parts.length !== 2) return false;
+  const [timestamp, providedSig] = parts;
+  const ts = parseInt(timestamp, 10);
+  if (isNaN(ts)) return false;
+  // Expiration 48h
+  const now = Math.floor(Date.now() / 1000);
+  if (now - ts > 48 * 3600) return false;
+  // Verifier signature HMAC
+  const expected = await signSession(ts, secret);
+  const expectedSig = expected.split('.')[1];
+  if (!expectedSig || providedSig.length !== expectedSig.length) return false;
+  let mismatch = 0;
+  for (let i = 0; i < providedSig.length; i++) {
+    mismatch |= providedSig.charCodeAt(i) ^ expectedSig.charCodeAt(i);
+  }
+  return mismatch === 0;
 }
 
 /**
