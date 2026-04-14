@@ -1,0 +1,33 @@
+name: Auto-FF master
+on:
+  push:
+    branches: [dev]
+jobs:
+  fast-forward:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const compare = (await github.rest.repos.compareCommits({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              base: 'master',
+              head: 'dev'
+            })).data;
+            if (compare.behind_by === 0 && compare.ahead_by > 0) {
+              await github.rest.git.updateRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: 'heads/master',
+                sha: compare.commits.at(-1).sha,
+                force: false
+              });
+              core.notice(`FF master → ${compare.commits.at(-1).sha.substring(0, 7)}`);
+            } else if (compare.behind_by > 0) {
+              core.warning(`Cannot FF: master ahead of dev by ${compare.behind_by}. Manual merge required (see jd-zoo 2026-04-14 pattern).`);
+            } else {
+              core.notice('Nothing to do: master and dev are identical');
+            }
