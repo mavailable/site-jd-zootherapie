@@ -1,0 +1,204 @@
+---
+/**
+ * Route dynamique pour toutes les landing pages Google Ads.
+ *
+ * Structure : src/content/landing-pages/<slug>.json
+ * URL publique : /lp/<slug>/
+ *
+ * Noindex par défaut (défini dans AdsLayout).
+ * LP désactivée (`enabled: false`) n'est pas générée.
+ */
+import { getCollection, getEntry } from 'astro:content';
+import { ads, siteUrl } from '@data/business';
+import AdsLayout from '@layouts/AdsLayout.astro';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('landing-pages', ({ data }) => data.enabled !== false);
+  return pages.map((page) => ({
+    params: { slug: page.data.slug },
+    props: { data: page.data },
+  }));
+}
+
+const { data } = Astro.props;
+const { hero, problem, solution, proofs, faq, finalCta } = data;
+
+// Tracking conversion gtag event sur form submit (si ads activé)
+const trackConversion = ads.enabled && ads.conversionId;
+---
+
+<AdsLayout title={data.meta.title} description={data.meta.description}>
+
+  <!-- Hero -->
+  <section class="bg-white py-12 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="font-heading font-bold text-3xl md:text-5xl leading-tight text-primary-900 mb-5">
+        {hero.h1}
+      </h1>
+      <p class="text-lg md:text-xl text-neutral-700 leading-relaxed mb-8 max-w-3xl">
+        {hero.subtitle}
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+        <a
+          href={hero.cta1.href}
+          class="inline-flex items-center justify-center gap-2 bg-accent-700 text-white px-7 py-4 rounded font-semibold text-base hover:bg-accent-800 transition-colors min-h-[48px]"
+          data-lp-cta="primary"
+        >
+          {hero.cta1.text}
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+
+        {hero.cta2 && (
+          <a
+            href={hero.cta2.href}
+            class="inline-flex items-center justify-center gap-2 bg-white text-primary-900 border-2 border-primary-900 px-7 py-4 rounded font-semibold text-base hover:bg-primary-50 transition-colors min-h-[48px]"
+            data-lp-cta="secondary"
+          >
+            {hero.cta2.text}
+          </a>
+        )}
+      </div>
+
+      {hero.proof && (
+        <p class="mt-6 text-sm text-neutral-500">{hero.proof}</p>
+      )}
+    </div>
+  </section>
+
+  <!-- Problem -->
+  {problem && (
+    <section class="bg-neutral-50 py-12 md:py-16">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading font-semibold text-2xl md:text-3xl text-primary-900 mb-8">
+          {problem.title}
+        </h2>
+        <ul class="space-y-3">
+          {problem.items.map((item) => (
+            <li class="flex gap-3 text-neutral-700 leading-relaxed">
+              <span class="flex-shrink-0 mt-1 text-accent-700 font-bold" aria-hidden="true">·</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <!-- Solution steps -->
+  {solution && (
+    <section class="bg-white py-12 md:py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading font-semibold text-2xl md:text-3xl text-primary-900 mb-8">
+          {solution.title}
+        </h2>
+        <div class="grid gap-6 md:grid-cols-3">
+          {solution.steps.map((step) => (
+            <article class="bg-neutral-50 rounded-lg p-6 border border-neutral-200">
+              <h3 class="font-heading font-semibold text-lg text-primary-900 mb-2">{step.title}</h3>
+              <p class="text-neutral-700 text-sm leading-relaxed">{step.description}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Proofs / déjà sollicitée par -->
+  {proofs && (
+    <section class="bg-primary-900 text-white py-12 md:py-16">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="font-heading font-semibold text-xl md:text-2xl mb-6 text-white/95">
+          {proofs.title}
+        </h2>
+        <ul class="flex flex-wrap justify-center gap-x-8 gap-y-3 text-white/90 text-base">
+          {proofs.items.map((item) => (
+            <li class="flex items-center gap-2">
+              <span aria-hidden="true" class="text-accent-400">✓</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <!-- FAQ -->
+  {faq && (
+    <section class="bg-white py-12 md:py-16">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading font-semibold text-2xl md:text-3xl text-primary-900 mb-8">
+          {faq.title}
+        </h2>
+        <div class="space-y-4">
+          {faq.items.map((item) => (
+            <details class="bg-neutral-50 border border-neutral-200 rounded-lg group">
+              <summary class="cursor-pointer list-none px-5 py-4 font-semibold text-primary-900 flex items-center justify-between gap-4">
+                <span>{item.question}</span>
+                <svg class="flex-shrink-0 transition-transform group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </summary>
+              <p class="px-5 pb-5 text-neutral-700 leading-relaxed text-sm">{item.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Final CTA -->
+  {finalCta && (
+    <section class="bg-neutral-50 py-12 md:py-16">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="font-heading font-semibold text-2xl md:text-3xl text-primary-900 mb-4">
+          {finalCta.title}
+        </h2>
+        <p class="text-neutral-700 leading-relaxed mb-8 max-w-2xl mx-auto">
+          {finalCta.description}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+          <a
+            href={finalCta.cta1.href}
+            class="inline-flex items-center justify-center gap-2 bg-accent-700 text-white px-7 py-4 rounded font-semibold text-base hover:bg-accent-800 transition-colors min-h-[48px]"
+            data-lp-cta="final-primary"
+          >
+            {finalCta.cta1.text}
+          </a>
+          {finalCta.cta2 && (
+            <a
+              href={finalCta.cta2.href}
+              class="inline-flex items-center justify-center gap-2 bg-white text-primary-900 border-2 border-primary-900 px-7 py-4 rounded font-semibold text-base hover:bg-primary-50 transition-colors min-h-[48px]"
+              data-lp-cta="final-secondary"
+            >
+              {finalCta.cta2.text}
+            </a>
+          )}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {trackConversion && (
+    <script is:inline define:vars={{ conversionId: ads.conversionId, slug: data.slug }}>
+      // Fire gtag event au clic sur les CTA (appel ou réservation)
+      document.addEventListener('click', function(e) {
+        var el = e.target.closest('[data-lp-cta]');
+        if (!el) return;
+        if (typeof window.gtag !== 'function') return;
+        var href = el.getAttribute('href') || '';
+        var eventType = 'lp_cta_click';
+        if (href.startsWith('tel:')) eventType = 'lp_call_click';
+        else if (href.includes('cal.eu') || href.includes('cal.com')) eventType = 'lp_booking_click';
+        window.gtag('event', eventType, {
+          send_to: conversionId,
+          lp_slug: slug,
+          lp_cta_position: el.getAttribute('data-lp-cta'),
+        });
+      });
+    </script>
+  )}
+</AdsLayout>

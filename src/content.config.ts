@@ -164,6 +164,57 @@ const gallery = defineCollection({
   schema: z.object({}).passthrough(),
 });
 
+// Landing pages Ads (dédiées aux campagnes Google Ads)
+// Chaque LP est indépendante, noindex, exclue du sitemap.
+// Flag `enabled` permet de désactiver une LP sans la supprimer.
+const landingPages = defineCollection({
+  type: 'data',
+  schema: z.object({
+    slug: z.string(),
+    campaign: z.string().optional(),
+    enabled: z.boolean().default(true),
+    meta: z.object({
+      title: z.string(),
+      description: z.string(),
+    }),
+    hero: z.object({
+      h1: z.string(),
+      subtitle: z.string(),
+      cta1: z.object({ text: z.string(), href: z.string() }),
+      cta2: z.object({ text: z.string(), href: z.string() }).optional(),
+      proof: z.string().optional(),
+    }),
+    problem: z.object({
+      title: z.string(),
+      items: z.array(z.string()),
+    }).optional(),
+    solution: z.object({
+      title: z.string(),
+      steps: z.array(z.object({
+        title: z.string(),
+        description: z.string(),
+      })),
+    }).optional(),
+    proofs: z.object({
+      title: z.string(),
+      items: z.array(z.string()),
+    }).optional(),
+    faq: z.object({
+      title: z.string(),
+      items: z.array(z.object({
+        question: z.string(),
+        answer: z.string(),
+      })),
+    }).optional(),
+    finalCta: z.object({
+      title: z.string(),
+      description: z.string(),
+      cta1: z.object({ text: z.string(), href: z.string() }),
+      cta2: z.object({ text: z.string(), href: z.string() }).optional(),
+    }).optional(),
+  }),
+});
+
 export const collections = {
   'site-info': siteInfo,
   hero,
@@ -180,4 +231,5 @@ export const collections = {
   'page-temoignages': pageTemoignages,
   'page-a-propos': pageAPropos,
   gallery,
+  'landing-pages': landingPages,
 };

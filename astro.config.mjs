@@ -12,7 +12,8 @@ export default defineConfig({
         !page.includes('/merci') &&
         !page.includes('/404') &&
         !page.includes('/aide-') &&
-        !page.includes('/admin'),
+        !page.includes('/admin') &&
+        !page.includes('/lp/'),
       i18n: {
         defaultLocale: 'fr',
         locales: { fr: 'fr-FR' },
