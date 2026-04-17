@@ -104,6 +104,6 @@ export const web3formsKey = import.meta.env.WEB3FORMS_KEY || WEB3FORMS_DEFAULT;
 // Quand on bascule ads.enabled = true, il faut aussi remplir conversionId
 // ('AW-XXXXXXXXX') recupere depuis l'UI Ads client (Tools > Conversions > Tag).
 export const ads = {
-  enabled: false,
-  conversionId: null as string | null, // Format: 'AW-123456789'
+  enabled: true,
+  conversionId: 'G-J8SY9MTLG4' as string | null, // Google tag unifie (GA4 + Ads)
 } as const;
