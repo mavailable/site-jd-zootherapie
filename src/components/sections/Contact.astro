@@ -1,6 +1,6 @@
 ---
 import { getSiteInfo, getContact } from '@data/content';
-import { web3formsKey as fallbackKey } from '@data/business';
+import { web3formsKey as fallbackKey, ads } from '@data/business';
 import fs from 'node:fs';
 
 const siteInfo = await getSiteInfo();
@@ -183,6 +183,16 @@ const web3formsKey = cmsKey || fallbackKey;
               </label>
             </div>
 
+            {ads.enabled && (
+              <div class="flex items-start gap-2">
+                <input type="checkbox" id="contact-ads-consent" name="ads_consent"
+                  class="mt-1 w-4 h-4 rounded border-neutral-300 text-primary-600 focus:ring-primary-500" />
+                <label for="contact-ads-consent" class="text-neutral-500 text-xs leading-relaxed">
+                  J'accepte de transmettre de manière hachée (anonyme) mon email et mon téléphone à Google Ads pour améliorer la mesure des conversions publicitaires. Facultatif.
+                </label>
+              </div>
+            )}
+
             <div class="flex flex-col sm:flex-row sm:items-center gap-4">
               <button
                 type="submit"
@@ -200,6 +210,50 @@ const web3formsKey = cmsKey || fallbackKey;
               emailInput.addEventListener('input', () => { replytoField.value = emailInput.value; });
             }
           </script>
+
+          {ads.enabled && (
+            <script is:inline>
+              {`
+              (function() {
+                async function sha256(value) {
+                  if (!value) return '';
+                  var normalized = String(value).trim().toLowerCase().replace(/\\s+/g, '');
+                  var buf = new TextEncoder().encode(normalized);
+                  var hash = await crypto.subtle.digest('SHA-256', buf);
+                  return Array.from(new Uint8Array(hash))
+                    .map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
+                }
+
+                var form = document.querySelector('form[action*="web3forms"]');
+                if (!form) return;
+
+                form.addEventListener('submit', async function(e) {
+                  var adsConsent = document.getElementById('contact-ads-consent');
+                  if (!adsConsent || !adsConsent.checked) return;
+                  if (typeof window.gtag !== 'function') return;
+
+                  var emailEl = document.getElementById('contact-email');
+                  var phoneEl = document.getElementById('contact-phone') || document.getElementById('contact-tel');
+                  var email = emailEl && emailEl.value ? emailEl.value : '';
+                  var phone = phoneEl && phoneEl.value ? phoneEl.value : '';
+
+                  var hashedEmail = email ? await sha256(email) : '';
+                  var hashedPhone = phone ? await sha256(phone.replace(/[^0-9+]/g, '')) : '';
+
+                  window.gtag('event', 'conversion', {
+                    send_to: '${ads.conversionId}',
+                    event_category: 'lead',
+                    event_label: 'contact_form',
+                    user_data: {
+                      sha256_email_address: hashedEmail,
+                      sha256_phone_number: hashedPhone,
+                    },
+                  });
+                });
+              })();
+              `}
+            </script>
+          )}
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 ---
 import { getSiteInfo } from '@data/content';
+import { ads } from '@data/business';
 
 const siteInfo = await getSiteInfo();
 ---
@@ -101,6 +102,15 @@ const siteInfo = await getSiteInfo();
           <nav aria-label="Liens légaux" class="flex flex-col text-xs text-primary-300">
             <a href="/mentions-legales" class="hover:text-white transition-colors py-2 inline-block">Mentions légales</a>
             <a href="/politique-confidentialite" class="hover:text-white transition-colors py-2 inline-block">Politique de confidentialité</a>
+            {ads.enabled && (
+              <button
+                type="button"
+                onclick="typeof window.openConsentSettings === 'function' && window.openConsentSettings()"
+                class="hover:text-white transition-colors py-2 inline-block text-left bg-transparent border-0 p-0 cursor-pointer text-inherit"
+              >
+                Gérer mes cookies
+              </button>
+            )}
           </nav>
         </div>
       </div>
