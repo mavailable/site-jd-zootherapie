@@ -95,3 +95,15 @@ export const schemaData = {
 const WEB3FORMS_DEFAULT = '9667fcf8-c7da-4b7a-8432-0ec25215c75e';
 export const web3formsDefault = WEB3FORMS_DEFAULT;
 export const web3formsKey = import.meta.env.WEB3FORMS_KEY || WEB3FORMS_DEFAULT;
+
+// ============================================================
+// Google Ads — feature flag + conversion tracking
+// ============================================================
+// Tant que ads.enabled = false, aucun script Ads ni banniere cookies n'est
+// injecte (doctrine WF "sans bandeau" preservee).
+// Quand on bascule ads.enabled = true, il faut aussi remplir conversionId
+// ('AW-XXXXXXXXX') recupere depuis l'UI Ads client (Tools > Conversions > Tag).
+export const ads = {
+  enabled: false,
+  conversionId: null as string | null, // Format: 'AW-123456789'
+} as const;

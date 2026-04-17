@@ -4,6 +4,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import Header from '@components/layout/Header.astro';
 import Footer from '@components/layout/Footer.astro';
 import { getSiteInfo } from '@data/content';
+import { ads } from '@data/business';
 
 const siteInfo = await getSiteInfo();
 const currentYear = new Date().getFullYear();
@@ -123,17 +124,37 @@ const currentYear = new Date().getFullYear();
         <article>
           <h2 class="font-heading font-semibold text-xl text-primary-900 mb-4 pb-2 border-b border-neutral-100">Cookies et mesure d'audience</h2>
           <p>
-            Ce site n'utilise <strong>aucun cookie publicitaire, de suivi ou de ciblage</strong>. Aucun outil de type Google Analytics n'est installé sur ce site.
-          </p>
-          <p class="mt-3">
             <strong>Umami Analytics</strong> (cloud.umami.is) est utilisé pour mesurer la fréquentation du site de manière anonyme, sans dépôt de cookie sur votre terminal et sans collecte de données personnelles identifiables. Ces statistiques sont agrégées et ne permettent pas de vous identifier.
           </p>
           <p class="mt-3">
-            Les seuls cookies susceptibles d'être présents sont des cookies techniques de sécurité déposés par Cloudflare, strictement nécessaires au fonctionnement du site, qui ne nécessitent pas de consentement préalable (article 5.3 de la directive ePrivacy).
+            Des cookies techniques de sécurité peuvent être déposés par Cloudflare, strictement nécessaires au fonctionnement du site. Ils ne nécessitent pas de consentement préalable (article 5.3 de la directive ePrivacy).
           </p>
-          <p class="mt-3 text-sm font-medium text-primary-600">
-            ✓ Aucune bannière cookies requise — aucun service tiers non essentiel sur ce site.
-          </p>
+          {!ads.enabled && (
+            <>
+              <p class="mt-3">
+                Ce site n'utilise <strong>aucun cookie publicitaire, de suivi ou de ciblage</strong>.
+              </p>
+              <p class="mt-3 text-sm font-medium text-primary-600">
+                ✓ Aucune bannière cookies requise — aucun service tiers non essentiel sur ce site.
+              </p>
+            </>
+          )}
+          {ads.enabled && (
+            <>
+              <p class="mt-3">
+                <strong>Google Ads (cookies publicitaires)</strong> : pour mesurer l'efficacité de nos campagnes publicitaires sur Google, des cookies de mesure de conversion peuvent être déposés si vous y consentez explicitement via la bannière de cookies. Ces cookies enregistrent la source de votre visite (annonce Google Ads) et les actions de conversion (envoi du formulaire, appel téléphonique).
+              </p>
+              <p class="mt-3">
+                <strong>Sous-traitant</strong> : Google Ireland Limited (Gordon House, Barrow Street, Dublin 4, Irlande). Données transférées hors UE (États-Unis) dans le cadre du Data Privacy Framework certifié par la Commission européenne.
+              </p>
+              <p class="mt-3">
+                <strong>Durée de conservation</strong> : 13 mois maximum (recommandation CNIL). Vous pouvez retirer ou modifier votre consentement à tout moment via le lien "Gérer mes cookies" dans le pied de page.
+              </p>
+              <p class="mt-3">
+                <strong>Mesures de conversion avancées</strong> : lorsque vous remplissez le formulaire de contact et cochez la case de consentement dédiée, votre adresse email et/ou numéro de téléphone peuvent être transmis de manière hachée (SHA-256 irréversible) à Google Ads pour améliorer la mesure des conversions. Aucune donnée en clair n'est transmise.
+              </p>
+            </>
+          )}
         </article>
 
         <!-- Sécurité -->

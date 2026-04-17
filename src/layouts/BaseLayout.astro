@@ -1,8 +1,9 @@
 ---
 import '@styles/global.css';
 import { getSiteInfo } from '@data/content';
-import { siteUrl } from '@data/business';
+import { siteUrl, ads } from '@data/business';
 import { getPageSeo, getSeoGlobal } from '../data/seo';
+import ConsentBanner from '@components/layout/ConsentBanner.astro';
 
 const siteInfo = await getSiteInfo();
 
@@ -163,6 +164,29 @@ const ogImageType = fullOgImage.endsWith('.png') ? 'image/png' : fullOgImage.end
 
   <!-- Tracking conversions : téléphone, email, CTA, formulaire -->
   <script defer src="/js/analytics.js"></script>
+
+  {ads.enabled && ads.conversionId && (
+    <>
+      {/* Consent Mode v2 — init en "denied" AVANT le gtag (requis Google) */}
+      <script is:inline>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'default', {
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied',
+          analytics_storage: 'granted',
+          wait_for_update: 500,
+        });
+      </script>
+      <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${ads.conversionId}`}></script>
+      <script is:inline define:vars={{ conversionId: ads.conversionId }}>
+        gtag('js', new Date());
+        gtag('config', conversionId);
+      </script>
+      <ConsentBanner />
+    </>
+  )}
 
   <!-- CMS inline editor — charge uniquement si session active -->
   <script is:inline>
