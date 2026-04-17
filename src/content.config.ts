@@ -173,6 +173,7 @@ const landingPages = defineCollection({
     slug: z.string(),
     campaign: z.string().optional(),
     enabled: z.boolean().default(true),
+    stickyMobile: z.boolean().default(true),
     meta: z.object({
       title: z.string(),
       description: z.string(),
@@ -180,19 +181,58 @@ const landingPages = defineCollection({
     hero: z.object({
       h1: z.string(),
       subtitle: z.string(),
+      image: z.string().optional(),
+      overlayOpacity: z.number().min(0).max(100).default(45),
       cta1: z.object({ text: z.string(), href: z.string() }),
       cta2: z.object({ text: z.string(), href: z.string() }).optional(),
       proof: z.string().optional(),
     }),
+    stats: z.object({
+      items: z.array(z.object({
+        value: z.string(),
+        label: z.string(),
+      })),
+    }).optional(),
     problem: z.object({
       title: z.string(),
       items: z.array(z.string()),
+    }).optional(),
+    founder: z.object({
+      title: z.string(),
+      name: z.string(),
+      role: z.string(),
+      image: z.string(),
+      quote: z.string(),
+      credentials: z.array(z.string()).optional(),
+    }).optional(),
+    animals: z.object({
+      title: z.string(),
+      subtitle: z.string().optional(),
+      items: z.array(z.object({
+        name: z.string(),
+        breed: z.string(),
+        image: z.string(),
+        role: z.string(),
+      })),
     }).optional(),
     solution: z.object({
       title: z.string(),
       steps: z.array(z.object({
         title: z.string(),
         description: z.string(),
+      })),
+    }).optional(),
+    midCta: z.object({
+      title: z.string(),
+      cta1: z.object({ text: z.string(), href: z.string() }),
+      cta2: z.object({ text: z.string(), href: z.string() }).optional(),
+    }).optional(),
+    testimonials: z.object({
+      title: z.string(),
+      items: z.array(z.object({
+        quote: z.string(),
+        author: z.string(),
+        context: z.string().optional(),
       })),
     }).optional(),
     proofs: z.object({

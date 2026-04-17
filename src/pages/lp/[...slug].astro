@@ -8,9 +8,10 @@
  * Noindex par défaut (défini dans AdsLayout).
  * LP désactivée (`enabled: false`) n'est pas générée.
  */
-import { getCollection, getEntry } from 'astro:content';
-import { ads, siteUrl } from '@data/business';
+import { getCollection } from 'astro:content';
+import { ads } from '@data/business';
 import AdsLayout from '@layouts/AdsLayout.astro';
+import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
 
 export async function getStaticPaths() {
   const pages = await getCollection('landing-pages', ({ data }) => data.enabled !== false);
@@ -21,28 +22,34 @@ export async function getStaticPaths() {
 }
 
 const { data } = Astro.props;
-const { hero, problem, solution, proofs, faq, finalCta } = data;
+const { hero, stats, problem, founder, animals, solution, midCta, testimonials, proofs, faq, finalCta } = data;
 
-// Tracking conversion gtag event sur form submit (si ads activé)
 const trackConversion = ads.enabled && ads.conversionId;
+const overlayOpacity = (hero.overlayOpacity ?? 45) / 100;
 ---
 
 <AdsLayout title={data.meta.title} description={data.meta.description}>
 
-  <!-- Hero -->
-  <section class="bg-white py-12 md:py-20">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 class="font-heading font-bold text-3xl md:text-5xl leading-tight text-primary-900 mb-5">
+  <!-- Hero avec image de fond et overlay -->
+  <section
+    class="relative text-white overflow-hidden"
+    style={hero.image ? `background-image: url('${hero.image}'); background-size: cover; background-position: center;` : undefined}
+  >
+    {hero.image && (
+      <div class="absolute inset-0" style={`background-color: rgba(17, 24, 39, ${overlayOpacity});`} aria-hidden="true"></div>
+    )}
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <h1 class="font-heading font-bold text-3xl md:text-5xl leading-tight mb-5 drop-shadow-md">
         {hero.h1}
       </h1>
-      <p class="text-lg md:text-xl text-neutral-700 leading-relaxed mb-8 max-w-3xl">
+      <p class="text-lg md:text-xl leading-relaxed mb-8 max-w-3xl text-white/95 drop-shadow-sm">
         {hero.subtitle}
       </p>
 
       <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
         <a
           href={hero.cta1.href}
-          class="inline-flex items-center justify-center gap-2 bg-accent-700 text-white px-7 py-4 rounded font-semibold text-base hover:bg-accent-800 transition-colors min-h-[48px]"
+          class="inline-flex items-center justify-center gap-2 bg-accent-700 text-white px-7 py-4 rounded font-semibold text-base hover:bg-accent-800 transition-colors min-h-[48px] shadow-lg"
           data-lp-cta="primary"
         >
           {hero.cta1.text}
@@ -55,19 +62,38 @@ const trackConversion = ads.enabled && ads.conversionId;
         {hero.cta2 && (
           <a
             href={hero.cta2.href}
-            class="inline-flex items-center justify-center gap-2 bg-white text-primary-900 border-2 border-primary-900 px-7 py-4 rounded font-semibold text-base hover:bg-primary-50 transition-colors min-h-[48px]"
+            class="inline-flex items-center justify-center gap-2 bg-white/10 text-white border-2 border-white/80 px-7 py-4 rounded font-semibold text-base hover:bg-white hover:text-primary-900 transition-colors min-h-[48px] backdrop-blur-sm"
             data-lp-cta="secondary"
           >
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
             {hero.cta2.text}
           </a>
         )}
       </div>
 
       {hero.proof && (
-        <p class="mt-6 text-sm text-neutral-500">{hero.proof}</p>
+        <p class="mt-6 text-sm text-white/90 drop-shadow-sm">{hero.proof}</p>
       )}
     </div>
   </section>
+
+  <!-- Stats bar (4 chiffres) -->
+  {stats && stats.items.length > 0 && (
+    <section class="bg-white border-b border-neutral-200 py-6">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+          {stats.items.map((stat) => (
+            <div class="text-center">
+              <div class="font-heading font-bold text-xl md:text-2xl text-primary-900">{stat.value}</div>
+              <div class="text-neutral-600 text-xs md:text-sm mt-1">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
 
   <!-- Problem -->
   {problem && (
@@ -88,11 +114,88 @@ const trackConversion = ads.enabled && ads.conversionId;
     </section>
   )}
 
+  <!-- Founder (photo + citation) -->
+  {founder && (
+    <section class="bg-white py-12 md:py-16">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-5 gap-8 md:gap-12 items-center">
+          <div class="md:col-span-2">
+            <img
+              src={founder.image}
+              alt={`${founder.name}, ${founder.role}`}
+              width="320"
+              height="320"
+              loading="lazy"
+              class="rounded-lg w-full max-w-xs mx-auto shadow-md"
+            />
+          </div>
+          <div class="md:col-span-3">
+            <span class="font-heading font-semibold text-accent-700 text-sm uppercase tracking-wider mb-2 block">
+              {founder.title}
+            </span>
+            <h2 class="font-heading font-semibold text-2xl md:text-3xl text-primary-900 mb-3">
+              {founder.name}
+            </h2>
+            <p class="text-neutral-500 text-sm mb-5">{founder.role}</p>
+            <blockquote class="text-neutral-700 leading-relaxed text-base md:text-lg italic border-l-4 border-accent-700 pl-4 mb-6">
+              « {founder.quote} »
+            </blockquote>
+            {founder.credentials && (
+              <ul class="space-y-2">
+                {founder.credentials.map((cred) => (
+                  <li class="flex items-start gap-2 text-sm text-neutral-700">
+                    <svg class="w-5 h-5 flex-shrink-0 text-accent-700 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>{cred}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Animals -->
+  {animals && (
+    <section class="bg-primary-50 py-12 md:py-16">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+          <h2 class="font-heading font-semibold text-2xl md:text-3xl text-primary-900 mb-3">
+            {animals.title}
+          </h2>
+          {animals.subtitle && (
+            <p class="text-neutral-700 text-base max-w-2xl mx-auto">{animals.subtitle}</p>
+          )}
+        </div>
+        <div class="grid gap-6 md:grid-cols-3">
+          {animals.items.map((animal) => (
+            <article class="bg-white rounded-lg overflow-hidden shadow-sm border border-neutral-200 flex flex-col">
+              <img
+                src={animal.image}
+                alt={`${animal.name}, ${animal.breed}`}
+                width="400"
+                height="300"
+                loading="lazy"
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-5 flex-1">
+                <h3 class="font-heading font-semibold text-xl text-primary-900 mb-1">{animal.name}</h3>
+                <p class="text-neutral-500 text-sm mb-3">{animal.breed}</p>
+                <p class="text-neutral-700 text-sm leading-relaxed">{animal.role}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
   <!-- Solution steps -->
   {solution && (
     <section class="bg-white py-12 md:py-16">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="font-heading font-semibold text-2xl md:text-3xl text-primary-900 mb-8">
+        <h2 class="font-heading font-semibold text-2xl md:text-3xl text-primary-900 mb-8 text-center">
           {solution.title}
         </h2>
         <div class="grid gap-6 md:grid-cols-3">
@@ -107,9 +210,65 @@ const trackConversion = ads.enabled && ads.conversionId;
     </section>
   )}
 
-  <!-- Proofs / déjà sollicitée par -->
+  <!-- Mid CTA (intermédiaire) -->
+  {midCta && (
+    <section class="bg-accent-700 text-white py-10 md:py-12">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="font-heading font-semibold text-xl md:text-2xl mb-6">
+          {midCta.title}
+        </h2>
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+          <a
+            href={midCta.cta1.href}
+            class="inline-flex items-center justify-center gap-2 bg-white text-accent-700 px-7 py-4 rounded font-semibold text-base hover:bg-neutral-50 transition-colors min-h-[48px] shadow-md"
+            data-lp-cta="mid-primary"
+          >
+            {midCta.cta1.text}
+          </a>
+          {midCta.cta2 && (
+            <a
+              href={midCta.cta2.href}
+              class="inline-flex items-center justify-center gap-2 bg-transparent text-white border-2 border-white px-7 py-4 rounded font-semibold text-base hover:bg-white hover:text-accent-700 transition-colors min-h-[48px]"
+              data-lp-cta="mid-secondary"
+            >
+              {midCta.cta2.text}
+            </a>
+          )}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Testimonials -->
+  {testimonials && testimonials.items.length > 0 && (
+    <section class="bg-white py-12 md:py-16">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading font-semibold text-2xl md:text-3xl text-primary-900 mb-8 text-center">
+          {testimonials.title}
+        </h2>
+        <div class="grid gap-6 md:grid-cols-3">
+          {testimonials.items.map((t) => (
+            <blockquote class="bg-neutral-50 rounded-lg p-6 border border-neutral-200">
+              <div class="flex gap-0.5 mb-3 text-accent-500" aria-label="5 étoiles sur 5">
+                {[1,2,3,4,5].map(() => (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                ))}
+              </div>
+              <p class="text-neutral-700 text-sm leading-relaxed italic mb-4">« {t.quote} »</p>
+              <footer class="text-neutral-600 text-sm">
+                <strong class="text-primary-900 not-italic">{t.author}</strong>
+                {t.context && (<><br /><span class="text-neutral-500 text-xs">{t.context}</span></>)}
+              </footer>
+            </blockquote>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Proofs -->
   {proofs && (
-    <section class="bg-primary-900 text-white py-12 md:py-16">
+    <section class="bg-primary-900 text-white py-10 md:py-12">
       <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 class="font-heading font-semibold text-xl md:text-2xl mb-6 text-white/95">
           {proofs.title}
@@ -130,7 +289,7 @@ const trackConversion = ads.enabled && ads.conversionId;
   {faq && (
     <section class="bg-white py-12 md:py-16">
       <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="font-heading font-semibold text-2xl md:text-3xl text-primary-900 mb-8">
+        <h2 class="font-heading font-semibold text-2xl md:text-3xl text-primary-900 mb-8 text-center">
           {faq.title}
         </h2>
         <div class="space-y-4">
@@ -152,7 +311,7 @@ const trackConversion = ads.enabled && ads.conversionId;
 
   <!-- Final CTA -->
   {finalCta && (
-    <section class="bg-neutral-50 py-12 md:py-16">
+    <section class="bg-neutral-50 py-12 md:py-16 pb-24 md:pb-16">
       <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 class="font-heading font-semibold text-2xl md:text-3xl text-primary-900 mb-4">
           {finalCta.title}
@@ -163,7 +322,7 @@ const trackConversion = ads.enabled && ads.conversionId;
         <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
           <a
             href={finalCta.cta1.href}
-            class="inline-flex items-center justify-center gap-2 bg-accent-700 text-white px-7 py-4 rounded font-semibold text-base hover:bg-accent-800 transition-colors min-h-[48px]"
+            class="inline-flex items-center justify-center gap-2 bg-accent-700 text-white px-7 py-4 rounded font-semibold text-base hover:bg-accent-800 transition-colors min-h-[48px] shadow-md"
             data-lp-cta="final-primary"
           >
             {finalCta.cta1.text}
@@ -181,6 +340,9 @@ const trackConversion = ads.enabled && ads.conversionId;
       </div>
     </section>
   )}
+
+  <!-- Sticky mobile CTA (bottom bar) -->
+  {data.stickyMobile && <StickyMobileCTA />}
 
   {trackConversion && (
     <script is:inline define:vars={{ conversionId: ads.conversionId, slug: data.slug }}>

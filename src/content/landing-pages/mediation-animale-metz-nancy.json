@@ -2,13 +2,16 @@
   "slug": "mediation-animale-metz-nancy",
   "campaign": "Médiation animale Metz/Nancy",
   "enabled": true,
+  "stickyMobile": true,
   "meta": {
     "title": "Médiation animale Metz · Nancy — Zoothérapeute certifiée",
     "description": "Séances de médiation animale à domicile ou en structure à Metz, Nancy, Moselle et Meurthe-et-Moselle. Praticienne certifiée IFZ. Premier appel gratuit."
   },
   "hero": {
     "h1": "Médiation animale à Metz et Nancy",
-    "subtitle": "Séances à domicile ou en structure pour enfants, adultes et personnes âgées. Praticienne certifiée IFZ, 20 ans d'expérience auprès des patients.",
+    "subtitle": "Séances à domicile ou en structure pour enfants, adultes et personnes âgées. Praticienne certifiée IFZ, 20 ans d'expérience dans le soin.",
+    "image": "/images/hero-bg.webp",
+    "overlayOpacity": 45,
     "cta1": {
       "text": "Réserver un appel découverte gratuit",
       "href": "https://cal.eu/jdzootherapie/30min"
@@ -19,6 +22,14 @@
     },
     "proof": "Premier appel gratuit et sans engagement · Réponse sous 48 h"
   },
+  "stats": {
+    "items": [
+      { "value": "+20 ans", "label": "dans le soin et l'accompagnement" },
+      { "value": "3 animaux", "label": "médiateurs certifiés" },
+      { "value": "Tous âges", "label": "de 3 à 99 ans" },
+      { "value": "5,0 · 9 avis", "label": "sur Google Business" }
+    ]
+  },
   "problem": {
     "title": "Quand la médiation animale fait la différence",
     "items": [
@@ -26,6 +37,42 @@
       "Un proche âgé isolé, atteint d'Alzheimer ou en perte d'autonomie",
       "Une personne en douleur chronique ou en accompagnement de fin de vie",
       "Une équipe d'EHPAD, de crèche ou de structure médico-sociale qui cherche un nouvel outil de médiation"
+    ]
+  },
+  "founder": {
+    "title": "Jennifer, praticienne certifiée",
+    "name": "Jennifer De Groeve",
+    "role": "Fondatrice de JD Zoothérapie",
+    "image": "/images/jennifer-pro.webp",
+    "quote": "Après 20 ans comme aide-soignante, j'ai découvert au contact des patients l'effet de la présence animale sur les plus isolés, les plus anxieux, les plus douloureux. Ces moments-là, j'ai voulu en faire mon quotidien.",
+    "credentials": [
+      "Certifiée IFZ (Institut de Formation en Zoothérapie)",
+      "Membre du Syndicat Français des Zoothérapeutes",
+      "20 ans d'expérience comme aide-soignante diplômée"
+    ]
+  },
+  "animals": {
+    "title": "Trois animaux médiateurs, trois approches",
+    "subtitle": "Selon votre situation et votre sensibilité, je choisis l'animal le plus adapté.",
+    "items": [
+      {
+        "name": "Tips",
+        "breed": "Finnois de Laponie",
+        "image": "/images/animal-tips.webp",
+        "role": "Calme, doux, attentif. Idéal pour les personnes âgées et les séances de pleine présence."
+      },
+      {
+        "name": "Uxo",
+        "breed": "Berger américain miniature",
+        "image": "/images/animal-uxo.webp",
+        "role": "Plein d'énergie et de joie. Excellent pour les ateliers enfants et les séances collectives dynamiques."
+      },
+      {
+        "name": "Tap-Tap",
+        "breed": "Lapin bélier",
+        "image": "/images/animal-tap-tap.webp",
+        "role": "Doux et rassurant. Parfait pour les ateliers sensoriels et les personnes qui ont peur des chiens."
+      }
     ]
   },
   "solution": {
@@ -37,7 +84,7 @@
       },
       {
         "title": "2. Première séance",
-        "description": "Je viens avec Tips, Uxo ou Tap-Tap selon le besoin. À votre domicile, dans votre EHPAD ou votre structure, en Moselle et Meurthe-et-Moselle."
+        "description": "Je viens avec Tips, Uxo ou Tap-Tap selon le besoin. À domicile, en EHPAD ou en structure, dans toute la Moselle et Meurthe-et-Moselle."
       },
       {
         "title": "3. Suivi personnalisé",
@@ -45,10 +92,42 @@
       }
     ]
   },
+  "midCta": {
+    "title": "Vous vous reconnaissez dans l'une de ces situations ?",
+    "cta1": {
+      "text": "Réserver un appel découverte",
+      "href": "https://cal.eu/jdzootherapie/30min"
+    },
+    "cta2": {
+      "text": "Appeler au 07 54 81 21 22",
+      "href": "tel:+33754812122"
+    }
+  },
+  "testimonials": {
+    "title": "Ce qu'ils en disent",
+    "items": [
+      {
+        "quote": "Jennifer ? Une vraie pro… attentive, attentionnée, et toujours souriante. Une personne en qui j'ai toute confiance. Quant à Tips et Uxo, bien plus que des chiens !",
+        "author": "Arlette P.",
+        "context": "Patiente accompagnée"
+      },
+      {
+        "quote": "J'ai pu accompagner ma maman âgée de 86 ans, souffrant de la maladie d'Alzheimer. Jennifer est douce, patiente, et à l'écoute. Elle propose des activités variées et toujours adaptées.",
+        "author": "Laetitia C.",
+        "context": "Famille d'une patiente"
+      },
+      {
+        "quote": "Merci à Jennifer pour son professionnalisme et sa bienveillance tout au long du cycle de médiation animale à destination des aidants. Merci à ses fidèles compagnons qui ont su se faire adopter rapidement.",
+        "author": "TS PCD",
+        "context": "Maison des Aidants de Nancy"
+      }
+    ]
+  },
   "proofs": {
     "title": "Déjà sollicitée par",
     "items": [
       "CHRU de Nancy",
+      "Maison des Aidants de Nancy",
       "EHPAD de Moselle",
       "Familles de Metz, Thionville et Nancy"
     ]
@@ -58,23 +137,19 @@
     "items": [
       {
         "question": "Quel est le tarif d'une séance ?",
-        "answer": "Le premier échange est gratuit. Le tarif d'une séance dépend du format (individuelle à domicile, collective en structure) et de la distance. On en discute lors de l'appel découverte pour que vous ayez une proposition claire et adaptée."
+        "answer": "Le premier échange est gratuit. Le tarif d'une séance dépend du format (individuelle à domicile, collective en structure) et de la distance. On en discute lors de l'appel découverte pour que vous ayez une proposition claire et adaptée à votre situation."
       },
       {
         "question": "Jusqu'où intervenez-vous ?",
         "answer": "Moselle et Meurthe-et-Moselle en priorité : Metz, Nancy, Thionville, Audun-le-Tiche, Verny, et toutes les communes entre. Pour les structures plus éloignées, on regarde au cas par cas."
       },
       {
-        "question": "Quels animaux sont mobilisés ?",
-        "answer": "Tips, un chien finnois de Laponie calme et attentif, parfait pour les personnes âgées et la pleine présence. Uxo, un berger américain miniature plein d'énergie, pour les enfants et les séances dynamiques. Tap-Tap, un lapin bélier doux, pour les ateliers sensoriels et les personnes qui ont peur des chiens."
+        "question": "C'est adapté à mon EHPAD ou ma crèche ?",
+        "answer": "Oui, c'est une partie importante de mon activité. Je conçois des ateliers sur mesure en fonction du public (enfants, personnes âgées, équipes soignantes), des contraintes du lieu et du budget de la structure. Il suffit de me contacter pour en discuter."
       },
       {
         "question": "Il faut quelle formation pour faire de la médiation animale ?",
         "answer": "Je suis diplômée de l'Institut de Formation en Zoothérapie (IFZ) et membre du Syndicat Français des Zoothérapeutes. Avant la médiation animale, j'ai exercé 20 ans comme aide-soignante. Les animaux qui m'accompagnent sont certifiés chiens médiateurs."
-      },
-      {
-        "question": "C'est adapté à mon EHPAD ou ma crèche ?",
-        "answer": "Oui, c'est justement une partie importante de mon activité. Je conçois des ateliers sur mesure en fonction du public, des contraintes du lieu et du budget de la structure. Il suffit de me contacter pour en discuter."
       }
     ]
   },
