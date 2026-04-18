@@ -346,20 +346,64 @@ const overlayOpacity = (hero.overlayOpacity ?? 45) / 100;
 
   {trackConversion && (
     <script is:inline define:vars={{ conversionId: ads.conversionId, slug: data.slug }}>
-      // Fire gtag event au clic sur les CTA (appel ou réservation)
+      // Mapping event custom -> conversion Google Ads (AW-XXX/LABEL)
+      // Ajoute une entree par conversion action creee dans l'UI Ads.
+      var GOOGLE_ADS_CONVERSIONS = {
+        lp_booking_click: 'AW-17890952261/3e11CLHYoZ4cEMWIidNC',
+        // lp_call_click: 'AW-17890952261/xxxxxx',   // a remplir quand action creee
+        // lp_form_submit: 'AW-17890952261/xxxxxx',  // a remplir quand action creee
+      };
+
       document.addEventListener('click', function(e) {
         var el = e.target.closest('[data-lp-cta]');
         if (!el) return;
         if (typeof window.gtag !== 'function') return;
+
         var href = el.getAttribute('href') || '';
+        var isTel = href.indexOf('tel:') === 0;
+        var isBooking = href.indexOf('cal.eu') > -1 || href.indexOf('cal.com') > -1;
+
         var eventType = 'lp_cta_click';
-        if (href.startsWith('tel:')) eventType = 'lp_call_click';
-        else if (href.includes('cal.eu') || href.includes('cal.com')) eventType = 'lp_booking_click';
+        if (isTel) eventType = 'lp_call_click';
+        else if (isBooking) eventType = 'lp_booking_click';
+
+        // 1. Fire event generique pour analytics (non-bloquant)
         window.gtag('event', eventType, {
           send_to: conversionId,
           lp_slug: slug,
-          lp_cta_position: el.getAttribute('data-lp-cta'),
+          lp_cta_position: el.getAttribute('data-lp-cta') || 'unknown',
         });
+
+        // 2. Fire conversion Google Ads specifique si mapping existe
+        var sendTo = GOOGLE_ADS_CONVERSIONS[eventType];
+        if (!sendTo) return;
+
+        // Pour un lien tel: le navigateur gere l'appel, pas de preventDefault
+        // (le timing suffit pour que l'event parte avant l'appel)
+        if (isTel) {
+          window.gtag('event', 'conversion', { send_to: sendTo });
+          return;
+        }
+
+        // Pour un lien booking, intercepter la nav, attendre le callback de Google,
+        // puis naviguer. Fallback 500ms au cas ou le callback ne fire pas.
+        if (isBooking && !el.target) {
+          e.preventDefault();
+          var navigated = false;
+          var nav = function() {
+            if (navigated) return;
+            navigated = true;
+            window.location = href;
+          };
+          window.gtag('event', 'conversion', {
+            send_to: sendTo,
+            event_callback: nav,
+          });
+          setTimeout(nav, 500);
+        } else {
+          // Link avec target (_blank) : fire sans bloquer, la nav se fait dans autre onglet
+          window.gtag('event', 'conversion', { send_to: sendTo });
+        }
       });
     </script>
   )}
