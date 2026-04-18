@@ -35,8 +35,15 @@ const categoryColors: Record<string, { bg: string; text: string; dot: string }> 
   'Science & recherche': { bg: 'bg-secondary-50', text: 'text-secondary-700', dot: 'bg-secondary-500' },
   'Conseils pratiques': { bg: 'bg-accent-50', text: 'text-accent-700', dot: 'bg-accent-500' },
   'Idées reçues': { bg: 'bg-neutral-100', text: 'text-neutral-700', dot: 'bg-neutral-500' },
+  'Méthode': { bg: 'bg-primary-100', text: 'text-primary-800', dot: 'bg-primary-600' },
 };
 const colors = categoryColors[post.data.category] || categoryColors['Récits de terrain'];
+
+// Image hero de l'article (optionnelle — backward compatible avec les articles existants)
+const heroImage = post.data.image;
+const absoluteHeroImage = heroImage
+  ? (heroImage.startsWith('http') ? heroImage : `https://jdzootherapeute.fr${heroImage}`)
+  : undefined;
 
 const dateObj = new Date(post.data.date);
 const formattedDate = dateObj.toLocaleDateString('fr-FR', {
@@ -63,7 +70,9 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
       "headline": post.data.title,
       "description": post.data.description,
       "datePublished": post.data.date,
+      "dateModified": post.data.date,
       "url": `https://jdzootherapeute.fr/blog/${post.id}`,
+      ...(absoluteHeroImage ? { "image": absoluteHeroImage } : {}),
       "author": {
         "@type": "Person",
         "name": "Jennifer De Groeve",
@@ -73,7 +82,11 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
       "publisher": {
         "@type": "Organization",
         "name": "JD Zoothérapie",
-        "url": "https://jdzootherapeute.fr"
+        "url": "https://jdzootherapeute.fr",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://jdzootherapeute.fr/favicon.svg"
+        }
       },
       "mainEntityOfPage": {
         "@type": "WebPage",
@@ -125,6 +138,24 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
       </ol>
     </div>
   </nav>
+
+  <!-- Hero Image (optionnel — affiché si post.data.image est defini) -->
+  {heroImage && (
+    <figure class="bg-white pt-8 md:pt-10">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="aspect-[16/9] overflow-hidden rounded-xl bg-neutral-100 shadow-sm">
+          <img
+            src={heroImage}
+            alt={post.data.title}
+            width="1920"
+            height="1080"
+            loading="eager"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+    </figure>
+  )}
 
   <!-- Article Body -->
   <article class="bg-white py-10 md:py-14">
