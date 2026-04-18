@@ -22,13 +22,18 @@ export async function getStaticPaths() {
 }
 
 const { data } = Astro.props;
-const { hero, stats, problem, founder, animals, solution, midCta, testimonials, proofs, faq, finalCta } = data;
+const { hero, stats, problem, founder, animals, solution, method, midCta, testimonials, proofs, faq, finalCta } = data;
 
 const trackConversion = ads.enabled && ads.conversionId;
 const overlayOpacity = (hero.overlayOpacity ?? 45) / 100;
 ---
 
-<AdsLayout title={data.meta.title} description={data.meta.description}>
+<AdsLayout
+  title={data.meta.title}
+  description={data.meta.description}
+  indexable={data.indexable}
+  serviceSchema={data.service}
+>
 
   <!-- Hero avec image de fond et overlay -->
   <section
@@ -187,6 +192,43 @@ const overlayOpacity = (hero.overlayOpacity ?? 45) / 100;
             </article>
           ))}
         </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Method (5 etapes coeur de pratique) -->
+  {method && (
+    <section class="bg-neutral-50 py-12 md:py-16">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-heading font-semibold text-2xl md:text-3xl text-primary-900 mb-4 text-center">
+          {method.title}
+        </h2>
+        {method.intro && (
+          <p class="text-neutral-700 leading-relaxed text-base md:text-lg mb-8 text-center max-w-2xl mx-auto">
+            {method.intro}
+          </p>
+        )}
+        <ol class="space-y-6">
+          {method.steps.map((step, i) => (
+            <li class="bg-white rounded-lg p-6 border border-neutral-200 shadow-sm flex gap-5">
+              <span
+                aria-hidden="true"
+                class="flex-shrink-0 w-10 h-10 rounded-full bg-accent-700 text-white font-heading font-bold flex items-center justify-center text-lg"
+              >
+                {i + 1}
+              </span>
+              <div class="flex-1">
+                <h3 class="font-heading font-semibold text-lg text-primary-900 mb-2">{step.title}</h3>
+                <p class="text-neutral-700 leading-relaxed text-sm md:text-base">{step.description}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+        {method.closing && (
+          <p class="text-neutral-700 leading-relaxed text-sm md:text-base mt-8 text-center max-w-2xl mx-auto italic">
+            {method.closing}
+          </p>
+        )}
       </div>
     </section>
   )}

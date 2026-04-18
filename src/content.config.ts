@@ -165,19 +165,26 @@ const gallery = defineCollection({
 });
 
 // Landing pages Ads (dédiées aux campagnes Google Ads)
-// Chaque LP est indépendante, noindex, exclue du sitemap.
 // Flag `enabled` permet de désactiver une LP sans la supprimer.
+// Flag `indexable: true` sort la LP du noindex et l'inclut dans le sitemap (cf. astro.config.mjs).
 const landingPages = defineCollection({
   type: 'data',
   schema: z.object({
     slug: z.string(),
     campaign: z.string().optional(),
     enabled: z.boolean().default(true),
+    indexable: z.boolean().default(false),
     stickyMobile: z.boolean().default(true),
     meta: z.object({
       title: z.string(),
       description: z.string(),
     }),
+    service: z.object({
+      name: z.string(),
+      description: z.string(),
+      serviceType: z.string(),
+      areaServed: z.array(z.string()).optional(),
+    }).optional(),
     hero: z.object({
       h1: z.string(),
       subtitle: z.string(),
@@ -221,6 +228,15 @@ const landingPages = defineCollection({
         title: z.string(),
         description: z.string(),
       })),
+    }).optional(),
+    method: z.object({
+      title: z.string(),
+      intro: z.string().optional(),
+      steps: z.array(z.object({
+        title: z.string(),
+        description: z.string(),
+      })),
+      closing: z.string().optional(),
     }).optional(),
     midCta: z.object({
       title: z.string(),

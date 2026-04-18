@@ -1,0 +1,164 @@
+{
+  "slug": "mediation-animale-structures-medico-sociales",
+  "campaign": "C3 - B2B structures medico-sociales",
+  "enabled": true,
+  "indexable": true,
+  "stickyMobile": true,
+  "meta": {
+    "title": "Médiation animale en EHPAD et structures médico-sociales - Grand Est",
+    "description": "Accompagnement structuré en médiation animale pour EHPAD, MAS, IME, AEMO et structures médico-sociales. Cycles de 5 séances, bilan d'équipe, financement ProBTP souvent activable. Références France Alzheimer 57, AEMO Pompey."
+  },
+  "service": {
+    "name": "Médiation animale pour structures médico-sociales",
+    "description": "Programme structuré de médiation animale pour EHPAD, MAS, IME, AEMO et autres structures médico-sociales du Grand Est. Cycles de 5 séances, objectifs co-construits avec vos équipes, bilan formalisé. Financement ProBTP, CPAM et mutuelles souvent activable.",
+    "serviceType": "Médiation animale en structure",
+    "areaServed": ["Metz", "Nancy", "Moselle", "Meurthe-et-Moselle", "Grand Est"]
+  },
+  "hero": {
+    "h1": "Médiation animale pour votre structure médico-sociale",
+    "subtitle": "Un accompagnement structuré, intégrable à votre organisation, pas un intervenant extérieur ponctuel. Cycles de 5 séances, bilan formalisé, financement ProBTP souvent activable.",
+    "image": "/images/jennifer-pro.webp",
+    "overlayOpacity": 55,
+    "cta1": {
+      "text": "Prendre rendez-vous avec Jennifer",
+      "href": "https://cal.eu/jdzootherapie/30min"
+    },
+    "cta2": {
+      "text": "07 54 81 21 22",
+      "href": "tel:+33754812122"
+    },
+    "proof": "Références : France Alzheimer 57 (2 ans), AEMO Pompey, Maison des Aidants 54 (ProBTP). Article Républicain Lorrain."
+  },
+  "stats": {
+    "items": [
+      { "value": "2 ans", "label": "avec France Alzheimer 57" },
+      { "value": "ProBTP", "label": "financement souvent activable" },
+      { "value": "Cycles de 5", "label": "séances avec bilan d'équipe" },
+      { "value": "5,0 · 9 avis", "label": "sur Google Business" }
+    ]
+  },
+  "problem": {
+    "title": "Vous dirigez ou coordonnez une structure médico-sociale",
+    "items": [
+      "Vous cherchez un outil de médiation qui structure votre projet d'animation ou d'accompagnement",
+      "Vous avez déjà testé une animation ponctuelle, sans effet durable sur les bénéficiaires",
+      "Vous devez justifier chaque ligne budgétaire et voulez un livrable formalisé",
+      "Vous cherchez une intervenante qui s'intègre à votre équipe, pas un prestataire parachuté",
+      "Vous voulez savoir si un financement tiers (ProBTP, CPAM, mutuelles) est mobilisable"
+    ]
+  },
+  "founder": {
+    "title": "Votre interlocutrice",
+    "name": "Jennifer De Groeve",
+    "role": "Praticienne certifiée, 20 ans dans le soin, référencée Grand Est",
+    "image": "/images/jennifer-pro.webp",
+    "quote": "Avant de devenir zoothérapeute, j'ai été aide-soignante pendant 20 ans. Je connais la contrainte d'une équipe, le poids d'un budget, l'exigence d'une direction qui doit rendre compte. Je construis des programmes qui s'intègrent à votre organisation, et je formalise les résultats.",
+    "credentials": [
+      "Certifiée IFZ (Institut de Formation en Zoothérapie)",
+      "Aide-soignante diplômée, 20 ans d'expérience institutionnelle",
+      "Membre du Syndicat Français des Zoothérapeutes",
+      "Programme 2 ans France Alzheimer 57, AEMO Pompey, Maison des Aidants 54 (ProBTP)"
+    ]
+  },
+  "method": {
+    "title": "Un accompagnement structuré pour votre structure",
+    "intro": "La médiation animale dans une structure médico-sociale, ce n'est pas une animation ponctuelle. C'est un programme pensé avec vos équipes, cadré autour d'objectifs définis ensemble, et évalué en continu.",
+    "steps": [
+      {
+        "title": "On identifie les objectifs avec vos équipes",
+        "description": "Avant toute chose, un échange avec la direction, les coordinatrices animation, les intervenants au contact des bénéficiaires. Quels publics sont concernés ? Quels besoins remontent du terrain ? Troubles du comportement à apaiser, lien social à recréer, stimulation cognitive, accompagnement d'enfants en difficulté ? L'objectif, on le pose ensemble."
+      },
+      {
+        "title": "On construit un cadre adapté à votre rythme",
+        "description": "Fréquence, environnement, créneaux horaires, groupes ou individuels : tout est discuté avec votre équipe pour s'intégrer dans votre organisation, pas la perturber. En général je travaille par séances bihebdomadaires ou mensuelles selon les objectifs. Ce qui compte, c'est la régularité, parce que c'est elle qui crée les effets mesurables."
+      },
+      {
+        "title": "Cycles de 5 séances, budget réaliste, financement tiers possible",
+        "description": "Je construis les accompagnements en cycles de cinq séances. Le budget doit rester cohérent avec vos moyens. J'adapte le format plutôt que de vous vendre un projet irréalisable. Et surtout, des financements tiers sont souvent activables : ProBTP, CPAM, mutuelles, selon les publics concernés. On en parle dès l'échange initial."
+      },
+      {
+        "title": "Méthode pro : préparation, séance, observation, ajustement, évaluation",
+        "description": "Chaque séance est préparée spécifiquement selon le public et les objectifs travaillés. Pendant la séance, les animaux qui m'accompagnent participent activement : ils ne sont pas un décor affectif, ce sont des collaborateurs du processus. Après chaque séance, j'observe et j'ajuste. Et je crée des évaluations structurées qui me permettent de mesurer les évolutions et de vous les restituer clairement."
+      },
+      {
+        "title": "Bilan de cycle formalisé avec votre équipe",
+        "description": "En fin de cycle, point structuré avec vos équipes. Ce qui a fonctionné. Ce qui est prolongeable. Ce qui doit être réorienté. Une vraie évaluation partagée, jamais une reconduction silencieuse. Si les effets ne sont pas là, on le dit."
+      }
+    ],
+    "closing": "La médiation animale ne remplace aucune des prises en charge de vos équipes. Elle vient en complémentarité, en proposant des supports plus ludiques et plus accessibles à certains publics qui n'accrochent pas toujours aux formats traditionnels."
+  },
+  "animals": {
+    "title": "Trois animaux médiateurs certifiés",
+    "subtitle": "Chaque animal est travaillé pour l'intervention en structure. Je choisis ceux qui accompagnent chaque séance selon le public et les objectifs.",
+    "items": [
+      {
+        "name": "Tips",
+        "breed": "Finnois de Laponie",
+        "image": "/images/animal-tips.webp",
+        "role": "Calme, patient, attentif. Particulièrement adapté aux personnes âgées, aux troubles cognitifs, et aux séances de présence posée."
+      },
+      {
+        "name": "Uxo",
+        "breed": "Berger américain miniature",
+        "image": "/images/animal-uxo.webp",
+        "role": "Plein d'énergie. Excellent pour les ateliers enfants, les séances collectives dynamiques, et les bénéficiaires qui ont besoin de mouvement."
+      },
+      {
+        "name": "Tap-Tap",
+        "breed": "Lapin bélier",
+        "image": "/images/animal-tap-tap.webp",
+        "role": "Doux et rassurant. Idéal pour les publics anxieux, les personnes qui ont peur des chiens, et les ateliers sensoriels."
+      }
+    ]
+  },
+  "proofs": {
+    "title": "Références institutionnelles dans le Grand Est",
+    "items": [
+      "France Alzheimer 57 - 54 (2 ans de programme)",
+      "AEMO Pompey (protection de l'enfance, en cours)",
+      "Maison des Aidants 54 (financée ProBTP)",
+      "Article Républicain Lorrain (bibliothèque de Marly)"
+    ]
+  },
+  "faq": {
+    "title": "Questions fréquentes",
+    "items": [
+      {
+        "question": "Comment se construit le budget d'un programme ?",
+        "answer": "Je propose systématiquement un cycle de 5 séances, ajustable à votre format (groupes, fréquence, durée). Le tarif dépend du volume et de la distance. J'adapte toujours pour rester cohérent avec vos moyens, plutôt que de vous vendre un projet irréalisable."
+      },
+      {
+        "question": "Quels financements tiers peuvent être mobilisés ?",
+        "answer": "Selon les publics concernés, ProBTP, CPAM ou certaines mutuelles peuvent prendre en charge tout ou partie du programme. On en parle dès le premier échange pour évaluer les options pour votre structure."
+      },
+      {
+        "question": "Qu'est-ce qui différencie une séance de médiation animale d'une animation classique ?",
+        "answer": "L'animation est ponctuelle et générique. Un accompagnement en médiation animale est structuré : objectifs définis, séances préparées spécifiquement, observation formalisée, bilan d'équipe. Les animaux ne sont pas un décor affectif, ce sont des collaborateurs du processus."
+      },
+      {
+        "question": "Vous intervenez dans quels types de structures ?",
+        "answer": "EHPAD, MAS, FAM, IME, SESSAD, crèches spécialisées, services d'AEMO, associations d'aidants, bibliothèques. Si vous êtes une structure médico-sociale du Grand Est, on peut en discuter."
+      },
+      {
+        "question": "Comment se passe la restitution en fin de cycle ?",
+        "answer": "Je formalise un bilan écrit reprenant les observations séance par séance, les effets constatés, les points d'amélioration, et les recommandations. Je le présente en réunion avec votre équipe. Jamais de reconduction automatique : si les effets ne sont pas là, on le dit."
+      },
+      {
+        "question": "Quel délai pour démarrer ?",
+        "answer": "Après un premier échange, je peux proposer un devis sous 5 jours ouvrés. Le démarrage du programme dépend de votre calendrier interne et des disponibilités partagées."
+      }
+    ]
+  },
+  "finalCta": {
+    "title": "Parlons de votre projet",
+    "description": "Un premier échange gratuit de 30 minutes pour comprendre vos besoins, votre public, votre contrainte budgétaire, et voir si la médiation animale s'intègre à votre projet.",
+    "cta1": {
+      "text": "Prendre rendez-vous avec Jennifer",
+      "href": "https://cal.eu/jdzootherapie/30min"
+    },
+    "cta2": {
+      "text": "07 54 81 21 22",
+      "href": "tel:+33754812122"
+    }
+  }
+}

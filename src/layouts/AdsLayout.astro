@@ -14,7 +14,7 @@
  */
 import '@styles/global.css';
 import { getSiteInfo } from '@data/content';
-import { siteUrl, ads } from '@data/business';
+import { siteUrl, ads, schemaData, business } from '@data/business';
 import ConsentBanner from '@components/layout/ConsentBanner.astro';
 
 const siteInfo = await getSiteInfo();
@@ -23,12 +23,47 @@ interface Props {
   title: string;
   description: string;
   ogImage?: string;
+  indexable?: boolean;
+  serviceSchema?: {
+    name: string;
+    description: string;
+    serviceType: string;
+    areaServed?: string[];
+  };
 }
 
-const { title, description, ogImage } = Astro.props;
+const { title, description, ogImage, indexable = false, serviceSchema } = Astro.props;
 const fullOgImage = (ogImage || siteInfo.seo.ogImage).startsWith('http')
   ? (ogImage || siteInfo.seo.ogImage)
   : `${siteUrl}${ogImage || siteInfo.seo.ogImage}`;
+const canonicalUrl = `${siteUrl}${Astro.url.pathname}`;
+
+const serviceJsonLd = serviceSchema ? {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: serviceSchema.name,
+  description: serviceSchema.description,
+  serviceType: serviceSchema.serviceType,
+  provider: {
+    '@type': business.schemaType,
+    name: siteInfo.name,
+    telephone: schemaData.telephone,
+    email: schemaData.email,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: schemaData.address.streetAddress,
+      addressLocality: schemaData.address.addressLocality,
+      postalCode: schemaData.address.postalCode,
+      addressRegion: schemaData.address.addressRegion,
+      addressCountry: schemaData.address.addressCountry,
+    },
+  },
+  areaServed: serviceSchema.areaServed?.map((name) => ({ '@type': 'City', name })) ?? [
+    { '@type': 'City', name: 'Metz' },
+    { '@type': 'City', name: 'Nancy' },
+  ],
+  url: canonicalUrl,
+} : null;
 ---
 
 <!DOCTYPE html>
@@ -39,7 +74,14 @@ const fullOgImage = (ogImage || siteInfo.seo.ogImage).startsWith('http')
   <meta name="format-detection" content="telephone=no" />
   <title>{title}</title>
   <meta name="description" content={description} />
-  <meta name="robots" content="noindex, nofollow" />
+  {indexable ? (
+    <>
+      <meta name="robots" content="index, follow" />
+      <link rel="canonical" href={canonicalUrl} />
+    </>
+  ) : (
+    <meta name="robots" content="noindex, nofollow" />
+  )}
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -71,6 +113,10 @@ const fullOgImage = (ogImage || siteInfo.seo.ogImage).startsWith('http')
       "url": siteUrl,
     },
   })}></script>
+
+  {serviceJsonLd && (
+    <script type="application/ld+json" set:html={JSON.stringify(serviceJsonLd)}></script>
+  )}
 
   <style>
     @font-face { font-family: 'Lora'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/lora-v37-latin-700.woff2') format('woff2'); }

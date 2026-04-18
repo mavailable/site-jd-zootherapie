@@ -1,0 +1,163 @@
+{
+  "slug": "mediation-animale-enfant-emotions",
+  "campaign": "C2 - Enfance TDAH/TSA",
+  "enabled": true,
+  "indexable": true,
+  "stickyMobile": true,
+  "meta": {
+    "title": "Médiation animale enfant TDAH et TSA - Metz et Nancy",
+    "description": "Aider votre enfant à gérer ses émotions avec un animal collaborateur, pas une séance de câlins. Cycles de 5 séances, méthode structurée, complément à la psychomot et à l'orthophonie. Premier appel gratuit."
+  },
+  "service": {
+    "name": "Médiation animale enfant TDAH et TSA",
+    "description": "Accompagnement en médiation animale pour enfants avec TDAH ou TSA, centré sur la gestion des émotions, la confiance et la communication. Séances structurées à domicile ou en structure, en Moselle et Meurthe-et-Moselle.",
+    "serviceType": "Médiation animale",
+    "areaServed": ["Metz", "Nancy", "Moselle", "Meurthe-et-Moselle"]
+  },
+  "hero": {
+    "h1": "Médiation animale pour enfants TDAH et TSA",
+    "subtitle": "Aider votre enfant à gérer ses émotions avec l'animal comme collaborateur actif, pas simple présence. Complément à la psychomot et à l'orthophonie. Moselle et Meurthe-et-Moselle.",
+    "image": "/images/session-enfant.webp",
+    "overlayOpacity": 45,
+    "cta1": {
+      "text": "Réserver un appel découverte",
+      "href": "https://cal.eu/jdzootherapie/30min"
+    },
+    "cta2": {
+      "text": "07 54 81 21 22",
+      "href": "tel:+33754812122"
+    },
+    "proof": "Premier échange gratuit. Actuellement en mission avec l'AEMO de Pompey (protection de l'enfance)."
+  },
+  "stats": {
+    "items": [
+      { "value": "+20 ans", "label": "dans l'accompagnement" },
+      { "value": "Cycles de 5", "label": "séances adaptées aux enfants" },
+      { "value": "3 animaux", "label": "médiateurs certifiés" },
+      { "value": "AEMO Pompey", "label": "mission en cours (54)" }
+    ]
+  },
+  "problem": {
+    "title": "Quand la médiation animale aide votre enfant",
+    "items": [
+      "Votre enfant a du mal à reconnaître et nommer ses émotions",
+      "Les moments de débordement sont fréquents et difficiles à canaliser",
+      "La confiance en lui s'étiole, le retrait social s'installe",
+      "Les formats traditionnels (psy, orthophonie) fatiguent votre enfant",
+      "Vous cherchez un support complémentaire à la prise en charge déjà en place"
+    ]
+  },
+  "founder": {
+    "title": "Votre zoothérapeute",
+    "name": "Jennifer De Groeve",
+    "role": "Praticienne certifiée, référencée en protection de l'enfance",
+    "image": "/images/jennifer-pro.webp",
+    "quote": "Un accompagnement pour un enfant, ce n'est pas une séance de câlins avec un chien. C'est un programme construit autour d'objectifs que votre enfant peut atteindre, avec l'animal comme collaborateur. Et c'est justement cette structure qui rassure les enfants qui ont besoin de repères.",
+    "credentials": [
+      "Certifiée IFZ (Institut de Formation en Zoothérapie)",
+      "20 ans d'expérience auprès de publics fragiles",
+      "Mission en cours avec l'AEMO de Pompey (protection de l'enfance)",
+      "Membre du Syndicat Français des Zoothérapeutes"
+    ]
+  },
+  "method": {
+    "title": "Comment on travaille avec votre enfant",
+    "intro": "Un accompagnement en médiation animale pour un enfant TDAH ou TSA, c'est un programme construit autour d'objectifs concrets que votre enfant peut atteindre, avec l'animal comme collaborateur actif du processus.",
+    "steps": [
+      {
+        "title": "On identifie ensemble ce qu'on cherche à travailler",
+        "description": "Aider votre enfant à mieux gérer ses émotions. Travailler la confiance en lui. L'aider à apaiser les moments de débordement. Encourager la communication, y compris non verbale. Trouver un espace où il peut être lui-même sans jugement. On en discute avec vous, et parfois directement avec votre enfant quand c'est possible."
+      },
+      {
+        "title": "On construit une régularité qui rassure",
+        "description": "Je travaille le plus souvent tous les quinze jours. Les enfants ont besoin de repères. Savoir que la séance revient, que le chien qu'ils connaissent va être là, crée une routine qu'ils commencent à attendre. C'est dans cette répétition que les progrès s'installent."
+      },
+      {
+        "title": "Cycles de 5 séances, format adapté au rythme d'un enfant",
+        "description": "Je propose des cycles courts de cinq séances. Suffisamment concret pour observer des changements, et pas trop long pour qu'un enfant ne s'épuise pas ou ne perde pas sa motivation."
+      },
+      {
+        "title": "L'animal participe, il n'est pas décoratif",
+        "description": "Pendant les séances, le chien peut choisir entre différentes cartes d'émotions, jouer au morpion, ou accompagner votre enfant sur une balade dirigée. L'enfant apprend à observer l'animal, à lire son langage corporel, à ajuster ses gestes. Ce sont ces exercices-là qui font avancer, en douceur."
+      },
+      {
+        "title": "On évalue les progrès concrètement",
+        "description": "Après chaque séance, j'observe ce qui a bougé et je l'écris. Votre enfant est-il plus apaisé ? Plus attentif ? Participe-t-il davantage ? Ces observations, je les partage avec vous au fil du temps, et on fait un bilan formel en fin de cycle."
+      }
+    ],
+    "closing": "La médiation animale ne remplace pas les prises en charge existantes de votre enfant (psychomotricité, orthophonie, suivi médical). Elle vient en complémentarité, sur un registre souvent plus accessible pour un enfant qui a du mal avec les formats traditionnels."
+  },
+  "animals": {
+    "title": "Trois animaux médiateurs, selon la personnalité de votre enfant",
+    "subtitle": "Je choisis avant chaque séance l'animal le plus adapté au profil de votre enfant et à l'objectif du jour.",
+    "items": [
+      {
+        "name": "Uxo",
+        "breed": "Berger américain miniature",
+        "image": "/images/animal-uxo.webp",
+        "role": "Plein d'énergie et de joie. Parfait pour les enfants qui ont besoin de mouvement, de jeu, de structurer leur attention sur des exercices actifs."
+      },
+      {
+        "name": "Tap-Tap",
+        "breed": "Lapin bélier",
+        "image": "/images/animal-tap-tap.webp",
+        "role": "Doux et rassurant. Idéal pour les enfants anxieux, hypersensibles, ou qui ont peur des chiens. Travail sensoriel apaisant."
+      },
+      {
+        "name": "Tips",
+        "breed": "Finnois de Laponie",
+        "image": "/images/animal-tips.webp",
+        "role": "Calme, patient, attentif. Adapté aux enfants qui ont besoin d'un rythme lent et d'une présence posée pour s'autoriser à participer."
+      }
+    ]
+  },
+  "proofs": {
+    "title": "Références dans le Grand Est",
+    "items": [
+      "AEMO Pompey (protection de l'enfance, en cours)",
+      "France Alzheimer 57 (publics intergénérationnels)",
+      "Article Républicain Lorrain (bibliothèque de Marly)"
+    ]
+  },
+  "faq": {
+    "title": "Questions fréquentes",
+    "items": [
+      {
+        "question": "Combien coûte une séance pour mon enfant ?",
+        "answer": "Une séance individuelle à domicile est à 60€ en Moselle et Meurthe-et-Moselle. Je propose des cycles de 5 séances, budget discuté à l'appel découverte."
+      },
+      {
+        "question": "Est-ce que ça remplace la psychomotricité ou l'orthophonie ?",
+        "answer": "Non. La médiation animale vient en complément des prises en charge existantes. Elle propose un registre différent, plus ludique, parfois plus accessible pour un enfant qui bloque sur les formats traditionnels."
+      },
+      {
+        "question": "À partir de quel âge ?",
+        "answer": "À partir de 3 ans. J'adapte chaque séance à l'âge et au profil de votre enfant. Un appel découverte permet de voir si c'est pertinent pour lui aujourd'hui."
+      },
+      {
+        "question": "Mon enfant a peur des chiens, est-ce possible ?",
+        "answer": "Oui. Je peux commencer avec Tap-Tap (le lapin) pour apprivoiser doucement le lien à l'animal. La progression se fait au rythme de votre enfant, jamais forcée."
+      },
+      {
+        "question": "Comment se passe la première séance ?",
+        "answer": "Après l'appel découverte avec vous, j'arrive à domicile avec l'animal choisi. Je prends le temps de laisser votre enfant observer, puis je propose doucement une première activité adaptée à son énergie du jour."
+      },
+      {
+        "question": "Vous travaillez avec le suivi médical ?",
+        "answer": "Oui quand c'est pertinent. Je peux échanger avec la psychomotricienne, l'orthophoniste ou le médecin de votre enfant si vous le souhaitez, pour que le travail soit cohérent."
+      }
+    ]
+  },
+  "finalCta": {
+    "title": "Parlons de votre enfant",
+    "description": "Un premier échange gratuit de 30 minutes pour comprendre ce qui pourrait aider votre enfant, et voir si la médiation animale est le bon outil pour lui aujourd'hui.",
+    "cta1": {
+      "text": "Réserver un appel découverte",
+      "href": "https://cal.eu/jdzootherapie/30min"
+    },
+    "cta2": {
+      "text": "07 54 81 21 22",
+      "href": "tel:+33754812122"
+    }
+  }
+}

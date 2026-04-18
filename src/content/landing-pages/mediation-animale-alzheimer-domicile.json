@@ -1,0 +1,163 @@
+{
+  "slug": "mediation-animale-alzheimer-domicile",
+  "campaign": "C1 - Senior Alzheimer domicile",
+  "enabled": true,
+  "indexable": true,
+  "stickyMobile": true,
+  "meta": {
+    "title": "Médiation animale Alzheimer à domicile - Metz et Nancy",
+    "description": "Accompagnement structuré à domicile pour personne Alzheimer. Méthode en 5 étapes, cycles de 5 séances, objectifs mesurables. Praticienne certifiée IFZ, 20 ans dans le soin. Premier appel gratuit."
+  },
+  "service": {
+    "name": "Médiation animale Alzheimer à domicile",
+    "description": "Accompagnement structuré en médiation animale pour personne atteinte de la maladie d'Alzheimer, à domicile en Moselle et Meurthe-et-Moselle. Cycles de 5 séances, objectifs définis avec l'aidant, animaux collaborateurs du processus.",
+    "serviceType": "Médiation animale",
+    "areaServed": ["Metz", "Nancy", "Moselle", "Meurthe-et-Moselle"]
+  },
+  "hero": {
+    "h1": "Médiation animale Alzheimer, à domicile",
+    "subtitle": "Un programme structuré pour votre proche, pas une visite de courtoisie avec un chien. Cycles de 5 séances, objectifs concrets, animaux collaborateurs. Moselle et Meurthe-et-Moselle.",
+    "image": "/images/session-senior.webp",
+    "overlayOpacity": 50,
+    "cta1": {
+      "text": "Réserver un appel découverte",
+      "href": "https://cal.eu/jdzootherapie/30min"
+    },
+    "cta2": {
+      "text": "07 54 81 21 22",
+      "href": "tel:+33754812122"
+    },
+    "proof": "Premier échange gratuit et sans engagement. Séances à domicile. 20 ans d'expérience dans le soin."
+  },
+  "stats": {
+    "items": [
+      { "value": "+20 ans", "label": "dans le soin et l'accompagnement" },
+      { "value": "Cycles de 5", "label": "séances, format éprouvé" },
+      { "value": "Tous les 15 j", "label": "la régularité qui crée l'effet" },
+      { "value": "5,0 · 9 avis", "label": "sur Google Business" }
+    ]
+  },
+  "problem": {
+    "title": "Vous accompagnez un proche atteint d'Alzheimer",
+    "items": [
+      "Vous cherchez des moments de qualité malgré l'évolution de la maladie",
+      "La communication verbale se fragilise et vous voulez préserver un lien",
+      "Les moments d'agitation ou d'anxiété pèsent sur votre proche et sur vous",
+      "Vous avez entendu parler de la médiation animale mais craignez une simple animation",
+      "Vous voulez un accompagnement qui s'articule avec le suivi médical déjà en place"
+    ]
+  },
+  "founder": {
+    "title": "Votre zoothérapeute",
+    "name": "Jennifer De Groeve",
+    "role": "Praticienne certifiée en médiation animale, ancienne aide-soignante",
+    "image": "/images/jennifer-pro.webp",
+    "quote": "J'ai passé 20 ans au contact de personnes dépendantes comme aide-soignante. J'ai vu ce qu'un animal pouvait apaiser chez une personne qui n'arrive plus à formuler avec des mots. Je viens chez votre proche avec une méthode construite, pas avec un chien en câlin.",
+    "credentials": [
+      "Certifiée IFZ (Institut de Formation en Zoothérapie)",
+      "Aide-soignante diplômée, 20 ans d'expérience (dont Alzheimer)",
+      "Membre du Syndicat Français des Zoothérapeutes",
+      "Référencée France Alzheimer 57 et Maison des Aidants 54 (ProBTP)"
+    ]
+  },
+  "method": {
+    "title": "Comment on travaille avec votre proche",
+    "intro": "Un accompagnement en médiation animale pour une personne atteinte d'Alzheimer, ce n'est pas une visite de courtoisie. C'est un programme structuré, pensé avec vous et avec votre proche, construit autour d'objectifs précis.",
+    "steps": [
+      {
+        "title": "On identifie ce qu'on cherche à travailler",
+        "description": "Stimuler la mémoire en activant des souvenirs liés aux animaux. Préserver des moments de qualité quand la communication verbale se fragilise. Maintenir la motivation et la participation. Apaiser des moments d'agitation. On en discute ensemble avant de commencer, parce que c'est cet objectif qui va orienter tout le reste."
+      },
+      {
+        "title": "On construit une régularité",
+        "description": "Je travaille en général tous les quinze jours. C'est la régularité qui crée l'effet, pas la séance isolée. Votre proche commence à attendre ces moments, à les reconnaître, et c'est là qu'ils deviennent porteurs."
+      },
+      {
+        "title": "Cycles de 5 séances, budget réaliste",
+        "description": "Un cycle de cinq séances est le format que je propose le plus souvent. Suffisamment court pour tester, suffisamment long pour observer les premiers effets concrets. Le budget se discute à l'appel découverte, en cohérence avec votre situation."
+      },
+      {
+        "title": "Je prépare chaque séance spécifiquement",
+        "description": "Avant chaque venue, j'adapte la séance à son état du moment, à ce qui a fonctionné la fois précédente, et à ce qu'on peut travailler cette fois. Je choisis aussi les animaux qui m'accompagnent car tous ne sont pas adaptés à toutes les situations. Ce travail de préparation, souvent invisible, fait beaucoup."
+      },
+      {
+        "title": "Bilan ensemble à la fin du cycle",
+        "description": "Ce qui a avancé. Ce qui peut continuer. Ce qui n'a pas pris, et c'est aussi OK de le reconnaître. Une décision prise à deux, basée sur des observations concrètes, jamais une reconduction automatique."
+      }
+    ],
+    "closing": "La médiation animale ne remplace pas la prise en charge médicale de votre proche. Elle vient en complémentarité, comme un support plus accessible et plus ludique, souvent plus facile à aborder quand les autres formats deviennent difficiles."
+  },
+  "animals": {
+    "title": "Trois animaux médiateurs, trois approches",
+    "subtitle": "Je choisis avant chaque séance l'animal le plus adapté à votre proche et à l'objectif du jour.",
+    "items": [
+      {
+        "name": "Tips",
+        "breed": "Finnois de Laponie",
+        "image": "/images/animal-tips.webp",
+        "role": "Calme, patient, attentif. Idéal pour les personnes atteintes d'Alzheimer car il s'adapte au rythme et reste présent sans solliciter excessivement."
+      },
+      {
+        "name": "Uxo",
+        "breed": "Berger américain miniature",
+        "image": "/images/animal-uxo.webp",
+        "role": "Plein d'énergie positive. Stimule la participation chez les personnes qui ont tendance à se replier ou à se lasser rapidement."
+      },
+      {
+        "name": "Tap-Tap",
+        "breed": "Lapin bélier",
+        "image": "/images/animal-tap-tap.webp",
+        "role": "Doux et rassurant. Support sensoriel apaisant pour les moments d'anxiété ou pour les personnes qui ont peur des chiens."
+      }
+    ]
+  },
+  "proofs": {
+    "title": "Références dans le Grand Est",
+    "items": [
+      "France Alzheimer 57 (2 ans de programme)",
+      "Maison des Aidants 54 (financée ProBTP)",
+      "Article Républicain Lorrain (bibliothèque de Marly)"
+    ]
+  },
+  "faq": {
+    "title": "Questions fréquentes",
+    "items": [
+      {
+        "question": "Combien coûte une séance à domicile ?",
+        "answer": "Une séance individuelle à domicile est à 60€ en Moselle et Meurthe-et-Moselle. Je propose des cycles de 5 séances, budget discuté à l'appel découverte selon votre situation."
+      },
+      {
+        "question": "Est-ce que la médiation animale remplace le traitement médical ?",
+        "answer": "Non, jamais. C'est un complément, jamais un substitut. Je travaille en coordination avec les aidants familiaux et, quand c'est pertinent, avec les soignants qui entourent votre proche."
+      },
+      {
+        "question": "Avec quel animal venez-vous ?",
+        "answer": "Ça dépend de la situation. J'ai trois animaux médiateurs (deux chiens et un lapin). Je choisis avant chaque séance celui qui est le plus adapté à votre proche et à l'objectif du jour."
+      },
+      {
+        "question": "À quelle fréquence se déroulent les séances ?",
+        "answer": "Je privilégie une séance tous les 15 jours. C'est ce rythme qui crée l'effet sur la durée, pas la séance ponctuelle."
+      },
+      {
+        "question": "Peut-on tester avant de s'engager sur un cycle ?",
+        "answer": "Oui. Le premier échange est gratuit et sans engagement. Si la médiation animale n'est pas le bon outil pour votre situation, je vous le dirai directement."
+      },
+      {
+        "question": "Dans quelle zone intervenez-vous ?",
+        "answer": "Moselle et Meurthe-et-Moselle, depuis mon secteur de Vigny près de Metz. Je me déplace jusqu'à Metz, Nancy et toutes les communes entre les deux."
+      }
+    ]
+  },
+  "finalCta": {
+    "title": "Parlons de votre proche",
+    "description": "Un premier échange gratuit de 30 minutes pour comprendre la situation et voir si la médiation animale est pertinente. Sans engagement, sans pression.",
+    "cta1": {
+      "text": "Réserver un appel découverte",
+      "href": "https://cal.eu/jdzootherapie/30min"
+    },
+    "cta2": {
+      "text": "07 54 81 21 22",
+      "href": "tel:+33754812122"
+    }
+  }
+}
