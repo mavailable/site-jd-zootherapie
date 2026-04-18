@@ -7,6 +7,7 @@ import { StatsTab } from './StatsTab';
 import { AnalyticsTab } from './AnalyticsTab';
 import { AccountTab } from './AccountTab';
 import { BlogTab } from './BlogTab';
+import { MarketingPlanTab } from './marketing/MarketingPlanTab';
 import { SingletonEditor } from './SingletonEditor';
 import { CollectionList } from './CollectionList';
 import { CollectionEditor } from './CollectionEditor';
@@ -19,10 +20,10 @@ import cmsConfig from '../../../cms.config';
 
 // ─── Route parsing ───────────────────────────────────────────────
 
-type TabId = 'site' | 'blog' | 'stats' | 'analytics' | 'account';
+type TabId = 'site' | 'blog' | 'stats' | 'analytics' | 'account' | 'marketing';
 
 interface Route {
-  view: 'home' | 'singleton' | 'collection' | 'collection-edit' | 'media' | 'sections' | 'seo' | 'theme' | 'stats' | 'analytics' | 'account' | 'blog';
+  view: 'home' | 'singleton' | 'collection' | 'collection-edit' | 'media' | 'sections' | 'seo' | 'theme' | 'stats' | 'analytics' | 'account' | 'blog' | 'marketing';
   key?: string;
   slug?: string;
 }
@@ -32,6 +33,7 @@ function parseHash(): Route {
   const parts = hash.split('/').filter(Boolean);
 
   if (parts[0] === 'blog') return { view: 'blog' };
+  if (parts[0] === 'marketing') return { view: 'marketing' };
   if (parts[0] === 'stats') return { view: 'stats' };
   if (parts[0] === 'analytics') return { view: 'analytics' };
   if (parts[0] === 'account') return { view: 'account' };
@@ -47,6 +49,7 @@ function parseHash(): Route {
 
 function getActiveTab(route: Route, hasBlog: boolean): TabId {
   if (route.view === 'blog') return 'blog';
+  if (route.view === 'marketing') return 'marketing';
   if (route.view === 'stats') return 'stats';
   if (route.view === 'analytics') return 'analytics';
   if (route.view === 'account') return 'account';
@@ -107,9 +110,10 @@ function getBreadcrumbs(route: Route): Array<{ label: string; hash: string }> {
 
 // ─── Tabs ────────────────────────────────────────────────────────
 
-const ALL_TABS: Array<{ id: TabId; label: string; icon: string; hash: string; requires?: 'blog' }> = [
+const ALL_TABS: Array<{ id: TabId; label: string; icon: string; hash: string; requires?: 'blog' | 'marketing' }> = [
   { id: 'site', label: 'Mon Site', icon: '\u{1F3E0}', hash: '#/' },
   { id: 'blog', label: 'Blog', icon: '\u{270D}\u{FE0F}', hash: '#/blog', requires: 'blog' },
+  { id: 'marketing', label: 'Marketing', icon: '\u{1F4E3}', hash: '#/marketing', requires: 'marketing' },
   { id: 'stats', label: 'Mon Activite', icon: '\u{2B50}', hash: '#/stats' },
   { id: 'analytics', label: 'Statistiques', icon: '\u{1F4CA}', hash: '#/analytics' },
   { id: 'account', label: 'Mon Compte', icon: '\u{1F464}', hash: '#/account' },
@@ -118,6 +122,7 @@ const ALL_TABS: Array<{ id: TabId; label: string; icon: string; hash: string; re
 function getTabs(cfg: typeof cmsConfig) {
   return ALL_TABS.filter((t) => {
     if (t.requires === 'blog') return !!cfg.collections?.blog;
+    if (t.requires === 'marketing') return !!cfg.marketing?.enabled;
     return true;
   });
 }
@@ -214,6 +219,7 @@ export function CmsApp() {
         <main style={styles.main} key={route.view + (route.key || '') + (route.slug || '')}>
           {route.view === 'home' && <HomeScreen config={cmsConfig} />}
           {route.view === 'blog' && <BlogTab config={cmsConfig} />}
+          {route.view === 'marketing' && <MarketingPlanTab />}
           {route.view === 'stats' && <StatsTab config={cmsConfig} />}
           {route.view === 'analytics' && <AnalyticsTab config={cmsConfig} />}
           {route.view === 'account' && <AccountTab config={cmsConfig} onLogout={logout} />}

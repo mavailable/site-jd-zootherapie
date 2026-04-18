@@ -1,6 +1,11 @@
 import type { CmsConfig } from './cms.types';
 
 const cmsConfig: CmsConfig = {
+  marketing: {
+    enabled: true,
+    trimesters: ['2026-Q2'],
+  },
+
   repo: 'mavailable/site-jd-zootherapie',
   branch: 'dev',
   siteName: 'JD Zoothérapie',

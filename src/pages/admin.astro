@@ -32,6 +32,9 @@ import cmsConfig from '../../cms.config';
     </style>
   </head>
   <body>
+    <script define:vars={{ cfg: cmsConfig }} is:inline>
+      window.__cmsConfig = cfg;
+    </script>
     <CmsApp client:only="react" />
   </body>
 </html>

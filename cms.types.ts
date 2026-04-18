@@ -112,6 +112,12 @@ export interface CmsSiteConfig {
   };
 }
 
+// Marketing (mkt-social-plan) — plan de publication sociale trimestriel
+export interface CmsMarketingConfig {
+  enabled: boolean;
+  trimesters: string[]; // Format : "YYYY-Q1" ... "YYYY-Q4"
+}
+
 export interface CmsConfig {
   repo: string; // ex: "marcmuller/site-jd-zootherapie"
   branch: string; // ex: "master"
@@ -119,4 +125,5 @@ export interface CmsConfig {
   singletons: Record<string, CmsSingleton>;
   collections: Record<string, CmsCollection>;
   site?: CmsSiteConfig;
+  marketing?: CmsMarketingConfig;
 }
