@@ -138,6 +138,28 @@ export function CollectionEditor({ config, collectionKey, slug }: CollectionEdit
       Object.entries(collection?.fields ?? {}).forEach(([key, field]) => {
         defaults[key] = getDefaultValue(field);
       });
+
+      // Prefill depuis sessionStorage (ex: "J'ecris moi-meme" depuis BlogTab)
+      if (isNew && typeof window !== 'undefined') {
+        try {
+          const prefillKey = `${collectionKey}_new_prefill`;
+          const raw = sessionStorage.getItem(prefillKey);
+          if (raw) {
+            const prefill = JSON.parse(raw) as Record<string, unknown>;
+            Object.entries(prefill).forEach(([k, v]) => {
+              if (k in (collection?.fields ?? {})) defaults[k] = v;
+            });
+            // Defaut : date du jour pour un nouvel article blog
+            if (collectionKey === 'blog' && 'date' in (collection?.fields ?? {}) && !prefill.date) {
+              defaults.date = new Date().toISOString().slice(0, 10);
+            }
+            sessionStorage.removeItem(prefillKey);
+          }
+        } catch {
+          // silent
+        }
+      }
+
       setData(defaults);
       setInitialLoading(false);
       if (isNew) markDirty();

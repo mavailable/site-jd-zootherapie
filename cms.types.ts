@@ -60,7 +60,7 @@ export interface CmsFieldArray {
   type: 'array';
   label: string;
   itemLabel?: string; // clé du champ à utiliser comme label d'affichage
-  item: CmsFieldObject | CmsFieldText;
+  item: CmsFieldObject | CmsFieldText | CmsFieldImage;
 }
 
 export type CmsField =
