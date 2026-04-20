@@ -1,7 +1,5 @@
-// skills/mkt-social-plan/templates/PostCard.tsx
-// ↳ copié par mkt-social-plan vers projets/<slug>/site/src/components/cms/marketing/PostCard.tsx
-
 import { useState, useRef, useEffect } from 'react';
+import type { CSSProperties } from 'react';
 
 export type PostStatus = 'draft' | 'published' | 'skipped';
 export type Network = 'facebook' | 'linkedin';
@@ -33,16 +31,16 @@ interface Props {
   onError: (message: string) => void;
 }
 
-function statusBadge(status: PostStatus): { emoji: string; label: string; color: string } {
-  switch (status) {
-    case 'published': return { emoji: '✅', label: 'Publié', color: 'bg-green-500' };
-    case 'skipped': return { emoji: '⏭️', label: 'Skipé', color: 'bg-gray-400' };
-    default: return { emoji: '📝', label: 'À publier', color: 'bg-blue-500' };
+function formatDate(iso: string): string {
+  try {
+    return new Intl.DateTimeFormat('fr-FR', {
+      weekday: 'short',
+      day: 'numeric',
+      month: 'long',
+    }).format(new Date(iso));
+  } catch {
+    return iso;
   }
-}
-
-function networkBadge(network: Network): string {
-  return network === 'facebook' ? 'FB' : 'LI';
 }
 
 async function sendPatch(trimester: string, post_id: string, patch: Record<string, unknown>) {
@@ -60,26 +58,27 @@ async function sendPatch(trimester: string, post_id: string, patch: Record<strin
 }
 
 export function PostCard({ post, trimester, onPatched, onError }: Props) {
-  const [expanded, setExpanded] = useState(false);
   const [editing, setEditing] = useState(false);
   const [localText, setLocalText] = useState(post.client_modified_text ?? post.text);
   const [localComment, setLocalComment] = useState(post.client_comment ?? '');
+  const [copied, setCopied] = useState(false);
   const [busy, setBusy] = useState(false);
+  const [showComment, setShowComment] = useState(!!post.client_comment);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const badge = statusBadge(post.status);
-  const displayedText = post.client_modified_text ?? post.text;
-  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   useEffect(() => {
     setLocalText(post.client_modified_text ?? post.text);
     setLocalComment(post.client_comment ?? '');
-  }, [post]);
+  }, [post.client_modified_text, post.client_comment, post.text]);
+
+  const isOverridden = post.client_modified_text !== null;
+  const displayedText = post.client_modified_text ?? post.text;
 
   async function handleCopy() {
     const full = `${displayedText}\n\n${post.hashtags.join(' ')}${post.cta ? `\n\n${post.cta}` : ''}`;
     await navigator.clipboard.writeText(full);
-    // Toast : laissé au parent via un event ou simple feedback inline
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   }
 
   async function markStatus(status: PostStatus) {
@@ -120,109 +119,374 @@ export function PostCard({ post, trimester, onPatched, onError }: Props) {
     }
   }
 
-  const isOverridden = post.client_modified_text !== null;
-  const cardClass = post.status === 'skipped' ? 'opacity-50' : '';
+  const networkStyle =
+    post.network === 'facebook'
+      ? { bg: '#eff6ff', text: '#1d4ed8', border: '#bfdbfe', label: 'Facebook' }
+      : { bg: '#eef2ff', text: '#4338ca', border: '#c7d2fe', label: 'LinkedIn' };
+
+  const statusStyle =
+    post.status === 'published'
+      ? { bg: '#f0fdf4', text: '#16a34a', border: '#bbf7d0', label: 'Publié', icon: '✓' }
+      : post.status === 'skipped'
+        ? { bg: '#f8fafc', text: '#64748b', border: '#e2e8f0', label: 'Skippé', icon: '⊘' }
+        : { bg: '#fef9c3', text: '#a16207', border: '#fde68a', label: 'À publier', icon: '●' };
+
+  const cardOpacity = post.status === 'skipped' ? 0.6 : 1;
 
   return (
-    <article className={`rounded-lg border border-gray-200 p-4 bg-white ${cardClass}`} data-testid={`postcard-${post.id}`}>
-      <header className="flex items-center justify-between mb-2">
-        <div className="flex items-center gap-2">
-          <span className="px-2 py-0.5 text-xs font-semibold rounded bg-gray-100">{networkBadge(post.network)}</span>
-          <span className="text-sm text-gray-600">Sem {post.week} · {post.scheduled_date} {post.scheduled_time_hint}</span>
+    <article style={{ ...styles.card, opacity: cardOpacity }} data-testid={`postcard-${post.id}`}>
+      <header style={styles.cardHeader}>
+        <div style={styles.badgeRow}>
+          <span
+            style={{
+              ...styles.badge,
+              background: networkStyle.bg,
+              color: networkStyle.text,
+              borderColor: networkStyle.border,
+            }}
+          >
+            {networkStyle.label}
+          </span>
+          <span style={styles.meta}>
+            Semaine {post.week} · {formatDate(post.scheduled_date)} · {post.scheduled_time_hint}
+          </span>
         </div>
-        <span className={`px-2 py-0.5 text-xs rounded text-white ${badge.color}`} aria-label={`Statut : ${badge.label}`}>
-          {badge.emoji} {badge.label}
+        <span
+          style={{
+            ...styles.statusBadge,
+            background: statusStyle.bg,
+            color: statusStyle.text,
+            borderColor: statusStyle.border,
+          }}
+        >
+          <span style={{ fontWeight: 700 }}>{statusStyle.icon}</span> {statusStyle.label}
         </span>
       </header>
 
-      {/* Visuel */}
       {post.visual_type === 'ia' && post.visual_generated ? (
-        <img src={post.visual_generated} alt={post.visual_brief} className="w-full rounded mb-2" />
+        <div style={styles.visualFrame}>
+          <img src={post.visual_generated} alt={post.visual_brief} style={styles.visualImage} />
+        </div>
       ) : (
-        <div className="rounded border-2 border-dashed border-gray-300 p-3 mb-2 text-sm text-gray-700 bg-gray-50">
-          <strong>📸 Visuel ({post.visual_type}) :</strong> {post.visual_brief}
+        <div style={styles.visualBrief}>
+          <span style={styles.visualBriefIcon}>📸</span>
+          <div>
+            <div style={styles.visualBriefLabel}>
+              Visuel à produire · <span style={styles.visualTypeTag}>{post.visual_type}</span>
+            </div>
+            <div style={styles.visualBriefText}>{post.visual_brief}</div>
+          </div>
         </div>
       )}
 
-      {/* Texte */}
       {editing ? (
         <textarea
-          ref={textareaRef}
           value={localText}
           onChange={(e) => {
             setLocalText(e.target.value);
             scheduleTextSave(e.target.value);
           }}
           onBlur={() => setEditing(false)}
-          className="w-full p-2 border rounded text-sm font-mono"
-          rows={6}
+          style={styles.textarea}
+          rows={10}
+          autoFocus
           data-testid="postcard-textarea"
         />
       ) : (
-        <div className="text-sm whitespace-pre-wrap mb-2">
-          {displayedText}
-          {isOverridden && (
-            <button
-              onClick={() => {
-                setLocalText(post.text);
-                scheduleTextSave(post.text);
-              }}
-              className="text-xs underline text-gray-500 ml-2"
-              type="button"
-            >
-              voir version générée
-            </button>
-          )}
+        <div style={styles.textBody}>{displayedText}</div>
+      )}
+
+      {isOverridden && !editing && (
+        <button
+          onClick={() => {
+            setLocalText(post.text);
+            scheduleTextSave(post.text);
+          }}
+          style={styles.revertBtn}
+          type="button"
+        >
+          ↻ Revenir au texte généré
+        </button>
+      )}
+
+      {post.hashtags.length > 0 && (
+        <div style={styles.hashtagRow}>
+          {post.hashtags.map((h) => (
+            <span key={h} style={styles.hashtag}>
+              {h}
+            </span>
+          ))}
+        </div>
+      )}
+      {post.cta && (
+        <div style={styles.ctaBox}>
+          <span style={styles.ctaLabel}>CTA</span> {post.cta}
         </div>
       )}
 
-      <div className="text-xs text-gray-600 mb-2">
-        {post.hashtags.join(' ')}
-        {post.cta && <span className="block mt-1 italic">CTA : {post.cta}</span>}
-      </div>
-
-      {/* Actions */}
-      <div className="flex flex-wrap gap-2 mb-2">
-        <button onClick={handleCopy} className="btn-sm" type="button" data-testid="postcard-copy">
-          📋 Copier
+      <div style={styles.actions}>
+        <button
+          onClick={handleCopy}
+          style={copied ? styles.btnSuccess : styles.btnPrimary}
+          type="button"
+          data-testid="postcard-copy"
+        >
+          {copied ? '✓ Copié' : '📋 Copier'}
         </button>
-        <button onClick={() => setEditing((v) => !v)} className="btn-sm" type="button" data-testid="postcard-edit">
-          ✏️ {editing ? 'Fermer' : 'Modifier'}
+        <button
+          onClick={() => setEditing((v) => !v)}
+          style={styles.btnSecondary}
+          type="button"
+          data-testid="postcard-edit"
+        >
+          {editing ? 'Fermer' : '✏️ Modifier'}
         </button>
         <button
           onClick={() => markStatus('published')}
           disabled={busy || post.status === 'published'}
-          className="btn-sm btn-primary"
+          style={post.status === 'published' ? styles.btnDisabled : styles.btnSuccess}
           type="button"
           data-testid="postcard-publish"
         >
-          ✅ Marquer publié
+          ✓ Marquer publié
         </button>
         <button
           onClick={() => markStatus('skipped')}
           disabled={busy || post.status === 'skipped'}
-          className="btn-sm"
+          style={post.status === 'skipped' ? styles.btnDisabled : styles.btnGhost}
           type="button"
           data-testid="postcard-skip"
         >
-          ⏭️ Skipper
+          ⊘ Skipper
         </button>
       </div>
 
-      {/* Commentaire */}
-      <details open={expanded} onToggle={(e) => setExpanded((e.currentTarget as HTMLDetailsElement).open)}>
-        <summary className="text-xs cursor-pointer text-gray-600">💬 Commentaire</summary>
-        <textarea
-          value={localComment}
-          onChange={(e) => setLocalComment(e.target.value)}
-          onBlur={handleCommentBlur}
-          className="w-full p-2 border rounded text-xs mt-1"
-          rows={2}
-          maxLength={5000}
-          placeholder="Notes, modifications faites, photo utilisée à la place..."
-          data-testid="postcard-comment"
-        />
-      </details>
+      <div style={styles.commentSection}>
+        <button
+          type="button"
+          onClick={() => setShowComment((v) => !v)}
+          style={styles.commentToggle}
+        >
+          💬 {showComment ? 'Masquer' : 'Ajouter'} un commentaire
+          {post.client_comment ? ' · note présente' : ''}
+        </button>
+        {showComment && (
+          <textarea
+            value={localComment}
+            onChange={(e) => setLocalComment(e.target.value)}
+            onBlur={handleCommentBlur}
+            placeholder="Notes perso : modifications faites, photo utilisée, date de publication réelle..."
+            style={styles.commentTextarea}
+            rows={2}
+            maxLength={5000}
+            data-testid="postcard-comment"
+          />
+        )}
+      </div>
     </article>
   );
 }
+
+const styles: Record<string, CSSProperties> = {
+  card: {
+    background: '#fff',
+    border: '1px solid #e2e8f0',
+    borderRadius: '14px',
+    padding: '1.25rem',
+    boxShadow: '0 1px 2px rgba(15, 23, 42, 0.04)',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '0.875rem',
+  },
+  cardHeader: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    gap: '0.75rem',
+    flexWrap: 'wrap',
+  },
+  badgeRow: { display: 'flex', alignItems: 'center', gap: '0.625rem', flexWrap: 'wrap' },
+  badge: {
+    fontSize: '0.6875rem',
+    fontWeight: 700,
+    textTransform: 'uppercase',
+    letterSpacing: '0.05em',
+    padding: '0.25rem 0.625rem',
+    borderRadius: '999px',
+    border: '1px solid',
+  },
+  meta: { fontSize: '0.8125rem', color: '#64748b' },
+  statusBadge: {
+    fontSize: '0.75rem',
+    fontWeight: 600,
+    padding: '0.25rem 0.75rem',
+    borderRadius: '999px',
+    border: '1px solid',
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '0.375rem',
+  },
+  visualFrame: {
+    borderRadius: '10px',
+    overflow: 'hidden',
+    background: '#f1f5f9',
+    border: '1px solid #e2e8f0',
+    maxHeight: '340px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  visualImage: {
+    width: '100%',
+    maxHeight: '340px',
+    objectFit: 'contain',
+    display: 'block',
+  },
+  visualBrief: {
+    display: 'flex',
+    gap: '0.75rem',
+    padding: '0.875rem 1rem',
+    background: '#fefce8',
+    border: '1px dashed #facc15',
+    borderRadius: '10px',
+  },
+  visualBriefIcon: { fontSize: '1.25rem', flexShrink: 0 },
+  visualBriefLabel: {
+    fontSize: '0.75rem',
+    fontWeight: 600,
+    color: '#854d0e',
+    marginBottom: '0.25rem',
+    textTransform: 'uppercase',
+    letterSpacing: '0.03em',
+  },
+  visualTypeTag: { textTransform: 'none', fontWeight: 500, color: '#a16207' },
+  visualBriefText: { fontSize: '0.875rem', color: '#713f12', lineHeight: 1.5 },
+  textBody: {
+    fontSize: '0.9375rem',
+    lineHeight: 1.6,
+    color: '#1e293b',
+    whiteSpace: 'pre-wrap',
+  },
+  textarea: {
+    width: '100%',
+    padding: '0.75rem',
+    border: '1px solid #cbd5e1',
+    borderRadius: '8px',
+    fontSize: '0.9375rem',
+    lineHeight: 1.6,
+    fontFamily: 'inherit',
+    resize: 'vertical',
+  },
+  revertBtn: {
+    alignSelf: 'flex-start',
+    fontSize: '0.75rem',
+    color: '#64748b',
+    background: 'transparent',
+    border: 'none',
+    cursor: 'pointer',
+    padding: 0,
+    textDecoration: 'underline',
+  },
+  hashtagRow: { display: 'flex', gap: '0.375rem', flexWrap: 'wrap' },
+  hashtag: {
+    fontSize: '0.75rem',
+    color: '#475569',
+    background: '#f1f5f9',
+    padding: '0.1875rem 0.5rem',
+    borderRadius: '6px',
+  },
+  ctaBox: {
+    fontSize: '0.8125rem',
+    color: '#475569',
+    background: '#f8fafc',
+    border: '1px solid #e2e8f0',
+    borderRadius: '8px',
+    padding: '0.5rem 0.75rem',
+  },
+  ctaLabel: {
+    fontSize: '0.6875rem',
+    fontWeight: 700,
+    textTransform: 'uppercase',
+    letterSpacing: '0.05em',
+    color: '#94a3b8',
+    marginRight: '0.5rem',
+  },
+  actions: { display: 'flex', gap: '0.5rem', flexWrap: 'wrap' },
+  btnPrimary: {
+    fontSize: '0.8125rem',
+    fontWeight: 500,
+    color: '#2563eb',
+    background: '#eff6ff',
+    border: '1px solid #bfdbfe',
+    borderRadius: '8px',
+    padding: '0.5rem 0.875rem',
+    cursor: 'pointer',
+  },
+  btnSuccess: {
+    fontSize: '0.8125rem',
+    fontWeight: 500,
+    color: '#16a34a',
+    background: '#f0fdf4',
+    border: '1px solid #bbf7d0',
+    borderRadius: '8px',
+    padding: '0.5rem 0.875rem',
+    cursor: 'pointer',
+  },
+  btnSecondary: {
+    fontSize: '0.8125rem',
+    fontWeight: 500,
+    color: '#475569',
+    background: '#fff',
+    border: '1px solid #cbd5e1',
+    borderRadius: '8px',
+    padding: '0.5rem 0.875rem',
+    cursor: 'pointer',
+  },
+  btnGhost: {
+    fontSize: '0.8125rem',
+    fontWeight: 500,
+    color: '#64748b',
+    background: 'transparent',
+    border: '1px solid #e2e8f0',
+    borderRadius: '8px',
+    padding: '0.5rem 0.875rem',
+    cursor: 'pointer',
+  },
+  btnDisabled: {
+    fontSize: '0.8125rem',
+    fontWeight: 500,
+    color: '#94a3b8',
+    background: '#f1f5f9',
+    border: '1px solid #e2e8f0',
+    borderRadius: '8px',
+    padding: '0.5rem 0.875rem',
+    cursor: 'not-allowed',
+  },
+  commentSection: {
+    borderTop: '1px solid #f1f5f9',
+    paddingTop: '0.75rem',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '0.5rem',
+  },
+  commentToggle: {
+    alignSelf: 'flex-start',
+    fontSize: '0.75rem',
+    color: '#64748b',
+    background: 'transparent',
+    border: 'none',
+    cursor: 'pointer',
+    padding: 0,
+  },
+  commentTextarea: {
+    width: '100%',
+    padding: '0.5rem 0.625rem',
+    border: '1px solid #e2e8f0',
+    borderRadius: '8px',
+    fontSize: '0.8125rem',
+    fontFamily: 'inherit',
+    color: '#334155',
+    background: '#f8fafc',
+    resize: 'vertical',
+  },
+};
