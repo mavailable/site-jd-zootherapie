@@ -24,6 +24,7 @@ interface Props {
   description: string;
   ogImage?: string;
   indexable?: boolean;
+  heroImage?: string;
   serviceSchema?: {
     name: string;
     description: string;
@@ -32,7 +33,7 @@ interface Props {
   };
 }
 
-const { title, description, ogImage, indexable = false, serviceSchema } = Astro.props;
+const { title, description, ogImage, indexable = false, heroImage, serviceSchema } = Astro.props;
 const fullOgImage = (ogImage || siteInfo.seo.ogImage).startsWith('http')
   ? (ogImage || siteInfo.seo.ogImage)
   : `${siteUrl}${ogImage || siteInfo.seo.ogImage}`;
@@ -92,13 +93,23 @@ const serviceJsonLd = serviceSchema ? {
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:image" content={fullOgImage} />
+  <meta property="og:url" content={canonicalUrl} />
   <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content={siteInfo.name} />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={fullOgImage} />
 
   <!-- Polices critiques -->
   <link rel="preload" href="/fonts/lora-v37-latin-700.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/dm-sans-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/dm-sans-v17-latin-600.woff2" as="font" type="font/woff2" crossorigin />
+
+  {heroImage && <link rel="preload" as="image" href={heroImage} />}
 
   <!-- Schema.org WebPage (minimal, pas LocalBusiness pour eviter conflits) -->
   <script type="application/ld+json" set:html={JSON.stringify({

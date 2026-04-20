@@ -6,7 +6,7 @@
   "stickyMobile": true,
   "meta": {
     "title": "Médiation animale Alzheimer à domicile - Metz et Nancy",
-    "description": "Accompagnement structuré à domicile pour personne Alzheimer. Méthode en 5 étapes, cycles de 5 séances, objectifs mesurables. Praticienne certifiée IFZ, 20 ans dans le soin. Premier appel gratuit."
+    "description": "Accompagnement structuré à domicile pour personne Alzheimer. Cycles de 5 séances, objectifs concrets. Praticienne certifiée, 20 ans dans le soin. Premier échange offert."
   },
   "service": {
     "name": "Médiation animale Alzheimer à domicile",
@@ -17,10 +17,10 @@
   "hero": {
     "h1": "Médiation animale Alzheimer, à domicile",
     "subtitle": "Un programme structuré pour votre proche, pas une visite de courtoisie avec un chien. Cycles de 5 séances, objectifs concrets, animaux collaborateurs. Moselle et Meurthe-et-Moselle.",
-    "image": "/images/session-senior.webp",
+    "image": "/images/jennifer-pro.webp",
     "overlayOpacity": 50,
     "cta1": {
-      "text": "Réserver un appel découverte",
+      "text": "Réserver un premier échange",
       "href": "https://cal.eu/jdzootherapie/30min"
     },
     "cta2": {
@@ -111,6 +111,32 @@
       }
     ]
   },
+  "midCta": {
+    "title": "Parlons de votre proche",
+    "cta1": {
+      "text": "Réserver un premier échange",
+      "href": "https://cal.eu/jdzootherapie/30min"
+    },
+    "cta2": {
+      "text": "07 54 81 21 22",
+      "href": "tel:+33754812122"
+    }
+  },
+  "testimonials": {
+    "title": "Ce que disent les familles et patients accompagnés",
+    "items": [
+      {
+        "quote": "J'ai pu accompagner ma maman âgée de 86 ans, souffrant de la maladie d'Alzheimer. Jennifer est douce, patiente, et à l'écoute. Elle propose des activités variées et toujours adaptées.",
+        "author": "Laetitia C.",
+        "context": "Famille d'une patiente de 86 ans (Alzheimer), février 2026"
+      },
+      {
+        "quote": "Jennifer ? Une vraie pro, attentive, attentionnée, et toujours souriante. Une personne en qui j'ai toute confiance. Quant à Tips et Uxo, bien plus que des chiens.",
+        "author": "Arlette P.",
+        "context": "Patiente accompagnée, janvier 2026"
+      }
+    ]
+  },
   "proofs": {
     "title": "Références dans le Grand Est",
     "items": [
@@ -152,7 +178,7 @@
     "title": "Parlons de votre proche",
     "description": "Un premier échange gratuit de 30 minutes pour comprendre la situation et voir si la médiation animale est pertinente. Sans engagement, sans pression.",
     "cta1": {
-      "text": "Réserver un appel découverte",
+      "text": "Réserver un premier échange",
       "href": "https://cal.eu/jdzootherapie/30min"
     },
     "cta2": {

@@ -1,6 +1,9 @@
 User-agent: *
 Allow: /
 Disallow: /lp/
+Allow: /lp/mediation-animale-alzheimer-domicile/
+Allow: /lp/mediation-animale-enfant-emotions/
+Allow: /lp/mediation-animale-structures-medico-sociales/
 Disallow: /admin/
 
 User-agent: GPTBot

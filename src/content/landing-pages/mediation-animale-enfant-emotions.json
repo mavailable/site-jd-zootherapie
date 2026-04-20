@@ -6,7 +6,7 @@
   "stickyMobile": true,
   "meta": {
     "title": "Médiation animale enfant TDAH et TSA - Metz et Nancy",
-    "description": "Aider votre enfant à gérer ses émotions avec un animal collaborateur, pas une séance de câlins. Cycles de 5 séances, méthode structurée, complément à la psychomot et à l'orthophonie. Premier appel gratuit."
+    "description": "Aider votre enfant TDAH ou TSA à mieux gérer ses émotions. Animal collaborateur, cycles de 5 séances, complément à psychomot et orthophonie. Premier échange offert."
   },
   "service": {
     "name": "Médiation animale enfant TDAH et TSA",
@@ -20,7 +20,7 @@
     "image": "/images/session-enfant.webp",
     "overlayOpacity": 45,
     "cta1": {
-      "text": "Réserver un appel découverte",
+      "text": "Réserver un premier échange",
       "href": "https://cal.eu/jdzootherapie/30min"
     },
     "cta2": {
@@ -111,6 +111,17 @@
       }
     ]
   },
+  "midCta": {
+    "title": "Parlons de votre enfant",
+    "cta1": {
+      "text": "Réserver un premier échange",
+      "href": "https://cal.eu/jdzootherapie/30min"
+    },
+    "cta2": {
+      "text": "07 54 81 21 22",
+      "href": "tel:+33754812122"
+    }
+  },
   "proofs": {
     "title": "Références dans le Grand Est",
     "items": [
@@ -152,7 +163,7 @@
     "title": "Parlons de votre enfant",
     "description": "Un premier échange gratuit de 30 minutes pour comprendre ce qui pourrait aider votre enfant, et voir si la médiation animale est le bon outil pour lui aujourd'hui.",
     "cta1": {
-      "text": "Réserver un appel découverte",
+      "text": "Réserver un premier échange",
       "href": "https://cal.eu/jdzootherapie/30min"
     },
     "cta2": {

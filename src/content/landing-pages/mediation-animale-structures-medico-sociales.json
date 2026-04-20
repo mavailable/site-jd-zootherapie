@@ -5,8 +5,8 @@
   "indexable": true,
   "stickyMobile": true,
   "meta": {
-    "title": "Médiation animale en EHPAD et structures médico-sociales - Grand Est",
-    "description": "Accompagnement structuré en médiation animale pour EHPAD, MAS, IME, AEMO et structures médico-sociales. Cycles de 5 séances, bilan d'équipe, financement ProBTP souvent activable. Références France Alzheimer 57, AEMO Pompey."
+    "title": "Médiation animale structures médico-sociales - Grand Est",
+    "description": "Accompagnement structuré pour EHPAD, AEMO, associations. Cycles de 5 séances, bilan d'équipe, financement ProBTP souvent activable."
   },
   "service": {
     "name": "Médiation animale pour structures médico-sociales",
@@ -108,6 +108,27 @@
         "breed": "Lapin bélier",
         "image": "/images/animal-tap-tap.webp",
         "role": "Doux et rassurant. Idéal pour les publics anxieux, les personnes qui ont peur des chiens, et les ateliers sensoriels."
+      }
+    ]
+  },
+  "midCta": {
+    "title": "Parlons de votre projet",
+    "cta1": {
+      "text": "Prendre rendez-vous",
+      "href": "https://cal.eu/jdzootherapie/30min"
+    },
+    "cta2": {
+      "text": "07 54 81 21 22",
+      "href": "tel:+33754812122"
+    }
+  },
+  "testimonials": {
+    "title": "Ce que disent les structures accompagnées",
+    "items": [
+      {
+        "quote": "Merci à Jennifer pour son professionnalisme et sa bienveillance tout au long du cycle de médiation animale à destination des aidants. Merci à ses fidèles compagnons qui ont su se faire adopter rapidement.",
+        "author": "TS PCD",
+        "context": "Maison des Aidants de Nancy, mars 2026"
       }
     ]
   },
