@@ -123,6 +123,11 @@ export interface CmsSiteConfig {
   };
 }
 
+export interface CmsMarketingConfig {
+  enabled: boolean;
+  trimesters?: string[]; // Format : "YYYY-Q1" ... "YYYY-Q4" (ex: ["2026-Q2", "2026-Q3"])
+}
+
 export interface CmsConfig {
   repo: string; // ex: "marcmuller/site-jd-zootherapie"
   branch: string; // ex: "master"
@@ -130,4 +135,5 @@ export interface CmsConfig {
   singletons: Record<string, CmsSingleton>;
   collections: Record<string, CmsCollection>;
   site?: CmsSiteConfig;
+  marketing?: CmsMarketingConfig; // Activé par mkt-social-plan (optionnel)
 }

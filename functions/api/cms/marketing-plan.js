@@ -68,7 +68,7 @@ function validatePatch(patch) {
 function planPath(trimester) {
   // Garde-fou sur le format YYYY-Q[1-4]
   if (!/^\d{4}-Q[1-4]$/.test(trimester)) return null;
-  // Path dans le repo du site client (servi statiquement via /marketing-data/ en prod)
+  // Path dans le repo du site client (servi statiquement via /marketing-data/ en prod CF Pages)
   return `public/marketing-data/plan-${trimester}.json`;
 }
 

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, createContext, useContext } from 'react';
+import { useState, useEffect, useCallback, createContext, useContext, lazy, Suspense } from 'react';
 import { useAuth } from './hooks/useAuth';
 import { useToast, type Toast } from './hooks/useToast';
 import { LoginForm } from './LoginForm';
@@ -7,7 +7,6 @@ import { StatsTab } from './StatsTab';
 import { AnalyticsTab } from './AnalyticsTab';
 import { AccountTab } from './AccountTab';
 import { BlogTab } from './BlogTab';
-import { MarketingPlanTab } from './marketing/MarketingPlanTab';
 import { SingletonEditor } from './SingletonEditor';
 import { CollectionList } from './CollectionList';
 import { CollectionEditor } from './CollectionEditor';
@@ -17,6 +16,12 @@ import { SeoEditor } from './SeoEditor';
 import { ThemeEditor } from './ThemeEditor';
 import { ToastContainer } from './ui/Toast';
 import cmsConfig from '../../../cms.config';
+
+// Lazy-load du tab Marketing (optionnel, chargé uniquement si cmsConfig.marketing?.enabled)
+// → bundle JS des projets sans marketing inchangé (MarketingPlanTab + PostCard ~1200 lignes)
+const MarketingPlanTab = lazy(() =>
+  import('./marketing/MarketingPlanTab').then((m) => ({ default: m.MarketingPlanTab }))
+);
 
 // ─── Route parsing ───────────────────────────────────────────────
 
@@ -81,7 +86,7 @@ export function useToastContext() {
 function getBreadcrumbs(route: Route): Array<{ label: string; hash: string }> {
   const crumbs: Array<{ label: string; hash: string }> = [];
 
-  if (route.view === 'home' || route.view === 'stats' || route.view === 'analytics' || route.view === 'account') return crumbs;
+  if (route.view === 'home' || route.view === 'stats' || route.view === 'analytics' || route.view === 'account' || route.view === 'marketing') return crumbs;
 
   if (route.view === 'singleton' && route.key) {
     const s = cmsConfig.singletons[route.key];
@@ -219,7 +224,11 @@ export function CmsApp() {
         <main style={styles.main} key={route.view + (route.key || '') + (route.slug || '')}>
           {route.view === 'home' && <HomeScreen config={cmsConfig} />}
           {route.view === 'blog' && <BlogTab config={cmsConfig} />}
-          {route.view === 'marketing' && <MarketingPlanTab />}
+          {route.view === 'marketing' && cmsConfig.marketing?.enabled && (
+            <Suspense fallback={<div style={styles.loading}><div style={styles.spinner} /><span>Chargement du plan marketing...</span></div>}>
+              <MarketingPlanTab />
+            </Suspense>
+          )}
           {route.view === 'stats' && <StatsTab config={cmsConfig} />}
           {route.view === 'analytics' && <AnalyticsTab config={cmsConfig} />}
           {route.view === 'account' && <AccountTab config={cmsConfig} onLogout={logout} />}
