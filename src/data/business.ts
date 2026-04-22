@@ -105,5 +105,6 @@ export const web3formsKey = import.meta.env.WEB3FORMS_KEY || WEB3FORMS_DEFAULT;
 // ('AW-XXXXXXXXX') recupere depuis l'UI Ads client (Tools > Conversions > Tag).
 export const ads = {
   enabled: true,
-  conversionId: 'G-J8SY9MTLG4' as string | null, // Google tag unifie (GA4 + Ads)
+  conversionId: 'G-J8SY9MTLG4' as string | null, // GA4 measurement ID (analytics)
+  adsConversionId: 'AW-17890952261' as string | null, // Google Ads conversion ID (requis pour que les AW-XXX/LABEL fire)
 } as const;

@@ -205,9 +205,10 @@ const serviceJsonLd = serviceSchema ? {
         });
       </script>
       <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${ads.conversionId}`}></script>
-      <script is:inline define:vars={{ conversionId: ads.conversionId }}>
+      <script is:inline define:vars={{ conversionId: ads.conversionId, adsConversionId: ads.adsConversionId }}>
         gtag('js', new Date());
         gtag('config', conversionId);
+        if (adsConversionId) gtag('config', adsConversionId);
       </script>
       <ConsentBanner />
     </>
