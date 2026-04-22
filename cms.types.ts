@@ -42,6 +42,16 @@ export interface CmsFieldSelect {
   defaultValue?: string;
 }
 
+export interface CmsFieldMultiselect {
+  type: 'multiselect';
+  label: string;
+  description?: string;
+  required?: boolean;
+  options: Array<{ label: string; value: string }>;
+  minItems?: number;
+  maxItems?: number;
+}
+
 export interface CmsFieldImage {
   type: 'image';
   label: string;
@@ -69,6 +79,7 @@ export type CmsField =
   | CmsFieldNumber
   | CmsFieldDate
   | CmsFieldSelect
+  | CmsFieldMultiselect
   | CmsFieldImage
   | CmsFieldObject
   | CmsFieldArray;
@@ -112,12 +123,6 @@ export interface CmsSiteConfig {
   };
 }
 
-// Marketing (mkt-social-plan) — plan de publication sociale trimestriel
-export interface CmsMarketingConfig {
-  enabled: boolean;
-  trimesters: string[]; // Format : "YYYY-Q1" ... "YYYY-Q4"
-}
-
 export interface CmsConfig {
   repo: string; // ex: "marcmuller/site-jd-zootherapie"
   branch: string; // ex: "master"
@@ -125,5 +130,4 @@ export interface CmsConfig {
   singletons: Record<string, CmsSingleton>;
   collections: Record<string, CmsCollection>;
   site?: CmsSiteConfig;
-  marketing?: CmsMarketingConfig;
 }
