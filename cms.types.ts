@@ -84,11 +84,20 @@ export type CmsField =
   | CmsFieldObject
   | CmsFieldArray;
 
+// Groupes fonctionnels du dashboard (HomeScreen)
+// Rétrocompat : un singleton sans `group` tombe dans "reglages" (non régression parc CMS)
+export type CmsSingletonGroup = 'accueil' | 'a-propos' | 'contact' | 'pages' | 'reglages' | 'legal';
+
 export interface CmsSingleton {
   label: string;
   description?: string;
   path: string; // ex: "src/content/hero/index.json"
   fields: Record<string, CmsField>;
+  // ─── Dashboard hints (optionnels, rétrocompatibles) ───
+  // Ajouté 2026-04-22 — dashboard groupé par contexte d'usage.
+  group?: CmsSingletonGroup; // fallback silencieux sur 'reglages' si absent
+  dashboardPriority?: number; // 1 = prominent en haut du groupe, 99 = relégué. Défaut : 50
+  dashboardIcon?: string; // emoji, remplace le fallback interne (singletonIcon)
 }
 
 export interface CmsCollection {

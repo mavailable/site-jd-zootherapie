@@ -5,7 +5,14 @@ import { HealthCard } from './HealthCard';
 import { OnboardingChecklist } from './OnboardingChecklist';
 import { InlineHelp } from './ui/InlineHelp';
 import { SkeletonDashboard } from './ui/Skeleton';
-import type { CmsConfig } from '../../../cms.types';
+import {
+  groupSingletons,
+  GROUP_ORDER,
+  GROUP_LABELS,
+  COLLAPSED_BY_DEFAULT,
+  GROUP_DEFAULT_ICON,
+} from './utils/groupSingletons';
+import type { CmsConfig, CmsSingletonGroup } from '../../../cms.types';
 
 interface HomeScreenProps {
   config: CmsConfig;
@@ -17,7 +24,14 @@ export function HomeScreen({ config }: HomeScreenProps) {
   const { fetchList, fetchFile } = useContent();
   const [counts, setCounts] = useState<Record<string, number>>({});
   const [loading, setLoading] = useState(true);
-  const [showMore, setShowMore] = useState(false);
+  // État des accordéons par groupe (true = déplié, false = plié)
+  const [expanded, setExpanded] = useState<Record<CmsSingletonGroup, boolean>>(() => {
+    const init = {} as Record<CmsSingletonGroup, boolean>;
+    for (const g of GROUP_ORDER) {
+      init[g] = !COLLAPSED_BY_DEFAULT.has(g);
+    }
+    return init;
+  });
   const [needsW3fKey, setNeedsW3fKey] = useState(false);
   const [syncStatus, setSyncStatus] = useState<'loading' | 'synced' | 'pending'>('loading');
   const [publishing, setPublishing] = useState(false);
@@ -74,11 +88,11 @@ export function HomeScreen({ config }: HomeScreenProps) {
 
   if (loading) return <SkeletonDashboard />;
 
-  const singletonEntries = Object.entries(config.singletons);
   const collectionEntries = Object.entries(config.collections);
   const hasBlog = !!config.collections.blog;
 
-  const primaryCards: Array<{
+  // ─── Collections cards (inchangé du point de vue UX) ────────────
+  const collectionCards: Array<{
     key: string;
     icon: string;
     label: string;
@@ -88,27 +102,9 @@ export function HomeScreen({ config }: HomeScreenProps) {
     actionLabel: string;
   }> = [];
 
-  primaryCards.push({
-    key: 'textes',
-    icon: '\u{270F}\u{FE0F}',
-    label: 'Mes textes',
-    description: `${singletonEntries.length} sections editables`,
-    hash: '#/singleton/' + (singletonEntries[0]?.[0] || 'site-info'),
-    actionLabel: 'Modifier',
-  });
-
-  primaryCards.push({
-    key: 'images',
-    icon: '\u{1F5BC}',
-    label: 'Mes images',
-    description: 'Photos et visuels du site',
-    hash: '#/media',
-    actionLabel: 'Gerer',
-  });
-
   for (const [key, col] of collectionEntries) {
-    if (key === 'blog') continue;
-    primaryCards.push({
+    if (key === 'blog') continue; // Blog a son propre onglet top-level
+    collectionCards.push({
       key,
       icon: collectionIcon(key),
       label: col.label,
@@ -120,7 +116,7 @@ export function HomeScreen({ config }: HomeScreenProps) {
   }
 
   if (hasBlog) {
-    primaryCards.push({
+    collectionCards.push({
       key: 'blog',
       icon: '\u{1F4DD}',
       label: 'Mon blog',
@@ -130,6 +126,70 @@ export function HomeScreen({ config }: HomeScreenProps) {
       actionLabel: 'Ecrire',
     });
   }
+
+  // ─── Singletons groupés ─────────────────────────────────────────
+  const groupedSingletons = groupSingletons(config.singletons);
+
+  const toggleGroup = (g: CmsSingletonGroup) => {
+    setExpanded(prev => ({ ...prev, [g]: !prev[g] }));
+  };
+
+  // Helpers de rendu
+  const renderSingletonCard = (key: string, s: typeof config.singletons[string], group: CmsSingletonGroup) => {
+    const icon = s.dashboardIcon || singletonIcon(key) || GROUP_DEFAULT_ICON[group];
+    return (
+      <button
+        key={key}
+        onClick={() => navigate(`#/singleton/${key}`)}
+        style={styles.card}
+      >
+        <div style={styles.cardHeader}>
+          <span style={styles.cardIcon}>{icon}</span>
+          <span style={styles.cardTitle}>{s.label}</span>
+        </div>
+        {s.description && <div style={styles.cardDesc}>{s.description}</div>}
+        <div style={styles.cardAction}>Modifier &rarr;</div>
+      </button>
+    );
+  };
+
+  // ─── Outils globaux qui vivaient dans "Plus d'outils" (SEO / Théme / Sections / Images) ───
+  // On les range dans le groupe 'reglages' pour qu'ils apparaissent dans
+  // l'accordéon "Réglages avancés" — sauf MediaLibrary qui reste en tête
+  // ("Mes images") dans la section Contenu pour garder un accès direct.
+  const toolsCards = [
+    {
+      key: '_media',
+      icon: '\u{1F5BC}',
+      label: 'Mes images',
+      description: 'Galerie globale du site',
+      hash: '#/media',
+    },
+  ];
+
+  const reglagesTools = [
+    {
+      key: '_seo',
+      icon: '\u{1F50D}',
+      label: 'Referencement',
+      description: 'Titres, descriptions, images de partage',
+      hash: '#/seo',
+    },
+    {
+      key: '_theme',
+      icon: '\u{1F3A8}',
+      label: 'Apparence',
+      description: 'Couleurs, typographie et arrondis',
+      hash: '#/theme',
+    },
+    {
+      key: '_sections',
+      icon: '\u{2630}',
+      label: 'Sections',
+      description: 'Reorganiser ou masquer des sections',
+      hash: '#/sections',
+    },
+  ];
 
   return (
     <div style={styles.fadeIn}>
@@ -178,9 +238,21 @@ export function HomeScreen({ config }: HomeScreenProps) {
         environ une minute apres avoir clique "Enregistrer".
       </InlineHelp>
 
+      {/* ─── Section Contenu (collections + images) ──────────────── */}
       <section style={styles.section}>
+        <h2 style={styles.sectionTitle}>Contenu</h2>
         <div style={styles.grid}>
-          {primaryCards.map((card) => (
+          {toolsCards.map((card) => (
+            <button key={card.key} onClick={() => navigate(card.hash)} style={styles.card}>
+              <div style={styles.cardHeader}>
+                <span style={styles.cardIcon}>{card.icon}</span>
+                <span style={styles.cardTitle}>{card.label}</span>
+              </div>
+              <div style={styles.cardDesc}>{card.description}</div>
+              <div style={styles.cardAction}>Gerer &rarr;</div>
+            </button>
+          ))}
+          {collectionCards.map((card) => (
             <button key={card.key} onClick={() => navigate(card.hash)} style={styles.card}>
               <div style={styles.cardHeader}>
                 <span style={styles.cardIcon}>{card.icon}</span>
@@ -196,50 +268,118 @@ export function HomeScreen({ config }: HomeScreenProps) {
         </div>
       </section>
 
-      <section style={styles.section}>
-        <button onClick={() => setShowMore(!showMore)} style={styles.moreToggle}>
-          <span>Plus d'outils</span>
-          <span style={{
-            transform: showMore ? 'rotate(180deg)' : 'rotate(0)',
-            transition: 'transform 0.2s',
-            display: 'inline-block',
-          }}>&#9660;</span>
-        </button>
-        {showMore && (
-          <div style={{ ...styles.grid, marginTop: '0.75rem', animation: 'slideIn 0.2s ease-out' }}>
-            <button onClick={() => navigate('#/seo')} style={styles.cardSmall}>
-              <span style={styles.toolIcon}>&#128269;</span>
-              <div>
-                <div style={styles.cardTitleSmall}>Referencement</div>
-                <div style={styles.cardDescSmall}>Titres, descriptions, images de partage</div>
-              </div>
-            </button>
-            <button onClick={() => navigate('#/theme')} style={styles.cardSmall}>
-              <span style={styles.toolIcon}>&#127912;</span>
-              <div>
-                <div style={styles.cardTitleSmall}>Apparence</div>
-                <div style={styles.cardDescSmall}>Couleurs, typographie et arrondis</div>
-              </div>
-            </button>
-            <button onClick={() => navigate('#/sections')} style={styles.cardSmall}>
-              <span style={styles.toolIcon}>&#9776;</span>
-              <div>
-                <div style={styles.cardTitleSmall}>Sections</div>
-                <div style={styles.cardDescSmall}>Reorganiser ou masquer des sections</div>
-              </div>
-            </button>
-            {singletonEntries.map(([key, s]) => (
-              <button key={key} onClick={() => navigate(`#/singleton/${key}`)} style={styles.cardSmall}>
-                <span style={styles.toolIcon}>{singletonIcon(key)}</span>
-                <div>
-                  <div style={styles.cardTitleSmall}>{s.label}</div>
-                  {s.description && <div style={styles.cardDescSmall}>{s.description}</div>}
-                </div>
-              </button>
-            ))}
-          </div>
-        )}
-      </section>
+      {/* ─── Groupes de singletons (toujours dépliés pour les 4 premiers) ─── */}
+      {GROUP_ORDER.filter(g => !COLLAPSED_BY_DEFAULT.has(g)).map((group) => {
+        const items = groupedSingletons[group];
+        if (items.length === 0) return null;
+        return (
+          <section key={group} style={styles.section}>
+            <h2 style={styles.sectionTitle}>{GROUP_LABELS[group]}</h2>
+            <div style={styles.grid}>
+              {items.map(({ key, singleton }) => renderSingletonCard(key, singleton, group))}
+            </div>
+          </section>
+        );
+      })}
+
+      {/* ─── Accordéon Réglages avancés (groupe 'reglages') ──────── */}
+      {(groupedSingletons.reglages.length > 0 || reglagesTools.length > 0) && (
+        <section style={styles.section}>
+          <button onClick={() => toggleGroup('reglages')} style={styles.moreToggle}>
+            <span>{GROUP_LABELS.reglages}</span>
+            <span style={{
+              transform: expanded.reglages ? 'rotate(180deg)' : 'rotate(0)',
+              transition: 'transform 0.2s',
+              display: 'inline-block',
+            }}>&#9660;</span>
+          </button>
+          {expanded.reglages && (
+            <div style={{ ...styles.grid, marginTop: '0.75rem', animation: 'slideIn 0.2s ease-out' }}>
+              {reglagesTools.map((card) => (
+                <button key={card.key} onClick={() => navigate(card.hash)} style={styles.cardSmall}>
+                  <span style={styles.toolIcon}>{card.icon}</span>
+                  <div>
+                    <div style={styles.cardTitleSmall}>{card.label}</div>
+                    <div style={styles.cardDescSmall}>{card.description}</div>
+                  </div>
+                </button>
+              ))}
+              {groupedSingletons.reglages.map(({ key, singleton }) => {
+                const icon = singleton.dashboardIcon || singletonIcon(key) || GROUP_DEFAULT_ICON.reglages;
+                return (
+                  <button key={key} onClick={() => navigate(`#/singleton/${key}`)} style={styles.cardSmall}>
+                    <span style={styles.toolIcon}>{icon}</span>
+                    <div>
+                      <div style={styles.cardTitleSmall}>{singleton.label}</div>
+                      {singleton.description && <div style={styles.cardDescSmall}>{singleton.description}</div>}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          )}
+        </section>
+      )}
+
+      {/* ─── Accordéon Pages du site (groupe 'pages') ─────────────── */}
+      {groupedSingletons.pages.length > 0 && (
+        <section style={styles.section}>
+          <button onClick={() => toggleGroup('pages')} style={styles.moreToggle}>
+            <span>{GROUP_LABELS.pages}</span>
+            <span style={{
+              transform: expanded.pages ? 'rotate(180deg)' : 'rotate(0)',
+              transition: 'transform 0.2s',
+              display: 'inline-block',
+            }}>&#9660;</span>
+          </button>
+          {expanded.pages && (
+            <div style={{ ...styles.grid, marginTop: '0.75rem', animation: 'slideIn 0.2s ease-out' }}>
+              {groupedSingletons.pages.map(({ key, singleton }) => {
+                const icon = singleton.dashboardIcon || singletonIcon(key) || GROUP_DEFAULT_ICON.pages;
+                return (
+                  <button key={key} onClick={() => navigate(`#/singleton/${key}`)} style={styles.cardSmall}>
+                    <span style={styles.toolIcon}>{icon}</span>
+                    <div>
+                      <div style={styles.cardTitleSmall}>{singleton.label}</div>
+                      {singleton.description && <div style={styles.cardDescSmall}>{singleton.description}</div>}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          )}
+        </section>
+      )}
+
+      {/* ─── Accordéon Légal (groupe 'legal') ─────────────────────── */}
+      {groupedSingletons.legal.length > 0 && (
+        <section style={styles.section}>
+          <button onClick={() => toggleGroup('legal')} style={styles.moreToggle}>
+            <span>{GROUP_LABELS.legal}</span>
+            <span style={{
+              transform: expanded.legal ? 'rotate(180deg)' : 'rotate(0)',
+              transition: 'transform 0.2s',
+              display: 'inline-block',
+            }}>&#9660;</span>
+          </button>
+          {expanded.legal && (
+            <div style={{ ...styles.grid, marginTop: '0.75rem', animation: 'slideIn 0.2s ease-out' }}>
+              {groupedSingletons.legal.map(({ key, singleton }) => {
+                const icon = singleton.dashboardIcon || singletonIcon(key) || GROUP_DEFAULT_ICON.legal;
+                return (
+                  <button key={key} onClick={() => navigate(`#/singleton/${key}`)} style={styles.cardSmall}>
+                    <span style={styles.toolIcon}>{icon}</span>
+                    <div>
+                      <div style={styles.cardTitleSmall}>{singleton.label}</div>
+                      {singleton.description && <div style={styles.cardDescSmall}>{singleton.description}</div>}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          )}
+        </section>
+      )}
     </div>
   );
 }
@@ -266,12 +406,21 @@ function singletonIcon(key: string): string {
     about: '\u{1F464}',
     contact: '\u{1F4E7}',
   };
-  return icons[key] || '\u{1F4CB}';
+  return icons[key] || '';
 }
 
 const styles: Record<string, React.CSSProperties> = {
   fadeIn: { animation: 'fadeIn 0.25s ease-out' },
   section: { marginBottom: '1.5rem' },
+  sectionTitle: {
+    fontSize: '0.8125rem',
+    fontWeight: 600,
+    color: '#64748b',
+    textTransform: 'uppercase' as const,
+    letterSpacing: '0.05em',
+    marginBottom: '0.75rem',
+    marginTop: 0,
+  },
   grid: {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',

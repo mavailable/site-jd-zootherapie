@@ -198,6 +198,16 @@
     // Retirer overlays image
     document.querySelectorAll('.cms-image-overlay').forEach(function (o) { o.remove(); });
 
+    // Dé-wrap les img de carousel (cms-img-wrap) : remettre l'img dans son
+    // parent d'origine pour restaurer la structure DOM.
+    document.querySelectorAll('.cms-img-wrap').forEach(function (w) {
+      var img = w.querySelector('[data-cms-field]');
+      if (img && w.parentNode) {
+        w.parentNode.insertBefore(img, w);
+        w.remove();
+      }
+    });
+
     if (toolbar) { toolbar.remove(); toolbar = null; }
     if (themePanel) { themePanel.remove(); themePanel = null; }
     if (imageModal) { imageModal.remove(); imageModal = null; }
@@ -274,9 +284,41 @@
   // =========================================================
 
   function addImageOverlay(imgEl, field) {
-    var wrapper = imgEl.parentElement;
-    if (!wrapper) return;
-    wrapper.style.position = 'relative';
+    var parent = imgEl.parentElement;
+    if (!parent) return;
+
+    // ─── Carousel-aware wrap (2026-04-22) ─────────────────────────
+    // Si le parent direct contient PLUSIEURS images éditables
+    // (ex: <div class="hero-scroll-track"><img data-cms-field="hero.heroPosters[0].image"/>...),
+    // on NE PEUT PAS appliquer position:relative sur le parent : un seul
+    // overlay plein-track se poserait et masquerait toutes les images.
+    // Solution : wrap chaque img dans un <span> individuel qui porte
+    // position:relative + pointer-events:auto (au cas où les img sont
+    // pointer-events:none pour permettre le drag du conteneur).
+    var isCarouselItem = parent.querySelectorAll('[data-cms-type="image"]').length > 1;
+    var wrapper;
+    if (isCarouselItem) {
+      // Détecter un wrap déjà posé (idempotence si activate/deactivate multiples)
+      if (imgEl.parentElement && imgEl.parentElement.classList.contains('cms-img-wrap')) {
+        wrapper = imgEl.parentElement;
+      } else {
+        wrapper = document.createElement('span');
+        wrapper.className = 'cms-img-wrap';
+        Object.assign(wrapper.style, {
+          position: 'relative',
+          display: 'inline-block',
+          // Préserver les dimensions : flex-shrink:0 comme parent-item carousel
+          flexShrink: '0',
+          // Forcer pointer-events:auto au cas où un ancêtre porte pointer-events:none
+          pointerEvents: 'auto',
+        });
+        parent.insertBefore(wrapper, imgEl);
+        wrapper.appendChild(imgEl);
+      }
+    } else {
+      wrapper = parent;
+      wrapper.style.position = 'relative';
+    }
 
     var overlay = document.createElement('div');
     overlay.className = 'cms-image-overlay';
@@ -287,6 +329,10 @@
       gap: '8px', opacity: '0', transition: 'opacity 0.2s ease',
       cursor: 'pointer', borderRadius: getComputedStyle(imgEl).borderRadius,
       zIndex: '10',
+      // Réactiver pointer-events : si l'img est pointer-events:none (ex: hero
+      // zompa où le drag est géré par le conteneur), l'overlay doit quand
+      // même capturer le clic.
+      pointerEvents: 'auto',
     });
 
     var icon = document.createElement('span');
@@ -305,6 +351,9 @@
 
     overlay.addEventListener('mouseenter', function () { overlay.style.opacity = '1'; });
     overlay.addEventListener('mouseleave', function () { overlay.style.opacity = '0'; });
+    // Stopper mousedown : sinon un ancêtre (ex: .hero-zone de zompa) démarre
+    // un drag-to-scroll avant que le click atteigne l'overlay.
+    overlay.addEventListener('mousedown', function (e) { e.stopPropagation(); });
     overlay.addEventListener('click', function (e) {
       e.preventDefault();
       e.stopPropagation();
