@@ -394,9 +394,102 @@ const overlayOpacity = (hero.overlayOpacity ?? 45) / 100;
       var GOOGLE_ADS_CONVERSIONS = {
         lp_booking_click: 'AW-17890952261/3e11CLHYoZ4cEMWIidNC',
         lp_call_click: 'AW-17890952261/R12DCLCQkKYcEMWIidNC',
+        lp_engaged_visit: 'AW-17890952261/tjhLCLjfoaccEMWIidNC',
+        lp_scroll_75: 'AW-17890952261/1mvUCMnJoKccEMWIidNC',
         // lp_form_submit: 'AW-17890952261/xxxxxx',  // a remplir quand action creee
       };
 
+      // === Engagement tracking ===
+      var fired = {};
+      function fireOnce(name, extra) {
+        if (fired[name]) return;
+        fired[name] = true;
+        if (typeof window.gtag !== 'function') return;
+        var params = Object.assign({ send_to: conversionId, lp_slug: slug }, extra || {});
+        window.gtag('event', name, params);
+        var sendTo = GOOGLE_ADS_CONVERSIONS[name];
+        if (sendTo) window.gtag('event', 'conversion', { send_to: sendTo });
+      }
+
+      // Scroll depth via reperes proportionnels (recalcules sur resize)
+      function setupScroll() {
+        var thresholds = [25, 50, 75, 100];
+        function check() {
+          var doc = document.documentElement;
+          var scrolled = (window.scrollY + window.innerHeight);
+          var total = Math.max(doc.scrollHeight, doc.offsetHeight);
+          if (total <= 0) return;
+          var pct = Math.min(100, Math.round((scrolled / total) * 100));
+          thresholds.forEach(function(t) {
+            if (pct >= t) fireOnce('lp_scroll_' + t);
+          });
+        }
+        window.addEventListener('scroll', check, { passive: true });
+        window.addEventListener('resize', check, { passive: true });
+        check();
+      }
+
+      // Engaged visit = 15s de presence cumulee (onglet visible) ET scroll >= 25%
+      function setupEngagedVisit() {
+        var visibleSeconds = 0;
+        var scrolled25 = false;
+        var lastTick = Date.now();
+        var visible = !document.hidden;
+
+        document.addEventListener('visibilitychange', function() {
+          if (document.hidden) {
+            if (visible) visibleSeconds += (Date.now() - lastTick) / 1000;
+            visible = false;
+          } else {
+            visible = true;
+            lastTick = Date.now();
+          }
+        });
+
+        setInterval(function() {
+          if (visible) {
+            visibleSeconds += (Date.now() - lastTick) / 1000;
+            lastTick = Date.now();
+          }
+          if (fired['lp_scroll_25']) scrolled25 = true;
+          if (visibleSeconds >= 15 && scrolled25) fireOnce('lp_engaged_visit');
+        }, 1000);
+      }
+
+      // Time-on-page milestones (signal d'analytique fin)
+      function setupTimers() {
+        [30, 60, 120].forEach(function(s) {
+          setTimeout(function() {
+            if (!document.hidden) fireOnce('lp_time_' + s + 's');
+          }, s * 1000);
+        });
+      }
+
+      // FAQ expand (curiosite approfondie)
+      function setupFaq() {
+        document.querySelectorAll('details').forEach(function(d, i) {
+          d.addEventListener('toggle', function() {
+            if (d.open) {
+              if (typeof window.gtag !== 'function') return;
+              window.gtag('event', 'lp_faq_expand', {
+                send_to: conversionId,
+                lp_slug: slug,
+                faq_index: i,
+              });
+            }
+          });
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+          setupScroll(); setupEngagedVisit(); setupTimers(); setupFaq();
+        });
+      } else {
+        setupScroll(); setupEngagedVisit(); setupTimers(); setupFaq();
+      }
+
+      // === CTA clicks (existant) ===
       document.addEventListener('click', function(e) {
         var el = e.target.closest('[data-lp-cta]');
         if (!el) return;
