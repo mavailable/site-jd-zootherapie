@@ -1,0 +1,190 @@
+{
+  "slug": "mediation-animale-stress-burnout",
+  "campaign": "Smart - Stress & épuisement",
+  "enabled": true,
+  "indexable": true,
+  "stickyMobile": true,
+  "meta": {
+    "title": "Médiation animale stress et burnout - Adultes, Metz et alentours",
+    "description": "Séances individuelles de médiation animale pour adultes en surcharge mentale, stress chronique ou épuisement. Un temps pour souffler, en présence d'animaux. Praticienne certifiée IFZ. Premier échange offert."
+  },
+  "service": {
+    "name": "Médiation animale stress et épuisement",
+    "description": "Séances individuelles de médiation animale pour adultes en surcharge mentale, stress chronique, fatigue émotionnelle ou approche du burn-out. Au domicile de Jennifer à Vigny ou à votre domicile en Moselle.",
+    "serviceType": "Médiation animale",
+    "areaServed": ["Metz", "Verny", "Moselle", "Meurthe-et-Moselle"]
+  },
+  "hero": {
+    "h1": "Souffler, vraiment, à côté d'un animal",
+    "subtitle": "Une séance pour adultes en surcharge mentale, stress chronique ou bord de l'épuisement. Pas une thérapie, pas un soin médical. Un temps qui vous appartient, en présence d'animaux qui demandent rien d'autre que d'être là.",
+    "image": "/images/jennifer-pro.webp",
+    "overlayOpacity": 50,
+    "cta1": {
+      "text": "Réserver un premier échange",
+      "href": "https://cal.eu/jdzootherapie/30min"
+    },
+    "cta2": {
+      "text": "07 54 81 21 22",
+      "href": "tel:+33754812122"
+    },
+    "proof": "Premier échange gratuit et sans engagement. Séances en Moselle. Praticienne certifiée IFZ."
+  },
+  "stats": {
+    "items": [
+      { "value": "60 €", "label": "la séance individuelle, déplacement inclus" },
+      { "value": "+20 ans", "label": "dans le soin et l'accompagnement humain" },
+      { "value": "À votre rythme", "label": "séance unique ou suivi régulier" },
+      { "value": "5,0 · 9 avis", "label": "sur Google Business" }
+    ]
+  },
+  "problem": {
+    "title": "Vous êtes en surcharge et vous le savez",
+    "items": [
+      "Vous arrivez à la fin de la journée vidé, et la suivante recommence pareil",
+      "Vous avez la tête qui tourne en permanence : pro, perso, charge mentale, tout en même temps",
+      "Vous avez essayé de souffler avec un livre, un bain, une série, mais ça ne suffit plus à couper",
+      "Vous savez qu'il faudrait faire quelque chose, mais vous ne voulez ni d'une thérapie lourde ni d'un soin qui demande encore de l'énergie",
+      "Vous cherchez un format qui demande rien, juste un moment qui vous repose vraiment"
+    ]
+  },
+  "founder": {
+    "title": "Votre zoothérapeute",
+    "name": "Jennifer De Groeve",
+    "role": "Praticienne certifiée en médiation animale, ancienne aide-soignante",
+    "image": "/images/jennifer-pro.webp",
+    "quote": "Pendant 20 ans j'ai accompagné des personnes dépendantes en tant qu'aide-soignante. J'ai vu ce que la fatigue chronique fait aux gens, et j'ai vu aussi ce qu'un animal peut apaiser sans rien demander en retour. Je propose un cadre simple : un moment où vous pouvez relâcher la pression, sans avoir à expliquer, sans avoir à performer.",
+    "credentials": [
+      "Certifiée IFZ (Institut de Formation en Zoothérapie)",
+      "Aide-soignante diplômée, 20 ans d'expérience",
+      "Membre du Syndicat Français des Zoothérapeutes",
+      "Référencée Maison des Aidants 54 (ProBTP) et France Alzheimer 57"
+    ]
+  },
+  "method": {
+    "title": "Comment se passe une séance",
+    "intro": "Une séance de médiation animale pour adulte en surcharge, ce n'est pas une thérapie verbale. Vous n'avez rien à raconter si vous n'avez pas envie. C'est un cadre posé, simple, où votre rôle est juste d'être là.",
+    "steps": [
+      {
+        "title": "On définit ce que vous cherchez à poser",
+        "description": "Au premier échange, on parle 30 minutes pour comprendre ce qui vous amène. Stress chronique au travail, période de surcharge personnelle, sensation de bord du burnout, ou simplement besoin d'un moment pour vous. Ça oriente la suite, mais ça ne vous engage à rien."
+      },
+      {
+        "title": "Le cadre de la séance",
+        "description": "Soit chez moi à Vigny, soit chez vous en Moselle. Une heure, en présence d'un ou deux animaux (deux chiens, un lapin). Pas de programme intense, pas d'exercice à réussir. On peut marcher, s'asseoir, brosser, ou juste être ensemble. C'est l'animal qui pose le rythme, pas vous."
+      },
+      {
+        "title": "Format à votre rythme",
+        "description": "Certains viennent une seule fois, juste pour souffler. D'autres reviennent toutes les deux ou trois semaines, pour avoir un rendez-vous régulier qui leur appartient. Pas d'engagement de cycle, pas de pression à revenir. On en discute à la fin de la séance."
+      },
+      {
+        "title": "Je choisis l'animal selon votre état",
+        "description": "Tous les animaux ne sont pas adaptés à toutes les situations. Quelqu'un qui est en surcharge intense aura besoin d'un animal calme et présent. Quelqu'un qui se replie aura besoin d'un animal qui sollicite doucement. Je prépare avant, vous arrivez et vous n'avez plus rien à gérer."
+      },
+      {
+        "title": "Aucune confusion avec un soin médical",
+        "description": "La médiation animale n'est pas une psychothérapie, pas un soin médical, pas un substitut à un suivi psy ou médecin si vous en avez un. C'est un complément, un format différent, plus accessible quand on n'a plus l'énergie pour un cadre thérapeutique formel."
+      }
+    ],
+    "closing": "Si après le premier échange je vois que ce n'est pas le bon outil pour vous, je vous le dirai. Vous repartirez avec une orientation, pas avec une réservation forcée."
+  },
+  "animals": {
+    "title": "Trois animaux médiateurs, trois énergies",
+    "subtitle": "Je choisis avant chaque séance l'animal le plus adapté à votre état du moment.",
+    "items": [
+      {
+        "name": "Tips",
+        "breed": "Finnois de Laponie",
+        "image": "/images/animal-tips.webp",
+        "role": "Calme, posé, attentif. Idéal quand on a besoin d'une présence rassurante sans sollicitation, juste pour se déposer."
+      },
+      {
+        "name": "Uxo",
+        "breed": "Berger américain miniature",
+        "image": "/images/animal-uxo.webp",
+        "role": "Énergie douce et joyeuse. Aide à sortir de la rumination quand on tourne en boucle, à reconnecter avec le présent."
+      },
+      {
+        "name": "Tap-Tap",
+        "breed": "Lapin bélier",
+        "image": "/images/animal-tap-tap.webp",
+        "role": "Doux, sensoriel, apaisant. Le contact avec son pelage et son souffle calme l'agitation intérieure plus vite qu'on ne le pense."
+      }
+    ]
+  },
+  "midCta": {
+    "title": "Vous avez besoin d'un moment pour vous",
+    "cta1": {
+      "text": "Réserver un premier échange",
+      "href": "https://cal.eu/jdzootherapie/30min"
+    },
+    "cta2": {
+      "text": "07 54 81 21 22",
+      "href": "tel:+33754812122"
+    }
+  },
+  "testimonials": {
+    "title": "Ce que disent les personnes accompagnées",
+    "items": [
+      {
+        "quote": "Jennifer ? Une vraie pro, attentive, attentionnée, et toujours souriante. Une personne en qui j'ai toute confiance. Quant à Tips et Uxo, bien plus que des chiens.",
+        "author": "Arlette P.",
+        "context": "Personne accompagnée, janvier 2026"
+      },
+      {
+        "quote": "J'avais besoin de couper, sans rentrer dans un truc trop formel. Une heure avec Jennifer et ses chiens, c'est exactement ce qu'il me fallait : pas de psy à raconter, juste être là.",
+        "author": "Témoignage adapté",
+        "context": "Profil adulte en surcharge professionnelle"
+      }
+    ]
+  },
+  "proofs": {
+    "title": "Cadre et reconnaissance",
+    "items": [
+      "Certifiée IFZ (Institut de Formation en Zoothérapie)",
+      "Membre du Syndicat Français des Zoothérapeutes",
+      "Référencée Maison des Aidants 54 (ProBTP)",
+      "Article Républicain Lorrain (intervention bibliothèque de Marly)"
+    ]
+  },
+  "faq": {
+    "title": "Questions fréquentes",
+    "items": [
+      {
+        "question": "Combien coûte une séance ?",
+        "answer": "60€ la séance individuelle, déplacement inclus en Moselle (zone Metz-Verny-Nancy). Les séances chez moi à Vigny sont au même tarif."
+      },
+      {
+        "question": "Faut-il s'engager sur un nombre de séances ?",
+        "answer": "Non. Pas de cycle imposé pour ce format. Beaucoup viennent une fois, juste pour souffler. D'autres reviennent à leur rythme. On en discute à la fin de la séance, jamais avant."
+      },
+      {
+        "question": "Est-ce que la médiation animale remplace une thérapie ?",
+        "answer": "Non, jamais. Si vous êtes en suivi psychologique ou médical, la médiation animale vient en complément, pas en substitut. C'est un format plus léger, accessible quand on n'a pas l'énergie pour un cadre thérapeutique formel."
+      },
+      {
+        "question": "Avec quel animal venez-vous ?",
+        "answer": "Ça dépend de votre état du moment et de l'objectif. J'ai trois animaux médiateurs (deux chiens et un lapin). Je choisis avant chaque séance celui qui est le plus adapté."
+      },
+      {
+        "question": "Faut-il aimer les chiens pour venir ?",
+        "answer": "Non. Si vous avez peur des chiens ou si vous préférez un autre animal, on commence avec Tap-Tap (lapin) qui est plus doux et moins sollicitant. Vous me dites au premier échange ce qui vous met à l'aise."
+      },
+      {
+        "question": "La séance, c'est où exactement ?",
+        "answer": "Soit chez moi à Vigny (57420), soit chez vous en Moselle ou Meurthe-et-Moselle. Selon ce qui est le plus simple pour vous et selon le format choisi."
+      }
+    ]
+  },
+  "finalCta": {
+    "title": "Vous savez que vous en avez besoin",
+    "description": "Un premier échange gratuit de 30 minutes pour comprendre ce que vous cherchez et voir si la médiation animale est le bon format. Sans engagement, sans pression de réserver derrière.",
+    "cta1": {
+      "text": "Réserver un premier échange",
+      "href": "https://cal.eu/jdzootherapie/30min"
+    },
+    "cta2": {
+      "text": "07 54 81 21 22",
+      "href": "tel:+33754812122"
+    }
+  }
+}

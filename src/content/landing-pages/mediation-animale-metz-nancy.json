@@ -2,6 +2,7 @@
   "slug": "mediation-animale-metz-nancy",
   "campaign": "Médiation animale Metz/Nancy",
   "enabled": true,
+  "indexable": true,
   "stickyMobile": true,
   "meta": {
     "title": "Médiation animale Metz · Nancy — Zoothérapeute certifiée",
