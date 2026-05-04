@@ -23,6 +23,34 @@
       "published_date": null,
       "created_at": "2026-05-04",
       "client_comment": null
+    },
+    {
+      "id": "3-publics-zootherapie",
+      "subject": "3 publics qui bénéficient le plus de la zoothérapie",
+      "documentTitle": "Pour qui marche vraiment la zoothérapie ?",
+      "themes_available": [
+        "soin",
+        "prairie",
+        "tendresse"
+      ],
+      "default_theme": "prairie",
+      "thumbnail": "/marketing-data/carrousels/3-publics-zootherapie/thumbnail.png",
+      "pdfs": {
+        "soin": "/marketing-data/carrousels/3-publics-zootherapie/3-publics-zootherapie-soin.pdf",
+        "prairie": "/marketing-data/carrousels/3-publics-zootherapie/3-publics-zootherapie-prairie.pdf",
+        "tendresse": "/marketing-data/carrousels/3-publics-zootherapie/3-publics-zootherapie-tendresse.pdf"
+      },
+      "previews": {
+        "soin": "/marketing-data/carrousels/3-publics-zootherapie/linkedin-soin.png",
+        "prairie": "/marketing-data/carrousels/3-publics-zootherapie/linkedin-prairie.png",
+        "tendresse": "/marketing-data/carrousels/3-publics-zootherapie/linkedin-tendresse.png"
+      },
+      "post_text": "On me demande souvent : \"Mais ça marche pour qui, la zoothérapie ?\"\n\nLa réponse honnête : pas pour tout le monde, pas tout le temps. Mais pour 3 publics en particulier, le lien avec l'animal change vraiment quelque chose.\n\nVoici ce que j'observe en séance.\n\nÀ glisser 👇",
+      "status": "draft",
+      "scheduled_date": null,
+      "published_date": null,
+      "created_at": "2026-05-04",
+      "client_comment": null
     }
   ]
 }
