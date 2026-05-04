@@ -4,6 +4,9 @@ const cmsConfig: CmsConfig = {
   marketing: {
     enabled: true,
     trimesters: ['2026-Q2'],
+    carrousels: {
+      enabled: true,
+    },
   },
 
   repo: 'mavailable/site-jd-zootherapie',

@@ -1,0 +1,28 @@
+{
+  "carrousels": [
+    {
+      "id": "sample-mythes",
+      "subject": "5 mythes en zoothérapie",
+      "documentTitle": "5 mythes sur la zoothérapie",
+      "themes_available": [
+        "soin",
+        "prairie",
+        "tendresse"
+      ],
+      "default_theme": "prairie",
+      "thumbnail": "/marketing-data/carrousels/sample-mythes/thumbnail.png",
+      "pdfs": {
+        "prairie": "/marketing-data/carrousels/sample-mythes/sample-mythes-prairie.pdf"
+      },
+      "previews": {
+        "prairie": "/marketing-data/carrousels/sample-mythes/linkedin-prairie.png"
+      },
+      "post_text": "On confond encore zoothérapie et \"câlin avec un chien\".\n\nMais la réalité du métier est plus précise — et bien plus puissante.\n\n5 mythes que j'entends chaque semaine, et ce qu'ils cachent vraiment.\n\nÀ glisser 👇",
+      "status": "draft",
+      "scheduled_date": null,
+      "published_date": null,
+      "created_at": "2026-05-04",
+      "client_comment": null
+    }
+  ]
+}

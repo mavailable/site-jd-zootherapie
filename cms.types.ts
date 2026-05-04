@@ -135,6 +135,11 @@ export interface CmsSiteConfig {
 export interface CmsMarketingConfig {
   enabled: boolean;
   trimesters?: string[]; // Format : "YYYY-Q1" ... "YYYY-Q4" (ex: ["2026-Q2", "2026-Q3"])
+  // Sous-module Carrousels LinkedIn (généré par carousel-studio + mkt-carousel-generate).
+  // Activé pour les clients qui ont reçu au moins 1 carrousel généré par Marc.
+  carrousels?: {
+    enabled: boolean;
+  };
 }
 
 export interface CmsConfig {

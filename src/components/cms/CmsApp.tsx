@@ -22,13 +22,16 @@ import cmsConfig from '../../../cms.config';
 const MarketingPlanTab = lazy(() =>
   import('./marketing/MarketingPlanTab').then((m) => ({ default: m.MarketingPlanTab }))
 );
+const CarouselsTab = lazy(() =>
+  import('./marketing/CarouselsTab').then((m) => ({ default: m.CarouselsTab }))
+);
 
 // ─── Route parsing ───────────────────────────────────────────────
 
-type TabId = 'site' | 'blog' | 'stats' | 'analytics' | 'account' | 'marketing';
+type TabId = 'site' | 'blog' | 'stats' | 'analytics' | 'account' | 'marketing' | 'carrousels';
 
 interface Route {
-  view: 'home' | 'singleton' | 'collection' | 'collection-edit' | 'media' | 'sections' | 'seo' | 'theme' | 'stats' | 'analytics' | 'account' | 'blog' | 'marketing';
+  view: 'home' | 'singleton' | 'collection' | 'collection-edit' | 'media' | 'sections' | 'seo' | 'theme' | 'stats' | 'analytics' | 'account' | 'blog' | 'marketing' | 'carrousels';
   key?: string;
   slug?: string;
 }
@@ -39,6 +42,7 @@ function parseHash(): Route {
 
   if (parts[0] === 'blog') return { view: 'blog' };
   if (parts[0] === 'marketing') return { view: 'marketing' };
+  if (parts[0] === 'carrousels') return { view: 'carrousels' };
   if (parts[0] === 'stats') return { view: 'stats' };
   if (parts[0] === 'analytics') return { view: 'analytics' };
   if (parts[0] === 'account') return { view: 'account' };
@@ -55,6 +59,7 @@ function parseHash(): Route {
 function getActiveTab(route: Route, hasBlog: boolean): TabId {
   if (route.view === 'blog') return 'blog';
   if (route.view === 'marketing') return 'marketing';
+  if (route.view === 'carrousels') return 'carrousels';
   if (route.view === 'stats') return 'stats';
   if (route.view === 'analytics') return 'analytics';
   if (route.view === 'account') return 'account';
@@ -86,7 +91,7 @@ export function useToastContext() {
 function getBreadcrumbs(route: Route): Array<{ label: string; hash: string }> {
   const crumbs: Array<{ label: string; hash: string }> = [];
 
-  if (route.view === 'home' || route.view === 'stats' || route.view === 'analytics' || route.view === 'account' || route.view === 'marketing') return crumbs;
+  if (route.view === 'home' || route.view === 'stats' || route.view === 'analytics' || route.view === 'account' || route.view === 'marketing' || route.view === 'carrousels') return crumbs;
 
   if (route.view === 'singleton' && route.key) {
     const s = cmsConfig.singletons[route.key];
@@ -115,10 +120,11 @@ function getBreadcrumbs(route: Route): Array<{ label: string; hash: string }> {
 
 // ─── Tabs ────────────────────────────────────────────────────────
 
-const ALL_TABS: Array<{ id: TabId; label: string; icon: string; hash: string; requires?: 'blog' | 'marketing' }> = [
+const ALL_TABS: Array<{ id: TabId; label: string; icon: string; hash: string; requires?: 'blog' | 'marketing' | 'carrousels' }> = [
   { id: 'site', label: 'Mon Site', icon: '\u{1F3E0}', hash: '#/' },
   { id: 'blog', label: 'Blog', icon: '\u{270D}\u{FE0F}', hash: '#/blog', requires: 'blog' },
   { id: 'marketing', label: 'Marketing', icon: '\u{1F4E3}', hash: '#/marketing', requires: 'marketing' },
+  { id: 'carrousels', label: 'Carrousels', icon: '\u{1F39E}\u{FE0F}', hash: '#/carrousels', requires: 'carrousels' },
   { id: 'stats', label: 'Mon Activite', icon: '\u{2B50}', hash: '#/stats' },
   { id: 'analytics', label: 'Statistiques', icon: '\u{1F4CA}', hash: '#/analytics' },
   { id: 'account', label: 'Mon Compte', icon: '\u{1F464}', hash: '#/account' },
@@ -128,6 +134,7 @@ function getTabs(cfg: typeof cmsConfig) {
   return ALL_TABS.filter((t) => {
     if (t.requires === 'blog') return !!cfg.collections?.blog;
     if (t.requires === 'marketing') return !!cfg.marketing?.enabled;
+    if (t.requires === 'carrousels') return !!cfg.marketing?.carrousels?.enabled;
     return true;
   });
 }
@@ -227,6 +234,11 @@ export function CmsApp() {
           {route.view === 'marketing' && cmsConfig.marketing?.enabled && (
             <Suspense fallback={<div style={styles.loading}><div style={styles.spinner} /><span>Chargement du plan marketing...</span></div>}>
               <MarketingPlanTab />
+            </Suspense>
+          )}
+          {route.view === 'carrousels' && cmsConfig.marketing?.carrousels?.enabled && (
+            <Suspense fallback={<div style={styles.loading}><div style={styles.spinner} /><span>Chargement des carrousels...</span></div>}>
+              <CarouselsTab />
             </Suspense>
           )}
           {route.view === 'stats' && <StatsTab config={cmsConfig} />}
