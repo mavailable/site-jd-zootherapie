@@ -142,6 +142,15 @@ export interface CmsMarketingConfig {
   };
 }
 
+export interface CmsGbpConfig {
+  enabled: boolean;
+  // Mode "demo" = mock UI sans appel API (pour screencast whitelist Google).
+  // Mode "live" = posts publiés via Google Business Profile API (post-whitelist).
+  mode?: 'demo' | 'live';
+  accountId?: string;
+  locationId?: string;
+}
+
 export interface CmsConfig {
   repo: string; // ex: "marcmuller/site-jd-zootherapie"
   branch: string; // ex: "master"
@@ -150,4 +159,5 @@ export interface CmsConfig {
   collections: Record<string, CmsCollection>;
   site?: CmsSiteConfig;
   marketing?: CmsMarketingConfig; // Activé par mkt-social-plan (optionnel)
+  gbp?: CmsGbpConfig; // Activé par mkt-gbp-from-blog (optionnel, demo ou live)
 }

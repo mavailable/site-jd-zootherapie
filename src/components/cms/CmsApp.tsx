@@ -25,13 +25,16 @@ const MarketingPlanTab = lazy(() =>
 const CarouselsTab = lazy(() =>
   import('./marketing/CarouselsTab').then((m) => ({ default: m.CarouselsTab }))
 );
+const GbpPostsTab = lazy(() =>
+  import('./marketing/GbpPostsTab').then((m) => ({ default: m.GbpPostsTab }))
+);
 
 // ─── Route parsing ───────────────────────────────────────────────
 
-type TabId = 'site' | 'blog' | 'stats' | 'analytics' | 'account' | 'marketing' | 'carrousels';
+type TabId = 'site' | 'blog' | 'stats' | 'analytics' | 'account' | 'marketing' | 'carrousels' | 'gbp';
 
 interface Route {
-  view: 'home' | 'singleton' | 'collection' | 'collection-edit' | 'media' | 'sections' | 'seo' | 'theme' | 'stats' | 'analytics' | 'account' | 'blog' | 'marketing' | 'carrousels';
+  view: 'home' | 'singleton' | 'collection' | 'collection-edit' | 'media' | 'sections' | 'seo' | 'theme' | 'stats' | 'analytics' | 'account' | 'blog' | 'marketing' | 'carrousels' | 'gbp';
   key?: string;
   slug?: string;
 }
@@ -43,6 +46,7 @@ function parseHash(): Route {
   if (parts[0] === 'blog') return { view: 'blog' };
   if (parts[0] === 'marketing') return { view: 'marketing' };
   if (parts[0] === 'carrousels') return { view: 'carrousels' };
+  if (parts[0] === 'gbp') return { view: 'gbp' };
   if (parts[0] === 'stats') return { view: 'stats' };
   if (parts[0] === 'analytics') return { view: 'analytics' };
   if (parts[0] === 'account') return { view: 'account' };
@@ -60,6 +64,7 @@ function getActiveTab(route: Route, hasBlog: boolean): TabId {
   if (route.view === 'blog') return 'blog';
   if (route.view === 'marketing') return 'marketing';
   if (route.view === 'carrousels') return 'carrousels';
+  if (route.view === 'gbp') return 'gbp';
   if (route.view === 'stats') return 'stats';
   if (route.view === 'analytics') return 'analytics';
   if (route.view === 'account') return 'account';
@@ -91,7 +96,7 @@ export function useToastContext() {
 function getBreadcrumbs(route: Route): Array<{ label: string; hash: string }> {
   const crumbs: Array<{ label: string; hash: string }> = [];
 
-  if (route.view === 'home' || route.view === 'stats' || route.view === 'analytics' || route.view === 'account' || route.view === 'marketing' || route.view === 'carrousels') return crumbs;
+  if (route.view === 'home' || route.view === 'stats' || route.view === 'analytics' || route.view === 'account' || route.view === 'marketing' || route.view === 'carrousels' || route.view === 'gbp') return crumbs;
 
   if (route.view === 'singleton' && route.key) {
     const s = cmsConfig.singletons[route.key];
@@ -120,11 +125,12 @@ function getBreadcrumbs(route: Route): Array<{ label: string; hash: string }> {
 
 // ─── Tabs ────────────────────────────────────────────────────────
 
-const ALL_TABS: Array<{ id: TabId; label: string; icon: string; hash: string; requires?: 'blog' | 'marketing' | 'carrousels' }> = [
+const ALL_TABS: Array<{ id: TabId; label: string; icon: string; hash: string; requires?: 'blog' | 'marketing' | 'carrousels' | 'gbp' }> = [
   { id: 'site', label: 'Mon Site', icon: '\u{1F3E0}', hash: '#/' },
   { id: 'blog', label: 'Blog', icon: '\u{270D}\u{FE0F}', hash: '#/blog', requires: 'blog' },
   { id: 'marketing', label: 'Marketing', icon: '\u{1F4E3}', hash: '#/marketing', requires: 'marketing' },
   { id: 'carrousels', label: 'Carrousels', icon: '\u{1F39E}\u{FE0F}', hash: '#/carrousels', requires: 'carrousels' },
+  { id: 'gbp', label: 'Posts GBP', icon: '\u{1F4CD}', hash: '#/gbp', requires: 'gbp' },
   { id: 'stats', label: 'Mon Activite', icon: '\u{2B50}', hash: '#/stats' },
   { id: 'analytics', label: 'Statistiques', icon: '\u{1F4CA}', hash: '#/analytics' },
   { id: 'account', label: 'Mon Compte', icon: '\u{1F464}', hash: '#/account' },
@@ -135,6 +141,7 @@ function getTabs(cfg: typeof cmsConfig) {
     if (t.requires === 'blog') return !!cfg.collections?.blog;
     if (t.requires === 'marketing') return !!cfg.marketing?.enabled;
     if (t.requires === 'carrousels') return !!cfg.marketing?.carrousels?.enabled;
+    if (t.requires === 'gbp') return !!cfg.gbp?.enabled;
     return true;
   });
 }
@@ -239,6 +246,11 @@ export function CmsApp() {
           {route.view === 'carrousels' && cmsConfig.marketing?.carrousels?.enabled && (
             <Suspense fallback={<div style={styles.loading}><div style={styles.spinner} /><span>Chargement des carrousels...</span></div>}>
               <CarouselsTab />
+            </Suspense>
+          )}
+          {route.view === 'gbp' && cmsConfig.gbp?.enabled && (
+            <Suspense fallback={<div style={styles.loading}><div style={styles.spinner} /><span>Chargement des posts GBP...</span></div>}>
+              <GbpPostsTab />
             </Suspense>
           )}
           {route.view === 'stats' && <StatsTab config={cmsConfig} />}

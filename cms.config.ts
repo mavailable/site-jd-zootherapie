@@ -9,6 +9,11 @@ const cmsConfig: CmsConfig = {
     },
   },
 
+  gbp: {
+    enabled: true,
+    mode: 'demo',
+  },
+
   repo: 'mavailable/site-jd-zootherapie',
   branch: 'dev',
   siteName: 'JD Zoothérapie',
