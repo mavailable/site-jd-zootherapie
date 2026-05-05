@@ -66,7 +66,7 @@ const MOCK_ARTICLES: BlogArticle[] = [
     date: '2026-04-12',
     excerpt:
       "Pour une personne atteinte d'Alzheimer, les objectifs ne sont pas de soigner la maladie. Ils sont de retrouver des moments de qualité, de présence, de calme. La médiation animale crée ces moments-là, à domicile, en EHPAD, en accueil de jour.",
-    image: '/images/blog/article-002-hero.webp',
+    image: '/images/animal-tap-tap.webp',
     url: 'https://jdzootherapeute.fr/blog/alzheimer-et-mediation-animale/',
   },
   {
@@ -76,7 +76,7 @@ const MOCK_ARTICLES: BlogArticle[] = [
     date: '2026-04-05',
     excerpt:
       "La peur des chiens chez l'enfant est plus fréquente qu'on ne le pense. La médiation animale propose une approche douce, progressive, qui ne force jamais l'enfant. On part de là où il en est, et on avance à son rythme.",
-    image: '/images/blog/article-003-hero.webp',
+    image: '/images/animal-uxo.webp',
     url: 'https://jdzootherapeute.fr/blog/mon-enfant-a-peur-des-chiens/',
   },
   {
@@ -86,7 +86,7 @@ const MOCK_ARTICLES: BlogArticle[] = [
     date: '2026-03-22',
     excerpt:
       "Le récit d'une séance avec un petit garçon de 3 ans qui ne parlait pas encore. Ce jour-là, face au lapin Tap-Tap, il a prononcé son premier mot. Ce moment-là ne s'oublie pas, ni pour la maman, ni pour moi.",
-    image: '/images/blog/article-004-hero.webp',
+    image: '/images/animal-tap-tap.webp',
     url: 'https://jdzootherapeute.fr/blog/trois-ans-un-lapin-et-un-premier-mot/',
   },
   {
@@ -96,7 +96,7 @@ const MOCK_ARTICLES: BlogArticle[] = [
     date: '2026-03-08',
     excerpt:
       "Beaucoup de gens confondent les deux. La câlinothérapie, c'est un moment de bien-être avec un animal. La zoothérapie, c'est un programme avec des objectifs thérapeutiques mesurables, sur la durée. Les deux ont leur valeur, mais ce n'est pas la même chose.",
-    image: '/images/blog/article-005-hero.webp',
+    image: '/images/animal-tips.webp',
     url: 'https://jdzootherapeute.fr/blog/zootherapie-calinotherapie-differences/',
   },
 ];
@@ -121,7 +121,7 @@ const MOCK_HISTORY: GbpPost[] = [
     text: "🐾 Article du jour : « Alzheimer et médiation animale »\n\nQuand on accompagne une personne atteinte d'Alzheimer, on ne cherche pas à soigner la maladie. On cherche à retrouver des moments de présence, de calme, de qualité.\n\nLa médiation animale crée ces moments-là, à domicile ou en EHPAD. Lecture pour les aidants et les équipes médico-sociales.",
     cta: 'LEARN_MORE',
     ctaUrl: 'https://jdzootherapeute.fr/blog/alzheimer-et-mediation-animale/',
-    image: '/images/blog/article-002-hero.webp',
+    image: '/images/animal-tap-tap.webp',
     sourceArticleSlug: 'alzheimer-et-mediation-animale',
     sourceArticleTitle: 'Alzheimer et médiation animale',
     views: 203,
@@ -133,7 +133,7 @@ const MOCK_HISTORY: GbpPost[] = [
     text: "👧 Si votre enfant a peur des chiens, vous n'êtes pas seuls. C'est plus fréquent qu'on ne le pense, et ça se travaille.\n\nDans mon dernier article, je raconte comment la médiation animale propose une approche douce, progressive, qui ne force jamais l'enfant. On part d'où il en est, on avance à son rythme.\n\nÀ partager avec les parents qui se posent la question.",
     cta: 'LEARN_MORE',
     ctaUrl: 'https://jdzootherapeute.fr/blog/mon-enfant-a-peur-des-chiens/',
-    image: '/images/blog/article-003-hero.webp',
+    image: '/images/animal-uxo.webp',
     sourceArticleSlug: 'mon-enfant-a-peur-des-chiens',
     sourceArticleTitle: 'Mon enfant a peur des chiens',
     views: 178,
@@ -366,7 +366,18 @@ export function GbpPostsTab() {
             return (
               <article key={article.slug} style={styles.articleCard}>
                 <div style={styles.articleThumb} aria-hidden="true">
-                  <span style={styles.articleThumbEmoji}>📰</span>
+                  {article.image ? (
+                    <img
+                      src={article.image}
+                      alt=""
+                      style={styles.articleThumbImg}
+                      onError={(e) => {
+                        (e.currentTarget as HTMLImageElement).style.display = 'none';
+                      }}
+                    />
+                  ) : (
+                    <span style={styles.articleThumbEmoji}>📰</span>
+                  )}
                 </div>
                 <div style={styles.articleBody}>
                   <div style={styles.articleMeta}>
@@ -439,12 +450,24 @@ export function GbpPostsTab() {
                     Supprimer
                   </button>
                 </div>
-                <div style={styles.historyText}>
+                <div style={styles.historyBody}>
+                  {post.image && (
+                    <img
+                      src={post.image}
+                      alt=""
+                      style={styles.historyThumb}
+                      onError={(e) => {
+                        (e.currentTarget as HTMLImageElement).style.display = 'none';
+                      }}
+                    />
+                  )}
+                  <div style={styles.historyText}>
                   {post.text.split('\n').map((line, i) => (
                     <p key={i} style={styles.historyTextLine}>
                       {line || ' '}
                     </p>
                   ))}
+                  </div>
                 </div>
                 <div style={styles.historyMeta}>
                   <span style={styles.historyMetaItem}>
@@ -554,7 +577,18 @@ function DraftModal({
             <div style={styles.gbpPreviewLabel}>Aperçu sur Google Business Profile</div>
             <div style={styles.gbpPreviewCard}>
               <div style={styles.gbpPreviewImage} aria-hidden="true">
-                <span style={styles.gbpPreviewImagePlaceholder}>🖼 {draft.image.split('/').pop()}</span>
+                {draft.image ? (
+                  <img
+                    src={draft.image}
+                    alt=""
+                    style={styles.gbpPreviewImageImg}
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).style.display = 'none';
+                    }}
+                  />
+                ) : (
+                  <span style={styles.gbpPreviewImagePlaceholder}>🖼 Pas d'image</span>
+                )}
               </div>
               <div style={styles.gbpPreviewBody}>
                 <div style={styles.gbpPreviewBusiness}>JD Zoothérapie</div>
@@ -939,6 +973,13 @@ const styles: Record<string, CSSProperties> = {
     alignItems: 'center',
     justifyContent: 'center',
     flexShrink: 0,
+    overflow: 'hidden',
+  },
+  articleThumbImg: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    display: 'block',
   },
   articleThumbEmoji: {
     fontSize: '2rem',
@@ -1079,7 +1120,22 @@ const styles: Record<string, CSSProperties> = {
     fontWeight: 600,
     color: '#64748b',
   },
+  historyBody: {
+    display: 'flex',
+    gap: '0.875rem',
+    alignItems: 'flex-start',
+  },
+  historyThumb: {
+    width: '120px',
+    height: '120px',
+    borderRadius: '8px',
+    objectFit: 'cover',
+    flexShrink: 0,
+    background: '#f1f5f9',
+    display: 'block',
+  },
   historyText: {
+    flex: 1,
     fontSize: '0.875rem',
     color: '#1e293b',
     lineHeight: 1.5,
@@ -1087,6 +1143,7 @@ const styles: Record<string, CSSProperties> = {
     border: '1px solid #f1f5f9',
     borderRadius: '8px',
     padding: '0.75rem 0.875rem',
+    minWidth: 0,
   },
   historyTextLine: {
     margin: 0,
@@ -1199,6 +1256,13 @@ const styles: Record<string, CSSProperties> = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'hidden',
+  },
+  gbpPreviewImageImg: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    display: 'block',
   },
   gbpPreviewImagePlaceholder: {
     fontSize: '0.8125rem',
