@@ -292,6 +292,37 @@ export function GbpPostsTab() {
     window.open(GBP_EDIT_URL, '_blank', 'noopener,noreferrer');
   }
 
+  async function downloadDraftImage() {
+    if (!draft || !draft.image) {
+      setToast({ type: 'error', msg: "Pas d'image à télécharger pour ce post." });
+      setTimeout(() => setToast(null), 3000);
+      return;
+    }
+    try {
+      const res = await fetch(draft.image, { credentials: 'same-origin' });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const blob = await res.blob();
+      const ext = (draft.image.split('.').pop() || 'webp').split('?')[0].toLowerCase();
+      const filename = `gbp-${draft.sourceArticle.slug}.${ext}`;
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      setToast({ type: 'success', msg: `Image téléchargée : ${filename}` });
+      setTimeout(() => setToast(null), 3000);
+    } catch {
+      setToast({
+        type: 'error',
+        msg: "Impossible de télécharger. Fais clic-droit sur l'aperçu en haut puis Enregistrer l'image sous.",
+      });
+      setTimeout(() => setToast(null), 5000);
+    }
+  }
+
   return (
     <section style={styles.container}>
       {/* Mode banner */}
@@ -498,6 +529,7 @@ export function GbpPostsTab() {
           onPublish={publishDraft}
           onCopyText={copyDraftText}
           onCopyCtaUrl={copyDraftCtaUrl}
+          onDownloadImage={downloadDraftImage}
           onOpenGbp={openGbp}
           onClose={() => !publishing && setDraft(null)}
           publishing={publishing}
@@ -531,6 +563,7 @@ interface DraftModalProps {
   onPublish: () => void;
   onCopyText: () => void;
   onCopyCtaUrl: () => void;
+  onDownloadImage: () => void;
   onOpenGbp: () => void;
   onClose: () => void;
   publishing: boolean;
@@ -544,6 +577,7 @@ function DraftModal({
   onPublish,
   onCopyText,
   onCopyCtaUrl,
+  onDownloadImage,
   onOpenGbp,
   onClose,
   publishing,
@@ -664,19 +698,22 @@ function DraftModal({
 
         {isManual && (
           <div style={styles.manualSteps}>
-            <div style={styles.manualStepsTitle}>3 étapes pour publier sur ta fiche GBP</div>
+            <div style={styles.manualStepsTitle}>4 étapes pour publier sur ta fiche GBP</div>
             <ol style={styles.manualStepsList}>
               <li>
-                Clique <strong>Copier le texte</strong> ci-dessous (ou copie l'URL du CTA si tu
-                préfères modifier le texte sur GBP).
+                Clique <strong>Copier le texte</strong> et <strong>Télécharger l'image</strong>{' '}
+                (l'image se sauvegarde dans ton dossier Téléchargements).
               </li>
               <li>
-                Clique <strong>Ouvrir Google Business →</strong> et colle le texte dans le post.
-                Ajoute l'image proposée (ou une autre), choisis le bouton CTA, colle l'URL du CTA.
+                Clique <strong>Ouvrir Google Business →</strong>, choisis "Ajouter un post".
               </li>
               <li>
-                Une fois publié sur GBP, reviens ici et clique <strong>Marquer comme publié</strong>{' '}
-                pour archiver le post dans ton historique.
+                Sur GBP : colle le texte, ajoute l'image téléchargée, choisis le bouton CTA
+                (En savoir plus / Réserver…), colle l'URL du CTA, clique Publier.
+              </li>
+              <li>
+                Reviens ici et clique <strong>Marquer comme publié</strong> pour archiver le
+                post dans ton historique.
               </li>
             </ol>
           </div>
@@ -694,6 +731,15 @@ function DraftModal({
               </button>
               <button type="button" onClick={onCopyCtaUrl} style={styles.btnTertiary} disabled={publishing}>
                 🔗 Copier l'URL du CTA
+              </button>
+              <button
+                type="button"
+                onClick={onDownloadImage}
+                style={styles.btnTertiary}
+                disabled={publishing || !draft.image}
+                title={!draft.image ? "Pas d'image à télécharger" : undefined}
+              >
+                📥 Télécharger l'image
               </button>
               <button type="button" onClick={onOpenGbp} style={styles.btnSecondary} disabled={publishing}>
                 Ouvrir Google Business ↗
