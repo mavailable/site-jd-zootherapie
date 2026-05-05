@@ -352,8 +352,8 @@
         "#metz"
       ],
       "cta": "MP parents ou pros",
-      "status": "skipped",
-      "published_at": null,
+      "status": "published",
+      "published_at": "2026-05-05T08:42:56.082Z",
       "client_modified_text": null,
       "client_comment": null
     },
