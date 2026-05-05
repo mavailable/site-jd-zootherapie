@@ -50,6 +50,16 @@ interface DraftPost {
 
 const MOCK_ARTICLES: BlogArticle[] = [
   {
+    slug: 'seance-type-en-ehpad-45-minutes',
+    title: "Une séance type en EHPAD : ce qu'il se passe vraiment en 45 minutes",
+    category: 'Récits de terrain',
+    date: '2026-05-05',
+    excerpt:
+      "Récit pas à pas d'une séance de zoothérapie en EHPAD : l'arrivée, le sas d'entrée, le cœur de l'atelier, le retour émotionnel, la place que je laisse aux animaux. Pas une démonstration, du travail concret.",
+    image: '/images/session-cuddle.webp',
+    url: 'https://jdzootherapeute.fr/blog/seance-type-en-ehpad-45-minutes/',
+  },
+  {
     slug: 'comment-se-passe-accompagnement-mediation-animale',
     title: 'Comment se passe un accompagnement en médiation animale',
     category: 'Méthode',
