@@ -166,16 +166,12 @@ function generatePostFromArticle(article: BlogArticle): DraftPost {
   const closer =
     "À lire si vous vous demandez comment la médiation animale peut vous aider, ou aider quelqu'un que vous accompagnez.";
 
-  const ctaUrl = withUtm(article.url, article.slug);
-
-  // URL incluse en fin de texte : GBP rend les URLs cliquables automatiquement,
-  // pas besoin du bouton CTA "Learn more" (souvent capricieux dans l'UI GBP).
-  const text = `${hook}\n\n${article.excerpt}\n\n${closer}\n\n👉 ${ctaUrl}`;
+  const text = `${hook}\n\n${article.excerpt}\n\n${closer}`;
 
   return {
     text,
     cta: 'LEARN_MORE',
-    ctaUrl,
+    ctaUrl: withUtm(article.url, article.slug),
     image: article.image,
     sourceArticle: article,
   };
@@ -736,17 +732,20 @@ function DraftModal({
 
         {isManual && (
           <div style={styles.manualSteps}>
-            <div style={styles.manualStepsTitle}>3 étapes pour publier sur ta fiche GBP</div>
+            <div style={styles.manualStepsTitle}>4 étapes pour publier sur ta fiche GBP</div>
             <ol style={styles.manualStepsList}>
               <li>
                 Clique <strong>Copier le texte</strong> et <strong>Télécharger l'image</strong>{' '}
-                (le lien vers l'article est déjà dans le texte, en bas — GBP le rendra cliquable
-                automatiquement).
+                (l'image se sauvegarde dans ton dossier Téléchargements).
               </li>
               <li>
                 Clique <strong>Ouvrir Google Business ↗</strong>, "Ajouter un post Update", colle
-                le texte, glisse l'image téléchargée, clique <strong>Post</strong>. Pas besoin
-                de toucher au bouton "Add button" en bas, c'est facultatif.
+                le texte, glisse l'image téléchargée.
+              </li>
+              <li>
+                En bas du formulaire GBP, clique <strong>Add button</strong>, choisis "Learn more",
+                puis clique <strong>Copier l'URL du CTA</strong> ici et colle-la dans le champ URL
+                du bouton GBP. Clique <strong>Post</strong>.
               </li>
               <li>
                 Reviens ici et clique <strong>Marquer comme publié</strong> pour archiver le post
@@ -765,6 +764,9 @@ function DraftModal({
             <>
               <button type="button" onClick={onCopyText} style={styles.btnTertiary} disabled={publishing}>
                 📋 Copier le texte
+              </button>
+              <button type="button" onClick={onCopyCtaUrl} style={styles.btnTertiary} disabled={publishing}>
+                🔗 Copier l'URL du CTA
               </button>
               <button
                 type="button"
