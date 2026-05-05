@@ -144,9 +144,15 @@ export interface CmsMarketingConfig {
 
 export interface CmsGbpConfig {
   enabled: boolean;
-  // Mode "demo" = mock UI sans appel API (pour screencast whitelist Google).
-  // Mode "live" = posts publiés via Google Business Profile API (post-whitelist).
-  mode?: 'demo' | 'live';
+  // demo   = mock UI sans appel API (screencast whitelist Google)
+  // manual = workflow copier-coller (génération auto + publication manuelle dans GBP)
+  // live   = publication directe via API GBP (post-whitelist)
+  mode?: 'demo' | 'manual' | 'live';
+  // URL où le client va pour publier manuellement (mode manual).
+  // Default: https://business.google.com/posts
+  gbpEditUrl?: string;
+  // UTM campaign suffix injecté sur les URLs des CTA (default: blog-{slug})
+  utmCampaignPrefix?: string;
   accountId?: string;
   locationId?: string;
 }

@@ -1,5 +1,13 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import type { CSSProperties } from 'react';
+import cmsConfig from '../../../../cms.config';
+
+// ─── Config ─────────────────────────────────────────────────────
+
+const GBP_MODE: 'demo' | 'manual' | 'live' = cmsConfig.gbp?.mode ?? 'demo';
+const GBP_EDIT_URL = cmsConfig.gbp?.gbpEditUrl ?? 'https://business.google.com/posts';
+const UTM_PREFIX = cmsConfig.gbp?.utmCampaignPrefix ?? 'blog';
+const STORAGE_KEY = 'gbp-posts-history';
 
 // ─── Types ──────────────────────────────────────────────────────
 
@@ -135,8 +143,19 @@ const MOCK_HISTORY: GbpPost[] = [
 
 // ─── Génération mock du post depuis un article ──────────────────
 
+function withUtm(url: string, slug: string): string {
+  try {
+    const u = new URL(url);
+    u.searchParams.set('utm_source', 'google');
+    u.searchParams.set('utm_medium', 'gbp');
+    u.searchParams.set('utm_campaign', `${UTM_PREFIX}-${slug}`);
+    return u.toString();
+  } catch {
+    return url;
+  }
+}
+
 function generatePostFromArticle(article: BlogArticle): DraftPost {
-  // Templates de hooks pour varier le ton (en live, généré par LLM)
   const hooks = [
     `📖 Nouvel article : « ${article.title} »`,
     `🐾 Article à lire : « ${article.title} »`,
@@ -145,26 +164,58 @@ function generatePostFromArticle(article: BlogArticle): DraftPost {
   const hook = hooks[Math.floor(Math.random() * hooks.length)];
 
   const closer =
-    "À lire si vous vous demandez comment la médiation animale peut vous aider — ou aider quelqu'un que vous accompagnez.";
+    "À lire si vous vous demandez comment la médiation animale peut vous aider, ou aider quelqu'un que vous accompagnez.";
 
   const text = `${hook}\n\n${article.excerpt}\n\n${closer}`;
 
   return {
     text,
     cta: 'LEARN_MORE',
-    ctaUrl: article.url,
+    ctaUrl: withUtm(article.url, article.slug),
     image: article.image,
     sourceArticle: article,
   };
+}
+
+function loadHistoryFromStorage(): GbpPost[] | null {
+  if (typeof window === 'undefined') return null;
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+function saveHistoryToStorage(history: GbpPost[]) {
+  if (typeof window === 'undefined') return;
+  try {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+  } catch {}
 }
 
 // ─── Tab principal ──────────────────────────────────────────────
 
 export function GbpPostsTab() {
   const [draft, setDraft] = useState<DraftPost | null>(null);
-  const [history, setHistory] = useState<GbpPost[]>(MOCK_HISTORY);
+  const [history, setHistory] = useState<GbpPost[]>(() => {
+    // En manual: hydrate depuis localStorage. En demo: utilise les MOCK_HISTORY.
+    if (GBP_MODE === 'manual') {
+      return loadHistoryFromStorage() ?? [];
+    }
+    return MOCK_HISTORY;
+  });
   const [toast, setToast] = useState<{ type: 'success' | 'error'; msg: string } | null>(null);
   const [publishing, setPublishing] = useState(false);
+
+  // Persistance localStorage en mode manual uniquement
+  useEffect(() => {
+    if (GBP_MODE === 'manual') {
+      saveHistoryToStorage(history);
+    }
+  }, [history]);
 
   const articles = useMemo(() => MOCK_ARTICLES, []);
   const lastPublishedSlugs = useMemo(
@@ -179,7 +230,6 @@ export function GbpPostsTab() {
   function publishDraft() {
     if (!draft) return;
     setPublishing(true);
-    // Simulation d'un appel API GBP — délai 800ms
     setTimeout(() => {
       const newPost: GbpPost = {
         id: `gbp-${new Date().toISOString().slice(0, 10)}-${Math.random().toString(36).slice(2, 7)}`,
@@ -196,28 +246,80 @@ export function GbpPostsTab() {
       setPublishing(false);
       setToast({
         type: 'success',
-        msg: 'Post publié sur Google Business Profile (mode demo — aucun appel API réel).',
+        msg:
+          GBP_MODE === 'manual'
+            ? 'Post enregistré dans l\'historique. Vérifie qu\'il est bien publié sur ta fiche GBP.'
+            : 'Post publié sur Google Business Profile (mode demo, aucun appel API réel).',
       });
-      setTimeout(() => setToast(null), 4000);
-    }, 800);
+      setTimeout(() => setToast(null), 4500);
+    }, GBP_MODE === 'manual' ? 200 : 800);
   }
 
   function deletePost(id: string) {
     setHistory((prev) => prev.filter((p) => p.id !== id));
-    setToast({ type: 'success', msg: 'Post supprimé de la fiche GBP (mode demo).' });
-    setTimeout(() => setToast(null), 3000);
+    setToast({
+      type: 'success',
+      msg:
+        GBP_MODE === 'manual'
+          ? 'Post retiré de l\'historique local. Pense à le supprimer aussi sur ta fiche GBP si nécessaire.'
+          : 'Post supprimé de la fiche GBP (mode demo).',
+    });
+    setTimeout(() => setToast(null), 3500);
+  }
+
+  async function copyDraftText() {
+    if (!draft) return;
+    try {
+      await navigator.clipboard.writeText(draft.text);
+      setToast({ type: 'success', msg: 'Texte du post copié dans le presse-papier.' });
+      setTimeout(() => setToast(null), 2500);
+    } catch {
+      setToast({ type: 'error', msg: 'Impossible de copier — sélectionne le texte et copie manuellement.' });
+      setTimeout(() => setToast(null), 3500);
+    }
+  }
+
+  async function copyDraftCtaUrl() {
+    if (!draft) return;
+    try {
+      await navigator.clipboard.writeText(draft.ctaUrl);
+      setToast({ type: 'success', msg: 'URL du CTA (avec UTM) copiée.' });
+      setTimeout(() => setToast(null), 2500);
+    } catch {}
+  }
+
+  function openGbp() {
+    window.open(GBP_EDIT_URL, '_blank', 'noopener,noreferrer');
   }
 
   return (
     <section style={styles.container}>
-      {/* Demo banner */}
-      <div style={styles.demoBanner}>
-        <span style={styles.demoBadge}>DEMO</span>
-        <span>
-          Cet onglet est en mode démonstration — aucun appel à l'API Google Business Profile
-          n'est effectué. Le mode live sera activé après whitelist Google.
-        </span>
-      </div>
+      {/* Mode banner */}
+      {GBP_MODE === 'demo' && (
+        <div style={styles.demoBanner}>
+          <span style={styles.demoBadge}>DEMO</span>
+          <span>
+            Cet onglet est en mode démonstration. Aucun appel à l'API Google Business Profile
+            n'est effectué. Le mode live sera activé après whitelist Google.
+          </span>
+        </div>
+      )}
+      {GBP_MODE === 'manual' && (
+        <div style={styles.manualBanner}>
+          <span style={styles.manualBadge}>MODE MANUEL</span>
+          <span>
+            Génère ton post automatiquement, copie-colle le texte sur Google Business Profile,
+            ajoute l'image, publie. Le passage en publication automatique se fera dès que Google
+            valide notre demande d'accès API (en cours, retour mi-mai).
+          </span>
+        </div>
+      )}
+      {GBP_MODE === 'live' && (
+        <div style={styles.liveBanner}>
+          <span style={styles.liveBadge}>LIVE</span>
+          <span>Publication automatique sur ta fiche Google Business Profile activée.</span>
+        </div>
+      )}
 
       {/* Hero */}
       <header style={styles.hero}>
@@ -225,8 +327,9 @@ export function GbpPostsTab() {
           <div style={styles.sectionLabel}>Marketing local</div>
           <h1 style={styles.title}>Posts Google Business Profile</h1>
           <p style={styles.subtitle}>
-            Génère un post GBP à partir d'un article de blog. Publie en 1 clic sur ta fiche
-            Google Business — entretient l'activité de la fiche et nourrit le local pack.
+            {GBP_MODE === 'manual'
+              ? "Génère un post GBP depuis un article de ton blog, copie le texte, ouvre Google Business, publie. Chaque clic est tracké automatiquement (UTM). Entretient l'activité de ta fiche pour le local pack."
+              : "Génère un post GBP à partir d'un article de blog. Publie en 1 clic sur ta fiche Google Business, entretient l'activité de la fiche et nourrit le local pack."}
           </p>
         </div>
       </header>
@@ -366,8 +469,13 @@ export function GbpPostsTab() {
       {draft && (
         <DraftModal
           draft={draft}
+          mode={GBP_MODE}
+          gbpEditUrl={GBP_EDIT_URL}
           onChange={setDraft}
           onPublish={publishDraft}
+          onCopyText={copyDraftText}
+          onCopyCtaUrl={copyDraftCtaUrl}
+          onOpenGbp={openGbp}
           onClose={() => !publishing && setDraft(null)}
           publishing={publishing}
         />
@@ -394,15 +502,32 @@ export function GbpPostsTab() {
 
 interface DraftModalProps {
   draft: DraftPost;
+  mode: 'demo' | 'manual' | 'live';
+  gbpEditUrl: string;
   onChange: (d: DraftPost) => void;
   onPublish: () => void;
+  onCopyText: () => void;
+  onCopyCtaUrl: () => void;
+  onOpenGbp: () => void;
   onClose: () => void;
   publishing: boolean;
 }
 
-function DraftModal({ draft, onChange, onPublish, onClose, publishing }: DraftModalProps) {
+function DraftModal({
+  draft,
+  mode,
+  gbpEditUrl,
+  onChange,
+  onPublish,
+  onCopyText,
+  onCopyCtaUrl,
+  onOpenGbp,
+  onClose,
+  publishing,
+}: DraftModalProps) {
   const charCount = draft.text.length;
   const overLimit = charCount > 1500;
+  const isManual = mode === 'manual';
 
   return (
     <div style={styles.modalOverlay} onClick={onClose}>
@@ -503,22 +628,69 @@ function DraftModal({ draft, onChange, onPublish, onClose, publishing }: DraftMo
           </div>
         </div>
 
+        {isManual && (
+          <div style={styles.manualSteps}>
+            <div style={styles.manualStepsTitle}>3 étapes pour publier sur ta fiche GBP</div>
+            <ol style={styles.manualStepsList}>
+              <li>
+                Clique <strong>Copier le texte</strong> ci-dessous (ou copie l'URL du CTA si tu
+                préfères modifier le texte sur GBP).
+              </li>
+              <li>
+                Clique <strong>Ouvrir Google Business →</strong> et colle le texte dans le post.
+                Ajoute l'image proposée (ou une autre), choisis le bouton CTA, colle l'URL du CTA.
+              </li>
+              <li>
+                Une fois publié sur GBP, reviens ici et clique <strong>Marquer comme publié</strong>{' '}
+                pour archiver le post dans ton historique.
+              </li>
+            </ol>
+          </div>
+        )}
+
         <footer style={styles.modalFooter}>
           <button type="button" onClick={onClose} style={styles.btnSecondary} disabled={publishing}>
             Annuler
           </button>
-          <button
-            type="button"
-            onClick={onPublish}
-            style={{
-              ...styles.btnPrimary,
-              opacity: overLimit || publishing ? 0.5 : 1,
-              cursor: overLimit || publishing ? 'not-allowed' : 'pointer',
-            }}
-            disabled={overLimit || publishing}
-          >
-            {publishing ? 'Publication en cours…' : 'Valider et publier sur GBP →'}
-          </button>
+
+          {isManual ? (
+            <>
+              <button type="button" onClick={onCopyText} style={styles.btnTertiary} disabled={publishing}>
+                📋 Copier le texte
+              </button>
+              <button type="button" onClick={onCopyCtaUrl} style={styles.btnTertiary} disabled={publishing}>
+                🔗 Copier l'URL du CTA
+              </button>
+              <button type="button" onClick={onOpenGbp} style={styles.btnSecondary} disabled={publishing}>
+                Ouvrir Google Business ↗
+              </button>
+              <button
+                type="button"
+                onClick={onPublish}
+                style={{
+                  ...styles.btnPrimary,
+                  opacity: overLimit || publishing ? 0.5 : 1,
+                  cursor: overLimit || publishing ? 'not-allowed' : 'pointer',
+                }}
+                disabled={overLimit || publishing}
+              >
+                {publishing ? 'Enregistrement…' : '✓ Marquer comme publié'}
+              </button>
+            </>
+          ) : (
+            <button
+              type="button"
+              onClick={onPublish}
+              style={{
+                ...styles.btnPrimary,
+                opacity: overLimit || publishing ? 0.5 : 1,
+                cursor: overLimit || publishing ? 'not-allowed' : 'pointer',
+              }}
+              disabled={overLimit || publishing}
+            >
+              {publishing ? 'Publication en cours…' : 'Valider et publier sur GBP →'}
+            </button>
+          )}
         </footer>
       </div>
     </div>
@@ -581,6 +753,89 @@ const styles: Record<string, CSSProperties> = {
     padding: '0.1875rem 0.5rem',
     borderRadius: '4px',
     flexShrink: 0,
+  },
+  manualBanner: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.75rem',
+    background: '#eff6ff',
+    border: '1px solid #bfdbfe',
+    borderRadius: '10px',
+    padding: '0.75rem 1rem',
+    fontSize: '0.8125rem',
+    color: '#1e3a8a',
+    lineHeight: 1.5,
+  },
+  manualBadge: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    background: '#2563eb',
+    color: '#fff',
+    fontSize: '0.6875rem',
+    fontWeight: 700,
+    letterSpacing: '0.05em',
+    padding: '0.1875rem 0.5rem',
+    borderRadius: '4px',
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
+  },
+  liveBanner: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.75rem',
+    background: '#f0fdf4',
+    border: '1px solid #bbf7d0',
+    borderRadius: '10px',
+    padding: '0.75rem 1rem',
+    fontSize: '0.8125rem',
+    color: '#166534',
+  },
+  liveBadge: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    background: '#16a34a',
+    color: '#fff',
+    fontSize: '0.6875rem',
+    fontWeight: 700,
+    letterSpacing: '0.05em',
+    padding: '0.1875rem 0.5rem',
+    borderRadius: '4px',
+    flexShrink: 0,
+  },
+  btnTertiary: {
+    background: '#f1f5f9',
+    color: '#1e293b',
+    border: '1px solid #cbd5e1',
+    borderRadius: '8px',
+    padding: '0.5rem 0.875rem',
+    fontSize: '0.8125rem',
+    fontWeight: 500,
+    cursor: 'pointer',
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '0.375rem',
+  },
+  manualSteps: {
+    margin: '0 1.5rem 0',
+    padding: '1rem 1.125rem',
+    background: '#eff6ff',
+    border: '1px solid #bfdbfe',
+    borderRadius: '10px',
+  },
+  manualStepsTitle: {
+    fontSize: '0.75rem',
+    fontWeight: 700,
+    color: '#1e3a8a',
+    textTransform: 'uppercase',
+    letterSpacing: '0.05em',
+    marginBottom: '0.5rem',
+  },
+  manualStepsList: {
+    margin: 0,
+    paddingLeft: '1.25rem',
+    fontSize: '0.8125rem',
+    color: '#1e3a8a',
+    lineHeight: 1.6,
   },
   hero: {
     display: 'flex',
