@@ -405,8 +405,8 @@
         "#Nancy"
       ],
       "cta": "Échanger sur une présentation équipe",
-      "status": "draft",
-      "published_at": null,
+      "status": "published",
+      "published_at": "2026-05-05T08:28:04.926Z",
       "client_modified_text": null,
       "client_comment": null
     },
