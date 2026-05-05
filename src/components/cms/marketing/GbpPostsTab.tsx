@@ -299,11 +299,42 @@ export function GbpPostsTab() {
       return;
     }
     try {
-      const res = await fetch(draft.image, { credentials: 'same-origin' });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const blob = await res.blob();
-      const ext = (draft.image.split('.').pop() || 'webp').split('?')[0].toLowerCase();
-      const filename = `gbp-${draft.sourceArticle.slug}.${ext}`;
+      // Charger l'image dans un <img> pour pouvoir la convertir en JPG via canvas
+      // (GBP n'accepte que JPG/PNG, pas WebP/AVIF).
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      await new Promise<void>((resolve, reject) => {
+        img.onload = () => resolve();
+        img.onerror = () => reject(new Error('image load failed'));
+        img.src = draft.image;
+      });
+
+      // GBP exige minimum 250x250. Upscaler proportionnellement si besoin.
+      const minSide = 1200; // recommandé GBP : 1200px sur le côté le plus large
+      const naturalW = img.naturalWidth;
+      const naturalH = img.naturalHeight;
+      const longSide = Math.max(naturalW, naturalH);
+      const scale = longSide < minSide ? minSide / longSide : 1;
+      const targetW = Math.round(naturalW * scale);
+      const targetH = Math.round(naturalH * scale);
+
+      const canvas = document.createElement('canvas');
+      canvas.width = targetW;
+      canvas.height = targetH;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) throw new Error('canvas 2d context unavailable');
+
+      // Fond blanc (au cas où l'image aurait de la transparence)
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, targetW, targetH);
+      ctx.drawImage(img, 0, 0, targetW, targetH);
+
+      const blob = await new Promise<Blob | null>((resolve) => {
+        canvas.toBlob((b) => resolve(b), 'image/jpeg', 0.92);
+      });
+      if (!blob) throw new Error('canvas blob conversion failed');
+
+      const filename = `gbp-${draft.sourceArticle.slug}.jpg`;
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
@@ -312,14 +343,17 @@ export function GbpPostsTab() {
       a.click();
       document.body.removeChild(a);
       setTimeout(() => URL.revokeObjectURL(url), 1000);
-      setToast({ type: 'success', msg: `Image téléchargée : ${filename}` });
-      setTimeout(() => setToast(null), 3000);
+      setToast({
+        type: 'success',
+        msg: `Image téléchargée (JPG ${targetW}×${targetH}) : ${filename}`,
+      });
+      setTimeout(() => setToast(null), 3500);
     } catch {
       setToast({
         type: 'error',
-        msg: "Impossible de télécharger. Fais clic-droit sur l'aperçu en haut puis Enregistrer l'image sous.",
+        msg: "Impossible de convertir l'image. Fais clic-droit sur l'aperçu en haut, Enregistrer sous, puis convertis en JPG via Aperçu (Mac) ou Paint (Windows).",
       });
-      setTimeout(() => setToast(null), 5000);
+      setTimeout(() => setToast(null), 6000);
     }
   }
 
