@@ -199,12 +199,13 @@ export function BlogTab({ config }: BlogTabProps) {
 
   const persistArticle = useCallback(
     async (article: ArticleEntry, patch: Partial<ArticleData>, commitMsg: string) => {
-      if (!article.sha) return;
+      if (!article.sha) {
+        setToast({ message: 'Erreur : SHA de fichier manquant — recharger la page.' });
+        throw new Error('Missing sha');
+      }
       setBusy(true);
       try {
         const newData = { ...article.data, ...patch };
-        // Nettoyage: supprimer les champs explicitement undefined ne suffit pas en JSON,
-        // mais GitHub stocke tel quel. Pour clear on doit omettre la clé.
         if (patch.publish_at === undefined && 'publish_at' in patch) {
           delete (newData as Record<string, unknown>).publish_at;
         }
@@ -219,6 +220,7 @@ export function BlogTab({ config }: BlogTabProps) {
               : a
           )
         );
+        return r;
       } finally {
         setBusy(false);
       }
@@ -279,16 +281,21 @@ export function BlogTab({ config }: BlogTabProps) {
 
   const publishNow = useCallback(
     async (a: ArticleEntry) => {
-      await persistArticle(
-        a,
-        { draft: false, publish_at: undefined },
-        `feat(blog): publie "${a.data.title || a.slug}"`
-      );
-      setToast({
-        message: `✓ Article publié — en ligne dans ~1 min`,
-        href: siteUrl ? `${siteUrl}/blog/${a.slug}` : undefined,
-        hrefLabel: 'Voir',
-      });
+      try {
+        await persistArticle(
+          a,
+          { draft: false, publish_at: undefined },
+          `feat(blog): publie "${a.data.title || a.slug}"`
+        );
+        setToast({
+          message: `✓ Article publié — en ligne dans ~1 min`,
+          href: siteUrl ? `${siteUrl}/blog/${a.slug}` : undefined,
+          hrefLabel: 'Voir',
+        });
+      } catch (err) {
+        const m = err instanceof Error ? err.message : 'Erreur inconnue';
+        setToast({ message: `Erreur publication : ${m}` });
+      }
     },
     [persistArticle, siteUrl]
   );
@@ -297,24 +304,34 @@ export function BlogTab({ config }: BlogTabProps) {
     async (a: ArticleEntry) => {
       if (!window.confirm(`Dépublier "${a.data.title || a.slug}" et le repasser en brouillon ?`))
         return;
-      await persistArticle(
-        a,
-        { draft: true, publish_at: undefined },
-        `chore(blog): dépublie "${a.data.title || a.slug}"`
-      );
-      setToast({ message: 'Article dépublié, repassé en brouillon.' });
+      try {
+        await persistArticle(
+          a,
+          { draft: true, publish_at: undefined },
+          `chore(blog): dépublie "${a.data.title || a.slug}"`
+        );
+        setToast({ message: 'Article dépublié, repassé en brouillon.' });
+      } catch (err) {
+        const m = err instanceof Error ? err.message : 'Erreur inconnue';
+        setToast({ message: `Erreur dépublication : ${m}` });
+      }
     },
     [persistArticle]
   );
 
   const cancelSchedule = useCallback(
     async (a: ArticleEntry) => {
-      await persistArticle(
-        a,
-        { draft: true, publish_at: undefined },
-        `chore(blog): annule programmation "${a.data.title || a.slug}"`
-      );
-      setToast({ message: 'Programmation annulée. Article repassé en brouillon.' });
+      try {
+        await persistArticle(
+          a,
+          { draft: true, publish_at: undefined },
+          `chore(blog): annule programmation "${a.data.title || a.slug}"`
+        );
+        setToast({ message: 'Programmation annulée. Article repassé en brouillon.' });
+      } catch (err) {
+        const m = err instanceof Error ? err.message : 'Erreur inconnue';
+        setToast({ message: `Erreur : ${m}` });
+      }
     },
     [persistArticle]
   );
@@ -324,16 +341,21 @@ export function BlogTab({ config }: BlogTabProps) {
       const iso = pickerValueToIso(localValue);
       const when = new Date(iso);
       if (when.getTime() < Date.now() + 25 * 60 * 1000) {
-        window.alert('La date doit être au moins dans 30 minutes.');
+        setToast({ message: 'La date doit être au moins dans 30 minutes.' });
         return;
       }
-      await persistArticle(
-        a,
-        { draft: false, publish_at: iso },
-        `feat(blog): programme "${a.data.title || a.slug}" pour ${formatDateTimeFr(iso)}`
-      );
-      setScheduleModal(null);
-      setToast({ message: `✓ Article programmé pour ${formatDateTimeFr(iso)}` });
+      try {
+        await persistArticle(
+          a,
+          { draft: false, publish_at: iso },
+          `feat(blog): programme "${a.data.title || a.slug}" pour ${formatDateTimeFr(iso)}`
+        );
+        setScheduleModal(null);
+        setToast({ message: `✓ Article programmé pour ${formatDateTimeFr(iso)}` });
+      } catch (err) {
+        const m = err instanceof Error ? err.message : 'Erreur inconnue';
+        setToast({ message: `Erreur programmation : ${m}` });
+      }
     },
     [persistArticle]
   );
