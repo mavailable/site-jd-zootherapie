@@ -17,7 +17,7 @@ const cmsConfig: CmsConfig = {
   },
 
   repo: 'mavailable/site-jd-zootherapie',
-  branch: 'dev',
+  branch: 'master',
   siteName: 'JD Zoothérapie',
 
   site: {
