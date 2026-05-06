@@ -1,6 +1,7 @@
 ---
 
 import { getCollection } from 'astro:content';
+import { getPublishedBlog } from '@data/blog-filter';
 import { marked } from 'marked';  // safety net transitoire Phase 8 (+2 semaines) — purge prevue 2026-04-28
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Header from '@components/layout/Header.astro';
@@ -10,7 +11,7 @@ import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
 import BlogCard from '@components/blog/BlogCard.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
+  const posts = await getPublishedBlog();
   return posts.map(post => ({
     params: { slug: post.id },
     props: { post },
@@ -23,7 +24,7 @@ const { post } = Astro.props;
 const _body = post.data.body || '';
 const htmlContent = _body.trimStart().startsWith('<') ? _body : await marked(_body);
 
-const allPosts = (await getCollection('blog')).sort(
+const allPosts = (await getPublishedBlog()).sort(
   (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
 );
 const relatedPosts = allPosts

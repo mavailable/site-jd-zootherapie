@@ -118,6 +118,9 @@ const blog = defineCollection({
     category: z.string(),
     image: z.string().optional(),
     body: z.string(),
+    draft: z.boolean().optional().default(false),
+    publish_at: z.string().optional(),
+    _sources: z.object({}).passthrough().optional(),
   }),
 });
 
