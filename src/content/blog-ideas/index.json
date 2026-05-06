@@ -30,6 +30,48 @@
       "source": "Article existant \"mon enfant a peur des chiens\" — suite pratique en 3 étapes",
       "status": "a-faire",
       "notes": "Guide parents : les 3 signes qui disent oui / les 2 qui disent non. Conseils avant première séance."
+    },
+    {
+      "title": "Alzheimer et médiation animale : au-delà des idées reçues",
+      "source": "historique",
+      "status": "publie",
+      "slug": "alzheimer-et-mediation-animale"
+    },
+    {
+      "title": "Comment se passe un accompagnement en médiation animale : la méthode étape par étape",
+      "source": "historique",
+      "status": "publie",
+      "slug": "comment-se-passe-accompagnement-mediation-animale"
+    },
+    {
+      "title": "Mon enfant a peur des chiens — la zoothérapie peut-elle l'aider ?",
+      "source": "historique",
+      "status": "publie",
+      "slug": "mon-enfant-a-peur-des-chiens"
+    },
+    {
+      "title": "Non, un chien gentil ne suffit pas pour faire de la médiation animale",
+      "source": "historique",
+      "status": "publie",
+      "slug": "non-un-chien-gentil-ne-suffit-pas"
+    },
+    {
+      "title": "Quand Tips refuse de travailler",
+      "source": "historique",
+      "status": "publie",
+      "slug": "quand-tips-refuse-de-travailler"
+    },
+    {
+      "title": "Trois ans, un lapin et un premier mot",
+      "source": "historique",
+      "status": "publie",
+      "slug": "trois-ans-un-lapin-et-un-premier-mot"
+    },
+    {
+      "title": "Zoothérapie, calinothérapie, médiation animale : les vraies différences",
+      "source": "historique",
+      "status": "publie",
+      "slug": "zootherapie-calinotherapie-differences"
     }
   ]
 }
