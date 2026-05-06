@@ -50,6 +50,16 @@ interface DraftPost {
 
 const MOCK_ARTICLES: BlogArticle[] = [
   {
+    slug: 'peur-des-chiens-quand-zootherapie-aide',
+    title: "Peur des chiens chez l'enfant : quand la zoothérapie aide (et quand elle n'est pas la solution)",
+    category: 'Conseils pratiques',
+    date: '2026-05-19',
+    excerpt:
+      "Guide pour parents : 3 signes qui disent qu'une séance de médiation animale peut aider votre enfant, 2 signes qui disent que ce n'est pas le moment, et ce qu'il faut savoir avant la première rencontre.",
+    image: '/images/animal-tap-tap.webp',
+    url: 'https://jdzootherapeute.fr/blog/peur-des-chiens-quand-zootherapie-aide/',
+  },
+  {
     slug: 'seance-type-en-ehpad-45-minutes',
     title: "Une séance type en EHPAD : ce qu'il se passe vraiment en 45 minutes",
     category: 'Récits de terrain',
