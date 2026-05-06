@@ -1,6 +1,6 @@
 # JD Zoothérapie — contenu complet citationnable
 
-Source : https://jdzootherapeute.fr — version du 2026-05-19.
+Source : https://jdzootherapeute.fr — version du 2026-05-06.
 
 JD Zoothérapie est l'entreprise de Jennifer De Groeve, praticienne certifiée en médiation animale. Elle est installée à Vigny (17 rue Principale, 57420 Vigny, Moselle) et intervient dans un rayon de 50 km autour de Verny, ponctuellement à Metz et Nancy. Téléphone : 07 54 81 21 22. Email : degroeve.j@gmail.com.
 
@@ -161,24 +161,6 @@ Approche en quatre étapes après une introduction par Tap-Tap (lapin calme, pr�
 4. Le contact. Souvent le dos du chien d'abord, en gardant l'autre main sur Tap-Tap comme ancrage rassurant.
 
 Conseils aux parents : ne jamais forcer l'exposition (l'habituation forcée crée de la résignation, pas de la confiance) ; valider la peur ; éviter les comparaisons ; consulter si la peur impacte le quotidien. Aucune promesse de résultat en X séances — chaque enfant avance à son rythme.
-
----
-
-## Peur des chiens chez l'enfant : 3 signes oui, 2 signes non, 3 conseils
-
-Trois signes qui disent oui à une séance :
-1. L'enfant évite mais reste curieux (regarde du coin de l'œil, pose des questions, accepte de regarder une vidéo de chien sans paniquer). Cette curiosité résiduelle est ce qu'on travaille en séance.
-2. La peur vient d'une incompréhension du chien, pas d'un trauma. L'enfant ne comprend pas pourquoi le chien s'approche vite, pourquoi il aboie, pourquoi il met sa truffe partout. C'est l'imprévisibilité qui fait peur, pas le chien lui-même. Apprendre à lire les signaux (à l'aise / fatigué / inconfortable) restitue le contrôle et fait baisser la peur.
-3. La peur s'auto-entretient par des comportements évitables. Anecdote terrain : intervention périscolaire, une petite fille de la taille du chien s'est mise à courir, le chien a couru derrière (mécanique, pas agression). Boucle peur → course → confirmation. Des séances bien préparées débloquent ces situations en deux ou trois rendez-vous.
-
-Deux signes qui disent non :
-4. L'enfant est complètement indifférent. Si c'est le parent qui veut que son enfant « surmonte sa peur », sans envie de l'enfant, on travaille à vide. Et au pire, on lui donne le sentiment d'être forcé, ce qui n'aide jamais.
-5. La peur vient d'un trauma identifié (morsure, agression). La peur est trop envahissante. La médiation animale ne pourra pas remplacer un vrai accompagnement psy. Un psychologue formé aux phobies post-traumatiques d'abord, médiation animale en relais ensuite — jamais l'inverse.
-
-Trois conseils avant la première séance :
-- Expliquer le cadre, sans rien promettre. Ne pas dire « tu vas voir, tu vas le caresser ». Préférer : « Tu n'es obligé de rien. Tu pourras juste regarder, ou poser des questions. C'est toi qui décides. »
-- Ne pas chercher de contact à tout prix. Le but n'est pas que l'enfant touche le chien, mais qu'il reprenne la maîtrise de ses émotions face à un animal.
-- Garder le consentement des deux côtés. À aucun moment Jennifer ne force la relation, ni du côté de l'enfant, ni du côté du chien.
 
 ---
 
