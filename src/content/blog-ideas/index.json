@@ -73,6 +73,16 @@
       "source": "historique",
       "status": "publie",
       "slug": "zootherapie-calinotherapie-differences"
+    },
+    {
+      "title": "test",
+      "source": "idée client",
+      "status": "archive"
+    },
+    {
+      "title": "test",
+      "source": "idée client",
+      "status": "a-faire"
     }
   ]
 }
