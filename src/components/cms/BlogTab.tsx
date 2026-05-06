@@ -60,6 +60,22 @@ export function BlogTab({ config }: BlogTabProps) {
   const [scheduleModal, setScheduleModal] = useState<ArticleEntry | null>(null);
   const [editingIdeaIdx, setEditingIdeaIdx] = useState<number | null>(null);
   const [busy, setBusy] = useState(false);
+  const [openMenuFor, setOpenMenuFor] = useState<string | null>(null);
+
+  // Fermer le menu au clic ailleurs / Escape
+  useEffect(() => {
+    if (!openMenuFor) return;
+    const handler = (e: MouseEvent | KeyboardEvent) => {
+      if ('key' in e && e.key !== 'Escape') return;
+      setOpenMenuFor(null);
+    };
+    window.addEventListener('click', handler as EventListener);
+    window.addEventListener('keydown', handler as EventListener);
+    return () => {
+      window.removeEventListener('click', handler as EventListener);
+      window.removeEventListener('keydown', handler as EventListener);
+    };
+  }, [openMenuFor]);
 
   const siteName = config.siteName;
   const marcWhatsapp = config.site?.contactMarc?.whatsapp || MARC_WHATSAPP;
@@ -569,15 +585,50 @@ export function BlogTab({ config }: BlogTabProps) {
                     {a.data.date && <span>{formatDateFr(a.data.date)}</span>}
                   </div>
                 </a>
-                <button
-                  type="button"
-                  style={styles.btnIcon}
-                  disabled={busy}
-                  onClick={() => unpublish(a)}
-                  title="Dépublier (repasse en brouillon)"
-                >
-                  ⋯
-                </button>
+                <div style={styles.menuWrap} onClick={(e) => e.stopPropagation()}>
+                  <button
+                    type="button"
+                    style={styles.btnIcon}
+                    disabled={busy}
+                    onClick={() => setOpenMenuFor(openMenuFor === a.name ? null : a.name)}
+                    aria-haspopup="menu"
+                    aria-expanded={openMenuFor === a.name}
+                    title="Actions"
+                  >
+                    ⋯
+                  </button>
+                  {openMenuFor === a.name && (
+                    <div style={styles.menu} role="menu">
+                      <a
+                        href={siteUrl ? `${siteUrl}/blog/${a.slug}` : `/blog/${a.slug}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={styles.menuItem}
+                        onClick={() => setOpenMenuFor(null)}
+                      >
+                        🔗 Voir sur le site
+                      </a>
+                      <a
+                        href={`#/collection/blog/${a.slug}`}
+                        style={styles.menuItem}
+                        onClick={() => setOpenMenuFor(null)}
+                      >
+                        ✏️ Modifier l'article
+                      </a>
+                      <button
+                        type="button"
+                        style={styles.menuItemDanger}
+                        disabled={busy}
+                        onClick={() => {
+                          setOpenMenuFor(null);
+                          unpublish(a);
+                        }}
+                      >
+                        ↩ Dépublier (repasse en brouillon)
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
             ))}
           </div>
@@ -1008,6 +1059,48 @@ const styles: Record<string, React.CSSProperties> = {
   },
   modalHelp: { fontSize: '0.75rem', color: '#94a3b8', margin: '0.5rem 0 1rem' },
   modalActions: { display: 'flex', justifyContent: 'flex-end', gap: '0.5rem' },
+
+  menuWrap: { position: 'relative' as const, flexShrink: 0 },
+  menu: {
+    position: 'absolute' as const,
+    right: 0,
+    top: 'calc(100% + 4px)',
+    background: '#fff',
+    border: '1px solid #e2e8f0',
+    borderRadius: '10px',
+    boxShadow: '0 12px 30px rgba(15,23,42,0.15)',
+    minWidth: '220px',
+    padding: '0.25rem',
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: '2px',
+    zIndex: 50,
+  },
+  menuItem: {
+    display: 'block',
+    padding: '0.5rem 0.75rem',
+    fontSize: '0.8125rem',
+    color: '#1e293b',
+    textDecoration: 'none',
+    borderRadius: '6px',
+    background: 'transparent',
+    border: 'none',
+    cursor: 'pointer',
+    textAlign: 'left' as const,
+  },
+  menuItemDanger: {
+    display: 'block',
+    padding: '0.5rem 0.75rem',
+    fontSize: '0.8125rem',
+    color: '#b91c1c',
+    textDecoration: 'none',
+    borderRadius: '6px',
+    background: 'transparent',
+    border: 'none',
+    cursor: 'pointer',
+    textAlign: 'left' as const,
+    fontWeight: 500,
+  },
 
   toast: {
     position: 'fixed' as const,
