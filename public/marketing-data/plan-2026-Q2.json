@@ -379,7 +379,7 @@
       "cta": "Question commentaires : quelle émotion choisissez-vous le plus souvent ?",
       "status": "draft",
       "published_at": null,
-      "client_modified_text": null,
+      "client_modified_text": "",
       "client_comment": null
     },
     {
