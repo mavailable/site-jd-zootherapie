@@ -608,8 +608,8 @@
         "#bienetre"
       ],
       "cta": null,
-      "status": "draft",
-      "published_at": null,
+      "status": "published",
+      "published_at": "2026-05-11T07:24:53.357Z",
       "client_modified_text": null,
       "client_comment": null
     },
