@@ -430,7 +430,7 @@
         "#metz"
       ],
       "cta": "Abonnez-vous pour suivre l'expérience",
-      "status": "draft",
+      "status": "skipped",
       "published_at": null,
       "client_modified_text": null,
       "client_comment": null
