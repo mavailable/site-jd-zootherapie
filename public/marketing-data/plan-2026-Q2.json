@@ -456,7 +456,7 @@
         "#metz"
       ],
       "cta": null,
-      "status": "draft",
+      "status": "skipped",
       "published_at": null,
       "client_modified_text": null,
       "client_comment": null
