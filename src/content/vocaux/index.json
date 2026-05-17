@@ -1,0 +1,15 @@
+{
+  "entries": [
+    {
+      "id": "jd-zoo-2026-05-17-1142-test",
+      "sujet": "test",
+      "filename": "2026-05-17-1142-test.webm",
+      "r2_key": "jd-zoo/2026-05-17-1142-test.webm",
+      "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-05-17-1142-test.webm&e=1781602923&s=e781c5e36484ae2c04c2f143db8a23dae3c5657eba367eda763a93bf3af841d6",
+      "audio_mime": "audio/webm;codecs=opus",
+      "audio_bytes": 123243,
+      "uploaded_at": "2026-05-17T09:42:03.856Z",
+      "statut": "envoye"
+    }
+  ]
+}
