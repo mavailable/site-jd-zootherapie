@@ -33,11 +33,11 @@ function formatDate(isoDate?: string): string {
   }
 }
 
-function whatsappUrl(title: string): string {
+function whatsappUrl(title: string, marcWhatsapp: string): string {
   const text =
     `Bonjour Marc, j'aimerais un article sur mon blog : "${title}". ` +
     `Je t'envoie un vocal avec une anecdote / mon avis sur le sujet.`;
-  return `https://wa.me/${MARC_WHATSAPP}?text=${encodeURIComponent(text)}`;
+  return `https://wa.me/${marcWhatsapp}?text=${encodeURIComponent(text)}`;
 }
 
 function startWritingSelf(idea: BlogIdea) {
@@ -49,6 +49,18 @@ function startWritingSelf(idea: BlogIdea) {
     // silent
   }
   navigate('#/collection/blog/_new');
+}
+
+function sendVocalForIdea(idea: BlogIdea) {
+  try {
+    sessionStorage.setItem('vocaux_prefill', JSON.stringify({
+      sujet: idea.title,
+      categorie: 'idee-article',
+    }));
+  } catch {
+    // silent
+  }
+  navigate('#/vocaux');
 }
 
 export function BlogTab({ config }: BlogTabProps) {
@@ -157,14 +169,24 @@ export function BlogTab({ config }: BlogTabProps) {
                 </div>
 
                 <div style={styles.ideaActions}>
-                  <a
-                    href={whatsappUrl(idea.title)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={styles.waBtn}
-                  >
-                    Demander à Marc (vocal)
-                  </a>
+                  {config.vocaux?.enabled ? (
+                    <button
+                      type="button"
+                      onClick={() => sendVocalForIdea(idea)}
+                      style={styles.waBtn}
+                    >
+                      Enregistrer un vocal
+                    </button>
+                  ) : (
+                    <a
+                      href={whatsappUrl(idea.title, marcWhatsapp)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={styles.waBtn}
+                    >
+                      Demander à Marc (vocal)
+                    </a>
+                  )}
                   <button
                     type="button"
                     onClick={() => startWritingSelf(idea)}

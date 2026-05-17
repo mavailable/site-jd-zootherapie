@@ -157,6 +157,27 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
     loadList();
   }, [loadList]);
 
+  // Préremplissage depuis sessionStorage (déposé par BlogTab "Enregistrer un vocal" sur une idée)
+  useEffect(() => {
+    try {
+      const raw = sessionStorage.getItem('vocaux_prefill');
+      if (!raw) return;
+      sessionStorage.removeItem('vocaux_prefill');
+      const data = JSON.parse(raw);
+      if (data && typeof data === 'object') {
+        if (typeof data.sujet === 'string' && data.sujet.trim()) setSujet(data.sujet);
+        if (
+          typeof data.categorie === 'string' &&
+          CATEGORIES.some((c) => c.value === data.categorie)
+        ) {
+          setCategorie(data.categorie);
+        }
+      }
+    } catch {
+      // silent
+    }
+  }, []);
+
   // Cleanup
   useEffect(() => {
     return () => {
