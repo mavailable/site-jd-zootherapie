@@ -135,26 +135,11 @@ export interface CmsSiteConfig {
 export interface CmsMarketingConfig {
   enabled: boolean;
   trimesters?: string[]; // Format : "YYYY-Q1" ... "YYYY-Q4" (ex: ["2026-Q2", "2026-Q3"])
-  // Sous-module Carrousels LinkedIn (généré par carousel-studio + mkt-carousel-generate).
-  // Activé pour les clients qui ont reçu au moins 1 carrousel généré par Marc.
-  carrousels?: {
-    enabled: boolean;
-  };
 }
 
-export interface CmsGbpConfig {
+export interface CmsVocauxConfig {
   enabled: boolean;
-  // demo   = mock UI sans appel API (screencast whitelist Google)
-  // manual = workflow copier-coller (génération auto + publication manuelle dans GBP)
-  // live   = publication directe via API GBP (post-whitelist)
-  mode?: 'demo' | 'manual' | 'live';
-  // URL où le client va pour publier manuellement (mode manual).
-  // Default: https://business.google.com/posts
-  gbpEditUrl?: string;
-  // UTM campaign suffix injecté sur les URLs des CTA (default: blog-{slug})
-  utmCampaignPrefix?: string;
-  accountId?: string;
-  locationId?: string;
+  hint?: string; // ex: "Décris ton idée d'article, Marc écrira l'article"
 }
 
 export interface CmsConfig {
@@ -165,5 +150,5 @@ export interface CmsConfig {
   collections: Record<string, CmsCollection>;
   site?: CmsSiteConfig;
   marketing?: CmsMarketingConfig; // Activé par mkt-social-plan (optionnel)
-  gbp?: CmsGbpConfig; // Activé par mkt-gbp-from-blog (optionnel, demo ou live)
+  vocaux?: CmsVocauxConfig; // Activé par site (pilote jd-zoo 2026-05). VocalRecorder dans /admin.
 }
