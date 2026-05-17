@@ -44,8 +44,15 @@ export async function onRequestGet({ request, env }) {
     const parsed = JSON.parse(decoded);
     const entries = Array.isArray(parsed.entries) ? parsed.entries : [];
 
-    // Strip r2_key des entries — pas besoin côté client, et garde le binding R2 invisible
-    const sanitized = entries.map(({ r2_key, ...rest }) => rest);
+    // Strip r2_key des entries (au niveau racine et dans attachments[]) — garde le binding R2 invisible.
+    // Tolère le schéma legacy (entry.r2_key + entry.vocal_url à plat) et le nouveau (attachments[]).
+    const sanitized = entries.map((e) => {
+      const { r2_key, attachments, ...rest } = e;
+      const cleanAttachments = Array.isArray(attachments)
+        ? attachments.map(({ r2_key: _rk, ...attRest }) => attRest)
+        : undefined;
+      return cleanAttachments ? { ...rest, attachments: cleanAttachments } : rest;
+    });
 
     return new Response(JSON.stringify({ entries: sanitized }), { status: 200, headers: jsonHeaders() });
   } catch (err) {
