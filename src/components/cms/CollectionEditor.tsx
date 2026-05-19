@@ -4,6 +4,7 @@ import { useDirty } from './hooks/useDirty';
 import { useToastContext, navigate } from './CmsApp';
 import { FieldRenderer } from './fields/FieldRenderer';
 import { SkeletonForm } from './ui/Skeleton';
+import { t } from './locales';
 import type { CmsConfig, CmsField } from '../../../cms.types';
 
 interface CollectionEditorProps {
@@ -72,7 +73,7 @@ export function CollectionEditor({ config, collectionKey, slug }: CollectionEdit
       .map(([_, f]) => f.label);
 
     if (missingFields.length > 0) {
-      addToast(`Champs requis : ${missingFields.join(', ')}`, 'error');
+      addToast(t('requiredFields', { fields: missingFields.join(', ') }), 'error');
       return;
     }
 
@@ -92,7 +93,7 @@ export function CollectionEditor({ config, collectionKey, slug }: CollectionEdit
             setData((prev) => ({ ...prev, [collection.slugField]: generatedSlug }));
             fileName = `${generatedSlug}.json`;
           } else {
-            addToast('Veuillez remplir le titre ou identifiant', 'error');
+            addToast(t('newItemFillTitle'), 'error');
             setSaving(false);
             return;
           }
@@ -110,20 +111,20 @@ export function CollectionEditor({ config, collectionKey, slug }: CollectionEdit
         path,
         data,
         sha || undefined,
-        `[CMS] ${isNew ? 'Création' : 'Mise à jour'} ${label}`
+        `[CMS] ${isNew ? 'Create' : 'Update'} ${label}`
       );
 
       setSha(result.sha);
       setOriginalFileName(fileName);
       setClean();
-      addToast(isNew ? `« ${label} » cree !` : 'Enregistre ! Votre site se met a jour.', 'success');
+      addToast(isNew ? t('createdItem', { label }) : t('saved'), 'success');
 
       if (isNew) {
         const newSlug = fileName.replace('.json', '');
         window.location.hash = `#/collection/${collectionKey}/${newSlug}`;
       }
     } catch (err) {
-      const msg = err instanceof Error ? err.message : 'Erreur lors de la sauvegarde';
+      const msg = err instanceof Error ? err.message : t('saveError');
       addToast(msg, 'error');
     } finally {
       setSaving(false);
@@ -177,7 +178,7 @@ export function CollectionEditor({ config, collectionKey, slug }: CollectionEdit
         setSha(sha);
       })
       .catch((err) => {
-        setLoadError(err instanceof Error ? err.message : 'Impossible de charger cet élément');
+        setLoadError(err instanceof Error ? err.message : t('unableToLoadItem'));
       })
       .finally(() => setInitialLoading(false));
   }
@@ -189,8 +190,8 @@ export function CollectionEditor({ config, collectionKey, slug }: CollectionEdit
   if (!collection) {
     return (
       <div style={styles.errorBox}>
-        Collection introuvable.
-        <button onClick={() => navigate('#/')} style={styles.backLink}>← Retour</button>
+        {t('collectionNotFound')}
+        <button onClick={() => navigate('#/')} style={styles.backLink}>{t('back')}</button>
       </div>
     );
   }
@@ -209,7 +210,7 @@ export function CollectionEditor({ config, collectionKey, slug }: CollectionEdit
           ← {collection.label}
         </button>
         <h1 style={styles.title}>
-          {isNew ? `Nouveau ${collection.label.replace(/s$/, '')}` : 'Modifier'}
+          {isNew ? t('newPrefix', { label: collection.label.replace(/s$/, '') }) : t('edit')}
         </h1>
       </div>
 
@@ -220,7 +221,7 @@ export function CollectionEditor({ config, collectionKey, slug }: CollectionEdit
       {loadError && !initialLoading && (
         <div style={styles.errorBox}>
           <p style={styles.errorText}>{loadError}</p>
-          <button onClick={loadContent} style={styles.retryBtn}>Réessayer</button>
+          <button onClick={loadContent} style={styles.retryBtn}>{t('retry')}</button>
         </div>
       )}
 
@@ -250,12 +251,12 @@ export function CollectionEditor({ config, collectionKey, slug }: CollectionEdit
               ...(!dirty ? styles.saveBtnDisabled : {}),
             }}
           >
-            {saving ? 'Enregistrement...' : isNew ? 'Créer' : 'Enregistrer'}
+            {saving ? t('saving') : isNew ? t('create') : t('save')}
           </button>
           <span style={styles.deployNote}>
-            {dirty ? 'Modifications non enregistrées' : 'Le site sera mis à jour dans ~2 min'}
+            {dirty ? t('dirtyPending') : t('willPublishSoon')}
           </span>
-          <span style={styles.shortcut}>⌘S</span>
+          <span style={styles.shortcut}>{t('shortcutSave')}</span>
         </div>
       )}
     </div>

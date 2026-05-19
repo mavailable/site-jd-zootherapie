@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { useContent } from './hooks/useContent';
 import { useDirty } from './hooks/useDirty';
 import { useToastContext, navigate } from './CmsApp';
+import { t } from './locales';
 
 interface Section {
   id: string;
@@ -30,13 +31,13 @@ export function SectionManager() {
         LAYOUT_PATH,
         { sections },
         sha,
-        '[CMS] Mise à jour ordre des sections'
+        '[CMS] Update section order'
       );
       setSha(result.sha);
       setClean();
-      addToast('Enregistre ! Votre site se met a jour.', 'success');
+      addToast(t('saved'), 'success');
     } catch (err) {
-      addToast(err instanceof Error ? err.message : 'Erreur de sauvegarde', 'error');
+      addToast(err instanceof Error ? err.message : t('saveErrorGeneric'), 'error');
     } finally {
       setSaving(false);
     }
@@ -50,7 +51,7 @@ export function SectionManager() {
         setSections((content as { sections: Section[] }).sections || []);
         setSha(sha);
       })
-      .catch(() => addToast('Impossible de charger les sections', 'error'))
+      .catch(() => addToast(t('sectionsUnableLoad'), 'error'))
       .finally(() => setLoading(false));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -86,15 +87,15 @@ export function SectionManager() {
   }
 
   if (loading) {
-    return <div style={styles.loading}>Chargement...</div>;
+    return <div style={styles.loading}>{t('loading')}</div>;
   }
 
   return (
     <div>
       <div style={styles.header}>
-        <button onClick={() => navigate('#/')} style={styles.backBtn}>← Retour</button>
-        <h1 style={styles.title}>Sections de la page</h1>
-        <p style={styles.subtitle}>Glissez pour réorganiser, cliquez pour masquer/afficher</p>
+        <button onClick={() => navigate('#/')} style={styles.backBtn}>{t('back')}</button>
+        <h1 style={styles.title}>{t('sectionsTitle')}</h1>
+        <p style={styles.subtitle}>{t('sectionsSubtitle')}</p>
       </div>
 
       <div style={styles.list}>
@@ -113,16 +114,16 @@ export function SectionManager() {
               ...(!section.visible ? styles.itemHidden : {}),
             }}
           >
-            <span style={styles.dragHandle} title="Glisser pour déplacer">⠿</span>
+            <span style={styles.dragHandle} title={t('dragToMove')}>⠿</span>
             <span style={{ ...styles.itemLabel, ...(!section.visible ? styles.labelHidden : {}) }}>
               {section.label}
             </span>
             <button
               onClick={() => toggleVisibility(index)}
               style={section.visible ? styles.toggleOn : styles.toggleOff}
-              title={section.visible ? 'Masquer' : 'Afficher'}
+              title={section.visible ? t('hide') : t('show')}
             >
-              {section.visible ? 'Visible' : 'Masqué'}
+              {section.visible ? t('visible') : t('hidden')}
             </button>
           </div>
         ))}
@@ -136,10 +137,10 @@ export function SectionManager() {
           disabled={saving || !dirty}
           style={{ ...styles.saveBtn, ...(!dirty ? styles.saveBtnDisabled : {}) }}
         >
-          {saving ? 'Enregistrement...' : 'Enregistrer'}
+          {saving ? t('saving') : t('save')}
         </button>
         <span style={styles.deployNote}>
-          {dirty ? 'Modifications non enregistrées' : 'Le site sera mis à jour dans ~2 min'}
+          {dirty ? t('dirtyPending') : t('willPublishSoon')}
         </span>
       </div>
     </div>

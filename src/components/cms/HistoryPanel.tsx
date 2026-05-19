@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useToastContext } from './CmsApp';
+import { t, intlLocale } from './locales';
 
 interface HistoryEntry {
   sha: string;
@@ -20,12 +21,12 @@ function timeAgo(dateStr: string): string {
   const now = new Date();
   const seconds = Math.floor((now.getTime() - date.getTime()) / 1000);
 
-  if (seconds < 60) return "à l'instant";
-  if (seconds < 3600) return `il y a ${Math.floor(seconds / 60)} min`;
-  if (seconds < 86400) return `il y a ${Math.floor(seconds / 3600)} h`;
-  if (seconds < 604800) return `il y a ${Math.floor(seconds / 86400)} j`;
+  if (seconds < 60) return t('timeJustNow');
+  if (seconds < 3600) return t('timeMinAgo', { n: Math.floor(seconds / 60) });
+  if (seconds < 86400) return t('timeHourAgo', { n: Math.floor(seconds / 3600) });
+  if (seconds < 604800) return t('timeDayAgo', { n: Math.floor(seconds / 86400) });
 
-  return date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+  return date.toLocaleDateString(intlLocale, { day: 'numeric', month: 'long', year: 'numeric' });
 }
 
 export function HistoryPanel({ path, currentData, onRestore, onClose }: HistoryPanelProps) {
@@ -40,7 +41,7 @@ export function HistoryPanel({ path, currentData, onRestore, onClose }: HistoryP
     fetch(`/api/cms/history?path=${encodeURIComponent(path)}`)
       .then((res) => res.json())
       .then((data) => setEntries(data.history || []))
-      .catch(() => addToast("Impossible de charger l'historique", 'error'))
+      .catch(() => addToast(t('historyUnableLoad'), 'error'))
       .finally(() => setLoading(false));
   }, [path]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -53,7 +54,7 @@ export function HistoryPanel({ path, currentData, onRestore, onClose }: HistoryP
       const data = await res.json();
       if (data.content) setVersionData(data.content);
     } catch {
-      addToast('Impossible de charger cette version', 'error');
+      addToast(t('versionUnableLoad'), 'error');
     } finally {
       setLoadingVersion(false);
     }
@@ -61,9 +62,9 @@ export function HistoryPanel({ path, currentData, onRestore, onClose }: HistoryP
 
   function handleRestore() {
     if (!versionData) return;
-    if (window.confirm('Restaurer cette version ? Le contenu actuel sera remplacé.')) {
+    if (window.confirm(t('confirmRestore'))) {
       onRestore(versionData);
-      addToast('Version restaurée — pensez à enregistrer', 'info');
+      addToast(t('versionRestored'), 'info');
       onClose();
     }
   }
@@ -85,7 +86,7 @@ export function HistoryPanel({ path, currentData, onRestore, onClose }: HistoryP
     }
 
     if (diffs.length === 0) {
-      return <p style={styles.noDiff}>Identique à la version actuelle</p>;
+      return <p style={styles.noDiff}>{t('versionIdentical')}</p>;
     }
 
     return (
@@ -105,14 +106,14 @@ export function HistoryPanel({ path, currentData, onRestore, onClose }: HistoryP
     <div style={styles.overlay} onClick={onClose}>
       <div style={styles.panel} onClick={(e) => e.stopPropagation()}>
         <div style={styles.header}>
-          <h3 style={styles.title}>Historique</h3>
+          <h3 style={styles.title}>{t('historyTitle')}</h3>
           <button onClick={onClose} style={styles.closeBtn}>×</button>
         </div>
 
         {loading ? (
-          <div style={styles.loadingText}>Chargement...</div>
+          <div style={styles.loadingText}>{t('loading')}</div>
         ) : entries.length === 0 ? (
-          <div style={styles.emptyText}>Aucun historique disponible</div>
+          <div style={styles.emptyText}>{t('historyEmpty')}</div>
         ) : (
           <div style={styles.list}>
             {entries.map((entry) => (
@@ -131,12 +132,12 @@ export function HistoryPanel({ path, currentData, onRestore, onClose }: HistoryP
                 {selectedSha === entry.sha && (
                   <div style={styles.versionDetail}>
                     {loadingVersion ? (
-                      <div style={styles.loadingText}>Chargement...</div>
+                      <div style={styles.loadingText}>{t('loading')}</div>
                     ) : versionData ? (
                       <>
                         {renderDiff(versionData, currentData)}
                         <button onClick={handleRestore} style={styles.restoreBtn}>
-                          Restaurer cette version
+                          {t('restoreVersion')}
                         </button>
                       </>
                     ) : null}

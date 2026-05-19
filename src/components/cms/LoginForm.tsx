@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react';
+import { t } from './locales';
 
 interface LoginFormProps {
   onLogin: (password: string) => Promise<string | null>;
@@ -26,8 +27,8 @@ export function LoginForm({ onLogin }: LoginFormProps) {
   return (
     <div style={styles.container}>
       <form onSubmit={handleSubmit} style={styles.form}>
-        <h1 style={styles.title}>Administration</h1>
-        <p style={styles.subtitle}>Connectez-vous pour modifier votre site</p>
+        <h1 style={styles.title}>{t('adminTitle')}</h1>
+        <p style={styles.subtitle}>{t('loginSubtitle')}</p>
 
         {error && <div style={styles.error}>{error}</div>}
 
@@ -41,7 +42,7 @@ export function LoginForm({ onLogin }: LoginFormProps) {
         />
 
         <label style={styles.label}>
-          Mot de passe
+          {t('password')}
           <input
             type="password"
             value={password}
@@ -53,7 +54,7 @@ export function LoginForm({ onLogin }: LoginFormProps) {
         </label>
 
         <button type="submit" disabled={submitting || !password.trim()} style={styles.button}>
-          {submitting ? 'Connexion...' : 'Se connecter'}
+          {submitting ? t('signingIn') : t('signIn')}
         </button>
       </form>
     </div>

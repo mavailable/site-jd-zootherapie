@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import type { CmsConfig } from '../../../cms.types';
 import { useContent } from './hooks/useContent';
 import { navigate } from './CmsApp';
+import { t, locale, intlLocale } from './locales';
 
 interface BlogTabProps {
   config: CmsConfig;
@@ -27,17 +28,17 @@ const MARC_WHATSAPP = '33688766648';
 function formatDate(isoDate?: string): string {
   if (!isoDate) return '';
   try {
-    return new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(isoDate));
+    return new Intl.DateTimeFormat(intlLocale, { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(isoDate));
   } catch {
     return isoDate;
   }
 }
 
-function whatsappUrl(title: string, marcWhatsapp: string): string {
-  const text =
-    `Bonjour Marc, j'aimerais un article sur mon blog : "${title}". ` +
-    `Je t'envoie un vocal avec une anecdote / mon avis sur le sujet.`;
-  return `https://wa.me/${marcWhatsapp}?text=${encodeURIComponent(text)}`;
+function whatsappUrl(title: string): string {
+  const text = locale === 'en'
+    ? `Hi Marc, I'd like an article on my blog: "${title}". I'll send you a voice note with an anecdote / my take on the topic.`
+    : `Bonjour Marc, j'aimerais un article sur mon blog : "${title}". Je t'envoie un vocal avec une anecdote / mon avis sur le sujet.`;
+  return `https://wa.me/${MARC_WHATSAPP}?text=${encodeURIComponent(text)}`;
 }
 
 function startWritingSelf(idea: BlogIdea) {
@@ -49,18 +50,6 @@ function startWritingSelf(idea: BlogIdea) {
     // silent
   }
   navigate('#/collection/blog/_new');
-}
-
-function sendVocalForIdea(idea: BlogIdea) {
-  try {
-    sessionStorage.setItem('vocaux_prefill', JSON.stringify({
-      sujet: idea.title,
-      categorie: 'idee-article',
-    }));
-  } catch {
-    // silent
-  }
-  navigate('#/vocaux');
 }
 
 export function BlogTab({ config }: BlogTabProps) {
@@ -124,34 +113,33 @@ export function BlogTab({ config }: BlogTabProps) {
 
       {/* ── Section 1 : Idées d'articles ── */}
       <section style={styles.section}>
-        <h2 style={styles.sectionTitle}>Vos prochaines idées d'articles</h2>
+        <h2 style={styles.sectionTitle}>{t('ideasTitle')}</h2>
         <p style={styles.sectionIntro}>
-          Marc a préparé ces sujets pour vous. Deux options pour chaque idée :
-          lui envoyer un vocal WhatsApp (il rédige l'article), ou l'écrire vous-même.
+          {t('ideasIntro')}
         </p>
 
         {ideasError && (
           <div style={styles.placeholder}>
-            Marc n'a pas encore préparé d'idées pour votre blog.
+            {t('ideasPlaceholderError')}
             <br />
             <a
-              href={`https://wa.me/${marcWhatsapp}?text=${encodeURIComponent(`Salut Marc, tu peux me préparer 5 idées d'articles pour mon blog ${siteName} ?`)}`}
+              href={`https://wa.me/${marcWhatsapp}?text=${encodeURIComponent(locale === 'en' ? `Hi Marc, can you prepare 5 article ideas for my blog ${siteName}?` : `Salut Marc, tu peux me préparer 5 idées d'articles pour mon blog ${siteName} ?`)}`}
               target="_blank"
               rel="noopener noreferrer"
               style={styles.placeholderLink}
             >
-              Lui demander par WhatsApp →
+              {t('ideasAskMarcWhatsapp')}
             </a>
           </div>
         )}
 
         {!ideasError && ideas === null && (
-          <div style={styles.placeholder}>Chargement des idées…</div>
+          <div style={styles.placeholder}>{t('ideasLoading')}</div>
         )}
 
         {!ideasError && ideas !== null && ideas.length === 0 && (
           <div style={styles.placeholder}>
-            Toutes les idées ont été exploitées. Marc va en préparer de nouvelles.
+            {t('ideasPlaceholderEmpty')}
           </div>
         )}
 
@@ -169,30 +157,20 @@ export function BlogTab({ config }: BlogTabProps) {
                 </div>
 
                 <div style={styles.ideaActions}>
-                  {config.vocaux?.enabled ? (
-                    <button
-                      type="button"
-                      onClick={() => sendVocalForIdea(idea)}
-                      style={styles.waBtn}
-                    >
-                      Enregistrer un vocal
-                    </button>
-                  ) : (
-                    <a
-                      href={whatsappUrl(idea.title, marcWhatsapp)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={styles.waBtn}
-                    >
-                      Demander à Marc (vocal)
-                    </a>
-                  )}
+                  <a
+                    href={whatsappUrl(idea.title)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={styles.waBtn}
+                  >
+                    {t('askMarcVoice')}
+                  </a>
                   <button
                     type="button"
                     onClick={() => startWritingSelf(idea)}
                     style={styles.writeBtn}
                   >
-                    J'écris moi-même
+                    {t('writeMyself')}
                   </button>
                 </div>
               </div>
@@ -203,13 +181,13 @@ export function BlogTab({ config }: BlogTabProps) {
 
       {/* ── Section 2 : Articles publiés ── */}
       <section style={styles.section}>
-        <h2 style={styles.sectionTitle}>Mes articles publiés</h2>
+        <h2 style={styles.sectionTitle}>{t('publishedArticles')}</h2>
 
-        {articlesLoading && <div style={styles.placeholder}>Chargement…</div>}
+        {articlesLoading && <div style={styles.placeholder}>{t('articlesLoading')}</div>}
 
         {!articlesLoading && articles.length === 0 && (
           <div style={styles.placeholder}>
-            Aucun article publié pour le moment.
+            {t('noArticleYet')}
           </div>
         )}
 
@@ -232,19 +210,19 @@ export function BlogTab({ config }: BlogTabProps) {
         )}
 
         <a href="#/collection/blog" style={styles.manageLink}>
-          Gérer tous mes articles →
+          {t('manageAllArticles')}
         </a>
       </section>
 
       <div style={styles.contactFooter}>
-        Une question sur votre blog ?{' '}
+        {t('blogQuestion')}{' '}
         <a
-          href={`https://wa.me/${marcWhatsapp}?text=${encodeURIComponent('Bonjour Marc, une question sur mon blog.')}`}
+          href={`https://wa.me/${marcWhatsapp}?text=${encodeURIComponent(locale === 'en' ? 'Hi Marc, a question about my blog.' : 'Bonjour Marc, une question sur mon blog.')}`}
           target="_blank"
           rel="noopener noreferrer"
           style={styles.contactLink}
         >
-          Contacter Marc par WhatsApp
+          {t('contactMarcWhatsapp')}
         </a>
       </div>
     </div>

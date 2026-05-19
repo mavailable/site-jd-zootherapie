@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { CmsFieldMultiselect } from '../../../../cms.types';
+import { t } from '../locales';
 
 interface MultiselectFieldProps {
   field: CmsFieldMultiselect;
@@ -48,7 +49,7 @@ export function MultiselectField({ field, value, onChange }: MultiselectFieldPro
                 type="button"
                 onClick={() => remove(v)}
                 style={styles.pillRemove}
-                aria-label={`Retirer ${labelFor(v)}`}
+                aria-label={`${t('fieldRemove')} ${labelFor(v)}`}
               >
                 &times;
               </button>
@@ -63,7 +64,7 @@ export function MultiselectField({ field, value, onChange }: MultiselectFieldPro
         onClick={() => setIsOpen(!isOpen)}
         style={styles.toggleBtn}
       >
-        {isOpen ? 'Fermer' : selected.length === 0 ? 'Choisir...' : 'Modifier'}
+        {isOpen ? t('close') : selected.length === 0 ? t('multiselectChoose') : t('edit')}
         <span style={{ marginLeft: 'auto', fontSize: '0.75rem', opacity: 0.6 }}>
           {selected.length}/{field.options.length}
           {field.maxItems ? ` (max ${field.maxItems})` : ''}

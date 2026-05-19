@@ -3,6 +3,7 @@ import StarterKit from '@tiptap/starter-kit';
 import Link from '@tiptap/extension-link';
 import { useCallback, useEffect } from 'react';
 import type { CmsFieldRichText } from '../../../../cms.types';
+import { t } from '../locales';
 
 interface RichTextFieldProps {
   field: CmsFieldRichText;
@@ -37,7 +38,7 @@ export function RichTextField({ field, value, onChange }: RichTextFieldProps) {
   const setLink = useCallback(() => {
     if (!editor) return;
     const previous = editor.getAttributes('link').href;
-    const url = window.prompt('URL du lien :', previous || 'https://');
+    const url = window.prompt(t('richLinkPrompt'), previous || 'https://');
     if (url === null) return;
     if (url === '') {
       editor.chain().focus().extendMarkRange('link').unsetLink().run();
@@ -58,14 +59,14 @@ export function RichTextField({ field, value, onChange }: RichTextFieldProps) {
           <ToolbarButton
             active={editor.isActive('bold')}
             onClick={() => editor.chain().focus().toggleBold().run()}
-            title="Gras"
+            title={t('richBold')}
           >
             <strong>G</strong>
           </ToolbarButton>
           <ToolbarButton
             active={editor.isActive('italic')}
             onClick={() => editor.chain().focus().toggleItalic().run()}
-            title="Italique"
+            title={t('richItalic')}
           >
             <em>I</em>
           </ToolbarButton>
@@ -73,14 +74,14 @@ export function RichTextField({ field, value, onChange }: RichTextFieldProps) {
           <ToolbarButton
             active={editor.isActive('heading', { level: 2 })}
             onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-            title="Titre 2"
+            title={t('richH2')}
           >
             H2
           </ToolbarButton>
           <ToolbarButton
             active={editor.isActive('heading', { level: 3 })}
             onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
-            title="Titre 3"
+            title={t('richH3')}
           >
             H3
           </ToolbarButton>
@@ -88,14 +89,14 @@ export function RichTextField({ field, value, onChange }: RichTextFieldProps) {
           <ToolbarButton
             active={editor.isActive('bulletList')}
             onClick={() => editor.chain().focus().toggleBulletList().run()}
-            title="Liste à puces"
+            title={t('richBullet')}
           >
             •
           </ToolbarButton>
           <ToolbarButton
             active={editor.isActive('orderedList')}
             onClick={() => editor.chain().focus().toggleOrderedList().run()}
-            title="Liste numérotée"
+            title={t('richNumbered')}
           >
             1.
           </ToolbarButton>
@@ -103,7 +104,7 @@ export function RichTextField({ field, value, onChange }: RichTextFieldProps) {
           <ToolbarButton
             active={editor.isActive('link')}
             onClick={setLink}
-            title="Lien"
+            title={t('richLink')}
           >
             🔗
           </ToolbarButton>

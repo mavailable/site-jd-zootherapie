@@ -146,6 +146,7 @@ export interface CmsConfig {
   repo: string; // ex: "marcmuller/site-jd-zootherapie"
   branch: string; // ex: "master"
   siteName: string; // nom du site affiché dans l'admin
+  locale?: 'fr' | 'en'; // langue de l'interface /admin (défaut: 'fr')
   singletons: Record<string, CmsSingleton>;
   collections: Record<string, CmsCollection>;
   site?: CmsSiteConfig;

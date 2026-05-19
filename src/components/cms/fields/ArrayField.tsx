@@ -1,5 +1,6 @@
 import type { CmsFieldArray } from '../../../../cms.types';
 import { FieldRenderer } from './FieldRenderer';
+import { t } from '../locales';
 
 interface ArrayFieldProps {
   field: CmsFieldArray;
@@ -56,7 +57,7 @@ export function ArrayField({ field, value, onChange }: ArrayFieldProps) {
         return val.length > 50 ? val.slice(0, 50) + '...' : val;
       }
     }
-    return `Élément ${index + 1}`;
+    return t('fieldItem', { n: index + 1 });
   }
 
   return (
@@ -73,7 +74,7 @@ export function ArrayField({ field, value, onChange }: ArrayFieldProps) {
                 onClick={() => moveItem(index, -1)}
                 disabled={index === 0}
                 style={styles.moveBtn}
-                title="Monter"
+                title={t('fieldMoveUp')}
               >
                 ↑
               </button>
@@ -82,7 +83,7 @@ export function ArrayField({ field, value, onChange }: ArrayFieldProps) {
                 onClick={() => moveItem(index, 1)}
                 disabled={index === items.length - 1}
                 style={styles.moveBtn}
-                title="Descendre"
+                title={t('fieldMoveDown')}
               >
                 ↓
               </button>
@@ -90,7 +91,7 @@ export function ArrayField({ field, value, onChange }: ArrayFieldProps) {
                 type="button"
                 onClick={() => removeItem(index)}
                 style={styles.removeBtn}
-                title="Supprimer"
+                title={t('fieldRemove')}
               >
                 ×
               </button>
@@ -123,7 +124,7 @@ export function ArrayField({ field, value, onChange }: ArrayFieldProps) {
       ))}
 
       <button type="button" onClick={addItem} style={styles.addBtn}>
-        + Ajouter
+        {t('add')}
       </button>
     </div>
   );

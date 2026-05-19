@@ -1,4 +1,5 @@
 import { useDismissedTip } from '../hooks/useOnboarding';
+import { t } from '../locales';
 
 interface InlineHelpProps {
   tipId: string;
@@ -14,8 +15,8 @@ export function InlineHelp({ tipId, children }: InlineHelpProps) {
     <div style={styles.container}>
       <div style={styles.icon}>&#128161;</div>
       <div style={styles.content}>{children}</div>
-      <button onClick={dismissTip} style={styles.dismiss} aria-label="Fermer">
-        OK, compris
+      <button onClick={dismissTip} style={styles.dismiss} aria-label={t('close')}>
+        {t('tipDismiss')}
       </button>
     </div>
   );

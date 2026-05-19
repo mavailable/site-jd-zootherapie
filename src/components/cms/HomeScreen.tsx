@@ -12,6 +12,7 @@ import {
   COLLAPSED_BY_DEFAULT,
   GROUP_DEFAULT_ICON,
 } from './utils/groupSingletons';
+import { t } from './locales';
 import type { CmsConfig, CmsSingletonGroup } from '../../../cms.types';
 
 interface HomeScreenProps {
@@ -50,12 +51,12 @@ export function HomeScreen({ config }: HomeScreenProps) {
       const res = await fetch('/api/publish', { method: 'POST' });
       if (res.ok) {
         setSyncStatus('synced');
-        addToast('Site mis a jour !', 'success');
+        addToast(t('syncSiteUpdated'), 'success');
       } else {
-        addToast('Erreur de publication. Contactez Marc.', 'error');
+        addToast(t('syncPublishError'), 'error');
       }
     } catch {
-      addToast('Impossible de contacter le serveur.', 'error');
+      addToast(t('serverUnreachable'), 'error');
     }
     setPublishing(false);
   }, [addToast]);
@@ -111,7 +112,7 @@ export function HomeScreen({ config }: HomeScreenProps) {
       description: col.description || '',
       count: counts[key],
       hash: `#/collection/${key}`,
-      actionLabel: 'Gerer',
+      actionLabel: t('manage'),
     });
   }
 
@@ -119,11 +120,11 @@ export function HomeScreen({ config }: HomeScreenProps) {
     collectionCards.push({
       key: 'blog',
       icon: '\u{1F4DD}',
-      label: 'Mon blog',
-      description: config.collections.blog.description || 'Articles et actualites',
+      label: t('myBlog'),
+      description: config.collections.blog.description || t('blogDefaultDesc'),
       count: counts.blog,
       hash: '#/collection/blog',
-      actionLabel: 'Ecrire',
+      actionLabel: t('write'),
     });
   }
 
@@ -148,7 +149,7 @@ export function HomeScreen({ config }: HomeScreenProps) {
           <span style={styles.cardTitle}>{s.label}</span>
         </div>
         {s.description && <div style={styles.cardDesc}>{s.description}</div>}
-        <div style={styles.cardAction}>Modifier &rarr;</div>
+        <div style={styles.cardAction}>{t('cardEdit')}</div>
       </button>
     );
   };
@@ -161,8 +162,8 @@ export function HomeScreen({ config }: HomeScreenProps) {
     {
       key: '_media',
       icon: '\u{1F5BC}',
-      label: 'Mes images',
-      description: 'Galerie globale du site',
+      label: t('myImages'),
+      description: t('myImagesDesc'),
       hash: '#/media',
     },
   ];
@@ -171,22 +172,22 @@ export function HomeScreen({ config }: HomeScreenProps) {
     {
       key: '_seo',
       icon: '\u{1F50D}',
-      label: 'Referencement',
-      description: 'Titres, descriptions, images de partage',
+      label: t('toolSeo'),
+      description: t('toolSeoDesc'),
       hash: '#/seo',
     },
     {
       key: '_theme',
       icon: '\u{1F3A8}',
-      label: 'Apparence',
-      description: 'Couleurs, typographie et arrondis',
+      label: t('toolTheme'),
+      description: t('toolThemeDesc'),
       hash: '#/theme',
     },
     {
       key: '_sections',
       icon: '\u{2630}',
-      label: 'Sections',
-      description: 'Reorganiser ou masquer des sections',
+      label: t('toolSections'),
+      description: t('toolSectionsDesc'),
       hash: '#/sections',
     },
   ];
@@ -202,45 +203,43 @@ export function HomeScreen({ config }: HomeScreenProps) {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <span style={{ fontSize: '1.25rem' }}>&#9888;</span>
             <span style={{ fontSize: '0.875rem', color: '#9a3412' }}>
-              Des modifications n'ont pas ete publiees.
+              {t('syncPending')}
             </span>
           </div>
           <button onClick={handleManualPublish} disabled={publishing} style={styles.syncBtn}>
-            {publishing ? 'Publication...' : 'Mettre en ligne'}
+            {publishing ? t('publishing') : t('syncPutOnline')}
           </button>
         </div>
       )}
       {syncStatus === 'synced' && (
         <div style={styles.syncOk}>
           <span style={{ fontSize: '1rem', color: '#166534' }}>&#10003;</span>
-          <span style={{ fontSize: '0.8125rem', color: '#166534' }}>Site a jour</span>
+          <span style={{ fontSize: '0.8125rem', color: '#166534' }}>{t('syncOk')}</span>
         </div>
       )}
 
       {needsW3fKey && (
         <div style={styles.w3fAlert}>
           <div style={styles.w3fAlertContent}>
-            <strong>Recevez vos demandes de contact directement</strong>
+            <strong>{t('w3fAlertTitle')}</strong>
             <p style={styles.w3fAlertText}>
-              Votre formulaire de contact envoie les messages a votre webmaster.
-              Configurez votre propre cle pour les recevoir directement.{' '}
-              <a href="https://marcm.fr/aide/web3forms/" target="_blank" rel="noopener noreferrer" style={styles.w3fLink}>Voir le guide</a>
+              {t('w3fAlertText')}{' '}
+              <a href="https://marcm.fr/aide/web3forms/" target="_blank" rel="noopener noreferrer" style={styles.w3fLink}>{t('w3fSeeGuide')}</a>
             </p>
           </div>
           <button onClick={() => navigate('#/singleton/contact')} style={styles.w3fBtn}>
-            Configurer
+            {t('w3fConfigure')}
           </button>
         </div>
       )}
 
       <InlineHelp tipId="home-tip">
-        Cliquez sur une carte pour modifier son contenu. Vos changements seront en ligne
-        environ une minute apres avoir clique "Enregistrer".
+        {t('homeHelp')}
       </InlineHelp>
 
       {/* ─── Section Contenu (collections + images) ──────────────── */}
       <section style={styles.section}>
-        <h2 style={styles.sectionTitle}>Contenu</h2>
+        <h2 style={styles.sectionTitle}>{t('sectionContent')}</h2>
         <div style={styles.grid}>
           {toolsCards.map((card) => (
             <button key={card.key} onClick={() => navigate(card.hash)} style={styles.card}>
@@ -249,7 +248,7 @@ export function HomeScreen({ config }: HomeScreenProps) {
                 <span style={styles.cardTitle}>{card.label}</span>
               </div>
               <div style={styles.cardDesc}>{card.description}</div>
-              <div style={styles.cardAction}>Gerer &rarr;</div>
+              <div style={styles.cardAction}>{t('cardManage')}</div>
             </button>
           ))}
           {collectionCards.map((card) => (

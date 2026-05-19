@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { CmsConfig } from '../../../cms.types';
 import { useContent } from './hooks/useContent';
+import { t, locale, intlLocale } from './locales';
 
 interface StatsTabProps {
   config: CmsConfig;
@@ -33,7 +34,7 @@ function getUpcomingHoliday(): { label: string; date: string } | null {
 
 function formatDate(isoDate: string): string {
   try {
-    return new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }).format(
+    return new Intl.DateTimeFormat(intlLocale, { day: 'numeric', month: 'long', year: 'numeric' }).format(
       new Date(isoDate)
     );
   } catch {
@@ -136,10 +137,12 @@ export function StatsTab({ config }: StatsTabProps) {
       });
   }, [hasBlog]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const sms1 =
-    `Bonjour, merci d'avoir fait appel a ${siteName} ! Si vous etes satisfait de notre intervention, un avis Google nous aiderait beaucoup : ${reviewUrl || ''} \u2014 Merci, ${ownerName}`;
-  const sms2 =
-    `Salut ! Merci pour votre confiance. Si vous avez 2 minutes, un petit avis ici nous ferait tres plaisir : ${reviewUrl || ''}`;
+  const sms1 = locale === 'en'
+    ? `Hi, thanks for choosing ${siteName}! If you were happy with our service, a Google review would mean a lot: ${reviewUrl || ''} \u2014 Thanks, ${ownerName}`
+    : `Bonjour, merci d'avoir fait appel a ${siteName} ! Si vous etes satisfait de notre intervention, un avis Google nous aiderait beaucoup : ${reviewUrl || ''} \u2014 Merci, ${ownerName}`;
+  const sms2 = locale === 'en'
+    ? `Hey! Thanks for trusting us. If you have 2 minutes, a quick review here would be amazing: ${reviewUrl || ''}`
+    : `Salut ! Merci pour votre confiance. Si vous avez 2 minutes, un petit avis ici nous ferait tres plaisir : ${reviewUrl || ''}`;
 
   const whatsappText = encodeURIComponent(sms2);
   const whatsappUrl = `https://wa.me/?text=${whatsappText}`;
@@ -157,22 +160,22 @@ export function StatsTab({ config }: StatsTabProps) {
       {/* ── SECTION 1 : Rappels (freshness alerts) ── */}
       {(blogStale || upcomingHoliday) && (
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Rappels</h2>
+          <h2 style={styles.sectionTitle}>{t('reminders')}</h2>
 
           {blogStale && lastBlogDate && (
             <div style={styles.alertAmber}>
               <span style={styles.alertIcon}>&#9888;</span>
               <div>
-                <strong>Votre dernier article date du {formatDate(lastBlogDate)}.</strong>
+                <strong>{t('blogStale', { date: formatDate(lastBlogDate) })}</strong>
                 <br />
-                Envoyez une anecdote par WhatsApp, Marc s&rsquo;occupe du reste.{' '}
+                {t('sendAnecdoteWhatsapp')}{' '}
                 <a
-                  href={`https://wa.me/${site?.contactMarc?.whatsapp || '33688766648'}?text=Bonjour Marc, j'ai une idee d'article pour mon blog.`}
+                  href={`https://wa.me/${site?.contactMarc?.whatsapp || '33688766648'}?text=${encodeURIComponent(locale === 'en' ? "Hi Marc, I have a blog post idea." : "Bonjour Marc, j'ai une idee d'article pour mon blog.")}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   style={styles.alertLink}
                 >
-                  Envoyer par WhatsApp &#8599;
+                  {t('sendViaWhatsapp')}
                 </a>
               </div>
             </div>
@@ -182,16 +185,16 @@ export function StatsTab({ config }: StatsTabProps) {
             <div style={{ ...styles.alertBlue, marginTop: blogStale ? '0.75rem' : 0 }}>
               <span style={styles.alertIcon}>&#128197;</span>
               <div>
-                <strong>Le {upcomingHoliday.label} approche ({formatDate(upcomingHoliday.date)}).</strong>
+                <strong>{t('holidayApproaching', { label: upcomingHoliday.label, date: formatDate(upcomingHoliday.date) })}</strong>
                 <br />
-                Pensez a mettre a jour vos horaires sur Google.{' '}
+                {t('updateHoursGoogle')}{' '}
                 <a
                   href={gbpUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   style={styles.alertLink}
                 >
-                  Ouvrir ma fiche Google &#8599;
+                  {t('openMyGoogleListing')}
                 </a>
               </div>
             </div>
@@ -202,17 +205,17 @@ export function StatsTab({ config }: StatsTabProps) {
       {/* ── SECTION 2 : Avis et Google Business ── */}
       {isLocal && (reviewUrl || gbpUrl) && (
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Avis et Google Business</h2>
+          <h2 style={styles.sectionTitle}>{t('reviewsSection')}</h2>
 
           {/* Review count + last review */}
           {hasReviews && reviewUrl && (
             <div style={styles.card}>
               <div style={styles.reviewHeader}>
                 <span style={styles.reviewCountBadge}>
-                  {reviewCount !== null ? `${reviewCount} avis` : '…'}
+                  {reviewCount !== null ? t('reviewsBadge', { n: reviewCount }) : '…'}
                 </span>
                 <span style={{ fontSize: '0.8125rem', color: '#64748b' }}>
-                  collectes via le site
+                  {t('reviewsCollected')}
                 </span>
               </div>
 
@@ -220,7 +223,7 @@ export function StatsTab({ config }: StatsTabProps) {
                 <div style={styles.lastReviewBox}>
                   <div style={styles.lastReviewTop}>
                     <span style={{ fontWeight: 600, fontSize: '0.9rem', color: '#0f172a' }}>
-                      {(lastReview.author as string) || 'Client'}
+                      {(lastReview.author as string) || (locale === 'en' ? 'Client' : 'Client')}
                     </span>
                     {typeof lastReview.rating === 'number' && (
                       <StarRating rating={lastReview.rating} />
@@ -241,8 +244,8 @@ export function StatsTab({ config }: StatsTabProps) {
             <a href={gbpUrl} target="_blank" rel="noopener noreferrer" style={{ ...styles.gbpCard, marginTop: hasReviews && reviewUrl ? '0.75rem' : 0 }}>
               <div style={styles.gbpIcon}>&#127759;</div>
               <div>
-                <div style={styles.gbpLabel}>Gerer ma fiche Google</div>
-                <div style={styles.gbpHint}>Horaires, photos, reponses aux avis</div>
+                <div style={styles.gbpLabel}>{t('manageGoogleListing')}</div>
+                <div style={styles.gbpHint}>{t('manageGoogleHint')}</div>
               </div>
               <span style={styles.gbpArrow}>&#8599;</span>
             </a>
@@ -251,26 +254,26 @@ export function StatsTab({ config }: StatsTabProps) {
           {/* Demander un avis */}
           {reviewUrl && (
             <div style={{ ...styles.card, marginTop: '0.75rem' }}>
-              <div style={styles.cardLabel}>Demander un avis</div>
+              <div style={styles.cardLabel}>{t('askReview')}</div>
               <p style={styles.cardHint}>
-                3 messages prets a envoyer a vos clients apres chaque intervention.
+                {t('askReviewHint')}
               </p>
 
               {/* SMS formal */}
               <div style={styles.messageBlock}>
-                <div style={styles.messageMeta}>SMS formel</div>
+                <div style={styles.messageMeta}>{t('smsFormal')}</div>
                 <div style={styles.messageText}>{sms1}</div>
                 <button style={styles.copyBtn} onClick={() => copyText(sms1, setCopiedSms1)}>
-                  {copiedSms1 ? 'Copie !' : 'Copier'}
+                  {copiedSms1 ? t('copied') : t('copy')}
                 </button>
               </div>
 
               {/* SMS convivial */}
               <div style={{ ...styles.messageBlock, marginTop: '0.75rem' }}>
-                <div style={styles.messageMeta}>SMS convivial</div>
+                <div style={styles.messageMeta}>{t('smsCasual')}</div>
                 <div style={styles.messageText}>{sms2}</div>
                 <button style={styles.copyBtn} onClick={() => copyText(sms2, setCopiedSms2)}>
-                  {copiedSms2 ? 'Copie !' : 'Copier'}
+                  {copiedSms2 ? t('copied') : t('copy')}
                 </button>
               </div>
 
@@ -281,15 +284,15 @@ export function StatsTab({ config }: StatsTabProps) {
                 rel="noopener noreferrer"
                 style={styles.waBtn}
               >
-                Envoyer par WhatsApp &#8599;
+                {t('sendViaWhatsapp')}
               </a>
 
               {/* Lien avis direct */}
               <div style={styles.qrBlock}>
-                <div style={styles.messageMeta}>Lien direct a partager</div>
+                <div style={styles.messageMeta}>{t('directLink')}</div>
                 <div style={styles.reviewLinkBox}>{reviewUrl}</div>
                 <p style={styles.qrHint}>
-                  Copiez ce lien et envoyez-le a vos clients par SMS, email ou WhatsApp.
+                  {t('directLinkHint')}
                 </p>
               </div>
             </div>
@@ -300,12 +303,12 @@ export function StatsTab({ config }: StatsTabProps) {
       {/* ── SECTION 3 : Prise de RDV Cal.com (affichée si calUrl défini, tous types de clients) ── */}
       {calUrl && (
         <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Prise de RDV Cal.com</h2>
+          <h2 style={styles.sectionTitle}>{t('bookingSection')}</h2>
 
           <div style={styles.card}>
-            <div style={styles.cardLabel}>Votre lien de reservation</div>
+            <div style={styles.cardLabel}>{t('yourBookingLink')}</div>
             <p style={styles.cardHint}>
-              Partagez ce lien a vos prospects pour qu&rsquo;ils reservent un creneau directement dans votre agenda.
+              {t('bookingHint')}
             </p>
 
             <div style={styles.reviewLinkBox}>{calUrl}</div>
@@ -315,7 +318,7 @@ export function StatsTab({ config }: StatsTabProps) {
                 style={styles.copyBtn}
                 onClick={() => copyText(calUrl, setCopiedCal)}
               >
-                {copiedCal ? 'Copie !' : 'Copier le lien'}
+                {copiedCal ? t('copied') : t('copyLink')}
               </button>
               <a
                 href={calUrl}
@@ -323,7 +326,7 @@ export function StatsTab({ config }: StatsTabProps) {
                 rel="noopener noreferrer"
                 style={{ ...styles.copyBtn, textDecoration: 'none', display: 'inline-block' }}
               >
-                Ouvrir &#8599;
+                {t('open')} &#8599;
               </a>
               <a
                 href="https://app.cal.com/event-types"
@@ -331,7 +334,7 @@ export function StatsTab({ config }: StatsTabProps) {
                 rel="noopener noreferrer"
                 style={{ ...styles.copyBtn, textDecoration: 'none', display: 'inline-block' }}
               >
-                Gerer mes disponibilites &#8599;
+                {t('manageAvailability')}
               </a>
             </div>
           </div>
@@ -339,14 +342,14 @@ export function StatsTab({ config }: StatsTabProps) {
       )}
 
       <div style={styles.contactFooter}>
-        Une question ?{' '}
+        {t('questionFooter')}{' '}
         <a
-          href={`https://wa.me/${site?.contactMarc?.whatsapp || '33688766648'}?text=Bonjour Marc, j'ai une question sur mon espace admin.`}
+          href={`https://wa.me/${site?.contactMarc?.whatsapp || '33688766648'}?text=${encodeURIComponent(locale === 'en' ? 'Hi Marc, I have a question about my admin.' : "Bonjour Marc, j'ai une question sur mon espace admin.")}`}
           target="_blank"
           rel="noopener noreferrer"
           style={styles.contactLink}
         >
-          Contacter Marc par WhatsApp
+          {t('contactMarcWhatsapp')}
         </a>
       </div>
     </div>

@@ -3,6 +3,7 @@ import { useContent } from './hooks/useContent';
 import { useDirty } from './hooks/useDirty';
 import { useToastContext, navigate } from './CmsApp';
 import { SkeletonForm } from './ui/Skeleton';
+import { t } from './locales';
 
 const SEO_PATH = 'src/content/seo/index.json';
 
@@ -43,12 +44,12 @@ export function SeoEditor() {
     if (saving) return;
     setSaving(true);
     try {
-      const result = await saveFile(SEO_PATH, data as unknown as Record<string, unknown>, sha, '[CMS] Mise à jour SEO');
+      const result = await saveFile(SEO_PATH, data as unknown as Record<string, unknown>, sha, '[CMS] Update SEO');
       setSha(result.sha);
       setClean();
-      addToast('Enregistre ! Votre site se met a jour.', 'success');
+      addToast(t('saved'), 'success');
     } catch (err) {
-      addToast(err instanceof Error ? err.message : 'Erreur', 'error');
+      addToast(err instanceof Error ? err.message : t('seoUpdateError'), 'error');
     } finally {
       setSaving(false);
     }
@@ -98,30 +99,30 @@ export function SeoEditor() {
   return (
     <div>
       <div style={styles.header}>
-        <button onClick={() => navigate('#/')} style={styles.backBtn}>← Retour</button>
-        <h1 style={styles.title}>SEO & Référencement</h1>
+        <button onClick={() => navigate('#/')} style={styles.backBtn}>{t('back')}</button>
+        <h1 style={styles.title}>{t('seoTitle')}</h1>
       </div>
 
       {/* Global */}
       <div style={styles.form}>
-        <h2 style={styles.sectionTitle}>Paramètres globaux</h2>
+        <h2 style={styles.sectionTitle}>{t('seoGlobalSettings')}</h2>
         <div style={styles.field}>
-          <label style={styles.label}>Nom du site</label>
+          <label style={styles.label}>{t('seoSiteName')}</label>
           <input style={styles.input} value={data.global.siteName} onChange={(e) => updateGlobal('siteName', e.target.value)} />
         </div>
         <div style={styles.field}>
-          <label style={styles.label}>Séparateur de titre</label>
+          <label style={styles.label}>{t('seoSeparator')}</label>
           <input style={styles.input} value={data.global.separator} onChange={(e) => updateGlobal('separator', e.target.value)} placeholder="—" />
         </div>
         <div style={styles.field}>
-          <label style={styles.label}>Image OG par défaut</label>
+          <label style={styles.label}>{t('seoOgDefault')}</label>
           <input style={styles.input} value={data.global.defaultOgImage} onChange={(e) => updateGlobal('defaultOgImage', e.target.value)} placeholder="/images/og-default.jpg" />
         </div>
       </div>
 
       {/* Page selector */}
       <div style={styles.form}>
-        <h2 style={styles.sectionTitle}>Par page</h2>
+        <h2 style={styles.sectionTitle}>{t('seoPerPage')}</h2>
         <div style={styles.pageTabs}>
           {Object.keys(data.pages).map((path) => (
             <button
@@ -129,12 +130,12 @@ export function SeoEditor() {
               onClick={() => setActivePage(path)}
               style={activePage === path ? styles.pageTabActive : styles.pageTab}
             >
-              {path === '/' ? 'Accueil' : path}
+              {path === '/' ? t('seoHome') : path}
             </button>
           ))}
           <button
             onClick={() => {
-              const path = prompt('Chemin de la page (ex: /contact)');
+              const path = prompt(t('seoPagePromptPath'));
               if (path && !data.pages[path]) {
                 setData((prev) => ({
                   ...prev,
@@ -153,62 +154,62 @@ export function SeoEditor() {
         {/* Fields */}
         <div style={styles.field}>
           <label style={styles.label}>
-            Titre
+            {t('seoTitleField')}
             <span style={{ ...styles.counter, ...(page.title.length > 60 ? styles.counterRed : {}) }}>
               {page.title.length}/60
             </span>
           </label>
-          <input style={styles.input} value={page.title} onChange={(e) => updatePage('title', e.target.value)} placeholder="Titre de la page" />
+          <input style={styles.input} value={page.title} onChange={(e) => updatePage('title', e.target.value)} placeholder={t('seoPageTitle')} />
         </div>
 
         <div style={styles.field}>
           <label style={styles.label}>
-            Description
+            {t('seoDescField')}
             <span style={{ ...styles.counter, ...(page.description.length > 160 ? styles.counterRed : {}) }}>
               {page.description.length}/160
             </span>
           </label>
-          <textarea style={styles.textarea} value={page.description} onChange={(e) => updatePage('description', e.target.value)} placeholder="Description de la page" rows={3} />
+          <textarea style={styles.textarea} value={page.description} onChange={(e) => updatePage('description', e.target.value)} placeholder={t('seoPageDesc')} rows={3} />
         </div>
 
         <div style={styles.field}>
-          <label style={styles.label}>Image OG</label>
-          <input style={styles.input} value={page.ogImage} onChange={(e) => updatePage('ogImage', e.target.value)} placeholder="Laisser vide pour celle par défaut" />
+          <label style={styles.label}>{t('seoOgField')}</label>
+          <input style={styles.input} value={page.ogImage} onChange={(e) => updatePage('ogImage', e.target.value)} placeholder={t('seoOgEmpty')} />
         </div>
 
         <div style={styles.field}>
           <label style={styles.checkboxLabel}>
             <input type="checkbox" checked={page.noindex} onChange={(e) => updatePage('noindex', e.target.checked)} />
-            Ne pas indexer cette page (noindex)
+            {t('seoNoIndex')}
           </label>
         </div>
       </div>
 
       {/* Google Preview */}
       <div style={styles.form}>
-        <h2 style={styles.sectionTitle}>Aperçu Google</h2>
+        <h2 style={styles.sectionTitle}>{t('seoGooglePreview')}</h2>
         <div style={styles.googlePreview}>
-          <div style={styles.googleTitle}>{fullTitle || 'Titre de la page'}</div>
+          <div style={styles.googleTitle}>{fullTitle || t('seoPageTitle')}</div>
           <div style={styles.googleUrl}>example.com{activePage}</div>
-          <div style={styles.googleDesc}>{page.description || 'Description de la page...'}</div>
+          <div style={styles.googleDesc}>{page.description || t('seoPageDesc')}</div>
         </div>
       </div>
 
       {/* OG Preview */}
       <div style={{ ...styles.form, marginBottom: '5rem' }}>
-        <h2 style={styles.sectionTitle}>Aperçu réseaux sociaux</h2>
+        <h2 style={styles.sectionTitle}>{t('seoSocialPreview')}</h2>
         <div style={styles.ogPreview}>
           <div style={styles.ogImage}>
             {(page.ogImage || data.global.defaultOgImage) ? (
               <img src={page.ogImage || data.global.defaultOgImage} alt="OG" style={styles.ogImg} />
             ) : (
-              <div style={styles.ogPlaceholder}>Pas d'image</div>
+              <div style={styles.ogPlaceholder}>{t('seoNoImage')}</div>
             )}
           </div>
           <div style={styles.ogContent}>
             <div style={styles.ogDomain}>example.com</div>
-            <div style={styles.ogTitle}>{page.title || 'Titre de la page'}</div>
-            <div style={styles.ogDesc}>{page.description || 'Description...'}</div>
+            <div style={styles.ogTitle}>{page.title || t('seoPageTitle')}</div>
+            <div style={styles.ogDesc}>{page.description || t('seoPageDesc')}</div>
           </div>
         </div>
       </div>
@@ -218,12 +219,12 @@ export function SeoEditor() {
         {dirty && <span style={styles.dirtyDot} />}
         <button onClick={handleSave} disabled={saving || !dirty}
           style={{ ...styles.saveBtn, ...(!dirty ? styles.saveBtnDisabled : {}) }}>
-          {saving ? 'Enregistrement...' : 'Enregistrer'}
+          {saving ? t('saving') : t('save')}
         </button>
         <span style={styles.deployNote}>
-          {dirty ? 'Modifications non enregistrées' : 'Le site sera mis à jour dans ~2 min'}
+          {dirty ? t('dirtyPending') : t('willPublishSoon')}
         </span>
-        <span style={styles.shortcut}>⌘S</span>
+        <span style={styles.shortcut}>{t('shortcutSave')}</span>
       </div>
     </div>
   );

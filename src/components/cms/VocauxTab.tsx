@@ -489,11 +489,22 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
                   </span>
                   <button
                     onClick={() => removeClip(c.id)}
-                    style={styles.iconBtn}
+                    style={styles.deleteBtn}
                     title="Supprimer ce vocal"
+                    aria-label="Supprimer ce vocal"
                     disabled={state === 'uploading'}
                   >
-                    {'\u{1F5D1}\u{FE0F}'}
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 14 14"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.4"
+                      strokeLinecap="round"
+                    >
+                      <path d="M3 3l8 8M11 3l-8 8" />
+                    </svg>
                   </button>
                 </div>
               ))}
@@ -666,6 +677,21 @@ const styles: Record<string, React.CSSProperties> = {
     fontSize: '1.125rem',
     padding: '0.25rem 0.5rem',
     color: '#64748b',
+  },
+  deleteBtn: {
+    flexShrink: 0,
+    width: '28px',
+    height: '28px',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    background: '#fef2f2',
+    color: '#dc2626',
+    border: '1px solid #fecaca',
+    borderRadius: '50%',
+    cursor: 'pointer',
+    padding: 0,
+    transition: 'background 120ms ease, color 120ms ease',
   },
   btnIcon: { fontSize: '1.125rem' },
   tinyHint: {

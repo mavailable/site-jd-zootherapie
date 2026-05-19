@@ -8,6 +8,7 @@ import { ImageField } from './ImageField';
 import { ObjectField } from './ObjectField';
 import { ArrayField } from './ArrayField';
 import { RichTextField } from './RichTextField';
+import { t } from '../locales';
 
 interface FieldRendererProps {
   field: CmsField;
@@ -99,6 +100,6 @@ export function FieldRenderer({ field, value, onChange }: FieldRendererProps) {
       );
 
     default:
-      return <div>Type de champ inconnu : {(field as CmsField).type}</div>;
+      return <div>{t('fieldUnknownType', { type: (field as CmsField).type })}</div>;
   }
 }

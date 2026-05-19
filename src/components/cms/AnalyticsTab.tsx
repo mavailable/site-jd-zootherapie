@@ -1,3 +1,4 @@
+import { t } from './locales';
 import type { CmsConfig } from '../../../cms.types';
 
 interface AnalyticsTabProps {
@@ -19,10 +20,10 @@ export function AnalyticsTab({ config }: AnalyticsTabProps) {
       <div style={styles.fadeIn}>
         <div style={styles.placeholder}>
           <p style={styles.placeholderText}>
-            Les statistiques ne sont pas encore configurees pour votre site.
+            {t('statsNotConfigured')}
           </p>
           <p style={styles.placeholderHint}>
-            Contactez Marc pour activer le suivi de vos visites.
+            {t('statsContactMarc')}
           </p>
         </div>
       </div>
@@ -36,11 +37,10 @@ export function AnalyticsTab({ config }: AnalyticsTabProps) {
           <span style={styles.icon}>&#128202;</span>
         </div>
 
-        <h2 style={styles.title}>Vos statistiques de visites</h2>
+        <h2 style={styles.title}>{t('yourVisitStats')}</h2>
 
         <p style={styles.lead}>
-          Visites, pages les plus vues, sources de trafic, appareils utilises.
-          Mises a jour en temps reel, sans cookie ni tracking publicitaire.
+          {t('statsLead')}
         </p>
 
         <a
@@ -49,28 +49,26 @@ export function AnalyticsTab({ config }: AnalyticsTabProps) {
           rel="noopener noreferrer"
           style={styles.primaryBtn}
         >
-          Ouvrir mon dashboard &#8599;
+          {t('openDashboard')}
         </a>
 
         <div style={styles.helpRow}>
           <div style={styles.helpItem}>
-            <div style={styles.helpLabel}>Service</div>
+            <div style={styles.helpLabel}>{t('serviceLabel')}</div>
             <div style={styles.helpValue}>Umami Cloud</div>
           </div>
           <div style={styles.helpItem}>
-            <div style={styles.helpLabel}>Cout pour vous</div>
+            <div style={styles.helpLabel}>{t('costLabel')}</div>
             <div style={styles.helpValue}>0&nbsp;&euro;</div>
           </div>
           <div style={styles.helpItem}>
-            <div style={styles.helpLabel}>Conformite</div>
-            <div style={styles.helpValue}>RGPD, sans cookie</div>
+            <div style={styles.helpLabel}>{t('complianceLabel')}</div>
+            <div style={styles.helpValue}>{t('complianceValue')}</div>
           </div>
         </div>
 
         <p style={styles.note}>
-          Le dashboard s&rsquo;ouvre dans un nouvel onglet et reste accessible
-          en permanence. Vous pouvez le mettre en favori pour y revenir
-          rapidement.
+          {t('statsNote')}
         </p>
       </div>
     </div>
