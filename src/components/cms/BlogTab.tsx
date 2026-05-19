@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { CmsConfig } from '../../../cms.types';
 import { useContent } from './hooks/useContent';
-import { navigate } from './CmsApp';
+import { navigate, useToastContext } from './CmsApp';
 import { t, locale, intlLocale } from './locales';
 
 interface BlogTabProps {
@@ -52,9 +52,24 @@ function startWritingSelf(idea: BlogIdea) {
   navigate('#/collection/blog/_new');
 }
 
+function sendVocalForIdea(idea: BlogIdea) {
+  try {
+    sessionStorage.setItem('vocaux_prefill', JSON.stringify({
+      sujet: idea.title,
+      categorie: 'idee-article',
+    }));
+  } catch {
+    // silent
+  }
+  navigate('#/vocaux');
+}
+
 export function BlogTab({ config }: BlogTabProps) {
-  const { fetchFile, fetchList } = useContent();
-  const [ideas, setIdeas] = useState<BlogIdea[] | null>(null);
+  const { fetchFile, fetchList, saveFile } = useContent();
+  const { addToast } = useToastContext();
+  const [allIdeas, setAllIdeas] = useState<BlogIdea[] | null>(null);
+  const [ideasSha, setIdeasSha] = useState<string | null>(null);
+  const [skippingIdx, setSkippingIdx] = useState<number | null>(null);
   const [ideasError, setIdeasError] = useState(false);
   const [articles, setArticles] = useState<BlogArticleEntry[]>([]);
   const [articlesLoading, setArticlesLoading] = useState(true);
@@ -62,21 +77,63 @@ export function BlogTab({ config }: BlogTabProps) {
   const siteName = config.siteName;
   const marcWhatsapp = config.site?.contactMarc?.whatsapp || MARC_WHATSAPP;
 
+  // Vue dérivée : 5 premières idées à faire (l'index renvoyé correspond à allIdeas)
+  const visibleIdeas: Array<{ idea: BlogIdea; absoluteIdx: number }> = [];
+  if (allIdeas) {
+    for (let i = 0; i < allIdeas.length && visibleIdeas.length < 5; i++) {
+      const it = allIdeas[i];
+      if (!it.status || it.status === 'a-faire') {
+        visibleIdeas.push({ idea: it, absoluteIdx: i });
+      }
+    }
+  }
+
   useEffect(() => {
     fetchFile(IDEAS_PATH)
       .then((data) => {
         const raw = data.content?.ideas;
+        setIdeasSha(data.sha);
         if (Array.isArray(raw)) {
-          const pending = (raw as BlogIdea[]).filter((i) => !i.status || i.status === 'a-faire');
-          setIdeas(pending.slice(0, 5));
+          setAllIdeas(raw as BlogIdea[]);
         } else {
-          setIdeas([]);
+          setAllIdeas([]);
         }
       })
       .catch(() => {
         setIdeasError(true);
       });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  async function skipIdea(absoluteIdx: number) {
+    if (!allIdeas || skippingIdx !== null) return;
+    const target = allIdeas[absoluteIdx];
+    if (!target) return;
+    if (!window.confirm(t('skipIdeaConfirm'))) return;
+
+    setSkippingIdx(absoluteIdx);
+    const previous = allIdeas;
+    const previousSha = ideasSha;
+    const next = allIdeas.map((it, i) =>
+      i === absoluteIdx ? { ...it, status: 'refusee' } : it
+    );
+    setAllIdeas(next); // optimiste
+
+    try {
+      const result = await saveFile(
+        IDEAS_PATH,
+        { ideas: next },
+        ideasSha || undefined,
+        `[blog] idée passée : ${target.title}`
+      );
+      setIdeasSha(result.sha);
+    } catch {
+      setAllIdeas(previous);
+      setIdeasSha(previousSha);
+      addToast(t('skipIdeaError'), 'error');
+    } finally {
+      setSkippingIdx(null);
+    }
+  }
 
   useEffect(() => {
     const path = config.collections?.blog?.path || 'src/content/blog';
@@ -133,48 +190,85 @@ export function BlogTab({ config }: BlogTabProps) {
           </div>
         )}
 
-        {!ideasError && ideas === null && (
+        {!ideasError && allIdeas === null && (
           <div style={styles.placeholder}>{t('ideasLoading')}</div>
         )}
 
-        {!ideasError && ideas !== null && ideas.length === 0 && (
+        {!ideasError && allIdeas !== null && visibleIdeas.length === 0 && (
           <div style={styles.placeholder}>
             {t('ideasPlaceholderEmpty')}
           </div>
         )}
 
-        {!ideasError && ideas && ideas.length > 0 && (
+        {!ideasError && visibleIdeas.length > 0 && (
           <div style={styles.ideaList}>
-            {ideas.map((idea, i) => (
-              <div key={i} style={styles.ideaCard}>
-                <div style={styles.ideaHeader}>
-                  <span style={styles.ideaNumber}>{i + 1}</span>
-                  <div style={styles.ideaBody}>
-                    <div style={styles.ideaTitle}>{idea.title}</div>
-                    {idea.source && <div style={styles.ideaSource}>{idea.source}</div>}
-                    {idea.notes && <div style={styles.ideaNotes}>{idea.notes}</div>}
-                  </div>
-                </div>
-
-                <div style={styles.ideaActions}>
-                  <a
-                    href={whatsappUrl(idea.title)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={styles.waBtn}
-                  >
-                    {t('askMarcVoice')}
-                  </a>
+            {visibleIdeas.map(({ idea, absoluteIdx }, i) => {
+              const isSkipping = skippingIdx === absoluteIdx;
+              return (
+                <div key={absoluteIdx} style={styles.ideaCard}>
                   <button
                     type="button"
-                    onClick={() => startWritingSelf(idea)}
-                    style={styles.writeBtn}
+                    onClick={() => skipIdea(absoluteIdx)}
+                    disabled={isSkipping || skippingIdx !== null}
+                    title={t('skipIdea')}
+                    aria-label={t('skipIdea')}
+                    style={{
+                      ...styles.skipBtn,
+                      opacity: isSkipping ? 0.5 : 1,
+                      cursor: isSkipping ? 'wait' : 'pointer',
+                    }}
                   >
-                    {t('writeMyself')}
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 14 14"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.2"
+                      strokeLinecap="round"
+                    >
+                      <path d="M3 3l8 8M11 3l-8 8" />
+                    </svg>
                   </button>
+                  <div style={styles.ideaHeader}>
+                    <span style={styles.ideaNumber}>{i + 1}</span>
+                    <div style={styles.ideaBody}>
+                      <div style={styles.ideaTitle}>{idea.title}</div>
+                      {idea.source && <div style={styles.ideaSource}>{idea.source}</div>}
+                      {idea.notes && <div style={styles.ideaNotes}>{idea.notes}</div>}
+                    </div>
+                  </div>
+
+                  <div style={styles.ideaActions}>
+                    {config.vocaux?.enabled ? (
+                      <button
+                        type="button"
+                        onClick={() => sendVocalForIdea(idea)}
+                        style={styles.waBtn}
+                      >
+                        {t('askMarcVoice')}
+                      </button>
+                    ) : (
+                      <a
+                        href={whatsappUrl(idea.title)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={styles.waBtn}
+                      >
+                        {t('askMarcVoice')}
+                      </a>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => startWritingSelf(idea)}
+                      style={styles.writeBtn}
+                    >
+                      {t('writeMyself')}
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </section>
@@ -267,12 +361,29 @@ const styles: Record<string, React.CSSProperties> = {
   // Ideas
   ideaList: { display: 'flex', flexDirection: 'column' as const, gap: '0.75rem' },
   ideaCard: {
+    position: 'relative' as const,
     background: '#fff',
     border: '1px solid #e2e8f0',
     borderRadius: '12px',
     padding: '1rem 1.125rem',
   },
-  ideaHeader: { display: 'flex', gap: '0.75rem', alignItems: 'flex-start', marginBottom: '0.875rem' },
+  skipBtn: {
+    position: 'absolute' as const,
+    top: '0.5rem',
+    right: '0.5rem',
+    width: '24px',
+    height: '24px',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    background: 'transparent',
+    color: '#94a3b8',
+    border: 'none',
+    borderRadius: '50%',
+    padding: 0,
+    transition: 'background 120ms ease, color 120ms ease',
+  },
+  ideaHeader: { display: 'flex', gap: '0.75rem', alignItems: 'flex-start', marginBottom: '0.875rem', paddingRight: '1.5rem' },
   ideaNumber: {
     flexShrink: 0,
     width: '28px',
