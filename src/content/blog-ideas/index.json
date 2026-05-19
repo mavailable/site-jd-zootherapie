@@ -1,6 +1,31 @@
 {
   "ideas": [
     {
+      "title": "Comment choisir entre zoothérapie et calinothérapie pour son proche aidé",
+      "source": "FAQ site + article existant \"zoothérapie vs calinothérapie\" — demande récurrente",
+      "status": "a-faire",
+      "notes": "Version courte orientée aidants : décision pratique, pas théorique. Critères concrets : mobilité, peur animaux, objectif."
+    },
+    {
+      "title": "Une séance type en EHPAD : ce qu'il se passe vraiment en 45 minutes",
+      "source": "Verbatim Jennifer \"on veut montrer qu'on n'est pas des amateurs\" — demystifier le métier",
+      "status": "publie",
+      "slug": "seance-type-en-ehpad-45-minutes",
+      "notes": "Récit minute par minute avec Tips / les animaux. Publié 2026-05-05 sur la base de 4 vocaux WhatsApp Jennifer du 2026-05-04."
+    },
+    {
+      "title": "Pourquoi je refuse certaines demandes (et ce que ça dit du métier)",
+      "source": "Point positionnement : accompagnement à objectifs concrets, pas soin pathologique",
+      "status": "a-faire",
+      "notes": "Myth-busting : la zoothérapie ce n'est pas \"un animal + une personne malade = miracle\". Angle honnêteté."
+    },
+    {
+      "title": "Le Grand Est vu depuis mes séances : besoins, réalités, attentes",
+      "source": "Zone d'intervention Moselle/Meurthe-et-Moselle — positionnement local",
+      "status": "a-faire",
+      "notes": "Saisonnier / territorial : partenariats EHPAD, écoles, IME locaux. Bon pour SEO local."
+    },
+    {
       "title": "Combien coûte une intervention zoothérapie en EHPAD (et comment la financer)",
       "source": "Frein n°1 des directions B2B — ARS, dotation dépendance, projets associatifs, mécénat, mutuelles",
       "status": "a-faire",
@@ -29,31 +54,6 @@
       "source": "Anecdote forte Jennifer — réassure les directions B2B qui craignent que ça \"bouleverse\" les résidents",
       "status": "a-faire",
       "notes": "Récit narratif sur 1 séance précise. Angle : les larmes ne sont pas un problème, c'est un signal. Démontre la compétence d'accompagnement émotionnel (vs simple visite avec animal). Touche les directeurs ET les familles."
-    },
-    {
-      "title": "Comment choisir entre zoothérapie et calinothérapie pour son proche aidé",
-      "source": "FAQ site + article existant \"zoothérapie vs calinothérapie\" — demande récurrente",
-      "status": "a-faire",
-      "notes": "Version courte orientée aidants : décision pratique, pas théorique. Critères concrets : mobilité, peur animaux, objectif."
-    },
-    {
-      "title": "Une séance type en EHPAD : ce qu'il se passe vraiment en 45 minutes",
-      "source": "Verbatim Jennifer \"on veut montrer qu'on n'est pas des amateurs\" — demystifier le métier",
-      "status": "publie",
-      "slug": "seance-type-en-ehpad-45-minutes",
-      "notes": "Récit minute par minute avec Tips / les animaux. Publié 2026-05-05 sur la base de 4 vocaux WhatsApp Jennifer du 2026-05-04."
-    },
-    {
-      "title": "Pourquoi je refuse certaines demandes (et ce que ça dit du métier)",
-      "source": "Point positionnement : accompagnement à objectifs concrets, pas soin pathologique",
-      "status": "a-faire",
-      "notes": "Myth-busting : la zoothérapie ce n'est pas \"un animal + une personne malade = miracle\". Angle honnêteté."
-    },
-    {
-      "title": "Le Grand Est vu depuis mes séances : besoins, réalités, attentes",
-      "source": "Zone d'intervention Moselle/Meurthe-et-Moselle — positionnement local",
-      "status": "a-faire",
-      "notes": "Saisonnier / territorial : partenariats EHPAD, écoles, IME locaux. Bon pour SEO local."
     },
     {
       "title": "Enfant qui a peur des chiens : quand la zoothérapie aide (et quand elle n'est pas la solution)",
