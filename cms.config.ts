@@ -11,9 +11,11 @@ const cmsConfig: CmsConfig = {
 
   gbp: {
     enabled: true,
-    mode: 'manual',
+    mode: 'live',
     gbpEditUrl: 'https://business.google.com/posts',
     utmCampaignPrefix: 'blog',
+    accountId: 'accounts/101943929235366217597',
+    locationId: 'locations/8153826328713306145',
   },
 
   repo: 'mavailable/site-jd-zootherapie',
