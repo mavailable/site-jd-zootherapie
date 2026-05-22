@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import type { CmsConfig } from '../../../cms.types';
 import { useToastContext } from './CmsApp';
+import { t, intlLocale } from './locales';
 
 type RecorderState =
   | 'idle'
@@ -41,14 +42,14 @@ interface VocalEntry {
 }
 
 const CATEGORIES: Array<{ value: string; label: string }> = [
-  { value: 'idee-article', label: "Idée d'article de blog" },
-  { value: 'concept', label: 'Concept ou réflexion' },
-  { value: 'post-facebook', label: 'Post Facebook' },
-  { value: 'post-linkedin', label: 'Post LinkedIn' },
-  { value: 'landing-page', label: 'Landing page / promo' },
-  { value: 'question', label: 'Question pour Marc' },
-  { value: 'feedback', label: 'Retour / modif sur le site' },
-  { value: 'autre', label: 'Autre' },
+  { value: 'idee-article', label: t('vocauxCatIdeeArticle') },
+  { value: 'concept', label: t('vocauxCatConcept') },
+  { value: 'post-facebook', label: t('vocauxCatPostFacebook') },
+  { value: 'post-linkedin', label: t('vocauxCatPostLinkedin') },
+  { value: 'landing-page', label: t('vocauxCatLandingPage') },
+  { value: 'question', label: t('vocauxCatQuestion') },
+  { value: 'feedback', label: t('vocauxCatFeedback') },
+  { value: 'autre', label: t('vocauxCatAutre') },
 ];
 
 const CATEGORIE_LABEL: Record<string, string> = Object.fromEntries(
@@ -56,9 +57,9 @@ const CATEGORIE_LABEL: Record<string, string> = Object.fromEntries(
 );
 
 const STATUT_LABEL: Record<VocalEntry['statut'], string> = {
-  envoye: 'Envoyé',
-  transcrit: 'Transcrit',
-  publie: 'Publié',
+  envoye: t('vocauxStatutEnvoye'),
+  transcrit: t('vocauxStatutTranscrit'),
+  publie: t('vocauxStatutPublie'),
 };
 
 const STATUT_ICON: Record<VocalEntry['statut'], string> = {
@@ -78,7 +79,7 @@ function formatBytes(b: number): string {
 function formatDate(iso: string): string {
   try {
     const d = new Date(iso);
-    return d.toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' });
+    return d.toLocaleString(intlLocale, { dateStyle: 'short', timeStyle: 'short' });
   } catch {
     return iso;
   }
@@ -135,9 +136,7 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
   const analyserRef = useRef<AnalyserNode | null>(null);
   const rafRef = useRef<number | null>(null);
 
-  const hint =
-    config.vocaux?.hint ||
-    "Enregistre une ou plusieurs notes vocales pour partager une idée, un retour, une question. Marc reçoit tes vocaux et les traite.";
+  const hint = config.vocaux?.hint || t('vocauxDefaultHint');
 
   const loadList = useCallback(async () => {
     setLoadingList(true);
@@ -147,7 +146,7 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
       const data = await resp.json();
       setEntries(Array.isArray(data.entries) ? data.entries : []);
     } catch (err: any) {
-      setError(`Impossible de charger l'historique : ${err.message}`);
+      setError(t('vocauxListLoadError', { msg: err.message }));
     } finally {
       setLoadingList(false);
     }
@@ -254,7 +253,7 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
       supportedMimeRef.current = supportedMime;
       setState('ready');
     } catch (err: any) {
-      setError(`Accès micro refusé : ${err.message || err.name}`);
+      setError(t('vocauxMicError', { msg: err.message || err.name }));
       setState('idle');
     }
   };
@@ -262,7 +261,7 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
   const startRecording = () => {
     if (!streamRef.current) return;
     if (clips.length >= MAX_CLIPS) {
-      setError(`Maximum ${MAX_CLIPS} vocaux par envoi.`);
+      setError(t('vocauxMaxClips', { n: MAX_CLIPS }));
       return;
     }
     setError(null);
@@ -344,7 +343,7 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
   const sendAll = async () => {
     if (clips.length === 0) return;
     if (!sujet.trim()) {
-      setError('Le sujet est obligatoire.');
+      setError(t('vocauxSubjectRequired'));
       return;
     }
     setState('uploading');
@@ -372,14 +371,14 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
       }
       addToast(
         clips.length === 1
-          ? 'Vocal envoyé à Marc.'
-          : `${clips.length} vocaux envoyés à Marc.`,
+          ? t('vocauxSent1')
+          : t('vocauxSentN', { n: clips.length }),
         'success'
       );
       resetAll();
       loadList();
     } catch (err: any) {
-      setError(`Envoi échoué : ${err.message}`);
+      setError(t('vocauxSendFailed', { msg: err.message }));
       setState('reviewing');
     }
   };
@@ -389,12 +388,12 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
 
   return (
     <div>
-      <h2 style={styles.h2}>Mes vocaux</h2>
+      <h2 style={styles.h2}>{t('vocauxTitle')}</h2>
       <p style={styles.intro}>{hint}</p>
 
       <div style={styles.card}>
         <label style={styles.label}>
-          Catégorie
+          {t('vocauxCategory')}
           <select
             value={categorie}
             onChange={(e) => setCategorie(e.target.value)}
@@ -410,12 +409,12 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
         </label>
 
         <label style={{ ...styles.label, marginTop: '1rem' }}>
-          Sujet <span style={styles.required}>*</span>
+          {t('vocauxSubject')} <span style={styles.required}>*</span>
           <input
             type="text"
             value={sujet}
             onChange={(e) => setSujet(e.target.value)}
-            placeholder="ex: idée article sur Caramel et les ados"
+            placeholder={t('vocauxSubjectPlaceholder')}
             style={styles.input}
             disabled={state === 'recording' || state === 'uploading'}
             required
@@ -426,17 +425,17 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
           <div style={styles.center}>
             <button onClick={requestMic} style={styles.primaryBtn}>
               <span style={styles.btnIcon}>{'\u{1F3A4}'}</span>
-              <span>Démarrer un enregistrement</span>
+              <span>{t('vocauxStartRecording')}</span>
             </button>
             <p style={styles.tinyHint}>
-              Ton navigateur va te demander l'autorisation d'utiliser le micro.
+              {t('vocauxMicHint')}
             </p>
           </div>
         )}
 
         {state === 'requesting-mic' && (
           <div style={styles.center}>
-            <span style={styles.statusText}>Autorisation du micro…</span>
+            <span style={styles.statusText}>{t('vocauxRequestingMic')}</span>
           </div>
         )}
 
@@ -447,10 +446,10 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
               style={{ ...styles.primaryBtn, background: '#dc2626' }}
             >
               <span style={styles.btnIcon}>{'\u{25CF}'}</span>
-              <span>Enregistrer</span>
+              <span>{t('vocauxRecord')}</span>
             </button>
             <p style={styles.tinyHint}>
-              Parle naturellement. Tu pourras réécouter et en ajouter d'autres.
+              {t('vocauxReadyHint')}
             </p>
           </div>
         )}
@@ -464,7 +463,7 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
             <VuMeter level={level} />
             <button onClick={stopRecording} style={styles.primaryBtn}>
               <span style={styles.btnIcon}>{'\u{25A0}'}</span>
-              <span>Arrêter</span>
+              <span>{t('vocauxStop')}</span>
             </button>
           </div>
         )}
@@ -473,10 +472,9 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
         {clips.length > 0 && state !== 'recording' && (
           <div style={{ marginTop: '1.25rem' }}>
             <p style={styles.label}>
-              {clips.length} vocal{clips.length > 1 ? 'aux' : ''} prêt
-              {clips.length > 1 ? 's' : ''} à envoyer ·{' '}
+              {clips.length === 1 ? t('vocauxClipsReady1') : t('vocauxClipsReadyN', { n: clips.length })}
               <span style={{ color: '#64748b', fontWeight: 400 }}>
-                durée totale {formatDuration(totalDuration)} · {formatBytes(totalBytes)}
+                {t('vocauxTotalDuration', { duration: formatDuration(totalDuration), size: formatBytes(totalBytes) })}
               </span>
             </p>
             <div style={styles.clipList}>
@@ -490,8 +488,8 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
                   <button
                     onClick={() => removeClip(c.id)}
                     style={styles.deleteBtn}
-                    title="Supprimer ce vocal"
-                    aria-label="Supprimer ce vocal"
+                    title={t('vocauxDeleteClip')}
+                    aria-label={t('vocauxDeleteClip')}
                     disabled={state === 'uploading'}
                   >
                     <svg
@@ -515,18 +513,18 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
                 {clips.length < MAX_CLIPS && (
                   <button onClick={startRecording} style={styles.secondaryBtn}>
                     <span style={styles.btnIcon}>{'\u{2795}'}</span>
-                    <span>Ajouter un autre vocal</span>
+                    <span>{t('vocauxAddAnother')}</span>
                   </button>
                 )}
                 <button
                   onClick={sendAll}
                   style={styles.primaryBtn}
                   disabled={!sujet.trim()}
-                  title={!sujet.trim() ? 'Le sujet est obligatoire' : undefined}
+                  title={!sujet.trim() ? t('vocauxSubjectRequiredTooltip') : undefined}
                 >
                   <span style={styles.btnIcon}>{'\u{2709}\u{FE0F}'}</span>
                   <span>
-                    Envoyer à Marc
+                    {t('vocauxSendToMarc')}
                     {clips.length > 1 ? ` (${clips.length})` : ''}
                   </span>
                 </button>
@@ -538,7 +536,7 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
         {state === 'uploading' && (
           <div style={styles.center}>
             <span style={styles.statusText}>
-              Envoi en cours{clips.length > 1 ? ` (${clips.length} fichiers)` : ''}…
+              {clips.length > 1 ? t('vocauxUploadingFiles', { n: clips.length }) : `${t('vocauxUploading')}…`}
             </span>
           </div>
         )}
@@ -546,11 +544,11 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
         {error && <div style={styles.error}>{error}</div>}
       </div>
 
-      <h3 style={styles.h3}>Historique</h3>
+      <h3 style={styles.h3}>{t('vocauxHistory')}</h3>
       {loadingList ? (
-        <p style={styles.tinyHint}>Chargement…</p>
+        <p style={styles.tinyHint}>{t('articlesLoading')}</p>
       ) : entries.length === 0 ? (
-        <p style={styles.tinyHint}>Aucun vocal envoyé pour le moment.</p>
+        <p style={styles.tinyHint}>{t('vocauxHistoryEmpty')}</p>
       ) : (
         <div style={styles.list}>
           {entries.map((e) => {
@@ -569,11 +567,12 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
                 </div>
                 <div style={styles.entrySujet}>
                   {catLabel && <span style={styles.catBadge}>{catLabel}</span>}
-                  {e.sujet || <em style={{ color: '#94a3b8' }}>sans sujet</em>}
+                  {e.sujet || <em style={{ color: '#94a3b8' }}>{t('vocauxNoSubject')}</em>}
                 </div>
                 <div style={styles.entryMeta}>
-                  {atts.length} fichier{atts.length > 1 ? 's' : ''} ·{' '}
-                  {formatBytes(totalSize)}
+                  {atts.length === 1
+                    ? t('vocauxFiles1', { size: formatBytes(totalSize) })
+                    : t('vocauxFilesN', { n: atts.length, size: formatBytes(totalSize) })}
                 </div>
               </div>
             );
@@ -589,7 +588,7 @@ function VuMeter({ level }: { level: number }) {
   const segments = 20;
   const active = Math.round((level / 100) * segments);
   return (
-    <div style={vuStyles.wrapper} aria-label={`Niveau audio : ${level}%`}>
+    <div style={vuStyles.wrapper} aria-label={t('vocauxLevelAria', { level })}>
       {Array.from({ length: segments }).map((_, i) => {
         const isOn = i < active;
         const color =
