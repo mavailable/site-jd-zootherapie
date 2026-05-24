@@ -635,8 +635,8 @@
         "#Répit"
       ],
       "cta": "MP structures (mutuelles, CCAS, ARS, associations)",
-      "status": "draft",
-      "published_at": null,
+      "status": "published",
+      "published_at": "2026-05-24T10:14:04.611Z",
       "client_modified_text": null,
       "client_comment": null
     },
