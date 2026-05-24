@@ -33,6 +33,21 @@ export interface CmsFieldDate {
   required?: boolean;
 }
 
+export interface CmsFieldDatetime {
+  type: 'datetime';
+  label: string;
+  description?: string;
+  required?: boolean;
+}
+
+export interface CmsFieldBoolean {
+  type: 'boolean';
+  label: string;
+  description?: string;
+  required?: boolean;
+  defaultValue?: boolean;
+}
+
 export interface CmsFieldSelect {
   type: 'select';
   label: string;
@@ -78,6 +93,8 @@ export type CmsField =
   | CmsFieldRichText
   | CmsFieldNumber
   | CmsFieldDate
+  | CmsFieldDatetime
+  | CmsFieldBoolean
   | CmsFieldSelect
   | CmsFieldMultiselect
   | CmsFieldImage

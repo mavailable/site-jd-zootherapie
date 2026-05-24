@@ -3,6 +3,7 @@ import type { CmsConfig } from '../../../cms.types';
 import { useContent } from './hooks/useContent';
 import { navigate, useToastContext } from './CmsApp';
 import { t, locale, intlLocale } from './locales';
+import { articleState, type ArticleState } from './blogHelpers';
 
 interface BlogTabProps {
   config: CmsConfig;
@@ -20,6 +21,8 @@ interface BlogArticleEntry {
   title?: string;
   date?: string;
   category?: string;
+  state?: ArticleState;
+  publish_at?: string;
 }
 
 const IDEAS_PATH = 'src/content/blog-ideas/index.json';
@@ -32,6 +35,30 @@ function formatDate(isoDate?: string): string {
   } catch {
     return isoDate;
   }
+}
+
+function formatDateTime(iso?: string): string {
+  if (!iso) return '';
+  try {
+    return new Intl.DateTimeFormat(intlLocale, { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }).format(new Date(iso));
+  } catch {
+    return iso;
+  }
+}
+
+const BADGE_STYLES: Record<ArticleState, { bg: string; color: string; key: string }> = {
+  draft: { bg: '#f1f5f9', color: '#475569', key: 'badgeDraft' },
+  scheduled: { bg: '#fef3c7', color: '#a16207', key: 'badgeScheduled' },
+  published: { bg: '#dcfce7', color: '#15803d', key: 'badgePublished' },
+};
+
+function StateBadge({ state }: { state: ArticleState }) {
+  const s = BADGE_STYLES[state];
+  return (
+    <span style={{ ...styles.stateBadge, background: s.bg, color: s.color }}>
+      {t(s.key)}
+    </span>
+  );
 }
 
 function whatsappUrl(title: string): string {
@@ -146,11 +173,17 @@ export function BlogTab({ config }: BlogTabProps) {
           latest.map(async (f) => {
             try {
               const d = await fetchFile(`${path}/${f.name}`);
+              const c = d.content || {};
               return {
                 name: f.name,
-                title: (d.content?.title as string) || f.name.replace('.json', ''),
-                date: d.content?.date as string | undefined,
-                category: d.content?.category as string | undefined,
+                title: (c.title as string) || f.name.replace('.json', ''),
+                date: c.date as string | undefined,
+                category: c.category as string | undefined,
+                publish_at: c.publish_at as string | undefined,
+                state: articleState({
+                  draft: c.draft as boolean | undefined,
+                  publish_at: c.publish_at as string | undefined,
+                }),
               };
             } catch {
               return { name: f.name };
@@ -295,8 +328,11 @@ export function BlogTab({ config }: BlogTabProps) {
               >
                 <div style={styles.articleTitle}>{a.title}</div>
                 <div style={styles.articleMeta}>
+                  {a.state && <StateBadge state={a.state} />}
                   {a.category && <span style={styles.articleCategory}>{a.category}</span>}
-                  {a.date && <span>{formatDate(a.date)}</span>}
+                  {a.state === 'scheduled' && a.publish_at
+                    ? <span>{t('scheduledFor', { date: formatDateTime(a.publish_at) })}</span>
+                    : a.date && <span>{formatDate(a.date)}</span>}
                 </div>
               </a>
             ))}
@@ -459,6 +495,14 @@ const styles: Record<string, React.CSSProperties> = {
     padding: '2px 8px',
     borderRadius: '4px',
     fontWeight: 500,
+  },
+  stateBadge: {
+    padding: '2px 8px',
+    borderRadius: '999px',
+    fontWeight: 600,
+    fontSize: '0.6875rem',
+    textTransform: 'uppercase' as const,
+    letterSpacing: '0.02em',
   },
   manageLink: {
     display: 'inline-block',

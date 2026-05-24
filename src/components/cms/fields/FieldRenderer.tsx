@@ -2,6 +2,8 @@ import type { CmsField } from '../../../../cms.types';
 import { TextField } from './TextField';
 import { NumberField } from './NumberField';
 import { DateField } from './DateField';
+import { DatetimeField } from './DatetimeField';
+import { BooleanField } from './BooleanField';
 import { SelectField } from './SelectField';
 import { MultiselectField } from './MultiselectField';
 import { ImageField } from './ImageField';
@@ -51,6 +53,24 @@ export function FieldRenderer({ field, value, onChange }: FieldRendererProps) {
           field={field}
           value={value as string}
           onChange={onChange}
+        />
+      );
+
+    case 'datetime':
+      return (
+        <DatetimeField
+          field={field}
+          value={value as string}
+          onChange={onChange}
+        />
+      );
+
+    case 'boolean':
+      return (
+        <BooleanField
+          field={field}
+          value={value as boolean}
+          onChange={onChange as (value: boolean) => void}
         />
       );
 

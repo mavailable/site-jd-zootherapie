@@ -28,7 +28,10 @@ function getDefaultValue(field: CmsField): unknown {
     case 'richtext':
     case 'image':
     case 'date':
+    case 'datetime':
       return '';
+    case 'boolean':
+      return field.defaultValue ?? false;
     case 'number':
       return field.defaultValue ?? 0;
     case 'select':
@@ -226,18 +229,56 @@ export function CollectionEditor({ config, collectionKey, slug }: CollectionEdit
       )}
 
       {/* Form */}
-      {!initialLoading && !loadError && (
-        <div style={styles.form}>
-          {Object.entries(collection.fields).map(([key, field]) => (
-            <FieldRenderer
-              key={key}
-              field={field}
-              value={data[key]}
-              onChange={(val) => handleFieldChange(key, val)}
-            />
-          ))}
-        </div>
-      )}
+      {!initialLoading && !loadError && (() => {
+        // Encart "Publication" dédié : regroupe draft (toggle) + publish_at (datetime)
+        // dans un bloc visuel séparé, hors du flux des champs de contenu.
+        const PUBLICATION_KEYS = ['draft', 'publish_at'];
+        const contentEntries = Object.entries(collection.fields).filter(
+          ([key]) => !PUBLICATION_KEYS.includes(key)
+        );
+        const publicationEntries = PUBLICATION_KEYS
+          .filter((key) => key in collection.fields)
+          .map((key) => [key, collection.fields[key]] as const);
+
+        const hasPublication = publicationEntries.length > 0;
+
+        return (
+          <>
+            <div style={{ ...styles.form, marginBottom: hasPublication ? '1.25rem' : '5rem' }}>
+              {contentEntries.map(([key, field]) => (
+                <FieldRenderer
+                  key={key}
+                  field={field}
+                  value={data[key]}
+                  onChange={(val) => handleFieldChange(key, val)}
+                />
+              ))}
+            </div>
+
+            {hasPublication && (
+              <div style={styles.publicationCard}>
+                <div style={styles.publicationHeader}>
+                  <span style={styles.publicationIcon} aria-hidden="true">📅</span>
+                  <div>
+                    <h2 style={styles.publicationTitle}>{t('publicationSection')}</h2>
+                    <p style={styles.publicationHint}>{t('publicationSectionHint')}</p>
+                  </div>
+                </div>
+                <div style={styles.publicationFields}>
+                  {publicationEntries.map(([key, field]) => (
+                    <FieldRenderer
+                      key={key}
+                      field={field}
+                      value={data[key]}
+                      onChange={(val) => handleFieldChange(key, val)}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+          </>
+        );
+      })()}
 
       {/* Save bar */}
       {!initialLoading && !loadError && (
@@ -317,7 +358,43 @@ const styles: Record<string, React.CSSProperties> = {
     borderRadius: '12px',
     padding: '1.5rem',
     border: '1px solid #e2e8f0',
+    marginBottom: '1.25rem',
+  },
+  publicationCard: {
+    background: '#f8fafc',
+    borderRadius: '12px',
+    padding: '1.5rem',
+    border: '1px solid #e2e8f0',
     marginBottom: '5rem',
+  },
+  publicationHeader: {
+    display: 'flex',
+    alignItems: 'flex-start',
+    gap: '0.75rem',
+    marginBottom: '1.25rem',
+    paddingBottom: '1rem',
+    borderBottom: '1px solid #e2e8f0',
+  },
+  publicationIcon: {
+    fontSize: '1.25rem',
+    lineHeight: 1,
+    marginTop: '2px',
+  },
+  publicationTitle: {
+    fontSize: '1rem',
+    fontWeight: 700,
+    color: '#0f172a',
+    margin: 0,
+  },
+  publicationHint: {
+    fontSize: '0.8125rem',
+    color: '#64748b',
+    margin: '2px 0 0',
+    lineHeight: 1.45,
+  },
+  publicationFields: {
+    display: 'flex',
+    flexDirection: 'column' as const,
   },
   saveBar: {
     position: 'fixed' as const,

@@ -314,6 +314,17 @@ const cmsConfig: CmsConfig = {
         },
         image: { type: 'image', label: "Image d'illustration (hero article)" },
         body: { type: 'richtext', label: 'Contenu (Markdown)' },
+        draft: {
+          type: 'boolean',
+          label: 'Brouillon',
+          description: "Si activé, l'article reste invisible sur le site (travail en cours).",
+          defaultValue: false,
+        },
+        publish_at: {
+          type: 'datetime',
+          label: 'Programmer la publication',
+          description: 'Laissez vide pour publier immédiatement, ou choisissez une date future.',
+        },
       },
     },
   },
