@@ -1,15 +1,55 @@
 ---
 // Page de configuration du mot de passe client — ne pas indexer
 // Accessible via un lien unique avec token (genere par l'admin)
+import cmsConfig from '../../../cms.config';
+
+const cmsLocale = (cmsConfig as { locale?: 'fr' | 'en' }).locale === 'en' ? 'en' : 'fr';
+const i18n = cmsLocale === 'en'
+  ? {
+      title: 'Set up your access',
+      subtitle: 'Choose a password to access your admin dashboard.',
+      choosePassword: 'Choose your password',
+      hint: '6 characters minimum',
+      confirmPassword: 'Confirm your password',
+      submit: 'Continue',
+      submitting: 'Setting up...',
+      successTitle: 'Password set',
+      successText: 'You can now access your admin dashboard.',
+      successCta: 'Open my dashboard',
+      unavailableTitle: 'Setup not available',
+      unavailableText: 'This feature is not enabled for this site yet. Contact your webmaster.',
+      errPasswordShort: 'Password must be at least 6 characters.',
+      errPasswordMismatch: 'Passwords do not match.',
+      errGeneric: 'Something went wrong.',
+      errServer: 'Cannot reach the server. Check your connection.',
+    }
+  : {
+      title: 'Configurez votre acces',
+      subtitle: "Choisissez un mot de passe pour acceder a votre espace d'administration.",
+      choosePassword: 'Choisissez votre mot de passe',
+      hint: '6 caracteres minimum',
+      confirmPassword: 'Confirmez votre mot de passe',
+      submit: 'Valider',
+      submitting: 'Configuration en cours...',
+      successTitle: 'Mot de passe configure',
+      successText: "Vous pouvez maintenant acceder a votre espace d'administration.",
+      successCta: 'Acceder a mon espace',
+      unavailableTitle: 'Configuration non disponible',
+      unavailableText: "Cette fonctionnalite n'est pas encore activee pour ce site. Contactez votre webmaster.",
+      errPasswordShort: 'Le mot de passe doit contenir au moins 6 caracteres.',
+      errPasswordMismatch: 'Les mots de passe ne correspondent pas.',
+      errGeneric: 'Une erreur est survenue.',
+      errServer: 'Impossible de contacter le serveur. Verifiez votre connexion.',
+    };
 ---
 
 <!doctype html>
-<html lang="fr">
+<html lang={cmsLocale}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
-    <title>Configurez votre acces</title>
+    <title>{i18n.title}</title>
     <style>
       *,
       *::before,
@@ -165,44 +205,44 @@
       <div class="card">
         <!-- Formulaire -->
         <div id="form-section">
-          <h1 class="title">Configurez votre acces</h1>
-          <p class="subtitle">Choisissez un mot de passe pour acceder a votre espace d'administration.</p>
+          <h1 class="title">{i18n.title}</h1>
+          <p class="subtitle">{i18n.subtitle}</p>
 
           <div id="error-msg" class="error"></div>
 
           <form id="setup-form">
             <label class="field">
-              Choisissez votre mot de passe
+              {i18n.choosePassword}
               <input type="password" id="password" minlength="6" required autocomplete="new-password" />
-              <span class="hint">6 caracteres minimum</span>
+              <span class="hint">{i18n.hint}</span>
             </label>
 
             <label class="field">
-              Confirmez votre mot de passe
+              {i18n.confirmPassword}
               <input type="password" id="password-confirm" minlength="6" required autocomplete="new-password" />
             </label>
 
-            <button type="submit" class="btn" id="submit-btn">Valider</button>
+            <button type="submit" class="btn" id="submit-btn">{i18n.submit}</button>
           </form>
         </div>
 
         <!-- Succes -->
         <div id="success-section" class="success">
           <div class="success-icon">&#10003;</div>
-          <h2>Mot de passe configure</h2>
-          <p>Vous pouvez maintenant acceder a votre espace d'administration.</p>
-          <a href="/admin">Acceder a mon espace</a>
+          <h2>{i18n.successTitle}</h2>
+          <p>{i18n.successText}</p>
+          <a href="/admin">{i18n.successCta}</a>
         </div>
 
         <!-- Configuration non disponible -->
         <div id="unavailable-section" class="unavailable">
-          <h1 class="title" style="margin-bottom: 0.75rem;">Configuration non disponible</h1>
-          <p>Cette fonctionnalite n'est pas encore activee pour ce site. Contactez votre webmaster.</p>
+          <h1 class="title" style="margin-bottom: 0.75rem;">{i18n.unavailableTitle}</h1>
+          <p>{i18n.unavailableText}</p>
         </div>
       </div>
     </div>
 
-    <script is:inline>
+    <script is:inline define:vars={{ i18n: i18n }}>
       (function () {
         var formSection = document.getElementById('form-section');
         var successSection = document.getElementById('success-section');
@@ -240,18 +280,18 @@
           var confirm = confirmInput.value;
 
           if (password.length < 6) {
-            showError('Le mot de passe doit contenir au moins 6 caracteres.');
+            showError(i18n.errPasswordShort);
             return;
           }
 
           if (password !== confirm) {
-            showError('Les mots de passe ne correspondent pas.');
+            showError(i18n.errPasswordMismatch);
             confirmInput.focus();
             return;
           }
 
           submitBtn.disabled = true;
-          submitBtn.textContent = 'Configuration en cours...';
+          submitBtn.textContent = i18n.submitting;
 
           fetch('/api/cms/setup', {
             method: 'POST',
@@ -268,15 +308,15 @@
                 formSection.style.display = 'none';
                 successSection.classList.add('visible');
               } else {
-                showError(result.data.error || 'Une erreur est survenue.');
+                showError(result.data.error || i18n.errGeneric);
                 submitBtn.disabled = false;
-                submitBtn.textContent = 'Valider';
+                submitBtn.textContent = i18n.submit;
               }
             })
             .catch(function () {
-              showError('Impossible de contacter le serveur. Verifiez votre connexion.');
+              showError(i18n.errServer);
               submitBtn.disabled = false;
-              submitBtn.textContent = 'Valider';
+              submitBtn.textContent = i18n.submit;
             });
         });
       })();

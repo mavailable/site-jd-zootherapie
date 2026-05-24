@@ -5,6 +5,7 @@ import { useToastContext, navigate } from './CmsApp';
 import { FieldRenderer } from './fields/FieldRenderer';
 import { SkeletonForm } from './ui/Skeleton';
 import { HistoryPanel } from './HistoryPanel';
+import { t } from './locales';
 import type { CmsConfig } from '../../../cms.types';
 
 interface SingletonEditorProps {
@@ -37,7 +38,7 @@ export function SingletonEditor({ config, singletonKey }: SingletonEditorProps) 
       .map(([_, f]) => f.label);
 
     if (missingFields.length > 0) {
-      addToast(`Champs requis : ${missingFields.join(', ')}`, 'error');
+      addToast(t('requiredFields', { fields: missingFields.join(', ') }), 'error');
       return;
     }
 
@@ -47,13 +48,13 @@ export function SingletonEditor({ config, singletonKey }: SingletonEditorProps) 
         singleton.path,
         data,
         sha,
-        `[CMS] Mise à jour ${singleton.label}`
+        `[CMS] Update ${singleton.label}`
       );
       setSha(result.sha);
       setClean();
-      addToast('Enregistre ! Votre site se met a jour.', 'success');
+      addToast(t('saved'), 'success');
     } catch (err) {
-      const msg = err instanceof Error ? err.message : 'Erreur lors de la sauvegarde';
+      const msg = err instanceof Error ? err.message : t('saveError');
       addToast(msg, 'error');
     } finally {
       setSaving(false);
@@ -72,7 +73,7 @@ export function SingletonEditor({ config, singletonKey }: SingletonEditorProps) 
         setSha(sha);
       })
       .catch((err) => {
-        setLoadError(err instanceof Error ? err.message : 'Impossible de charger le contenu');
+        setLoadError(err instanceof Error ? err.message : t('unableToLoad'));
       })
       .finally(() => setInitialLoading(false));
   }
@@ -96,8 +97,8 @@ export function SingletonEditor({ config, singletonKey }: SingletonEditorProps) 
   if (!singleton) {
     return (
       <div style={styles.errorBox}>
-        Section introuvable.
-        <button onClick={() => navigate('#/')} style={styles.backLink}>← Retour</button>
+        {t('sectionNotFound')}
+        <button onClick={() => navigate('#/')} style={styles.backLink}>{t('back')}</button>
       </div>
     );
   }
@@ -111,12 +112,12 @@ export function SingletonEditor({ config, singletonKey }: SingletonEditorProps) 
     <div>
       <div style={styles.header}>
         <button onClick={() => { if (confirmNavigation()) navigate('#/'); }} style={styles.backBtn}>
-          ← Retour
+          {t('back')}
         </button>
         <div style={styles.titleRow}>
           <h1 style={styles.title}>{singleton.label}</h1>
           <button onClick={() => setShowHistory(true)} style={styles.historyBtn}>
-            Historique
+            {t('history')}
           </button>
         </div>
       </div>
@@ -130,7 +131,7 @@ export function SingletonEditor({ config, singletonKey }: SingletonEditorProps) 
       {loadError && !initialLoading && (
         <div style={styles.errorBox}>
           <p style={styles.errorText}>{loadError}</p>
-          <button onClick={loadContent} style={styles.retryBtn}>Réessayer</button>
+          <button onClick={loadContent} style={styles.retryBtn}>{t('retry')}</button>
         </div>
       )}
 
@@ -160,12 +161,12 @@ export function SingletonEditor({ config, singletonKey }: SingletonEditorProps) 
               ...(!dirty ? styles.saveBtnDisabled : {}),
             }}
           >
-            {saving ? 'Enregistrement...' : 'Enregistrer'}
+            {saving ? t('saving') : t('save')}
           </button>
           <span style={styles.deployNote}>
-            {dirty ? 'Modifications non enregistrées' : 'Le site sera mis à jour dans ~2 min'}
+            {dirty ? t('dirtyPending') : t('willPublishSoon')}
           </span>
-          <span style={styles.shortcut}>⌘S</span>
+          <span style={styles.shortcut}>{t('shortcutSave')}</span>
         </div>
       )}
 

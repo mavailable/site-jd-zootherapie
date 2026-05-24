@@ -1,3 +1,5 @@
+import { t } from '../locales';
+
 interface ConfirmDialogProps {
   open: boolean;
   title: string;
@@ -12,11 +14,13 @@ export function ConfirmDialog({
   open,
   title,
   message,
-  confirmLabel = 'Confirmer',
-  cancelLabel = 'Annuler',
+  confirmLabel,
+  cancelLabel,
   onConfirm,
   onCancel,
 }: ConfirmDialogProps) {
+  const _confirmLabel = confirmLabel ?? t('confirmLabel');
+  const _cancelLabel = cancelLabel ?? t('cancelLabel');
   if (!open) return null;
 
   return (
@@ -26,10 +30,10 @@ export function ConfirmDialog({
         <p style={styles.message}>{message}</p>
         <div style={styles.actions}>
           <button onClick={onCancel} style={styles.cancelBtn}>
-            {cancelLabel}
+            {_cancelLabel}
           </button>
           <button onClick={onConfirm} style={styles.confirmBtn}>
-            {confirmLabel}
+            {_confirmLabel}
           </button>
         </div>
       </div>

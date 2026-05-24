@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { t } from '../locales';
 
 interface AuthState {
   checking: boolean;
@@ -40,9 +41,9 @@ export function useAuth() {
       }
 
       const data = await res.json();
-      return data.error || 'Erreur de connexion';
+      return data.error || t('loginError');
     } catch {
-      return 'Impossible de contacter le serveur';
+      return t('serverUnreachable');
     }
   }, []);
 

@@ -3,6 +3,7 @@ import { useContent } from './hooks/useContent';
 import { useDirty } from './hooks/useDirty';
 import { useToastContext, navigate } from './CmsApp';
 import { SkeletonForm } from './ui/Skeleton';
+import { t } from './locales';
 
 const THEME_PATH = 'src/content/theme/index.json';
 
@@ -46,12 +47,12 @@ export function ThemeEditor() {
     if (saving) return;
     setSaving(true);
     try {
-      const result = await saveFile(THEME_PATH, data as unknown as Record<string, unknown>, sha, '[CMS] Mise à jour thème');
+      const result = await saveFile(THEME_PATH, data as unknown as Record<string, unknown>, sha, '[CMS] Update theme');
       setSha(result.sha);
       setClean();
-      addToast('Enregistre ! Votre site se met a jour.', 'success');
+      addToast(t('saved'), 'success');
     } catch (err) {
-      addToast(err instanceof Error ? err.message : 'Erreur', 'error');
+      addToast(err instanceof Error ? err.message : t('seoUpdateError'), 'error');
     } finally {
       setSaving(false);
     }
@@ -84,18 +85,18 @@ export function ThemeEditor() {
   return (
     <div>
       <div style={styles.header}>
-        <button onClick={() => navigate('#/')} style={styles.backBtn}>← Retour</button>
-        <h1 style={styles.title}>Apparence du site</h1>
+        <button onClick={() => navigate('#/')} style={styles.backBtn}>{t('back')}</button>
+        <h1 style={styles.title}>{t('themeTitle')}</h1>
       </div>
 
       {/* Couleurs */}
       <div style={styles.form}>
-        <h2 style={styles.sectionTitle}>Couleurs</h2>
+        <h2 style={styles.sectionTitle}>{t('themeColors')}</h2>
         {[
-          { key: 'primary', label: 'Couleur principale' },
-          { key: 'primary-light', label: 'Couleur principale claire' },
-          { key: 'accent', label: 'Couleur d\'accent' },
-          { key: 'neutral', label: 'Couleur neutre (texte)' },
+          { key: 'primary', label: t('themePrimary') },
+          { key: 'primary-light', label: t('themePrimaryLight') },
+          { key: 'accent', label: t('themeAccent') },
+          { key: 'neutral', label: t('themeNeutral') },
         ].map(({ key, label }) => (
           <div key={key} style={styles.colorRow}>
             <input
@@ -124,9 +125,9 @@ export function ThemeEditor() {
 
       {/* Typographie */}
       <div style={styles.form}>
-        <h2 style={styles.sectionTitle}>Typographie</h2>
+        <h2 style={styles.sectionTitle}>{t('themeTypography')}</h2>
         <div style={styles.field}>
-          <label style={styles.label}>Police des titres</label>
+          <label style={styles.label}>{t('themeHeadingFont')}</label>
           <select
             style={styles.select}
             value={data.fonts.heading}
@@ -137,11 +138,11 @@ export function ThemeEditor() {
             ))}
           </select>
           <div style={{ ...styles.fontPreview, fontFamily: data.fonts.heading }}>
-            Aperçu du titre en {data.fonts.heading}
+            {t('themeHeadingPreview', { font: data.fonts.heading })}
           </div>
         </div>
         <div style={styles.field}>
-          <label style={styles.label}>Police du texte</label>
+          <label style={styles.label}>{t('themeBodyFont')}</label>
           <select
             style={styles.select}
             value={data.fonts.body}
@@ -152,16 +153,16 @@ export function ThemeEditor() {
             ))}
           </select>
           <div style={{ ...styles.fontPreviewBody, fontFamily: data.fonts.body }}>
-            Aperçu du texte courant en {data.fonts.body}. Lorem ipsum dolor sit amet.
+            {t('themeBodyPreview', { font: data.fonts.body })}
           </div>
         </div>
       </div>
 
       {/* Arrondis */}
       <div style={styles.form}>
-        <h2 style={styles.sectionTitle}>Arrondis</h2>
+        <h2 style={styles.sectionTitle}>{t('themeRadius')}</h2>
         <div style={styles.field}>
-          <label style={styles.label}>Rayon des bordures : {data.radius}</label>
+          <label style={styles.label}>{t('themeRadiusLabel', { radius: data.radius })}</label>
           <input
             type="range"
             min="0"
@@ -171,27 +172,27 @@ export function ThemeEditor() {
             style={styles.slider}
           />
           <div style={styles.radiusPreview}>
-            <div style={{ ...styles.radiusSample, borderRadius: data.radius }}>Bouton</div>
-            <div style={{ ...styles.radiusSampleCard, borderRadius: data.radius }}>Card</div>
+            <div style={{ ...styles.radiusSample, borderRadius: data.radius }}>{t('themeRadiusSample')}</div>
+            <div style={{ ...styles.radiusSampleCard, borderRadius: data.radius }}>{t('themeRadiusCard')}</div>
           </div>
         </div>
       </div>
 
       {/* Header style */}
       <div style={{ ...styles.form, marginBottom: '5rem' }}>
-        <h2 style={styles.sectionTitle}>En-tête</h2>
+        <h2 style={styles.sectionTitle}>{t('themeHeader')}</h2>
         <div style={styles.toggleRow}>
           <button
             style={data.headerStyle === 'light' ? styles.toggleActive : styles.toggle}
             onClick={() => { setData((prev) => ({ ...prev, headerStyle: 'light' })); markDirty(); }}
           >
-            Clair
+            {t('themeHeaderLight')}
           </button>
           <button
             style={data.headerStyle === 'dark' ? styles.toggleActive : styles.toggle}
             onClick={() => { setData((prev) => ({ ...prev, headerStyle: 'dark' })); markDirty(); }}
           >
-            Sombre
+            {t('themeHeaderDark')}
           </button>
         </div>
       </div>
@@ -201,12 +202,12 @@ export function ThemeEditor() {
         {dirty && <span style={styles.dirtyDot} />}
         <button onClick={handleSave} disabled={saving || !dirty}
           style={{ ...styles.saveBtn, ...(!dirty ? styles.saveBtnDisabled : {}) }}>
-          {saving ? 'Enregistrement...' : 'Enregistrer'}
+          {saving ? t('saving') : t('save')}
         </button>
         <span style={styles.deployNote}>
-          {dirty ? 'Modifications non enregistrées' : 'Le site sera mis à jour dans ~2 min'}
+          {dirty ? t('dirtyPending') : t('willPublishSoon')}
         </span>
-        <span style={styles.shortcut}>⌘S</span>
+        <span style={styles.shortcut}>{t('shortcutSave')}</span>
       </div>
     </div>
   );

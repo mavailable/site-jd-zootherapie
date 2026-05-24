@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { t, intlLocale } from './locales';
 import type { CmsConfig } from '../../../cms.types';
 
 interface HealthCardProps {
@@ -68,7 +69,7 @@ export function HealthCard({ config }: HealthCardProps) {
       <div style={styles.headerRow}>
         <div style={styles.statusRow}>
           <span style={styles.dot} />
-          <span style={styles.statusText}>Votre espace</span>
+          <span style={styles.statusText}>{t('yourSpace')}</span>
         </div>
         {site?.siteUrl && (
           <a href={site.siteUrl} target="_blank" rel="noopener noreferrer" style={styles.siteLink}>
@@ -81,13 +82,13 @@ export function HealthCard({ config }: HealthCardProps) {
           {health.visitors !== null && (
             <div style={styles.statBox}>
               <span style={styles.statNumber}>{health.visitors}</span>
-              <span style={styles.statLabel}>visiteur{health.visitors > 1 ? 's' : ''} ce mois</span>
+              <span style={styles.statLabel}>{health.visitors > 1 ? t('visitorsPlural') : t('visitorsSingular')}</span>
             </div>
           )}
           {health.pageviews !== null && (
             <div style={styles.statBox}>
               <span style={styles.statNumber}>{health.pageviews}</span>
-              <span style={styles.statLabel}>pages vues ce mois</span>
+              <span style={styles.statLabel}>{t('pageviewsLabel')}</span>
             </div>
           )}
         </div>
@@ -102,12 +103,15 @@ function formatRelativeDate(isoDate: string): string {
   const diffMs = now.getTime() - date.getTime();
   const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
 
-  if (diffDays === 0) return "aujourd'hui";
-  if (diffDays === 1) return 'hier';
-  if (diffDays < 7) return `il y a ${diffDays} jours`;
-  if (diffDays < 30) return `il y a ${Math.floor(diffDays / 7)} semaine${Math.floor(diffDays / 7) > 1 ? 's' : ''}`;
-  if (diffDays < 365) return `il y a ${Math.floor(diffDays / 30)} mois`;
-  return date.toLocaleDateString('fr-FR');
+  if (diffDays === 0) return t('timeToday');
+  if (diffDays === 1) return t('timeYesterday');
+  if (diffDays < 7) return t('timeDaysAgo', { n: diffDays });
+  if (diffDays < 30) {
+    const weeks = Math.floor(diffDays / 7);
+    return weeks > 1 ? t('timeWeeksAgo', { n: weeks }) : t('timeWeekAgo', { n: weeks });
+  }
+  if (diffDays < 365) return t('timeMonthsAgo', { n: Math.floor(diffDays / 30) });
+  return date.toLocaleDateString(intlLocale);
 }
 
 const styles: Record<string, React.CSSProperties> = {

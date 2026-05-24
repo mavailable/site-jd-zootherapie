@@ -1,4 +1,5 @@
 import { useOnboarding } from './hooks/useOnboarding';
+import { t } from './locales';
 import type { CmsConfig } from '../../../cms.types';
 
 interface OnboardingChecklistProps {
@@ -7,16 +8,16 @@ interface OnboardingChecklistProps {
 
 function getDefaultItems(config: CmsConfig) {
   const items: Array<{ id: string; label: string }> = [
-    { id: 'check-info', label: 'Verifier vos informations (adresse, telephone)' },
-    { id: 'add-photo', label: 'Ajouter une photo de vous ou de votre activite' },
+    { id: 'check-info', label: t('obCheckInfo') },
+    { id: 'add-photo', label: t('obAddPhoto') },
   ];
 
   if (config.site?.clientType === 'entreprise-locale' && config.site?.reviewUrl) {
-    items.push({ id: 'first-review', label: 'Demander un premier avis Google' });
+    items.push({ id: 'first-review', label: t('obFirstReview') });
   }
 
   if (config.collections.blog) {
-    items.push({ id: 'first-article', label: "Proposer une idee d'article de blog" });
+    items.push({ id: 'first-article', label: t('obFirstArticle') });
   }
 
   return items;
@@ -34,12 +35,12 @@ export function OnboardingChecklist({ config }: OnboardingChecklistProps) {
     <div style={styles.container}>
       <div style={styles.header}>
         <div>
-          <h2 style={styles.title}>Bienvenue sur votre espace !</h2>
+          <h2 style={styles.title}>{t('welcomeTitle')}</h2>
           <p style={styles.subtitle}>
-            {completedCount}/{items.length} termine{completedCount > 1 ? 's' : ''}
+            {completedCount}/{items.length} {completedCount > 1 ? t('onboardingDonePlural') : t('onboardingDoneSingular')}
           </p>
         </div>
-        <button onClick={dismiss} style={styles.dismissBtn} aria-label="Fermer">
+        <button onClick={dismiss} style={styles.dismissBtn} aria-label={t('close')}>
           &times;
         </button>
       </div>
@@ -57,7 +58,7 @@ export function OnboardingChecklist({ config }: OnboardingChecklistProps) {
                 ...styles.checkbox,
                 ...(item.checked ? styles.checkboxChecked : {}),
               }}
-              aria-label={item.checked ? 'Marquer comme non fait' : 'Marquer comme fait'}
+              aria-label={item.checked ? t('obMarkUndone') : t('obMarkDone')}
             >
               {item.checked && (
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3">

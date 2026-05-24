@@ -379,7 +379,7 @@
       "cta": "Question commentaires : quelle émotion choisissez-vous le plus souvent ?",
       "status": "draft",
       "published_at": null,
-      "client_modified_text": null,
+      "client_modified_text": "",
       "client_comment": null
     },
     {
@@ -430,7 +430,7 @@
         "#metz"
       ],
       "cta": "Abonnez-vous pour suivre l'expérience",
-      "status": "draft",
+      "status": "skipped",
       "published_at": null,
       "client_modified_text": null,
       "client_comment": null
@@ -456,7 +456,7 @@
         "#metz"
       ],
       "cta": null,
-      "status": "draft",
+      "status": "skipped",
       "published_at": null,
       "client_modified_text": null,
       "client_comment": null
@@ -483,7 +483,7 @@
         "#Metz"
       ],
       "cta": "MP pour s'associer à la phase 2",
-      "status": "draft",
+      "status": "skipped",
       "published_at": null,
       "client_modified_text": null,
       "client_comment": null
@@ -508,7 +508,7 @@
         "#moselle"
       ],
       "cta": "MP si ça vous concerne, vous ou un proche",
-      "status": "draft",
+      "status": "skipped",
       "published_at": null,
       "client_modified_text": null,
       "client_comment": null
@@ -608,8 +608,8 @@
         "#bienetre"
       ],
       "cta": null,
-      "status": "draft",
-      "published_at": null,
+      "status": "published",
+      "published_at": "2026-05-11T07:24:53.357Z",
       "client_modified_text": null,
       "client_comment": null
     },

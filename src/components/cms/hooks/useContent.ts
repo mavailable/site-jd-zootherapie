@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import { t } from '../locales';
 
 interface FileData {
   content: Record<string, unknown>;
@@ -21,11 +22,11 @@ export function useContent() {
       const res = await fetch(`/api/cms/content?path=${encodeURIComponent(path)}`);
       if (!res.ok) {
         const data = await res.json();
-        throw new Error(data.error || 'Erreur de lecture');
+        throw new Error(data.error || t('readError'));
       }
       return await res.json();
     } catch (err) {
-      const message = err instanceof Error ? err.message : 'Erreur inconnue';
+      const message = err instanceof Error ? err.message : t('unknownError');
       setError(message);
       throw err;
     } finally {
@@ -40,12 +41,12 @@ export function useContent() {
       const res = await fetch(`/api/cms/list?path=${encodeURIComponent(path)}`);
       if (!res.ok) {
         const data = await res.json();
-        throw new Error(data.error || 'Erreur de lecture');
+        throw new Error(data.error || t('readError'));
       }
       const data = await res.json();
       return data.files;
     } catch (err) {
-      const message = err instanceof Error ? err.message : 'Erreur inconnue';
+      const message = err instanceof Error ? err.message : t('unknownError');
       setError(message);
       throw err;
     } finally {
@@ -70,11 +71,11 @@ export function useContent() {
         });
         if (!res.ok) {
           const data = await res.json();
-          throw new Error(data.error || 'Erreur de sauvegarde');
+          throw new Error(data.error || t('writeError'));
         }
         return await res.json();
       } catch (err) {
-        const message = err instanceof Error ? err.message : 'Erreur inconnue';
+        const message = err instanceof Error ? err.message : t('unknownError');
         setError(message);
         throw err;
       } finally {
@@ -93,10 +94,10 @@ export function useContent() {
       });
       if (!res.ok) {
         const data = await res.json();
-        throw new Error(data.error || 'Erreur de suppression');
+        throw new Error(data.error || t('deleteHookError'));
       }
     } catch (err) {
-      const message = err instanceof Error ? err.message : 'Erreur inconnue';
+      const message = err instanceof Error ? err.message : t('unknownError');
       setError(message);
       throw err;
     } finally {

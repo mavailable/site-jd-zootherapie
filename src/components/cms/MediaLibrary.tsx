@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useToastContext } from './CmsApp';
+import { t } from './locales';
 
 interface ImageItem {
   name: string;
@@ -32,7 +33,7 @@ export function MediaLibrary({ onSelect, onClose, isModal = false }: MediaLibrar
         setImages(data.images || []);
       }
     } catch {
-      addToast('Impossible de charger les images', 'error');
+      addToast(t('unableLoadImages'), 'error');
     } finally {
       setLoading(false);
     }
@@ -53,15 +54,15 @@ export function MediaLibrary({ onSelect, onClose, isModal = false }: MediaLibrar
 
       if (!res.ok) {
         const data = await res.json();
-        throw new Error(data.error || 'Erreur upload');
+        throw new Error(data.error || t('uploadError'));
       }
 
       const data = await res.json();
-      addToast(`Image « ${data.name} » uploadée`, 'success');
+      addToast(t('imageUploaded', { name: data.name }), 'success');
       setImages((prev) => [data, ...prev]);
       return data.url;
     } catch (err) {
-      const msg = err instanceof Error ? err.message : 'Erreur upload';
+      const msg = err instanceof Error ? err.message : t('uploadError');
       addToast(msg, 'error');
       return null;
     } finally {
@@ -70,7 +71,7 @@ export function MediaLibrary({ onSelect, onClose, isModal = false }: MediaLibrar
   }
 
   async function handleDelete(image: ImageItem) {
-    if (!window.confirm(`Supprimer l'image « ${image.name} » ?`)) return;
+    if (!window.confirm(t('confirmDeleteImage', { name: image.name }))) return;
     try {
       const res = await fetch(
         `/api/cms/delete?path=${encodeURIComponent(image.path)}&sha=${encodeURIComponent(image.sha)}`,
@@ -78,10 +79,10 @@ export function MediaLibrary({ onSelect, onClose, isModal = false }: MediaLibrar
       );
       if (res.ok) {
         setImages((prev) => prev.filter((i) => i.name !== image.name));
-        addToast('Image supprimée', 'success');
+        addToast(t('imageDeleted'), 'success');
       }
     } catch {
-      addToast('Erreur lors de la suppression', 'error');
+      addToast(t('deleteError'), 'error');
     }
   }
 
@@ -114,9 +115,9 @@ export function MediaLibrary({ onSelect, onClose, isModal = false }: MediaLibrar
   const content = (
     <div style={styles.container}>
       <div style={styles.header}>
-        <h2 style={styles.title}>Images</h2>
+        <h2 style={styles.title}>{t('imagesTitle')}</h2>
         {onClose && (
-          <button onClick={onClose} style={styles.closeBtn} aria-label="Fermer">×</button>
+          <button onClick={onClose} style={styles.closeBtn} aria-label={t('close')}>×</button>
         )}
       </div>
 
@@ -136,19 +137,19 @@ export function MediaLibrary({ onSelect, onClose, isModal = false }: MediaLibrar
           style={{ display: 'none' }}
         />
         {uploading ? (
-          <span style={styles.dropText}>Upload en cours...</span>
+          <span style={styles.dropText}>{t('uploading')}</span>
         ) : (
           <span style={styles.dropText}>
-            Glissez une image ici ou <span style={styles.dropLink}>parcourir</span>
+            {t('dropImageHere')} <span style={styles.dropLink}>{t('browse')}</span>
           </span>
         )}
       </div>
 
       {/* Grid */}
       {loading ? (
-        <div style={styles.loadingText}>Chargement...</div>
+        <div style={styles.loadingText}>{t('loading')}</div>
       ) : images.length === 0 ? (
-        <div style={styles.emptyText}>Aucune image</div>
+        <div style={styles.emptyText}>{t('noImages')}</div>
       ) : (
         <div style={styles.grid}>
           {images.map((img) => (
@@ -163,7 +164,7 @@ export function MediaLibrary({ onSelect, onClose, isModal = false }: MediaLibrar
                 <span style={styles.imageName}>{img.name}</span>
                 <span style={styles.imageSize}>{formatSize(img.size)}</span>
               </div>
-              <button onClick={() => handleDelete(img)} style={styles.imageDeleteBtn} title="Supprimer">
+              <button onClick={() => handleDelete(img)} style={styles.imageDeleteBtn} title={t('deleteTooltip')}>
                 ×
               </button>
             </div>

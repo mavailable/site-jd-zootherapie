@@ -16,25 +16,24 @@ import { SeoEditor } from './SeoEditor';
 import { ThemeEditor } from './ThemeEditor';
 import { ToastContainer } from './ui/Toast';
 import cmsConfig from '../../../cms.config';
+import { t } from './locales';
 
+// Lazy-load du tab Vocaux (optionnel, chargé uniquement si cmsConfig.vocaux?.enabled)
+const VocauxTab = lazy(() =>
+  import('./VocauxTab').then((m) => ({ default: m.VocauxTab }))
+);
 // Lazy-load du tab Marketing (optionnel, chargé uniquement si cmsConfig.marketing?.enabled)
 // → bundle JS des projets sans marketing inchangé (MarketingPlanTab + PostCard ~1200 lignes)
 const MarketingPlanTab = lazy(() =>
   import('./marketing/MarketingPlanTab').then((m) => ({ default: m.MarketingPlanTab }))
 );
-const CarouselsTab = lazy(() =>
-  import('./marketing/CarouselsTab').then((m) => ({ default: m.CarouselsTab }))
-);
-const GbpPostsTab = lazy(() =>
-  import('./marketing/GbpPostsTab').then((m) => ({ default: m.GbpPostsTab }))
-);
 
 // ─── Route parsing ───────────────────────────────────────────────
 
-type TabId = 'site' | 'blog' | 'stats' | 'analytics' | 'account' | 'marketing' | 'carrousels' | 'gbp';
+type TabId = 'site' | 'blog' | 'stats' | 'analytics' | 'account' | 'marketing' | 'vocaux';
 
 interface Route {
-  view: 'home' | 'singleton' | 'collection' | 'collection-edit' | 'media' | 'sections' | 'seo' | 'theme' | 'stats' | 'analytics' | 'account' | 'blog' | 'marketing' | 'carrousels' | 'gbp';
+  view: 'home' | 'singleton' | 'collection' | 'collection-edit' | 'media' | 'sections' | 'seo' | 'theme' | 'stats' | 'analytics' | 'account' | 'blog' | 'marketing' | 'vocaux';
   key?: string;
   slug?: string;
 }
@@ -45,8 +44,7 @@ function parseHash(): Route {
 
   if (parts[0] === 'blog') return { view: 'blog' };
   if (parts[0] === 'marketing') return { view: 'marketing' };
-  if (parts[0] === 'carrousels') return { view: 'carrousels' };
-  if (parts[0] === 'gbp') return { view: 'gbp' };
+  if (parts[0] === 'vocaux') return { view: 'vocaux' };
   if (parts[0] === 'stats') return { view: 'stats' };
   if (parts[0] === 'analytics') return { view: 'analytics' };
   if (parts[0] === 'account') return { view: 'account' };
@@ -63,8 +61,7 @@ function parseHash(): Route {
 function getActiveTab(route: Route, hasBlog: boolean): TabId {
   if (route.view === 'blog') return 'blog';
   if (route.view === 'marketing') return 'marketing';
-  if (route.view === 'carrousels') return 'carrousels';
-  if (route.view === 'gbp') return 'gbp';
+  if (route.view === 'vocaux') return 'vocaux';
   if (route.view === 'stats') return 'stats';
   if (route.view === 'analytics') return 'analytics';
   if (route.view === 'account') return 'account';
@@ -96,7 +93,7 @@ export function useToastContext() {
 function getBreadcrumbs(route: Route): Array<{ label: string; hash: string }> {
   const crumbs: Array<{ label: string; hash: string }> = [];
 
-  if (route.view === 'home' || route.view === 'stats' || route.view === 'analytics' || route.view === 'account' || route.view === 'marketing' || route.view === 'carrousels' || route.view === 'gbp') return crumbs;
+  if (route.view === 'home' || route.view === 'stats' || route.view === 'analytics' || route.view === 'account' || route.view === 'marketing' || route.view === 'vocaux') return crumbs;
 
   if (route.view === 'singleton' && route.key) {
     const s = cmsConfig.singletons[route.key];
@@ -111,37 +108,35 @@ function getBreadcrumbs(route: Route): Array<{ label: string; hash: string }> {
   if (route.view === 'collection-edit' && route.key) {
     const c = cmsConfig.collections[route.key];
     crumbs.push({ label: c?.label || route.key, hash: `#/collection/${route.key}` });
-    const slugLabel = route.slug === 'new' ? 'Nouveau' : route.slug || '';
+    const slugLabel = route.slug === 'new' ? t('crumbNew') : route.slug || '';
     crumbs.push({ label: slugLabel, hash: `#/collection/${route.key}/${route.slug}` });
   }
 
-  if (route.view === 'media') crumbs.push({ label: 'Images', hash: '#/media' });
-  if (route.view === 'sections') crumbs.push({ label: 'Sections', hash: '#/sections' });
-  if (route.view === 'seo') crumbs.push({ label: 'Referencement', hash: '#/seo' });
-  if (route.view === 'theme') crumbs.push({ label: 'Apparence', hash: '#/theme' });
+  if (route.view === 'media') crumbs.push({ label: t('crumbImages'), hash: '#/media' });
+  if (route.view === 'sections') crumbs.push({ label: t('crumbSections'), hash: '#/sections' });
+  if (route.view === 'seo') crumbs.push({ label: t('crumbSeo'), hash: '#/seo' });
+  if (route.view === 'theme') crumbs.push({ label: t('crumbTheme'), hash: '#/theme' });
 
   return crumbs;
 }
 
 // ─── Tabs ────────────────────────────────────────────────────────
 
-const ALL_TABS: Array<{ id: TabId; label: string; icon: string; hash: string; requires?: 'blog' | 'marketing' | 'carrousels' | 'gbp' }> = [
-  { id: 'site', label: 'Mon Site', icon: '\u{1F3E0}', hash: '#/' },
-  { id: 'blog', label: 'Blog', icon: '\u{270D}\u{FE0F}', hash: '#/blog', requires: 'blog' },
-  { id: 'marketing', label: 'Marketing', icon: '\u{1F4E3}', hash: '#/marketing', requires: 'marketing' },
-  { id: 'carrousels', label: 'Carrousels', icon: '\u{1F39E}\u{FE0F}', hash: '#/carrousels', requires: 'carrousels' },
-  { id: 'gbp', label: 'Posts GBP', icon: '\u{1F4CD}', hash: '#/gbp', requires: 'gbp' },
-  { id: 'stats', label: 'Mon Activite', icon: '\u{2B50}', hash: '#/stats' },
-  { id: 'analytics', label: 'Statistiques', icon: '\u{1F4CA}', hash: '#/analytics' },
-  { id: 'account', label: 'Mon Compte', icon: '\u{1F464}', hash: '#/account' },
+const ALL_TABS: Array<{ id: TabId; labelKey: string; icon: string; hash: string; requires?: 'blog' | 'marketing' | 'vocaux' }> = [
+  { id: 'site', labelKey: 'tabSite', icon: '\u{1F3E0}', hash: '#/' },
+  { id: 'blog', labelKey: 'tabBlog', icon: '\u{270D}\u{FE0F}', hash: '#/blog', requires: 'blog' },
+  { id: 'marketing', labelKey: 'tabMarketing', icon: '\u{1F4E3}', hash: '#/marketing', requires: 'marketing' },
+  { id: 'vocaux', labelKey: 'tabVocaux', icon: '\u{1F3A4}', hash: '#/vocaux', requires: 'vocaux' },
+  { id: 'stats', labelKey: 'tabActivity', icon: '\u{2B50}', hash: '#/stats' },
+  { id: 'analytics', labelKey: 'tabStats', icon: '\u{1F4CA}', hash: '#/analytics' },
+  { id: 'account', labelKey: 'tabAccount', icon: '\u{1F464}', hash: '#/account' },
 ];
 
 function getTabs(cfg: typeof cmsConfig) {
-  return ALL_TABS.filter((t) => {
-    if (t.requires === 'blog') return !!cfg.collections?.blog;
-    if (t.requires === 'marketing') return !!cfg.marketing?.enabled;
-    if (t.requires === 'carrousels') return !!cfg.marketing?.carrousels?.enabled;
-    if (t.requires === 'gbp') return !!cfg.gbp?.enabled;
+  return ALL_TABS.filter((tab) => {
+    if (tab.requires === 'blog') return !!cfg.collections?.blog;
+    if (tab.requires === 'marketing') return !!cfg.marketing?.enabled;
+    if (tab.requires === 'vocaux') return !!cfg.vocaux?.enabled;
     return true;
   });
 }
@@ -167,7 +162,7 @@ export function CmsApp() {
     return (
       <div style={styles.loading}>
         <div style={styles.spinner} />
-        <span>Chargement...</span>
+        <span>{t('loading')}</span>
       </div>
     );
   }
@@ -190,7 +185,7 @@ export function CmsApp() {
         {/* Header */}
         <header style={styles.header}>
           <div style={styles.headerLeft}>
-            <a href="#/" style={styles.headerHome} title="Retour a l'accueil">
+            <a href="#/" style={styles.headerHome} title={t('homeTooltip')}>
               {cmsConfig.siteName}
             </a>
             {breadcrumbs.map((crumb, i) => (
@@ -206,14 +201,14 @@ export function CmsApp() {
           </div>
           <div style={styles.headerRight}>
             {isSubView && (
-              <button onClick={() => navigate('#/')} style={styles.backBtn} title="Retour">
+              <button onClick={() => navigate('#/')} style={styles.backBtn} title={t('backTooltip')}>
                 <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                 </svg>
               </button>
             )}
-            <a href="/" target="_blank" rel="noopener" style={styles.viewSiteBtn} title="Voir le site">
-              Voir le site &#8599;
+            <a href="/" target="_blank" rel="noopener" style={styles.viewSiteBtn} title={t('viewSiteTooltip')}>
+              {t('viewSite')} &#8599;
             </a>
           </div>
         </header>
@@ -229,7 +224,7 @@ export function CmsApp() {
                 ...(activeTab === tab.id ? styles.tabActive : {}),
               }}
             >
-              {tab.label}
+              {t(tab.labelKey)}
             </a>
           ))}
         </nav>
@@ -239,18 +234,13 @@ export function CmsApp() {
           {route.view === 'home' && <HomeScreen config={cmsConfig} />}
           {route.view === 'blog' && <BlogTab config={cmsConfig} />}
           {route.view === 'marketing' && cmsConfig.marketing?.enabled && (
-            <Suspense fallback={<div style={styles.loading}><div style={styles.spinner} /><span>Chargement du plan marketing...</span></div>}>
+            <Suspense fallback={<div style={styles.loading}><div style={styles.spinner} /><span>{t('loadingMarketingPlan')}</span></div>}>
               <MarketingPlanTab />
             </Suspense>
           )}
-          {route.view === 'carrousels' && cmsConfig.marketing?.carrousels?.enabled && (
-            <Suspense fallback={<div style={styles.loading}><div style={styles.spinner} /><span>Chargement des carrousels...</span></div>}>
-              <CarouselsTab />
-            </Suspense>
-          )}
-          {route.view === 'gbp' && cmsConfig.gbp?.enabled && (
-            <Suspense fallback={<div style={styles.loading}><div style={styles.spinner} /><span>Chargement des posts GBP...</span></div>}>
-              <GbpPostsTab />
+          {route.view === 'vocaux' && cmsConfig.vocaux?.enabled && (
+            <Suspense fallback={<div style={styles.loading}><div style={styles.spinner} /><span>{t('loading')}</span></div>}>
+              <VocauxTab config={cmsConfig} />
             </Suspense>
           )}
           {route.view === 'stats' && <StatsTab config={cmsConfig} />}
@@ -286,7 +276,7 @@ export function CmsApp() {
               }}
             >
               <span style={styles.tabIcon}>{tab.icon}</span>
-              <span style={styles.tabLabel}>{tab.label}</span>
+              <span style={styles.tabLabel}>{t(tab.labelKey)}</span>
             </a>
           ))}
         </nav>

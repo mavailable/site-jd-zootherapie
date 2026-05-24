@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useContent } from './hooks/useContent';
 import { useToastContext, navigate } from './CmsApp';
 import { SkeletonList } from './ui/Skeleton';
+import { t } from './locales';
 import type { CmsConfig } from '../../../cms.types';
 
 interface CollectionListProps {
@@ -48,7 +49,7 @@ export function CollectionList({ config, collectionKey }: CollectionListProps) {
         setItems(results);
       })
       .catch((err) => {
-        setLoadError(err instanceof Error ? err.message : 'Impossible de charger la liste');
+        setLoadError(err instanceof Error ? err.message : t('unableToLoadList'));
       })
       .finally(() => setInitialLoading(false));
   }
@@ -60,8 +61,8 @@ export function CollectionList({ config, collectionKey }: CollectionListProps) {
   if (!collection) {
     return (
       <div style={styles.errorBox}>
-        Collection introuvable.
-        <button onClick={() => navigate('#/')} style={styles.backLink}>← Retour</button>
+        {t('collectionNotFound')}
+        <button onClick={() => navigate('#/')} style={styles.backLink}>{t('back')}</button>
       </div>
     );
   }
@@ -75,15 +76,15 @@ export function CollectionList({ config, collectionKey }: CollectionListProps) {
 
   async function handleDelete(item: LoadedItem) {
     const label = getLabel(item);
-    if (!window.confirm(`Supprimer « ${label} » ? Cette action est irréversible.`)) return;
+    if (!window.confirm(t('confirmDelete', { label }))) return;
 
     setDeleting(item.fileName);
     try {
       await deleteFile(`${collection.path}/${item.fileName}`, item.sha);
       setItems((prev) => prev.filter((i) => i.fileName !== item.fileName));
-      addToast(`« ${label} » supprimé`, 'success');
+      addToast(t('deleted', { label }), 'success');
     } catch {
-      addToast('Erreur lors de la suppression', 'error');
+      addToast(t('deleteError'), 'error');
     } finally {
       setDeleting(null);
     }
@@ -92,7 +93,7 @@ export function CollectionList({ config, collectionKey }: CollectionListProps) {
   return (
     <div>
       <div style={styles.header}>
-        <button onClick={() => navigate('#/')} style={styles.backBtn}>← Retour</button>
+        <button onClick={() => navigate('#/')} style={styles.backBtn}>{t('back')}</button>
         <div style={styles.headerRow}>
           <h1 style={styles.title}>
             {collection.label}
@@ -102,7 +103,7 @@ export function CollectionList({ config, collectionKey }: CollectionListProps) {
             onClick={() => navigate(`#/collection/${collectionKey}/_new`)}
             style={styles.addBtn}
           >
-            + Ajouter
+            {t('add')}
           </button>
         </div>
       </div>
@@ -114,13 +115,13 @@ export function CollectionList({ config, collectionKey }: CollectionListProps) {
       {loadError && !initialLoading && (
         <div style={styles.errorBox}>
           <p style={styles.errorText}>{loadError}</p>
-          <button onClick={loadItems} style={styles.retryBtn}>Réessayer</button>
+          <button onClick={loadItems} style={styles.retryBtn}>{t('retry')}</button>
         </div>
       )}
 
       {/* Empty state */}
       {!initialLoading && !loadError && items.length === 0 && (
-        <div style={styles.empty}>Aucun élément pour le moment.</div>
+        <div style={styles.empty}>{t('emptyList')}</div>
       )}
 
       {/* List */}
@@ -142,8 +143,8 @@ export function CollectionList({ config, collectionKey }: CollectionListProps) {
                 onClick={() => handleDelete(item)}
                 disabled={deleting === item.fileName}
                 style={styles.deleteBtn}
-                title="Supprimer"
-                aria-label={`Supprimer ${getLabel(item)}`}
+                title={t('deleteTooltip')}
+                aria-label={t('deleteAriaLabel', { label: getLabel(item) })}
               >
                 {deleting === item.fileName ? '...' : '×'}
               </button>

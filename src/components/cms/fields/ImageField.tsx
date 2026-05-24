@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import type { CmsFieldImage } from '../../../../cms.types';
 import { MediaLibrary } from '../MediaLibrary';
+import { t } from '../locales';
 
 interface ImageFieldProps {
   field: CmsFieldImage;
@@ -45,7 +46,7 @@ export function ImageField({ field, value, onChange }: ImageFieldProps) {
 
       {value ? (
         <div style={styles.previewContainer}>
-          <img src={value} alt="Aperçu" style={styles.preview} />
+          <img src={value} alt={t('fieldPreviewAlt')} style={styles.preview} />
           <div style={styles.previewActions}>
             <span style={styles.previewPath}>{value}</span>
             <div style={styles.previewBtns}>
@@ -54,14 +55,14 @@ export function ImageField({ field, value, onChange }: ImageFieldProps) {
                 onClick={() => setShowLibrary(true)}
                 style={styles.changeBtn}
               >
-                Changer
+                {t('imgChange')}
               </button>
               <button
                 type="button"
                 onClick={() => onChange('')}
                 style={styles.removeBtn}
               >
-                Retirer
+                {t('imgRemove')}
               </button>
             </div>
           </div>
@@ -84,17 +85,17 @@ export function ImageField({ field, value, onChange }: ImageFieldProps) {
             style={{ display: 'none' }}
           />
           {uploading ? (
-            <span style={styles.dropText}>Upload en cours...</span>
+            <span style={styles.dropText}>{t('uploading')}</span>
           ) : (
             <>
               <span style={styles.dropText}>
-                Glissez une image ici,{' '}
+                {t('imgDropHere')}{' '}
                 <button type="button" onClick={() => fileInputRef.current?.click()} style={styles.linkBtn}>
-                  parcourez
+                  {t('imgBrowse')}
                 </button>{' '}
-                ou{' '}
+                {t('imgOr')}{' '}
                 <button type="button" onClick={() => setShowLibrary(true)} style={styles.linkBtn}>
-                  choisissez dans la bibliothèque
+                  {t('imgChooseFromLib')}
                 </button>
               </span>
             </>

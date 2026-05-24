@@ -1,4 +1,5 @@
 import type { CmsSingleton, CmsSingletonGroup } from '../../../../cms.types';
+import { t } from '../locales';
 
 // ─── Dashboard groups — ordre d'affichage et libellés FR ──────────
 //
@@ -22,12 +23,12 @@ export const GROUP_ORDER: CmsSingletonGroup[] = [
 ];
 
 export const GROUP_LABELS: Record<CmsSingletonGroup, string> = {
-  'accueil': "Page d'accueil",
-  'a-propos': 'À propos',
-  'contact': 'Contact',
-  'pages': 'Pages du site',
-  'reglages': 'Réglages avancés',
-  'legal': 'Légal',
+  'accueil': t('groupAccueil'),
+  'a-propos': t('groupAPropos'),
+  'contact': t('groupContact'),
+  'pages': t('groupPages'),
+  'reglages': t('groupReglages'),
+  'legal': t('groupLegal'),
 };
 
 // Les 3 derniers groupes sont pliés par défaut (accordéon).

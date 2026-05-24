@@ -1,6 +1,11 @@
 import type { CmsConfig } from './cms.types';
 
 const cmsConfig: CmsConfig = {
+  vocaux: {
+    enabled: true,
+    hint: 'Enregistre une note vocale pour proposer un sujet d\'article, partager une expérience ou poser une question. Marc reçoit le vocal et le traite.',
+  },
+
   marketing: {
     enabled: true,
     trimesters: ['2026-Q2'],
@@ -19,7 +24,7 @@ const cmsConfig: CmsConfig = {
   },
 
   repo: 'mavailable/site-jd-zootherapie',
-  branch: 'dev',
+  branch: 'master',
   siteName: 'JD Zoothérapie',
 
   site: {

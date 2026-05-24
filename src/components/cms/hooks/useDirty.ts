@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { t } from '../locales';
 
 /**
  * Hook pour tracker les modifications non enregistrées.
@@ -19,7 +20,7 @@ export function useDirty(onSave?: () => void) {
 
   const confirmNavigation = useCallback((): boolean => {
     if (!dirty) return true;
-    return window.confirm('Vous avez des modifications non enregistrées. Quitter sans sauvegarder ?');
+    return window.confirm(t('unsavedConfirm'));
   }, [dirty]);
 
   // Cmd+S / Ctrl+S

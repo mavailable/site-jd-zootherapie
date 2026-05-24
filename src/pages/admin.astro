@@ -3,15 +3,18 @@
 import '../styles/cms.css';
 import { CmsApp } from '../components/cms/CmsApp';
 import cmsConfig from '../../cms.config';
+
+const cmsLocale = (cmsConfig as { locale?: 'fr' | 'en' }).locale === 'en' ? 'en' : 'fr';
+const adminTitle = cmsLocale === 'en' ? 'Admin' : 'Administration';
 ---
 
 <!doctype html>
-<html lang="fr">
+<html lang={cmsLocale}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
-    <title>{cmsConfig.siteName} — Administration</title>
+    <title>{cmsConfig.siteName} — {adminTitle}</title>
     <style>
       *,
       *::before,

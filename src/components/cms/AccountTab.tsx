@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import { useToastContext } from './CmsApp';
+import { t, locale } from './locales';
 import type { CmsConfig } from '../../../cms.types';
 
 interface AccountTabProps {
@@ -9,13 +10,15 @@ interface AccountTabProps {
 
 // ─── Liens utiles Section ────────────────────────────────────────────────────
 
-const LINK_ICONS: Record<string, string> = {
-  'Mon site': '🌐',
-  "M'appeler": '📞',
-  'Mon WhatsApp': '💬',
+type LinkKind = 'site' | 'phone' | 'whatsapp';
+
+const LINK_ICONS: Record<LinkKind, string> = {
+  site: '🌐',
+  phone: '📞',
+  whatsapp: '💬',
 };
 
-function LinkCard({ label, url }: { label: string; url: string }) {
+function LinkCard({ kind, label, url }: { kind: LinkKind; label: string; url: string }) {
   const [copied, setCopied] = useState(false);
   const isWeb = url.startsWith('http');
 
@@ -29,17 +32,17 @@ function LinkCard({ label, url }: { label: string; url: string }) {
   return (
     <div style={styles.linkCard}>
       <div style={styles.linkCardHeader}>
-        <span style={styles.linkIcon}>{LINK_ICONS[label] ?? '🔗'}</span>
+        <span style={styles.linkIcon}>{LINK_ICONS[kind] ?? '🔗'}</span>
         <span style={styles.linkLabel}>{label}</span>
       </div>
       <div style={styles.linkUrlBox}>{url}</div>
       <div style={styles.linkActions}>
         <button onClick={handleCopy} style={styles.copyBtn}>
-          {copied ? 'Copie !' : 'Copier'}
+          {copied ? t('copied') : t('copy')}
         </button>
         {isWeb && (
           <a href={url} target="_blank" rel="noopener noreferrer" style={styles.openBtn}>
-            Ouvrir &#8599;
+            {t('open')} &#8599;
           </a>
         )}
       </div>
@@ -50,25 +53,25 @@ function LinkCard({ label, url }: { label: string; url: string }) {
 function LinkSection({ config }: { config: CmsConfig }) {
   const site = config.site;
 
-  const cards: Array<{ label: string; url: string }> = [];
+  const cards: Array<{ kind: LinkKind; label: string; url: string }> = [];
 
   if (site?.siteUrl) {
-    cards.push({ label: 'Mon site', url: site.siteUrl });
+    cards.push({ kind: 'site', label: t('linkMySite'), url: site.siteUrl });
   }
   if (site?.phone) {
     const phoneDigits = site.phone.replace(/[^0-9]/g, '');
-    cards.push({ label: "M'appeler", url: `tel:${site.phone}` });
-    cards.push({ label: 'Mon WhatsApp', url: `https://wa.me/${phoneDigits}` });
+    cards.push({ kind: 'phone', label: t('linkCallMe'), url: `tel:${site.phone}` });
+    cards.push({ kind: 'whatsapp', label: t('linkWhatsapp'), url: `https://wa.me/${phoneDigits}` });
   }
 
   if (cards.length === 0) return null;
 
   return (
     <section style={styles.section}>
-      <h2 style={styles.sectionTitle}>Mes liens utiles</h2>
+      <h2 style={styles.sectionTitle}>{t('myLinks')}</h2>
       <div style={styles.linkGrid}>
         {cards.map((c) => (
-          <LinkCard key={c.label} label={c.label} url={c.url} />
+          <LinkCard key={c.kind} kind={c.kind} label={c.label} url={c.url} />
         ))}
       </div>
     </section>
@@ -111,8 +114,8 @@ function SignatureSection({ config }: { config: CmsConfig }) {
   ].filter((l) => l !== '');
 
   const signatures = [
-    { label: 'Variante minimale', text: sig1Lines.join('\n') },
-    { label: 'Variante complete', text: sig2Lines.join('\n') },
+    { label: t('sigMinimal'), text: sig1Lines.join('\n') },
+    { label: t('sigComplete'), text: sig2Lines.join('\n') },
   ];
 
   const handleCopy = useCallback((idx: number, text: string) => {
@@ -124,14 +127,14 @@ function SignatureSection({ config }: { config: CmsConfig }) {
 
   return (
     <section style={styles.section}>
-      <h2 style={styles.sectionTitle}>Signature email</h2>
+      <h2 style={styles.sectionTitle}>{t('emailSignature')}</h2>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
         {signatures.map((sig, idx) => (
           <div key={idx} style={styles.sigCard}>
             <div style={styles.sigCardHeader}>
               <span style={styles.sigCardLabel}>{sig.label}</span>
               <button onClick={() => handleCopy(idx, sig.text)} style={styles.copyBtn}>
-                {copiedIdx === idx ? 'Copie !' : 'Copier la signature'}
+                {copiedIdx === idx ? t('copied') : t('copySignature')}
               </button>
             </div>
             <pre style={styles.sigPreview}>{sig.text}</pre>
@@ -153,20 +156,35 @@ function KitLancementSection({ config }: { config: CmsConfig }) {
   const siteName = config.siteName;
   const siteUrl = site.siteUrl;
 
-  const posts = [
-    {
-      label: 'Facebook perso',
-      text: `Je suis fier de vous presenter le nouveau site internet de ${siteName} ! \uD83C\uDF89\nRetrouvez nos services, demandez un devis en ligne et consultez les avis de nos clients.\n\uD83D\uDC49 ${siteUrl}`,
-    },
-    {
-      label: 'Facebook pro',
-      text: `${siteName} est desormais en ligne !\nDecouvrez nos prestations, nos tarifs et les retours de nos clients sur notre nouveau site.\n${siteUrl}\nN'hesitez pas a partager ! \uD83D\uDE4F`,
-    },
-    {
-      label: 'LinkedIn',
-      text: `${siteName} lance son nouveau site internet.\nUne vitrine en ligne pour presenter nos services et faciliter la prise de contact.\n${siteUrl}\n#entrepreneur #artisan #siteweb`,
-    },
-  ];
+  const posts = locale === 'en'
+    ? [
+        {
+          label: t('postFacebookPerso'),
+          text: `I'm proud to share the brand new website for ${siteName}! \uD83C\uDF89\nDiscover what I do, get in touch directly, and read what clients are saying.\n\uD83D\uDC49 ${siteUrl}`,
+        },
+        {
+          label: t('postFacebookPro'),
+          text: `${siteName} is officially online!\nNew website with all the details about my work, what I offer, and how to reach out.\n${siteUrl}\nFeel free to share \uD83D\uDE4F`,
+        },
+        {
+          label: t('postLinkedin'),
+          text: `${siteName} just launched a new website.\nA fresh online home to share what I do and make it easier to connect.\n${siteUrl}\n#newwebsite #freelance #launch`,
+        },
+      ]
+    : [
+        {
+          label: t('postFacebookPerso'),
+          text: `Je suis fier de vous presenter le nouveau site internet de ${siteName} ! \uD83C\uDF89\nRetrouvez nos services, demandez un devis en ligne et consultez les avis de nos clients.\n\uD83D\uDC49 ${siteUrl}`,
+        },
+        {
+          label: t('postFacebookPro'),
+          text: `${siteName} est desormais en ligne !\nDecouvrez nos prestations, nos tarifs et les retours de nos clients sur notre nouveau site.\n${siteUrl}\nN'hesitez pas a partager ! \uD83D\uDE4F`,
+        },
+        {
+          label: t('postLinkedin'),
+          text: `${siteName} lance son nouveau site internet.\nUne vitrine en ligne pour presenter nos services et faciliter la prise de contact.\n${siteUrl}\n#entrepreneur #artisan #siteweb`,
+        },
+      ];
 
   const handleCopy = useCallback((idx: number, text: string) => {
     navigator.clipboard.writeText(text).then(() => {
@@ -177,14 +195,14 @@ function KitLancementSection({ config }: { config: CmsConfig }) {
 
   return (
     <section style={styles.section}>
-      <h2 style={styles.sectionTitle}>Kit de lancement</h2>
+      <h2 style={styles.sectionTitle}>{t('launchKit')}</h2>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
         {posts.map((post, idx) => (
           <div key={idx} style={styles.sigCard}>
             <div style={styles.sigCardHeader}>
               <span style={styles.sigCardLabel}>{post.label}</span>
               <button onClick={() => handleCopy(idx, post.text)} style={styles.copyBtn}>
-                {copiedIdx === idx ? 'Copie !' : 'Copier'}
+                {copiedIdx === idx ? t('copied') : t('copy')}
               </button>
             </div>
             <pre style={styles.sigPreview}>{post.text}</pre>
@@ -212,36 +230,36 @@ export function AccountTab({ config, onLogout }: AccountTabProps) {
   return (
     <div style={styles.fadeIn}>
       <section style={styles.section}>
-        <h2 style={styles.sectionTitle}>Mon site</h2>
+        <h2 style={styles.sectionTitle}>{t('mySite')}</h2>
         <div style={styles.infoCard}>
           <div style={styles.siteName}>{config.siteName}</div>
           {site?.siteUrl && (
             <div style={styles.infoRow}>
-              <span style={styles.infoLabel}>Adresse :</span>
+              <span style={styles.infoLabel}>{t('addressLabel')}</span>
               <a href={site.siteUrl} target="_blank" rel="noopener noreferrer" style={styles.infoLink}>
                 {site.siteUrl.replace(/^https?:\/\//, '')} &#8599;
               </a>
             </div>
           )}
           <div style={{ marginTop: '0.75rem', fontSize: '0.8125rem', color: '#64748b' }}>
-            Vos modifications sont publiees automatiquement apres chaque enregistrement.
+            {t('changesAutoPublished')}
           </div>
         </div>
       </section>
 
       <section style={styles.section}>
-        <h2 style={styles.sectionTitle}>Mot de passe</h2>
+        <h2 style={styles.sectionTitle}>{t('myPassword')}</h2>
         {showPasswordForm ? (
           <ChangePasswordForm
             onClose={() => setShowPasswordForm(false)}
             onSuccess={() => {
               setShowPasswordForm(false);
-              addToast('Mot de passe modifie avec succes.', 'success');
+              addToast(t('passwordChanged'), 'success');
             }}
           />
         ) : (
           <button onClick={() => setShowPasswordForm(true)} style={styles.actionBtn}>
-            Changer mon mot de passe
+            {t('changePassword')}
           </button>
         )}
       </section>
@@ -255,14 +273,14 @@ export function AccountTab({ config, onLogout }: AccountTabProps) {
       )}
 
       <section style={styles.section}>
-        <h2 style={styles.sectionTitle}>Besoin d'aide ?</h2>
+        <h2 style={styles.sectionTitle}>{t('needHelp')}</h2>
         <div style={styles.contactCard}>
           <p style={styles.contactText}>
-            Marc est disponible pour toute question sur votre site.
+            {t('marcAvailable')}
           </p>
           <div style={styles.contactActions}>
             <a
-              href={`https://wa.me/${marcWhatsapp}?text=Bonjour Marc, j'ai une question sur mon site ${config.siteName}.`}
+              href={`https://wa.me/${marcWhatsapp}?text=${encodeURIComponent(locale === 'en' ? `Hi Marc, I have a question about my site ${config.siteName}.` : `Bonjour Marc, j'ai une question sur mon site ${config.siteName}.`)}`}
               target="_blank"
               rel="noopener noreferrer"
               style={styles.whatsappBtn}
@@ -270,10 +288,10 @@ export function AccountTab({ config, onLogout }: AccountTabProps) {
               WhatsApp
             </a>
             <a
-              href={`mailto:${marcEmail}?subject=Question sur mon site ${config.siteName}`}
+              href={`mailto:${marcEmail}?subject=${encodeURIComponent(locale === 'en' ? `Question about my site ${config.siteName}` : `Question sur mon site ${config.siteName}`)}`}
               style={styles.emailBtn}
             >
-              Email
+              {t('emailBtn')}
             </a>
             <a href={`tel:+${marcWhatsapp}`} style={styles.phoneBtn}>
               {marcPhone}
@@ -284,7 +302,7 @@ export function AccountTab({ config, onLogout }: AccountTabProps) {
 
       <section style={styles.section}>
         <button onClick={onLogout} style={styles.logoutBtn}>
-          Se deconnecter
+          {t('logout')}
         </button>
       </section>
     </div>
@@ -303,11 +321,11 @@ function ChangePasswordForm({ onClose, onSuccess }: { onClose: () => void; onSuc
     setError(null);
 
     if (newPassword.length < 6) {
-      setError('Le nouveau mot de passe doit contenir au moins 6 caracteres.');
+      setError(t('passwordTooShort'));
       return;
     }
     if (newPassword !== confirmPassword) {
-      setError('Les mots de passe ne correspondent pas.');
+      setError(t('passwordsDontMatch'));
       return;
     }
 
@@ -322,10 +340,10 @@ function ChangePasswordForm({ onClose, onSuccess }: { onClose: () => void; onSuc
       if (res.ok) {
         onSuccess();
       } else {
-        setError(data.error || 'Une erreur est survenue.');
+        setError(data.error || t('somethingWentWrong'));
       }
     } catch {
-      setError('Impossible de contacter le serveur.');
+      setError(t('serverUnreachable'));
     }
     setSubmitting(false);
   }, [currentPassword, newPassword, confirmPassword, onSuccess]);
@@ -335,22 +353,22 @@ function ChangePasswordForm({ onClose, onSuccess }: { onClose: () => void; onSuc
       <form onSubmit={handleSubmit}>
         {error && <div style={styles.error}>{error}</div>}
         <label style={styles.label}>
-          Mot de passe actuel
+          {t('currentPassword')}
           <input type="password" value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)} style={styles.input} autoComplete="current-password" autoFocus required />
         </label>
         <label style={styles.label}>
-          Nouveau mot de passe
+          {t('newPassword')}
           <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} style={styles.input} autoComplete="new-password" minLength={6} required />
-          <span style={styles.hint}>6 caracteres minimum</span>
+          <span style={styles.hint}>{t('passwordHint')}</span>
         </label>
         <label style={styles.label}>
-          Confirmer
+          {t('confirmPassword')}
           <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} style={styles.input} autoComplete="new-password" minLength={6} required />
         </label>
         <div style={styles.formActions}>
-          <button type="button" onClick={onClose} style={styles.cancelBtn}>Annuler</button>
+          <button type="button" onClick={onClose} style={styles.cancelBtn}>{t('cancel')}</button>
           <button type="submit" disabled={submitting} style={styles.submitBtn}>
-            {submitting ? 'Modification...' : 'Modifier'}
+            {submitting ? t('modifying') : t('edit')}
           </button>
         </div>
       </form>
