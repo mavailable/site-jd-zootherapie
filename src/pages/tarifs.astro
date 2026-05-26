@@ -77,7 +77,8 @@ const breadcrumbSchema = getBreadcrumbSchema([
                   {page.pricingCards[0].features.map((item: string, i: number) => (
                     <li class="flex items-center gap-2 text-sm text-neutral-700">
                       <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-primary-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                      <span data-cms-field={`page-tarifs.pricingCards[0].features[${i}]`} data-cms-type="text">{item}</span>
+                      {/* features[] = array imbrique dans un objet d'array (pricingCards[].features[]) : non taguable inline (moteur flat-only). Editable via le form /admin > page-tarifs. */}
+                      <span>{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -106,7 +107,8 @@ const breadcrumbSchema = getBreadcrumbSchema([
                   {page.pricingCards[1].features.map((item: string, i: number) => (
                     <li class="flex items-center gap-2 text-sm text-neutral-700">
                       <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-neutral-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                      <span data-cms-field={`page-tarifs.pricingCards[1].features[${i}]`} data-cms-type="text">{item}</span>
+                      {/* features[] = array imbrique dans un objet d'array (pricingCards[].features[]) : non taguable inline (moteur flat-only). Editable via le form /admin > page-tarifs. */}
+                      <span>{item}</span>
                     </li>
                   ))}
                 </ul>

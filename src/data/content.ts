@@ -23,19 +23,23 @@ export async function getContact() {
   return entry!.data;
 }
 
+// Note : `_file` = id de l'entree (= nom de fichier sans extension, ex "05-animaux").
+// Le moteur d'edition inline (cms-edit.js) mappe `coll:<fichier>.champ` -> src/content/coll/<fichier>.json,
+// donc data-cms-field DOIT utiliser ce nom de fichier, pas le champ `slug` interne (qui en differe
+// par le prefixe de tri NN-, voire totalement pour certains services).
 export async function getServices() {
   const entries = await getCollection('services');
-  return entries.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0)).map(e => e.data);
+  return entries.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0)).map(e => ({ ...e.data, _file: e.id }));
 }
 
 export async function getTestimonials() {
   const entries = await getCollection('testimonials');
-  return entries.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0)).map(e => e.data);
+  return entries.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0)).map(e => ({ ...e.data, _file: e.id }));
 }
 
 export async function getFaq() {
   const entries = await getCollection('faq');
-  return entries.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0)).map(e => e.data);
+  return entries.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0)).map(e => ({ ...e.data, _file: e.id }));
 }
 
 export async function getSocialProof() {

@@ -62,9 +62,11 @@ const siteInfo = await getSiteInfo();
       <div>
         <h3 class="font-heading font-semibold text-white mb-4 text-base">Coordonnées</h3>
         <address class="not-italic text-sm text-primary-200 space-y-2.5">
+          <!-- Adresse : objet imbrique site-info.address{} non taguable inline (moteur cms-edit.js flat-only).
+               Editable via le form /admin > site-info qui gere l'objet imbrique. Schema site-info partage du parc, ne pas aplatir. -->
           <p class="leading-relaxed">
-            <span data-cms-field="site-info.address.street" data-cms-type="text">{siteInfo.address.street}</span><br />
-            <span data-cms-field="site-info.address.postalCode" data-cms-type="text">{siteInfo.address.postalCode}</span> <span data-cms-field="site-info.address.city" data-cms-type="text">{siteInfo.address.city}</span>, <span data-cms-field="site-info.address.region" data-cms-type="text">{siteInfo.address.region}</span>
+            <span>{siteInfo.address.street}</span><br />
+            <span>{siteInfo.address.postalCode}</span> <span>{siteInfo.address.city}</span>, <span>{siteInfo.address.region}</span>
           </p>
           <p>
             <a href={`tel:${siteInfo.phone}`} class="hover:text-white transition-colors inline-flex items-center gap-1.5">
