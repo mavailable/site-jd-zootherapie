@@ -38,7 +38,9 @@ interface VocalEntry {
   audio_mime?: string;
   audio_bytes?: number;
   uploaded_at: string;
-  statut: 'envoye' | 'transcrit' | 'publie';
+  statut: 'envoye' | 'transcrit' | 'publie' | 'traite';
+  // Note de résolution ajoutée par Marc quand le vocal a été traité (script scripts/vocal-resolve.py)
+  resolution?: { note: string; resolved_at: string };
 }
 
 const CATEGORIES: Array<{ value: string; label: string }> = [
@@ -60,12 +62,14 @@ const STATUT_LABEL: Record<VocalEntry['statut'], string> = {
   envoye: t('vocauxStatutEnvoye'),
   transcrit: t('vocauxStatutTranscrit'),
   publie: t('vocauxStatutPublie'),
+  traite: t('vocauxStatutTraite'),
 };
 
 const STATUT_ICON: Record<VocalEntry['statut'], string> = {
-  envoye: '\u{1F4E4}',
-  transcrit: '\u{1F4DD}',
-  publie: '\u{2705}',
+  envoye: '\u{1F4E4}', // 📤
+  transcrit: '\u{1F4DD}', // 📝
+  publie: '\u{2705}', // ✅ (coche verte)
+  traite: '\u{2611}\u{FE0F}', // ☑️ (case cochée bleue — distincte du publie vert)
 };
 
 const MAX_CLIPS = 5;
@@ -574,6 +578,20 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
                     ? t('vocauxFiles1', { size: formatBytes(totalSize) })
                     : t('vocauxFilesN', { n: atts.length, size: formatBytes(totalSize) })}
                 </div>
+                {e.resolution?.note && (
+                  <div style={styles.resolutionBox}>
+                    <div style={styles.resolutionTitle}>
+                      <span aria-hidden="true">{'\u{2611}\u{FE0F}'}</span>{' '}
+                      {t('vocauxResolutionTitle')}
+                    </div>
+                    <div style={styles.resolutionNote}>{e.resolution.note}</div>
+                    {e.resolution.resolved_at && (
+                      <div style={styles.resolutionDate}>
+                        {formatDate(e.resolution.resolved_at)}
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             );
           })}
@@ -771,6 +789,32 @@ const styles: Record<string, React.CSSProperties> = {
     padding: '0.125rem 0.5rem',
   },
   entryMeta: { fontSize: '0.75rem', color: '#94a3b8' },
+  resolutionBox: {
+    marginTop: '0.625rem',
+    padding: '0.625rem 0.75rem',
+    background: '#f0fdf4',
+    border: '1px solid #bbf7d0',
+    borderRadius: '8px',
+  },
+  resolutionTitle: {
+    fontSize: '0.75rem',
+    fontWeight: 700,
+    color: '#166534',
+    textTransform: 'uppercase' as const,
+    letterSpacing: '0.02em',
+    marginBottom: '0.25rem',
+  },
+  resolutionNote: {
+    fontSize: '0.875rem',
+    color: '#166534',
+    lineHeight: 1.45,
+    whiteSpace: 'pre-wrap' as const,
+  },
+  resolutionDate: {
+    fontSize: '0.6875rem',
+    color: '#15803d',
+    marginTop: '0.375rem',
+  },
   clipList: {
     display: 'flex',
     flexDirection: 'column' as const,
