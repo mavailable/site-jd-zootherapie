@@ -46,6 +46,9 @@ export async function onRequestGet({ request, env }) {
 
     // Strip r2_key des entries (au niveau racine et dans attachments[]) — garde le binding R2 invisible.
     // Tolère le schéma legacy (entry.r2_key + entry.vocal_url à plat) et le nouveau (attachments[]).
+    // NB: le champ `resolution` ({ note, resolved_at }), ajouté par scripts/vocal-resolve.py
+    // quand Marc marque un vocal `traite`, est volontairement conservé via `...rest` — il est
+    // affiché côté client dans l'encart « Ce qui a été fait / What was done » de VocauxTab.tsx.
     const sanitized = entries.map((e) => {
       const { r2_key, attachments, ...rest } = e;
       const cleanAttachments = Array.isArray(attachments)
