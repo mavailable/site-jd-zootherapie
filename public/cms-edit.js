@@ -12,11 +12,19 @@
  * - Save batch : regroupe par fichier JSON, fetch sha, merge, POST /api/cms/save
  * - Mobile-first : toolbar responsive, boutons tactiles
  *
- * Conventions data-cms-field :
- * - Singleton : "hero.title" -> src/content/hero/index.json .title
- * - Collection : "faq:budget.question" -> src/content/faq/budget.json .question
- * - Array item : "painpoints.questions[2]" -> src/content/painpoints/index.json .questions[2]
- * - Array obj  : "process.phases[0].title" -> src/content/process/index.json .phases[0].title
+ * Conventions data-cms-field (6 formes supportees — toute autre forme casse SILENCIEUSEMENT,
+ * cf. scripts/cms-fields-validate.py qui rejoue exactement parseFieldPath) :
+ * - Singleton plat    : "hero.title"                 -> src/content/hero/index.json .title
+ * - Singleton array   : "about.paragraphs[2]"        -> src/content/about/index.json .paragraphs[2]
+ * - Singleton arr.obj : "process.phases[0].title"    -> src/content/process/index.json .phases[0].title
+ * - Collection plat   : "faq:budget.question"        -> src/content/faq/budget.json .question
+ * - Collection array  : "services:plan.bullets[0]"   -> src/content/services/plan.json .bullets[0]
+ * - Collection arr.obj: "services:plan.steps[1].txt" -> src/content/services/plan.json .steps[1].txt
+ *
+ * INTERDIT (cle fantome ou no-op silencieux, jamais rendu par le composant) :
+ * - dot-path imbrique : "hero.ctaPrimary.label"  (ecrit content["ctaPrimary.label"])
+ * - array imbrique    : "card.fit.items[2]"      (no-op : content["fit.items"] pas un array)
+ * - subfield imbrique : "x.items[0].a.b"         (ecrit content.items[0]["a.b"])
  */
 (function () {
   'use strict';
@@ -37,7 +45,115 @@
   var cmsConfig = {
     colors: { primary: '#2563eb', accent: '#059669', dark: '#0f172a' },
     pageNames: {},
+    lang: 'fr',
   };
+
+  // --- i18n (FR par defaut, EN si cms-config.json -> lang:"en") ---
+  // Terminologie alignee sur le panel /admin (src/components/cms/locales.ts).
+  var DICT = {
+    fr: {
+      // FAB
+      fabEdit: 'Modifier',
+      fabAria: 'Activer le mode edition',
+      // Toolbar
+      tbMode: 'Mode édition',
+      tbAdmin: 'Admin',
+      tbStylesTitle: 'Styles',
+      tbQuit: 'Quitter',
+      tbQuitTitle: 'Quitter le mode édition',
+      tbCancel: 'Annuler',
+      tbCancelTitle: 'Annuler les modifications',
+      tbSave: 'Enregistrer',
+      tbSaveTitle: 'Enregistrer',
+      tbSaving: 'Enregistrement...',
+      tbAdminTitle: 'Panneau d\'administration',
+      // Compteurs
+      cntFieldsOne: '{n} champ éditable',
+      cntFieldsMany: '{n} champs éditables',
+      cntModsOne: '{n} modification',
+      cntModsMany: '{n} modifications',
+      // Confirm quit
+      confirmQuit: 'Vous avez {n} modification(s) non enregistrée(s). Quitter sans sauvegarder ?',
+      // Toasts
+      toastCancelled: 'Modifications annulées',
+      toastNoChanges: 'Aucune modification',
+      toastSaved: 'Enregistre ! Votre site se met a jour.',
+      toastUploading: 'Upload en cours...',
+      toastUploaded: 'Image uploadée',
+      toastError: 'Erreur : {msg}',
+      // Modale image
+      imgTitle: 'Choisir une image',
+      imgClose: 'Fermer',
+      imgDrop: 'Glissez une image ici ou <strong>parcourir</strong>',
+      imgFormats: 'JPG, PNG, WebP, SVG, GIF',
+      imgExisting: 'Images existantes',
+      imgLoading: 'Chargement...',
+      imgNone: 'Aucune image',
+      imgLoadError: 'Erreur de chargement',
+      // Overlay image
+      imgChange: 'Changer',
+      // Panneau Styles
+      stylePrimary: 'Couleur principale',
+      styleAccent: 'Couleur accent',
+      styleDarkBg: 'Fond sombre',
+      styleBodyText: 'Texte corps',
+      styleRadius: 'Arrondi boutons',
+      styleReset: 'Réinitialiser',
+      styleClose: 'Fermer le panneau styles',
+    },
+    en: {
+      fabEdit: 'Edit',
+      fabAria: 'Enable edit mode',
+      tbMode: 'Edit mode',
+      tbAdmin: 'Admin',
+      tbStylesTitle: 'Styles',
+      tbQuit: 'Quit',
+      tbQuitTitle: 'Quit edit mode',
+      tbCancel: 'Cancel',
+      tbCancelTitle: 'Cancel changes',
+      tbSave: 'Save',
+      tbSaveTitle: 'Save',
+      tbSaving: 'Saving...',
+      tbAdminTitle: 'Admin panel',
+      cntFieldsOne: '{n} editable field',
+      cntFieldsMany: '{n} editable fields',
+      cntModsOne: '{n} change',
+      cntModsMany: '{n} changes',
+      confirmQuit: 'You have {n} unsaved change(s). Quit without saving?',
+      toastCancelled: 'Changes cancelled',
+      toastNoChanges: 'No changes',
+      toastSaved: 'Saved! Your site is updating.',
+      toastUploading: 'Uploading...',
+      toastUploaded: 'Image uploaded',
+      toastError: 'Error: {msg}',
+      imgTitle: 'Choose an image',
+      imgClose: 'Close',
+      imgDrop: 'Drop an image here or <strong>browse</strong>',
+      imgFormats: 'JPG, PNG, WebP, SVG, GIF',
+      imgExisting: 'Existing images',
+      imgLoading: 'Loading...',
+      imgNone: 'No image',
+      imgLoadError: 'Loading error',
+      imgChange: 'Change',
+      stylePrimary: 'Primary color',
+      styleAccent: 'Accent color',
+      styleDarkBg: 'Dark background',
+      styleBodyText: 'Body text',
+      styleRadius: 'Button radius',
+      styleReset: 'Reset',
+      styleClose: 'Close styles panel',
+    },
+  };
+
+  function tr(key, vars) {
+    var lang = (cmsConfig.lang === 'en') ? 'en' : 'fr';
+    var table = DICT[lang] || DICT.fr;
+    var s = (table[key] !== undefined) ? table[key] : (DICT.fr[key] !== undefined ? DICT.fr[key] : key);
+    if (vars) {
+      for (var k in vars) { s = s.replace('{' + k + '}', vars[k]); }
+    }
+    return s;
+  }
 
   // --- Field path parser ---
   function parseFieldPath(fieldPath) {
@@ -52,8 +168,20 @@
       var rest = fieldPath.substring(colonIndex + 1);
       var dotIndex = rest.indexOf('.');
       var slug = rest.substring(0, dotIndex);
-      var field = rest.substring(dotIndex + 1);
-      return { filePath: 'src/content/' + collection + '/' + slug + '.json', field: field };
+      var collField = rest.substring(dotIndex + 1);
+      var collFilePath = 'src/content/' + collection + '/' + slug + '.json';
+      // Collection array item: "services:plan.bullets[2]" ou ".steps[1].txt"
+      // (le save est generique sur index/subfield, comme pour les singletons)
+      var collBracket = collField.match(/^([^.[]+)\[(\d+)\](?:\.(.+))?$/);
+      if (collBracket) {
+        return {
+          filePath: collFilePath,
+          field: collBracket[1],
+          index: parseInt(collBracket[2], 10),
+          subfield: collBracket[3] || null,
+        };
+      }
+      return { filePath: collFilePath, field: collField };
     }
 
     // Array: "singleton.field[index]" or "singleton.field[index].subfield"
@@ -86,6 +214,7 @@
         if (data) {
           if (data.colors) cmsConfig.colors = data.colors;
           if (data.pageNames) cmsConfig.pageNames = data.pageNames;
+          if (data.lang) cmsConfig.lang = data.lang;
         }
         createEditButton();
       })
@@ -100,8 +229,8 @@
 
   function createEditButton() {
     editButton = document.createElement('button');
-    editButton.textContent = 'Modifier';
-    editButton.setAttribute('aria-label', 'Activer le mode edition');
+    editButton.textContent = tr('fabEdit');
+    editButton.setAttribute('aria-label', tr('fabAria'));
     Object.assign(editButton.style, {
       position: 'fixed', bottom: '24px', right: '24px', zIndex: '9999',
       padding: '12px 24px', background: cmsConfig.colors.primary, color: '#fff',
@@ -233,13 +362,13 @@
       applyThemeColors(themeOriginal);
     }
     deactivateEditMode();
-    showToast('Modifications annul\u00e9es', 'info');
+    showToast(tr('toastCancelled'), 'info');
   }
 
   function quitEditMode() {
     var modCount = Object.keys(modifications).length + Object.keys(themeModifications).length;
     if (modCount > 0) {
-      if (!window.confirm('Vous avez ' + modCount + ' modification(s) non enregistr\u00e9e(s). Quitter sans sauvegarder ?')) {
+      if (!window.confirm(tr('confirmQuit', { n: modCount }))) {
         return;
       }
       cancelChanges();
@@ -340,7 +469,7 @@
     icon.style.fontSize = '28px';
 
     var label = document.createElement('span');
-    label.textContent = 'Changer';
+    label.textContent = tr('imgChange');
     Object.assign(label.style, {
       color: '#fff', fontSize: '13px', fontWeight: '600',
       fontFamily: 'system-ui, -apple-system, sans-serif',
@@ -391,12 +520,12 @@
     });
 
     var title = document.createElement('h3');
-    title.textContent = 'Choisir une image';
+    title.textContent = tr('imgTitle');
     Object.assign(title.style, { margin: '0', fontSize: '18px', fontWeight: '600', color: cmsConfig.colors.dark });
 
     var closeBtn = document.createElement('button');
     closeBtn.textContent = '\u2715';
-    closeBtn.setAttribute('aria-label', 'Fermer');
+    closeBtn.setAttribute('aria-label', tr('imgClose'));
     Object.assign(closeBtn.style, {
       background: 'none', border: 'none', fontSize: '20px',
       cursor: 'pointer', color: '#71717a', padding: '4px 8px',
@@ -415,8 +544,8 @@
       transition: 'border-color 0.2s, background 0.2s',
     });
     uploadZone.innerHTML = '<p style="margin:0;color:#71717a;font-size:14px;">' +
-      '\ud83d\udcc1 Glissez une image ici ou <strong>parcourir</strong></p>' +
-      '<p style="margin:4px 0 0;color:#a0a0a8;font-size:12px;">JPG, PNG, WebP, SVG, GIF</p>';
+      '\ud83d\udcc1 ' + tr('imgDrop') + '</p>' +
+      '<p style="margin:4px 0 0;color:#a0a0a8;font-size:12px;">' + tr('imgFormats') + '</p>';
 
     var fileInput = document.createElement('input');
     fileInput.type = 'file';
@@ -448,7 +577,7 @@
 
     // Galerie
     var galTitle = document.createElement('p');
-    galTitle.textContent = 'Images existantes';
+    galTitle.textContent = tr('imgExisting');
     Object.assign(galTitle.style, {
       fontSize: '14px', fontWeight: '600', color: '#374151', marginBottom: '12px',
     });
@@ -462,7 +591,7 @@
     panel.appendChild(grid);
 
     var loader = document.createElement('p');
-    loader.textContent = 'Chargement...';
+    loader.textContent = tr('imgLoading');
     Object.assign(loader.style, { color: '#94a3b8', fontSize: '13px', textAlign: 'center' });
     grid.appendChild(loader);
 
@@ -484,7 +613,7 @@
         grid.innerHTML = '';
         var images = data.images || [];
         if (images.length === 0) {
-          grid.innerHTML = '<p style="color:#94a3b8;font-size:13px;grid-column:1/-1;text-align:center;">Aucune image</p>';
+          grid.innerHTML = '<p style="color:#94a3b8;font-size:13px;grid-column:1/-1;text-align:center;">' + tr('imgNone') + '</p>';
           return;
         }
         images.forEach(function (img) {
@@ -508,7 +637,7 @@
         });
       })
       .catch(function () {
-        grid.innerHTML = '<p style="color:#dc2626;font-size:13px;">Erreur de chargement</p>';
+        grid.innerHTML = '<p style="color:#dc2626;font-size:13px;">' + tr('imgLoadError') + '</p>';
       });
   }
 
@@ -516,7 +645,7 @@
     var formData = new FormData();
     formData.append('file', file);
 
-    showToast('Upload en cours...', 'info');
+    showToast(tr('toastUploading'), 'info');
 
     fetch('/api/cms/upload', { method: 'POST', body: formData })
       .then(function (r) {
@@ -525,10 +654,10 @@
       })
       .then(function (data) {
         selectImage(data.url, targetImg);
-        showToast('Image upload\u00e9e', 'success');
+        showToast(tr('toastUploaded'), 'success');
       })
       .catch(function (err) {
-        showToast('Erreur : ' + err.message, 'error');
+        showToast(tr('toastError', { msg: err.message }), 'error');
       });
   }
 
@@ -593,11 +722,11 @@
       marginBottom: '24px',
     });
     var h3 = document.createElement('h3');
-    h3.textContent = 'Styles';
+    h3.textContent = tr('tbStylesTitle');
     Object.assign(h3.style, { margin: '0', fontSize: '18px', fontWeight: '600', color: cmsConfig.colors.dark });
     var closeBtn = document.createElement('button');
     closeBtn.textContent = '\u2715';
-    closeBtn.setAttribute('aria-label', 'Fermer le panneau styles');
+    closeBtn.setAttribute('aria-label', tr('styleClose'));
     Object.assign(closeBtn.style, {
       background: 'none', border: 'none', fontSize: '18px',
       cursor: 'pointer', color: '#71717a',
@@ -609,10 +738,10 @@
 
     // Color pickers
     var colors = [
-      { key: 'primaryColor', label: 'Couleur principale', cssVar: '--color-primary-500' },
-      { key: 'accentColor', label: 'Couleur accent', cssVar: '--color-accent-500' },
-      { key: 'darkBg', label: 'Fond sombre', cssVar: '--color-dark-grey' },
-      { key: 'bodyText', label: 'Texte corps', cssVar: '--color-body-dark' },
+      { key: 'primaryColor', label: tr('stylePrimary'), cssVar: '--color-primary-500' },
+      { key: 'accentColor', label: tr('styleAccent'), cssVar: '--color-accent-500' },
+      { key: 'darkBg', label: tr('styleDarkBg'), cssVar: '--color-dark-grey' },
+      { key: 'bodyText', label: tr('styleBodyText'), cssVar: '--color-body-dark' },
     ];
 
     colors.forEach(function (c) {
@@ -672,7 +801,7 @@
     radiusGroup.style.marginBottom = '20px';
 
     var radiusLabel = document.createElement('label');
-    radiusLabel.textContent = 'Arrondi boutons';
+    radiusLabel.textContent = tr('styleRadius');
     Object.assign(radiusLabel.style, {
       display: 'block', fontSize: '13px', fontWeight: '500',
       color: '#374151', marginBottom: '6px',
@@ -711,7 +840,7 @@
 
     // Reset
     var resetBtn = document.createElement('button');
-    resetBtn.textContent = 'R\u00e9initialiser';
+    resetBtn.textContent = tr('styleReset');
     Object.assign(resetBtn.style, {
       width: '100%', padding: '10px', background: 'transparent',
       border: '1px solid #d1d5db', borderRadius: '8px', fontSize: '13px',
@@ -818,30 +947,30 @@
     toolbar.innerHTML =
       '<div style="display:flex;align-items:center;gap:12px;min-width:0;">' +
         '<span style="font-size:18px;">&#9998;</span>' +
-        '<span class="cms-toolbar-label" style="font-weight:600;font-size:14px;">Mode \u00e9dition</span>' +
+        '<span class="cms-toolbar-label" style="font-weight:600;font-size:14px;">' + tr('tbMode') + '</span>' +
         '<span class="cms-toolbar-label" style="font-size:12px;color:#94a3b8;opacity:0.7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"> ' + getPageName() + '</span>' +
         '<span id="cms-toolbar-count" style="font-size:13px;color:#94a3b8;white-space:nowrap;"></span>' +
       '</div>' +
       '<div style="display:flex;gap:8px;flex-shrink:0;">' +
-        '<a id="cms-admin" href="/admin" title="Panneau d\'administration" style="' +
+        '<a id="cms-admin" href="/admin" title="' + tr('tbAdminTitle') + '" style="' +
           'display:inline-flex;align-items:center;padding:8px 12px;background:transparent;color:#fff;' +
           'text-decoration:none;border:1px solid rgba(255,255,255,0.3);border-radius:8px;' +
-          'font-size:13px;cursor:pointer;"><span class="cms-toolbar-label">Admin</span><span class="cms-toolbar-icon">&#9881;</span></a>' +
-        '<button id="cms-theme-btn" title="Styles" style="' +
+          'font-size:13px;cursor:pointer;"><span class="cms-toolbar-label">' + tr('tbAdmin') + '</span><span class="cms-toolbar-icon">&#9881;</span></a>' +
+        '<button id="cms-theme-btn" title="' + tr('tbStylesTitle') + '" style="' +
           'padding:8px 12px;background:transparent;color:#fff;' +
           'border:1px solid rgba(255,255,255,0.3);border-radius:8px;' +
           'font-size:16px;cursor:pointer;">\ud83c\udfa8</button>' +
-        '<button id="cms-quit" title="Quitter le mode \u00e9dition" style="' +
+        '<button id="cms-quit" title="' + tr('tbQuitTitle') + '" style="' +
           'padding:8px 12px;background:transparent;color:#fff;' +
           'border:1px solid rgba(255,255,255,0.3);border-radius:8px;' +
-          'font-size:13px;cursor:pointer;"><span class="cms-toolbar-label">Quitter</span><span class="cms-toolbar-icon">\u2715</span></button>' +
-        '<button id="cms-cancel" title="Annuler les modifications" style="' +
+          'font-size:13px;cursor:pointer;"><span class="cms-toolbar-label">' + tr('tbQuit') + '</span><span class="cms-toolbar-icon">\u2715</span></button>' +
+        '<button id="cms-cancel" title="' + tr('tbCancelTitle') + '" style="' +
           'padding:8px 16px;background:transparent;color:#fff;' +
           'border:1px solid rgba(255,255,255,0.3);border-radius:8px;' +
-          'font-size:13px;cursor:pointer;"><span class="cms-toolbar-label">Annuler</span><span class="cms-toolbar-icon">\u21a9</span></button>' +
-        '<button id="cms-save" title="Enregistrer" style="' +
+          'font-size:13px;cursor:pointer;"><span class="cms-toolbar-label">' + tr('tbCancel') + '</span><span class="cms-toolbar-icon">\u21a9</span></button>' +
+        '<button id="cms-save" title="' + tr('tbSaveTitle') + '" style="' +
           'padding:8px 20px;background:' + cmsConfig.colors.accent + ';color:#fff;border:none;' +
-          'border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;"><span class="cms-toolbar-label">Enregistrer</span><span class="cms-toolbar-icon">\ud83d\udcbe</span></button>' +
+          'border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;"><span class="cms-toolbar-label">' + tr('tbSave') + '</span><span class="cms-toolbar-icon">\ud83d\udcbe</span></button>' +
       '</div>';
     Object.assign(toolbar.style, {
       position: 'fixed', bottom: '0', left: '0', right: '0', zIndex: '10000',
@@ -867,10 +996,10 @@
     var n = Object.keys(modifications).length + Object.keys(themeModifications).length;
     if (n === 0) {
       var total = document.querySelectorAll('[data-cms-field]').length;
-      count.textContent = total + ' champ' + (total > 1 ? 's' : '') + ' \u00e9ditable' + (total > 1 ? 's' : '');
+      count.textContent = tr(total > 1 ? 'cntFieldsMany' : 'cntFieldsOne', { n: total });
       count.style.color = '#94a3b8';
     } else {
-      count.textContent = n + ' modification' + (n > 1 ? 's' : '');
+      count.textContent = tr(n > 1 ? 'cntModsMany' : 'cntModsOne', { n: n });
       count.style.color = cmsConfig.colors.accent;
     }
   }
@@ -883,13 +1012,13 @@
     var modKeys = Object.keys(modifications);
     var themeKeys = Object.keys(themeModifications);
     if (modKeys.length === 0 && themeKeys.length === 0) {
-      showToast('Aucune modification', 'info');
+      showToast(tr('toastNoChanges'), 'info');
       return;
     }
 
     var saveBtn = document.getElementById('cms-save');
     var cancelBtn = document.getElementById('cms-cancel');
-    if (saveBtn) { saveBtn.disabled = true; saveBtn.textContent = 'Enregistrement...'; }
+    if (saveBtn) { saveBtn.disabled = true; saveBtn.textContent = tr('tbSaving'); }
     if (cancelBtn) cancelBtn.disabled = true;
 
     // Grouper les modifs texte/image par fichier JSON
@@ -920,7 +1049,7 @@
 
     function processNext() {
       if (index >= filePaths.length) {
-        showToast('Enregistre ! Votre site se met a jour.', 'success');
+        showToast(tr('toastSaved'), 'success');
         modKeys.forEach(function (field) { originalValues[field] = modifications[field]; });
         modifications = {};
         themeModifications = {};
@@ -974,8 +1103,8 @@
           processNext();
         })
         .catch(function (err) {
-          showToast('Erreur : ' + err.message, 'error');
-          if (saveBtn) { saveBtn.disabled = false; saveBtn.textContent = 'Enregistrer'; }
+          showToast(tr('toastError', { msg: err.message }), 'error');
+          if (saveBtn) { saveBtn.disabled = false; saveBtn.textContent = tr('tbSave'); }
           if (cancelBtn) cancelBtn.disabled = false;
         });
     }
