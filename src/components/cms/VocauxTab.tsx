@@ -72,7 +72,7 @@ const STATUT_ICON: Record<VocalEntry['statut'], string> = {
   traite: '\u{2611}\u{FE0F}', // ☑️ (case cochée bleue — distincte du publie vert)
 };
 
-const MAX_CLIPS = 5;
+const MAX_CLIPS = 15;
 
 function formatBytes(b: number): string {
   if (b < 1024) return `${b} B`;

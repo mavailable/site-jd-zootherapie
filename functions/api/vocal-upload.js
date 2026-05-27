@@ -25,7 +25,7 @@
 import { requireAuth, jsonHeaders } from './cms/_auth-helpers.js';
 
 const MAX_AUDIO_BYTES_PER_FILE = 25 * 1024 * 1024; // 25 MB par fichier
-const MAX_CLIPS = 5;
+const MAX_CLIPS = 15;
 const ALLOWED_MIME_PREFIX = ['audio/', 'video/webm'];
 const ALLOWED_CATEGORIES = new Set([
   'idee-article',
