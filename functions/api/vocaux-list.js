@@ -44,17 +44,22 @@ export async function onRequestGet({ request, env }) {
     const parsed = JSON.parse(decoded);
     const entries = Array.isArray(parsed.entries) ? parsed.entries : [];
 
-    // Strip r2_key des entries (au niveau racine et dans attachments[]) — garde le binding R2 invisible.
-    // Tolère le schéma legacy (entry.r2_key + entry.vocal_url à plat) et le nouveau (attachments[]).
+    // Strip r2_key des entries (racine, attachments[] audio, media[] images/vidéos/pdf) —
+    // garde le binding R2 invisible. Tolère le schéma legacy (entry.r2_key + entry.vocal_url à
+    // plat), le multi-vocaux (attachments[]) et les médias (media[]).
     // NB: le champ `resolution` ({ note, resolved_at }), ajouté par scripts/vocal-resolve.py
     // quand Marc marque un vocal `traite`, est volontairement conservé via `...rest` — il est
     // affiché côté client dans l'encart « Ce qui a été fait / What was done » de VocauxTab.tsx.
     const sanitized = entries.map((e) => {
-      const { r2_key, attachments, ...rest } = e;
-      const cleanAttachments = Array.isArray(attachments)
-        ? attachments.map(({ r2_key: _rk, ...attRest }) => attRest)
-        : undefined;
-      return cleanAttachments ? { ...rest, attachments: cleanAttachments } : rest;
+      const { r2_key, attachments, media, ...rest } = e;
+      const out = { ...rest };
+      if (Array.isArray(attachments)) {
+        out.attachments = attachments.map(({ r2_key: _rk, ...attRest }) => attRest);
+      }
+      if (Array.isArray(media)) {
+        out.media = media.map(({ r2_key: _rk, ...mRest }) => mRest);
+      }
+      return out;
     });
 
     return new Response(JSON.stringify({ entries: sanitized }), { status: 200, headers: jsonHeaders() });

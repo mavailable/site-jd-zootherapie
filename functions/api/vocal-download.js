@@ -52,9 +52,14 @@ export async function onRequestGet({ request, env }) {
   }
 
   const filename = k.split('/').pop() || 'vocal.webm';
+  const contentType = obj.httpMetadata?.contentType || 'application/octet-stream';
+  // ?inline=1 → sert le fichier en `inline` (affichage navigateur : miniature image, lecteur
+  // vidéo, viewer PDF dans l'admin). Sans ce paramètre, comportement historique = attachment
+  // (téléchargement direct, utilisé pour les vocaux dans ~/Downloads).
+  const inline = url.searchParams.get('inline') === '1';
   const headers = new Headers();
-  headers.set('Content-Type', obj.httpMetadata?.contentType || 'application/octet-stream');
-  headers.set('Content-Disposition', `attachment; filename="${filename}"`);
+  headers.set('Content-Type', contentType);
+  headers.set('Content-Disposition', `${inline ? 'inline' : 'attachment'}; filename="${filename}"`);
   headers.set('Cache-Control', 'private, max-age=3600');
   if (obj.size) headers.set('Content-Length', String(obj.size));
 

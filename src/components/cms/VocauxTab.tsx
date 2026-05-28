@@ -27,14 +27,24 @@ interface VocalAttachment {
   audio_bytes: number;
 }
 
+interface VocalMedia {
+  filename: string;
+  vocal_url: string;
+  kind: 'image' | 'video' | 'pdf';
+  media_mime?: string;
+  media_bytes: number;
+}
+
 interface VocalEntry {
   id: string;
   sujet: string;
   categorie?: string;
   // Message texte libre du client (optionnel). Une entrée peut avoir du texte, des
-  // vocaux, ou les deux. Distinct de resolution.note (réponse de Marc).
+  // vocaux, des médias, ou n'importe quelle combinaison. Distinct de resolution.note.
   note?: string;
   attachments?: VocalAttachment[];
+  // Médias joints (images / vidéos / PDF). Tableau séparé des vocaux audio.
+  media?: VocalMedia[];
   // Legacy single-file fields (rétrocompat avec entrées créées avant le multi-vocaux)
   filename?: string;
   vocal_url?: string;
@@ -44,6 +54,15 @@ interface VocalEntry {
   statut: 'envoye' | 'transcrit' | 'publie' | 'traite';
   // Note de résolution ajoutée par Marc quand le vocal a été traité (script scripts/vocal-resolve.py)
   resolution?: { note: string; resolved_at: string };
+}
+
+// Brouillon de média sélectionné côté client (avant envoi). objectUrl pour les miniatures images.
+interface DraftMedia {
+  id: string;
+  file: File;
+  kind: 'image' | 'video' | 'pdf';
+  objectUrl: string | null; // miniature pour les images uniquement
+  size: number;
 }
 
 const CATEGORIES: Array<{ value: string; label: string }> = [
@@ -76,6 +95,41 @@ const STATUT_ICON: Record<VocalEntry['statut'], string> = {
 };
 
 const MAX_CLIPS = 15;
+const MAX_MEDIA = 10;
+
+// Caps médias — DOIVENT correspondre à functions/api/vocal-upload.js (revalidé serveur).
+const MAX_IMAGE_BYTES = 10 * 1024 * 1024;
+const MAX_VIDEO_BYTES = 40 * 1024 * 1024;
+const MAX_DOC_BYTES = 15 * 1024 * 1024;
+const MAX_TOTAL_PAYLOAD_BYTES = 85 * 1024 * 1024;
+
+// MIME + extensions médias acceptés. Le serveur revalide (MIME OU extension).
+const MEDIA_ACCEPT = 'image/*,video/mp4,video/quicktime,video/webm,application/pdf,.heic,.heif';
+const IMAGE_EXT = new Set(['jpg', 'jpeg', 'png', 'webp', 'gif', 'heic', 'heif']);
+const VIDEO_EXT = new Set(['mp4', 'mov', 'webm', 'm4v']);
+const DOC_EXT = new Set(['pdf']);
+
+function extOf(name: string): string {
+  const i = name.lastIndexOf('.');
+  return i >= 0 ? name.slice(i + 1).toLowerCase() : '';
+}
+
+// Détermine le kind d'un fichier (MIME d'abord, extension en repli). null = non supporté.
+function mediaKindOf(file: File): 'image' | 'video' | 'pdf' | null {
+  const mime = (file.type || '').toLowerCase();
+  if (mime.startsWith('image/')) return 'image';
+  if (mime === 'application/pdf') return 'pdf';
+  if (mime === 'video/mp4' || mime === 'video/quicktime' || mime === 'video/webm') return 'video';
+  const ext = extOf(file.name);
+  if (IMAGE_EXT.has(ext)) return 'image';
+  if (VIDEO_EXT.has(ext)) return 'video';
+  if (DOC_EXT.has(ext)) return 'pdf';
+  return null;
+}
+
+function maxBytesFor(kind: 'image' | 'video' | 'pdf'): number {
+  return kind === 'video' ? MAX_VIDEO_BYTES : kind === 'pdf' ? MAX_DOC_BYTES : MAX_IMAGE_BYTES;
+}
 
 function formatBytes(b: number): string {
   if (b < 1024) return `${b} B`;
@@ -120,6 +174,16 @@ function getEntryAttachments(e: VocalEntry): VocalAttachment[] {
   return [];
 }
 
+function getEntryMedia(e: VocalEntry): VocalMedia[] {
+  return Array.isArray(e.media) ? e.media : [];
+}
+
+// Ajoute &inline=1 à une URL signée /api/vocal-download pour servir le fichier en affichage
+// navigateur (miniature image, lecteur vidéo, viewer PDF) plutôt qu'en téléchargement.
+function inlineUrl(url: string): string {
+  return url.includes('?') ? `${url}&inline=1` : `${url}?inline=1`;
+}
+
 export function VocauxTab({ config }: { config: CmsConfig }) {
   const { addToast } = useToastContext();
   const [state, setState] = useState<RecorderState>('idle');
@@ -129,6 +193,8 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
   const [categorie, setCategorie] = useState<string>(CATEGORIES[0].value);
   const [duration, setDuration] = useState(0);
   const [clips, setClips] = useState<RecordedClip[]>([]);
+  const [draftMedia, setDraftMedia] = useState<DraftMedia[]>([]);
+  const [dragOver, setDragOver] = useState(false);
   const [level, setLevel] = useState(0); // 0–100 (RMS du signal)
   const [entries, setEntries] = useState<VocalEntry[]>([]);
   const [loadingList, setLoadingList] = useState(true);
@@ -138,6 +204,7 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
   const chunksRef = useRef<Blob[]>([]);
   const timerRef = useRef<number | null>(null);
   const supportedMimeRef = useRef<string>('');
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   // VU-meter refs
   const audioCtxRef = useRef<AudioContext | null>(null);
@@ -185,6 +252,12 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
     }
   }, []);
 
+  // Ref miroir des objectUrl médias pour révocation au démontage (les deps du cleanup sont vides).
+  const draftMediaRef = useRef<DraftMedia[]>([]);
+  useEffect(() => {
+    draftMediaRef.current = draftMedia;
+  }, [draftMedia]);
+
   // Cleanup
   useEffect(() => {
     return () => {
@@ -195,6 +268,7 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
         audioCtxRef.current.close().catch(() => {});
       }
       clips.forEach((c) => URL.revokeObjectURL(c.url));
+      draftMediaRef.current.forEach((m) => m.objectUrl && URL.revokeObjectURL(m.objectUrl));
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -333,9 +407,87 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
     });
   };
 
+  // --- Médias (images / vidéos / PDF) ---
+  const addMediaFiles = useCallback(
+    (fileList: FileList | File[]) => {
+      const files = Array.from(fileList);
+      if (files.length === 0) return;
+      setError(null);
+
+      setDraftMedia((prev) => {
+        const next = [...prev];
+        let currentTotal =
+          prev.reduce((s, m) => s + m.size, 0) + clips.reduce((s, c) => s + c.size, 0);
+
+        for (const file of files) {
+          if (next.length >= MAX_MEDIA) {
+            setError(t('vocauxMediaTooMany', { max: MAX_MEDIA, n: prev.length + files.length }));
+            break;
+          }
+          const kind = mediaKindOf(file);
+          if (!kind) {
+            setError(t('vocauxMediaBadType', { name: file.name }));
+            continue;
+          }
+          const cap = maxBytesFor(kind);
+          if (file.size > cap) {
+            setError(
+              t('vocauxMediaTooBig', {
+                name: file.name,
+                size: formatBytes(file.size),
+                max: formatBytes(cap),
+              })
+            );
+            continue;
+          }
+          if (currentTotal + file.size > MAX_TOTAL_PAYLOAD_BYTES) {
+            setError(
+              t('vocauxMediaTooBigTotal', {
+                size: formatBytes(currentTotal + file.size),
+                max: formatBytes(MAX_TOTAL_PAYLOAD_BYTES),
+              })
+            );
+            break;
+          }
+          currentTotal += file.size;
+          next.push({
+            id: `media-${Date.now()}-${next.length}-${Math.random().toString(36).slice(2, 7)}`,
+            file,
+            kind,
+            objectUrl: kind === 'image' ? URL.createObjectURL(file) : null,
+            size: file.size,
+          });
+        }
+        return next;
+      });
+    },
+    [clips]
+  );
+
+  const onFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) addMediaFiles(e.target.files);
+    e.target.value = ''; // permet de re-sélectionner le même fichier après retrait
+  };
+
+  const onDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setDragOver(false);
+    if (e.dataTransfer?.files?.length) addMediaFiles(e.dataTransfer.files);
+  };
+
+  const removeMedia = (id: string) => {
+    setDraftMedia((prev) => {
+      const target = prev.find((m) => m.id === id);
+      if (target?.objectUrl) URL.revokeObjectURL(target.objectUrl);
+      return prev.filter((m) => m.id !== id);
+    });
+  };
+
   const resetAll = () => {
     clips.forEach((c) => URL.revokeObjectURL(c.url));
+    draftMedia.forEach((m) => m.objectUrl && URL.revokeObjectURL(m.objectUrl));
     setClips([]);
+    setDraftMedia([]);
     setDuration(0);
     stopMeter();
     if (streamRef.current) {
@@ -349,8 +501,8 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
     setState('idle');
   };
 
-  // Envoi possible si : sujet renseigné ET (texte non vide OU >= 1 clip audio).
-  const hasContent = note.trim().length > 0 || clips.length > 0;
+  // Envoi possible si : sujet renseigné ET (texte non vide OU >= 1 clip audio OU >= 1 média).
+  const hasContent = note.trim().length > 0 || clips.length > 0 || draftMedia.length > 0;
   const canSend = sujet.trim().length > 0 && hasContent;
   const isBusy = state === 'recording' || state === 'uploading';
 
@@ -377,6 +529,10 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
       formData.append(`audio_${i}`, c.blob, `vocal-${i + 1}.${ext}`);
     });
     formData.append('audio_count', String(clips.length));
+    draftMedia.forEach((m, i) => {
+      formData.append(`media_${i}`, m.file, m.file.name);
+    });
+    formData.append('media_count', String(draftMedia.length));
 
     try {
       const resp = await fetch('/api/vocal-upload', {
@@ -388,6 +544,7 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
       if (!resp.ok || !data.ok) {
         throw new Error(data.error || `HTTP ${resp.status}`);
       }
+      // Toast : si des vocaux, on garde le wording vocal historique ; sinon message générique.
       addToast(
         clips.length === 0
           ? t('vocauxMessageSent')
@@ -555,7 +712,98 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
           )}
         </div>
 
-        {/* Bouton d'envoi unifié : actif si sujet + (texte OU >= 1 vocal) */}
+        {/* Section Médias (optionnelle) — photos / screenshots / vidéos / PDF */}
+        <div style={styles.voiceSection}>
+          <p style={styles.voiceSectionLabel}>{t('vocauxMediaSectionLabel')}</p>
+          <p style={styles.tinyHintLeft}>{t('vocauxMediaHint', { n: MAX_MEDIA })}</p>
+
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept={MEDIA_ACCEPT}
+            multiple
+            onChange={onFileInputChange}
+            style={{ display: 'none' }}
+            disabled={isBusy || draftMedia.length >= MAX_MEDIA}
+          />
+
+          <div
+            role="button"
+            tabIndex={0}
+            onClick={() => !isBusy && draftMedia.length < MAX_MEDIA && fileInputRef.current?.click()}
+            onKeyDown={(e) => {
+              if ((e.key === 'Enter' || e.key === ' ') && !isBusy && draftMedia.length < MAX_MEDIA) {
+                e.preventDefault();
+                fileInputRef.current?.click();
+              }
+            }}
+            onDragOver={(e) => {
+              e.preventDefault();
+              if (!isBusy && draftMedia.length < MAX_MEDIA) setDragOver(true);
+            }}
+            onDragLeave={() => setDragOver(false)}
+            onDrop={onDrop}
+            style={{
+              ...styles.dropZone,
+              ...(dragOver ? styles.dropZoneActive : {}),
+              ...(draftMedia.length >= MAX_MEDIA || isBusy ? styles.dropZoneDisabled : {}),
+            }}
+            aria-disabled={draftMedia.length >= MAX_MEDIA || isBusy}
+          >
+            <span style={styles.btnIcon}>{'\u{1F4CE}'}</span>
+            <span style={styles.dropZoneText}>{t('vocauxMediaDropHint')}</span>
+            <span style={styles.dropZoneCaps}>{t('vocauxMediaCaps')}</span>
+          </div>
+
+          {draftMedia.length > 0 && (
+            <>
+              <p style={{ ...styles.label, marginTop: '0.75rem' }}>
+                {t('vocauxMediaCount', { n: draftMedia.length, max: MAX_MEDIA })}
+                <span style={{ color: '#64748b', fontWeight: 400 }}>
+                  {' · '}{formatBytes(draftMedia.reduce((s, m) => s + m.size, 0))}
+                </span>
+              </p>
+              <div style={styles.mediaGrid}>
+                {draftMedia.map((m) => (
+                  <div key={m.id} style={styles.mediaTile}>
+                    {m.kind === 'image' && m.objectUrl ? (
+                      <img src={m.objectUrl} alt={m.file.name} style={styles.mediaThumb} />
+                    ) : (
+                      <div style={styles.mediaIcon}>
+                        {m.kind === 'video' ? '\u{1F3AC}' : '\u{1F4C4}'}
+                      </div>
+                    )}
+                    <div style={styles.mediaName} title={m.file.name}>
+                      {m.file.name}
+                    </div>
+                    <div style={styles.mediaSize}>{formatBytes(m.size)}</div>
+                    <button
+                      onClick={() => removeMedia(m.id)}
+                      style={styles.mediaRemoveBtn}
+                      title={t('vocauxMediaRemove')}
+                      aria-label={t('vocauxMediaRemove')}
+                      disabled={state === 'uploading'}
+                    >
+                      <svg
+                        width="13"
+                        height="13"
+                        viewBox="0 0 14 14"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.4"
+                        strokeLinecap="round"
+                      >
+                        <path d="M3 3l8 8M11 3l-8 8" />
+                      </svg>
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+
+        {/* Bouton d'envoi unifié : actif si sujet + (texte OU >= 1 vocal OU >= 1 média) */}
         {state === 'uploading' ? (
           <div style={styles.center}>
             <span style={styles.statusText}>
@@ -598,6 +846,7 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
         <div style={styles.list}>
           {entries.map((e) => {
             const atts = getEntryAttachments(e);
+            const mediaItems = getEntryMedia(e);
             const totalSize = atts.reduce((s, a) => s + (a.audio_bytes || 0), 0);
             const catLabel = e.categorie
               ? CATEGORIE_LABEL[e.categorie] || e.categorie
@@ -625,6 +874,41 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
                     {atts.length === 1
                       ? t('vocauxFiles1', { size: formatBytes(totalSize) })
                       : t('vocauxFilesN', { n: atts.length, size: formatBytes(totalSize) })}
+                  </div>
+                )}
+                {mediaItems.length > 0 && (
+                  <div style={styles.entryMediaWrap}>
+                    <div style={styles.entryMediaLabel}>
+                      {mediaItems.length === 1
+                        ? t('vocauxFilesMedia1')
+                        : t('vocauxFilesMediaN', { n: mediaItems.length })}
+                    </div>
+                    <div style={styles.entryMediaGrid}>
+                      {mediaItems.map((m, i) => (
+                        <a
+                          key={`${m.filename}-${i}`}
+                          href={inlineUrl(m.vocal_url)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={styles.entryMediaTile}
+                          title={`${m.filename} · ${formatBytes(m.media_bytes || 0)}`}
+                        >
+                          {m.kind === 'image' ? (
+                            <img
+                              src={inlineUrl(m.vocal_url)}
+                              alt={m.filename}
+                              loading="lazy"
+                              style={styles.entryMediaThumb}
+                            />
+                          ) : (
+                            <div style={styles.entryMediaIcon}>
+                              {m.kind === 'video' ? '\u{1F3AC}' : '\u{1F4C4}'}
+                            </div>
+                          )}
+                          <span style={styles.entryMediaName}>{m.filename}</span>
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 )}
                 {e.resolution?.note && (
@@ -951,6 +1235,154 @@ const styles: Record<string, React.CSSProperties> = {
     color: '#64748b',
     fontVariantNumeric: 'tabular-nums' as const,
     whiteSpace: 'nowrap' as const,
+  },
+  tinyHintLeft: {
+    fontSize: '0.8125rem',
+    color: '#64748b',
+    margin: '0 0 0.625rem',
+  },
+  dropZone: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '0.375rem',
+    padding: '1.25rem 1rem',
+    border: '2px dashed #cbd5e1',
+    borderRadius: '10px',
+    background: '#f8fafc',
+    cursor: 'pointer',
+    textAlign: 'center' as const,
+    transition: 'border-color 120ms ease, background 120ms ease',
+  },
+  dropZoneActive: {
+    borderColor: '#2563eb',
+    background: '#eff6ff',
+  },
+  dropZoneDisabled: {
+    opacity: 0.5,
+    cursor: 'not-allowed',
+  },
+  dropZoneText: {
+    fontSize: '0.875rem',
+    color: '#475569',
+    fontWeight: 500,
+  },
+  dropZoneCaps: {
+    fontSize: '0.75rem',
+    color: '#94a3b8',
+  },
+  mediaGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(110px, 1fr))',
+    gap: '0.625rem',
+    marginTop: '0.5rem',
+  },
+  mediaTile: {
+    position: 'relative' as const,
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: '0.25rem',
+    padding: '0.5rem',
+    background: '#f8fafc',
+    border: '1px solid #e2e8f0',
+    borderRadius: '8px',
+  },
+  mediaThumb: {
+    width: '100%',
+    height: '72px',
+    objectFit: 'cover' as const,
+    borderRadius: '6px',
+    background: '#e2e8f0',
+  },
+  mediaIcon: {
+    width: '100%',
+    height: '72px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '1.75rem',
+    borderRadius: '6px',
+    background: '#e2e8f0',
+  },
+  mediaName: {
+    fontSize: '0.6875rem',
+    color: '#475569',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap' as const,
+  },
+  mediaSize: {
+    fontSize: '0.625rem',
+    color: '#94a3b8',
+    fontVariantNumeric: 'tabular-nums' as const,
+  },
+  mediaRemoveBtn: {
+    position: 'absolute' as const,
+    top: '4px',
+    right: '4px',
+    width: '22px',
+    height: '22px',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    background: 'rgba(254, 242, 242, 0.95)',
+    color: '#dc2626',
+    border: '1px solid #fecaca',
+    borderRadius: '50%',
+    cursor: 'pointer',
+    padding: 0,
+  },
+  entryMediaWrap: {
+    marginTop: '0.5rem',
+  },
+  entryMediaLabel: {
+    fontSize: '0.6875rem',
+    fontWeight: 700,
+    color: '#64748b',
+    textTransform: 'uppercase' as const,
+    letterSpacing: '0.02em',
+    marginBottom: '0.375rem',
+  },
+  entryMediaGrid: {
+    display: 'flex',
+    flexWrap: 'wrap' as const,
+    gap: '0.5rem',
+  },
+  entryMediaTile: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: '0.25rem',
+    width: '88px',
+    textDecoration: 'none',
+    color: '#475569',
+  },
+  entryMediaThumb: {
+    width: '88px',
+    height: '64px',
+    objectFit: 'cover' as const,
+    borderRadius: '6px',
+    border: '1px solid #e2e8f0',
+    background: '#e2e8f0',
+  },
+  entryMediaIcon: {
+    width: '88px',
+    height: '64px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '1.5rem',
+    borderRadius: '6px',
+    border: '1px solid #e2e8f0',
+    background: '#f1f5f9',
+  },
+  entryMediaName: {
+    fontSize: '0.625rem',
+    color: '#64748b',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap' as const,
+    maxWidth: '88px',
   },
 };
 
