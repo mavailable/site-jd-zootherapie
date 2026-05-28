@@ -1,4 +1,4 @@
-// POST /api/vocal-upload — Réception d'un (ou plusieurs) vocal client depuis /admin
+// POST /api/vocal-upload — Réception d'un message client (texte et/ou vocaux) depuis /admin
 //
 // Flux :
 //   1. Auth : cookie HttpOnly cms_session (requireAuth)
@@ -6,13 +6,16 @@
 //        - sujet (string, REQUIS)
 //        - categorie (string slug, ex: "idee-article")
 //        - categorie_label (string lisible, ex: "Idée d'article de blog")
+//        - note (string, OPTIONNEL — message texte libre du client)
 //        - audio_count (number)
-//        - audio_0, audio_1, ... audio_N (Blobs, 1 à MAX_CLIPS fichiers)
+//        - audio_0, audio_1, ... audio_N (Blobs, 0 à MAX_CLIPS fichiers — OPTIONNEL)
 //        - audio (Blob, accepté pour rétrocompat ancien client mono-vocal)
+//      Au moins UN des deux est requis : `note` non vide OU >= 1 fichier audio.
 //   3. Push chaque fichier dans R2 binding VOCAUX, key = <slug>/<ts>-<sujet>-<i>.<ext>
-//   4. Append 1 entrée dans src/content/vocaux/index.json avec attachments[] (commit GitHub)
-//   5. POST vers warming-worker /notify-marc avec tous les liens signés + categorie
-//   6. Réponse { ok, id, attachments: [{ vocal_url }], mail_sent }
+//      (aucun upload R2 si l'envoi est texte-seul)
+//   4. Append 1 entrée dans src/content/vocaux/index.json avec note + attachments[] (commit GitHub)
+//   5. POST vers warming-worker /notify-marc avec le texte + tous les liens signés + categorie
+//   6. Réponse { ok, id, note, attachments: [{ vocal_url }], mail_sent }
 //
 // Env vars CF Pages requis :
 //   - CMS_SESSION_SECRET, CMS_REPO, CMS_BRANCH, GITHUB_TOKEN
@@ -26,6 +29,7 @@ import { requireAuth, jsonHeaders } from './cms/_auth-helpers.js';
 
 const MAX_AUDIO_BYTES_PER_FILE = 25 * 1024 * 1024; // 25 MB par fichier
 const MAX_CLIPS = 15;
+const MAX_NOTE_CHARS = 5000; // garde-fou taille du message texte
 const ALLOWED_MIME_PREFIX = ['audio/', 'video/webm'];
 const ALLOWED_CATEGORIES = new Set([
   'idee-article',
@@ -112,6 +116,12 @@ export async function onRequestPost({ request, env }) {
   if (!categorie) categorie = 'autre';
   const categorie_label = (form.get('categorie_label') || '').toString().trim() || categorie;
 
+  // Message texte libre (optionnel)
+  let note = (form.get('note') || '').toString().trim();
+  if (note.length > MAX_NOTE_CHARS) {
+    note = note.slice(0, MAX_NOTE_CHARS);
+  }
+
   // Collect audio files : audio_0..audio_N, ou audio (legacy mono)
   const audioFiles = [];
   for (let i = 0; i < MAX_CLIPS; i++) {
@@ -122,7 +132,10 @@ export async function onRequestPost({ request, env }) {
     const legacy = form.get('audio');
     if (legacy && typeof legacy !== 'string') audioFiles.push(legacy);
   }
-  if (audioFiles.length === 0) return err('Aucun fichier audio fourni');
+  // Au moins l'un des deux : message texte OU >= 1 fichier audio.
+  if (audioFiles.length === 0 && !note) {
+    return err('Écris un message ou enregistre un vocal');
+  }
   if (audioFiles.length > MAX_CLIPS) return err(`Maximum ${MAX_CLIPS} fichiers par envoi`);
 
   // Validation par fichier
@@ -215,6 +228,7 @@ export async function onRequestPost({ request, env }) {
     sujet,
     categorie,
     categorie_label,
+    note: note || undefined,
     attachments,
     uploaded_at: new Date().toISOString(),
     statut: 'envoye',
@@ -224,8 +238,10 @@ export async function onRequestPost({ request, env }) {
 
   const jsonContent = JSON.stringify({ entries }, null, 2) + '\n';
   const encoded = btoa(unescape(encodeURIComponent(jsonContent)));
+  const kindTag =
+    audioFiles.length > 1 ? ` (×${audioFiles.length})` : audioFiles.length === 0 ? ' (texte)' : '';
   const commitPayload = {
-    message: `[vocal] ${env.CLIENT_NAME} — [${categorie_label}] ${sujet}${audioFiles.length > 1 ? ` (×${audioFiles.length})` : ''}`,
+    message: `[message] ${env.CLIENT_NAME} — [${categorie_label}] ${sujet}${kindTag}`,
     content: encoded,
     branch: env.CMS_BRANCH || 'master',
   };
@@ -260,14 +276,15 @@ export async function onRequestPost({ request, env }) {
           sujet,
           categorie,
           categorie_label,
+          note: note || undefined,
           attachments: attachments.map((a) => ({
             filename: a.filename,
             vocal_url: a.vocal_url,
             audio_bytes: a.audio_bytes,
           })),
           // Rétrocompat : pour anciens workers qui ne savent lire que vocal_url/audio_filename
-          vocal_url: attachments[0].vocal_url,
-          audio_filename: attachments[0].filename,
+          vocal_url: attachments.length > 0 ? attachments[0].vocal_url : undefined,
+          audio_filename: attachments.length > 0 ? attachments[0].filename : undefined,
         }),
       });
       mail_sent = notifResp.ok;
@@ -283,7 +300,7 @@ export async function onRequestPost({ request, env }) {
   const safeAttachments = attachments.map(({ r2_key, ...rest }) => rest);
 
   return new Response(
-    JSON.stringify({ ok: true, id, attachments: safeAttachments, mail_sent }),
+    JSON.stringify({ ok: true, id, note: note || undefined, attachments: safeAttachments, mail_sent }),
     { status: 200, headers: jsonHeaders() }
   );
 }

@@ -31,6 +31,9 @@ interface VocalEntry {
   id: string;
   sujet: string;
   categorie?: string;
+  // Message texte libre du client (optionnel). Une entrée peut avoir du texte, des
+  // vocaux, ou les deux. Distinct de resolution.note (réponse de Marc).
+  note?: string;
   attachments?: VocalAttachment[];
   // Legacy single-file fields (rétrocompat avec entrées créées avant le multi-vocaux)
   filename?: string;
@@ -122,6 +125,7 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
   const [state, setState] = useState<RecorderState>('idle');
   const [error, setError] = useState<string | null>(null);
   const [sujet, setSujet] = useState('');
+  const [note, setNote] = useState('');
   const [categorie, setCategorie] = useState<string>(CATEGORIES[0].value);
   const [duration, setDuration] = useState(0);
   const [clips, setClips] = useState<RecordedClip[]>([]);
@@ -340,16 +344,26 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
     }
     mediaRecorderRef.current = null;
     setSujet('');
+    setNote('');
     setCategorie(CATEGORIES[0].value);
     setState('idle');
   };
 
+  // Envoi possible si : sujet renseigné ET (texte non vide OU >= 1 clip audio).
+  const hasContent = note.trim().length > 0 || clips.length > 0;
+  const canSend = sujet.trim().length > 0 && hasContent;
+  const isBusy = state === 'recording' || state === 'uploading';
+
   const sendAll = async () => {
-    if (clips.length === 0) return;
     if (!sujet.trim()) {
       setError(t('vocauxSubjectRequired'));
       return;
     }
+    if (!hasContent) {
+      setError(t('vocauxNeedContent'));
+      return;
+    }
+    const prevState = state;
     setState('uploading');
     setError(null);
 
@@ -357,6 +371,7 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
     formData.append('sujet', sujet.trim());
     formData.append('categorie', categorie);
     formData.append('categorie_label', CATEGORIE_LABEL[categorie] || categorie);
+    if (note.trim()) formData.append('note', note.trim());
     clips.forEach((c, i) => {
       const ext = extFromMime(c.mime);
       formData.append(`audio_${i}`, c.blob, `vocal-${i + 1}.${ext}`);
@@ -374,16 +389,19 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
         throw new Error(data.error || `HTTP ${resp.status}`);
       }
       addToast(
-        clips.length === 1
-          ? t('vocauxSent1')
-          : t('vocauxSentN', { n: clips.length }),
+        clips.length === 0
+          ? t('vocauxMessageSent')
+          : clips.length === 1
+            ? t('vocauxSent1')
+            : t('vocauxSentN', { n: clips.length }),
         'success'
       );
       resetAll();
       loadList();
     } catch (err: any) {
       setError(t('vocauxSendFailed', { msg: err.message }));
-      setState('reviewing');
+      // Restaure l'état d'avant l'envoi (reviewing si clips, sinon l'état courant)
+      setState(clips.length > 0 ? 'reviewing' : prevState === 'uploading' ? 'idle' : prevState);
     }
   };
 
@@ -420,128 +438,151 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
             onChange={(e) => setSujet(e.target.value)}
             placeholder={t('vocauxSubjectPlaceholder')}
             style={styles.input}
-            disabled={state === 'recording' || state === 'uploading'}
+            disabled={isBusy}
             required
           />
         </label>
 
-        {state === 'idle' && (
-          <div style={styles.center}>
-            <button onClick={requestMic} style={styles.primaryBtn}>
-              <span style={styles.btnIcon}>{'\u{1F3A4}'}</span>
-              <span>{t('vocauxStartRecording')}</span>
-            </button>
-            <p style={styles.tinyHint}>
-              {t('vocauxMicHint')}
-            </p>
-          </div>
-        )}
+        {/* Message texte (optionnel) */}
+        <label style={{ ...styles.label, marginTop: '1rem' }}>
+          {t('vocauxMessageLabel')}
+          <textarea
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+            placeholder={t('vocauxMessagePlaceholder')}
+            style={styles.textarea}
+            rows={4}
+            disabled={isBusy}
+          />
+        </label>
 
-        {state === 'requesting-mic' && (
-          <div style={styles.center}>
-            <span style={styles.statusText}>{t('vocauxRequestingMic')}</span>
-          </div>
-        )}
+        {/* Section Vocaux (optionnelle) */}
+        <div style={styles.voiceSection}>
+          <p style={styles.voiceSectionLabel}>{t('vocauxVoiceSectionLabel')}</p>
 
-        {state === 'ready' && (
-          <div style={styles.center}>
-            <button
-              onClick={startRecording}
-              style={{ ...styles.primaryBtn, background: '#dc2626' }}
-            >
-              <span style={styles.btnIcon}>{'\u{25CF}'}</span>
-              <span>{t('vocauxRecord')}</span>
-            </button>
-            <p style={styles.tinyHint}>
-              {t('vocauxReadyHint')}
-            </p>
-          </div>
-        )}
-
-        {state === 'recording' && (
-          <div style={styles.center}>
-            <div style={styles.recordingIndicator}>
-              <span style={styles.recordingDot} />
-              <span style={styles.timer}>{formatDuration(duration)}</span>
+          {(state === 'idle' || state === 'reviewing') && clips.length === 0 && (
+            <div style={styles.center}>
+              <button onClick={requestMic} style={styles.secondaryBtn} disabled={isBusy}>
+                <span style={styles.btnIcon}>{'\u{1F3A4}'}</span>
+                <span>{t('vocauxStartRecording')}</span>
+              </button>
+              <p style={styles.tinyHint}>{t('vocauxMicHint')}</p>
             </div>
-            <VuMeter level={level} />
-            <button onClick={stopRecording} style={styles.primaryBtn}>
-              <span style={styles.btnIcon}>{'\u{25A0}'}</span>
-              <span>{t('vocauxStop')}</span>
-            </button>
-          </div>
-        )}
+          )}
 
-        {/* Liste des clips enregistrés (visible en reviewing) */}
-        {clips.length > 0 && state !== 'recording' && (
-          <div style={{ marginTop: '1.25rem' }}>
-            <p style={styles.label}>
-              {clips.length === 1 ? t('vocauxClipsReady1') : t('vocauxClipsReadyN', { n: clips.length })}
-              <span style={{ color: '#64748b', fontWeight: 400 }}>
-                {t('vocauxTotalDuration', { duration: formatDuration(totalDuration), size: formatBytes(totalBytes) })}
-              </span>
-            </p>
-            <div style={styles.clipList}>
-              {clips.map((c, i) => (
-                <div key={c.id} style={styles.clipRow}>
-                  <span style={styles.clipBadge}>#{i + 1}</span>
-                  <audio src={c.url} controls style={styles.clipAudio} />
-                  <span style={styles.clipMeta}>
-                    {formatDuration(c.duration)} · {formatBytes(c.size)}
-                  </span>
-                  <button
-                    onClick={() => removeClip(c.id)}
-                    style={styles.deleteBtn}
-                    title={t('vocauxDeleteClip')}
-                    aria-label={t('vocauxDeleteClip')}
-                    disabled={state === 'uploading'}
-                  >
-                    <svg
-                      width="14"
-                      height="14"
-                      viewBox="0 0 14 14"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.4"
-                      strokeLinecap="round"
+          {state === 'requesting-mic' && (
+            <div style={styles.center}>
+              <span style={styles.statusText}>{t('vocauxRequestingMic')}</span>
+            </div>
+          )}
+
+          {state === 'ready' && clips.length === 0 && (
+            <div style={styles.center}>
+              <button
+                onClick={startRecording}
+                style={{ ...styles.primaryBtn, background: '#dc2626' }}
+              >
+                <span style={styles.btnIcon}>{'\u{25CF}'}</span>
+                <span>{t('vocauxRecord')}</span>
+              </button>
+              <p style={styles.tinyHint}>{t('vocauxReadyHint')}</p>
+            </div>
+          )}
+
+          {state === 'recording' && (
+            <div style={styles.center}>
+              <div style={styles.recordingIndicator}>
+                <span style={styles.recordingDot} />
+                <span style={styles.timer}>{formatDuration(duration)}</span>
+              </div>
+              <VuMeter level={level} />
+              <button onClick={stopRecording} style={styles.primaryBtn}>
+                <span style={styles.btnIcon}>{'\u{25A0}'}</span>
+                <span>{t('vocauxStop')}</span>
+              </button>
+            </div>
+          )}
+
+          {/* Liste des clips enregistrés */}
+          {clips.length > 0 && state !== 'recording' && (
+            <div style={{ marginTop: '0.75rem' }}>
+              <p style={styles.label}>
+                {clips.length === 1 ? t('vocauxClipsReady1') : t('vocauxClipsReadyN', { n: clips.length })}
+                <span style={{ color: '#64748b', fontWeight: 400 }}>
+                  {t('vocauxTotalDuration', { duration: formatDuration(totalDuration), size: formatBytes(totalBytes) })}
+                </span>
+              </p>
+              <div style={styles.clipList}>
+                {clips.map((c, i) => (
+                  <div key={c.id} style={styles.clipRow}>
+                    <span style={styles.clipBadge}>#{i + 1}</span>
+                    <audio src={c.url} controls style={styles.clipAudio} />
+                    <span style={styles.clipMeta}>
+                      {formatDuration(c.duration)} · {formatBytes(c.size)}
+                    </span>
+                    <button
+                      onClick={() => removeClip(c.id)}
+                      style={styles.deleteBtn}
+                      title={t('vocauxDeleteClip')}
+                      aria-label={t('vocauxDeleteClip')}
+                      disabled={state === 'uploading'}
                     >
-                      <path d="M3 3l8 8M11 3l-8 8" />
-                    </svg>
-                  </button>
-                </div>
-              ))}
-            </div>
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 14 14"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.4"
+                        strokeLinecap="round"
+                      >
+                        <path d="M3 3l8 8M11 3l-8 8" />
+                      </svg>
+                    </button>
+                  </div>
+                ))}
+              </div>
 
-            {state === 'reviewing' && (
-              <div style={styles.row}>
-                {clips.length < MAX_CLIPS && (
+              {state === 'reviewing' && clips.length < MAX_CLIPS && (
+                <div style={styles.row}>
                   <button onClick={startRecording} style={styles.secondaryBtn}>
                     <span style={styles.btnIcon}>{'\u{2795}'}</span>
                     <span>{t('vocauxAddAnother')}</span>
                   </button>
-                )}
-                <button
-                  onClick={sendAll}
-                  style={styles.primaryBtn}
-                  disabled={!sujet.trim()}
-                  title={!sujet.trim() ? t('vocauxSubjectRequiredTooltip') : undefined}
-                >
-                  <span style={styles.btnIcon}>{'\u{2709}\u{FE0F}'}</span>
-                  <span>
-                    {t('vocauxSendToMarc')}
-                    {clips.length > 1 ? ` (${clips.length})` : ''}
-                  </span>
-                </button>
-              </div>
-            )}
-          </div>
-        )}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
 
-        {state === 'uploading' && (
+        {/* Bouton d'envoi unifié : actif si sujet + (texte OU >= 1 vocal) */}
+        {state === 'uploading' ? (
           <div style={styles.center}>
             <span style={styles.statusText}>
               {clips.length > 1 ? t('vocauxUploadingFiles', { n: clips.length }) : `${t('vocauxUploading')}…`}
             </span>
+          </div>
+        ) : (
+          <div style={styles.sendRow}>
+            {!hasContent && <span style={styles.sendHint}>{t('vocauxNeedContent')}</span>}
+            <button
+              onClick={sendAll}
+              style={{ ...styles.primaryBtn, opacity: canSend ? 1 : 0.5 }}
+              disabled={!canSend || state === 'recording'}
+              title={
+                !sujet.trim()
+                  ? t('vocauxSubjectRequiredTooltip')
+                  : !hasContent
+                    ? t('vocauxNeedContent')
+                    : undefined
+              }
+            >
+              <span style={styles.btnIcon}>{'\u{2709}\u{FE0F}'}</span>
+              <span>
+                {t('vocauxSend')}
+                {clips.length > 1 ? ` (${clips.length})` : ''}
+              </span>
+            </button>
           </div>
         )}
 
@@ -573,11 +614,19 @@ export function VocauxTab({ config }: { config: CmsConfig }) {
                   {catLabel && <span style={styles.catBadge}>{catLabel}</span>}
                   {e.sujet || <em style={{ color: '#94a3b8' }}>{t('vocauxNoSubject')}</em>}
                 </div>
-                <div style={styles.entryMeta}>
-                  {atts.length === 1
-                    ? t('vocauxFiles1', { size: formatBytes(totalSize) })
-                    : t('vocauxFilesN', { n: atts.length, size: formatBytes(totalSize) })}
-                </div>
+                {e.note && (
+                  <div style={styles.entryNote}>
+                    <span style={styles.entryNoteLabel}>{t('vocauxEntryNoteLabel')}</span>
+                    <span style={styles.entryNoteText}>{e.note}</span>
+                  </div>
+                )}
+                {atts.length > 0 && (
+                  <div style={styles.entryMeta}>
+                    {atts.length === 1
+                      ? t('vocauxFiles1', { size: formatBytes(totalSize) })
+                      : t('vocauxFilesN', { n: atts.length, size: formatBytes(totalSize) })}
+                  </div>
+                )}
                 {e.resolution?.note && (
                   <div style={styles.resolutionBox}>
                     <div style={styles.resolutionTitle}>
@@ -653,6 +702,61 @@ const styles: Record<string, React.CSSProperties> = {
     marginTop: '0.25rem',
     boxSizing: 'border-box' as const,
     background: '#fff',
+  },
+  textarea: {
+    width: '100%',
+    padding: '0.625rem 0.75rem',
+    border: '1px solid #cbd5e1',
+    borderRadius: '8px',
+    fontSize: '0.9375rem',
+    marginTop: '0.25rem',
+    boxSizing: 'border-box' as const,
+    background: '#fff',
+    resize: 'vertical' as const,
+    fontFamily: 'inherit',
+    lineHeight: 1.5,
+  },
+  voiceSection: {
+    marginTop: '1.25rem',
+    paddingTop: '1.25rem',
+    borderTop: '1px solid #e2e8f0',
+  },
+  voiceSectionLabel: {
+    fontSize: '0.875rem',
+    fontWeight: 500,
+    color: '#334155',
+    margin: '0 0 0.5rem',
+  },
+  sendRow: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    gap: '0.75rem',
+    marginTop: '1.25rem',
+    flexWrap: 'wrap' as const,
+  },
+  sendHint: {
+    fontSize: '0.8125rem',
+    color: '#94a3b8',
+  },
+  entryNote: {
+    fontSize: '0.875rem',
+    color: '#334155',
+    margin: '0.25rem 0 0.375rem',
+    lineHeight: 1.45,
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: '0.125rem',
+  },
+  entryNoteLabel: {
+    fontSize: '0.6875rem',
+    fontWeight: 700,
+    color: '#64748b',
+    textTransform: 'uppercase' as const,
+    letterSpacing: '0.02em',
+  },
+  entryNoteText: {
+    whiteSpace: 'pre-wrap' as const,
   },
   center: {
     display: 'flex',

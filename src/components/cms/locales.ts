@@ -40,7 +40,7 @@ const FR: Dict = {
   tabSite: 'Mon Site',
   tabBlog: 'Blog',
   tabMarketing: 'Marketing',
-  tabVocaux: 'Mes vocaux',
+  tabVocaux: 'Mes messages',
   tabActivity: 'Mon Activité',
   tabStats: 'Statistiques',
   tabAccount: 'Mon Compte',
@@ -170,8 +170,8 @@ const FR: Dict = {
   contactMarcWhatsapp: 'Contacter Marc par WhatsApp',
 
   // VocauxTab
-  vocauxTitle: 'Mes vocaux',
-  vocauxDefaultHint: 'Enregistre une ou plusieurs notes vocales pour partager une idée, un retour, une question. Marc reçoit tes vocaux et les traite.',
+  vocauxTitle: 'Mes messages',
+  vocauxDefaultHint: 'Écris un message ou enregistre une ou plusieurs notes vocales pour suggérer un sujet, donner un retour, poser une question. Marc reçoit tes messages et les traite.',
   vocauxCategory: 'Catégorie',
   vocauxSubject: 'Sujet',
   vocauxSubjectRequired: 'Le sujet est obligatoire.',
@@ -216,6 +216,14 @@ const FR: Dict = {
   vocauxCatFeedback: 'Retour / modif sur le site',
   vocauxCatAutre: 'Autre',
   vocauxLevelAria: 'Niveau audio : {level}%',
+  // Message texte (ajouté 2026-05 — texte et/ou vocal dans le même envoi)
+  vocauxMessageLabel: 'Message (optionnel)',
+  vocauxMessagePlaceholder: 'Écris ton message ici, ou enregistre un vocal ci-dessous (ou les deux).',
+  vocauxVoiceSectionLabel: 'Vocaux (optionnel)',
+  vocauxNeedContent: 'Écris un message ou enregistre un vocal',
+  vocauxSend: 'Envoyer à Marc',
+  vocauxMessageSent: 'Message envoyé à Marc.',
+  vocauxEntryNoteLabel: 'Message',
 
   // StatsTab
   reminders: 'Rappels',
@@ -430,7 +438,7 @@ const EN: Dict = {
   tabSite: 'My Site',
   tabBlog: 'Blog',
   tabMarketing: 'Marketing',
-  tabVocaux: 'Voice notes',
+  tabVocaux: 'My messages',
   tabActivity: 'My Activity',
   tabStats: 'Stats',
   tabAccount: 'My Account',
@@ -560,8 +568,8 @@ const EN: Dict = {
   contactMarcWhatsapp: 'Contact Marc on WhatsApp',
 
   // VocauxTab
-  vocauxTitle: 'My voice notes',
-  vocauxDefaultHint: 'Record one or several voice notes to share an idea, feedback, a question. Marc receives your voice notes and handles them.',
+  vocauxTitle: 'My messages',
+  vocauxDefaultHint: 'Write a message or record one or several voice notes to suggest a topic, share feedback, ask a question. Marc receives your messages and handles them.',
   vocauxCategory: 'Category',
   vocauxSubject: 'Subject',
   vocauxSubjectRequired: 'Subject is required.',
@@ -606,6 +614,14 @@ const EN: Dict = {
   vocauxCatFeedback: 'Feedback / site change',
   vocauxCatAutre: 'Other',
   vocauxLevelAria: 'Audio level: {level}%',
+  // Text message (added 2026-05 — text and/or voice in the same send)
+  vocauxMessageLabel: 'Message (optional)',
+  vocauxMessagePlaceholder: 'Write your message here, or record a voice note below (or both).',
+  vocauxVoiceSectionLabel: 'Voice notes (optional)',
+  vocauxNeedContent: 'Write a message or record a voice note',
+  vocauxSend: 'Send to Marc',
+  vocauxMessageSent: 'Message sent to Marc.',
+  vocauxEntryNoteLabel: 'Message',
 
   // StatsTab
   reminders: 'Reminders',
