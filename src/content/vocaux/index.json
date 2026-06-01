@@ -1,8 +1,60 @@
 {
   "entries": [
     {
+      "id": "jd-zoo-2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes",
+      "sujet": "Le Grand Est vu depuis mes séances : besoins, réalités, attentes",
+      "categorie": "idee-article",
+      "categorie_label": "Idée d'article de blog",
+      "attachments": [
+        {
+          "filename": "2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes-1.webm",
+          "r2_key": "jd-zoo/2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes-1.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes-1.webm&e=1782902212&s=4ae8728b8ae25435b1d35d7b06b55385f4cd344718108f319ba4d19ec7f9e275",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 906347
+        },
+        {
+          "filename": "2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes-2.webm",
+          "r2_key": "jd-zoo/2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes-2.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes-2.webm&e=1782902212&s=5ea54d8842771ccb577af68cdadfa40aca001897fc39c26e2786ee574bccdce3",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 70903
+        },
+        {
+          "filename": "2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes-3.webm",
+          "r2_key": "jd-zoo/2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes-3.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes-3.webm&e=1782902212&s=8d0647bfc969f0ed0854da83f70c1ac6e8e8a6b6f41cae02f008a2e505d12b11",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 771641
+        },
+        {
+          "filename": "2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes-4.webm",
+          "r2_key": "jd-zoo/2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes-4.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes-4.webm&e=1782902212&s=4c5a8014ba05d4bd76fbbc70ad7db94408f484ff0698f4d7a26dd2f1bf7d5533",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 608809
+        },
+        {
+          "filename": "2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes-5.webm",
+          "r2_key": "jd-zoo/2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes-5.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes-5.webm&e=1782902212&s=54dfcbff06e95da3a29be87037eb800be21979b35f834750d30beee52db7dd22",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 1676022
+        },
+        {
+          "filename": "2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes-6.webm",
+          "r2_key": "jd-zoo/2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes-6.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes-6.webm&e=1782902212&s=e7bce183b90958fe89b522b76bc4e0b8bdff1c35f6db5049b1c1af0d18aef24f",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 1340613
+        }
+      ],
+      "uploaded_at": "2026-06-01T10:37:03.930Z",
+      "statut": "envoye"
+    },
+    {
       "id": "jd-zoo-2026-05-22-1243-memo-pour-rdv-de-samedi",
-      "sujet": "mémo pour rdv de samedi",
+      "sujet": "mÃ©mo pour rdv de samedi",
       "categorie": "question",
       "categorie_label": "Question pour Marc",
       "attachments": [
