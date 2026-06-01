@@ -1,10 +1,76 @@
 {
   "entries": [
     {
-      "id": "jd-zoo-2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes",
-      "sujet": "Le Grand Est vu depuis mes séances : besoins, réalités, attentes",
+      "id": "jd-zoo-2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement",
+      "sujet": "Préparer l'arrivée du zoothérapeute dans votre établissement : checklist équipe en 7 points",
       "categorie": "idee-article",
       "categorie_label": "Idée d'article de blog",
+      "attachments": [
+        {
+          "filename": "2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement-1.webm",
+          "r2_key": "jd-zoo/2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement-1.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement-1.webm&e=1782902956&s=9bf2f8b08f24a145e02563fc7599a6cdad977f172c1aaf6f81538551f725fbfd",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 532239
+        },
+        {
+          "filename": "2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement-2.webm",
+          "r2_key": "jd-zoo/2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement-2.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement-2.webm&e=1782902956&s=adb039dfaeda58891ec25325d53616d1e13f7bcd65a6865194df16a58b1eb573",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 331621
+        },
+        {
+          "filename": "2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement-3.webm",
+          "r2_key": "jd-zoo/2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement-3.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement-3.webm&e=1782902956&s=e9bc4a639beb5af54c227c3e03366a4886fc88fe5bfe333c905fffd5f7b71b5c",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 363595
+        },
+        {
+          "filename": "2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement-4.webm",
+          "r2_key": "jd-zoo/2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement-4.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement-4.webm&e=1782902956&s=7cd88998d66ee5d565c4f8849eae9e834f7523fd72d00513d8d5f83957fa4614",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 238581
+        },
+        {
+          "filename": "2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement-5.webm",
+          "r2_key": "jd-zoo/2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement-5.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement-5.webm&e=1782902956&s=ff4d909d77fedd86069e75e0b1195e24f779b7464466498d162c8c7145adf8a6",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 270555
+        },
+        {
+          "filename": "2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement-6.webm",
+          "r2_key": "jd-zoo/2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement-6.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement-6.webm&e=1782902956&s=81387671867f194a6c04d23ca32bce36398a8149a4fc49e9037d9708eb672350",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 703797
+        },
+        {
+          "filename": "2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement-7.webm",
+          "r2_key": "jd-zoo/2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement-7.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement-7.webm&e=1782902956&s=45c69d4550e7fe9487aef297e532c67037951e05c4cba88d9a3788f606d7602d",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 649509
+        },
+        {
+          "filename": "2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement-8.webm",
+          "r2_key": "jd-zoo/2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement-8.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement-8.webm&e=1782902956&s=964f418041f2b2887f6499b7e0c3f211566c10fcbc1e863d8f2210004a57aa2a",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 670841
+        }
+      ],
+      "uploaded_at": "2026-06-01T10:49:27.300Z",
+      "statut": "envoye"
+    },
+    {
+      "id": "jd-zoo-2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes",
+      "sujet": "Le Grand Est vu depuis mes sÃ©ances : besoins, rÃ©alitÃ©s, attentes",
+      "categorie": "idee-article",
+      "categorie_label": "IdÃ©e d'article de blog",
       "attachments": [
         {
           "filename": "2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes-1.webm",
@@ -54,7 +120,7 @@
     },
     {
       "id": "jd-zoo-2026-05-22-1243-memo-pour-rdv-de-samedi",
-      "sujet": "mÃ©mo pour rdv de samedi",
+      "sujet": "mÃÂ©mo pour rdv de samedi",
       "categorie": "question",
       "categorie_label": "Question pour Marc",
       "attachments": [
