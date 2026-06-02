@@ -712,8 +712,8 @@
         "#ÉthiqueSoin"
       ],
       "cta": "MP pour toute collaboration structure ou demande de parcours",
-      "status": "draft",
-      "published_at": null,
+      "status": "published",
+      "published_at": "2026-06-02T06:45:14.763Z",
       "client_modified_text": null,
       "client_comment": null
     },
