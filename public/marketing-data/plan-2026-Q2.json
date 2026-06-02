@@ -762,8 +762,8 @@
         "#tips"
       ],
       "cta": null,
-      "status": "draft",
-      "published_at": null,
+      "status": "published",
+      "published_at": "2026-06-02T07:37:31.074Z",
       "client_modified_text": null,
       "client_comment": null
     },
