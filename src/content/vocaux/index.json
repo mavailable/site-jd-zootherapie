@@ -180,7 +180,11 @@
         }
       ],
       "uploaded_at": "2026-06-01T10:37:03.930Z",
-      "statut": "envoye"
+      "statut": "traite",
+      "resolution": {
+        "note": "Transformé en article de blog, programmé le 07/06.",
+        "resolved_at": "2026-06-03T09:00:18.779Z"
+      }
     },
     {
       "id": "jd-zoo-2026-05-22-1243-memo-pour-rdv-de-samedi",
