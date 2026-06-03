@@ -21,7 +21,8 @@
       "statut": "traite",
       "resolution": {
         "note": "Pas d'inquiétude Jennifer : c'est moi qui ai tenté de modifier le nom de votre fiche Google pour corriger un problème d'accent. Si Google refuse la modification, on garde simplement 'médiation' comme avant. Rien à faire de votre côté, je m'en occupe.",
-        "resolved_at": "2026-06-03T09:07:38.671Z"
+        "resolved_at": "2026-06-03T09:07:38.671Z",
+        "notified_at": "2026-06-03T09:08:37.653Z"
       }
     },
     {
