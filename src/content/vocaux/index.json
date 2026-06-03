@@ -18,7 +18,11 @@
         }
       ],
       "uploaded_at": "2026-06-03T08:47:34.019Z",
-      "statut": "envoye"
+      "statut": "traite",
+      "resolution": {
+        "note": "Pas d'inquiétude Jennifer : c'est moi qui ai tenté de modifier le nom de votre fiche Google pour corriger un problème d'accent. Si Google refuse la modification, on garde simplement 'médiation' comme avant. Rien à faire de votre côté, je m'en occupe.",
+        "resolved_at": "2026-06-03T09:07:38.671Z"
+      }
     },
     {
       "id": "jd-zoo-2026-06-02-0957-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement",
