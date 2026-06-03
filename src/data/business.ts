@@ -27,6 +27,8 @@ export const siteUrl = 'https://jdzootherapeute.fr';
 
 export const business = {
   owner: 'Jennifer De Groeve',
+  // Inbox cliente (notifications /admin : vocaux traités, etc.). = email de contact site-info.
+  adminEmail: 'degroeve.j@gmail.com',
   alternateName: "Patt'es Tendres",
   schemaType: 'ProfessionalService',
   // Doctrine C1 — source verifiable (Google Maps link dans sameAs)
