@@ -205,7 +205,11 @@
         }
       ],
       "uploaded_at": "2026-05-22T10:43:43.011Z",
-      "statut": "envoye"
+      "statut": "traite",
+      "resolution": {
+        "note": "Pris en compte.",
+        "resolved_at": "2026-06-03T09:00:35.131Z"
+      }
     },
     {
       "id": "jd-zoo-2026-05-17-1142-test",
