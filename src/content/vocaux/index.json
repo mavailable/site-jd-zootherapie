@@ -1,10 +1,30 @@
 {
   "entries": [
     {
+      "id": "jd-zoo-2026-06-03-1047-google-buiseness",
+      "sujet": "google buiseness",
+      "categorie": "question",
+      "categorie_label": "Question pour Marc",
+      "note": "Coucou pour info j ai reçu ca sur ma boite mail ce matin",
+      "attachments": [],
+      "media": [
+        {
+          "filename": "2026-06-03-1047-google-buiseness-media.png",
+          "r2_key": "jd-zoo/2026-06-03-1047-google-buiseness-media.png",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-03-1047-google-buiseness-media.png&e=1783068452&s=0f7973551e24689f79f75822c74da2e57c9b6c3c0fcea282c315ca7607a75d87",
+          "kind": "image",
+          "media_mime": "image/png",
+          "media_bytes": 219896
+        }
+      ],
+      "uploaded_at": "2026-06-03T08:47:34.019Z",
+      "statut": "envoye"
+    },
+    {
       "id": "jd-zoo-2026-06-02-0957-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement",
-      "sujet": "Préparer l'arrivée du zoothérapeute dans votre établissement : checklist équipe en 7 points",
+      "sujet": "PrÃ©parer l'arrivÃ©e du zoothÃ©rapeute dans votre Ã©tablissement : checklist Ã©quipe en 7 points",
       "categorie": "idee-article",
-      "categorie_label": "Idée d'article de blog",
+      "categorie_label": "IdÃ©e d'article de blog",
       "attachments": [
         {
           "filename": "2026-06-02-0957-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement.webm",
@@ -19,9 +39,9 @@
     },
     {
       "id": "jd-zoo-2026-06-02-0953-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes",
-      "sujet": "Le Grand Est vu depuis mes sÃ©ances : besoins, rÃ©alitÃ©s, attentes",
+      "sujet": "Le Grand Est vu depuis mes sÃÂ©ances : besoins, rÃÂ©alitÃÂ©s, attentes",
       "categorie": "idee-article",
-      "categorie_label": "IdÃ©e d'article de blog",
+      "categorie_label": "IdÃÂ©e d'article de blog",
       "attachments": [],
       "media": [
         {
@@ -38,9 +58,9 @@
     },
     {
       "id": "jd-zoo-2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement",
-      "sujet": "PrÃÂ©parer l'arrivÃÂ©e du zoothÃÂ©rapeute dans votre ÃÂ©tablissement : checklist ÃÂ©quipe en 7 points",
+      "sujet": "PrÃÂÃÂ©parer l'arrivÃÂÃÂ©e du zoothÃÂÃÂ©rapeute dans votre ÃÂÃÂ©tablissement : checklist ÃÂÃÂ©quipe en 7 points",
       "categorie": "idee-article",
-      "categorie_label": "IdÃÂ©e d'article de blog",
+      "categorie_label": "IdÃÂÃÂ©e d'article de blog",
       "attachments": [
         {
           "filename": "2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement-1.webm",
@@ -104,9 +124,9 @@
     },
     {
       "id": "jd-zoo-2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes",
-      "sujet": "Le Grand Est vu depuis mes sÃÂÃÂ©ances : besoins, rÃÂÃÂ©alitÃÂÃÂ©s, attentes",
+      "sujet": "Le Grand Est vu depuis mes sÃÂÃÂÃÂÃÂ©ances : besoins, rÃÂÃÂÃÂÃÂ©alitÃÂÃÂÃÂÃÂ©s, attentes",
       "categorie": "idee-article",
-      "categorie_label": "IdÃÂÃÂ©e d'article de blog",
+      "categorie_label": "IdÃÂÃÂÃÂÃÂ©e d'article de blog",
       "attachments": [
         {
           "filename": "2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes-1.webm",
@@ -156,7 +176,7 @@
     },
     {
       "id": "jd-zoo-2026-05-22-1243-memo-pour-rdv-de-samedi",
-      "sujet": "mÃÂÃÂÃÂÃÂ©mo pour rdv de samedi",
+      "sujet": "mÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©mo pour rdv de samedi",
       "categorie": "question",
       "categorie_label": "Question pour Marc",
       "attachments": [
