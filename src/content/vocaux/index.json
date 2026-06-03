@@ -120,7 +120,11 @@
         }
       ],
       "uploaded_at": "2026-06-01T10:49:27.300Z",
-      "statut": "envoye"
+      "statut": "traite",
+      "resolution": {
+        "note": "Transformé en article de blog, programmé le 04/06.",
+        "resolved_at": "2026-06-03T08:59:58.694Z"
+      }
     },
     {
       "id": "jd-zoo-2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes",
