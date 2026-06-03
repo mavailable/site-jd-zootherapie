@@ -220,7 +220,11 @@
       "audio_mime": "audio/webm;codecs=opus",
       "audio_bytes": 123243,
       "uploaded_at": "2026-05-17T09:42:03.856Z",
-      "statut": "envoye"
+      "statut": "traite",
+      "resolution": {
+        "note": "Test, archivé.",
+        "resolved_at": "2026-06-03T09:00:37.707Z"
+      }
     }
   ]
 }
