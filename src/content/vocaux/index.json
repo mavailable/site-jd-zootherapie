@@ -58,7 +58,11 @@
         }
       ],
       "uploaded_at": "2026-06-02T07:53:27.733Z",
-      "statut": "envoye"
+      "statut": "traite",
+      "resolution": {
+        "note": "Transformé en article de blog, programmé le 07/06. Votre photo illustre l'article.",
+        "resolved_at": "2026-06-03T09:00:26.727Z"
+      }
     },
     {
       "id": "jd-zoo-2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement",
