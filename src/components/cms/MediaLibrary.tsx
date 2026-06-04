@@ -1,13 +1,14 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useToastContext } from './CmsApp';
+import { optimizeImage } from './optimizeImage';
 import { t } from './locales';
 
 interface ImageItem {
   name: string;
   url: string;
-  path: string;
-  sha: string;
   size: number;
+  key: string;
+  uploaded?: string;
 }
 
 interface MediaLibraryProps {
@@ -16,11 +17,18 @@ interface MediaLibraryProps {
   isModal?: boolean;
 }
 
+// Concurrence d'upload bornee (R2 put en parallele, mais pas tous d'un coup) et
+// plafond par lot (garde-fou UX/perf : au-dela, on invite a fractionner).
+const UPLOAD_CONCURRENCY = 4;
+const MAX_FILES_PER_BATCH = 20;
+
 export function MediaLibrary({ onSelect, onClose, isModal = false }: MediaLibraryProps) {
   const { addToast } = useToastContext();
   const [images, setImages] = useState<ImageItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const [uploading, setUploading] = useState(false);
+  const [optimizing, setOptimizing] = useState(false);
+  // Progression multi-upload : { done, total } pendant un lot, null sinon.
+  const [progress, setProgress] = useState<{ done: number; total: number } | null>(null);
   const [dragOver, setDragOver] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -41,45 +49,117 @@ export function MediaLibrary({ onSelect, onClose, isModal = false }: MediaLibrar
 
   useEffect(() => { loadImages(); }, [loadImages]);
 
-  async function uploadFile(file: File) {
-    setUploading(true);
+  // Optimise (cote navigateur, fix iOS conserve) puis envoie un fichier vers R2.
+  // Renvoie l'ImageItem cree ou null en cas d'echec (echec ISOLE : ne casse pas
+  // les autres fichiers du lot).
+  async function uploadOne(rawFile: File): Promise<ImageItem | null> {
+    let file = rawFile;
+    try {
+      file = await optimizeImage(rawFile);
+    } catch {
+      file = rawFile;
+    }
+
     try {
       const formData = new FormData();
       formData.append('file', file);
-
-      const res = await fetch('/api/cms/upload', {
-        method: 'POST',
-        body: formData,
-      });
-
+      const res = await fetch('/api/cms/upload', { method: 'POST', body: formData });
       if (!res.ok) {
-        const data = await res.json();
+        const data = await res.json().catch(() => ({}));
         throw new Error(data.error || t('uploadError'));
       }
-
-      const data = await res.json();
-      addToast(t('imageUploaded', { name: data.name }), 'success');
-      setImages((prev) => [data, ...prev]);
-      return data.url;
-    } catch (err) {
-      const msg = err instanceof Error ? err.message : t('uploadError');
-      addToast(msg, 'error');
+      return (await res.json()) as ImageItem;
+    } catch {
       return null;
-    } finally {
-      setUploading(false);
     }
+  }
+
+  // Upload d'un seul fichier (insertion inline / champ image unique) avec toast.
+  async function uploadFile(rawFile: File): Promise<string | null> {
+    setOptimizing(true);
+    setProgress({ done: 0, total: 1 });
+    const item = await uploadOne(rawFile);
+    setProgress(null);
+    setOptimizing(false);
+    if (item) {
+      addToast(t('imageUploaded', { name: item.name }), 'success');
+      setImages((prev) => [item, ...prev]);
+      return item.url;
+    }
+    addToast(t('uploadError'), 'error');
+    return null;
+  }
+
+  // Upload d'un lot de fichiers en PARALLELE BORNE, avec barre de progression
+  // N/total et echec isole par fichier. Renvoie l'URL du DERNIER fichier reussi
+  // (pour l'auto-selection apres un upload simple via le picker).
+  async function uploadBatch(rawFiles: File[]): Promise<string | null> {
+    const files = rawFiles.filter((f) => f.type.startsWith('image/'));
+    if (files.length === 0) return null;
+
+    if (files.length > MAX_FILES_PER_BATCH) {
+      addToast(t('tooManyFiles', { max: String(MAX_FILES_PER_BATCH) }), 'error');
+      return null;
+    }
+
+    if (files.length === 1) return uploadFile(files[0]);
+
+    const total = files.length;
+    let done = 0;
+    let failed = 0;
+    let lastUrl: string | null = null;
+    const fresh: ImageItem[] = [];
+
+    setProgress({ done: 0, total });
+
+    let cursor = 0;
+    async function worker() {
+      while (cursor < files.length) {
+        const idx = cursor++;
+        const item = await uploadOne(files[idx]);
+        if (item) {
+          fresh.push(item);
+          lastUrl = item.url;
+        } else {
+          failed++;
+        }
+        done++;
+        setProgress({ done, total });
+      }
+    }
+
+    const workers = Array.from(
+      { length: Math.min(UPLOAD_CONCURRENCY, files.length) },
+      () => worker()
+    );
+    await Promise.all(workers);
+
+    setProgress(null);
+
+    // Ajout en tete dans l'ordre d'upload (les derniers termines en premier
+    // serait deroutant — on garde l'ordre des fichiers).
+    if (fresh.length > 0) {
+      setImages((prev) => [...fresh, ...prev]);
+      addToast(t('imagesUploaded', { count: String(fresh.length) }), 'success');
+    }
+    if (failed > 0) {
+      addToast(t('someUploadsFailed', { failed: String(failed), total: String(total) }), 'error');
+    }
+    return lastUrl;
   }
 
   async function handleDelete(image: ImageItem) {
     if (!window.confirm(t('confirmDeleteImage', { name: image.name }))) return;
     try {
       const res = await fetch(
-        `/api/cms/delete?path=${encodeURIComponent(image.path)}&sha=${encodeURIComponent(image.sha)}`,
+        `/api/cms/image-delete?key=${encodeURIComponent(image.key)}`,
         { method: 'DELETE' }
       );
       if (res.ok) {
-        setImages((prev) => prev.filter((i) => i.name !== image.name));
+        setImages((prev) => prev.filter((i) => i.key !== image.key));
         addToast(t('imageDeleted'), 'success');
+      } else {
+        addToast(t('deleteError'), 'error');
       }
     } catch {
       addToast(t('deleteError'), 'error');
@@ -89,21 +169,23 @@ export function MediaLibrary({ onSelect, onClose, isModal = false }: MediaLibrar
   function handleDrop(e: React.DragEvent) {
     e.preventDefault();
     setDragOver(false);
-    const file = e.dataTransfer.files[0];
-    if (file && file.type.startsWith('image/')) {
-      uploadFile(file).then((url) => {
-        if (url && onSelect) onSelect(url);
-      });
-    }
+    const files = Array.from(e.dataTransfer.files);
+    uploadBatch(files).then((url) => {
+      if (url && onSelect && files.filter((f) => f.type.startsWith('image/')).length === 1) {
+        onSelect(url);
+      }
+    });
   }
 
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    if (file) {
-      uploadFile(file).then((url) => {
-        if (url && onSelect) onSelect(url);
-      });
-    }
+    const files = Array.from(e.target.files || []);
+    // Reset l'input pour pouvoir re-selectionner les memes fichiers ensuite.
+    if (fileInputRef.current) fileInputRef.current.value = '';
+    uploadBatch(files).then((url) => {
+      if (url && onSelect && files.filter((f) => f.type.startsWith('image/')).length === 1) {
+        onSelect(url);
+      }
+    });
   }
 
   function formatSize(bytes: number): string {
@@ -111,6 +193,8 @@ export function MediaLibrary({ onSelect, onClose, isModal = false }: MediaLibrar
     if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} Ko`;
     return `${(bytes / (1024 * 1024)).toFixed(1)} Mo`;
   }
+
+  const busy = optimizing || progress !== null;
 
   const content = (
     <div style={styles.container}>
@@ -127,20 +211,35 @@ export function MediaLibrary({ onSelect, onClose, isModal = false }: MediaLibrar
         onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
         onDragLeave={() => setDragOver(false)}
         onDrop={handleDrop}
-        onClick={() => fileInputRef.current?.click()}
+        onClick={() => { if (!busy) fileInputRef.current?.click(); }}
       >
         <input
           ref={fileInputRef}
           type="file"
           accept="image/*"
+          multiple
           onChange={handleFileChange}
           style={{ display: 'none' }}
         />
-        {uploading ? (
-          <span style={styles.dropText}>{t('uploading')}</span>
+        {progress ? (
+          <div style={styles.progressWrap}>
+            <span style={styles.dropText}>
+              {t('uploadingProgress', { done: String(progress.done), total: String(progress.total) })}
+            </span>
+            <div style={styles.progressTrack}>
+              <div
+                style={{
+                  ...styles.progressBar,
+                  width: `${Math.round((progress.done / progress.total) * 100)}%`,
+                }}
+              />
+            </div>
+          </div>
+        ) : optimizing ? (
+          <span style={styles.dropText}>{t('optimizing')}</span>
         ) : (
           <span style={styles.dropText}>
-            {t('dropImageHere')} <span style={styles.dropLink}>{t('browse')}</span>
+            {t('dropImagesHere')} <span style={styles.dropLink}>{t('browse')}</span>
           </span>
         )}
       </div>
@@ -153,7 +252,7 @@ export function MediaLibrary({ onSelect, onClose, isModal = false }: MediaLibrar
       ) : (
         <div style={styles.grid}>
           {images.map((img) => (
-            <div key={img.name} style={styles.imageCard}>
+            <div key={img.key} style={styles.imageCard}>
               <div
                 style={styles.imageWrapper}
                 onClick={() => onSelect?.(img.url)}
@@ -255,6 +354,26 @@ const styles: Record<string, React.CSSProperties> = {
     color: '#2563eb',
     fontWeight: 500,
     textDecoration: 'underline',
+  },
+  progressWrap: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: '0.5rem',
+  },
+  progressTrack: {
+    width: '100%',
+    maxWidth: '260px',
+    height: '6px',
+    borderRadius: '999px',
+    background: '#e2e8f0',
+    overflow: 'hidden',
+  },
+  progressBar: {
+    height: '100%',
+    background: '#2563eb',
+    borderRadius: '999px',
+    transition: 'width 0.2s ease',
   },
   loadingText: {
     textAlign: 'center',

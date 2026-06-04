@@ -366,11 +366,17 @@ const FR: Dict = {
   browse: 'parcourir',
   uploading: 'Upload en cours...',
   noImages: 'Aucune image',
+  optimizing: 'Optimisation...',
   imageUploaded: 'Image « {name} » uploadée',
   imageDeleted: 'Image supprimée',
   confirmDeleteImage: "Supprimer l'image « {name} » ?",
   unableLoadImages: 'Impossible de charger les images',
   uploadError: 'Erreur upload',
+  dropImagesHere: 'Glissez vos images ici ou',
+  uploadingProgress: 'Envoi {done}/{total}...',
+  imagesUploaded: '{count} image(s) ajoutée(s)',
+  someUploadsFailed: '{failed} échec(s) sur {total}',
+  tooManyFiles: 'Trop de fichiers : maximum {max} à la fois. Ajoutez-les en plusieurs fois.',
 
   // HistoryPanel
   historyTitle: 'Historique',
@@ -413,6 +419,17 @@ const FR: Dict = {
   richNumbered: 'Liste numérotée',
   richLink: 'Lien',
   richLinkPrompt: 'URL du lien :',
+  richImage: 'Insérer une image',
+
+  // Insertion d'image dans le richtext (figure + légende)
+  imgInsertTitle: 'Légende et description',
+  imgInsertCaption: 'Légende (visible sous la photo)',
+  imgInsertCaptionPlaceholder: 'ex : Vue du port au coucher du soleil',
+  imgInsertAlt: 'Texte alternatif',
+  imgInsertAltPlaceholder: 'ex : Bateaux de pêche sur le sable',
+  imgInsertAltHint: 'Décrit la photo pour les moteurs de recherche et les lecteurs d’écran.',
+  imgInsertChangeImage: '← Changer d’image',
+  imgInsertConfirm: 'Insérer',
 
   // UI generic dialogs
   confirmLabel: 'Confirmer',
@@ -785,11 +802,17 @@ const EN: Dict = {
   browse: 'browse',
   uploading: 'Uploading...',
   noImages: 'No image',
+  optimizing: 'Optimizing...',
   imageUploaded: 'Image "{name}" uploaded',
   imageDeleted: 'Image deleted',
   confirmDeleteImage: 'Delete the image "{name}"?',
   unableLoadImages: 'Unable to load images',
   uploadError: 'Upload error',
+  dropImagesHere: 'Drop your images here or',
+  uploadingProgress: 'Uploading {done}/{total}...',
+  imagesUploaded: '{count} image(s) added',
+  someUploadsFailed: '{failed} failed out of {total}',
+  tooManyFiles: 'Too many files: maximum {max} at a time. Add them in several batches.',
 
   // HistoryPanel
   historyTitle: 'History',
@@ -832,6 +855,17 @@ const EN: Dict = {
   richNumbered: 'Numbered list',
   richLink: 'Link',
   richLinkPrompt: 'Link URL:',
+  richImage: 'Insert an image',
+
+  // Inserting an image into the richtext (figure + caption)
+  imgInsertTitle: 'Caption and description',
+  imgInsertCaption: 'Caption (shown under the photo)',
+  imgInsertCaptionPlaceholder: 'e.g. The harbour at sunset',
+  imgInsertAlt: 'Alternative text',
+  imgInsertAltPlaceholder: 'e.g. Fishing boats on the sand',
+  imgInsertAltHint: 'Describes the photo for search engines and screen readers.',
+  imgInsertChangeImage: '← Change image',
+  imgInsertConfirm: 'Insert',
 
   // UI generic dialogs
   confirmLabel: 'Confirm',

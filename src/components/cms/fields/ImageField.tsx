@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import type { CmsFieldImage } from '../../../../cms.types';
 import { MediaLibrary } from '../MediaLibrary';
+import { optimizeImage } from '../optimizeImage';
 import { t } from '../locales';
 
 interface ImageFieldProps {
@@ -12,10 +13,21 @@ interface ImageFieldProps {
 export function ImageField({ field, value, onChange }: ImageFieldProps) {
   const [showLibrary, setShowLibrary] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [optimizing, setOptimizing] = useState(false);
   const [dragOver, setDragOver] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  async function handleUpload(file: File) {
+  async function handleUpload(rawFile: File) {
+    setOptimizing(true);
+    let file = rawFile;
+    try {
+      file = await optimizeImage(rawFile);
+    } catch {
+      file = rawFile;
+    } finally {
+      setOptimizing(false);
+    }
+
     setUploading(true);
     try {
       const formData = new FormData();
@@ -84,7 +96,9 @@ export function ImageField({ field, value, onChange }: ImageFieldProps) {
             }}
             style={{ display: 'none' }}
           />
-          {uploading ? (
+          {optimizing ? (
+            <span style={styles.dropText}>{t('optimizing')}</span>
+          ) : uploading ? (
             <span style={styles.dropText}>{t('uploading')}</span>
           ) : (
             <>

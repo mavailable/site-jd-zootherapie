@@ -1,9 +1,11 @@
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Link from '@tiptap/extension-link';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { CmsFieldRichText } from '../../../../cms.types';
 import { t } from '../locales';
+import { Figure } from './FigureExtension';
+import { ImageInsertDialog } from './ImageInsertDialog';
 
 interface RichTextFieldProps {
   field: CmsFieldRichText;
@@ -12,6 +14,8 @@ interface RichTextFieldProps {
 }
 
 export function RichTextField({ field, value, onChange }: RichTextFieldProps) {
+  const [imageDialogOpen, setImageDialogOpen] = useState(false);
+
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -21,6 +25,10 @@ export function RichTextField({ field, value, onChange }: RichTextFieldProps) {
         openOnClick: false,
         HTMLAttributes: { rel: 'noopener noreferrer', target: '_blank' },
       }),
+      // Noeud figure custom : round-trip <figure><img><figcaption> sans perte
+      // (cf. FigureExtension.ts). Indispensable pour ne pas dropper les photos
+      // existantes des articles a la sauvegarde.
+      Figure,
     ],
     content: value || '',
     onUpdate: ({ editor }) => {
@@ -46,6 +54,15 @@ export function RichTextField({ field, value, onChange }: RichTextFieldProps) {
       editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
     }
   }, [editor]);
+
+  const insertFigure = useCallback(
+    (data: { src: string; alt: string; caption: string }) => {
+      setImageDialogOpen(false);
+      if (!editor) return;
+      editor.chain().focus().setFigure(data).run();
+    },
+    [editor]
+  );
 
   if (!editor) return null;
 
@@ -108,6 +125,14 @@ export function RichTextField({ field, value, onChange }: RichTextFieldProps) {
           >
             🔗
           </ToolbarButton>
+          <span style={styles.separator} />
+          <ToolbarButton
+            active={false}
+            onClick={() => setImageDialogOpen(true)}
+            title={t('richImage')}
+          >
+            🖼️
+          </ToolbarButton>
         </div>
 
         {/* Editor content */}
@@ -115,6 +140,13 @@ export function RichTextField({ field, value, onChange }: RichTextFieldProps) {
           <EditorContent editor={editor} />
         </div>
       </div>
+
+      {imageDialogOpen && (
+        <ImageInsertDialog
+          onInsert={insertFigure}
+          onClose={() => setImageDialogOpen(false)}
+        />
+      )}
     </div>
   );
 }
