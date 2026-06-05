@@ -3,7 +3,7 @@ import type { CmsConfig } from '../../../cms.types';
 import { useContent } from './hooks/useContent';
 import { navigate, useToastContext } from './CmsApp';
 import { t, locale, intlLocale } from './locales';
-import { articleState, type ArticleState } from './blogHelpers';
+import { articleState, sortTimestamp, type ArticleState } from './blogHelpers';
 
 interface BlogTabProps {
   config: CmsConfig;
@@ -167,10 +167,10 @@ export function BlogTab({ config }: BlogTabProps) {
     fetchList(path)
       .then(async (files) => {
         const jsonFiles = files.filter((f) => f.name.endsWith('.json'));
-        const sorted = [...jsonFiles].sort((a, b) => b.name.localeCompare(a.name));
-        const latest = sorted.slice(0, 3);
-        const enriched = await Promise.all(
-          latest.map(async (f) => {
+        // On charge le contenu de tous les articles pour pouvoir trier par DATE
+        // (publish_at futur prioritaire, sinon date) et non par nom de fichier.
+        const enrichedAll = await Promise.all(
+          jsonFiles.map(async (f) => {
             try {
               const d = await fetchFile(`${path}/${f.name}`);
               const c = d.content || {};
@@ -184,13 +184,18 @@ export function BlogTab({ config }: BlogTabProps) {
                   draft: c.draft as boolean | undefined,
                   publish_at: c.publish_at as string | undefined,
                 }),
+                _ts: sortTimestamp({ publish_at: c.publish_at, date: c.date }),
               };
             } catch {
-              return { name: f.name };
+              return { name: f.name, _ts: 0 };
             }
           })
         );
-        setArticles(enriched);
+        const latest = enrichedAll
+          .sort((a, b) => (b._ts as number) - (a._ts as number))
+          .slice(0, 3)
+          .map(({ _ts, ...rest }) => rest); // eslint-disable-line @typescript-eslint/no-unused-vars
+        setArticles(latest);
         setArticlesLoading(false);
       })
       .catch(() => {

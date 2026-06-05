@@ -117,6 +117,22 @@ export interface CmsSingleton {
   dashboardIcon?: string; // emoji, remplace le fallback interne (singletonIcon)
 }
 
+// Métadonnées enrichies de la liste d'une collection (opt-in, ex: blog).
+// Ajouté 2026-06-05 — affichage par ligne dans CollectionList (date, mots, photos, etc.).
+// Si absent, CollectionList rend la liste simple historique (zéro régression faq/reviews/services).
+export interface CmsListMeta {
+  date?: boolean; // date de publication formatée
+  words?: boolean; // nb de mots du champ richtext
+  photos?: boolean; // hero (image) + <img> inline
+  readingTime?: boolean; // temps de lecture estimé
+  state?: boolean; // badge Brouillon/Programmé/Publié
+  category?: boolean; // catégorie/tag
+  views?: boolean; // vues Umami via /metrics (nécessite site.umamiSiteId)
+  bodyField?: string; // nom du champ richtext source pour mots/photos (défaut: 'body')
+  blogBasePath?: string; // préfixe d'URL pour le matching Umami (défaut: '/blog/')
+  categoryField?: string; // nom du champ catégorie (défaut: 'category')
+}
+
 export interface CmsCollection {
   label: string;
   description?: string;
@@ -124,6 +140,7 @@ export interface CmsCollection {
   slugField: string;
   labelField?: string; // champ à afficher dans la liste (sinon slugField)
   fields: Record<string, CmsField>;
+  listMeta?: CmsListMeta; // opt-in : enrichit la liste (tri chrono + métadonnées). Voir CmsListMeta.
 }
 
 export interface CmsSiteConfig {

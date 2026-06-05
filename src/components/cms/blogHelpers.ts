@@ -44,6 +44,58 @@ export function slugFromFilename(name: string): string {
   return name.replace(/\.json$/, '');
 }
 
+// ── Métadonnées liste d'articles (calcul côté client à partir du body déjà chargé) ──
+
+// Décode les entités HTML les plus courantes (le body est du HTML string TipTap).
+function decodeBasicEntities(s: string): string {
+  return s
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&rsquo;/g, '’')
+    .replace(/&laquo;/g, '«')
+    .replace(/&raquo;/g, '»');
+}
+
+/**
+ * Compte les mots d'un champ richtext (HTML string).
+ * Strip des balises + décode entités basiques + split sur whitespace.
+ */
+export function countWords(body?: unknown): number {
+  if (typeof body !== 'string' || !body) return 0;
+  const text = decodeBasicEntities(body.replace(/<[^>]+>/g, ' '));
+  return text.split(/\s+/).filter(Boolean).length;
+}
+
+/**
+ * Compte les photos d'un article : hero (data.image non vide) + <img> inline dans le body.
+ * Marche que les images soient en /images/...webp (jd-zoo) ou via R2 /img/... (galgoessolo/zompa).
+ */
+export function countPhotos(data: { image?: unknown }, body?: unknown): number {
+  const hero = typeof data.image === 'string' && data.image.trim() ? 1 : 0;
+  const inline = typeof body === 'string' ? (body.match(/<img\b/gi) || []).length : 0;
+  return hero + inline;
+}
+
+/** Temps de lecture en minutes (≈200 mots/min), minimum 1. */
+export function readingTime(words: number): number {
+  return Math.max(1, Math.round(words / 200));
+}
+
+/**
+ * Timestamp de tri chronologique d'un article : publish_at (programmé) prioritaire sur date.
+ * Permet de faire remonter les articles programmés futurs en tête. NaN → 0 (relégué en bas).
+ */
+export function sortTimestamp(data: { publish_at?: unknown; date?: unknown }): number {
+  const raw = (typeof data.publish_at === 'string' && data.publish_at) ||
+    (typeof data.date === 'string' && data.date) || '';
+  const t = new Date(raw).getTime();
+  return Number.isNaN(t) ? 0 : t;
+}
+
 export function slugify(input: string): string {
   return input
     .toLowerCase()

@@ -307,6 +307,10 @@ const FR: Dict = {
   deleteAriaLabel: 'Supprimer {label}',
   history: 'Historique',
   unsavedConfirm: 'Vous avez des modifications non enregistrées. Quitter sans sauvegarder ?',
+  // Métadonnées liste d'articles (CollectionList enrichi)
+  metaWords: '{n} mots',
+  metaPhotos: '{n} photo(s)',
+  metaReadingTime: '~{n} min',
 
   // SeoEditor
   seoTitle: 'SEO & Référencement',
@@ -743,6 +747,10 @@ const EN: Dict = {
   deleteAriaLabel: 'Delete {label}',
   history: 'History',
   unsavedConfirm: 'You have unsaved changes. Leave without saving?',
+  // Article list metadata (enriched CollectionList)
+  metaWords: '{n} words',
+  metaPhotos: '{n} photo(s)',
+  metaReadingTime: '~{n} min',
 
   // SeoEditor
   seoTitle: 'SEO',

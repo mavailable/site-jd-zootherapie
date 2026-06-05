@@ -297,6 +297,17 @@ const cmsConfig: CmsConfig = {
       description: 'Articles du blog',
       path: 'src/content/blog',
       slugField: 'title',
+      listMeta: {
+        date: true,
+        words: true,
+        photos: true,
+        readingTime: true,
+        state: true,
+        category: true,
+        views: true,
+        bodyField: 'body',
+        blogBasePath: '/blog/',
+      },
       fields: {
         title: { type: 'text', label: "Titre de l'article" },
         description: { type: 'text', label: 'Description', multiline: true },
