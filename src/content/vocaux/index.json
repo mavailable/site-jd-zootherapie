@@ -1,10 +1,81 @@
 {
   "entries": [
     {
-      "id": "jd-zoo-2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin",
-      "sujet": "Combien coûte une intervention zoothérapie (et comment la financer)",
+      "id": "jd-zoo-2026-06-08-1034-quand-les-larmes-arrivent-en-seance-ce-que-l-animal-permet-d",
+      "sujet": "Quand les larmes arrivent en séance : ce que l’animal permet d’accueillir",
       "categorie": "idee-article",
       "categorie_label": "Idée d'article de blog",
+      "note": "JE T'ai mis 2 photos a voir la plus pertinente",
+      "attachments": [
+        {
+          "filename": "2026-06-08-1034-quand-les-larmes-arrivent-en-seance-ce-que-l-animal-permet-d-1.webm",
+          "r2_key": "jd-zoo/2026-06-08-1034-quand-les-larmes-arrivent-en-seance-ce-que-l-animal-permet-d-1.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-08-1034-quand-les-larmes-arrivent-en-seance-ce-que-l-animal-permet-d-1.webm&e=1783499689&s=88c524eb6352be5f147d4de5919c53651f05f67cbf74d3ef4b78d70cd567e5f0",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 1200050
+        },
+        {
+          "filename": "2026-06-08-1034-quand-les-larmes-arrivent-en-seance-ce-que-l-animal-permet-d-2.webm",
+          "r2_key": "jd-zoo/2026-06-08-1034-quand-les-larmes-arrivent-en-seance-ce-que-l-animal-permet-d-2.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-08-1034-quand-les-larmes-arrivent-en-seance-ce-que-l-animal-permet-d-2.webm&e=1783499689&s=357e32983d98b8d8b2cb8ae5b5c92b5f139860c06028c9dd71d7c7bd43ecc6cf",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 435319
+        },
+        {
+          "filename": "2026-06-08-1034-quand-les-larmes-arrivent-en-seance-ce-que-l-animal-permet-d-3.webm",
+          "r2_key": "jd-zoo/2026-06-08-1034-quand-les-larmes-arrivent-en-seance-ce-que-l-animal-permet-d-3.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-08-1034-quand-les-larmes-arrivent-en-seance-ce-que-l-animal-permet-d-3.webm&e=1783499689&s=78f853c0c03e33ef3fb24d9582e698449366f953e9dd0e8a973a8d2719f879a0",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 504129
+        },
+        {
+          "filename": "2026-06-08-1034-quand-les-larmes-arrivent-en-seance-ce-que-l-animal-permet-d-4.webm",
+          "r2_key": "jd-zoo/2026-06-08-1034-quand-les-larmes-arrivent-en-seance-ce-que-l-animal-permet-d-4.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-08-1034-quand-les-larmes-arrivent-en-seance-ce-que-l-animal-permet-d-4.webm&e=1783499689&s=7f151476f1e2b28dac934bc842b5d63102f6110b4445f4a741bcd33d6f3947ff",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 360697
+        },
+        {
+          "filename": "2026-06-08-1034-quand-les-larmes-arrivent-en-seance-ce-que-l-animal-permet-d-5.webm",
+          "r2_key": "jd-zoo/2026-06-08-1034-quand-les-larmes-arrivent-en-seance-ce-que-l-animal-permet-d-5.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-08-1034-quand-les-larmes-arrivent-en-seance-ce-que-l-animal-permet-d-5.webm&e=1783499689&s=b807a75d2d43d0969ec5a7692a7c33f69349da2a087a219e83646fe58f3681b1",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 668893
+        },
+        {
+          "filename": "2026-06-08-1034-quand-les-larmes-arrivent-en-seance-ce-que-l-animal-permet-d-6.webm",
+          "r2_key": "jd-zoo/2026-06-08-1034-quand-les-larmes-arrivent-en-seance-ce-que-l-animal-permet-d-6.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-08-1034-quand-les-larmes-arrivent-en-seance-ce-que-l-animal-permet-d-6.webm&e=1783499689&s=b16771f63e5636929dc1a23b7e4e5944a648bcbd0620e2f96bcfa79715ca70eb",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 292853
+        }
+      ],
+      "media": [
+        {
+          "filename": "2026-06-08-1034-quand-les-larmes-arrivent-en-seance-ce-que-l-animal-permet-d-m1.jpg",
+          "r2_key": "jd-zoo/2026-06-08-1034-quand-les-larmes-arrivent-en-seance-ce-que-l-animal-permet-d-m1.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-08-1034-quand-les-larmes-arrivent-en-seance-ce-que-l-animal-permet-d-m1.jpg&e=1783499689&s=d394ef609fd7037453d773826e6f00771ad6c17e15f7dfd28eb656832b95be25",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 218034
+        },
+        {
+          "filename": "2026-06-08-1034-quand-les-larmes-arrivent-en-seance-ce-que-l-animal-permet-d-m2.jpg",
+          "r2_key": "jd-zoo/2026-06-08-1034-quand-les-larmes-arrivent-en-seance-ce-que-l-animal-permet-d-m2.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-08-1034-quand-les-larmes-arrivent-en-seance-ce-que-l-animal-permet-d-m2.jpg&e=1783499689&s=b30c117f3991574d45fc399d3b88e04420e57c4a46a5a0c436506be53da3fdac",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 211115
+        }
+      ],
+      "uploaded_at": "2026-06-08T08:35:05.526Z",
+      "statut": "envoye"
+    },
+    {
+      "id": "jd-zoo-2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin",
+      "sujet": "Combien coÃ»te une intervention zoothÃ©rapie (et comment la financer)",
+      "categorie": "idee-article",
+      "categorie_label": "IdÃ©e d'article de blog",
       "note": "je n ai pas d idee de qu'elle genre d image pourrais accompagner cette article",
       "attachments": [
         {
@@ -86,7 +157,7 @@
       "sujet": "google buiseness",
       "categorie": "question",
       "categorie_label": "Question pour Marc",
-      "note": "Coucou pour info j ai reÃ§u ca sur ma boite mail ce matin",
+      "note": "Coucou pour info j ai reÃÂ§u ca sur ma boite mail ce matin",
       "attachments": [],
       "media": [
         {
@@ -101,16 +172,16 @@
       "uploaded_at": "2026-06-03T08:47:34.019Z",
       "statut": "traite",
       "resolution": {
-        "note": "Pas d'inquiÃ©tude Jennifer : c'est moi qui ai tentÃ© de modifier le nom de votre fiche Google pour corriger un problÃ¨me d'accent. Si Google refuse la modification, on garde simplement 'mÃ©diation' comme avant. Rien Ã  faire de votre cÃ´tÃ©, je m'en occupe.",
+        "note": "Pas d'inquiÃÂ©tude Jennifer : c'est moi qui ai tentÃÂ© de modifier le nom de votre fiche Google pour corriger un problÃÂ¨me d'accent. Si Google refuse la modification, on garde simplement 'mÃÂ©diation' comme avant. Rien ÃÂ  faire de votre cÃÂ´tÃÂ©, je m'en occupe.",
         "resolved_at": "2026-06-03T09:07:38.671Z",
         "notified_at": "2026-06-03T09:08:37.653Z"
       }
     },
     {
       "id": "jd-zoo-2026-06-02-0957-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement",
-      "sujet": "PrÃÂ©parer l'arrivÃÂ©e du zoothÃÂ©rapeute dans votre ÃÂ©tablissement : checklist ÃÂ©quipe en 7 points",
+      "sujet": "PrÃÂÃÂ©parer l'arrivÃÂÃÂ©e du zoothÃÂÃÂ©rapeute dans votre ÃÂÃÂ©tablissement : checklist ÃÂÃÂ©quipe en 7 points",
       "categorie": "idee-article",
-      "categorie_label": "IdÃÂ©e d'article de blog",
+      "categorie_label": "IdÃÂÃÂ©e d'article de blog",
       "attachments": [
         {
           "filename": "2026-06-02-0957-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement.webm",
@@ -123,15 +194,15 @@
       "uploaded_at": "2026-06-02T07:57:25.900Z",
       "statut": "traite",
       "resolution": {
-        "note": "TransformÃ© en article de blog, programmÃ© le 04/06.",
+        "note": "TransformÃÂ© en article de blog, programmÃÂ© le 04/06.",
         "resolved_at": "2026-06-03T09:00:07.729Z"
       }
     },
     {
       "id": "jd-zoo-2026-06-02-0953-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes",
-      "sujet": "Le Grand Est vu depuis mes sÃÂÃÂ©ances : besoins, rÃÂÃÂ©alitÃÂÃÂ©s, attentes",
+      "sujet": "Le Grand Est vu depuis mes sÃÂÃÂÃÂÃÂ©ances : besoins, rÃÂÃÂÃÂÃÂ©alitÃÂÃÂÃÂÃÂ©s, attentes",
       "categorie": "idee-article",
-      "categorie_label": "IdÃÂÃÂ©e d'article de blog",
+      "categorie_label": "IdÃÂÃÂÃÂÃÂ©e d'article de blog",
       "attachments": [],
       "media": [
         {
@@ -146,15 +217,15 @@
       "uploaded_at": "2026-06-02T07:53:27.733Z",
       "statut": "traite",
       "resolution": {
-        "note": "TransformÃ© en article de blog, programmÃ© le 07/06. Votre photo illustre l'article.",
+        "note": "TransformÃÂ© en article de blog, programmÃÂ© le 07/06. Votre photo illustre l'article.",
         "resolved_at": "2026-06-03T09:00:26.727Z"
       }
     },
     {
       "id": "jd-zoo-2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement",
-      "sujet": "PrÃÂÃÂÃÂÃÂ©parer l'arrivÃÂÃÂÃÂÃÂ©e du zoothÃÂÃÂÃÂÃÂ©rapeute dans votre ÃÂÃÂÃÂÃÂ©tablissement : checklist ÃÂÃÂÃÂÃÂ©quipe en 7 points",
+      "sujet": "PrÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©parer l'arrivÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©e du zoothÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©rapeute dans votre ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©tablissement : checklist ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©quipe en 7 points",
       "categorie": "idee-article",
-      "categorie_label": "IdÃÂÃÂÃÂÃÂ©e d'article de blog",
+      "categorie_label": "IdÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©e d'article de blog",
       "attachments": [
         {
           "filename": "2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement-1.webm",
@@ -216,15 +287,15 @@
       "uploaded_at": "2026-06-01T10:49:27.300Z",
       "statut": "traite",
       "resolution": {
-        "note": "TransformÃ© en article de blog, programmÃ© le 04/06.",
+        "note": "TransformÃÂ© en article de blog, programmÃÂ© le 04/06.",
         "resolved_at": "2026-06-03T08:59:58.694Z"
       }
     },
     {
       "id": "jd-zoo-2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes",
-      "sujet": "Le Grand Est vu depuis mes sÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©ances : besoins, rÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©alitÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©s, attentes",
+      "sujet": "Le Grand Est vu depuis mes sÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©ances : besoins, rÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©alitÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©s, attentes",
       "categorie": "idee-article",
-      "categorie_label": "IdÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©e d'article de blog",
+      "categorie_label": "IdÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©e d'article de blog",
       "attachments": [
         {
           "filename": "2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes-1.webm",
@@ -272,13 +343,13 @@
       "uploaded_at": "2026-06-01T10:37:03.930Z",
       "statut": "traite",
       "resolution": {
-        "note": "TransformÃ© en article de blog, programmÃ© le 07/06.",
+        "note": "TransformÃÂ© en article de blog, programmÃÂ© le 07/06.",
         "resolved_at": "2026-06-03T09:00:18.779Z"
       }
     },
     {
       "id": "jd-zoo-2026-05-22-1243-memo-pour-rdv-de-samedi",
-      "sujet": "mÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©mo pour rdv de samedi",
+      "sujet": "mÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©mo pour rdv de samedi",
       "categorie": "question",
       "categorie_label": "Question pour Marc",
       "attachments": [
@@ -308,7 +379,7 @@
       "uploaded_at": "2026-05-17T09:42:03.856Z",
       "statut": "traite",
       "resolution": {
-        "note": "Test, archivÃ©.",
+        "note": "Test, archivÃÂ©.",
         "resolved_at": "2026-06-03T09:00:37.707Z"
       }
     }
