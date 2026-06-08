@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import cmsConfig from '../../../cms.config';
+import cmsConfig from '../../../../cms.config';
 import { mergeSettings } from './crmSettings';
 import type { CrmSettings } from './crmTypes';
 

@@ -1,6 +1,8 @@
 import { useState, useMemo } from 'react';
 import type { CmsConfig } from '../../../../cms.types';
 import { useCrm } from './useCrm';
+import { useCrmSettings } from './useCrmSettings';
+import { navigate } from '../CmsApp';
 import { CrmModal } from './CrmModal';
 import { relance, isDue, urgencyRank, sortColumn, formatEuro, todayParisISO } from './crmHelpers';
 import type { Contact, ContactPatch, CrmColumn } from './crmTypes';
@@ -20,7 +22,10 @@ const DEFAULT_COLUMNS: CrmColumn[] = [
 ];
 
 export function CrmTab({ config }: { config: CmsConfig }) {
-  const columns = (config.crm?.columns as CrmColumn[] | undefined) || DEFAULT_COLUMNS;
+  const { settings } = useCrmSettings();
+  const columns: CrmColumn[] = settings.columns.length
+    ? settings.columns.map((c) => ({ status: c.id, label: c.label, hint: c.hint, dot: c.color }))
+    : DEFAULT_COLUMNS;
   const { contacts, loading, error, reload, create, update, remove } = useCrm();
   const [newName, setNewName] = useState('');
   const [busy, setBusy] = useState(false);
@@ -104,7 +109,12 @@ export function CrmTab({ config }: { config: CmsConfig }) {
       <CrmStyles />
 
       <header style={styles.intro}>
-        <p style={styles.eyebrow}>Suivi commercial</p>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.5rem' }}>
+          <p style={styles.eyebrow}>Suivi commercial</p>
+          <button type="button" onClick={() => navigate('#/reglages')} title="Réglages des prospects"
+            aria-label="Réglages des prospects"
+            style={{ background: 'transparent', border: 'none', cursor: 'pointer', fontSize: '1.1rem', lineHeight: 1, padding: '0.2rem' }}>⚙️</button>
+        </div>
         <h1 style={styles.title}>Prospects</h1>
         <p style={styles.lede}>
           Suis tes prospects et clients du premier contact jusqu'à la signature. Ajoute une fiche,

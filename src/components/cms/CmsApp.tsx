@@ -30,13 +30,16 @@ const MarketingPlanTab = lazy(() =>
 const CrmTab = lazy(() =>
   import('./crm/CrmTab').then((m) => ({ default: m.CrmTab }))
 );
+const ReglagesTab = lazy(() =>
+  import('./ReglagesTab').then((m) => ({ default: m.ReglagesTab }))
+);
 
 // ─── Route parsing ───────────────────────────────────────────────
 
-type TabId = 'site' | 'blog' | 'stats' | 'analytics' | 'account' | 'marketing' | 'vocaux' | 'crm';
+type TabId = 'site' | 'blog' | 'stats' | 'analytics' | 'account' | 'marketing' | 'vocaux' | 'crm' | 'reglages';
 
 interface Route {
-  view: 'home' | 'singleton' | 'collection' | 'collection-edit' | 'media' | 'sections' | 'seo' | 'theme' | 'stats' | 'analytics' | 'account' | 'blog' | 'marketing' | 'vocaux' | 'crm';
+  view: 'home' | 'singleton' | 'collection' | 'collection-edit' | 'media' | 'sections' | 'seo' | 'theme' | 'stats' | 'analytics' | 'account' | 'blog' | 'marketing' | 'vocaux' | 'crm' | 'reglages';
   key?: string;
   slug?: string;
 }
@@ -49,6 +52,7 @@ function parseHash(): Route {
   if (parts[0] === 'marketing') return { view: 'marketing' };
   if (parts[0] === 'vocaux') return { view: 'vocaux' };
   if (parts[0] === 'crm') return { view: 'crm' };
+  if (parts[0] === 'reglages') return { view: 'reglages' };
   if (parts[0] === 'stats') return { view: 'stats' };
   if (parts[0] === 'analytics') return { view: 'analytics' };
   if (parts[0] === 'account') return { view: 'account' };
@@ -67,6 +71,7 @@ function getActiveTab(route: Route, hasBlog: boolean): TabId {
   if (route.view === 'marketing') return 'marketing';
   if (route.view === 'vocaux') return 'vocaux';
   if (route.view === 'crm') return 'crm';
+  if (route.view === 'reglages') return 'reglages';
   if (route.view === 'stats') return 'stats';
   if (route.view === 'analytics') return 'analytics';
   if (route.view === 'account') return 'account';
@@ -98,7 +103,7 @@ export function useToastContext() {
 function getBreadcrumbs(route: Route): Array<{ label: string; hash: string }> {
   const crumbs: Array<{ label: string; hash: string }> = [];
 
-  if (route.view === 'home' || route.view === 'stats' || route.view === 'analytics' || route.view === 'account' || route.view === 'marketing' || route.view === 'vocaux' || route.view === 'crm') return crumbs;
+  if (route.view === 'home' || route.view === 'stats' || route.view === 'analytics' || route.view === 'account' || route.view === 'marketing' || route.view === 'vocaux' || route.view === 'crm' || route.view === 'reglages') return crumbs;
 
   if (route.view === 'singleton' && route.key) {
     const s = cmsConfig.singletons[route.key];
@@ -136,6 +141,7 @@ const ALL_TABS: Array<{ id: TabId; labelKey: string; icon: string; hash: string;
   { id: 'stats', labelKey: 'tabActivity', icon: '\u{2B50}', hash: '#/stats' },
   { id: 'analytics', labelKey: 'tabStats', icon: '\u{1F4CA}', hash: '#/analytics' },
   { id: 'account', labelKey: 'tabAccount', icon: '\u{1F464}', hash: '#/account' },
+  { id: 'reglages', labelKey: 'tabReglages', icon: '\u{2699}\u{FE0F}', hash: '#/reglages', requires: 'crm' },
 ];
 
 function getTabs(cfg: typeof cmsConfig) {
@@ -253,6 +259,11 @@ export function CmsApp() {
           {route.view === 'crm' && cmsConfig.crm?.enabled && (
             <Suspense fallback={<div style={styles.loading}><div style={styles.spinner} /><span>{t('loading')}</span></div>}>
               <CrmTab config={cmsConfig} />
+            </Suspense>
+          )}
+          {route.view === 'reglages' && (
+            <Suspense fallback={<div style={styles.loading}><div style={styles.spinner} /><span>{t('loading')}</span></div>}>
+              <ReglagesTab />
             </Suspense>
           )}
           {route.view === 'stats' && <StatsTab config={cmsConfig} />}
