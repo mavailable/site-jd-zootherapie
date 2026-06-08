@@ -224,6 +224,7 @@ export function CrmTab({ config }: { config: CmsConfig }) {
                           {on('value') && c.value != null && <span style={styles.cardValue}>{formatEuro(c.value)}</span>}
                           {on('phone') && c.phone && <span style={styles.cardBadge} title={c.phone}>📞</span>}
                           {on('email') && c.email && <span style={styles.cardBadge} title={c.email}>✉</span>}
+                          {c.sale_lines && <span style={styles.cardBadge} title="Vente saisie">💶</span>}
                         </div>
                         <div style={styles.cardActions}>
                           <button type="button" className="move-btn"

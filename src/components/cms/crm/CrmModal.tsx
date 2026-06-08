@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import type { Contact, ContactPatch, CrmColumn } from './crmTypes';
+import type { Contact, ContactPatch, CrmColumn, SaleLine } from './crmTypes';
+import { SaleSection, type Billing } from './SaleSection';
+import { parseLines, serializeLines, saleTotal } from './saleHelpers';
 
 // Palette admin jd-zoo (chrome neutre slate + accent bleu).
 const INK = '#0f172a', MUTED = '#64748b', LINE = '#e2e8f0', PAPER = '#f8fafc';
@@ -29,6 +31,18 @@ export function CrmModal({ contact, columns, busy, fields, onClose, onSave, onDe
   const [notes, setNotes] = useState(contact.notes || '');
   const [saving, setSaving] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [billing, setBillingState] = useState<Billing>({
+    address: contact.billing_address || '',
+    postal: contact.billing_postal || '',
+    city: contact.billing_city || '',
+    contact: contact.billing_contact || '',
+    siret: contact.client_siret || '',
+    orderRef: contact.order_ref || '',
+  });
+  const [saleLines, setSaleLines] = useState<SaleLine[]>(() => parseLines(contact.sale_lines));
+  const [saleDate, setSaleDate] = useState(contact.sale_date || '');
+  const [saleOpen, setSaleOpen] = useState(false);
+  const setBilling = (patch: Partial<Billing>) => setBillingState((b) => ({ ...b, ...patch }));
 
   const overlayRef = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -86,16 +100,26 @@ export function CrmModal({ contact, columns, busy, fields, onClose, onSave, onDe
     setSaving(true);
     try {
       const parsed = value.trim() === '' ? null : Number(value.replace(',', '.'));
+      const estimate = parsed != null && Number.isNaN(parsed) ? null : parsed;
+      const serialized = serializeLines(saleLines);
       await onSave(contact.id, {
         name: name.trim() || contact.name,
         org: org.trim() || null,
         phone: phone.trim() || null,
         email: email.trim() || null,
-        value: parsed != null && Number.isNaN(parsed) ? null : parsed,
+        value: serialized ? saleTotal(saleLines) : estimate, // le total des lignes prime sur l'estimation
         status,
         next_action: nextAction.trim() || null,
         next_date: nextDate || null,
         notes: notes.trim() || null,
+        billing_address: billing.address.trim() || null,
+        billing_postal: billing.postal.trim() || null,
+        billing_city: billing.city.trim() || null,
+        billing_contact: billing.contact.trim() || null,
+        client_siret: billing.siret.trim() || null,
+        order_ref: billing.orderRef.trim() || null,
+        sale_lines: serialized,
+        sale_date: saleDate || null,
       });
       onClose();
     } finally {
@@ -196,6 +220,21 @@ export function CrmModal({ contact, columns, busy, fields, onClose, onSave, onDe
               <textarea id="crm-notes" value={notes} onChange={(e) => setNotes(e.target.value)} rows={4}
                 style={styles.textarea} className="modal-field" placeholder="Contexte, historique, points à retenir…" />
             </>
+          )}
+
+          {on('billing') && (
+            <SaleSection
+              open={saleOpen}
+              onToggle={() => setSaleOpen((o) => !o)}
+              billing={billing}
+              setBilling={setBilling}
+              showSiret={on('siret')}
+              showOrderRef={on('orderRef')}
+              initialLines={saleLines}
+              setLines={setSaleLines}
+              saleDate={saleDate}
+              setSaleDate={setSaleDate}
+            />
           )}
         </div>
 
