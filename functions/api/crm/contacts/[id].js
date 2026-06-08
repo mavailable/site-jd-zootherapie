@@ -3,7 +3,10 @@ import { requireAuth, checkOrigin, jsonHeaders } from '../../cms/_auth-helpers.j
 
 const STATUSES = ['nouveau', 'contacte', 'rdv', 'devis', 'gagne', 'perdu'];
 // Champs éditables (whitelist stricte → requête paramétrée sûre).
-const EDITABLE = ['name', 'org', 'phone', 'email', 'value', 'status', 'next_action', 'next_date', 'notes', 'sort'];
+const EDITABLE = [
+  'name', 'org', 'phone', 'email', 'value', 'status', 'next_action', 'next_date', 'notes', 'sort',
+  'billing_address', 'billing_postal', 'billing_city', 'billing_contact', 'client_siret', 'order_ref', 'sale_lines', 'sale_date',
+];
 
 function bad(msg, status = 400) {
   return new Response(JSON.stringify({ error: msg }), { status, headers: jsonHeaders() });
