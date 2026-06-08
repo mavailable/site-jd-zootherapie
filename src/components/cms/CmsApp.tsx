@@ -98,7 +98,7 @@ export function useToastContext() {
 function getBreadcrumbs(route: Route): Array<{ label: string; hash: string }> {
   const crumbs: Array<{ label: string; hash: string }> = [];
 
-  if (route.view === 'home' || route.view === 'stats' || route.view === 'analytics' || route.view === 'account' || route.view === 'marketing' || route.view === 'vocaux') return crumbs;
+  if (route.view === 'home' || route.view === 'stats' || route.view === 'analytics' || route.view === 'account' || route.view === 'marketing' || route.view === 'vocaux' || route.view === 'crm') return crumbs;
 
   if (route.view === 'singleton' && route.key) {
     const s = cmsConfig.singletons[route.key];
