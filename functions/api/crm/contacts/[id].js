@@ -36,7 +36,8 @@ export async function onRequestPatch({ request, env, params }) {
   for (const key of EDITABLE) {
     if (Object.prototype.hasOwnProperty.call(body, key)) {
       sets.push(`${key} = ?`);
-      values.push(body[key]);
+      // `sort` coercé en entier (cohérent avec POST) ; les autres champs passés tels quels (bindés).
+      values.push(key === 'sort' ? (Number.isInteger(body[key]) ? body[key] : 0) : body[key]);
     }
   }
   if (sets.length === 0) return bad('Aucun champ à modifier');
