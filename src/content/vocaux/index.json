@@ -72,7 +72,8 @@
       "statut": "traite",
       "resolution": {
         "note": "Coucou Jen, ton article \"Quand les larmes arrivent en séance\" est écrit à partir de tes vocaux et programmé pour le 12 juin au matin (invisible jusque-là, puis il s'affiche tout seul). J'ai bien regardé tes 2 photos et j'ai gardé la deuxième, celle où la dame a les yeux fermés, la joue contre le lapin blotti contre elle, elle est parfaite pour le sujet. Tu peux le relire tranquillement depuis ton espace /admin et me dire si tu veux changer quoi que ce soit avant qu'il parte.",
-        "resolved_at": "2026-06-08T09:14:06.934Z"
+        "resolved_at": "2026-06-08T09:14:06.934Z",
+        "notified_at": "2026-06-08T09:14:09.948Z"
       }
     },
     {
