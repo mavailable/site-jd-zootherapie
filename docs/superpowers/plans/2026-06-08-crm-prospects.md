@@ -1089,7 +1089,7 @@ Dans l'objet `cmsConfig`, à côté de `vocaux:` (avant `collections:` ou `singl
 
 ```ts
   crm: {
-    enabled: true,
+    enabled: false, // GARDÉ OFF jusqu'au binding D1 (Task 8). Onglet invisible sur le site live pendant le dev.
     label: 'Prospects',
     columns: [
       { status: 'nouveau', label: 'Nouveau', hint: 'À traiter', dot: '#94a3b8' },
@@ -1212,14 +1212,16 @@ Récupérer le nom du projet Pages (`npx wrangler pages project list`), puis ajo
 
 > Alternative API (si scripté) : PATCH `…/pages/projects/{project}` en injectant `deployment_configs.production.d1_databases.DB` et `…preview.d1_databases.DB` = `{ id: "<database_id>" }`, token Keychain `cloudflare-api-token`. **Ne pas** passer par un wrangler.toml.
 
-- [ ] **Step 4: Redéployer pour prise en compte du binding**
+- [ ] **Step 4: Activer le flag + redéployer pour prise en compte du binding**
 
-Le binding nécessite un nouveau déploiement. Un push a déjà eu lieu (Task 7) ; déclencher un rebuild :
+Le binding nécessite un nouveau déploiement. C'est aussi le moment d'**activer l'onglet** (flag resté `false` depuis Task 7) : éditer `cms.config.ts` → `crm.enabled: true`, puis :
 ```bash
-git commit --allow-empty -m "chore(crm): redeploy pour binding D1"
-git fetch origin master && git rebase origin/master && git push origin master
+git fetch origin master && git rebase origin/master
+git add cms.config.ts
+git commit -m "feat(crm): active l'onglet Prospects (D1 bindée)"
+git push origin master
 ```
-Expected: CF Pages rebuild ; après build, `env.DB` est disponible pour les Functions.
+Expected: CF Pages rebuild ; après build, `env.DB` est disponible pour les Functions ET l'onglet apparaît.
 
 - [ ] **Step 5: QA sur l'URL preview (chemin authentifié complet)**
 
