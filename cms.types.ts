@@ -186,4 +186,17 @@ export interface CmsConfig {
   site?: CmsSiteConfig;
   marketing?: CmsMarketingConfig; // Activé par mkt-social-plan (optionnel)
   vocaux?: CmsVocauxConfig; // Activé par site (pilote jd-zoo 2026-05). VocalRecorder dans /admin.
+  crm?: CmsCrmConfig; // Activé par site (mini-CRM "Prospects", board kanban dans /admin).
+}
+
+// Mini-CRM "Prospects" — colonnes du board kanban (optionnel, défauts dans CrmTab).
+export interface CmsCrmConfig {
+  columns?: CmsCrmColumn[];
+}
+
+export interface CmsCrmColumn {
+  status: string;
+  label: string;
+  hint: string;
+  dot: string;
 }
