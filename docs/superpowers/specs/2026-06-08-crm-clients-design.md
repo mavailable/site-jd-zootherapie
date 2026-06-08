@@ -1,4 +1,4 @@
-# Onglet "Clients" — Mini-CRM de suivi prospects/clients (/admin)
+# Onglet "Prospects" — Mini-CRM de suivi prospects/clients (/admin)
 
 **Date :** 2026-06-08
 **Statut :** Design approuvé (Marc, "go") → en route vers plan d'implémentation
@@ -50,7 +50,7 @@ Nouveau bloc :
 ```ts
 crm: {
   enabled: true,
-  label: 'Clients',
+  label: 'Prospects',
   // colonnes du funnel (ordre = flux gauche→droite)
   columns: [
     { status: 'nouveau', label: 'Nouveau',      hint: 'À traiter',         dot: '#9bafa9' },
@@ -62,7 +62,7 @@ crm: {
   ],
 }
 ```
-Onglet "Clients" gaté par `cmsConfig.crm?.enabled`, **lazy-loadé** (bundle des sites sans CRM inchangé), comme `VocauxTab`/`MarketingPlanTab`. Route `#/crm` dans CmsApp.
+Onglet "Prospects" gaté par `cmsConfig.crm?.enabled`, **lazy-loadé** (bundle des sites sans CRM inchangé), comme `VocauxTab`/`MarketingPlanTab`. Route `#/crm` dans CmsApp.
 
 ### Portabilité (autres admins du parc)
 Pour activer le CRM sur un futur client : (1) créer sa base D1 + binding `DB`, (2) déployer les mêmes Functions `crm/*`, (3) activer `crm.enabled` + colonnes dans sa config. Composant et API génériques ; seules les colonnes/labels changent.
@@ -91,9 +91,9 @@ Pour activer le CRM sur un futur client : (1) créer sa base D1 + binding `DB`, 
 
 ---
 
-## UX — onglet "Clients"
+## UX — onglet "Prospects"
 
-- **En-tête** : titre "Clients" + courte intro.
+- **En-tête** : titre "Prospects" + courte intro.
 - **Barre d'ajout rapide** : taper un nom → carte créée en colonne *Nouveau*.
 - **🔔 Bandeau relances** (en tête du board) : liste les cartes dont `next_date ≤ aujourd'hui + 2j`, triées par urgence (*en retard → aujourd'hui → J+1/J+2*), chaque ligne cliquable (→ ouvre la carte). État zéro propre : *"Rien à relancer aujourd'hui ✅"*. Calcul en **date seule**, fuseau Europe/Paris (pas d'heure, pour rester simple).
 - **6 colonnes** (cf. config). Flèches ← → linéaires ; bascule *Perdu* via le modal. Cartes en retard **remontées en haut** de leur colonne + pastille ⚠.
@@ -105,7 +105,7 @@ Pour activer le CRM sur un futur client : (1) créer sa base D1 + binding `DB`, 
 
 ## Câblage jd-zoo (pilote)
 
-- Onglet **"Clients"** ajouté à la nav `CmsApp` (route `#/crm`), lazy + gaté par `crm.enabled`.
+- Onglet **"Prospects"** ajouté à la nav `CmsApp` (route `#/crm`), lazy + gaté par `crm.enabled`.
 - **Infra** : créer D1 `jdzoo-crm`, déclarer le binding `DB` dans `wrangler.toml` (source de vérité — cf. `reference_cf_pages_wrangler_toml_env`), appliquer `schema.sql`, déployer les Functions.
 - **Seed** : 2-3 cartes "(exemple)" que la cliente supprime, pour saisir l'outil d'un coup d'œil.
 - **Test local** : D1 via `wrangler pages dev` (binding `--d1` / config local).
