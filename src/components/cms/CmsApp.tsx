@@ -27,13 +27,16 @@ const VocauxTab = lazy(() =>
 const MarketingPlanTab = lazy(() =>
   import('./marketing/MarketingPlanTab').then((m) => ({ default: m.MarketingPlanTab }))
 );
+const CrmTab = lazy(() =>
+  import('./crm/CrmTab').then((m) => ({ default: m.CrmTab }))
+);
 
 // ─── Route parsing ───────────────────────────────────────────────
 
-type TabId = 'site' | 'blog' | 'stats' | 'analytics' | 'account' | 'marketing' | 'vocaux';
+type TabId = 'site' | 'blog' | 'stats' | 'analytics' | 'account' | 'marketing' | 'vocaux' | 'crm';
 
 interface Route {
-  view: 'home' | 'singleton' | 'collection' | 'collection-edit' | 'media' | 'sections' | 'seo' | 'theme' | 'stats' | 'analytics' | 'account' | 'blog' | 'marketing' | 'vocaux';
+  view: 'home' | 'singleton' | 'collection' | 'collection-edit' | 'media' | 'sections' | 'seo' | 'theme' | 'stats' | 'analytics' | 'account' | 'blog' | 'marketing' | 'vocaux' | 'crm';
   key?: string;
   slug?: string;
 }
@@ -45,6 +48,7 @@ function parseHash(): Route {
   if (parts[0] === 'blog') return { view: 'blog' };
   if (parts[0] === 'marketing') return { view: 'marketing' };
   if (parts[0] === 'vocaux') return { view: 'vocaux' };
+  if (parts[0] === 'crm') return { view: 'crm' };
   if (parts[0] === 'stats') return { view: 'stats' };
   if (parts[0] === 'analytics') return { view: 'analytics' };
   if (parts[0] === 'account') return { view: 'account' };
@@ -62,6 +66,7 @@ function getActiveTab(route: Route, hasBlog: boolean): TabId {
   if (route.view === 'blog') return 'blog';
   if (route.view === 'marketing') return 'marketing';
   if (route.view === 'vocaux') return 'vocaux';
+  if (route.view === 'crm') return 'crm';
   if (route.view === 'stats') return 'stats';
   if (route.view === 'analytics') return 'analytics';
   if (route.view === 'account') return 'account';
@@ -122,11 +127,12 @@ function getBreadcrumbs(route: Route): Array<{ label: string; hash: string }> {
 
 // ─── Tabs ────────────────────────────────────────────────────────
 
-const ALL_TABS: Array<{ id: TabId; labelKey: string; icon: string; hash: string; requires?: 'blog' | 'marketing' | 'vocaux' }> = [
+const ALL_TABS: Array<{ id: TabId; labelKey: string; icon: string; hash: string; requires?: 'blog' | 'marketing' | 'vocaux' | 'crm' }> = [
   { id: 'site', labelKey: 'tabSite', icon: '\u{1F3E0}', hash: '#/' },
   { id: 'blog', labelKey: 'tabBlog', icon: '\u{270D}\u{FE0F}', hash: '#/blog', requires: 'blog' },
   { id: 'marketing', labelKey: 'tabMarketing', icon: '\u{1F4E3}', hash: '#/marketing', requires: 'marketing' },
   { id: 'vocaux', labelKey: 'tabVocaux', icon: '\u{1F3A4}', hash: '#/vocaux', requires: 'vocaux' },
+  { id: 'crm', labelKey: 'tabCrm', icon: '\u{1F465}', hash: '#/crm', requires: 'crm' },
   { id: 'stats', labelKey: 'tabActivity', icon: '\u{2B50}', hash: '#/stats' },
   { id: 'analytics', labelKey: 'tabStats', icon: '\u{1F4CA}', hash: '#/analytics' },
   { id: 'account', labelKey: 'tabAccount', icon: '\u{1F464}', hash: '#/account' },
@@ -137,6 +143,7 @@ function getTabs(cfg: typeof cmsConfig) {
     if (tab.requires === 'blog') return !!cfg.collections?.blog;
     if (tab.requires === 'marketing') return !!cfg.marketing?.enabled;
     if (tab.requires === 'vocaux') return !!cfg.vocaux?.enabled;
+    if (tab.requires === 'crm') return !!cfg.crm?.enabled;
     return true;
   });
 }
@@ -241,6 +248,11 @@ export function CmsApp() {
           {route.view === 'vocaux' && cmsConfig.vocaux?.enabled && (
             <Suspense fallback={<div style={styles.loading}><div style={styles.spinner} /><span>{t('loading')}</span></div>}>
               <VocauxTab config={cmsConfig} />
+            </Suspense>
+          )}
+          {route.view === 'crm' && cmsConfig.crm?.enabled && (
+            <Suspense fallback={<div style={styles.loading}><div style={styles.spinner} /><span>{t('loading')}</span></div>}>
+              <CrmTab config={cmsConfig} />
             </Suspense>
           )}
           {route.view === 'stats' && <StatsTab config={cmsConfig} />}

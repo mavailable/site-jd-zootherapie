@@ -191,6 +191,8 @@ export interface CmsConfig {
 
 // Mini-CRM "Prospects" — colonnes du board kanban (optionnel, défauts dans CrmTab).
 export interface CmsCrmConfig {
+  enabled: boolean;
+  label?: string; // libellé de l'onglet (défaut: "Prospects")
   columns?: CmsCrmColumn[];
 }
 

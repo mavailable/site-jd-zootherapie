@@ -6,6 +6,19 @@ const cmsConfig: CmsConfig = {
     hint: 'Enregistre une note vocale pour proposer un sujet d\'article, partager une expérience ou poser une question. Marc reçoit le vocal et le traite.',
   },
 
+  crm: {
+    enabled: false, // GARDÉ OFF jusqu'au binding D1. Onglet invisible tant que false.
+    label: 'Prospects',
+    columns: [
+      { status: 'nouveau', label: 'Nouveau', hint: 'À traiter', dot: '#94a3b8' },
+      { status: 'contacte', label: 'Contacté', hint: 'Premier contact', dot: '#3b82f6' },
+      { status: 'rdv', label: 'RDV / échange', hint: 'En discussion', dot: '#0ea5e9' },
+      { status: 'devis', label: 'Devis envoyé', hint: 'Proposition faite', dot: '#f59e0b' },
+      { status: 'gagne', label: 'Gagné', hint: 'Conclu ✅', dot: '#16a34a' },
+      { status: 'perdu', label: 'Perdu', hint: 'Sans suite', dot: '#cbd5e1' },
+    ],
+  },
+
   marketing: {
     enabled: true,
     trimesters: ['2026-Q2'],
