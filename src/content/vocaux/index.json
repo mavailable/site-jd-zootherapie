@@ -153,7 +153,8 @@
       "statut": "traite",
       "resolution": {
         "note": "Coucou Jen, c'est fait, ton article sur les tarifs et le financement est écrit à partir de tes vocaux et programmé pour le 9 juin au matin. Il reste invisible sur le site jusque-là, puis il s'affiche tout seul. Comme tu n'avais pas d'idée d'image, j'ai pris une vraie photo de séance (le chien blotti contre une personne sous le plaid), qui colle bien au sérieux du sujet. J'ai aussi repris tes tarifs (60 euros HT en individuel, entre 80 et 110 euros HT en groupe) et toutes tes pistes de financement. Tu peux le relire et l'ajuster quand tu veux depuis ton espace /admin.",
-        "resolved_at": "2026-06-08T09:13:52.617Z"
+        "resolved_at": "2026-06-08T09:13:52.617Z",
+        "notified_at": "2026-06-08T09:13:56.077Z"
       }
     },
     {
