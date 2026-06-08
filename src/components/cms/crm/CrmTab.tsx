@@ -27,6 +27,7 @@ export function CrmTab({ config }: { config: CmsConfig }) {
     ? settings.columns.map((c) => ({ status: c.id, label: c.label, hint: c.hint, dot: c.color }))
     : DEFAULT_COLUMNS;
   const { contacts, loading, error, reload, create, update, remove } = useCrm();
+  const on = (k: string) => settings.fields?.[k] !== false;
   const [newName, setNewName] = useState('');
   const [busy, setBusy] = useState(false);
   const [openId, setOpenId] = useState<number | null>(null);
@@ -216,13 +217,13 @@ export function CrmTab({ config }: { config: CmsConfig }) {
                         onClick={() => setOpenId(c.id)}
                         onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpenId(c.id); } }}>
                         <p style={styles.cardName}>{c.name}</p>
-                        {c.org && <p style={styles.cardOrg}>{c.org}</p>}
+                        {on('org') && c.org && <p style={styles.cardOrg}>{c.org}</p>}
                         {pastille && <p style={{ ...styles.cardRelance, color: pastille.col }}>{pastille.txt}</p>}
-                        {c.next_action && <p style={styles.cardAction}>➡ {c.next_action}</p>}
+                        {on('nextAction') && c.next_action && <p style={styles.cardAction}>➡ {c.next_action}</p>}
                         <div style={styles.cardMeta}>
-                          {c.value != null && <span style={styles.cardValue}>{formatEuro(c.value)}</span>}
-                          {c.phone && <span style={styles.cardBadge} title={c.phone}>📞</span>}
-                          {c.email && <span style={styles.cardBadge} title={c.email}>✉</span>}
+                          {on('value') && c.value != null && <span style={styles.cardValue}>{formatEuro(c.value)}</span>}
+                          {on('phone') && c.phone && <span style={styles.cardBadge} title={c.phone}>📞</span>}
+                          {on('email') && c.email && <span style={styles.cardBadge} title={c.email}>✉</span>}
                         </div>
                         <div style={styles.cardActions}>
                           <button type="button" className="move-btn"
@@ -250,6 +251,7 @@ export function CrmTab({ config }: { config: CmsConfig }) {
 
       {openContact && (
         <CrmModal key={openContact.id} contact={openContact} columns={columns} busy={busy}
+          fields={settings.fields}
           onClose={() => setOpenId(null)} onSave={saveContact} onDelete={deleteContact} />
       )}
     </div>

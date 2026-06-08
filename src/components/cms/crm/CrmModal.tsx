@@ -10,12 +10,14 @@ interface CrmModalProps {
   contact: Contact;
   columns: CrmColumn[];
   busy: boolean;
+  fields?: Record<string, boolean>;
   onClose: () => void;
   onSave: (id: number, patch: ContactPatch) => Promise<void>;
   onDelete: (id: number) => Promise<void>;
 }
 
-export function CrmModal({ contact, columns, busy, onClose, onSave, onDelete }: CrmModalProps) {
+export function CrmModal({ contact, columns, busy, fields, onClose, onSave, onDelete }: CrmModalProps) {
+  const on = (k: string) => fields?.[k] !== false;
   const [name, setName] = useState(contact.name);
   const [org, setOrg] = useState(contact.org || '');
   const [phone, setPhone] = useState(contact.phone || '');
@@ -118,33 +120,45 @@ export function CrmModal({ contact, columns, busy, onClose, onSave, onDelete }: 
           <input id="crm-name" ref={firstFieldRef} value={name} onChange={(e) => setName(e.target.value)}
             style={styles.input} className="modal-field" placeholder="Nom du prospect ou de la structure" />
 
-          <label style={styles.label} htmlFor="crm-org">Structure (optionnel)</label>
-          <input id="crm-org" value={org} onChange={(e) => setOrg(e.target.value)}
-            style={styles.input} className="modal-field" placeholder="EHPAD, école, entreprise…" />
+          {on('org') && (
+            <>
+              <label style={styles.label} htmlFor="crm-org">Structure (optionnel)</label>
+              <input id="crm-org" value={org} onChange={(e) => setOrg(e.target.value)}
+                style={styles.input} className="modal-field" placeholder="EHPAD, école, entreprise…" />
+            </>
+          )}
 
           <div style={styles.row2}>
-            <div style={styles.col}>
-              <label style={styles.label} htmlFor="crm-phone">Téléphone</label>
-              <input id="crm-phone" value={phone} onChange={(e) => setPhone(e.target.value)}
-                style={styles.input} className="modal-field" inputMode="tel" placeholder="06…" />
-            </div>
-            <div style={styles.col}>
-              <label style={styles.label} htmlFor="crm-email">Email</label>
-              <input id="crm-email" value={email} onChange={(e) => setEmail(e.target.value)}
-                style={styles.input} className="modal-field" inputMode="email" placeholder="nom@exemple.fr" />
-            </div>
+            {on('phone') && (
+              <div style={styles.col}>
+                <label style={styles.label} htmlFor="crm-phone">Téléphone</label>
+                <input id="crm-phone" value={phone} onChange={(e) => setPhone(e.target.value)}
+                  style={styles.input} className="modal-field" inputMode="tel" placeholder="06…" />
+              </div>
+            )}
+            {on('email') && (
+              <div style={styles.col}>
+                <label style={styles.label} htmlFor="crm-email">Email</label>
+                <input id="crm-email" value={email} onChange={(e) => setEmail(e.target.value)}
+                  style={styles.input} className="modal-field" inputMode="email" placeholder="nom@exemple.fr" />
+              </div>
+            )}
           </div>
 
-          {(phone.trim() || email.trim()) && (
+          {((on('phone') && phone.trim()) || (on('email') && email.trim())) && (
             <div style={styles.contactLinks}>
-              {phone.trim() && <a href={`tel:${phone.trim()}`} style={styles.contactLink} className="modal-field">📞 Appeler</a>}
-              {email.trim() && <a href={`mailto:${email.trim()}`} style={styles.contactLink} className="modal-field">✉ Écrire</a>}
+              {on('phone') && phone.trim() && <a href={`tel:${phone.trim()}`} style={styles.contactLink} className="modal-field">📞 Appeler</a>}
+              {on('email') && email.trim() && <a href={`mailto:${email.trim()}`} style={styles.contactLink} className="modal-field">✉ Écrire</a>}
             </div>
           )}
 
-          <label style={styles.label} htmlFor="crm-value">Valeur estimée (€)</label>
-          <input id="crm-value" value={value} onChange={(e) => setValue(e.target.value)}
-            style={styles.input} className="modal-field" inputMode="decimal" placeholder="ex. 490" />
+          {on('value') && (
+            <>
+              <label style={styles.label} htmlFor="crm-value">Valeur estimée (€)</label>
+              <input id="crm-value" value={value} onChange={(e) => setValue(e.target.value)}
+                style={styles.input} className="modal-field" inputMode="decimal" placeholder="ex. 490" />
+            </>
+          )}
 
           <span style={styles.label}>Étape</span>
           <div style={styles.statusRow} role="group" aria-label="Étape">
@@ -160,17 +174,29 @@ export function CrmModal({ contact, columns, busy, onClose, onSave, onDelete }: 
             })}
           </div>
 
-          <label style={styles.label} htmlFor="crm-action">Prochaine action</label>
-          <input id="crm-action" value={nextAction} onChange={(e) => setNextAction(e.target.value)}
-            style={styles.input} className="modal-field" placeholder="ex. Renvoyer le devis" />
+          {on('nextAction') && (
+            <>
+              <label style={styles.label} htmlFor="crm-action">Prochaine action</label>
+              <input id="crm-action" value={nextAction} onChange={(e) => setNextAction(e.target.value)}
+                style={styles.input} className="modal-field" placeholder="ex. Renvoyer le devis" />
+            </>
+          )}
 
-          <label style={styles.label} htmlFor="crm-date">Date de relance</label>
-          <input id="crm-date" type="date" value={nextDate} onChange={(e) => setNextDate(e.target.value)}
-            style={styles.input} className="modal-field" />
+          {on('nextDate') && (
+            <>
+              <label style={styles.label} htmlFor="crm-date">Date de relance</label>
+              <input id="crm-date" type="date" value={nextDate} onChange={(e) => setNextDate(e.target.value)}
+                style={styles.input} className="modal-field" />
+            </>
+          )}
 
-          <label style={styles.label} htmlFor="crm-notes">Notes</label>
-          <textarea id="crm-notes" value={notes} onChange={(e) => setNotes(e.target.value)} rows={4}
-            style={styles.textarea} className="modal-field" placeholder="Contexte, historique, points à retenir…" />
+          {on('notes') && (
+            <>
+              <label style={styles.label} htmlFor="crm-notes">Notes</label>
+              <textarea id="crm-notes" value={notes} onChange={(e) => setNotes(e.target.value)} rows={4}
+                style={styles.textarea} className="modal-field" placeholder="Contexte, historique, points à retenir…" />
+            </>
+          )}
         </div>
 
         <div style={styles.foot}>
