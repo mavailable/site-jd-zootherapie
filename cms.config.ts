@@ -7,7 +7,7 @@ const cmsConfig: CmsConfig = {
   },
 
   crm: {
-    enabled: false, // GARDÉ OFF jusqu'au binding D1. Onglet invisible tant que false.
+    enabled: true, // D1 jdzoo-crm bindée (DB) sur production + preview le 2026-06-08.
     label: 'Prospects',
     columns: [
       { status: 'nouveau', label: 'Nouveau', hint: 'À traiter', dot: '#94a3b8' },
