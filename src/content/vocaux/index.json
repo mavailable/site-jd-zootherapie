@@ -1,11 +1,92 @@
 {
   "entries": [
     {
+      "id": "jd-zoo-2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin",
+      "sujet": "Combien coûte une intervention zoothérapie (et comment la financer)",
+      "categorie": "idee-article",
+      "categorie_label": "Idée d'article de blog",
+      "note": "je n ai pas d idee de qu'elle genre d image pourrais accompagner cette article",
+      "attachments": [
+        {
+          "filename": "2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-1.webm",
+          "r2_key": "jd-zoo/2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-1.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-1.webm&e=1783498296&s=67fe3935721da733d9a6e1ed379207d8a53c868a64495413d1c2b3c09a6fbcee",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 1423978
+        },
+        {
+          "filename": "2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-2.webm",
+          "r2_key": "jd-zoo/2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-2.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-2.webm&e=1783498296&s=1d290b85625f5dc1f70f45d8cc461bd45705ac5e77cd6f5dc0883785553b8756",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 613655
+        },
+        {
+          "filename": "2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-3.webm",
+          "r2_key": "jd-zoo/2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-3.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-3.webm&e=1783498296&s=1e51d0ecc093f784ace476c4f7943247d56b09b6d0366988d6620b6fc2d7b964",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 885997
+        },
+        {
+          "filename": "2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-4.webm",
+          "r2_key": "jd-zoo/2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-4.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-4.webm&e=1783498296&s=60ff301cc2c9f923e54c21ac3bf979f89c781e2a87dfddfe1b3de83eb0e496e4",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 804581
+        },
+        {
+          "filename": "2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-5.webm",
+          "r2_key": "jd-zoo/2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-5.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-5.webm&e=1783498296&s=3f66b93b3f419045545149ee7297bdbae6431ede04d4ae55073e165be31a6e72",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 693123
+        },
+        {
+          "filename": "2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-6.webm",
+          "r2_key": "jd-zoo/2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-6.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-6.webm&e=1783498296&s=250c2baf968ab25340bf2b890068b99a2f39d65ded51f421efc70745fbd61aa1",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 506077
+        },
+        {
+          "filename": "2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-7.webm",
+          "r2_key": "jd-zoo/2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-7.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-7.webm&e=1783498296&s=015a5553ecee6e303fb5fac1791ccc59d3fb3f6e7ed5cd8e94db9e2daf50b572",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 823965
+        },
+        {
+          "filename": "2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-8.webm",
+          "r2_key": "jd-zoo/2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-8.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-8.webm&e=1783498296&s=a8b508a2fdec35e7c9a8b1acd50a42fc3ad9eebcc332672123af25566b48a490",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 568109
+        },
+        {
+          "filename": "2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-9.webm",
+          "r2_key": "jd-zoo/2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-9.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-9.webm&e=1783498296&s=42b6cef19ce032232f717d22fa98b97d18c0a9cb23dd3cd90012665e5d749332",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 500265
+        },
+        {
+          "filename": "2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-10.webm",
+          "r2_key": "jd-zoo/2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-10.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin-10.webm&e=1783498296&s=d93707779d9b630818567677f345c1d829d2e5f76269fa76f719fa25d9b77c3f",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 651457
+        }
+      ],
+      "uploaded_at": "2026-06-08T08:11:46.596Z",
+      "statut": "envoye"
+    },
+    {
       "id": "jd-zoo-2026-06-03-1047-google-buiseness",
       "sujet": "google buiseness",
       "categorie": "question",
       "categorie_label": "Question pour Marc",
-      "note": "Coucou pour info j ai reçu ca sur ma boite mail ce matin",
+      "note": "Coucou pour info j ai reÃ§u ca sur ma boite mail ce matin",
       "attachments": [],
       "media": [
         {
@@ -20,16 +101,16 @@
       "uploaded_at": "2026-06-03T08:47:34.019Z",
       "statut": "traite",
       "resolution": {
-        "note": "Pas d'inquiétude Jennifer : c'est moi qui ai tenté de modifier le nom de votre fiche Google pour corriger un problème d'accent. Si Google refuse la modification, on garde simplement 'médiation' comme avant. Rien à faire de votre côté, je m'en occupe.",
+        "note": "Pas d'inquiÃ©tude Jennifer : c'est moi qui ai tentÃ© de modifier le nom de votre fiche Google pour corriger un problÃ¨me d'accent. Si Google refuse la modification, on garde simplement 'mÃ©diation' comme avant. Rien Ã  faire de votre cÃ´tÃ©, je m'en occupe.",
         "resolved_at": "2026-06-03T09:07:38.671Z",
         "notified_at": "2026-06-03T09:08:37.653Z"
       }
     },
     {
       "id": "jd-zoo-2026-06-02-0957-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement",
-      "sujet": "PrÃ©parer l'arrivÃ©e du zoothÃ©rapeute dans votre Ã©tablissement : checklist Ã©quipe en 7 points",
+      "sujet": "PrÃÂ©parer l'arrivÃÂ©e du zoothÃÂ©rapeute dans votre ÃÂ©tablissement : checklist ÃÂ©quipe en 7 points",
       "categorie": "idee-article",
-      "categorie_label": "IdÃ©e d'article de blog",
+      "categorie_label": "IdÃÂ©e d'article de blog",
       "attachments": [
         {
           "filename": "2026-06-02-0957-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement.webm",
@@ -42,15 +123,15 @@
       "uploaded_at": "2026-06-02T07:57:25.900Z",
       "statut": "traite",
       "resolution": {
-        "note": "Transformé en article de blog, programmé le 04/06.",
+        "note": "TransformÃ© en article de blog, programmÃ© le 04/06.",
         "resolved_at": "2026-06-03T09:00:07.729Z"
       }
     },
     {
       "id": "jd-zoo-2026-06-02-0953-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes",
-      "sujet": "Le Grand Est vu depuis mes sÃÂ©ances : besoins, rÃÂ©alitÃÂ©s, attentes",
+      "sujet": "Le Grand Est vu depuis mes sÃÂÃÂ©ances : besoins, rÃÂÃÂ©alitÃÂÃÂ©s, attentes",
       "categorie": "idee-article",
-      "categorie_label": "IdÃÂ©e d'article de blog",
+      "categorie_label": "IdÃÂÃÂ©e d'article de blog",
       "attachments": [],
       "media": [
         {
@@ -65,15 +146,15 @@
       "uploaded_at": "2026-06-02T07:53:27.733Z",
       "statut": "traite",
       "resolution": {
-        "note": "Transformé en article de blog, programmé le 07/06. Votre photo illustre l'article.",
+        "note": "TransformÃ© en article de blog, programmÃ© le 07/06. Votre photo illustre l'article.",
         "resolved_at": "2026-06-03T09:00:26.727Z"
       }
     },
     {
       "id": "jd-zoo-2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement",
-      "sujet": "PrÃÂÃÂ©parer l'arrivÃÂÃÂ©e du zoothÃÂÃÂ©rapeute dans votre ÃÂÃÂ©tablissement : checklist ÃÂÃÂ©quipe en 7 points",
+      "sujet": "PrÃÂÃÂÃÂÃÂ©parer l'arrivÃÂÃÂÃÂÃÂ©e du zoothÃÂÃÂÃÂÃÂ©rapeute dans votre ÃÂÃÂÃÂÃÂ©tablissement : checklist ÃÂÃÂÃÂÃÂ©quipe en 7 points",
       "categorie": "idee-article",
-      "categorie_label": "IdÃÂÃÂ©e d'article de blog",
+      "categorie_label": "IdÃÂÃÂÃÂÃÂ©e d'article de blog",
       "attachments": [
         {
           "filename": "2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement-1.webm",
@@ -135,15 +216,15 @@
       "uploaded_at": "2026-06-01T10:49:27.300Z",
       "statut": "traite",
       "resolution": {
-        "note": "Transformé en article de blog, programmé le 04/06.",
+        "note": "TransformÃ© en article de blog, programmÃ© le 04/06.",
         "resolved_at": "2026-06-03T08:59:58.694Z"
       }
     },
     {
       "id": "jd-zoo-2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes",
-      "sujet": "Le Grand Est vu depuis mes sÃÂÃÂÃÂÃÂ©ances : besoins, rÃÂÃÂÃÂÃÂ©alitÃÂÃÂÃÂÃÂ©s, attentes",
+      "sujet": "Le Grand Est vu depuis mes sÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©ances : besoins, rÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©alitÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©s, attentes",
       "categorie": "idee-article",
-      "categorie_label": "IdÃÂÃÂÃÂÃÂ©e d'article de blog",
+      "categorie_label": "IdÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©e d'article de blog",
       "attachments": [
         {
           "filename": "2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes-1.webm",
@@ -191,13 +272,13 @@
       "uploaded_at": "2026-06-01T10:37:03.930Z",
       "statut": "traite",
       "resolution": {
-        "note": "Transformé en article de blog, programmé le 07/06.",
+        "note": "TransformÃ© en article de blog, programmÃ© le 07/06.",
         "resolved_at": "2026-06-03T09:00:18.779Z"
       }
     },
     {
       "id": "jd-zoo-2026-05-22-1243-memo-pour-rdv-de-samedi",
-      "sujet": "mÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©mo pour rdv de samedi",
+      "sujet": "mÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©mo pour rdv de samedi",
       "categorie": "question",
       "categorie_label": "Question pour Marc",
       "attachments": [
@@ -227,7 +308,7 @@
       "uploaded_at": "2026-05-17T09:42:03.856Z",
       "statut": "traite",
       "resolution": {
-        "note": "Test, archivé.",
+        "note": "Test, archivÃ©.",
         "resolved_at": "2026-06-03T09:00:37.707Z"
       }
     }
