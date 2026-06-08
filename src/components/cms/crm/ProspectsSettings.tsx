@@ -130,7 +130,7 @@ export function ProspectsSettings() {
           <div style={styles.dialog} role="alertdialog" aria-modal="true" aria-label="Confirmer la suppression de colonne">
             <h3 style={styles.dh}>Supprimer cette colonne ?</h3>
             <p style={styles.dp}>Elle contient {counts[confirmDel]} prospect(s). Déplace-les d'abord vers&nbsp;:</p>
-            <select value={moveTarget} onChange={(e) => setMoveTarget(e.target.value)} style={styles.select}>
+            <select value={moveTarget} onChange={(e) => setMoveTarget(e.target.value)} style={styles.select} aria-label="Déplacer les prospects vers la colonne">
               {cols.filter((c) => c.id !== confirmDel).map((c) => (<option key={c.id} value={c.id}>{c.label}</option>))}
             </select>
             <div style={styles.dactions}>

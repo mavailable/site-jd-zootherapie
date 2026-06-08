@@ -261,7 +261,7 @@ export function CmsApp() {
               <CrmTab config={cmsConfig} />
             </Suspense>
           )}
-          {route.view === 'reglages' && (
+          {route.view === 'reglages' && cmsConfig.crm?.enabled && (
             <Suspense fallback={<div style={styles.loading}><div style={styles.spinner} /><span>{t('loading')}</span></div>}>
               <ReglagesTab />
             </Suspense>
