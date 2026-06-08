@@ -110,7 +110,7 @@ export function CrmModal({ contact, columns, busy, onClose, onSave, onDelete }: 
 
         <div style={styles.head}>
           <span style={styles.eyebrow}>Fiche prospect</span>
-          <button type="button" onClick={onClose} style={styles.closeBtn} className="modal-close" aria-label="Fermer">×</button>
+          <button type="button" onClick={onClose} style={styles.closeBtn} className="modal-close" aria-label="Fermer"><span aria-hidden="true">×</span></button>
         </div>
 
         <div style={styles.body}>
