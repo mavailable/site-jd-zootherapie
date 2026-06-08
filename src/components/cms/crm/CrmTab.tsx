@@ -25,7 +25,15 @@ export function CrmTab({ config }: { config: CmsConfig }) {
   const [newName, setNewName] = useState('');
   const [busy, setBusy] = useState(false);
   const [openId, setOpenId] = useState<number | null>(null);
+  const [query, setQuery] = useState('');
   const today = todayParisISO();
+
+  // Recherche insensible aux accents/casse sur nom, structure, email, tél, action, notes.
+  const norm = (s: string) => s.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase();
+  const q = norm(query.trim());
+  const matchesQuery = (c: Contact) =>
+    !q || [c.name, c.org, c.email, c.phone, c.next_action, c.notes].some((v) => v && norm(v).includes(q));
+  const matchCount = q ? contacts.filter(matchesQuery).length : 0;
 
   // Navigation linéaire dérivée de l'ordre des colonnes.
   const order = columns.map((c) => c.status);
@@ -45,7 +53,7 @@ export function CrmTab({ config }: { config: CmsConfig }) {
     [contacts, today]
   );
 
-  const byStatus = (status: string) => sortColumn(contacts.filter((c) => c.status === status), today);
+  const byStatus = (status: string) => sortColumn(contacts.filter((c) => c.status === status && matchesQuery(c)), today);
   const openContact = openId != null ? contacts.find((c) => c.id === openId) || null : null;
 
   const addContact = async () => {
@@ -115,7 +123,26 @@ export function CrmTab({ config }: { config: CmsConfig }) {
         </button>
       </div>
 
-      {!loading && !error && (
+      <div style={styles.searchBar}>
+        <input value={query} onChange={(e) => setQuery(e.target.value)}
+          placeholder="Rechercher un prospect (nom, structure, email, tél, notes…)"
+          style={styles.searchInput} className="crm-field" aria-label="Rechercher un prospect" />
+        {query && (
+          <button type="button" onClick={() => setQuery('')} style={styles.searchClear}
+            className="search-clear" aria-label="Effacer la recherche" title="Effacer">✕</button>
+        )}
+      </div>
+
+      {!loading && !error && q && (
+        <div style={styles.banner}>
+          <p style={styles.bannerTitle}>
+            {matchCount} résultat{matchCount > 1 ? 's' : ''} pour «&nbsp;{query.trim()}&nbsp;»
+            {matchCount === 0 && ' — aucun prospect ne correspond.'}
+          </p>
+        </div>
+      )}
+
+      {!loading && !error && !q && (
         <div style={styles.banner}>
           {dueList.length === 0 ? (
             <p style={styles.bannerEmpty}>Rien à relancer aujourd'hui ✅</p>
@@ -254,6 +281,19 @@ const styles: Record<string, React.CSSProperties> = {
     cursor: 'pointer', fontSize: '0.95rem', fontWeight: 800, fontFamily: SANS, flexShrink: 0,
   },
   addBtnDisabled: { opacity: 0.55, cursor: 'default' },
+
+  searchBar: { position: 'relative', maxWidth: '52rem', margin: '0 auto 1.25rem' },
+  searchInput: {
+    width: '100%', padding: '0.6rem 2.4rem 0.6rem 0.9rem', background: '#fff', color: INK,
+    border: `1px solid ${LINE}`, borderRadius: '10px', fontSize: '0.95rem', fontFamily: SANS,
+    boxSizing: 'border-box', transition: 'border-color 0.15s, box-shadow 0.15s',
+  },
+  searchClear: {
+    position: 'absolute', right: '0.5rem', top: '50%', transform: 'translateY(-50%)',
+    width: 28, height: 28, display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+    background: PAPER, color: MUTED, border: `1px solid ${LINE}`, borderRadius: '999px',
+    cursor: 'pointer', fontSize: '0.8rem', lineHeight: 1,
+  },
 
   banner: {
     maxWidth: '52rem', margin: '0 auto 1.5rem', padding: '0.9rem 1.1rem', background: '#fff',
