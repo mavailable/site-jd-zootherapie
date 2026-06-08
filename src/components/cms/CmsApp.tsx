@@ -237,7 +237,7 @@ export function CmsApp() {
         </nav>
 
         {/* Content */}
-        <main style={styles.main} key={route.view + (route.key || '') + (route.slug || '')}>
+        <main style={{ ...styles.main, ...(route.view === 'crm' ? { maxWidth: 'min(1400px, 97vw)' } : {}) }} key={route.view + (route.key || '') + (route.slug || '')}>
           {route.view === 'home' && <HomeScreen config={cmsConfig} />}
           {route.view === 'blog' && <BlogTab config={cmsConfig} />}
           {route.view === 'marketing' && cmsConfig.marketing?.enabled && (

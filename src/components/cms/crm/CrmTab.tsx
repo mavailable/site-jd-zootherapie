@@ -153,7 +153,7 @@ export function CrmTab({ config }: { config: CmsConfig }) {
       )}
 
       {!loading && !error && (
-        <div style={{ ...styles.board, gridTemplateColumns: `repeat(${columns.length}, minmax(220px, 1fr))` }}>
+        <div style={{ ...styles.board, gridTemplateColumns: `repeat(${columns.length}, minmax(190px, 1fr))` }}>
           {columns.map((col) => {
             const list = byStatus(col.status);
             return (
