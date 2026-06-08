@@ -153,7 +153,7 @@ export function CrmTab({ config }: { config: CmsConfig }) {
       )}
 
       {!loading && !error && (
-        <div style={styles.board}>
+        <div style={{ ...styles.board, gridTemplateColumns: `repeat(${columns.length}, minmax(220px, 1fr))` }}>
           {columns.map((col) => {
             const list = byStatus(col.status);
             return (
@@ -275,7 +275,7 @@ const styles: Record<string, React.CSSProperties> = {
   errorText: { color: '#b91c1c', marginBottom: '1rem', fontSize: '0.95rem' },
   retryBtn: { padding: '0.5rem 1.25rem', fontSize: '0.875rem', fontWeight: 700, color: '#fff', background: ACCENT, border: 'none', borderRadius: '8px', cursor: 'pointer' },
 
-  board: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem', maxWidth: '64rem', margin: '0 auto' },
+  board: { display: 'grid', gap: '1rem', overflowX: 'auto', paddingBottom: '0.5rem', margin: 0 },
   column: { background: '#fff', border: `1px solid ${LINE}`, borderRadius: '14px', padding: '1rem 0.9rem', minHeight: '180px' },
   colHead: { display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' },
   colDot: { width: 9, height: 9, borderRadius: '50%', flexShrink: 0 },
