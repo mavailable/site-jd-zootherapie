@@ -788,8 +788,8 @@
         "#Évaluation"
       ],
       "cta": "MP directions, médecins, responsables qualité",
-      "status": "draft",
-      "published_at": null,
+      "status": "published",
+      "published_at": "2026-06-12T08:37:01.816Z",
       "client_modified_text": null,
       "client_comment": null
     },
