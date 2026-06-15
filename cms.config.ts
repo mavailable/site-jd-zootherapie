@@ -41,6 +41,10 @@ const cmsConfig: CmsConfig = {
   siteName: 'JD Zoothérapie',
 
   site: {
+    // Webmaster (agence) — valeurs explicites (les composants /admin n'ont plus de
+    // defaut code en dur). helpUrl par defaut du parc agence.
+    webmasterName: 'Marc',
+    helpUrl: 'https://marcm.fr/aide/web3forms/',
     ownerName: 'Jennifer De Groeve',
     phone: '+33754812122',
     phoneDisplay: '07 54 81 21 22',
