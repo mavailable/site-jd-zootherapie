@@ -1,10 +1,96 @@
 {
   "entries": [
     {
-      "id": "jd-zoo-2026-06-08-1034-quand-les-larmes-arrivent-en-seance-ce-que-l-animal-permet-d",
-      "sujet": "Quand les larmes arrivent en séance : ce que l’animal permet d’accueillir",
+      "id": "jd-zoo-2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu",
+      "sujet": "Convaincre votre direction d'inviter un zoothérapeute : 4 arguments concrets pour les soignants",
       "categorie": "idee-article",
       "categorie_label": "Idée d'article de blog",
+      "note": "je te mets des sources je sais pas si ca te seras utile (fondation Adrienne et pierre sommer filière de la fondation de france qui finance des projet de zoothérapie https://www.fondationdefrance.org/fr/annuaire-des-fondations/fondation-adrienne-et-pierre-sommer ) un outils d accompagnement valide qui fait l objet de financement , ( la haute autorité de santé qui recommande les intervention non médicamenteuse pour les troubles du comportement https://www.has-sante.fr/jcms/c_819667/fr/maladie-d-alzheimer-et-maladies-apparentees-prise-en-charge-des-troubles-du-comportement-perturbateurs ) ( https://pubmed.ncbi.nlm.nih.gov/34698207/ et https://pmc.ncbi.nlm.nih.gov/articles/PMC12380019/ 2 articles un peu plus \"scientifique )  et la charte de l 'institut de zootherapie https://institutfrancaisdezootherapie.fr/charte-deontologie/ pour le coté cadre legale ( je pense qu il faut al mettre quelque part dans le site et c est le bonne endroit pour le cote serieux .",
+      "attachments": [
+        {
+          "filename": "2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-1.webm",
+          "r2_key": "jd-zoo/2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-1.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-1.webm&e=1784100619&s=be9fdbee95d9a361ad58966ed1bfed8cb16e765c8da48c96a2ed7e426c3a36f7",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 594271
+        },
+        {
+          "filename": "2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-2.webm",
+          "r2_key": "jd-zoo/2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-2.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-2.webm&e=1784100619&s=9c60c8e6a763c808a83ce719affdf0d0a42bde7ed6ded8db969c9624d19e1b78",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 358749
+        },
+        {
+          "filename": "2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-3.webm",
+          "r2_key": "jd-zoo/2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-3.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-3.webm&e=1784100619&s=8370be6b503e7bd0c5357e22184d406b055cac47f3ef1febcca00ddd4e519b4c",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 1007147
+        },
+        {
+          "filename": "2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-4.webm",
+          "r2_key": "jd-zoo/2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-4.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-4.webm&e=1784100619&s=aa1a3efb63ea2c5475d0bbb160191d868a1494829c80b97ef9bdad5da0bb6244",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 754189
+        },
+        {
+          "filename": "2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-5.webm",
+          "r2_key": "jd-zoo/2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-5.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-5.webm&e=1784100619&s=e9bd0dcf8a381ccfd2128a4c9313ead46f1add1390ac6caaa3dd1275b9298340",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 741583
+        },
+        {
+          "filename": "2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-6.webm",
+          "r2_key": "jd-zoo/2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-6.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-6.webm&e=1784100619&s=16682629e002dc6de9b0d4d9bef68a407c44ca75734e1f99558f61b7666a7bce",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 687311
+        },
+        {
+          "filename": "2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-7.webm",
+          "r2_key": "jd-zoo/2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-7.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-7.webm&e=1784100619&s=d05403db33f282e29a4b85c2c54a6311f11bbafe8749eca4d2b8bcef0397f56f",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 466343
+        }
+      ],
+      "media": [
+        {
+          "filename": "2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-m1.png",
+          "r2_key": "jd-zoo/2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-m1.png",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-m1.png&e=1784100619&s=d7a158db07b3c9ff90d38bad8818a81f9c75adae1f10a424d471bfb155fcc9a6",
+          "kind": "image",
+          "media_mime": "image/png",
+          "media_bytes": 2487302
+        },
+        {
+          "filename": "2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-m2.jpg",
+          "r2_key": "jd-zoo/2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-m2.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-m2.jpg&e=1784100619&s=c9f7f73e3e5ed9e827e528c2710dfb9cf9ba7937236ee56fd99a31143bddb3ef",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 149896
+        },
+        {
+          "filename": "2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-m3.jpg",
+          "r2_key": "jd-zoo/2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-m3.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-m3.jpg&e=1784100619&s=ea1f07e1fca8d4a3c96af95db742b5d0748f7afbac220388a0e2a652d6134e56",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 127780
+        }
+      ],
+      "uploaded_at": "2026-06-15T07:30:32.570Z",
+      "statut": "envoye"
+    },
+    {
+      "id": "jd-zoo-2026-06-08-1034-quand-les-larmes-arrivent-en-seance-ce-que-l-animal-permet-d",
+      "sujet": "Quand les larmes arrivent en sÃ©ance : ce que lâanimal permet dâaccueillir",
+      "categorie": "idee-article",
+      "categorie_label": "IdÃ©e d'article de blog",
       "note": "JE T'ai mis 2 photos a voir la plus pertinente",
       "attachments": [
         {
@@ -71,16 +157,16 @@
       "uploaded_at": "2026-06-08T08:35:05.526Z",
       "statut": "traite",
       "resolution": {
-        "note": "Coucou Jen, ton article \"Quand les larmes arrivent en séance\" est écrit à partir de tes vocaux et programmé pour le 12 juin au matin (invisible jusque-là, puis il s'affiche tout seul). J'ai bien regardé tes 2 photos et j'ai gardé la deuxième, celle où la dame a les yeux fermés, la joue contre le lapin blotti contre elle, elle est parfaite pour le sujet. Tu peux le relire tranquillement depuis ton espace /admin et me dire si tu veux changer quoi que ce soit avant qu'il parte.",
+        "note": "Coucou Jen, ton article \"Quand les larmes arrivent en sÃ©ance\" est Ã©crit Ã  partir de tes vocaux et programmÃ© pour le 12 juin au matin (invisible jusque-lÃ , puis il s'affiche tout seul). J'ai bien regardÃ© tes 2 photos et j'ai gardÃ© la deuxiÃ¨me, celle oÃ¹ la dame a les yeux fermÃ©s, la joue contre le lapin blotti contre elle, elle est parfaite pour le sujet. Tu peux le relire tranquillement depuis ton espace /admin et me dire si tu veux changer quoi que ce soit avant qu'il parte.",
         "resolved_at": "2026-06-08T09:14:06.934Z",
         "notified_at": "2026-06-08T09:14:09.948Z"
       }
     },
     {
       "id": "jd-zoo-2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin",
-      "sujet": "Combien coÃ»te une intervention zoothÃ©rapie (et comment la financer)",
+      "sujet": "Combien coÃÂ»te une intervention zoothÃÂ©rapie (et comment la financer)",
       "categorie": "idee-article",
-      "categorie_label": "IdÃ©e d'article de blog",
+      "categorie_label": "IdÃÂ©e d'article de blog",
       "note": "je n ai pas d idee de qu'elle genre d image pourrais accompagner cette article",
       "attachments": [
         {
@@ -157,7 +243,7 @@
       "uploaded_at": "2026-06-08T08:11:46.596Z",
       "statut": "traite",
       "resolution": {
-        "note": "Coucou Jen, c'est fait, ton article sur les tarifs et le financement est écrit à partir de tes vocaux et programmé pour le 9 juin au matin. Il reste invisible sur le site jusque-là, puis il s'affiche tout seul. Comme tu n'avais pas d'idée d'image, j'ai pris une vraie photo de séance (le chien blotti contre une personne sous le plaid), qui colle bien au sérieux du sujet. J'ai aussi repris tes tarifs (60 euros HT en individuel, entre 80 et 110 euros HT en groupe) et toutes tes pistes de financement. Tu peux le relire et l'ajuster quand tu veux depuis ton espace /admin.",
+        "note": "Coucou Jen, c'est fait, ton article sur les tarifs et le financement est Ã©crit Ã  partir de tes vocaux et programmÃ© pour le 9 juin au matin. Il reste invisible sur le site jusque-lÃ , puis il s'affiche tout seul. Comme tu n'avais pas d'idÃ©e d'image, j'ai pris une vraie photo de sÃ©ance (le chien blotti contre une personne sous le plaid), qui colle bien au sÃ©rieux du sujet. J'ai aussi repris tes tarifs (60 euros HT en individuel, entre 80 et 110 euros HT en groupe) et toutes tes pistes de financement. Tu peux le relire et l'ajuster quand tu veux depuis ton espace /admin.",
         "resolved_at": "2026-06-08T09:13:52.617Z",
         "notified_at": "2026-06-08T09:13:56.077Z"
       }
@@ -167,7 +253,7 @@
       "sujet": "google buiseness",
       "categorie": "question",
       "categorie_label": "Question pour Marc",
-      "note": "Coucou pour info j ai reÃÂ§u ca sur ma boite mail ce matin",
+      "note": "Coucou pour info j ai reÃÂÃÂ§u ca sur ma boite mail ce matin",
       "attachments": [],
       "media": [
         {
@@ -182,16 +268,16 @@
       "uploaded_at": "2026-06-03T08:47:34.019Z",
       "statut": "traite",
       "resolution": {
-        "note": "Pas d'inquiÃÂ©tude Jennifer : c'est moi qui ai tentÃÂ© de modifier le nom de votre fiche Google pour corriger un problÃÂ¨me d'accent. Si Google refuse la modification, on garde simplement 'mÃÂ©diation' comme avant. Rien ÃÂ  faire de votre cÃÂ´tÃÂ©, je m'en occupe.",
+        "note": "Pas d'inquiÃÂÃÂ©tude Jennifer : c'est moi qui ai tentÃÂÃÂ© de modifier le nom de votre fiche Google pour corriger un problÃÂÃÂ¨me d'accent. Si Google refuse la modification, on garde simplement 'mÃÂÃÂ©diation' comme avant. Rien ÃÂÃÂ  faire de votre cÃÂÃÂ´tÃÂÃÂ©, je m'en occupe.",
         "resolved_at": "2026-06-03T09:07:38.671Z",
         "notified_at": "2026-06-03T09:08:37.653Z"
       }
     },
     {
       "id": "jd-zoo-2026-06-02-0957-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement",
-      "sujet": "PrÃÂÃÂ©parer l'arrivÃÂÃÂ©e du zoothÃÂÃÂ©rapeute dans votre ÃÂÃÂ©tablissement : checklist ÃÂÃÂ©quipe en 7 points",
+      "sujet": "PrÃÂÃÂÃÂÃÂ©parer l'arrivÃÂÃÂÃÂÃÂ©e du zoothÃÂÃÂÃÂÃÂ©rapeute dans votre ÃÂÃÂÃÂÃÂ©tablissement : checklist ÃÂÃÂÃÂÃÂ©quipe en 7 points",
       "categorie": "idee-article",
-      "categorie_label": "IdÃÂÃÂ©e d'article de blog",
+      "categorie_label": "IdÃÂÃÂÃÂÃÂ©e d'article de blog",
       "attachments": [
         {
           "filename": "2026-06-02-0957-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement.webm",
@@ -204,15 +290,15 @@
       "uploaded_at": "2026-06-02T07:57:25.900Z",
       "statut": "traite",
       "resolution": {
-        "note": "TransformÃÂ© en article de blog, programmÃÂ© le 04/06.",
+        "note": "TransformÃÂÃÂ© en article de blog, programmÃÂÃÂ© le 04/06.",
         "resolved_at": "2026-06-03T09:00:07.729Z"
       }
     },
     {
       "id": "jd-zoo-2026-06-02-0953-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes",
-      "sujet": "Le Grand Est vu depuis mes sÃÂÃÂÃÂÃÂ©ances : besoins, rÃÂÃÂÃÂÃÂ©alitÃÂÃÂÃÂÃÂ©s, attentes",
+      "sujet": "Le Grand Est vu depuis mes sÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©ances : besoins, rÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©alitÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©s, attentes",
       "categorie": "idee-article",
-      "categorie_label": "IdÃÂÃÂÃÂÃÂ©e d'article de blog",
+      "categorie_label": "IdÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©e d'article de blog",
       "attachments": [],
       "media": [
         {
@@ -227,15 +313,15 @@
       "uploaded_at": "2026-06-02T07:53:27.733Z",
       "statut": "traite",
       "resolution": {
-        "note": "TransformÃÂ© en article de blog, programmÃÂ© le 07/06. Votre photo illustre l'article.",
+        "note": "TransformÃÂÃÂ© en article de blog, programmÃÂÃÂ© le 07/06. Votre photo illustre l'article.",
         "resolved_at": "2026-06-03T09:00:26.727Z"
       }
     },
     {
       "id": "jd-zoo-2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement",
-      "sujet": "PrÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©parer l'arrivÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©e du zoothÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©rapeute dans votre ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©tablissement : checklist ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©quipe en 7 points",
+      "sujet": "PrÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©parer l'arrivÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©e du zoothÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©rapeute dans votre ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©tablissement : checklist ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©quipe en 7 points",
       "categorie": "idee-article",
-      "categorie_label": "IdÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©e d'article de blog",
+      "categorie_label": "IdÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©e d'article de blog",
       "attachments": [
         {
           "filename": "2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement-1.webm",
@@ -297,15 +383,15 @@
       "uploaded_at": "2026-06-01T10:49:27.300Z",
       "statut": "traite",
       "resolution": {
-        "note": "TransformÃÂ© en article de blog, programmÃÂ© le 04/06.",
+        "note": "TransformÃÂÃÂ© en article de blog, programmÃÂÃÂ© le 04/06.",
         "resolved_at": "2026-06-03T08:59:58.694Z"
       }
     },
     {
       "id": "jd-zoo-2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes",
-      "sujet": "Le Grand Est vu depuis mes sÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©ances : besoins, rÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©alitÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©s, attentes",
+      "sujet": "Le Grand Est vu depuis mes sÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©ances : besoins, rÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©alitÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©s, attentes",
       "categorie": "idee-article",
-      "categorie_label": "IdÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©e d'article de blog",
+      "categorie_label": "IdÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©e d'article de blog",
       "attachments": [
         {
           "filename": "2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes-1.webm",
@@ -353,13 +439,13 @@
       "uploaded_at": "2026-06-01T10:37:03.930Z",
       "statut": "traite",
       "resolution": {
-        "note": "TransformÃÂ© en article de blog, programmÃÂ© le 07/06.",
+        "note": "TransformÃÂÃÂ© en article de blog, programmÃÂÃÂ© le 07/06.",
         "resolved_at": "2026-06-03T09:00:18.779Z"
       }
     },
     {
       "id": "jd-zoo-2026-05-22-1243-memo-pour-rdv-de-samedi",
-      "sujet": "mÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©mo pour rdv de samedi",
+      "sujet": "mÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©mo pour rdv de samedi",
       "categorie": "question",
       "categorie_label": "Question pour Marc",
       "attachments": [
@@ -389,7 +475,7 @@
       "uploaded_at": "2026-05-17T09:42:03.856Z",
       "statut": "traite",
       "resolution": {
-        "note": "Test, archivÃÂ©.",
+        "note": "Test, archivÃÂÃÂ©.",
         "resolved_at": "2026-06-03T09:00:37.707Z"
       }
     }
