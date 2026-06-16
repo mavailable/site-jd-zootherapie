@@ -1,11 +1,89 @@
 {
   "entries": [
     {
-      "id": "jd-zoo-2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu",
-      "sujet": "Convaincre votre direction d'inviter un zoothérapeute : 4 arguments concrets pour les soignants",
+      "id": "jd-zoo-2026-06-16-0804-zootherapie-en-ime-et-itep-ce-qui-change-avec-des-enfants-en",
+      "sujet": "Zoothérapie en IME et ITEP : ce qui change avec des enfants en situation de handicap",
       "categorie": "idee-article",
       "categorie_label": "Idée d'article de blog",
-      "note": "je te mets des sources je sais pas si ca te seras utile (fondation Adrienne et pierre sommer filière de la fondation de france qui finance des projet de zoothérapie https://www.fondationdefrance.org/fr/annuaire-des-fondations/fondation-adrienne-et-pierre-sommer ) un outils d accompagnement valide qui fait l objet de financement , ( la haute autorité de santé qui recommande les intervention non médicamenteuse pour les troubles du comportement https://www.has-sante.fr/jcms/c_819667/fr/maladie-d-alzheimer-et-maladies-apparentees-prise-en-charge-des-troubles-du-comportement-perturbateurs ) ( https://pubmed.ncbi.nlm.nih.gov/34698207/ et https://pmc.ncbi.nlm.nih.gov/articles/PMC12380019/ 2 articles un peu plus \"scientifique )  et la charte de l 'institut de zootherapie https://institutfrancaisdezootherapie.fr/charte-deontologie/ pour le coté cadre legale ( je pense qu il faut al mettre quelque part dans le site et c est le bonne endroit pour le cote serieux .",
+      "note": "Je te joins deux photo une vrai mais rogner car pas de droits de diffusion et une ou j ai modifier le visage a voir ce qui te semble la plus vrai",
+      "attachments": [
+        {
+          "filename": "2026-06-16-0804-zootherapie-en-ime-et-itep-ce-qui-change-avec-des-enfants-en-1.webm",
+          "r2_key": "jd-zoo/2026-06-16-0804-zootherapie-en-ime-et-itep-ce-qui-change-avec-des-enfants-en-1.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-16-0804-zootherapie-en-ime-et-itep-ce-qui-change-avec-des-enfants-en-1.webm&e=1784181858&s=5252a212d75ec465ba14f79f73d8268a82db2cb12da6f30caf4e56ae85112e77",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 476035
+        },
+        {
+          "filename": "2026-06-16-0804-zootherapie-en-ime-et-itep-ce-qui-change-avec-des-enfants-en-2.webm",
+          "r2_key": "jd-zoo/2026-06-16-0804-zootherapie-en-ime-et-itep-ce-qui-change-avec-des-enfants-en-2.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-16-0804-zootherapie-en-ime-et-itep-ce-qui-change-avec-des-enfants-en-2.webm&e=1784181858&s=dadef37c71a81a72d1c3956123dfa124bdc26c5a01e07a7e10da05a8c4967571",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 411088
+        },
+        {
+          "filename": "2026-06-16-0804-zootherapie-en-ime-et-itep-ce-qui-change-avec-des-enfants-en-3.webm",
+          "r2_key": "jd-zoo/2026-06-16-0804-zootherapie-en-ime-et-itep-ce-qui-change-avec-des-enfants-en-3.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-16-0804-zootherapie-en-ime-et-itep-ce-qui-change-avec-des-enfants-en-3.webm&e=1784181858&s=8f7c17665a684b0ae16479816310f9d4b0f5edc130f0fff9b2c49d5efce18a18",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 723181
+        },
+        {
+          "filename": "2026-06-16-0804-zootherapie-en-ime-et-itep-ce-qui-change-avec-des-enfants-en-4.webm",
+          "r2_key": "jd-zoo/2026-06-16-0804-zootherapie-en-ime-et-itep-ce-qui-change-avec-des-enfants-en-4.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-16-0804-zootherapie-en-ime-et-itep-ce-qui-change-avec-des-enfants-en-4.webm&e=1784181858&s=db615c78e73eda0afa4fd4d6072e5acdf7ca5aed444b6fd646e492a574a08551",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 550657
+        },
+        {
+          "filename": "2026-06-16-0804-zootherapie-en-ime-et-itep-ce-qui-change-avec-des-enfants-en-5.webm",
+          "r2_key": "jd-zoo/2026-06-16-0804-zootherapie-en-ime-et-itep-ce-qui-change-avec-des-enfants-en-5.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-16-0804-zootherapie-en-ime-et-itep-ce-qui-change-avec-des-enfants-en-5.webm&e=1784181858&s=ce37d7663d7a264b661415e7f94f08f3fb0a4e0f11d0d3de95ce5b095430fc0c",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 291887
+        },
+        {
+          "filename": "2026-06-16-0804-zootherapie-en-ime-et-itep-ce-qui-change-avec-des-enfants-en-6.webm",
+          "r2_key": "jd-zoo/2026-06-16-0804-zootherapie-en-ime-et-itep-ce-qui-change-avec-des-enfants-en-6.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-16-0804-zootherapie-en-ime-et-itep-ce-qui-change-avec-des-enfants-en-6.webm&e=1784181858&s=da99fb8b2d37bdd03725dea0c8876b3505db03e2f3198b40729e128d2cde4e1a",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 1024599
+        },
+        {
+          "filename": "2026-06-16-0804-zootherapie-en-ime-et-itep-ce-qui-change-avec-des-enfants-en-7.webm",
+          "r2_key": "jd-zoo/2026-06-16-0804-zootherapie-en-ime-et-itep-ce-qui-change-avec-des-enfants-en-7.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-16-0804-zootherapie-en-ime-et-itep-ce-qui-change-avec-des-enfants-en-7.webm&e=1784181858&s=3b3cd07ed366c45b19ca8d0e3ead57951cec85bb22d05e510983f027246ae487",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 1335766
+        }
+      ],
+      "media": [
+        {
+          "filename": "2026-06-16-0804-zootherapie-en-ime-et-itep-ce-qui-change-avec-des-enfants-en-m1.png",
+          "r2_key": "jd-zoo/2026-06-16-0804-zootherapie-en-ime-et-itep-ce-qui-change-avec-des-enfants-en-m1.png",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-16-0804-zootherapie-en-ime-et-itep-ce-qui-change-avec-des-enfants-en-m1.png&e=1784181858&s=de01f9311d6ca4a4263a80a5cc55575263c5e640fc54f601a0ae5b7137a61d70",
+          "kind": "image",
+          "media_mime": "image/png",
+          "media_bytes": 2490259
+        },
+        {
+          "filename": "2026-06-16-0804-zootherapie-en-ime-et-itep-ce-qui-change-avec-des-enfants-en-m2.jpg",
+          "r2_key": "jd-zoo/2026-06-16-0804-zootherapie-en-ime-et-itep-ce-qui-change-avec-des-enfants-en-m2.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-06-16-0804-zootherapie-en-ime-et-itep-ce-qui-change-avec-des-enfants-en-m2.jpg&e=1784181858&s=0ebf37b676d581ca7570dc99d6aac274465edbe0ccb23e99beed9c15f8cf84af",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 2750804
+        }
+      ],
+      "uploaded_at": "2026-06-16T06:04:27.450Z",
+      "statut": "envoye"
+    },
+    {
+      "id": "jd-zoo-2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu",
+      "sujet": "Convaincre votre direction d'inviter un zoothÃ©rapeute : 4 arguments concrets pour les soignants",
+      "categorie": "idee-article",
+      "categorie_label": "IdÃ©e d'article de blog",
+      "note": "je te mets des sources je sais pas si ca te seras utile (fondation Adrienne et pierre sommer filiÃ¨re de la fondation de france qui finance des projet de zoothÃ©rapie https://www.fondationdefrance.org/fr/annuaire-des-fondations/fondation-adrienne-et-pierre-sommer ) un outils d accompagnement valide qui fait l objet de financement , ( la haute autoritÃ© de santÃ© qui recommande les intervention non mÃ©dicamenteuse pour les troubles du comportement https://www.has-sante.fr/jcms/c_819667/fr/maladie-d-alzheimer-et-maladies-apparentees-prise-en-charge-des-troubles-du-comportement-perturbateurs ) ( https://pubmed.ncbi.nlm.nih.gov/34698207/ et https://pmc.ncbi.nlm.nih.gov/articles/PMC12380019/ 2 articles un peu plus \"scientifique )  et la charte de l 'institut de zootherapie https://institutfrancaisdezootherapie.fr/charte-deontologie/ pour le cotÃ© cadre legale ( je pense qu il faut al mettre quelque part dans le site et c est le bonne endroit pour le cote serieux .",
       "attachments": [
         {
           "filename": "2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu-1.webm",
@@ -88,9 +166,9 @@
     },
     {
       "id": "jd-zoo-2026-06-08-1034-quand-les-larmes-arrivent-en-seance-ce-que-l-animal-permet-d",
-      "sujet": "Quand les larmes arrivent en sÃ©ance : ce que lâanimal permet dâaccueillir",
+      "sujet": "Quand les larmes arrivent en sÃÂ©ance : ce que lÃ¢ÂÂanimal permet dÃ¢ÂÂaccueillir",
       "categorie": "idee-article",
-      "categorie_label": "IdÃ©e d'article de blog",
+      "categorie_label": "IdÃÂ©e d'article de blog",
       "note": "JE T'ai mis 2 photos a voir la plus pertinente",
       "attachments": [
         {
@@ -157,16 +235,16 @@
       "uploaded_at": "2026-06-08T08:35:05.526Z",
       "statut": "traite",
       "resolution": {
-        "note": "Coucou Jen, ton article \"Quand les larmes arrivent en sÃ©ance\" est Ã©crit Ã  partir de tes vocaux et programmÃ© pour le 12 juin au matin (invisible jusque-lÃ , puis il s'affiche tout seul). J'ai bien regardÃ© tes 2 photos et j'ai gardÃ© la deuxiÃ¨me, celle oÃ¹ la dame a les yeux fermÃ©s, la joue contre le lapin blotti contre elle, elle est parfaite pour le sujet. Tu peux le relire tranquillement depuis ton espace /admin et me dire si tu veux changer quoi que ce soit avant qu'il parte.",
+        "note": "Coucou Jen, ton article \"Quand les larmes arrivent en sÃÂ©ance\" est ÃÂ©crit ÃÂ  partir de tes vocaux et programmÃÂ© pour le 12 juin au matin (invisible jusque-lÃÂ , puis il s'affiche tout seul). J'ai bien regardÃÂ© tes 2 photos et j'ai gardÃÂ© la deuxiÃÂ¨me, celle oÃÂ¹ la dame a les yeux fermÃÂ©s, la joue contre le lapin blotti contre elle, elle est parfaite pour le sujet. Tu peux le relire tranquillement depuis ton espace /admin et me dire si tu veux changer quoi que ce soit avant qu'il parte.",
         "resolved_at": "2026-06-08T09:14:06.934Z",
         "notified_at": "2026-06-08T09:14:09.948Z"
       }
     },
     {
       "id": "jd-zoo-2026-06-08-1011-combien-coute-une-intervention-zootherapie-et-comment-la-fin",
-      "sujet": "Combien coÃÂ»te une intervention zoothÃÂ©rapie (et comment la financer)",
+      "sujet": "Combien coÃÂÃÂ»te une intervention zoothÃÂÃÂ©rapie (et comment la financer)",
       "categorie": "idee-article",
-      "categorie_label": "IdÃÂ©e d'article de blog",
+      "categorie_label": "IdÃÂÃÂ©e d'article de blog",
       "note": "je n ai pas d idee de qu'elle genre d image pourrais accompagner cette article",
       "attachments": [
         {
@@ -243,7 +321,7 @@
       "uploaded_at": "2026-06-08T08:11:46.596Z",
       "statut": "traite",
       "resolution": {
-        "note": "Coucou Jen, c'est fait, ton article sur les tarifs et le financement est Ã©crit Ã  partir de tes vocaux et programmÃ© pour le 9 juin au matin. Il reste invisible sur le site jusque-lÃ , puis il s'affiche tout seul. Comme tu n'avais pas d'idÃ©e d'image, j'ai pris une vraie photo de sÃ©ance (le chien blotti contre une personne sous le plaid), qui colle bien au sÃ©rieux du sujet. J'ai aussi repris tes tarifs (60 euros HT en individuel, entre 80 et 110 euros HT en groupe) et toutes tes pistes de financement. Tu peux le relire et l'ajuster quand tu veux depuis ton espace /admin.",
+        "note": "Coucou Jen, c'est fait, ton article sur les tarifs et le financement est ÃÂ©crit ÃÂ  partir de tes vocaux et programmÃÂ© pour le 9 juin au matin. Il reste invisible sur le site jusque-lÃÂ , puis il s'affiche tout seul. Comme tu n'avais pas d'idÃÂ©e d'image, j'ai pris une vraie photo de sÃÂ©ance (le chien blotti contre une personne sous le plaid), qui colle bien au sÃÂ©rieux du sujet. J'ai aussi repris tes tarifs (60 euros HT en individuel, entre 80 et 110 euros HT en groupe) et toutes tes pistes de financement. Tu peux le relire et l'ajuster quand tu veux depuis ton espace /admin.",
         "resolved_at": "2026-06-08T09:13:52.617Z",
         "notified_at": "2026-06-08T09:13:56.077Z"
       }
@@ -253,7 +331,7 @@
       "sujet": "google buiseness",
       "categorie": "question",
       "categorie_label": "Question pour Marc",
-      "note": "Coucou pour info j ai reÃÂÃÂ§u ca sur ma boite mail ce matin",
+      "note": "Coucou pour info j ai reÃÂÃÂÃÂÃÂ§u ca sur ma boite mail ce matin",
       "attachments": [],
       "media": [
         {
@@ -268,16 +346,16 @@
       "uploaded_at": "2026-06-03T08:47:34.019Z",
       "statut": "traite",
       "resolution": {
-        "note": "Pas d'inquiÃÂÃÂ©tude Jennifer : c'est moi qui ai tentÃÂÃÂ© de modifier le nom de votre fiche Google pour corriger un problÃÂÃÂ¨me d'accent. Si Google refuse la modification, on garde simplement 'mÃÂÃÂ©diation' comme avant. Rien ÃÂÃÂ  faire de votre cÃÂÃÂ´tÃÂÃÂ©, je m'en occupe.",
+        "note": "Pas d'inquiÃÂÃÂÃÂÃÂ©tude Jennifer : c'est moi qui ai tentÃÂÃÂÃÂÃÂ© de modifier le nom de votre fiche Google pour corriger un problÃÂÃÂÃÂÃÂ¨me d'accent. Si Google refuse la modification, on garde simplement 'mÃÂÃÂÃÂÃÂ©diation' comme avant. Rien ÃÂÃÂÃÂÃÂ  faire de votre cÃÂÃÂÃÂÃÂ´tÃÂÃÂÃÂÃÂ©, je m'en occupe.",
         "resolved_at": "2026-06-03T09:07:38.671Z",
         "notified_at": "2026-06-03T09:08:37.653Z"
       }
     },
     {
       "id": "jd-zoo-2026-06-02-0957-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement",
-      "sujet": "PrÃÂÃÂÃÂÃÂ©parer l'arrivÃÂÃÂÃÂÃÂ©e du zoothÃÂÃÂÃÂÃÂ©rapeute dans votre ÃÂÃÂÃÂÃÂ©tablissement : checklist ÃÂÃÂÃÂÃÂ©quipe en 7 points",
+      "sujet": "PrÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©parer l'arrivÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©e du zoothÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©rapeute dans votre ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©tablissement : checklist ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©quipe en 7 points",
       "categorie": "idee-article",
-      "categorie_label": "IdÃÂÃÂÃÂÃÂ©e d'article de blog",
+      "categorie_label": "IdÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©e d'article de blog",
       "attachments": [
         {
           "filename": "2026-06-02-0957-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement.webm",
@@ -290,15 +368,15 @@
       "uploaded_at": "2026-06-02T07:57:25.900Z",
       "statut": "traite",
       "resolution": {
-        "note": "TransformÃÂÃÂ© en article de blog, programmÃÂÃÂ© le 04/06.",
+        "note": "TransformÃÂÃÂÃÂÃÂ© en article de blog, programmÃÂÃÂÃÂÃÂ© le 04/06.",
         "resolved_at": "2026-06-03T09:00:07.729Z"
       }
     },
     {
       "id": "jd-zoo-2026-06-02-0953-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes",
-      "sujet": "Le Grand Est vu depuis mes sÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©ances : besoins, rÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©alitÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©s, attentes",
+      "sujet": "Le Grand Est vu depuis mes sÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©ances : besoins, rÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©alitÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©s, attentes",
       "categorie": "idee-article",
-      "categorie_label": "IdÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©e d'article de blog",
+      "categorie_label": "IdÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©e d'article de blog",
       "attachments": [],
       "media": [
         {
@@ -313,15 +391,15 @@
       "uploaded_at": "2026-06-02T07:53:27.733Z",
       "statut": "traite",
       "resolution": {
-        "note": "TransformÃÂÃÂ© en article de blog, programmÃÂÃÂ© le 07/06. Votre photo illustre l'article.",
+        "note": "TransformÃÂÃÂÃÂÃÂ© en article de blog, programmÃÂÃÂÃÂÃÂ© le 07/06. Votre photo illustre l'article.",
         "resolved_at": "2026-06-03T09:00:26.727Z"
       }
     },
     {
       "id": "jd-zoo-2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement",
-      "sujet": "PrÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©parer l'arrivÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©e du zoothÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©rapeute dans votre ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©tablissement : checklist ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©quipe en 7 points",
+      "sujet": "PrÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©parer l'arrivÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©e du zoothÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©rapeute dans votre ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©tablissement : checklist ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©quipe en 7 points",
       "categorie": "idee-article",
-      "categorie_label": "IdÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©e d'article de blog",
+      "categorie_label": "IdÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©e d'article de blog",
       "attachments": [
         {
           "filename": "2026-06-01-1249-preparer-l-arrivee-du-zootherapeute-dans-votre-etablissement-1.webm",
@@ -383,15 +461,15 @@
       "uploaded_at": "2026-06-01T10:49:27.300Z",
       "statut": "traite",
       "resolution": {
-        "note": "TransformÃÂÃÂ© en article de blog, programmÃÂÃÂ© le 04/06.",
+        "note": "TransformÃÂÃÂÃÂÃÂ© en article de blog, programmÃÂÃÂÃÂÃÂ© le 04/06.",
         "resolved_at": "2026-06-03T08:59:58.694Z"
       }
     },
     {
       "id": "jd-zoo-2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes",
-      "sujet": "Le Grand Est vu depuis mes sÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©ances : besoins, rÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©alitÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©s, attentes",
+      "sujet": "Le Grand Est vu depuis mes sÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©ances : besoins, rÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©alitÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©s, attentes",
       "categorie": "idee-article",
-      "categorie_label": "IdÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©e d'article de blog",
+      "categorie_label": "IdÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©e d'article de blog",
       "attachments": [
         {
           "filename": "2026-06-01-1236-le-grand-est-vu-depuis-mes-seances-besoins-realites-attentes-1.webm",
@@ -439,13 +517,13 @@
       "uploaded_at": "2026-06-01T10:37:03.930Z",
       "statut": "traite",
       "resolution": {
-        "note": "TransformÃÂÃÂ© en article de blog, programmÃÂÃÂ© le 07/06.",
+        "note": "TransformÃÂÃÂÃÂÃÂ© en article de blog, programmÃÂÃÂÃÂÃÂ© le 07/06.",
         "resolved_at": "2026-06-03T09:00:18.779Z"
       }
     },
     {
       "id": "jd-zoo-2026-05-22-1243-memo-pour-rdv-de-samedi",
-      "sujet": "mÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©mo pour rdv de samedi",
+      "sujet": "mÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©mo pour rdv de samedi",
       "categorie": "question",
       "categorie_label": "Question pour Marc",
       "attachments": [
@@ -475,7 +553,7 @@
       "uploaded_at": "2026-05-17T09:42:03.856Z",
       "statut": "traite",
       "resolution": {
-        "note": "Test, archivÃÂÃÂ©.",
+        "note": "Test, archivÃÂÃÂÃÂÃÂ©.",
         "resolved_at": "2026-06-03T09:00:37.707Z"
       }
     }
