@@ -917,8 +917,8 @@
         "#metz"
       ],
       "cta": "MP structures ou familles",
-      "status": "draft",
-      "published_at": null,
+      "status": "published",
+      "published_at": "2026-06-16T07:22:03.971Z",
       "client_modified_text": null,
       "client_comment": null
     },
