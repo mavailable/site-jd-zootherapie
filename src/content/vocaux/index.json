@@ -76,7 +76,11 @@
         }
       ],
       "uploaded_at": "2026-06-16T06:04:27.450Z",
-      "statut": "envoye"
+      "statut": "traite",
+      "resolution": {
+        "note": "Ton article sur la zoothérapie en IME et ITEP est en ligne sur le blog. J'ai gardé ton cadrage : un regard de terrain, concret, rien de spectaculaire, avec le choix de l'animal au cas par cas et l'importance de construire la séance avec l'équipe éducative. La fin invite les IME, ITEP, SESSAD, foyers et services éducatifs qui cherchent une vraie intervention, pas juste une animation. J'ai utilisé la photo rognée sans visage pour respecter le droit à l'image des enfants. Tu peux le relire depuis ton /admin et me dire si tu veux changer quoi que ce soit.",
+        "resolved_at": "2026-06-19T09:29:29.994Z"
+      }
     },
     {
       "id": "jd-zoo-2026-06-15-0930-convaincre-votre-direction-d-inviter-un-zootherapeute-4-argu",
