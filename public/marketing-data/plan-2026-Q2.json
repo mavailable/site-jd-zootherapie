@@ -813,8 +813,8 @@
         "#zootherapie"
       ],
       "cta": null,
-      "status": "draft",
-      "published_at": null,
+      "status": "published",
+      "published_at": "2026-06-21T09:02:22.978Z",
       "client_modified_text": null,
       "client_comment": null
     },
