@@ -1021,8 +1021,8 @@
         "#HAS"
       ],
       "cta": "MP pour exemples anonymisés ou présentation équipe",
-      "status": "draft",
-      "published_at": null,
+      "status": "published",
+      "published_at": "2026-06-22T08:45:13.362Z",
       "client_modified_text": null,
       "client_comment": null
     },
