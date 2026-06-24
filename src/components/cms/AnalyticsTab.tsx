@@ -8,9 +8,14 @@ interface AnalyticsTabProps {
 /**
  * Onglet Statistiques.
  *
- * Note technique : Umami Cloud renvoie `X-Frame-Options: SAMEORIGIN` sur
- * /share/* — l'embed iframe est donc bloque par tous les navigateurs.
- * On ouvre le dashboard dans un nouvel onglet via un gros CTA.
+ * Le dashboard Umami est embarque directement en iframe. La page /share/*
+ * renvoie `Content-Security-Policy: frame-ancestors *` qui, dans les
+ * navigateurs modernes, prime sur le legacy `X-Frame-Options: SAMEORIGIN`
+ * (verifie en live le 2026-06-21 : embed OK sur origine https, aucune
+ * erreur de framing). Ce site ne sert aucune CSP (pas de _headers/meta
+ * restrictifs), donc aucune directive `frame-src` ne bloque l'iframe.
+ * Sur mobile l'iframe est trop etroite (la page Umami passe en nav compacte),
+ * on bascule donc sur un CTA plein ecran qui ouvre le dashboard.
  */
 export function AnalyticsTab({ config }: AnalyticsTabProps) {
   const site = config.site;
@@ -32,7 +37,35 @@ export function AnalyticsTab({ config }: AnalyticsTabProps) {
 
   return (
     <div style={styles.fadeIn}>
-      <div style={styles.card}>
+      <style>{responsiveCss}</style>
+
+      {/* Desktop : dashboard embarque */}
+      <div className="cms-stats-embed" style={styles.embedWrap}>
+        <div style={styles.embedBar}>
+          <span style={styles.embedBarTitle}>
+            <span style={styles.embedBarIcon}>&#128202;</span>
+            {t('yourVisitStats')}
+          </span>
+          <a
+            href={site.umamiShareUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={styles.embedBarLink}
+          >
+            {t('openDashboard')} &#8599;
+          </a>
+        </div>
+        <iframe
+          src={site.umamiShareUrl}
+          style={styles.iframe}
+          title={t('yourVisitStats')}
+          loading="lazy"
+        />
+        <p style={styles.embedNote}>{t('statsNote')}</p>
+      </div>
+
+      {/* Mobile : CTA plein ecran (iframe trop etroite sur petit ecran) */}
+      <div className="cms-stats-cta" style={styles.card}>
         <div style={styles.iconCircle}>
           <span style={styles.icon}>&#128202;</span>
         </div>
@@ -75,8 +108,65 @@ export function AnalyticsTab({ config }: AnalyticsTabProps) {
   );
 }
 
+// Iframe sur desktop, CTA sur mobile (<=640px) : l'iframe Umami est trop
+// etroite sur petit ecran. Media query impossible en style inline → <style>.
+const responsiveCss = `
+.cms-stats-cta { display: none; }
+@media (max-width: 640px) {
+  .cms-stats-embed { display: none !important; }
+  .cms-stats-cta { display: block; }
+}`;
+
 const styles: Record<string, React.CSSProperties> = {
   fadeIn: { animation: 'fadeIn 0.25s ease-out' },
+
+  embedWrap: {
+    background: '#fff',
+    border: '1px solid #e2e8f0',
+    borderRadius: '16px',
+    overflow: 'hidden',
+    boxShadow: '0 1px 2px rgba(15, 23, 42, 0.04)',
+  },
+  embedBar: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: '1rem',
+    padding: '0.875rem 1.25rem',
+    borderBottom: '1px solid #f1f5f9',
+    background: '#f8fafc',
+  },
+  embedBarTitle: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '0.5rem',
+    fontSize: '0.9375rem',
+    fontWeight: 700,
+    color: '#0f172a',
+  },
+  embedBarIcon: { fontSize: '1.125rem' },
+  embedBarLink: {
+    fontSize: '0.8125rem',
+    fontWeight: 600,
+    color: '#2563eb',
+    textDecoration: 'none',
+    whiteSpace: 'nowrap' as const,
+  },
+  iframe: {
+    width: '100%',
+    height: '820px',
+    border: 'none',
+    display: 'block',
+    background: '#fff',
+  },
+  embedNote: {
+    fontSize: '0.8125rem',
+    color: '#94a3b8',
+    margin: 0,
+    padding: '0.875rem 1.25rem',
+    borderTop: '1px solid #f1f5f9',
+    lineHeight: 1.5,
+  },
 
   card: {
     background: '#fff',
