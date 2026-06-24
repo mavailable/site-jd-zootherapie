@@ -60,7 +60,11 @@
         }
       ],
       "uploaded_at": "2026-06-22T08:21:29.381Z",
-      "statut": "envoye"
+      "statut": "traite",
+      "resolution": {
+        "note": "Article écrit et publié à partir de ton vocal, il est en ligne sur ton blog.",
+        "resolved_at": "2026-06-24T02:51:43.491Z"
+      }
     },
     {
       "id": "jd-zoo-2026-06-22-0956-la-vie-de-tips-et-des-animaux-en-dehors-des-seances-repos-je",
