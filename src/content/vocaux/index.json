@@ -207,7 +207,8 @@
       "statut": "traite",
       "resolution": {
         "note": "C'est fait, j'ai ajouté une fournée de nouvelles idées d'articles dans ton onglet blog. Pioche celles qui te parlent !",
-        "resolved_at": "2026-06-24T02:52:11.978Z"
+        "resolved_at": "2026-06-24T02:52:11.978Z",
+        "notified_at": "2026-06-24T02:52:25.081Z"
       }
     },
     {
