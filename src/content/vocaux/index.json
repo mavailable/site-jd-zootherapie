@@ -180,7 +180,8 @@
       "statut": "traite",
       "resolution": {
         "note": "Article écrit et publié à partir de ton vocal, tu peux le voir sur ton blog.",
-        "resolved_at": "2026-06-24T02:51:21.623Z"
+        "resolved_at": "2026-06-24T02:51:21.623Z",
+        "notified_at": "2026-06-24T02:51:24.657Z"
       }
     },
     {
