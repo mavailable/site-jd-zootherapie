@@ -204,7 +204,11 @@
         }
       ],
       "uploaded_at": "2026-06-21T08:53:46.317Z",
-      "statut": "envoye"
+      "statut": "traite",
+      "resolution": {
+        "note": "C'est fait, j'ai ajouté une fournée de nouvelles idées d'articles dans ton onglet blog. Pioche celles qui te parlent !",
+        "resolved_at": "2026-06-24T02:52:11.978Z"
+      }
     },
     {
       "id": "jd-zoo-2026-06-16-0804-zootherapie-en-ime-et-itep-ce-qui-change-avec-des-enfants-en",
