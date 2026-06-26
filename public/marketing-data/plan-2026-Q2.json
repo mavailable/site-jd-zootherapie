@@ -1177,6 +1177,58 @@
       "published_at": null,
       "client_modified_text": null,
       "client_comment": null
+    },
+    {
+      "id": "2026-Q2-ete-seniors-fb",
+      "network": "facebook",
+      "week": 12,
+      "theme_ref": 12,
+      "scheduled_date": "2026-07-07",
+      "scheduled_time_hint": "10:00",
+      "format": "photo-design",
+      "visual_type": "ia",
+      "visual_brief": "Design été à partir de VOS vraies photos (Tips + main d'une personne âgée), charte JD. Carré dispo + version story 1080x1350 (/marketing-visuals/ete-seniors-2026-story.jpg).",
+      "visual_generated": "/marketing-visuals/ete-seniors-2026.jpg",
+      "shooting_session_ref": null,
+      "text": "☀️ L'été, les journées sont longues quand on les passe seul.\n\nLes structures tournent au ralenti, les enfants et petits-enfants partent en vacances, les aidants soufflent un peu (et c'est normal). Pour une personne âgée, ces semaines plus calmes deviennent vite des semaines plus vides : moins de visites, moins de mots échangés, moins d'élan.\n\nCet été, je propose un rendez-vous régulier à domicile, avec Tips et mes autres compagnons.\n\n🐾 Un moment fixe dans la semaine, un repère qui rassure.\n🐾 De la stimulation tout en douceur : mémoire, gestes, sens, conversation.\n🐾 Un vrai instant de plaisir et de présence, à l'abri de la chaleur, à la maison.\n\nPas besoin de se déplacer, je viens à vous.\n\nParce que le lien ne devrait pas partir en vacances.\n\n📍 Séances à domicile en Moselle et Meurthe-et-Moselle.",
+      "hashtags": [
+        "#zootherapie",
+        "#mediationanimale",
+        "#personnesagees",
+        "#aidants",
+        "#moselle"
+      ],
+      "cta": "Un message pour en parler, les places de l'été sont limitées : jdzootherapeute.fr",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q2-ete-enfants-fb",
+      "network": "facebook",
+      "week": 12,
+      "theme_ref": 12,
+      "scheduled_date": "2026-07-09",
+      "scheduled_time_hint": "10:00",
+      "format": "photo-design",
+      "visual_type": "ia",
+      "visual_brief": "Design été à partir de VOS vraies photos (Tips qui sourit), charte JD. Carré dispo + version story 1080x1350 (/marketing-visuals/ete-enfants-2026-story.jpg).",
+      "visual_generated": "/marketing-visuals/ete-enfants-2026.jpg",
+      "shooting_session_ref": null,
+      "text": "☀️ Les grandes vacances, c'est génial… et parfois un peu long.\n\nPlus d'école, plus de cadre, les journées s'étirent et les écrans prennent vite toute la place. Pour beaucoup d'enfants, et encore plus pour un enfant à besoins spécifiques, cette pause fait perdre les petits repères et les progrès gagnés pendant l'année.\n\nCet été, je propose des séances de médiation animale à domicile, pensées comme une vraie bulle.\n\n🐾 Un rendez-vous joyeux qui rythme la semaine.\n🐾 On travaille sans en avoir l'air : attention, langage, confiance en soi, relation aux autres.\n🐾 Du concret, du vivant, du plaisir, loin des écrans.\n🐾 À chaque enfant son rythme, ses envies, ses petits défis.\n\nEt le mieux : pas besoin de bouger, Tips et ses amis viennent chez vous.",
+      "hashtags": [
+        "#zootherapie",
+        "#mediationanimale",
+        "#enfants",
+        "#vacances",
+        "#besoinsspecifiques"
+      ],
+      "cta": "Un message et on cale un premier rendez-vous découverte. Les places de l'été partent vite : jdzootherapeute.fr",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
     }
   ]
 }
