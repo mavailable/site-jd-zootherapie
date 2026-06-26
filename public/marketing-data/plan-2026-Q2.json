@@ -1225,8 +1225,8 @@
         "#besoinsspecifiques"
       ],
       "cta": "Un message et on cale un premier rendez-vous découverte. Les places de l'été partent vite : jdzootherapeute.fr",
-      "status": "draft",
-      "published_at": null,
+      "status": "published",
+      "published_at": "2026-06-26T08:27:56.686Z",
       "client_modified_text": null,
       "client_comment": null
     }
