@@ -1199,8 +1199,8 @@
         "#moselle"
       ],
       "cta": "Un message pour en parler, les places de l'été sont limitées : jdzootherapeute.fr",
-      "status": "draft",
-      "published_at": null,
+      "status": "published",
+      "published_at": "2026-06-26T08:28:50.669Z",
       "client_modified_text": null,
       "client_comment": null
     },
