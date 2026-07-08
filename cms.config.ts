@@ -9,6 +9,7 @@ const cmsConfig: CmsConfig = {
   crm: {
     enabled: true, // D1 jdzoo-crm bindée (DB) sur production + preview le 2026-06-08.
     label: 'Prospects',
+    itemLabel: 'prospect', // v0.12.2 : « Ajouter un prospect », « Fiche prospect »…
     columns: [
       { status: 'nouveau', label: 'Nouveau', hint: 'À traiter', dot: '#94a3b8' },
       { status: 'contacte', label: 'Contacté', hint: 'Premier contact', dot: '#3b82f6' },
