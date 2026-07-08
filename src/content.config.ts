@@ -167,6 +167,13 @@ const gallery = defineCollection({
   schema: z.object({}).passthrough(),
 });
 
+// Historique des posts Google Business Profile (module marketing @marc/cms-engine).
+// Enveloppe { history: GbpPost[] } écrite par l'onglet Posts GBP via /api/cms/save.
+const gbpPosts = defineCollection({
+  type: 'data',
+  schema: z.object({ history: z.array(z.any()).default([]) }).passthrough(),
+});
+
 // Landing pages Ads (dédiées aux campagnes Google Ads)
 // Flag `enabled` permet de désactiver une LP sans la supprimer.
 // Flag `indexable: true` sort la LP du noindex et l'inclut dans le sitemap (cf. astro.config.mjs).
@@ -290,5 +297,6 @@ export const collections = {
   'page-temoignages': pageTemoignages,
   'page-a-propos': pageAPropos,
   gallery,
+  'gbp-posts': gbpPosts,
   'landing-pages': landingPages,
 };

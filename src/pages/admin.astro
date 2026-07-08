@@ -1,7 +1,9 @@
 ---
-// Page d'administration CMS — ne pas indexer
-import '../styles/cms.css';
-import { CmsApp } from '../components/cms/CmsApp';
+// SHIM CLIENT — monte le panel /admin via AdminIsland (wrapper site-owned généré
+// par cms-engine-scaffold : importe CmsApp + les modules déclarés, les injecte en
+// prop ; config reste sérialisable). Seul fichier qui connait la config.
+import '@marc/cms-engine/cms.css';
+import AdminIsland from '../components/AdminIsland';
 import cmsConfig from '../../cms.config';
 
 const cmsLocale = (cmsConfig as { locale?: 'fr' | 'en' }).locale === 'en' ? 'en' : 'fr';
@@ -15,29 +17,11 @@ const adminTitle = cmsLocale === 'en' ? 'Admin' : 'Administration';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
     <title>{cmsConfig.siteName} — {adminTitle}</title>
-    <style>
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-      body {
-        font-family:
-          -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-          sans-serif;
-        background: #f8fafc;
-        color: #1e293b;
-        line-height: 1.5;
-        -webkit-font-smoothing: antialiased;
-      }
-    </style>
   </head>
   <body>
     <script define:vars={{ cfg: cmsConfig }} is:inline>
       window.__cmsConfig = cfg;
     </script>
-    <CmsApp client:only="react" />
+    <AdminIsland config={cmsConfig} client:only="react" />
   </body>
 </html>

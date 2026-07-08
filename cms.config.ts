@@ -1,4 +1,4 @@
-import type { CmsConfig } from './cms.types';
+import type { CmsConfig } from '@marc/cms-engine/types';
 
 const cmsConfig: CmsConfig = {
   vocaux: {
@@ -17,6 +17,8 @@ const cmsConfig: CmsConfig = {
       { status: 'gagne', label: 'Gagné', hint: 'Conclu ✅', dot: '#16a34a' },
       { status: 'perdu', label: 'Perdu', hint: 'Sans suite', dot: '#cbd5e1' },
     ],
+    billing: false,  // Jen ne facture pas — masque Facturation & vente (v0.12.1)
+    einvoice: false, // explicite (défaut false)
   },
 
   marketing: {
@@ -39,6 +41,9 @@ const cmsConfig: CmsConfig = {
   repo: 'mavailable/site-jd-zootherapie',
   branch: 'master',
   siteName: 'JD Zoothérapie',
+
+  // Modules du moteur montés dans /admin (AdminIsland généré par le scaffold les importe).
+  modules: ['crm', 'marketing', 'vocaux', 'gallery'],
 
   site: {
     // Webmaster (agence) — valeurs explicites (les composants /admin n'ont plus de
@@ -260,6 +265,34 @@ const cmsConfig: CmsConfig = {
             siteName: { type: 'text', label: 'Nom du site (onglets navigateur)' },
             separator: { type: 'text', label: 'Separateur titre (ex: —)' },
             defaultOgImage: { type: 'image', label: 'Image de partage par defaut' },
+          },
+        },
+      },
+    },
+
+    'gbp-posts': {
+      label: 'Historique GBP',
+      description: "Historique des posts Google Business Profile (surface d'édition normale : onglet Posts GBP du module marketing)",
+      path: 'src/content/gbp-posts/index.json',
+      dashboardPriority: 99, // pas de flag hidden dans le moteur — relégué en bas du groupe reglages
+      fields: {
+        history: {
+          type: 'array',
+          label: 'Posts publiés',
+          itemLabel: 'sourceArticleTitle',
+          item: {
+            type: 'object',
+            label: 'Post',
+            fields: {
+              id: { type: 'text', label: 'ID' },
+              publishedAt: { type: 'text', label: 'Publié le' },
+              text: { type: 'text', label: 'Texte du post', multiline: true },
+              cta: { type: 'text', label: 'CTA' },
+              ctaUrl: { type: 'text', label: 'URL CTA' },
+              image: { type: 'text', label: 'Image' },
+              sourceArticleSlug: { type: 'text', label: 'Slug article source' },
+              sourceArticleTitle: { type: 'text', label: 'Titre article source' },
+            },
           },
         },
       },

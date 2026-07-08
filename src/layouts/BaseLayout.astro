@@ -4,6 +4,7 @@ import { getSiteInfo } from '@data/content';
 import { siteUrl, ads } from '@data/business';
 import { getPageSeo, getSeoGlobal } from '../data/seo';
 import ConsentBanner from '@components/layout/ConsentBanner.astro';
+import CmsEditLoader from '@marc/cms-engine/astro';
 
 const siteInfo = await getSiteInfo();
 
@@ -189,14 +190,7 @@ const ogImageType = fullOgImage.endsWith('.png') ? 'image/png' : fullOgImage.end
     </>
   )}
 
-  <!-- CMS inline editor — charge uniquement si session active -->
-  <script is:inline>
-    if (document.cookie.includes('cms_logged_in')) {
-      const s = document.createElement('script');
-      s.src = '/cms-edit.js';
-      s.defer = true;
-      document.body.appendChild(s);
-    }
-  </script>
+  <!-- CMS inline editor — charge uniquement si session active (loader du package) -->
+  <CmsEditLoader />
 </body>
 </html>
