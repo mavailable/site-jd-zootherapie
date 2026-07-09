@@ -1,6 +1,54 @@
 {
   "entries": [
     {
+      "id": "jd-zoo-2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si",
+      "sujet": "Comment je sais qu'une séance a servi à quelque chose : les signes concrets de progrès",
+      "categorie": "idee-article",
+      "categorie_label": "Idée d'article de blog",
+      "attachments": [
+        {
+          "filename": "2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-1.webm",
+          "r2_key": "jd-zoo/2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-1.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-1.webm&e=1786190632&s=70a6deebc1297724899e86f2e3b5ebaed7162edba936cedef51ba19637ae6142",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 27578
+        },
+        {
+          "filename": "2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-2.webm",
+          "r2_key": "jd-zoo/2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-2.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-2.webm&e=1786190632&s=0df342bb808e6a39d01f4db8edfd53fd46aeffabd1fc968966d3ab576443e3b9",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 5363
+        },
+        {
+          "filename": "2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-3.webm",
+          "r2_key": "jd-zoo/2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-3.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-3.webm&e=1786190632&s=4de62497aa77af1ac75eb128c20ab2f7d4fb4718a2cff9c5a2e994007d60af22",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 11183
+        },
+        {
+          "filename": "2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-4.webm",
+          "r2_key": "jd-zoo/2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-4.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-4.webm&e=1786190632&s=76c79aca51da588890ffb917e879b8815b7b5f44251c9252424e297d8602a543",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 16141
+        }
+      ],
+      "media": [
+        {
+          "filename": "2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-media.png",
+          "r2_key": "jd-zoo/2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-media.png",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-media.png&e=1786190632&s=29c276695959f85ceb713db4da01e71ec1cad80a22a09ca24cdd9e40dad07f2b",
+          "kind": "image",
+          "media_mime": "image/png",
+          "media_bytes": 2401897
+        }
+      ],
+      "uploaded_at": "2026-07-09T12:03:57.297Z",
+      "statut": "envoye"
+    },
+    {
       "id": "jd-zoo-2026-06-29-1044-non-la-zootherapie-ne-remplace-pas-un-traitement-et-personne",
       "sujet": "Non, la zoothérapie ne remplace pas un traitement (et personne de sérieux ne le prétend)",
       "categorie": "idee-article",
