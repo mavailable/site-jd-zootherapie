@@ -39,6 +39,14 @@ const cmsConfig: CmsConfig = {
     locationId: 'locations/8153826328713306145',
   },
 
+  // Module « ai » (v0.15.1) — pilote réel : génération self-service depuis /admin
+  // (idées, article, posts, GBP, vocal→article) via une clé Claude API chiffrée
+  // en KV. vocalToArticle actif (module vocaux présent) → exige le binding
+  // Workers AI `AI` + secret AI_KEY_SECRET sur le projet CF Pages.
+  // RGPD : sous-traitants Anthropic + Cloudflare Workers AI à ajouter à la
+  // politique de confidentialité AVANT usage réel (cf. wf-00-cms §Module ai).
+  ai: { enabled: true, vocalToArticle: true },
+
   repo: 'mavailable/site-jd-zootherapie',
   branch: 'master',
   siteName: 'JD Zoothérapie',
@@ -72,7 +80,7 @@ const cmsConfig: CmsConfig = {
   },
 
   // Modules du moteur montés dans /admin (AdminIsland généré par le scaffold les importe).
-  modules: ['crm', 'marketing', 'vocaux', 'gallery'],
+  modules: ['crm', 'marketing', 'vocaux', 'gallery', 'ai'],
 
   site: {
     // Webmaster (agence) — valeurs explicites (les composants /admin n'ont plus de
