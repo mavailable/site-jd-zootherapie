@@ -16,7 +16,18 @@ const adminTitle = cmsLocale === 'en' ? 'Admin' : 'Administration';
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" /> {/* favicon du site (public/, non gaté) */}
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <title>{cmsConfig.siteName} — {adminTitle}</title>
+    <style>
+      /* Polices du site pour le branding admin (adminTheme.fontBody/fontHeading).
+         Fichiers locaux /fonts/ (non gaté), mêmes woff2 que le site public. */
+      @font-face { font-family: 'DM Sans'; src: url('/fonts/dm-sans-v17-latin-regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+      @font-face { font-family: 'DM Sans'; src: url('/fonts/dm-sans-v17-latin-500.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+      @font-face { font-family: 'DM Sans'; src: url('/fonts/dm-sans-v17-latin-600.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+      @font-face { font-family: 'Lora'; src: url('/fonts/lora-v37-latin-600.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+      @font-face { font-family: 'Lora'; src: url('/fonts/lora-v37-latin-700.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+    </style>
   </head>
   <body>
     <script define:vars={{ cfg: cmsConfig }} is:inline>

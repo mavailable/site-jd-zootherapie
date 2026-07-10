@@ -42,6 +42,34 @@ const cmsConfig: CmsConfig = {
   repo: 'mavailable/site-jd-zootherapie',
   branch: 'master',
   siteName: 'JD Zoothérapie',
+  siteLogo: '/images/logo-admin.png', // emblème JD Zoothérapeute (chien + Jennifer + lapin), teal/encre sur transparent — lisible fond clair, header + page de login /admin
+
+  // ─── Thème de l'espace /admin : variante claire « Teal Nature » (crème écru + accent teal + texte gris chaud) ───
+  // Dérivé du design-system racine (theme actif « Teal Nature / Brun Doré / Terracotta / Gris Chaud »).
+  // Reprend l'ambiance « chaleureuse, douce et naturelle » du site : fond crème (secondary-50, terre/nature),
+  // texte en gris chaud neutre (neutral 700→950), et accent TEAL (primary-700, couleur dominante de la marque)
+  // qui ressort comme couleur interactive (liens, onglet actif, boutons). Sans ce bloc, /admin retombe sur
+  // le chrome bleu standard du parc (fallback byte-for-byte — adminTheme.ts du moteur).
+  // Contrastes WCAG vérifiés (scripts/admin-theme-validate.py, exit 0) :
+  //   accent 7.64 / accentDeep 8.69 sur accentSoft / ink 15.01 (AAA) / inkSoft 7.18 / muted 5.59 / muted2 4.83 sur blanc ; accent 7.14 sur bg crème.
+  adminTheme: {
+    accent: '#305A5E',        // teal primary-700 — liens, onglet actif, boutons (7.64:1 sur blanc / 7.14:1 sur crème)
+    accentDeep: '#2D4B4E',    // teal primary-800 — texte sur pastille accentSoft, badges (8.69:1 sur accentSoft)
+    accentSoft: '#F0F7F7',    // teal primary-50 — pastilles, boutons secondaires
+    accentBorder: '#B6DDE0',  // teal primary-200 — bordures accent
+    ink: '#2A2622',           // gris chaud neutral-950 — titres (15.01:1, AAA)
+    inkSoft: '#5F564D',       // gris chaud neutral-800 — labels (7.18:1)
+    muted: '#71665B',         // gris chaud neutral-700 — paragraphes (5.59:1)
+    muted2: '#7C7062',        // gris chaud (entre neutral-600/700) — méta, contacts (4.83:1)
+    muted3: '#9D9385',        // gris chaud neutral-500 — hints, dates (3.02:1, WARN toléré)
+    line: '#E0DCD5',          // gris chaud neutral-200 — bordures de cartes
+    lineSoft: '#F1EFEB',      // gris chaud neutral-100 — séparateurs très doux
+    borderInput: '#CBC5BB',   // gris chaud neutral-300 — bordure des champs
+    surface: '#ffffff',       // fond des cartes
+    bg: '#FBF7ED',            // crème écru secondary-50 — fond de l'espace (terre/nature/chaleur)
+    fontBody: "'DM Sans', system-ui, sans-serif",  // même corps que le site
+    fontHeading: "'Lora', Georgia, serif",         // même titrage serif chaleureux que le site
+  },
 
   // Modules du moteur montés dans /admin (AdminIsland généré par le scaffold les importe).
   modules: ['crm', 'marketing', 'vocaux', 'gallery'],
