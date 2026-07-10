@@ -21,6 +21,7 @@ public/table-order/
 # Shims functions générés au build par cms-engine-scaffold (moteur dans node_modules, PI)
 functions/api/cms/
 functions/api/crm/
+functions/api/ai/
 functions/api/publish.js
 functions/api/vocal-download.js
 functions/api/vocal-upload.js
