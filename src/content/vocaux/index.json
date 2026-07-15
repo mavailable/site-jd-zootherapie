@@ -1,6 +1,103 @@
 {
   "entries": [
     {
+      "id": "jd-zoo-2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr",
+      "sujet": "Médiation animale et école : un projet intergénérationnel entre une classe et un EHPAD",
+      "categorie": "idee-article",
+      "categorie_label": "Idée d'article de blog",
+      "attachments": [
+        {
+          "filename": "2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-1.webm",
+          "r2_key": "jd-zoo/2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-1.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-1.webm&e=1786691682&s=e1c3e4873f2d47842c49511df0dbe99bc20e7af7f0093fa0b7eb2c84909ffd69",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 9663
+        },
+        {
+          "filename": "2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-2.webm",
+          "r2_key": "jd-zoo/2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-2.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-2.webm&e=1786691682&s=3d3e1544e7f9a30d72a3a35f71bb2f8d89f5a1f4b3c800a62f354235dba2e063",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 17031
+        },
+        {
+          "filename": "2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-3.webm",
+          "r2_key": "jd-zoo/2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-3.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-3.webm&e=1786691682&s=7fc5cd4c5fe2e200dc646544ea7becce1bed01cc2e0a0fb8ab7546f338e41ae9",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 23329
+        },
+        {
+          "filename": "2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-4.webm",
+          "r2_key": "jd-zoo/2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-4.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-4.webm&e=1786691682&s=9edaf3cc34c32477cfe65070994567206b284bedaca8fd6e8f8ff776079e7fa2",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 20110
+        },
+        {
+          "filename": "2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-5.webm",
+          "r2_key": "jd-zoo/2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-5.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-5.webm&e=1786691682&s=8bb6db1e1184cbe94462143b61c46b5254b1254a73110c69b3e41637e9886b70",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 16815
+        },
+        {
+          "filename": "2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-6.webm",
+          "r2_key": "jd-zoo/2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-6.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-6.webm&e=1786691682&s=1987945b0ba81f998939d16e4e1a3449e7336a8a26a9519a806ccf14693c46e7",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 21328
+        },
+        {
+          "filename": "2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-7.webm",
+          "r2_key": "jd-zoo/2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-7.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-7.webm&e=1786691682&s=76eda029273490835096bbeefd5e8564c0701a6cd95529b9f979dae74a1c3917",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 31058
+        },
+        {
+          "filename": "2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-8.webm",
+          "r2_key": "jd-zoo/2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-8.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-8.webm&e=1786691682&s=9124ab3f4fb0761077b64108587557561f15695d2a46f2df3384c2d054083a47",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 20270
+        },
+        {
+          "filename": "2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-9.webm",
+          "r2_key": "jd-zoo/2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-9.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-9.webm&e=1786691682&s=39a634c39729dcabcbea7165bb484ae7f2f1e48823457a0acfb837da50935f3f",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 18033
+        },
+        {
+          "filename": "2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-10.webm",
+          "r2_key": "jd-zoo/2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-10.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-10.webm&e=1786691682&s=ac548ed47ff50319fa99967269bd0ba02347bd7c063c5270f8a5c30e637f5a62",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 12429
+        },
+        {
+          "filename": "2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-11.webm",
+          "r2_key": "jd-zoo/2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-11.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-11.webm&e=1786691682&s=b6099b570f763e888ddcc9e3c401d034c1e71c38dbe2543fb52cb755af09bb68",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 5421
+        }
+      ],
+      "media": [
+        {
+          "filename": "2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-media.png",
+          "r2_key": "jd-zoo/2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-media.png",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-media.png&e=1786691682&s=4784f937f3bf6fc34b0d8e8fcba3cdcfc552bdd4cf10dff68c20a0cba24ff2b4",
+          "kind": "image",
+          "media_mime": "image/png",
+          "media_bytes": 2316003
+        }
+      ],
+      "uploaded_at": "2026-07-15T07:14:56.753Z",
+      "statut": "envoye"
+    },
+    {
       "id": "jd-zoo-2026-07-15-0852-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel",
       "sujet": "Quand accompagner un proche à domicile devient épuisant : quelle place pour la médiation animale ?",
       "categorie": "idee-article",
