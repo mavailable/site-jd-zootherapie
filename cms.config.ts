@@ -344,8 +344,7 @@ const cmsConfig: CmsConfig = {
       label: 'Historique GBP',
       description: "Historique des posts Google Business Profile (surface d'édition normale : onglet Posts GBP du module marketing)",
       path: 'src/content/gbp-posts/index.json',
-      group: 'reglages',
-      dashboardPriority: 99, // pas de flag hidden dans le moteur (prévu v0.19) — relégué en bas du groupe reglages
+      hidden: true, // singleton technique (v0.19) : invisible sur le dashboard, route directe conservée
       fields: {
         history: {
           type: 'array',
