@@ -1,6 +1,33 @@
 {
   "entries": [
     {
+      "id": "jd-zoo-2026-07-15-0852-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel",
+      "sujet": "Quand accompagner un proche à domicile devient épuisant : quelle place pour la médiation animale ?",
+      "categorie": "idee-article",
+      "categorie_label": "Idée d'article de blog",
+      "attachments": [
+        {
+          "filename": "2026-07-15-0852-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel.webm",
+          "r2_key": "jd-zoo/2026-07-15-0852-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0852-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel.webm&e=1786690359&s=b7dec3f84c6466930c71e10e5e002a9081be72e286991e306b7699cd8ce8be28",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 28361
+        }
+      ],
+      "media": [
+        {
+          "filename": "2026-07-15-0852-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-media.png",
+          "r2_key": "jd-zoo/2026-07-15-0852-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-media.png",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0852-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-media.png&e=1786690359&s=68bbc17ce4f1d8a40f00f80ea94193c75cd3d8f99534659c17792bd5720c5b64",
+          "kind": "image",
+          "media_mime": "image/png",
+          "media_bytes": 2658308
+        }
+      ],
+      "uploaded_at": "2026-07-15T06:52:42.727Z",
+      "statut": "envoye"
+    },
+    {
       "id": "jd-zoo-2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel",
       "sujet": "Quand accompagner un proche à domicile devient épuisant : quelle place pour la médiation animale ?",
       "categorie": "idee-article",
