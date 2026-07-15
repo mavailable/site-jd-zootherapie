@@ -3,7 +3,7 @@ import type { CmsConfig } from '@marc/cms-engine/types';
 const cmsConfig: CmsConfig = {
   vocaux: {
     enabled: true,
-    hint: 'Enregistre une note vocale pour proposer un sujet d\'article, partager une expérience ou poser une question. Marc reçoit le vocal et le traite.',
+    hint: 'Enregistrez une note vocale pour proposer un sujet d\'article, partager une expérience ou poser une question. Marc reçoit le vocal et le traite.',
   },
 
   crm: {
