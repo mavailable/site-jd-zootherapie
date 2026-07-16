@@ -1,6 +1,327 @@
 {
   "entries": [
     {
+      "id": "jd-zoo-2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr",
+      "sujet": "Médiation animale et école : un projet intergénérationnel entre une classe et un EHPAD",
+      "categorie": "idee-article",
+      "categorie_label": "Idée d'article de blog",
+      "attachments": [
+        {
+          "filename": "2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-1.webm",
+          "r2_key": "jd-zoo/2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-1.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-1.webm&e=1786691682&s=e1c3e4873f2d47842c49511df0dbe99bc20e7af7f0093fa0b7eb2c84909ffd69",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 9663
+        },
+        {
+          "filename": "2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-2.webm",
+          "r2_key": "jd-zoo/2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-2.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-2.webm&e=1786691682&s=3d3e1544e7f9a30d72a3a35f71bb2f8d89f5a1f4b3c800a62f354235dba2e063",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 17031
+        },
+        {
+          "filename": "2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-3.webm",
+          "r2_key": "jd-zoo/2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-3.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-3.webm&e=1786691682&s=7fc5cd4c5fe2e200dc646544ea7becce1bed01cc2e0a0fb8ab7546f338e41ae9",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 23329
+        },
+        {
+          "filename": "2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-4.webm",
+          "r2_key": "jd-zoo/2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-4.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-4.webm&e=1786691682&s=9edaf3cc34c32477cfe65070994567206b284bedaca8fd6e8f8ff776079e7fa2",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 20110
+        },
+        {
+          "filename": "2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-5.webm",
+          "r2_key": "jd-zoo/2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-5.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-5.webm&e=1786691682&s=8bb6db1e1184cbe94462143b61c46b5254b1254a73110c69b3e41637e9886b70",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 16815
+        },
+        {
+          "filename": "2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-6.webm",
+          "r2_key": "jd-zoo/2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-6.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-6.webm&e=1786691682&s=1987945b0ba81f998939d16e4e1a3449e7336a8a26a9519a806ccf14693c46e7",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 21328
+        },
+        {
+          "filename": "2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-7.webm",
+          "r2_key": "jd-zoo/2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-7.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-7.webm&e=1786691682&s=76eda029273490835096bbeefd5e8564c0701a6cd95529b9f979dae74a1c3917",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 31058
+        },
+        {
+          "filename": "2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-8.webm",
+          "r2_key": "jd-zoo/2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-8.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-8.webm&e=1786691682&s=9124ab3f4fb0761077b64108587557561f15695d2a46f2df3384c2d054083a47",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 20270
+        },
+        {
+          "filename": "2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-9.webm",
+          "r2_key": "jd-zoo/2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-9.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-9.webm&e=1786691682&s=39a634c39729dcabcbea7165bb484ae7f2f1e48823457a0acfb837da50935f3f",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 18033
+        },
+        {
+          "filename": "2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-10.webm",
+          "r2_key": "jd-zoo/2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-10.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-10.webm&e=1786691682&s=ac548ed47ff50319fa99967269bd0ba02347bd7c063c5270f8a5c30e637f5a62",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 12429
+        },
+        {
+          "filename": "2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-11.webm",
+          "r2_key": "jd-zoo/2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-11.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-11.webm&e=1786691682&s=b6099b570f763e888ddcc9e3c401d034c1e71c38dbe2543fb52cb755af09bb68",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 5421
+        }
+      ],
+      "media": [
+        {
+          "filename": "2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-media.png",
+          "r2_key": "jd-zoo/2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-media.png",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-media.png&e=1786691682&s=4784f937f3bf6fc34b0d8e8fcba3cdcfc552bdd4cf10dff68c20a0cba24ff2b4",
+          "kind": "image",
+          "media_mime": "image/png",
+          "media_bytes": 2316003
+        }
+      ],
+      "uploaded_at": "2026-07-15T07:14:56.753Z",
+      "statut": "envoye"
+    },
+    {
+      "id": "jd-zoo-2026-07-15-0852-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel",
+      "sujet": "Quand accompagner un proche à domicile devient épuisant : quelle place pour la médiation animale ?",
+      "categorie": "idee-article",
+      "categorie_label": "Idée d'article de blog",
+      "attachments": [
+        {
+          "filename": "2026-07-15-0852-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel.webm",
+          "r2_key": "jd-zoo/2026-07-15-0852-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0852-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel.webm&e=1786690359&s=b7dec3f84c6466930c71e10e5e002a9081be72e286991e306b7699cd8ce8be28",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 28361
+        }
+      ],
+      "media": [
+        {
+          "filename": "2026-07-15-0852-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-media.png",
+          "r2_key": "jd-zoo/2026-07-15-0852-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-media.png",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0852-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-media.png&e=1786690359&s=68bbc17ce4f1d8a40f00f80ea94193c75cd3d8f99534659c17792bd5720c5b64",
+          "kind": "image",
+          "media_mime": "image/png",
+          "media_bytes": 2658308
+        }
+      ],
+      "uploaded_at": "2026-07-15T06:52:42.727Z",
+      "statut": "envoye"
+    },
+    {
+      "id": "jd-zoo-2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel",
+      "sujet": "Quand accompagner un proche à domicile devient épuisant : quelle place pour la médiation animale ?",
+      "categorie": "idee-article",
+      "categorie_label": "Idée d'article de blog",
+      "attachments": [
+        {
+          "filename": "2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-1.webm",
+          "r2_key": "jd-zoo/2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-1.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-1.webm&e=1786689915&s=da1695d7cb30068e421770e024ee878bad2daf34825fa679edfa2bbecf35a135",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 30769
+        },
+        {
+          "filename": "2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-2.webm",
+          "r2_key": "jd-zoo/2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-2.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-2.webm&e=1786689915&s=2ee20fb38b019a6bb241d2f6bf171eee73664e14031916c49165b3fecb6804e3",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 22417
+        },
+        {
+          "filename": "2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-3.webm",
+          "r2_key": "jd-zoo/2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-3.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-3.webm&e=1786689915&s=a087f59047dc12659a90dc22e49d016a061c2c1ff9326c9b212b63c82ad71906",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 23475
+        },
+        {
+          "filename": "2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-4.webm",
+          "r2_key": "jd-zoo/2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-4.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-4.webm&e=1786689915&s=4d8de38edb924899815d1116a0b5a16ae21ea306ec0537d0aaa46f5717064994",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 19153
+        },
+        {
+          "filename": "2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-5.webm",
+          "r2_key": "jd-zoo/2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-5.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-5.webm&e=1786689915&s=9963f52db1baf88fa602b4df72f3cb83e9c2d591b7c094d8552337f9239bed02",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 20545
+        },
+        {
+          "filename": "2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-6.webm",
+          "r2_key": "jd-zoo/2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-6.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-6.webm&e=1786689915&s=4fd92dd72f42cdac195b7dc7c434e42e6867d9b6a419bb909cacf8abe9a1da35",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 28448
+        },
+        {
+          "filename": "2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-7.webm",
+          "r2_key": "jd-zoo/2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-7.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-7.webm&e=1786689915&s=7109d90ed933cc77287e316fb9dcde3a9992c8df4cf6a1ae04902d103a50d1fb",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 19198
+        },
+        {
+          "filename": "2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-8.webm",
+          "r2_key": "jd-zoo/2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-8.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-8.webm&e=1786689915&s=229d205ef37e2c8f15721b7c208948b9fdcfe1adeaff8be9ad1d984eda2284a8",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 11713
+        },
+        {
+          "filename": "2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-9.webm",
+          "r2_key": "jd-zoo/2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-9.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel-9.webm&e=1786689915&s=03a45e12b63bbc08a66743b959484ce1b78df3d6cf2587c38d077bee4646eb7b",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 13547
+        }
+      ],
+      "uploaded_at": "2026-07-15T06:45:24.751Z",
+      "statut": "envoye"
+    },
+    {
+      "id": "jd-zoo-2026-07-09-1419-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel",
+      "sujet": "Lapin, chien ou cochon d'Inde : comment je choisis l'animal selon la personne accompagnée",
+      "categorie": "idee-article",
+      "categorie_label": "Idée d'article de blog",
+      "attachments": [
+        {
+          "filename": "2026-07-09-1419-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-1.webm",
+          "r2_key": "jd-zoo/2026-07-09-1419-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-1.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-09-1419-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-1.webm&e=1786191583&s=b5f4aec0da1c0db1f2700a594e5ffdb3042f29a992661905d2afb6009fbf5a68",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 7657
+        },
+        {
+          "filename": "2026-07-09-1419-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-2.webm",
+          "r2_key": "jd-zoo/2026-07-09-1419-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-2.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-09-1419-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-2.webm&e=1786191583&s=2baffa841e6ae13edd2528a74460d161c94aa51d8fad27920909a5f2494735ff",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 20938
+        },
+        {
+          "filename": "2026-07-09-1419-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-3.webm",
+          "r2_key": "jd-zoo/2026-07-09-1419-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-3.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-09-1419-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-3.webm&e=1786191583&s=dfe6ce781977597e914a0d0717b277b73fa0ccfc794554fec8dc511226fd6cf4",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 11383
+        },
+        {
+          "filename": "2026-07-09-1419-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-4.webm",
+          "r2_key": "jd-zoo/2026-07-09-1419-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-4.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-09-1419-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-4.webm&e=1786191583&s=3c773b119e8430e7ea4a64177581b53e9d109145eced2fb5ffeb4794f73b3abf",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 21328
+        },
+        {
+          "filename": "2026-07-09-1419-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-5.webm",
+          "r2_key": "jd-zoo/2026-07-09-1419-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-5.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-09-1419-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-5.webm&e=1786191583&s=f3ef4906fbbb3c65b9cc55443d368e9ce24b391672e8faa5be3509980a0f58e7",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 24446
+        },
+        {
+          "filename": "2026-07-09-1419-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-6.webm",
+          "r2_key": "jd-zoo/2026-07-09-1419-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-6.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-09-1419-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-6.webm&e=1786191583&s=42366d7ae231d4d4ebdc693c67542fc7d29797db8ac4c7de17d88b03ca6391b8",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 6281
+        },
+        {
+          "filename": "2026-07-09-1419-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-7.webm",
+          "r2_key": "jd-zoo/2026-07-09-1419-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-7.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-09-1419-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-7.webm&e=1786191583&s=05d0fefdc422c8749bf50acde9b406057092c46d56545f932bac310ff2f4ab2d",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 14193
+        },
+        {
+          "filename": "2026-07-09-1419-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-8.webm",
+          "r2_key": "jd-zoo/2026-07-09-1419-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-8.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-09-1419-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-8.webm&e=1786191583&s=af50992893afb69dfe7cfa63fd92c3f77161a9b618e00d5e6d5a0012093c3019",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 4445
+        }
+      ],
+      "media": [
+        {
+          "filename": "2026-07-09-1419-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-media.png",
+          "r2_key": "jd-zoo/2026-07-09-1419-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-media.png",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-09-1419-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-media.png&e=1786191583&s=fa0855c013f5bd79520ca2a6caeed1c478030f96486ba05faa9915c8053b0f22",
+          "kind": "image",
+          "media_mime": "image/png",
+          "media_bytes": 2463127
+        }
+      ],
+      "uploaded_at": "2026-07-09T12:19:51.945Z",
+      "statut": "envoye"
+    },
+    {
+      "id": "jd-zoo-2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si",
+      "sujet": "Comment je sais qu'une séance a servi à quelque chose : les signes concrets de progrès",
+      "categorie": "idee-article",
+      "categorie_label": "Idée d'article de blog",
+      "attachments": [
+        {
+          "filename": "2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-1.webm",
+          "r2_key": "jd-zoo/2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-1.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-1.webm&e=1786190632&s=70a6deebc1297724899e86f2e3b5ebaed7162edba936cedef51ba19637ae6142",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 27578
+        },
+        {
+          "filename": "2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-2.webm",
+          "r2_key": "jd-zoo/2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-2.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-2.webm&e=1786190632&s=0df342bb808e6a39d01f4db8edfd53fd46aeffabd1fc968966d3ab576443e3b9",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 5363
+        },
+        {
+          "filename": "2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-3.webm",
+          "r2_key": "jd-zoo/2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-3.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-3.webm&e=1786190632&s=4de62497aa77af1ac75eb128c20ab2f7d4fb4718a2cff9c5a2e994007d60af22",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 11183
+        },
+        {
+          "filename": "2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-4.webm",
+          "r2_key": "jd-zoo/2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-4.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-4.webm&e=1786190632&s=76c79aca51da588890ffb917e879b8815b7b5f44251c9252424e297d8602a543",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 16141
+        }
+      ],
+      "media": [
+        {
+          "filename": "2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-media.png",
+          "r2_key": "jd-zoo/2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-media.png",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-media.png&e=1786190632&s=29c276695959f85ceb713db4da01e71ec1cad80a22a09ca24cdd9e40dad07f2b",
+          "kind": "image",
+          "media_mime": "image/png",
+          "media_bytes": 2401897
+        }
+      ],
+      "uploaded_at": "2026-07-09T12:03:57.297Z",
+      "statut": "envoye"
+    },
+    {
       "id": "jd-zoo-2026-06-29-1044-non-la-zootherapie-ne-remplace-pas-un-traitement-et-personne",
       "sujet": "Non, la zoothérapie ne remplace pas un traitement (et personne de sérieux ne le prétend)",
       "categorie": "idee-article",

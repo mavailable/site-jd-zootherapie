@@ -3,7 +3,7 @@ import type { CmsConfig } from '@marc/cms-engine/types';
 const cmsConfig: CmsConfig = {
   vocaux: {
     enabled: true,
-    hint: 'Enregistre une note vocale pour proposer un sujet d\'article, partager une expérience ou poser une question. Marc reçoit le vocal et le traite.',
+    hint: 'Enregistrez une note vocale pour proposer un sujet d\'article, partager une expérience ou poser une question. Marc reçoit le vocal et le traite.',
   },
 
   crm: {
@@ -110,6 +110,7 @@ const cmsConfig: CmsConfig = {
       label: 'Infos du site',
       description: 'Nom, téléphone, email, adresse, réseaux sociaux',
       path: 'src/content/site-info/index.json',
+      group: 'reglages',
       fields: {
         name: { type: 'text', label: 'Nom commercial' },
         alternateName: { type: 'text', label: 'Nom alternatif' },
@@ -145,6 +146,7 @@ const cmsConfig: CmsConfig = {
       label: 'Hero',
       description: "Titre, sous-titre et boutons d'appel à l'action",
       path: 'src/content/hero/index.json',
+      group: 'accueil',
       fields: {
         h1: { type: 'text', label: 'Titre H1' },
         subtitle: { type: 'text', label: 'Sous-titre', multiline: true },
@@ -160,6 +162,7 @@ const cmsConfig: CmsConfig = {
       label: 'À propos',
       description: 'Présentation de Jennifer et des animaux',
       path: 'src/content/about/index.json',
+      group: 'a-propos',
       fields: {
         founderName: { type: 'text', label: 'Nom' },
         founderTitle: { type: 'text', label: 'Titre / fonction' },
@@ -190,6 +193,7 @@ const cmsConfig: CmsConfig = {
       label: 'Contact',
       description: 'Titre, sous-titre, bouton formulaire',
       path: 'src/content/contact/index.json',
+      group: 'contact',
       fields: {
         title: { type: 'text', label: 'Titre' },
         subtitle: { type: 'text', label: 'Sous-titre', multiline: true },
@@ -202,6 +206,7 @@ const cmsConfig: CmsConfig = {
       label: 'Page Zoothérapie',
       description: 'Contenu de la page La zoothérapie',
       path: 'src/content/page-zootherapie/index.json',
+      group: 'pages',
       fields: {
         heroH1: { type: 'text', label: 'Titre hero' },
         heroSubtitle: { type: 'text', label: 'Sous-titre hero', multiline: true },
@@ -225,6 +230,7 @@ const cmsConfig: CmsConfig = {
       label: 'Page Ateliers',
       description: 'Contenu de la page Les ateliers',
       path: 'src/content/page-ateliers/index.json',
+      group: 'pages',
       fields: {
         heroH1: { type: 'text', label: 'Titre hero' },
         heroSubtitle: { type: 'text', label: 'Sous-titre hero', multiline: true },
@@ -240,6 +246,7 @@ const cmsConfig: CmsConfig = {
       label: 'Page Tarifs',
       description: 'Contenu de la page Tarifs',
       path: 'src/content/page-tarifs/index.json',
+      group: 'pages',
       fields: {
         heroH1: { type: 'text', label: 'Titre hero' },
         heroSubtitle: { type: 'text', label: 'Sous-titre hero', multiline: true },
@@ -252,6 +259,7 @@ const cmsConfig: CmsConfig = {
       label: 'Page Témoignages',
       description: 'Contenu de la page Témoignages',
       path: 'src/content/page-temoignages/index.json',
+      group: 'pages',
       fields: {
         heroH1: { type: 'text', label: 'Titre hero' },
         heroSubtitle: { type: 'text', label: 'Sous-titre hero', multiline: true },
@@ -268,6 +276,7 @@ const cmsConfig: CmsConfig = {
       label: 'Page À propos',
       description: 'Contenu de la page Mon parcours',
       path: 'src/content/page-a-propos/index.json',
+      group: 'pages',
       fields: {
         heroH1: { type: 'text', label: 'Titre hero' },
         heroSubtitle: { type: 'text', label: 'Sous-titre hero', multiline: true },
@@ -279,21 +288,45 @@ const cmsConfig: CmsConfig = {
 
     gallery: {
       label: 'Galerie photos',
-      description: 'Photos et légendes de la galerie',
+      description: 'Photos, légendes et textes de la galerie',
       path: 'src/content/gallery/index.json',
+      group: 'accueil',
       fields: {
         sectionLabel: { type: 'text', label: 'Label section' },
         heading: { type: 'text', label: 'Titre' },
         description: { type: 'text', label: 'Description', multiline: true },
+        // Photos éditables (audit UX 2026-07-13 : la carte promettait « Photos et
+        // légendes » mais n'exposait que les textes). Forme plate conservée
+        // (src/alt/caption/cols) : c'est celle que lit Gallery.astro — le champ
+        // `gallery` du moteur (rangées multilingues) serait incompatible sans
+        // migrer le composant du site.
+        photos: {
+          type: 'array',
+          label: 'Photos',
+          itemLabel: 'caption',
+          item: {
+            type: 'object',
+            label: 'Photo',
+            fields: {
+              src: { type: 'image', label: 'Photo' },
+              alt: { type: 'text', label: 'Description (accessibilité)' },
+              caption: { type: 'text', label: 'Légende' },
+              cols: { type: 'number', label: 'Largeur (1 ou 2 colonnes)' },
+            },
+          },
+        },
         quote: { type: 'text', label: 'Citation', multiline: true },
         quoteAttribution: { type: 'text', label: 'Attribution citation' },
       },
     },
 
     seo: {
-      label: 'SEO / Referencement',
-      description: 'Nom du site et image de partage reseaux sociaux',
+      // Label distinct de l'outil « Référencement » (SeoEditor) — l'audit UX
+      // 2026-07-13 relevait deux cartes quasi homonymes côte à côte.
+      label: 'Nom du site et partage',
+      description: "Nom dans l'onglet du navigateur et image de partage par défaut",
       path: 'src/content/seo/index.json',
+      group: 'reglages',
       fields: {
         global: {
           type: 'object',
@@ -311,7 +344,7 @@ const cmsConfig: CmsConfig = {
       label: 'Historique GBP',
       description: "Historique des posts Google Business Profile (surface d'édition normale : onglet Posts GBP du module marketing)",
       path: 'src/content/gbp-posts/index.json',
-      dashboardPriority: 99, // pas de flag hidden dans le moteur — relégué en bas du groupe reglages
+      hidden: true, // singleton technique (v0.19) : invisible sur le dashboard, route directe conservée
       fields: {
         history: {
           type: 'array',
