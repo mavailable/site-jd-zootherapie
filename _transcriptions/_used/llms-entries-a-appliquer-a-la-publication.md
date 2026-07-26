@@ -71,6 +71,8 @@ présence qui est payée, mais tout ce qui l'entoure.
 
 ## Article 2 : Non, la zoothérapie ne remplace pas un traitement
 
+> APPLIQUÉ le 2026-07-26 (article déjà live, publié via /admin). Entrées ajoutées à `public/llms.txt` (## Blog) et `public/llms-full.txt` — la section full a été reformatée au format réel du fichier (`## Titre` + prose, sans lignes `URL :`/`Catégorie :`).
+
 Fichier : `src/content/blog/zootherapie-ne-remplace-pas-un-traitement.json`
 
 ### Bloc pour `public/llms.txt` (section `## Blog`)

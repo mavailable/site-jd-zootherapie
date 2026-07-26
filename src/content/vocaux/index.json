@@ -401,7 +401,11 @@
         }
       ],
       "uploaded_at": "2026-06-29T08:44:25.075Z",
-      "statut": "envoye"
+      "statut": "traite",
+      "resolution": {
+        "note": "Article publié : /blog/zootherapie-ne-remplace-pas-un-traitement",
+        "resolved_at": "2026-07-26T07:21:24.242Z"
+      }
     },
     {
       "id": "jd-zoo-2026-06-29-1001-ce-qui-se-passe-entre-deux-seances-pourquoi-un-suivi-ne-s-ar",
@@ -464,7 +468,11 @@
         }
       ],
       "uploaded_at": "2026-06-29T08:02:10.577Z",
-      "statut": "envoye"
+      "statut": "traite",
+      "resolution": {
+        "note": "Article publié : /blog/ce-qui-se-passe-entre-deux-seances",
+        "resolved_at": "2026-07-26T07:21:24.243Z"
+      }
     },
     {
       "id": "jd-zoo-2026-06-29-0951-ce-qui-se-passe-entre-deux-seances-pourquoi-un-suivi-ne-s-ar",
@@ -488,7 +496,11 @@
         }
       ],
       "uploaded_at": "2026-06-29T07:51:56.363Z",
-      "statut": "envoye"
+      "statut": "traite",
+      "resolution": {
+        "note": "Article publié : /blog/ce-qui-se-passe-entre-deux-seances",
+        "resolved_at": "2026-07-26T07:21:24.243Z"
+      }
     },
     {
       "id": "jd-zoo-2026-06-24-1156-post-semaine-pro-linkedin",
