@@ -19,6 +19,8 @@ descriptions en ligne, en pointant vers des URLs mortes, ce qui dégraderait l'i
 
 ## Article 1 : Ce qui se passe entre deux séances
 
+> APPLIQUÉ le 2026-07-26 (article publié, `draft: false`, `date: 2026-07-26`). Entrées ajoutées à `public/llms.txt` (## Blog) et `public/llms-full.txt` — la section full a été reformatée au format réel du fichier (`## Titre` + prose, sans lignes `URL :`/`Catégorie :`).
+
 Fichier : `src/content/blog/ce-qui-se-passe-entre-deux-seances.json`
 
 ### Bloc pour `public/llms.txt` (section `## Blog`)

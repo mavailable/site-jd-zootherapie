@@ -95,7 +95,11 @@
         }
       ],
       "uploaded_at": "2026-07-15T07:14:56.753Z",
-      "statut": "envoye"
+      "statut": "traite",
+      "resolution": {
+        "note": "Enregistrement inaudible, à redicter.",
+        "resolved_at": "2026-07-26T06:58:44.851Z"
+      }
     },
     {
       "id": "jd-zoo-2026-07-15-0852-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel",
@@ -122,7 +126,11 @@
         }
       ],
       "uploaded_at": "2026-07-15T06:52:42.727Z",
-      "statut": "envoye"
+      "statut": "traite",
+      "resolution": {
+        "note": "Enregistrement inaudible, à redicter.",
+        "resolved_at": "2026-07-26T06:58:44.851Z"
+      }
     },
     {
       "id": "jd-zoo-2026-07-15-0845-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel",
@@ -195,7 +203,11 @@
         }
       ],
       "uploaded_at": "2026-07-15T06:45:24.751Z",
-      "statut": "envoye"
+      "statut": "traite",
+      "resolution": {
+        "note": "Enregistrement inaudible, à redicter.",
+        "resolved_at": "2026-07-26T06:58:44.851Z"
+      }
     },
     {
       "id": "jd-zoo-2026-07-09-1419-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel",
@@ -271,7 +283,11 @@
         }
       ],
       "uploaded_at": "2026-07-09T12:19:51.945Z",
-      "statut": "envoye"
+      "statut": "traite",
+      "resolution": {
+        "note": "Enregistrement inaudible, à redicter.",
+        "resolved_at": "2026-07-26T06:58:44.851Z"
+      }
     },
     {
       "id": "jd-zoo-2026-07-09-1403-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si",
@@ -319,7 +335,11 @@
         }
       ],
       "uploaded_at": "2026-07-09T12:03:57.297Z",
-      "statut": "envoye"
+      "statut": "traite",
+      "resolution": {
+        "note": "Enregistrement inaudible, à redicter.",
+        "resolved_at": "2026-07-26T06:58:44.850Z"
+      }
     },
     {
       "id": "jd-zoo-2026-06-29-1044-non-la-zootherapie-ne-remplace-pas-un-traitement-et-personne",
