@@ -166,6 +166,36 @@
       "title": "test",
       "source": "idée client",
       "status": "archive"
+    },
+    {
+      "title": "Comment Tips est devenu chien de médiation : la sélection et la formation avant la première séance",
+      "notes": "Expliquer le parcours qui transforme un chien en partenaire de séance rassure les familles et les équipes sur le sérieux et la rigueur du travail, loin de l'image du simple animal de compagnie.",
+      "status": "a-faire",
+      "source": "ai"
+    },
+    {
+      "title": "Séance individuelle ou en petit groupe : comment je choisis le format en EHPAD",
+      "notes": "Détailler les critères qui font pencher vers un tête-à-tête ou une séance collective aide les équipes à mieux comprendre l'organisation proposée pour chaque résident.",
+      "status": "a-faire",
+      "source": "ai"
+    },
+    {
+      "title": "Ce que les soignants vivent pendant une séance, pas seulement les résidents",
+      "notes": "Montrer l'effet des séances sur le personnel présent, dans son quotidien de travail, donne un argument concret et vécu aux directions qui hésitent encore.",
+      "status": "a-faire",
+      "source": "ai"
+    },
+    {
+      "title": "Autisme et médiation animale : ce que j'ajuste séance après séance",
+      "notes": "Préciser les adaptations concrètes pour un enfant autiste, au-delà du cadre général IME/ITEP déjà traité, aide les parents à savoir à quoi s'attendre réellement.",
+      "status": "a-faire",
+      "source": "ai"
+    },
+    {
+      "title": "La première rencontre avant toute séance : ce que j'observe chez la personne accompagnée",
+      "notes": "Décrire ce moment initial, avant même que l'animal n'intervienne, montre aux familles et établissements que rien n'est improvisé et que chaque suivi part d'une vraie observation.",
+      "status": "a-faire",
+      "source": "ai"
     }
   ]
 }
