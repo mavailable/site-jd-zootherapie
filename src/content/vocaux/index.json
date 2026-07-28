@@ -1,6 +1,23 @@
 {
   "entries": [
     {
+      "id": "jd-zoo-2026-07-28-1252-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel",
+      "sujet": "Lapin, chien ou cochon d'Inde : comment je choisis l'animal selon la personne accompagnée",
+      "categorie": "idee-article",
+      "categorie_label": "Idée d'article de blog",
+      "attachments": [
+        {
+          "filename": "2026-07-28-1252-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel.webm",
+          "r2_key": "jd-zoo/2026-07-28-1252-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-28-1252-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel.webm&e=1787827976&s=55ef17c15e93fc0426402ec99ac91447d2d1587d3ef41fb9e123dc1fbcf08cda",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 1335
+        }
+      ],
+      "uploaded_at": "2026-07-28T10:52:58.086Z",
+      "statut": "envoye"
+    },
+    {
       "id": "jd-zoo-2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr",
       "sujet": "Médiation animale et école : un projet intergénérationnel entre une classe et un EHPAD",
       "categorie": "idee-article",
