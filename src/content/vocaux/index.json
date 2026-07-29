@@ -1,6 +1,96 @@
 {
   "entries": [
     {
+      "id": "jd-zoo-2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel",
+      "sujet": "Lapin, chien ou cochon d'Inde : comment je choisis l'animal selon la personne accompagnée",
+      "categorie": "idee-article",
+      "categorie_label": "Idée d'article de blog",
+      "attachments": [
+        {
+          "filename": "2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-1.webm",
+          "r2_key": "jd-zoo/2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-1.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-1.webm&e=1787927255&s=18125d4f0c2a023d6a92294621a07509c5b7f868c1f0c71e188015b1e9318957",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 603963
+        },
+        {
+          "filename": "2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-2.webm",
+          "r2_key": "jd-zoo/2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-2.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-2.webm&e=1787927255&s=52d36fa6a9f97c92d6c1bd8b4d05d6ac9d1f6bd659cd86d3096fd29085bf1631",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 424661
+        },
+        {
+          "filename": "2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-3.webm",
+          "r2_key": "jd-zoo/2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-3.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-3.webm&e=1787927255&s=51fecb5c86f9f23c27c8525b4860402424ef04b318f48aaa65eab05b33df9e5a",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 853041
+        },
+        {
+          "filename": "2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-4.webm",
+          "r2_key": "jd-zoo/2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-4.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-4.webm&e=1787927255&s=881894e31f259b52518eeefd6485d59d586ed5a016e4d047cf8f3637c88a3112",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 553571
+        },
+        {
+          "filename": "2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-5.webm",
+          "r2_key": "jd-zoo/2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-5.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-5.webm&e=1787927255&s=0a75cb1101530c92800d86a7d4d9cd5b57fbacd2a8041564750061531c8c8c66",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 754189
+        },
+        {
+          "filename": "2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-6.webm",
+          "r2_key": "jd-zoo/2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-6.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-6.webm&e=1787927255&s=79521893724f13e6bdf8fdb06dd48f5ba212a92beaaa6756e1cac0ed9d30593b",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 288973
+        },
+        {
+          "filename": "2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-7.webm",
+          "r2_key": "jd-zoo/2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-7.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-7.webm&e=1787927255&s=338429b86ecb91d46c3b489b9fdc64157619e3a687b1249995b35af1106dbec0",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 211437
+        },
+        {
+          "filename": "2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-8.webm",
+          "r2_key": "jd-zoo/2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-8.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-8.webm&e=1787927255&s=d59a84c5ada73b2f5574beb5a6466c1c59c69dd0519a0581522efb6f265dc6a5",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 225975
+        },
+        {
+          "filename": "2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-9.webm",
+          "r2_key": "jd-zoo/2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-9.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-9.webm&e=1787927255&s=6abff8ce7ef2ec51e1c96c49fb864c01ea7fc485bd0a19e9cba54533fa640f9f",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 705729
+        },
+        {
+          "filename": "2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-10.webm",
+          "r2_key": "jd-zoo/2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-10.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-10.webm&e=1787927255&s=2fba5d79f891b1485df78cc2465b837da9e2d6ac873417c7a2a8de87db6a8a6a",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 456651
+        }
+      ],
+      "media": [
+        {
+          "filename": "2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-media.jpg",
+          "r2_key": "jd-zoo/2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-media.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-07-29-1627-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel-media.jpg&e=1787927255&s=946bf00b55344504ca94a274b06155afc26d74e2ccaba8592c373f6b1d6b54e2",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 386845
+        }
+      ],
+      "uploaded_at": "2026-07-29T14:27:52.824Z",
+      "statut": "envoye"
+    },
+    {
       "id": "jd-zoo-2026-07-28-1252-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel",
       "sujet": "Lapin, chien ou cochon d'Inde : comment je choisis l'animal selon la personne accompagnée",
       "categorie": "idee-article",
