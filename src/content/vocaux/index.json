@@ -115,7 +115,11 @@
         }
       ],
       "uploaded_at": "2026-07-28T10:52:58.086Z",
-      "statut": "envoye"
+      "statut": "traite",
+      "resolution": {
+        "note": "Enregistrement inaudible, remplacé par la redictée du 29/07.",
+        "resolved_at": "2026-08-03T12:27:47.739Z"
+      }
     },
     {
       "id": "jd-zoo-2026-07-15-0914-mediation-animale-et-ecole-un-projet-intergenerationnel-entr",
@@ -627,7 +631,11 @@
       "note": "Coucou de  peut u me dire ce que tu en pense de deux pourrais tu me générer un jolie design ? stp \r\n☀️ L’été est souvent synonyme de vacances.\r\n\r\nMais pour certaines personnes, c’est aussi une période où les repères disparaissent.\r\n\r\nStructures fermées, professionnels en congés, activités suspendues, proches moins disponibles…\r\n\r\nPour une personne âgée, un aidant familial, un enfant à besoins spécifiques ou une personne fragilisée par la maladie, cette rupture peut vite entraîner un repli, une perte de stimulation ou un sentiment d’isolement.\r\n\r\nC’est pourquoi je propose cet été un accompagnement accompagnement spécial été \r\n🐾 Un temps régulier pour maintenir du lien.\r\n🐾 Un espace pour stimuler en douceur les capacités cognitives, sensorielles et relationnelles.\r\n🐾 Un moment de répit, de plaisir et de partage autour de l’animal.\r\n🐾 Un accompagnement adapté au rythme et aux besoins de chaque personne.\r\nPas besoin de vous déplacer nous venons chez vous \r\n\r\nParce que prendre soin de soi ne devrait pas s’arrêter pendant les vacances.\r\n\r\n📍 Interventions à domicile en Moselle et Meurthe-et-Moselle.\r\n\r\n👉 Pour en savoir plus ou échanger sur votre situation, rendez-vous sur mon site :\r\n\r\n🌐 jdzootherapeute.fr\r\n\r\nLes places pour l’été sont limitées.",
       "attachments": [],
       "uploaded_at": "2026-06-24T09:56:01.913Z",
-      "statut": "envoye"
+      "statut": "traite",
+      "resolution": {
+        "note": "Déjà livré le 26/06 (2 posts été + visuels), voir onglet Marketing.",
+        "resolved_at": "2026-08-03T12:27:47.739Z"
+      }
     },
     {
       "id": "jd-zoo-2026-06-22-1021-pourquoi-je-refuse-certaines-demandes-et-ce-que-ca-dit-du-me",
