@@ -98,7 +98,11 @@
         }
       ],
       "uploaded_at": "2026-07-29T14:27:52.824Z",
-      "statut": "envoye"
+      "statut": "traite",
+      "resolution": {
+        "note": "Article publié : /blog/comment-je-choisis-l-animal-pour-une-seance",
+        "resolved_at": "2026-08-05T09:20:57.042Z"
+      }
     },
     {
       "id": "jd-zoo-2026-07-28-1252-lapin-chien-ou-cochon-d-inde-comment-je-choisis-l-animal-sel",
