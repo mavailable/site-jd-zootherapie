@@ -1,0 +1,827 @@
+{
+  "client_slug": "jd-zootherapeute",
+  "trimester": "2026-Q3",
+  "trimester_label": "Août-Novembre 2026 (10 août → 8 novembre)",
+  "generated_at": "2026-08-07T00:00:00",
+  "generator_version": "mkt-social-plan/1.0",
+  "em_dash_policy": "autorisé sur contenu social client (non-prospect)",
+  "context_snapshot": {
+    "sources_used": [
+      "brief.md (229 lignes, brief Web Factory)",
+      "marketing/rdv1-debrief.md (debrief RDV1 figé)",
+      "marketing/kickoff-state.json (v3 structure mkt-01)",
+      "marketing/social-facebook.json (140 posts, 14 mois)",
+      "marketing/social-linkedin.json (21 posts, 10 mois)",
+      "marketing/events.yml (calendrier FR + saisonnalité)",
+      "site/public/marketing-data/plan-2026-Q2.json (exécution réelle Q2 : 16 publiés / 6 passés / 19 restés en brouillon)",
+      "site/src/content/blog/ (22 articles publiés, dont 3 depuis le 23 juillet)",
+      "site/src/content/landing-pages/ (5 LP prod : Alzheimer domicile, enfant émotions, stress/burn-out, structures médico-sociales, Metz-Nancy)"
+    ],
+    "reviews_missing": true,
+    "reviews_note": "Toujours aucun reviews-*.json pour Jen (GBP 5/5 avec 9 avis au RDV1, jamais extrait). wf-reviews-gbp reste à lancer, aucun verbatim client n'a donc pu être cité dans ce plan.",
+    "cadence_inferred": {
+      "facebook": "1 post/sem planifié en Q2, 11 publiés sur 28 planifiés",
+      "linkedin": "5 publiés sur 13 planifiés en Q2"
+    },
+    "cadence_proposed": {
+      "facebook": "1/sem",
+      "linkedin": "1/sem"
+    },
+    "cadence_note": "Down-shift assumé par rapport au Q2 (39 posts planifiés, 2 FB/sem + 1 LI/sem). Taux d'exécution réel Q2 : 39% publiés (16/41), 15% passés, 46% jamais traités. Q3 revient au plancher du RDV1 (1 FB + 1 LI par semaine, 26 posts) pour viser un taux d'exécution proche de 100% plutôt qu'un volume théorique.",
+    "usp_synthesis": "Accompagnement à objectifs concrets et mesurables, animaux collaborateurs actifs (cartes émotions, parcours, balades dirigées), pas soin pathologique. Double compétence : plus de 20 ans aide-soignante diplômée + certifiée IFZ, membre du Syndicat Français des Zoothérapeutes.",
+    "tone_adjectives": [
+      "chaleureux",
+      "pédagogique",
+      "engagé professionnellement"
+    ],
+    "offres_a_pousser": [
+      "Appel découverte 30 min (cal.eu/jdzootherapie/30min)",
+      "Cycles structures 8-12 séances (EHPAD, IME, ITEP, écoles, bibliothèques)",
+      "Séances à domicile (Alzheimer, perte d'autonomie, rayon 15 km autour de Verny)",
+      "Atelier aidant-aidé (référence Maison des Aidants Nancy)",
+      "Enfance TDAH/TSA, gestion des émotions"
+    ],
+    "note": "Plan démarré à la semaine du 10 août 2026 : la fenêtre calendaire Q3 (juillet) était déjà passée, et le tab Marketing du /admin recale sa semaine courante sur le premier post à venir. Aucune date antérieure au 2026-08-07 dans ce plan. Réseaux actifs = facebook + linkedin (pas de bloc social explicite dans cms.config.ts, dérivation legacy ; Instagram n'est qu'un repost automatique de Facebook côté Jen)."
+  },
+  "themes": [
+    {
+      "week": 1,
+      "start_date": "2026-08-10",
+      "theme": "Ce que je prépare quand il n'y a pas de séance",
+      "angle": "pédagogique"
+    },
+    {
+      "week": 2,
+      "start_date": "2026-08-17",
+      "theme": "Une équipe animale, quatre façons de travailler (Tips, Uxo, Tap-Tap, le cochon d'Inde)",
+      "angle": "preuve"
+    },
+    {
+      "week": 3,
+      "start_date": "2026-08-24",
+      "theme": "Créneaux de septembre : ouvrir les plannings familles et structures",
+      "angle": "annonce"
+    },
+    {
+      "week": 4,
+      "start_date": "2026-08-31",
+      "theme": "Rentrée : reprendre le rythme, à l'école comme en EHPAD",
+      "angle": "inspiration"
+    },
+    {
+      "week": 5,
+      "start_date": "2026-09-07",
+      "theme": "Comment je sais qu'une séance a servi : les signes concrets de progrès",
+      "angle": "pédagogique"
+    },
+    {
+      "week": 6,
+      "start_date": "2026-09-14",
+      "theme": "Enfance TDAH et TSA : gérer les émotions par le faire, pas par le dire",
+      "angle": "preuve"
+    },
+    {
+      "week": 7,
+      "start_date": "2026-09-21",
+      "theme": "21 septembre, Journée mondiale Alzheimer : récupérer du temps de qualité",
+      "angle": "inspiration"
+    },
+    {
+      "week": 8,
+      "start_date": "2026-09-28",
+      "theme": "1er octobre, Journée internationale des personnes âgées : 45 minutes en EHPAD",
+      "angle": "preuve"
+    },
+    {
+      "week": 9,
+      "start_date": "2026-10-05",
+      "theme": "6 octobre, Journée nationale des aidants : l'atelier aidant-aidé",
+      "angle": "offre"
+    },
+    {
+      "week": 10,
+      "start_date": "2026-10-12",
+      "theme": "Ce que la médiation animale ne fait pas (et pourquoi le dire)",
+      "angle": "pédagogique"
+    },
+    {
+      "week": 11,
+      "start_date": "2026-10-19",
+      "theme": "Le droit de dire non : le consentement de l'animal en séance",
+      "angle": "inspiration"
+    },
+    {
+      "week": 12,
+      "start_date": "2026-10-26",
+      "theme": "La médiation animale à domicile : pour ceux qui ne peuvent plus sortir",
+      "angle": "offre"
+    },
+    {
+      "week": 13,
+      "start_date": "2026-11-02",
+      "theme": "Bilan de trimestre : ce que je regarde à la fin d'un cycle",
+      "angle": "preuve"
+    }
+  ],
+  "shooting_sessions": [
+    {
+      "id": "session-1",
+      "suggested_date": "semaine du 10 août (S1)",
+      "shots_needed": [
+        "Jen en train de fabriquer un support pédagogique sur sa table de travail (cartes, feutres, plastifieuse), lumière naturelle (S1 FB)",
+        "Plan large du poste de travail : fiches d'observation, jeux faits main, sans visage (S1 LI, optionnel)",
+        "Tips et Uxo côte à côte, plan d'ensemble (S2 FB)",
+        "Tap-Tap et le cochon d'Inde, plans rapprochés (S2 FB, visuels complémentaires)"
+      ],
+      "posts_covered": [
+        "2026-Q3-w01-fb",
+        "2026-Q3-w01-li",
+        "2026-Q3-w02-fb",
+        "2026-Q3-w02-li"
+      ]
+    },
+    {
+      "id": "session-2",
+      "suggested_date": "semaine du 31 août (S4)",
+      "shots_needed": [
+        "Ambiance rentrée : Jen et un animal en extérieur, lumière de septembre, feuilles (S4 FB)",
+        "Matériel de séance enfance posé à plat : cartes émotions, parcours, jeu, avec un chien à côté, aucun visage d'enfant (S6 FB)",
+        "Portrait professionnel de Jen, buste, fond neutre (réserve LinkedIn)"
+      ],
+      "posts_covered": [
+        "2026-Q3-w04-fb",
+        "2026-Q3-w06-fb"
+      ]
+    },
+    {
+      "id": "session-3",
+      "suggested_date": "semaine du 21 septembre (S7), en séance",
+      "shots_needed": [
+        "Main âgée posée sur le dos de Tips ou de Tap-Tap, aucun visage identifiable (S7 FB)",
+        "Temps d'accueil en groupe (le « sas ») : animal au premier plan, résidents de dos ou hors cadre (S8 FB)",
+        "Détail d'une fiche d'observation anonymisée (S5 LI, optionnel)"
+      ],
+      "posts_covered": [
+        "2026-Q3-w07-fb",
+        "2026-Q3-w08-fb",
+        "2026-Q3-w05-li"
+      ]
+    },
+    {
+      "id": "session-4",
+      "suggested_date": "semaine du 19 octobre (S11)",
+      "shots_needed": [
+        "Tips au repos, couché, détourné ou près d'une porte, pour illustrer le droit de retrait (S11 FB)",
+        "Jen avec les trois animaux, ambiance automne, extérieur (S13 FB)"
+      ],
+      "posts_covered": [
+        "2026-Q3-w11-fb",
+        "2026-Q3-w13-fb"
+      ]
+    }
+  ],
+  "posts": [
+    {
+      "id": "2026-Q3-w01-fb",
+      "network": "facebook",
+      "week": 1,
+      "theme_ref": 1,
+      "scheduled_date": "2026-08-11",
+      "scheduled_time_hint": "10:00",
+      "format": "photo-temoignage",
+      "visual_type": "brut",
+      "visual_brief": "Photo brute de Jen en train de fabriquer un support pédagogique sur sa table de travail (cartes, feutres, plastifieuse), lumière naturelle, ratio 4:5",
+      "visual_generated": null,
+      "shooting_session_ref": "session-1",
+      "text": "Août, c'est souvent la période où mon agenda respire un peu. Et c'est là qu'on me dit : « tu es en vacances, alors ? »\n\nPas tout à fait 🙂\n\nUne séance de médiation animale ne commence pas quand j'arrive chez vous ou dans votre structure, et elle ne finit pas quand je repars. Voilà à quoi ressemblent mes semaines calmes.\n\n🖊️ Je conçois mes supports. Mes jeux, mes parcours, mes fiches d'observation, mon matériel : je fabrique presque tout moi-même, parce que chaque outil répond à un objectif précis. Il n'y a pas de catalogue d'activités chez moi.\n\n🐾 Je continue le travail avec Tips, Uxo et Tap-Tap. Nouveaux exercices, nouveaux environnements, nouvelles situations. L'idée, c'est qu'ils arrivent en séance confiants et jamais surpris.\n\n📋 Je relis mes observations de la saison écoulée et je prépare les progressions de la rentrée, structure par structure, famille par famille.\n\nC'est du travail invisible. C'est aussi lui qui fait la qualité d'une séance.\n\nEt vous, vous imaginiez quoi derrière une intervention ? 🙂",
+      "hashtags": [
+        "#médiationanimale",
+        "#zoothérapie",
+        "#moselle"
+      ],
+      "cta": "Racontez-moi en commentaire, je réponds à tout le monde",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q3-w01-li",
+      "network": "linkedin",
+      "week": 1,
+      "theme_ref": 1,
+      "scheduled_date": "2026-08-12",
+      "scheduled_time_hint": "09:00",
+      "format": "texte-long",
+      "visual_type": "stock",
+      "visual_brief": "Pas de visuel obligatoire. Si visuel : photo sobre du poste de travail (fiches d'observation, supports faits main), sans visage",
+      "visual_generated": null,
+      "shooting_session_ref": null,
+      "text": "On me demande souvent combien de temps dure une séance de médiation animale. La bonne réponse n'est pas 45 minutes.\n\nUne intervention, c'est trois temps que la plupart des gens ne voient jamais.\n\n1. La conception. Je n'ai pas de catalogue d'activités dans lequel je viendrais piocher. Chaque atelier est construit à partir des objectifs définis avec l'équipe ou la famille, des capacités réelles des personnes accompagnées, et de ce que j'ai observé à la séance précédente. Mes supports, je les fabrique.\n\n2. La préparation des animaux. Tips, mon finnois de Laponie, Uxo, mon berger américain miniature, et Tap-Tap, mon lapin bélier, sont en apprentissage continu. Je ne les place jamais devant une situation qu'ils ne connaissent pas. C'est une question d'éthique, et c'est aussi une condition de sécurité pour les personnes en face.\n\n3. La traçabilité. Fiches d'observation, retour à l'équipe, ajustement des objectifs pour la suite du cycle.\n\nPourquoi j'insiste là-dessus auprès des structures : quand vous comparez deux propositions de médiation animale, vous ne comparez pas deux heures de présence. Vous comparez deux niveaux de préparation. Et ça se voit dans ce qu'on obtient sur un cycle.\n\nAide-soignante diplômée pendant plus de vingt ans avant de me former à l'IFZ, j'ai gardé cette exigence de méthode : objectifs écrits, observations tracées, transmission à l'équipe.",
+      "hashtags": [
+        "#MédiationAnimale",
+        "#MédicoSocial",
+        "#EHPAD",
+        "#Professionnalisme"
+      ],
+      "cta": "Vous préparez vos projets de rentrée ? Écrivez-moi en message privé, on regarde ensemble ce qui est réalisable.",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q3-w02-fb",
+      "network": "facebook",
+      "week": 2,
+      "theme_ref": 2,
+      "scheduled_date": "2026-08-18",
+      "scheduled_time_hint": "10:00",
+      "format": "photo-temoignage",
+      "visual_type": "brut",
+      "visual_brief": "Photo brute de l'équipe animale : Tips et Uxo côte à côte, Tap-Tap, et le cochon d'Inde arrivé récemment, extérieur ou intérieur lumineux, ratio 1:1",
+      "visual_generated": null,
+      "shooting_session_ref": "session-1",
+      "text": "« Vous prenez le plus câlin ? »\n\nNon 🙂 Choisir l'animal d'une séance, ce n'est pas choisir le plus doux ou le plus mignon. Ça part de la personne et de l'objectif.\n\n🐕 Tips, mon finnois de Laponie, est calme et très proche de l'humain. Il rassure. C'est souvent lui que je présente lors d'une première rencontre, parce qu'il la facilite vraiment. Il adore la balle, ce qui ouvre tout un travail sur l'attention et le mouvement.\n\n🐕‍🦺 Uxo, mon berger américain miniature, est plus prudent au moment de la rencontre. Il observe avant d'entrer en interaction. Cette prudence est une ressource : avec lui, on travaille la distance, la confiance, le consentement.\n\n🐰 Tap-Tap, mon lapin bélier, ouvre encore autre chose. Le calme, le toucher, le sensoriel. Et parfois la parole, quand elle ne vient plus.\n\n🐹 Et mon cochon d'Inde, arrivé plus récemment dans l'équipe. Sensible et délicat, il a besoin d'être rassuré. Ses déplacements, sa façon de manger, ses petites vocalises éveillent la curiosité. Il se manipule avec beaucoup de douceur, et c'est justement ça qu'on travaille.\n\nMême espèce, deux chiens, et déjà deux expériences différentes. C'est pour ça que je ne fige jamais un binôme une fois pour toutes.\n\nAutre chose qu'on ne devine pas : le contact physique n'est pas obligatoire. Observer l'animal, préparer son matériel, écouter ses bruits, repérer ses signaux d'apaisement, tout ça fait partie de la séance. Pour certaines personnes, c'est même l'entrée la plus sûre.\n\nJ'ai écrit un article complet sur ce choix : jdzootherapeute.fr/blog/comment-je-choisis-l-animal-pour-une-seance",
+      "hashtags": [
+        "#médiationanimale",
+        "#zoothérapie",
+        "#chienmédiateur"
+      ],
+      "cta": "L'article est en ligne, dites-moi ce que vous en pensez",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q3-w02-li",
+      "network": "linkedin",
+      "week": 2,
+      "theme_ref": 2,
+      "scheduled_date": "2026-08-19",
+      "scheduled_time_hint": "09:00",
+      "format": "texte-long",
+      "visual_type": "stock",
+      "visual_brief": "Pas de visuel obligatoire. Si visuel : photo des deux chiens, cadrage sobre, pas de personne accompagnée",
+      "visual_generated": null,
+      "shooting_session_ref": null,
+      "text": "Un animal parfait dans l'absolu, ça n'existe pas.\n\nC'est la phrase qui surprend le plus les équipes quand je présente ma pratique. On imagine que le zoothérapeute arrive avec « le bon chien ». En réalité, le choix se construit à partir de quatre éléments qui se croisent : la personne accompagnée, les objectifs définis en amont, le contexte de l'intervention, et le tempérament comme les compétences de chaque animal.\n\nUn exemple. Une balle lancée à un chien, ce n'est pas un jeu. Selon la personne en face, ça peut mobiliser un bras, encourager une prise d'initiative, travailler l'attention, ou simplement créer un moment agréable qui rouvre la relation. Même activité, objectifs différents.\n\nAutre point que je précise systématiquement : le contact physique n'est pas obligatoire, et il n'est pas systématiquement recherché. Observer l'animal, préparer le matériel, repérer ses signaux d'apaisement, cela fait partie de l'intervention.\n\nMes deux chiens illustrent bien pourquoi je ne fige pas les binômes. Tips facilite les premières rencontres. Uxo, plus prudent, permet de travailler la distance et le consentement. Tap-Tap, mon lapin, ouvre le registre sensoriel. Et mon cochon d'Inde, plus récemment arrivé, demande une manipulation délicate, ce qui en fait un excellent support de travail sur le geste et la maîtrise de soi.\n\nPour les structures : c'est cette logique qui explique qu'une intervention se construise en cycle, avec des objectifs révisables, et pas en prestation ponctuelle.",
+      "hashtags": [
+        "#MédiationAnimale",
+        "#MédicoSocial",
+        "#Zoothérapie",
+        "#Handicap"
+      ],
+      "cta": "Article détaillé sur jdzootherapeute.fr, rubrique blog. Message privé ouvert pour vos projets.",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q3-w03-fb",
+      "network": "facebook",
+      "week": 3,
+      "theme_ref": 3,
+      "scheduled_date": "2026-08-25",
+      "scheduled_time_hint": "10:00",
+      "format": "photo-concept",
+      "visual_type": "ia",
+      "visual_brief": "Illustration éditoriale douce : page de calendrier de septembre stylisée avec une empreinte de patte et une feuille, palette teal #4A7C7E + beige crème, trait minimaliste, ratio 1:1, sans texte",
+      "visual_generated": null,
+      "shooting_session_ref": null,
+      "text": "📅 J'ouvre mes créneaux de septembre.\n\nDeux publics, deux façons de démarrer.\n\n👨‍👩‍👧 Les familles et les particuliers. Une séance individuelle, chez vous, autour d'un objectif concret : apaiser l'anxiété, remettre du mouvement, retrouver de la parole, reprendre confiance. Je me déplace dans un rayon de 15 km autour de Verny, et ponctuellement sur Metz et Nancy.\n\n🏥 Les structures. EHPAD, IME, ITEP, foyers, écoles, bibliothèques. On construit un cycle avec des objectifs écrits et un retour à l'équipe après chaque passage. Pas une animation, un accompagnement.\n\nSeptembre se remplit vite, et je préfère prendre le temps de bien caler chaque projet plutôt que d'empiler les rendez-vous.\n\nEt si la médiation animale n'est pas la bonne réponse pour votre situation, je vous le dirai franchement. Ça m'arrive régulièrement, et c'est aussi ça, faire son travail correctement.\n\nSi vous y pensez depuis un moment, c'est le bon moment pour en parler.",
+      "hashtags": [
+        "#médiationanimale",
+        "#moselle",
+        "#rentrée"
+      ],
+      "cta": "Un premier échange de 30 minutes : cal.eu/jdzootherapie/30min ou 07 54 81 21 22",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q3-w03-li",
+      "network": "linkedin",
+      "week": 3,
+      "theme_ref": 3,
+      "scheduled_date": "2026-08-26",
+      "scheduled_time_hint": "09:00",
+      "format": "texte-long",
+      "visual_type": "stock",
+      "visual_brief": "Pas de visuel obligatoire. Si visuel : portrait professionnel de Jen, cadrage buste, fond neutre",
+      "visual_generated": null,
+      "shooting_session_ref": null,
+      "text": "Septembre, c'est le mois où les projets d'animation et de vie sociale se décident pour l'année.\n\nSi la médiation animale est dans vos intentions depuis un moment sans avoir jamais été posée sur un planning, voici comment ça se passe concrètement chez moi.\n\nÉtape 1 : un échange de 30 minutes. Vous me dites qui vous accompagnez, ce qui coince, ce que vous avez déjà essayé. Je vous dis franchement si la médiation animale est pertinente, et surtout dans quels cas elle ne l'est pas.\n\nÉtape 2 : des objectifs écrits. Stimulation de la mémoire, régulation émotionnelle, maintien de la communication, mobilisation motrice, lien social. On en choisit deux ou trois, pas dix.\n\nÉtape 3 : un cycle, pas une visite. L'effet d'une séance unique est un joli souvenir. L'effet d'un cycle est observable, et vos équipes le documentent avec moi.\n\nÉtape 4 : un retour à l'équipe après chaque séance, et un bilan de fin de cycle.\n\nJ'interviens en EHPAD, IME, ITEP, foyers, écoles et bibliothèques, en Moselle et ponctuellement sur Metz et Nancy. Aide-soignante diplômée pendant plus de vingt ans, formée à l'IFZ, membre du Syndicat Français des Zoothérapeutes.\n\nLes créneaux de septembre et octobre se calent maintenant.",
+      "hashtags": [
+        "#MédiationAnimale",
+        "#EHPAD",
+        "#MédicoSocial",
+        "#GrandEst"
+      ],
+      "cta": "Message privé, ou 30 minutes en visio : cal.eu/jdzootherapie/30min",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q3-w04-fb",
+      "network": "facebook",
+      "week": 4,
+      "theme_ref": 4,
+      "scheduled_date": "2026-09-01",
+      "scheduled_time_hint": "10:00",
+      "format": "photo-temoignage",
+      "visual_type": "brut",
+      "visual_brief": "Photo brute d'ambiance de rentrée : Jen et un animal en extérieur, lumière de septembre, feuilles, ratio 4:5. Pas de visage de personne accompagnée",
+      "visual_generated": null,
+      "shooting_session_ref": "session-2",
+      "text": "C'est la rentrée. Pour les enfants, pour les équipes, et aussi pour les résidents d'EHPAD, qui voient revenir les animations, les stagiaires, le bruit et le rythme.\n\nCette période, je l'aime bien. Elle remet du mouvement partout. Mais elle bouscule aussi.\n\nUn enfant qui reprend l'école avec la boule au ventre. Un résident qui a passé l'été à voir peu de monde. Un aidant qui reprend le travail en gardant la charge de son proche.\n\nCe que l'animal apporte à ces moments-là, ce n'est pas une solution magique. C'est un point d'appui. Quelque chose de vivant, de constant, qui ne juge pas, et qui donne une raison de se lever, de tendre la main, de dire un mot.\n\nBelle rentrée à vous 🍂\n\nEt si vous voulez qu'on regarde ensemble un accompagnement pour cette année scolaire, ma porte est ouverte.",
+      "hashtags": [
+        "#rentrée",
+        "#médiationanimale",
+        "#moselle"
+      ],
+      "cta": "Message privé ouvert, ou 07 54 81 21 22",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q3-w04-li",
+      "network": "linkedin",
+      "week": 4,
+      "theme_ref": 4,
+      "scheduled_date": "2026-09-02",
+      "scheduled_time_hint": "09:00",
+      "format": "texte-long",
+      "visual_type": "stock",
+      "visual_brief": "Pas de visuel obligatoire",
+      "visual_generated": null,
+      "shooting_session_ref": null,
+      "text": "La rentrée est le pire moment pour improviser un projet de médiation animale. C'est aussi le meilleur moment pour le cadrer.\n\nCe que j'observe chaque année du côté des structures : en septembre, les équipes ont de l'énergie et un budget encore ouvert. Les projets se décident vite, parfois trop vite. Une séance découverte est posée en octobre, elle se passe très bien, tout le monde est content, et rien ne se passe ensuite. La séance est devenue un événement, pas un outil.\n\nCe qui marche mieux, et de loin :\n\n• Caler dès la rentrée un cycle de 8 à 12 séances, avec deux ou trois objectifs écrits.\n• Une régularité tenable pour vous, pas pour moi. Mieux vaut une séance tous les quinze jours qui tient toute l'année qu'un rythme hebdomadaire abandonné en novembre.\n• Une personne référente dans l'équipe. C'est la clé. C'est elle qui fait le lien entre les séances, qui note ce qu'elle observe entre deux passages, et qui rend le travail cumulatif.\n\nPour les écoles et les structures qui accueillent des enfants, la rentrée a un autre avantage : on peut construire la progression sur l'année scolaire complète, en tenant compte des vacances et des temps forts.\n\nSi vous êtes en train de boucler votre projet d'animation ou votre projet d'établissement, c'est maintenant que je peux être utile.",
+      "hashtags": [
+        "#MédiationAnimale",
+        "#ProjetDÉtablissement",
+        "#EHPAD",
+        "#IME"
+      ],
+      "cta": "Écrivez-moi, on cale 30 minutes pour cadrer le projet",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q3-w05-fb",
+      "network": "facebook",
+      "week": 5,
+      "theme_ref": 5,
+      "scheduled_date": "2026-09-08",
+      "scheduled_time_hint": "10:00",
+      "format": "carrousel",
+      "visual_type": "stock",
+      "visual_brief": "Carrousel 5 slides, 1 signe de progrès par slide + slide de clôture avec le logo JD. Fond beige crème, texte teal foncé #4A7C7E, typographie sobre. Générable via l'onglet Carrousels du /admin",
+      "visual_generated": null,
+      "shooting_session_ref": null,
+      "text": "Comment je sais qu'une séance a servi à quelque chose ?\n\nCe n'est presque jamais spectaculaire. Voici les signes que je note vraiment.\n\n1️⃣ La personne parle de la séance entre deux passages. Elle demande quand je reviens, elle retient le nom de l'animal.\n\n2️⃣ Elle prend une initiative. Elle tend la main la première, elle choisit l'exercice, elle dit non à un moment.\n\n3️⃣ Le geste s'élargit. Un bras qui se lève un peu plus haut. Une main qui s'ouvre. Un pas de plus dans le couloir.\n\n4️⃣ L'émotion se met en mots. Pas forcément de grandes phrases. « Il est doux. » « J'aimais bien les chiens, avant. »\n\n5️⃣ L'équipe ou la famille observe la même chose que moi, sans que je l'aie suggérée. C'est le signe le plus fiable de tous.\n\nJe note tout ça sur des fiches d'observation, séance après séance. C'est ce qui permet de dire, à la fin d'un cycle, si les objectifs sont atteints ou s'il faut les revoir.\n\nPas de miracle. Des progrès petits, tracés, et solides.",
+      "hashtags": [
+        "#médiationanimale",
+        "#zoothérapie",
+        "#accompagnement"
+      ],
+      "cta": "Une question sur un proche ou un résident ? Écrivez-moi",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q3-w05-li",
+      "network": "linkedin",
+      "week": 5,
+      "theme_ref": 5,
+      "scheduled_date": "2026-09-09",
+      "scheduled_time_hint": "09:00",
+      "format": "texte-long",
+      "visual_type": "stock",
+      "visual_brief": "Pas de visuel obligatoire. Si visuel : photo d'une fiche d'observation anonymisée",
+      "visual_generated": null,
+      "shooting_session_ref": null,
+      "text": "« Comment mesurez-vous les effets ? » C'est la question la plus légitime qu'on me pose, et la plus utile.\n\nJe ne mesure pas un bien-être global. Je mesure des indicateurs choisis en amont avec l'équipe, et je les trace séance après séance sur des fiches d'observation.\n\nCe que je regarde concrètement :\n\n• L'initiative. La personne engage-t-elle l'interaction d'elle-même, ou faut-il la solliciter ? L'évolution de ce seul point en dit long.\n• La mobilisation. Amplitude d'un geste, nombre de pas, durée de maintien d'une posture. Ce sont des données que le kiné ou l'ergothérapeute reconnaissent.\n• L'entrée en communication. Regard, geste, mot, phrase. Chez une personne qui ne parle plus, un regard soutenu est un résultat.\n• La régulation émotionnelle. Temps de retour au calme, capacité à exprimer un refus.\n• La mémoire relationnelle. La personne se souvient-elle de l'animal, du prénom, de la dernière séance ?\n\nDeux principes que je tiens de mes vingt ans de soin. D'abord, on choisit deux ou trois indicateurs, pas dix, sinon on ne mesure rien. Ensuite, l'observation la plus fiable est celle qui est croisée : quand l'équipe note la même évolution que moi, sans que je l'aie suggérée, on peut parler de résultat.\n\nEt quand les objectifs ne sont pas atteints, je le dis. C'est aussi ce qui fait la différence entre une prestation et un accompagnement.",
+      "hashtags": [
+        "#MédiationAnimale",
+        "#Évaluation",
+        "#MédicoSocial",
+        "#QualitéDesSoins"
+      ],
+      "cta": "Vous voulez voir à quoi ressemble une fiche d'observation ? Demandez-la-moi en message privé.",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q3-w06-fb",
+      "network": "facebook",
+      "week": 6,
+      "theme_ref": 6,
+      "scheduled_date": "2026-09-15",
+      "scheduled_time_hint": "10:00",
+      "format": "photo-temoignage",
+      "visual_type": "brut",
+      "visual_brief": "Photo brute du matériel de séance enfance : cartes émotions, parcours, jeu, avec un chien à côté. Aucun visage d'enfant, ratio 1:1",
+      "visual_generated": null,
+      "shooting_session_ref": "session-2",
+      "text": "Chez les enfants, la phrase que j'entends le plus souvent, c'est : « il n'arrive pas à se calmer ».\n\nAvec l'animal, on ne travaille pas le calme en le demandant. On le travaille en faisant.\n\nQuelques exemples de ce qu'on fait vraiment en séance.\n\n🃏 L'enfant présente deux cartes émotions au chien, et le chien en choisit une. D'un coup, parler d'une émotion devient un jeu, plus un interrogatoire.\n\n🎯 Un parcours à faire faire au chien. Pour y arriver, l'enfant doit ralentir sa voix, ses gestes, son corps. Un chien ne suit pas quelqu'un d'agité. C'est un retour immédiat, sans reproche et sans note.\n\n🐰 Un temps de brossage de Tap-Tap. Le toucher lent, la respiration qui descend, l'attention qui se pose sur autre chose que soi.\n\n❌ Et le droit de dire stop. L'animal peut refuser, l'enfant aussi. Beaucoup découvrent là qu'on peut dire non sans que la relation casse.\n\nCe n'est pas de la garderie avec un chien. Chaque exercice a un objectif, et on regarde ce qui bouge d'une séance à l'autre.\n\nVous accompagnez un enfant qui a du mal avec ses émotions ? Parlons-en.",
+      "hashtags": [
+        "#TDAH",
+        "#autisme",
+        "#médiationanimale",
+        "#moselle"
+      ],
+      "cta": "Message privé ou 07 54 81 21 22, premier échange sans engagement",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q3-w06-li",
+      "network": "linkedin",
+      "week": 6,
+      "theme_ref": 6,
+      "scheduled_date": "2026-09-16",
+      "scheduled_time_hint": "09:00",
+      "format": "texte-long",
+      "visual_type": "stock",
+      "visual_brief": "Pas de visuel obligatoire",
+      "visual_generated": null,
+      "shooting_session_ref": null,
+      "text": "Intervenir auprès d'enfants avec un TDAH ou un trouble du spectre de l'autisme, ce n'est pas une version simplifiée de mon travail. C'est la version la plus exigeante.\n\nTrois choses changent par rapport à un autre public.\n\nLe cadre doit être très prévisible. Même lieu, même déroulé, même ordre des séquences. La nouveauté, c'est moi qui la dose, et jamais par surprise. Un enfant qui sait ce qui va se passer peut se permettre d'explorer.\n\nLe canal passe par le faire, pas par le dire. Demander à un enfant de nommer son émotion peut le bloquer. Lui demander de présenter deux cartes émotions au chien et de regarder laquelle il choisit, ça débloque. L'animal devient le tiers qui rend la chose supportable.\n\nLe refus est un objectif, pas un incident. Uxo, mon berger américain miniature, est prudent à la rencontre : il observe avant d'interagir. Pour un enfant qui n'a jamais appris à dire non, voir un animal poser une limite et être respecté pour ça, c'est un apprentissage majeur.\n\nCe que je demande aux structures qui m'accueillent, IME, ITEP, écoles : des objectifs écrits, un référent dans l'équipe, et l'accord clair des familles. Sans ça, la séance est agréable mais elle ne construit rien.\n\nEt je dis non quand le cadre n'est pas réunissable. Un accompagnement doit rester sécurisant, pour l'enfant comme pour l'animal.",
+      "hashtags": [
+        "#TDAH",
+        "#TSA",
+        "#IME",
+        "#MédiationAnimale",
+        "#Handicap"
+      ],
+      "cta": "Vos projets enfance pour l'année scolaire : message privé, je réponds à tout le monde.",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q3-w07-fb",
+      "network": "facebook",
+      "week": 7,
+      "theme_ref": 7,
+      "scheduled_date": "2026-09-21",
+      "scheduled_time_hint": "10:00",
+      "format": "photo-temoignage",
+      "visual_type": "brut",
+      "visual_brief": "Photo brute d'une main âgée posée sur le dos de Tips ou de Tap-Tap, aucun visage identifiable, lumière douce, ratio 1:1",
+      "visual_generated": null,
+      "shooting_session_ref": "session-3",
+      "text": "Aujourd'hui, c'est la Journée mondiale de la maladie d'Alzheimer.\n\nJe ne vais pas vous dire que mes animaux soignent la maladie. Ils ne la soignent pas, et personne de sérieux ne le prétend.\n\nCe que je vois en séance, c'est autre chose.\n\nLa mémoire des émotions et des souvenirs anciens reste souvent vive longtemps après que celle des derniers jours s'est effacée. Un animal va chercher exactement là. Un chien dans la pièce, et voilà que remonte le nom d'un chien d'enfance, une ferme, une couleur de pelage.\n\nJe vois aussi des personnes se lever et marcher parce que l'animal les attend, quand la même demande formulée par un soignant restait sans effet. Ce n'est pas de la magie, c'est de la motivation.\n\nEt je vois des familles passer une heure avec leur proche sans que la conversation tourne autour de la maladie. Juste une heure normale. Ça, c'est immense.\n\nCe n'est pas un traitement. C'est du temps de qualité qu'on récupère, et de la dignité qu'on préserve.\n\nÀ tous les aidants qui lisent ça, je pense à vous aujourd'hui 💚",
+      "hashtags": [
+        "#Alzheimer",
+        "#médiationanimale",
+        "#aidants"
+      ],
+      "cta": "Une question sur un proche ? Écrivez-moi, en message privé si vous préférez",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q3-w07-li",
+      "network": "linkedin",
+      "week": 7,
+      "theme_ref": 7,
+      "scheduled_date": "2026-09-22",
+      "scheduled_time_hint": "09:00",
+      "format": "texte-long",
+      "visual_type": "stock",
+      "visual_brief": "Pas de visuel obligatoire. Si visuel : photo de séance en EHPAD, dos ou mains uniquement",
+      "visual_generated": null,
+      "shooting_session_ref": null,
+      "text": "21 septembre, Journée mondiale de la maladie d'Alzheimer. L'occasion de dire ce que la médiation animale peut faire, et ce qu'elle ne peut pas.\n\nElle ne ralentit pas la maladie. Je ne pose pas de diagnostic, je ne touche pas à un traitement, et je n'encourage jamais personne à alléger un suivi médical.\n\nCe sur quoi elle agit, en revanche, est très concret :\n\n• La mémoire affective et ancienne. Elle reste souvent accessible bien après la mémoire récente. Un animal fait ressurgir des souvenirs précis, nommés, situés.\n• L'anxiété de fin de journée. La présence animale et le rythme lent d'une séance soutiennent le retour au calme.\n• La communication non verbale. Regard, geste, posture. Quand les mots manquent, ce canal reste ouvert.\n• La mobilisation. Se lever, marcher jusqu'à l'animal, tendre le bras. La motivation fait la moitié du travail du kinésithérapeute.\n• Le lien familial. Une visite qui ne tourne pas autour de la maladie change la relation entre un résident et ses proches.\n\nJ'interviens en EHPAD et à domicile, en cycle, avec des objectifs écrits et un retour à l'équipe. Je travaille aussi avec des acteurs du champ des aidants, dont la Maison des Aidants à Nancy.\n\nAux directions d'établissement : la médiation animale entre dans les approches non médicamenteuses. Ce n'est pas un supplément d'âme, c'est un outil qui se planifie, se documente et s'évalue.",
+      "hashtags": [
+        "#Alzheimer",
+        "#EHPAD",
+        "#MédiationAnimale",
+        "#ApprocheNonMédicamenteuse"
+      ],
+      "cta": "Message privé pour un premier échange structure, ou 30 minutes en visio.",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q3-w08-li",
+      "network": "linkedin",
+      "week": 8,
+      "theme_ref": 8,
+      "scheduled_date": "2026-09-30",
+      "scheduled_time_hint": "09:00",
+      "format": "texte-long",
+      "visual_type": "stock",
+      "visual_brief": "Pas de visuel obligatoire",
+      "visual_generated": null,
+      "shooting_session_ref": null,
+      "text": "Aux directions d'EHPAD et de résidences autonomie, à la veille de la Journée internationale des personnes âgées.\n\nVous êtes souvent sollicités pour des animations. Voici ce qui distingue une séance de médiation animale d'une visite d'animaux, et pourquoi ça compte pour votre projet d'établissement.\n\nUne visite d'animaux, c'est un moment agréable. Tout le monde en garde un bon souvenir, et il n'en reste rien trois semaines plus tard.\n\nUne séance de médiation animale, c'est :\n\n• Des objectifs écrits par résident ou par groupe, définis avec votre équipe.\n• Un cycle, en général 8 à 12 séances, parce qu'un effet observable se construit dans la répétition.\n• Un déroulé structuré : temps d'accueil et de consentement, cœur de séance avec des activités ciblées, temps de clôture.\n• Des fiches d'observation, un retour à l'équipe après chaque passage, un bilan de cycle.\n• Un cadre éthique : consentement de la personne, respect du refus, hygiène, et consentement de l'animal aussi.\n\nCe dernier point surprend, il est central. Un animal qu'on force n'est pas un animal médiateur, c'est un accessoire. Mes trois animaux ont le droit de dire non, et ça se voit dans la qualité de ce qui se passe.\n\nAide-soignante diplômée pendant plus de vingt ans avant de me former à l'IFZ, je connais vos contraintes de planning, de transmission et de traçabilité. Je m'y inscris.\n\nSi la médiation animale doit entrer dans votre programmation, autant qu'elle y entre comme un outil, avec des résultats à regarder.",
+      "hashtags": [
+        "#EHPAD",
+        "#MédiationAnimale",
+        "#PersonnesÂgées",
+        "#ProjetDÉtablissement"
+      ],
+      "cta": "Message privé pour un échange de 30 minutes, sur site ou en visio.",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q3-w08-fb",
+      "network": "facebook",
+      "week": 8,
+      "theme_ref": 8,
+      "scheduled_date": "2026-10-01",
+      "scheduled_time_hint": "10:00",
+      "format": "photo-temoignage",
+      "visual_type": "brut",
+      "visual_brief": "Photo brute d'un temps d'accueil en groupe (le « sas ») : animal au premier plan, résidents de dos ou hors cadre, ratio 4:5",
+      "visual_generated": null,
+      "shooting_session_ref": "session-3",
+      "text": "Aujourd'hui, 1er octobre, c'est la Journée internationale des personnes âgées. Alors je vous raconte ce qui se passe vraiment pendant 45 minutes de séance en EHPAD.\n\n⏱️ Les 5 premières minutes : le sas. Je ne débarque pas avec le chien au milieu du salon. On arrive doucement, chacun peut voir, refuser, s'approcher à son rythme. Ceux qui n'aiment pas les chiens ont le droit de ne pas participer, et je le dis à voix haute.\n\n⏱️ Puis le cœur de la séance, 25 à 30 minutes. Là, il y a un objectif. Faire circuler un objet pour mobiliser les bras. Faire choisir une carte au chien pour relancer la parole. Brosser Tap-Tap pour apaiser. Ce n'est jamais improvisé.\n\n⏱️ Les 10 dernières minutes : le retour. On nomme ce qui s'est passé, on dit au revoir aux animaux, on prépare la fois d'après.\n\n⏱️ Et après mon départ : mes notes, et un retour à l'équipe. Ce qui a marché, ce qui a bloqué, ce qu'on ajuste.\n\n45 minutes en apparence tranquilles. Beaucoup de travail derrière.\n\nBelle journée à toutes les personnes âgées que j'accompagne, et à ceux qui prennent soin d'elles 💚",
+      "hashtags": [
+        "#personnesâgées",
+        "#EHPAD",
+        "#médiationanimale"
+      ],
+      "cta": "Vous travaillez en EHPAD et vous voulez en parler ? Message privé ouvert",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q3-w09-fb",
+      "network": "facebook",
+      "week": 9,
+      "theme_ref": 9,
+      "scheduled_date": "2026-10-06",
+      "scheduled_time_hint": "10:00",
+      "format": "photo-concept",
+      "visual_type": "ia",
+      "visual_brief": "Illustration éditoriale : deux mains, une jeune et une âgée, posées ensemble sur le dos d'un chien. Trait minimaliste chaleureux, palette teal #4A7C7E + beige crème, ratio 1:1, sans texte",
+      "visual_generated": null,
+      "shooting_session_ref": null,
+      "text": "Aujourd'hui, 6 octobre, c'est la Journée nationale des aidants.\n\nSi vous accompagnez un proche malade, âgé ou en situation de handicap, vous savez ce qu'on ne dit pas assez : la relation s'abîme. On finit par ne plus parler que de rendez-vous, de médicaments, de linge et de fatigue. On devient un organisateur avant d'être un fils, une épouse, une fille.\n\nL'atelier aidant-aidé sert exactement à ça : remettre un temps où vous êtes deux personnes, pas deux rôles.\n\nCe qu'on y fait, concrètement :\n\n🤝 Une activité menée ensemble avec l'animal, où chacun a une vraie part. Pas l'un qui aide et l'autre qui subit.\n🗣️ Des moments où on se dit des choses agréables, parce qu'il n'y en a plus beaucoup.\n💚 Un temps de plaisir partagé, sans objectif de performance.\n🫂 Et souvent, pour l'aidant, la permission de souffler une heure.\n\nJ'ai animé ce type de cycle avec la Maison des Aidants à Nancy. Je peux aussi venir chez vous.\n\nC'est aussi la période de la Semaine Bleue, consacrée aux personnes âgées et à ceux qui les entourent.\n\nAujourd'hui, prenez soin de vous. Vous en avez le droit.",
+      "hashtags": [
+        "#journéedesaidants",
+        "#aidants",
+        "#médiationanimale",
+        "#moselle"
+      ],
+      "cta": "Un temps d'échange, sans engagement : 07 54 81 21 22 ou en message privé",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q3-w09-li",
+      "network": "linkedin",
+      "week": 9,
+      "theme_ref": 9,
+      "scheduled_date": "2026-10-07",
+      "scheduled_time_hint": "09:00",
+      "format": "texte-long",
+      "visual_type": "stock",
+      "visual_brief": "Pas de visuel obligatoire",
+      "visual_generated": null,
+      "shooting_session_ref": null,
+      "text": "6 octobre, Journée nationale des aidants. Un public immense, et un angle mort dans la plupart de nos dispositifs.\n\nCe que je constate en intervenant à domicile : on outille beaucoup la personne aidée, très peu le duo. Or c'est la relation qui s'épuise en premier. Quand tous les échanges tournent autour du soin, de l'organisation et de la fatigue, il ne reste plus de terrain commun.\n\nL'atelier aidant-aidé travaille sur ce terrain-là. La médiation animale y est particulièrement adaptée pour une raison simple : l'animal crée une activité où les deux personnes ont un rôle réel, sans hiérarchie de soin. On n'est plus l'aidant et l'aidé, on est deux personnes qui font quelque chose ensemble.\n\nLes objectifs sur lesquels je travaille dans ces cycles :\n\n• Restaurer des interactions positives, en dehors du registre du soin.\n• Redonner à la personne aidée une place active, ce qui allège aussi l'aidant.\n• Nommer ce qui va bien, à voix haute, ce qui ne se fait presque plus.\n• Offrir un temps de répit qualitatif, encadré, à domicile ou en structure.\n\nJ'ai animé ce format avec la Maison des Aidants à Nancy, dans un cadre financé.\n\nAux professionnels du champ, CCAS, plateformes de répit, France Alzheimer, associations d'aidants, services d'aide à domicile : si vous montez une programmation aidants pour 2027, c'est maintenant que ça se construit.",
+      "hashtags": [
+        "#Aidants",
+        "#Répit",
+        "#MédiationAnimale",
+        "#MédicoSocial"
+      ],
+      "cta": "Message privé pour construire un cycle aidants sur votre territoire.",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q3-w10-fb",
+      "network": "facebook",
+      "week": 10,
+      "theme_ref": 10,
+      "scheduled_date": "2026-10-13",
+      "scheduled_time_hint": "10:00",
+      "format": "citation",
+      "visual_type": "ia",
+      "visual_brief": "Visuel citation : « La médiation animale ne remplace pas un traitement. Elle vient en complément. » Fond beige crème, typographie serif élégante en teal foncé #4A7C7E, empreinte de patte en filigrane, ratio 1:1",
+      "visual_generated": null,
+      "shooting_session_ref": null,
+      "text": "« Les animaux guérissent. »\n« Grâce à votre chien, il n'aura plus besoin de médicaments. »\n« La médiation animale, c'est une alternative aux soins. »\n\nJ'entends vraiment ces phrases. Elles partent souvent d'une bonne intention. Elles sont fausses, et elles sont dangereuses.\n\nMa pratique ne remplace ni un médecin, ni un psychologue, ni un infirmier, ni un kinésithérapeute, et encore moins un traitement. Elle vient en complément. C'est précisément pour ça qu'elle a sa place auprès des équipes.\n\nVingt ans comme aide-soignante m'ont appris qu'il n'y a pas de miracle. Chaque métier a ses compétences et ses limites, et c'est en travaillant ensemble qu'on accompagne mieux les personnes.\n\nCe que je peux faire, en revanche, est très concret : aider à faire baisser l'anxiété, faciliter l'entrée en communication, soutenir la motivation à participer, encourager le mouvement, aider à mettre des mots sur une émotion.\n\nCe n'est pas rien. Et ça n'a pas besoin d'être exagéré pour avoir de la valeur.\n\nJ'ai écrit un article complet là-dessus : jdzootherapeute.fr/blog/zootherapie-ne-remplace-pas-un-traitement",
+      "hashtags": [
+        "#médiationanimale",
+        "#idéesreçues",
+        "#zoothérapie"
+      ],
+      "cta": "Vous avez déjà entendu ces phrases ? Dites-le-moi en commentaire",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q3-w10-li",
+      "network": "linkedin",
+      "week": 10,
+      "theme_ref": 10,
+      "scheduled_date": "2026-10-14",
+      "scheduled_time_hint": "09:00",
+      "format": "texte-long",
+      "visual_type": "stock",
+      "visual_brief": "Pas de visuel obligatoire",
+      "visual_generated": null,
+      "shooting_session_ref": null,
+      "text": "Un post pour dire ce que je ne fais pas. C'est probablement mon meilleur argument.\n\nJe ne pose pas de diagnostic. Je ne modifie pas un traitement. Je ne promets pas de guérison. Je n'encourage jamais quelqu'un à alléger un suivi médical ou psychologique.\n\nPourquoi le dire aussi clairement, alors que ça semble réduire ma prestation ? Parce que c'est exactement l'inverse.\n\nLe secteur de la médiation animale souffre de deux problèmes : une réglementation floue, et des promesses excessives. Résultat, beaucoup de directions rangent le sujet dans la case animation sympathique, et beaucoup de professionnels de santé restent prudents. Souvent à raison.\n\nCe que j'apporte, formulé sans exagération :\n\n• Des conditions favorables à l'accompagnement. Baisse de l'anxiété, entrée en communication, motivation à participer, mobilisation motrice, mise en mots des émotions.\n• Un cadre professionnel. Objectifs écrits, cycle, fiches d'observation, retour d'équipe, secret professionnel, hygiène, consentement.\n• Une interlocutrice qui parle votre langue. Plus de vingt ans comme aide-soignante diplômée avant l'IFZ. Je sais lire une transmission et repérer un signal faible.\n• Et le fait de dire non quand ce n'est pas indiqué.\n\nUne pratique qui assume ses limites est une pratique avec laquelle on peut travailler sérieusement.",
+      "hashtags": [
+        "#MédiationAnimale",
+        "#Éthique",
+        "#MédicoSocial",
+        "#Professionnalisme"
+      ],
+      "cta": "Article complet sur jdzootherapeute.fr. Message privé ouvert pour les projets de structure.",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q3-w11-fb",
+      "network": "facebook",
+      "week": 11,
+      "theme_ref": 11,
+      "scheduled_date": "2026-10-20",
+      "scheduled_time_hint": "10:00",
+      "format": "photo-temoignage",
+      "visual_type": "brut",
+      "visual_brief": "Photo brute de Tips au repos, couché, détourné ou près d'une porte : illustrer le droit de retrait de l'animal. Ratio 4:5",
+      "visual_generated": null,
+      "shooting_session_ref": "session-4",
+      "text": "Il arrive que Tips refuse de travailler.\n\nIl se couche, il détourne la tête, il va se poster près de la porte. Ça arrive. Et je considère aujourd'hui que c'est une des choses les plus utiles qui puissent se passer en séance.\n\nParce qu'un animal qui peut dire non, c'est un animal en sécurité. Et un animal en sécurité, c'est une personne en sécurité en face.\n\nAlors quand ça arrive, on ne force pas. On s'arrête, on regarde ensemble ce qui se passe, on change d'activité, ou on laisse la place à Uxo ou à Tap-Tap. Et souvent, la personne accompagnée apprend plus dans ce moment-là que dans tout le reste de la séance : on peut refuser, et la relation ne casse pas.\n\nMes animaux ne sont pas des outils. Ils travaillent avec moi. Ils ont des jours moins bons, du repos, un droit de retrait. Ce n'est pas négociable.\n\nJ'ai écrit un article sur ce moment précis : jdzootherapeute.fr/blog/quand-tips-refuse-de-travailler",
+      "hashtags": [
+        "#bienêtreanimal",
+        "#médiationanimale",
+        "#chienmédiateur"
+      ],
+      "cta": "Ça vous parle ? Dites-le-moi en commentaire",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q3-w11-li",
+      "network": "linkedin",
+      "week": 11,
+      "theme_ref": 11,
+      "scheduled_date": "2026-10-21",
+      "scheduled_time_hint": "09:00",
+      "format": "texte-long",
+      "visual_type": "stock",
+      "visual_brief": "Pas de visuel obligatoire",
+      "visual_generated": null,
+      "shooting_session_ref": null,
+      "text": "Le consentement de la personne accompagnée, tout le monde en parle. Celui de l'animal, presque personne.\n\nC'est pourtant un critère que je conseille à toute structure de poser au moment de choisir un intervenant en médiation animale. Voici les questions qui font le tri.\n\nComment l'animal peut-il signaler qu'il ne veut pas ? S'il n'existe aucun moyen pour lui de refuser, il n'y a pas de consentement, il y a de la contrainte. Et ce qui est contraint devient imprévisible, donc peu sûr pour vos résidents.\n\nQue se passe-t-il quand il refuse ? Chez moi : on s'arrête, on nomme ce qui se passe, on change d'activité ou d'animal. Jamais on n'insiste. Ce moment est souvent le plus formateur pour la personne accompagnée, en particulier les enfants qui n'ont pas appris à dire non.\n\nCombien de séances par jour, et quel repos ? Un chien médiateur qui enchaîne les interventions s'épuise. La fatigue se voit dans la qualité du travail avant de se voir dans le comportement.\n\nComment l'animal est-il préparé ? Mes trois animaux sont en apprentissage continu, dans de nouveaux environnements et face à de nouvelles situations, précisément pour ne jamais être surpris en séance.\n\nUn intervenant qui répond sereinement à ces quatre questions vous protège aussi. Un animal en sécurité, c'est une intervention en sécurité.",
+      "hashtags": [
+        "#BienÊtreAnimal",
+        "#MédiationAnimale",
+        "#Éthique",
+        "#MédicoSocial"
+      ],
+      "cta": "Vous sélectionnez un intervenant ? Je vous envoie ma grille de questions en message privé.",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q3-w12-fb",
+      "network": "facebook",
+      "week": 12,
+      "theme_ref": 12,
+      "scheduled_date": "2026-10-27",
+      "scheduled_time_hint": "10:00",
+      "format": "photo-concept",
+      "visual_type": "ia",
+      "visual_brief": "Illustration éditoriale : un salon simple, un fauteuil, une personne âgée de dos et un chien couché à ses pieds. Trait minimaliste chaleureux, palette teal #4A7C7E + beige crème, ratio 1:1, sans texte",
+      "visual_generated": null,
+      "shooting_session_ref": null,
+      "text": "« Ma mère ne peut plus se déplacer. Est-ce que ça existe, à la maison ? »\n\nOui. Et c'est même une grande partie de mon travail.\n\nJe viens chez vous, avec Tips, Uxo, Tap-Tap ou mon cochon d'Inde selon la personne et l'objectif. Dans le salon, dans une chambre, dans un jardin. Pas besoin d'espace, pas besoin d'équipement.\n\nÀ domicile, ça change beaucoup de choses :\n\n🏠 La personne est chez elle, dans ses repères. Pour quelqu'un qui se désoriente, c'est déterminant.\n👥 La famille peut être présente, ou pas. Les deux se travaillent.\n🐾 On utilise le quotidien réel : le couloir à traverser, la fenêtre à ouvrir, le fauteuil à quitter.\n📋 Et on garde le même cadre qu'en structure : des objectifs, un cycle, des observations notées.\n\nJe me déplace dans un rayon de 15 km autour de Verny, et ponctuellement sur Metz et Nancy.\n\nSi vous vous demandez si c'est adapté à votre proche, appelez-moi. Je préfère vous dire honnêtement non quand ce n'est pas indiqué plutôt que de vous vendre un cycle.",
+      "hashtags": [
+        "#àdomicile",
+        "#médiationanimale",
+        "#moselle",
+        "#aidants"
+      ],
+      "cta": "07 54 81 21 22, ou un rendez-vous de 30 minutes : cal.eu/jdzootherapie/30min",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q3-w12-li",
+      "network": "linkedin",
+      "week": 12,
+      "theme_ref": 12,
+      "scheduled_date": "2026-10-28",
+      "scheduled_time_hint": "09:00",
+      "format": "texte-long",
+      "visual_type": "stock",
+      "visual_brief": "Pas de visuel obligatoire",
+      "visual_generated": null,
+      "shooting_session_ref": null,
+      "text": "Le domicile est l'angle mort de la médiation animale. C'est aussi là que le besoin est le plus fort.\n\nLes personnes qui ne peuvent plus sortir de chez elles cumulent souvent trois choses : un isolement qui s'installe, une perte progressive d'initiative, et des aidants familiaux à bout. Elles ne sont pas en établissement, donc elles ne bénéficient d'aucune programmation d'activité thérapeutique non médicamenteuse.\n\nCe que j'apporte à domicile, avec le même cadre qu'en structure :\n\n• Des objectifs définis avec la famille ou le service qui coordonne, et révisés en cours de cycle.\n• Un travail dans l'environnement réel de la personne. Traverser son propre couloir n'a rien à voir avec traverser un couloir d'EHPAD.\n• Un temps de répit qualitatif pour l'aidant présent, ou un travail sur le duo aidant-aidé quand c'est l'objectif.\n• Des observations tracées, transmissibles au médecin traitant ou au service coordonnateur avec l'accord de la personne.\n\nAux professionnels qui coordonnent des parcours à domicile, centres de ressources territoriales, SSIAD, CCAS, plateformes de répit, France Alzheimer, services d'aide à domicile : c'est le moment de l'année où les programmations 2027 se construisent. La médiation animale à domicile se planifie en cycle et se finance.\n\nJ'interviens en Moselle, autour de Verny, et ponctuellement sur Metz et Nancy.",
+      "hashtags": [
+        "#Domicile",
+        "#MédiationAnimale",
+        "#Répit",
+        "#Alzheimer",
+        "#GrandEst"
+      ],
+      "cta": "Message privé pour construire un cycle à domicile sur votre territoire.",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q3-w13-fb",
+      "network": "facebook",
+      "week": 13,
+      "theme_ref": 13,
+      "scheduled_date": "2026-11-03",
+      "scheduled_time_hint": "10:00",
+      "format": "photo-temoignage",
+      "visual_type": "brut",
+      "visual_brief": "Photo brute de Jen avec ses animaux médiateurs, ambiance automne, extérieur, ratio 4:5",
+      "visual_generated": null,
+      "shooting_session_ref": "session-4",
+      "text": "On est en novembre, et j'ai relu mes fiches d'observation depuis la rentrée.\n\nCe que je regarde à la fin d'un cycle, ce ne sont jamais les grands moments. Ce sont trois choses :\n\n1️⃣ Est-ce que la personne prend l'initiative plus souvent qu'en septembre ?\n2️⃣ Est-ce que l'équipe ou la famille observe la même évolution que moi, sans que je l'aie suggérée ?\n3️⃣ Est-ce que les objectifs qu'on avait écrits sont atteints, ou faut-il les revoir ?\n\n[À compléter avant publication : un exemple concret de ce trimestre, sans prénom ni détail identifiant. Par exemple un résident qui attend le jour de la séance, un enfant qui a osé dire non, une aidante qui a ri avec son proche.]\n\nRien de spectaculaire. Des petites choses, notées, répétées, qui finissent par faire un chemin.\n\nMerci aux familles et aux équipes qui me font confiance depuis la rentrée. Et merci à Tips, Uxo, Tap-Tap et au cochon d'Inde, qui font une bonne moitié du travail 🐾",
+      "hashtags": [
+        "#médiationanimale",
+        "#bilan",
+        "#moselle"
+      ],
+      "cta": "Un projet pour la fin d'année ou pour 2027 ? Écrivez-moi",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q3-w13-li",
+      "network": "linkedin",
+      "week": 13,
+      "theme_ref": 13,
+      "scheduled_date": "2026-11-04",
+      "scheduled_time_hint": "09:00",
+      "format": "texte-long",
+      "visual_type": "stock",
+      "visual_brief": "Pas de visuel obligatoire",
+      "visual_generated": null,
+      "shooting_session_ref": null,
+      "text": "Fin de cycle : ce que je remets à une structure, et ce que j'en attends en retour.\n\nUn cycle de médiation animale qui se termine sans bilan écrit, c'est un budget dépensé sans apprentissage. Voilà ce que je produis systématiquement.\n\nUn rappel des objectifs de départ, tels qu'ils avaient été écrits avec l'équipe. Pas reformulés après coup pour coller au résultat.\n\nL'évolution observée sur chaque indicateur, séance par séance, à partir de mes fiches. Initiative, mobilisation, entrée en communication, régulation émotionnelle, mémoire relationnelle, selon ce qu'on avait choisi de suivre.\n\nCe qui n'a pas fonctionné, et pourquoi. Un créneau mal placé dans la journée, un groupe trop grand, un objectif trop ambitieux, une personne pour qui ce n'était pas le bon outil. Je le dis.\n\nUne proposition pour la suite : reconduire, ajuster les objectifs, changer de groupe, ou arrêter.\n\nEt ce que je demande en retour : l'observation de votre équipe. C'est le croisement des deux regards qui fait la valeur du bilan. Quand vos soignants notent la même évolution que moi sans que je l'aie suggérée, on peut parler de résultat.\n\nSi vous construisez vos programmations 2027, c'est la période où je peux vous aider à cadrer un projet réaliste.",
+      "hashtags": [
+        "#MédiationAnimale",
+        "#EHPAD",
+        "#MédicoSocial",
+        "#Évaluation"
+      ],
+      "cta": "Message privé pour cadrer un cycle 2027, ou 30 minutes en visio : cal.eu/jdzootherapie/30min",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    }
+  ]
+}

@@ -24,7 +24,7 @@ const cmsConfig: CmsConfig = {
 
   marketing: {
     enabled: true,
-    trimesters: ['2026-Q2'],
+    trimesters: ['2026-Q2', '2026-Q3'],
     carrousels: {
       enabled: true,
     },
