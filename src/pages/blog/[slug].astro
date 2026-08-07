@@ -9,6 +9,7 @@ import Footer from '@components/layout/Footer.astro';
 import CTABanner from '@components/sections/CTABanner.astro';
 import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
 import BlogCard from '@components/blog/BlogCard.astro';
+import { responsiveImages } from '@marc/cms-engine/html';
 
 export async function getStaticPaths() {
   const posts = await getPublishedBlog();
@@ -23,6 +24,12 @@ const { post } = Astro.props;
 // Safety net detecteur MD-or-HTML garde 2 semaines (Phase 8 purge 2026-04-28).
 const _body = post.data.body || '';
 const htmlContent = _body.trimStart().startsWith('<') ? _body : await marked(_body);
+// Images d'article responsives : l'editeur riche stocke des <img src="/img/...">
+// bruts qu'aucun composant ne traverse. Colonne = max-w-3xl (768px) moins le
+// padding lg:px-8, soit 704px. Mesure, pas devinee.
+const htmlResponsive = responsiveImages(htmlContent, {
+  sizes: '(max-width: 832px) calc(100vw - 2rem), 704px',
+});
 
 const allPosts = (await getPublishedBlog()).sort(
   (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
@@ -161,7 +168,7 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
   <!-- Article Body -->
   <article class="bg-white py-10 md:py-14">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="prose text-base md:text-lg" set:html={htmlContent}>
+      <div class="prose text-base md:text-lg" set:html={htmlResponsive}>
       </div>
     </div>
   </article>
