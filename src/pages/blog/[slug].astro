@@ -2,7 +2,6 @@
 
 import { getCollection } from 'astro:content';
 import { getPublishedBlog } from '@data/blog-filter';
-import { marked } from 'marked';  // safety net transitoire Phase 8 (+2 semaines) — purge prevue 2026-04-28
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Header from '@components/layout/Header.astro';
 import Footer from '@components/layout/Footer.astro';
@@ -21,9 +20,8 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 // Migration 2026-04-14 : body stocke en HTML only dans les JSON.
-// Safety net detecteur MD-or-HTML garde 2 semaines (Phase 8 purge 2026-04-28).
 const _body = post.data.body || '';
-const htmlContent = _body.trimStart().startsWith('<') ? _body : await marked(_body);
+const htmlContent = _body;
 // Images d'article responsives : l'editeur riche stocke des <img src="/img/...">
 // bruts qu'aucun composant ne traverse. Colonne = max-w-3xl (768px) moins le
 // padding lg:px-8, soit 704px. Mesure, pas devinee.
