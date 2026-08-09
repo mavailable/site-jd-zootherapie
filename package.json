@@ -12,7 +12,7 @@
   "dependencies": {
     "@astrojs/react": "^4.2.0",
     "@astrojs/sitemap": "^3.3.0",
-    "@marc/cms-engine": "github:mavailable/cms-engine#v0.28.1",
+    "@marc/cms-engine": "github:mavailable/cms-engine#v0.28.4",
     "astro": "^5.7.0",
     "pdf-lib": "^1.17.1",
     "react": "^19.0.0",
