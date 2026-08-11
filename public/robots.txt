@@ -1,82 +1,182 @@
+# ==============================================================
+# BLOC D'EXCLUSIONS DU SITE — a repeter VERBATIM dans CHAQUE groupe
+# ci-dessous. RFC 9309 : un groupe nomme n'herite RIEN du groupe *.
+# ==============================================================
+
 User-agent: *
-Allow: /
-Disallow: /lp/
 Allow: /lp/mediation-animale-alzheimer-domicile/
 Allow: /lp/mediation-animale-enfant-emotions/
 Allow: /lp/mediation-animale-structures-medico-sociales/
+Disallow: /lp/
 Disallow: /admin/
+Allow: /
 
 # OpenAI
 User-agent: GPTBot
+Allow: /lp/mediation-animale-alzheimer-domicile/
+Allow: /lp/mediation-animale-enfant-emotions/
+Allow: /lp/mediation-animale-structures-medico-sociales/
+Disallow: /lp/
+Disallow: /admin/
 Allow: /
 
 User-agent: OAI-SearchBot
+Allow: /lp/mediation-animale-alzheimer-domicile/
+Allow: /lp/mediation-animale-enfant-emotions/
+Allow: /lp/mediation-animale-structures-medico-sociales/
+Disallow: /lp/
+Disallow: /admin/
 Allow: /
 
 User-agent: ChatGPT-User
+Allow: /lp/mediation-animale-alzheimer-domicile/
+Allow: /lp/mediation-animale-enfant-emotions/
+Allow: /lp/mediation-animale-structures-medico-sociales/
+Disallow: /lp/
+Disallow: /admin/
 Allow: /
 
 # Anthropic
 User-agent: ClaudeBot
+Allow: /lp/mediation-animale-alzheimer-domicile/
+Allow: /lp/mediation-animale-enfant-emotions/
+Allow: /lp/mediation-animale-structures-medico-sociales/
+Disallow: /lp/
+Disallow: /admin/
 Allow: /
 
 User-agent: Claude-SearchBot
+Allow: /lp/mediation-animale-alzheimer-domicile/
+Allow: /lp/mediation-animale-enfant-emotions/
+Allow: /lp/mediation-animale-structures-medico-sociales/
+Disallow: /lp/
+Disallow: /admin/
 Allow: /
 
 User-agent: Claude-User
+Allow: /lp/mediation-animale-alzheimer-domicile/
+Allow: /lp/mediation-animale-enfant-emotions/
+Allow: /lp/mediation-animale-structures-medico-sociales/
+Disallow: /lp/
+Disallow: /admin/
 Allow: /
 
 # Perplexity
 User-agent: PerplexityBot
+Allow: /lp/mediation-animale-alzheimer-domicile/
+Allow: /lp/mediation-animale-enfant-emotions/
+Allow: /lp/mediation-animale-structures-medico-sociales/
+Disallow: /lp/
+Disallow: /admin/
 Allow: /
 
 User-agent: Perplexity-User
+Allow: /lp/mediation-animale-alzheimer-domicile/
+Allow: /lp/mediation-animale-enfant-emotions/
+Allow: /lp/mediation-animale-structures-medico-sociales/
+Disallow: /lp/
+Disallow: /admin/
 Allow: /
 
 # Google
 User-agent: GoogleOther
+Allow: /lp/mediation-animale-alzheimer-domicile/
+Allow: /lp/mediation-animale-enfant-emotions/
+Allow: /lp/mediation-animale-structures-medico-sociales/
+Disallow: /lp/
+Disallow: /admin/
 Allow: /
 
 User-agent: Google-Extended
+Allow: /lp/mediation-animale-alzheimer-domicile/
+Allow: /lp/mediation-animale-enfant-emotions/
+Allow: /lp/mediation-animale-structures-medico-sociales/
+Disallow: /lp/
+Disallow: /admin/
 Allow: /
 
 # Apple
 User-agent: Applebot
+Allow: /lp/mediation-animale-alzheimer-domicile/
+Allow: /lp/mediation-animale-enfant-emotions/
+Allow: /lp/mediation-animale-structures-medico-sociales/
+Disallow: /lp/
+Disallow: /admin/
 Allow: /
 
 User-agent: Applebot-Extended
+Allow: /lp/mediation-animale-alzheimer-domicile/
+Allow: /lp/mediation-animale-enfant-emotions/
+Allow: /lp/mediation-animale-structures-medico-sociales/
+Disallow: /lp/
+Disallow: /admin/
 Allow: /
 
 # Meta
 User-agent: Meta-ExternalAgent
+Allow: /lp/mediation-animale-alzheimer-domicile/
+Allow: /lp/mediation-animale-enfant-emotions/
+Allow: /lp/mediation-animale-structures-medico-sociales/
+Disallow: /lp/
+Disallow: /admin/
 Allow: /
 
 User-agent: Meta-ExternalFetcher
+Allow: /lp/mediation-animale-alzheimer-domicile/
+Allow: /lp/mediation-animale-enfant-emotions/
+Allow: /lp/mediation-animale-structures-medico-sociales/
+Disallow: /lp/
+Disallow: /admin/
 Allow: /
 
 # Autres assistants grand public
 User-agent: DuckAssistBot
+Allow: /lp/mediation-animale-alzheimer-domicile/
+Allow: /lp/mediation-animale-enfant-emotions/
+Allow: /lp/mediation-animale-structures-medico-sociales/
+Disallow: /lp/
+Disallow: /admin/
 Allow: /
 
 User-agent: MistralAI-User
+Allow: /lp/mediation-animale-alzheimer-domicile/
+Allow: /lp/mediation-animale-enfant-emotions/
+Allow: /lp/mediation-animale-structures-medico-sociales/
+Disallow: /lp/
+Disallow: /admin/
 Allow: /
 
 User-agent: Amazonbot
+Allow: /lp/mediation-animale-alzheimer-domicile/
+Allow: /lp/mediation-animale-enfant-emotions/
+Allow: /lp/mediation-animale-structures-medico-sociales/
+Disallow: /lp/
+Disallow: /admin/
 Allow: /
 
 # Corpus d'entrainement
 User-agent: CCBot
+Allow: /lp/mediation-animale-alzheimer-domicile/
+Allow: /lp/mediation-animale-enfant-emotions/
+Allow: /lp/mediation-animale-structures-medico-sociales/
+Disallow: /lp/
+Disallow: /admin/
 Allow: /
 
 # Marche tourisme / Asie
 User-agent: Bytespider
+Allow: /lp/mediation-animale-alzheimer-domicile/
+Allow: /lp/mediation-animale-enfant-emotions/
+Allow: /lp/mediation-animale-structures-medico-sociales/
+Disallow: /lp/
+Disallow: /admin/
 Allow: /
 
-# Moteurs de recherche
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
+# ==============================================================
+# FIN DES GROUPES. Toute nouvelle exclusion de chemin se pose dans
+# le groupe * ET dans CHACUN des groupes ci-dessus. Ne JAMAIS coller
+# un Disallow ici : il se rattacherait silencieusement au dernier
+# groupe nomme (Bytespider) et ne s'appliquerait qu'a lui.
+# ==============================================================
 
 Sitemap: https://jdzootherapeute.fr/sitemap-index.xml
