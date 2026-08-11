@@ -14,7 +14,7 @@ const page = await getPageTemoignages();
 
 const breadcrumbSchema = getBreadcrumbSchema([
   { name: 'Accueil', url: 'https://jdzootherapeute.fr/' },
-  { name: 'Témoignages', url: '/temoignages' },
+  { name: 'Témoignages', url: '/temoignages/' },
 ]);
 ---
 
@@ -71,7 +71,7 @@ const breadcrumbSchema = getBreadcrumbSchema([
       <div class="mt-10 p-5 bg-neutral-50 border border-neutral-200 rounded-xl text-center">
         <p class="text-neutral-600 text-sm">
           <span data-cms-field="page-temoignages.noteText" data-cms-type="text">{page.noteText}</span>
-          <a href="/contact" class="text-primary-600 hover:text-primary-800 font-medium underline underline-offset-2 transition-colors ml-1" data-cms-field="page-temoignages.shareCta" data-cms-type="text">{page.shareCta}</a>
+          <a href="/contact/" class="text-primary-600 hover:text-primary-800 font-medium underline underline-offset-2 transition-colors ml-1" data-cms-field="page-temoignages.shareCta" data-cms-type="text">{page.shareCta}</a>
         </p>
       </div>
     </div>
@@ -104,7 +104,7 @@ const breadcrumbSchema = getBreadcrumbSchema([
     title={page.ctaTitle}
     text={page.ctaText}
     ctaSecondaryText={page.ctaSecondaryText}
-    ctaSecondaryHref="/ateliers"
+    ctaSecondaryHref="/ateliers/"
     cmsPrefix="page-temoignages"
   />
 

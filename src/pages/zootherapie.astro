@@ -13,7 +13,7 @@ const page = await getPageZootherapie();
 
 const breadcrumbSchema = getBreadcrumbSchema([
   { name: 'Accueil', url: 'https://jdzootherapeute.fr/' },
-  { name: 'La zoothérapie', url: '/zootherapie' },
+  { name: 'La zoothérapie', url: '/zootherapie/' },
 ]);
 
 const benefitIcons = [
@@ -119,7 +119,7 @@ const benefitIcons = [
     title={page.ctaTitle}
     text={page.ctaText}
     ctaSecondaryText={page.ctaSecondaryText}
-    ctaSecondaryHref="/ateliers"
+    ctaSecondaryHref="/ateliers/"
     cmsPrefix="page-zootherapie"
   />
 

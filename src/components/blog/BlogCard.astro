@@ -28,13 +28,13 @@ const formattedDate = new Date(date).toLocaleDateString('fr-FR', {
 
 <article class="group bg-white border border-neutral-200 rounded-xl overflow-hidden hover:border-primary-300 hover:shadow-md transition-all duration-200" data-category={category}>
   {image && (
-    <a href={`/blog/${slug}`} class="block">
+    <a href={`/blog/${slug}/`} class="block">
       <div class="aspect-[16/9] overflow-hidden">
         <img src={image} alt={title} class="w-full h-full object-cover" loading="lazy" />
       </div>
     </a>
   )}
-  <a href={`/blog/${slug}`} class="block p-6">
+  <a href={`/blog/${slug}/`} class="block p-6">
     <!-- Category badge -->
     <div class="flex items-center gap-2 mb-3">
       <span class={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium ${colors.bg} ${colors.text}`}>

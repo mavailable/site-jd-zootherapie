@@ -30,7 +30,7 @@ const categories = [...new Set(allPosts.map(post => post.data.category))];
       "@type": "Blog",
       "name": "Blog JD Zoothérapie",
       "description": "Articles sur la médiation animale et la zoothérapie en Moselle",
-      "url": "https://jdzootherapeute.fr/blog",
+      "url": "https://jdzootherapeute.fr/blog/",
       "author": {
         "@type": "Person",
         "name": "Jennifer De Groeve",
@@ -41,7 +41,7 @@ const categories = [...new Set(allPosts.map(post => post.data.category))];
         "headline": post.data.title,
         "description": post.data.description,
         "datePublished": post.data.date,
-        "url": `https://jdzootherapeute.fr/blog/${post.id}`,
+        "url": `https://jdzootherapeute.fr/blog/${post.id}/`,
         "author": {
           "@type": "Person",
           "name": "Jennifer De Groeve"
@@ -134,7 +134,7 @@ const categories = [...new Set(allPosts.map(post => post.data.category))];
     title="Une question sur la médiation animale ?"
     text="Réservez un appel découverte gratuit et sans engagement avec Jennifer."
     ctaSecondaryText="Envoyer un message"
-    ctaSecondaryHref="/contact"
+    ctaSecondaryHref="/contact/"
   />
 
   <Footer slot="footer" />

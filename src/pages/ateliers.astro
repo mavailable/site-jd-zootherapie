@@ -14,7 +14,7 @@ const page = await getPageAteliers();
 
 const breadcrumbSchema = getBreadcrumbSchema([
   { name: 'Accueil', url: 'https://jdzootherapeute.fr/' },
-  { name: 'Les ateliers', url: '/ateliers' },
+  { name: 'Les ateliers', url: '/ateliers/' },
 ]);
 ---
 
@@ -102,7 +102,7 @@ const breadcrumbSchema = getBreadcrumbSchema([
     title={page.ctaTitle}
     text={page.ctaText}
     ctaSecondaryText={page.ctaSecondaryText}
-    ctaSecondaryHref="/tarifs"
+    ctaSecondaryHref="/tarifs/"
     cmsPrefix="page-ateliers"
   />
 

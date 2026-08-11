@@ -4,6 +4,6 @@
   "ctaPrimaryText": "Réserver un appel découverte",
   "ctaPrimaryHref": "https://cal.eu/jdzootherapie/30min",
   "ctaSecondaryText": "Découvrir les ateliers",
-  "ctaSecondaryHref": "/ateliers",
+  "ctaSecondaryHref": "/ateliers/",
   "reassurance": "Premier échange gratuit et sans engagement — Réponse sous 48 h"
 }

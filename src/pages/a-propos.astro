@@ -15,7 +15,7 @@ const page = await getPageAPropos();
 // Schema.org Breadcrumb centralise — doctrine C1
 const breadcrumbSchema = getBreadcrumbSchema([
   { name: 'Accueil', url: 'https://jdzootherapeute.fr/' },
-  { name: 'Mon parcours', url: '/a-propos' },
+  { name: 'Mon parcours', url: '/a-propos/' },
 ]);
 ---
 
@@ -52,7 +52,7 @@ const breadcrumbSchema = getBreadcrumbSchema([
     title={page.ctaTitle}
     text={page.ctaText}
     ctaSecondaryText={page.ctaSecondaryText}
-    ctaSecondaryHref="/ateliers"
+    ctaSecondaryHref="/ateliers/"
     cmsPrefix="page-a-propos"
   />
 
