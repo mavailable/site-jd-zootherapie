@@ -249,7 +249,7 @@
         "#chienmédiateur"
       ],
       "cta": "L'article est en ligne, dites-moi ce que vous en pensez",
-      "status": "draft",
+      "status": "skipped",
       "published_at": null,
       "client_modified_text": null,
       "client_comment": null
