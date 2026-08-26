@@ -1,6 +1,85 @@
 {
   "entries": [
     {
+      "id": "jd-zoo-2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si",
+      "sujet": "Comment je sais qu'une séance a servi à quelque chose : les signes concrets de progrès",
+      "categorie": "idee-article",
+      "categorie_label": "Idée d'article de blog",
+      "attachments": [
+        {
+          "filename": "2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-1.webm",
+          "r2_key": "jd-zoo/2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-1.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-1.webm&e=1790318417&s=59152599c3c73797748a22ec1b71d8c947afbcb3ebeb5531d5039b52cd1ca999",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 665029
+        },
+        {
+          "filename": "2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-2.webm",
+          "r2_key": "jd-zoo/2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-2.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-2.webm&e=1790318417&s=623a1fae3776ca43dadca3c54964341250a82fb6b9379db3d6043f8f80c4f9c8",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 1984298
+        },
+        {
+          "filename": "2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-3.webm",
+          "r2_key": "jd-zoo/2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-3.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-3.webm&e=1790318417&s=71be8995f3f4fa34fbc5908cc85cc63897eceeafe5833f3d9d6f6458a27834ba",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 316117
+        },
+        {
+          "filename": "2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-4.webm",
+          "r2_key": "jd-zoo/2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-4.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-4.webm&e=1790318417&s=5784ee2abe90aabeff2e821a471813f6a11e4253d956a54d096d25e70ca3aa20",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 800717
+        },
+        {
+          "filename": "2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-5.webm",
+          "r2_key": "jd-zoo/2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-5.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-5.webm&e=1790318417&s=ddccfeae18255fe5a3caeaa240a3ec48a82863f96b87b2a0f861c5fc2701ebe6",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 651457
+        }
+      ],
+      "media": [
+        {
+          "filename": "2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-m1.png",
+          "r2_key": "jd-zoo/2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-m1.png",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-m1.png&e=1790318417&s=2dc09b7253b987570f7a05816632d5a8022282ff6da20900b557575a1d78162a",
+          "kind": "image",
+          "media_mime": "image/png",
+          "media_bytes": 2420255
+        },
+        {
+          "filename": "2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-m2.jpg",
+          "r2_key": "jd-zoo/2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-m2.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-m2.jpg&e=1790318417&s=a2f7f1d3909328abeed04df5c4033547b97dcd97d2c8dac18253ddb68dc28cfd",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 2108117
+        },
+        {
+          "filename": "2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-m3.png",
+          "r2_key": "jd-zoo/2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-m3.png",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-m3.png&e=1790318417&s=d73615df01b90373826cdd4984ec2cb9af29d4e4c5eea4ed01fde19d2cf3aaa5",
+          "kind": "image",
+          "media_mime": "image/png",
+          "media_bytes": 2405962
+        },
+        {
+          "filename": "2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-m4.png",
+          "r2_key": "jd-zoo/2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-m4.png",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-m4.png&e=1790318417&s=9573f4c1d74cc13074cc77bd577ab2c713f764f9b93f846e06be8326a3582ce0",
+          "kind": "image",
+          "media_mime": "image/png",
+          "media_bytes": 2244472
+        }
+      ],
+      "uploaded_at": "2026-08-26T06:40:26.980Z",
+      "statut": "envoye"
+    },
+    {
       "id": "jd-zoo-2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l",
       "sujet": "Comment Tips est devenu chien de médiation : la sélection et la formation avant la première séance",
       "categorie": "idee-article",
