@@ -396,8 +396,8 @@
         "#accompagnement"
       ],
       "cta": "Une question sur un proche ou un résident ? Écrivez-moi",
-      "status": "draft",
-      "published_at": null,
+      "status": "published",
+      "published_at": "2026-08-27T14:32:10.986Z",
       "client_modified_text": null,
       "client_comment": null
     },
