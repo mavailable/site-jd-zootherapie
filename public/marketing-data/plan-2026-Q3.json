@@ -372,8 +372,8 @@
         "#IME"
       ],
       "cta": "Écrivez-moi, on cale 30 minutes pour cadrer le projet",
-      "status": "draft",
-      "published_at": null,
+      "status": "published",
+      "published_at": "2026-08-27T14:08:29.907Z",
       "client_modified_text": null,
       "client_comment": null
     },
