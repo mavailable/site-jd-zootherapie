@@ -45,7 +45,9 @@ const cmsConfig: CmsConfig = {
   // Workers AI `AI` + secret AI_KEY_SECRET sur le projet CF Pages.
   // RGPD : sous-traitants Anthropic + Cloudflare Workers AI à ajouter à la
   // politique de confidentialité AVANT usage réel (cf. wf-00-cms §Module ai).
-  ai: { enabled: true, vocalToArticle: true },
+  // vision (v0.45) : les photos du message sont montrees au modele qui les place et les
+  // legende dans l'article (≈ 1 000-1 500 tokens/photo, quota AI_MONTHLY_TOKENS).
+  ai: { enabled: true, vocalToArticle: true, vision: true },
 
   repo: 'mavailable/site-jd-zootherapie',
   branch: 'master',
