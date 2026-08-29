@@ -1,6 +1,215 @@
 {
   "entries": [
     {
+      "id": "jd-zoo-2026-08-29-0954-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si",
+      "sujet": "Comment je sais qu'une séance a servi à quelque chose : les signes concrets de progrès",
+      "categorie": "idee-article",
+      "categorie_label": "Idée d'article de blog",
+      "attachments": [
+        {
+          "filename": "2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-1.webm",
+          "r2_key": "jd-zoo/2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-1.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-1.webm&e=1790318417&s=59152599c3c73797748a22ec1b71d8c947afbcb3ebeb5531d5039b52cd1ca999",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 665029
+        },
+        {
+          "filename": "2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-2.webm",
+          "r2_key": "jd-zoo/2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-2.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-2.webm&e=1790318417&s=623a1fae3776ca43dadca3c54964341250a82fb6b9379db3d6043f8f80c4f9c8",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 1984298
+        },
+        {
+          "filename": "2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-3.webm",
+          "r2_key": "jd-zoo/2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-3.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-3.webm&e=1790318417&s=71be8995f3f4fa34fbc5908cc85cc63897eceeafe5833f3d9d6f6458a27834ba",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 316117
+        },
+        {
+          "filename": "2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-4.webm",
+          "r2_key": "jd-zoo/2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-4.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-4.webm&e=1790318417&s=5784ee2abe90aabeff2e821a471813f6a11e4253d956a54d096d25e70ca3aa20",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 800717
+        },
+        {
+          "filename": "2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-5.webm",
+          "r2_key": "jd-zoo/2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-5.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-5.webm&e=1790318417&s=ddccfeae18255fe5a3caeaa240a3ec48a82863f96b87b2a0f861c5fc2701ebe6",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 651457
+        }
+      ],
+      "media": [
+        {
+          "filename": "2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-m1.png",
+          "r2_key": "jd-zoo/2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-m1.png",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-m1.png&e=1790318417&s=2dc09b7253b987570f7a05816632d5a8022282ff6da20900b557575a1d78162a",
+          "kind": "image",
+          "media_mime": "image/png",
+          "media_bytes": 2420255
+        },
+        {
+          "filename": "2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-m2.jpg",
+          "r2_key": "jd-zoo/2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-m2.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-m2.jpg&e=1790318417&s=a2f7f1d3909328abeed04df5c4033547b97dcd97d2c8dac18253ddb68dc28cfd",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 2108117
+        },
+        {
+          "filename": "2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-m3.png",
+          "r2_key": "jd-zoo/2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-m3.png",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-m3.png&e=1790318417&s=d73615df01b90373826cdd4984ec2cb9af29d4e4c5eea4ed01fde19d2cf3aaa5",
+          "kind": "image",
+          "media_mime": "image/png",
+          "media_bytes": 2405962
+        },
+        {
+          "filename": "2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-m4.png",
+          "r2_key": "jd-zoo/2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-m4.png",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si-m4.png&e=1790318417&s=9573f4c1d74cc13074cc77bd577ab2c713f764f9b93f846e06be8326a3582ce0",
+          "kind": "image",
+          "media_mime": "image/png",
+          "media_bytes": 2244472
+        }
+      ],
+      "uploaded_at": "2026-08-29T07:54:40.713Z",
+      "statut": "envoye"
+    },
+    {
+      "id": "jd-zoo-2026-08-29-0953-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l",
+      "sujet": "Comment Tips est devenu chien de médiation : la sélection et la formation avant la première séance",
+      "categorie": "idee-article",
+      "categorie_label": "Idée d'article de blog",
+      "attachments": [
+        {
+          "filename": "2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-1.webm",
+          "r2_key": "jd-zoo/2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-1.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-1.webm&e=1789723993&s=9411e171ae94689430dc3df9569479db6adba8139dbbc88b21ea31284eb3c070",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 775505
+        },
+        {
+          "filename": "2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-2.webm",
+          "r2_key": "jd-zoo/2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-2.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-2.webm&e=1789723993&s=391124630c4dfd086702ab7e0dcbfef4b4992ca444867c5afa56ea1176eb25d8",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 1588776
+        },
+        {
+          "filename": "2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-3.webm",
+          "r2_key": "jd-zoo/2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-3.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-3.webm&e=1789723993&s=52ce6c2e6670f57a5ee99b66620b8f8a31bff9336409ff6616b22bb54e40f593",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 866613
+        },
+        {
+          "filename": "2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-4.webm",
+          "r2_key": "jd-zoo/2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-4.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-4.webm&e=1789723993&s=6a35cec3057e581c37eca22852641441c6cdad61dd24831a8b406dfdca632630",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 329673
+        },
+        {
+          "filename": "2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-5.webm",
+          "r2_key": "jd-zoo/2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-5.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-5.webm&e=1789723993&s=60dce001a75c095d35f6b1eb55d164badb5c3494aa82d9de5bb30d2165c1a739",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 270555
+        },
+        {
+          "filename": "2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-6.webm",
+          "r2_key": "jd-zoo/2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-6.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-6.webm&e=1789723993&s=5a672447831bd3c7fa9529d7886652e6736046ab6c08d64a19e88fb19b8a2523",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 1208778
+        },
+        {
+          "filename": "2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-7.webm",
+          "r2_key": "jd-zoo/2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-7.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-7.webm&e=1789723993&s=172fcf20ec465a3b53d9d2b6504261c351d0c90ecc2a91bd2f12972a96eb2aa6",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 1054641
+        },
+        {
+          "filename": "2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-8.webm",
+          "r2_key": "jd-zoo/2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-8.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-8.webm&e=1789723993&s=7e35f5aa40ec710965da82188aebbbc890f9540b07860de10612dbb7c1afcc73",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 782299
+        },
+        {
+          "filename": "2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-9.webm",
+          "r2_key": "jd-zoo/2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-9.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-9.webm&e=1789723993&s=bf3e4beec24019d26617a3a99a4a38f8996262f264cc981ec3468e27eebf00a4",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 1131226
+        },
+        {
+          "filename": "2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-10.webm",
+          "r2_key": "jd-zoo/2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-10.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-10.webm&e=1789723993&s=890e107cbdae89cd4ce2a41868e09f17653e49a9cec54a3cae3e14fe09153725",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 1098263
+        }
+      ],
+      "media": [
+        {
+          "filename": "2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-m1.jpg",
+          "r2_key": "jd-zoo/2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-m1.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-m1.jpg&e=1789723993&s=964861b05e6c9d8487ebdf620a750b03a305a78174a088ea0c91ab883e648e6f",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 79249
+        },
+        {
+          "filename": "2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-m2.jpg",
+          "r2_key": "jd-zoo/2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-m2.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-m2.jpg&e=1789723993&s=9c3d0733baab78f12b26d6daeb5d131e6bc27caa9a93ab7aa517394739d305ce",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 146731
+        },
+        {
+          "filename": "2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-m3.jpg",
+          "r2_key": "jd-zoo/2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-m3.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-m3.jpg&e=1789723993&s=25f87b55aa46db63a245acadf47933a55698d3e33e0aab7b232e401ee3a80afe",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 53909
+        },
+        {
+          "filename": "2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-m4.jpg",
+          "r2_key": "jd-zoo/2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-m4.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-m4.jpg&e=1789723993&s=e0df11b2225ae67a76dfc91e02afc41887c36764b7116b6dffbe6a9bd2601b4a",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 259037
+        },
+        {
+          "filename": "2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-m5.jpg",
+          "r2_key": "jd-zoo/2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-m5.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-m5.jpg&e=1789723993&s=76c9d83711f6301c6db5d50173ce9b0b3b2e8b2536b3be7c19f837d7bde60faa",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 127229
+        },
+        {
+          "filename": "2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-m6.jpg",
+          "r2_key": "jd-zoo/2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-m6.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-08-19-1133-comment-tips-est-devenu-chien-de-mediation-la-selection-et-l-m6.jpg&e=1789723993&s=1f985e3bf186e6b99908ed76bfa1539d0218c9ad6a55fb8bc8693dae99b6e6e3",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 511071
+        }
+      ],
+      "uploaded_at": "2026-08-29T07:53:40.713Z",
+      "statut": "envoye"
+    },
+    {
       "id": "jd-zoo-2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si",
       "sujet": "Comment je sais qu'une séance a servi à quelque chose : les signes concrets de progrès",
       "categorie": "idee-article",
