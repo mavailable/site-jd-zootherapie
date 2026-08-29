@@ -1,0 +1,38 @@
+{
+  "business": "JD Zoothérapie (aussi connu sous le nom Patt'es Tendres) est la pratique de médiation animale de Jennifer De Groeve, praticienne certifiée installée à Vigny (57420), en Moselle. Aide-soignante diplômée avec plus de 20 ans dans le soin et l'accompagnement, formée à l'IFZ, elle intervient à domicile et en structure (EHPAD, IME, ITEP, foyers, écoles, bibliothèques) à Metz, Thionville et dans toute la Moselle, ponctuellement jusqu'à Nancy. Elle travaille avec ses animaux médiateurs : Tips (finnois de Laponie, chien médiateur certifié), Uxo (berger américain miniature), Tap-Tap (lapin bélier) et un cochon d'Inde. Séances individuelles ou collectives, ateliers pour enfants, personnes âgées, personnes atteintes de maladies neurodégénératives, familles et aidants, lecture assistée par l'animal.",
+  "tone": "Première personne (« je », Jennifer parle), chaleureux, concret et honnête, sans jargon ni promesse : on décrit ce qui se passe réellement en séance, on assume les limites du métier, on ne survend pas. Phrases courtes, ancrées dans le terrain. Vocabulaire calibré : médiation animale, zoothérapie, animal médiateur, personne accompagnée, séance, lien, présence, douceur, confiance, apaisement, autonomie, accompagnement, co-construction avec les équipes, aidant-aidé.",
+  "audience": "Deux publics : les particuliers (familles avec un enfant qui manque de confiance ou a peur des chiens, proches d'une personne âgée ou atteinte d'Alzheimer ou de Parkinson, aidants familiaux épuisés) et les structures (directions et équipes soignantes ou éducatives d'EHPAD, IME, ITEP, foyers, écoles, bibliothèques) qui cherchent un outil d'accompagnement complémentaire, cadré et évalué, en Moselle.",
+  "verbatims": [
+    "Jennifer ? Une vraie pro… attentive, attentionnée, et toujours souriante. Une personne en qui j'ai toute confiance. Quant à Tips et Uxo, bien plus que des chiens !",
+    "J'ai pu accompagner ma maman âgée de 86 ans, souffrant de la maladie d'Alzheimer. Jennifer est douce, patiente, et à l'écoute ! Elle propose des activités variées et toujours adaptées.",
+    "Merci à Jennifer pour son professionnalisme et sa bienveillance tout au long du cycle de médiation animale à destination des aidants. Merci à ses fidèles compagnons qui ont su se faire adopter rapidement !",
+    "En 15 minutes, il a obtenu plus de sourires que 3 heures de discours.",
+    "Ce que vous voyez n'est pas un câlin. C'est un signal. Quand un chien choisit de s'allonger contre vous, il dit quelque chose de clair : ici je me sens en sécurité."
+  ],
+  "anchors": [
+    "Jennifer De Groeve, praticienne certifiée en médiation animale, aide-soignante diplômée, plus de 20 ans dans le soin et l'accompagnement",
+    "Formation à l'IFZ (Institut de Formation en Zoothérapie) ; pratique inscrite dans la charte de déontologie de l'Institut français de zoothérapie",
+    "Membre du Syndicat Français des Zoothérapeutes",
+    "Tips : finnois de Laponie, chien médiateur certifié, calme, doux, attentif, idéal personnes âgées",
+    "Uxo : berger américain miniature, énergique et joyeux, ateliers enfants et groupes",
+    "Tap-Tap : lapin bélier, ateliers sensoriels et personnes qui ont peur des chiens",
+    "Cochon d'Inde : petit animal médiateur, sensible, à manipuler avec délicatesse",
+    "Basée à Vigny (57420), Moselle ; interventions à Metz, Thionville, toute la Moselle, ponctuellement Nancy",
+    "Séance individuelle 60 € déplacement inclus en Moselle ; groupes et structures sur devis ; au-delà de la Moselle 0,40 €/km",
+    "Premier échange téléphonique gratuit et sans engagement ; 5,0 sur 9 avis Google",
+    "Publics : enfants dès 3 ans, adolescents, adultes, personnes âgées, Alzheimer, Parkinson, TSA, TDAH, handicap, aidants familiaux",
+    "Lieux : domicile, EHPAD, IME, ITEP, foyers, écoles, bibliothèques ; évaluation proposée en fin de séance ou de cycle",
+    "Lecture assistée par l'animal (Bibliothèque de Marly), atelier « Apprends à parler chien » (Doggoverse, Metz), cycle de médiation animale pour les aidants (Maison des Aidants de Nancy)",
+    "Vocabulaire à orthographier correctement : Tips, Uxo, Tap-Tap, Vigny, Verny, Metz, Thionville, Moselle, IFZ, EHPAD, IME, ITEP, TSA, TDAH, Alzheimer, Parkinson, zoothérapie, zoothérapeute, médiation animale, aidant-aidé, Doggoverse, Marly"
+  ],
+  "forbidden_topics": [
+    "Aucune allégation médicale ou thérapeutique : la médiation animale ne soigne, ne guérit et ne remplace aucun traitement, diagnostic ou suivi médical ; pas de promesse de résultat",
+    "Aucune donnée sur une personne accompagnée réelle : pas de nom, âge précis, pathologie, lieu ou situation permettant de l'identifier (secret professionnel), même dans un récit de séance",
+    "Aucun concurrent, autre praticien ou structure de médiation animale nommé",
+    "Aucun tarif, remise ou offre autre que ceux publiés sur le site (60 € la séance individuelle, devis pour les groupes) ; pas de prix inventé pour les ateliers ou cycles",
+    "Aucune étude scientifique, chiffre ou statistique non cité dans le contexte fourni",
+    "Pas de ton commercial agressif ni de formule générique ; pas d'emoji dans les articles de blog"
+  ],
+  "languages": ["fr"],
+  "updated": "2026-08-29"
+}
