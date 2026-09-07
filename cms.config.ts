@@ -47,7 +47,25 @@ const cmsConfig: CmsConfig = {
   // politique de confidentialité AVANT usage réel (cf. wf-00-cms §Module ai).
   // vision (v0.45) : les photos du message sont montrees au modele qui les place et les
   // legende dans l'article (≈ 1 000-1 500 tokens/photo, quota AI_MONTHLY_TOKENS).
-  ai: { enabled: true, vocalToArticle: true, vision: true },
+  ai: {
+    enabled: true,
+    vocalToArticle: true,
+    vision: true,
+    // Phrases d'attente de la popup de generation (façon Sims), aux couleurs
+    // de la zoothérapie — défauts génériques du moteur sinon.
+    waitPhrases: [
+      'On brosse Tips pour la photo de couverture…',
+      'Distribution de friandises à l’équipe de rédaction…',
+      'Le lapin vérifie l’orthographe des carottes…',
+      'Séance de médiation entre le titre et le sous-titre…',
+      'Tips rapporte les mots manquants…',
+      'Câlin de motivation avant le dernier paragraphe…',
+      'Petites pattes, grandes idées : ça rédige…',
+      'On remplit les gamelles avant la relecture…',
+      'L’équipe à quatre pattes relit l’introduction…',
+      'Ronronnement du correcteur en cours…',
+    ],
+  },
 
   repo: 'mavailable/site-jd-zootherapie',
   branch: 'master',
