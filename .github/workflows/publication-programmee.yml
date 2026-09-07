@@ -1,0 +1,37 @@
+# Publication programmée (site statique) : le filtre publish_at s'applique au
+# BUILD — sans rebuild, un article programmé resterait invisible à sa date.
+# Ce cron vérifie chaque matin si un article vient de devenir publiable
+# (publish_at dans les dernières 24 h) et, seulement dans ce cas, pousse un
+# commit vide -> Cloudflare Pages rebuild -> l'article paraît.
+name: publication programmee
+on:
+  schedule:
+    - cron: '15 7 * * *' # 09:15 Paris (été) / 08:15 (hiver)
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rebuild si un article vient de devenir publiable
+        run: |
+          now=$(date -u +%s)
+          day_ago=$((now - 86400))
+          hit=""
+          for f in src/content/blog/*.json; do
+            p=$(jq -r '.publish_at // empty' "$f")
+            [ -z "$p" ] && continue
+            [ "$(jq -r '.draft // false' "$f")" = "true" ] && continue
+            ts=$(date -u -d "$p" +%s 2>/dev/null) || continue
+            if [ "$ts" -le "$now" ] && [ "$ts" -gt "$day_ago" ]; then hit="$f"; fi
+          done
+          if [ -n "$hit" ]; then
+            git config user.name "cms-scheduler"
+            git config user.email "noreply@users.noreply.github.com"
+            git commit --allow-empty -m "publish: rebuild pour publication programmee ($(basename "$hit"))"
+            git push
+          else
+            echo "rien a publier aujourd'hui"
+          fi
