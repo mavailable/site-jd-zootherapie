@@ -1,6 +1,11 @@
 {
   "ideas": [
     {
+      "title": "test",
+      "source": "idée client",
+      "status": "a-faire"
+    },
+    {
       "title": "Parkinson, le mutisme, et un chien nommé Tips",
       "source": "3 vocaux WhatsApp Jennifer 2026-04-18 — accompagnement Monsieur X (Parkinson) avant la médiation animale, mutisme post-Covid, reconnexion via Tips, fin de vie",
       "status": "publie",
@@ -157,11 +162,6 @@
       "source": "historique",
       "status": "publie",
       "slug": "zootherapie-calinotherapie-differences"
-    },
-    {
-      "title": "test",
-      "source": "idée client",
-      "status": "archive"
     },
     {
       "title": "test",
