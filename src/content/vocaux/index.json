@@ -1,6 +1,47 @@
 {
   "entries": [
     {
+      "id": "jd-zoo-2026-09-08-0849-seance-individuelle-ou-en-petit-groupe-comment-choisir-le-bo",
+      "sujet": "séance individuelle ou en petit groupe: comment choisir le bon format",
+      "categorie": "idee-article",
+      "categorie_label": "Idée d'article de blog",
+      "attachments": [
+        {
+          "filename": "2026-09-08-0849-seance-individuelle-ou-en-petit-groupe-comment-choisir-le-bo-1.webm",
+          "r2_key": "jd-zoo/2026-09-08-0849-seance-individuelle-ou-en-petit-groupe-comment-choisir-le-bo-1.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-09-08-0849-seance-individuelle-ou-en-petit-groupe-comment-choisir-le-bo-1.webm&e=1791442153&s=c2ca5541cb0a720a1dbe6b1fe71c14dd22f06bff5b6675c95950511d1c501157",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 2786951
+        },
+        {
+          "filename": "2026-09-08-0849-seance-individuelle-ou-en-petit-groupe-comment-choisir-le-bo-2.webm",
+          "r2_key": "jd-zoo/2026-09-08-0849-seance-individuelle-ou-en-petit-groupe-comment-choisir-le-bo-2.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-09-08-0849-seance-individuelle-ou-en-petit-groupe-comment-choisir-le-bo-2.webm&e=1791442153&s=8dd787f9b1af740aeb8dff91907270c2f395f205e2bfb928f007ecafd22ce53d",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 2605680
+        },
+        {
+          "filename": "2026-09-08-0849-seance-individuelle-ou-en-petit-groupe-comment-choisir-le-bo-3.webm",
+          "r2_key": "jd-zoo/2026-09-08-0849-seance-individuelle-ou-en-petit-groupe-comment-choisir-le-bo-3.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-09-08-0849-seance-individuelle-ou-en-petit-groupe-comment-choisir-le-bo-3.webm&e=1791442153&s=b10148b5458c6342a64eab7c410895b34a31028466b2a0fceeecf0d33727136f",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 1047863
+        }
+      ],
+      "media": [
+        {
+          "filename": "2026-09-08-0849-seance-individuelle-ou-en-petit-groupe-comment-choisir-le-bo-media.jpg",
+          "r2_key": "jd-zoo/2026-09-08-0849-seance-individuelle-ou-en-petit-groupe-comment-choisir-le-bo-media.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-09-08-0849-seance-individuelle-ou-en-petit-groupe-comment-choisir-le-bo-media.jpg&e=1791442153&s=a2991698f2c951eda00b05e4bd18013e7470fb0bec7ea46ecad87f92eedd4f46",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 839340
+        }
+      ],
+      "uploaded_at": "2026-09-08T06:49:23.545Z",
+      "statut": "envoye"
+    },
+    {
       "id": "jd-zoo-2026-08-26-0840-comment-je-sais-qu-une-seance-a-servi-a-quelque-chose-les-si",
       "sujet": "Comment je sais qu'une séance a servi à quelque chose : les signes concrets de progrès",
       "categorie": "idee-article",
