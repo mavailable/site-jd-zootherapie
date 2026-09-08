@@ -2,8 +2,10 @@
   "ideas": [
     {
       "title": "séance individuelle ou en petit groupe: comment choisir le bon format",
-      "status": "a-faire",
-      "source": "client"
+      "status": "brouillon",
+      "source": "client",
+      "slug": "seance-individuelle-ou-petit-groupe-comment-je-choisis-le-bon-format",
+      "updated_at": "2026-09-08T09:40:00.000Z"
     },
     {
       "title": "test2",
@@ -83,8 +85,10 @@
     {
       "title": "Comment je sais qu'une séance a servi à quelque chose : les signes concrets de progrès",
       "source": "Demande des directions B2B, comment mesurer l'impact sans tomber dans les promesses chiffrées creuses",
-      "status": "a-faire",
-      "notes": "Observation honnête : un mot retrouvé, un geste vers l'animal, un résident qui sort de sa chambre, une équipe qui voit la différence. Pas de stat miracle, des signaux réels notés en compte rendu. Rassure les directions sur le suivi sans survendre. À redicter : le vocal précédent était inaudible."
+      "status": "brouillon",
+      "notes": "Observation honnête : un mot retrouvé, un geste vers l'animal, un résident qui sort de sa chambre, une équipe qui voit la différence. Pas de stat miracle, des signaux réels notés en compte rendu. Rassure les directions sur le suivi sans survendre. À redicter : le vocal précédent était inaudible.",
+      "slug": "comment-je-sais-qu-une-seance-a-servi-a-quelque-chose",
+      "updated_at": "2026-09-08T09:40:00.000Z"
     },
     {
       "title": "Le Grand Est vu depuis mes séances : besoins, réalités, attentes",
