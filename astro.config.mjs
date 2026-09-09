@@ -23,7 +23,9 @@ export default defineConfig({
           !page.includes('/merci') &&
           !page.includes('/404') &&
           !page.includes('/aide-') &&
-          !page.includes('/admin')
+          !page.includes('/admin') &&
+          // /depot : page de depot de matiere (lien magique), noindex -> jamais dans le sitemap.
+          !page.includes('/depot')
         );
       },
       i18n: {

@@ -1,0 +1,22 @@
+---
+// AUTO-GENERATED par @marc/cms-engine — ne pas editer. Regenerer : npx cms-engine-scaffold
+import '@marc/cms-engine/cms.css';
+import DepositIsland from '../components/DepositIsland';
+import cmsConfig from '../../cms.config';
+
+const cmsLocale = (cmsConfig as { locale?: 'fr' | 'en' }).locale === 'en' ? 'en' : 'fr';
+const pageTitle = cmsLocale === 'en' ? 'Send your material' : 'Envoyer ma matiere';
+---
+
+<!doctype html>
+<html lang={cmsLocale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{cmsConfig.siteName} — {pageTitle}</title>
+  </head>
+  <body>
+    <DepositIsland config={cmsConfig} client:only="react" />
+  </body>
+</html>
