@@ -1,6 +1,16 @@
 {
   "entries": [
     {
+      "id": "jd-zoo-2026-09-10-0112-test-technique-10-09-a-supprimer",
+      "sujet": "TEST TECHNIQUE 10/09 - a supprimer",
+      "categorie": "idee-article",
+      "categorie_label": "idee-article",
+      "note": "Verification que le sujet cree bien une idee dans l onglet Blog.",
+      "attachments": [],
+      "uploaded_at": "2026-09-09T23:12:39.881Z",
+      "statut": "envoye"
+    },
+    {
       "id": "jd-zoo-2026-09-08-0849-seance-individuelle-ou-en-petit-groupe-comment-choisir-le-bo",
       "sujet": "séance individuelle ou en petit groupe: comment choisir le bon format",
       "categorie": "idee-article",
