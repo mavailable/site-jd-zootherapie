@@ -1,41 +1,6 @@
 {
   "entries": [
     {
-      "id": "jd-zoo-2026-09-10-0035-test",
-      "sujet": "test",
-      "categorie": "idee-article",
-      "categorie_label": "Idée d'article de blog",
-      "note": "test",
-      "attachments": [
-        {
-          "filename": "2026-09-10-0035-test-1.webm",
-          "r2_key": "jd-zoo/2026-09-10-0035-test-1.webm",
-          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-09-10-0035-test-1.webm&e=1791585357&s=a07d64526e93e278a6ec51588142db84893b79039c5736e8b29dee37a7cd194a",
-          "audio_mime": "audio/webm;codecs=opus",
-          "audio_bytes": 38913
-        },
-        {
-          "filename": "2026-09-10-0035-test-2.webm",
-          "r2_key": "jd-zoo/2026-09-10-0035-test-2.webm",
-          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-09-10-0035-test-2.webm&e=1791585357&s=c26f9e72179115960368103b3577e0951ed2c801e33f393d1ae43b7a7414aac7",
-          "audio_mime": "audio/webm;codecs=opus",
-          "audio_bytes": 51519
-        }
-      ],
-      "media": [
-        {
-          "filename": "2026-09-10-0035-test-media.png",
-          "r2_key": "jd-zoo/2026-09-10-0035-test-media.png",
-          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-09-10-0035-test-media.png&e=1791585357&s=b3baccf39205dd9374cd5e67b17984082a5826e9119a38cdb4c70473744fc48e",
-          "kind": "image",
-          "media_mime": "image/png",
-          "media_bytes": 21064
-        }
-      ],
-      "uploaded_at": "2026-09-09T22:36:00.197Z",
-      "statut": "envoye"
-    },
-    {
       "id": "jd-zoo-2026-09-08-0849-seance-individuelle-ou-en-petit-groupe-comment-choisir-le-bo",
       "sujet": "séance individuelle ou en petit groupe: comment choisir le bon format",
       "categorie": "idee-article",
