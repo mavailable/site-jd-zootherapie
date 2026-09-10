@@ -1,6 +1,33 @@
 {
   "entries": [
     {
+      "id": "jd-zoo-2026-09-10-1342-nouvel-article-de-blog-comment-ecrire-un-article-de-blog-via",
+      "sujet": "nouvel article de blog : comment ecrire un article de blog via whatsapp",
+      "categorie": "idee-article",
+      "categorie_label": "idee-article",
+      "attachments": [
+        {
+          "filename": "2026-09-10-1342-nouvel-article-de-blog-comment-ecrire-un-article-de-blog-via.opus",
+          "r2_key": "jd-zoo/2026-09-10-1342-nouvel-article-de-blog-comment-ecrire-un-article-de-blog-via.opus",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-09-10-1342-nouvel-article-de-blog-comment-ecrire-un-article-de-blog-via.opus&e=1791632529&s=172b4bbebb197a0ee8c8f24f182e1307b0aa2f1a9f4ef469cd447576cb3cdf1c",
+          "audio_mime": "audio/ogg",
+          "audio_bytes": 84773
+        }
+      ],
+      "media": [
+        {
+          "filename": "2026-09-10-1342-nouvel-article-de-blog-comment-ecrire-un-article-de-blog-via-media.jpg",
+          "r2_key": "jd-zoo/2026-09-10-1342-nouvel-article-de-blog-comment-ecrire-un-article-de-blog-via-media.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-09-10-1342-nouvel-article-de-blog-comment-ecrire-un-article-de-blog-via-media.jpg&e=1791632529&s=6aca5d1c97dba547d6f02e5127a6cf151c821555c87add5777fa014e8b049a9a",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 133865
+        }
+      ],
+      "uploaded_at": "2026-09-10T11:42:11.610Z",
+      "statut": "envoye"
+    },
+    {
       "id": "jd-zoo-2026-09-08-0849-seance-individuelle-ou-en-petit-groupe-comment-choisir-le-bo",
       "sujet": "séance individuelle ou en petit groupe: comment choisir le bon format",
       "categorie": "idee-article",
