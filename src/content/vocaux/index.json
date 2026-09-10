@@ -1,6 +1,48 @@
 {
   "entries": [
     {
+      "id": "jd-zoo-2026-09-10-1059-test-42",
+      "sujet": "test 42",
+      "categorie": "idee-article",
+      "categorie_label": "Idée d'article de blog",
+      "note": "test d'article",
+      "attachments": [
+        {
+          "filename": "2026-09-10-1059-test-42-1.webm",
+          "r2_key": "jd-zoo/2026-09-10-1059-test-42-1.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-09-10-1059-test-42-1.webm&e=1791622762&s=13f64e5f536a2d19884acb8578b49d90137a92a839b87c0a98874a85d2251640",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 42793
+        },
+        {
+          "filename": "2026-09-10-1059-test-42-2.webm",
+          "r2_key": "jd-zoo/2026-09-10-1059-test-42-2.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-09-10-1059-test-42-2.webm&e=1791622762&s=6477579b6b2acdc1d928281f89996a7bb1958cecc4f1606b9903de557bc0a918",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 9837
+        },
+        {
+          "filename": "2026-09-10-1059-test-42-3.webm",
+          "r2_key": "jd-zoo/2026-09-10-1059-test-42-3.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-09-10-1059-test-42-3.webm&e=1791622762&s=9cf64d3a22935019da508af8ad3e229b35e63c6f5166962a805174de4859151c",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 76715
+        }
+      ],
+      "media": [
+        {
+          "filename": "2026-09-10-1059-test-42-media.png",
+          "r2_key": "jd-zoo/2026-09-10-1059-test-42-media.png",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-09-10-1059-test-42-media.png&e=1791622762&s=1d52c32490289e65db08c1bf7ad38d1fd7f0f73bfc30907537924fa6f0287b5b",
+          "kind": "image",
+          "media_mime": "image/png",
+          "media_bytes": 34234
+        }
+      ],
+      "uploaded_at": "2026-09-10T08:59:27.576Z",
+      "statut": "envoye"
+    },
+    {
       "id": "jd-zoo-2026-09-08-0849-seance-individuelle-ou-en-petit-groupe-comment-choisir-le-bo",
       "sujet": "séance individuelle ou en petit groupe: comment choisir le bon format",
       "categorie": "idee-article",
