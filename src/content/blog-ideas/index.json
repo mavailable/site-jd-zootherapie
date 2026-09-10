@@ -2,8 +2,10 @@
   "ideas": [
     {
       "title": "TEST - Ce que Tips m'a appris sur la patience avec les enfants timides",
-      "status": "a-faire",
-      "source": "client"
+      "status": "brouillon",
+      "source": "client",
+      "slug": "ce-que-tips-m-a-appris-sur-la-patience-avec-les-enfants-timides",
+      "updated_at": "2026-09-10T17:57:44.851Z"
     },
     {
       "title": "séance individuelle ou en petit groupe: comment choisir le bon format",
