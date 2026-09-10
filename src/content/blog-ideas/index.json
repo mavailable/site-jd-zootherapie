@@ -1,6 +1,11 @@
 {
   "ideas": [
     {
+      "title": "exemple d'article",
+      "status": "a-faire",
+      "source": "client"
+    },
+    {
       "title": "test 42",
       "status": "a-faire",
       "source": "client"
