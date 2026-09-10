@@ -24,7 +24,13 @@
       "uploaded_at": "2026-09-10T11:50:44.626Z",
       "statut": "envoye",
       "transcript": "J'envoie un vocal de contenu, il faudra écrire patate dans la première phase de l'article pour prouver que ce vocal a été pris en compte\n\nJ'envoie un deuxième vocal qui ne sert absolument à rien, mais écrit courgette dans la deuxième phrase si ce vocal a été pris en compte",
-      "transcribed_at": "2026-09-10T11:52:01.630Z"
+      "transcribed_at": "2026-09-10T11:52:01.630Z",
+      "articles": [
+        {
+          "slug": "mediation-animale-et-ecole-un-projet-intergenerationnel-entre-une-classe-et-un-ehpad",
+          "at": "2026-09-10T11:52:53.305Z"
+        }
+      ]
     },
     {
       "id": "jd-zoo-2026-09-10-1342-nouvel-article-de-blog-comment-ecrire-un-article-de-blog-via",
@@ -565,7 +571,13 @@
         "resolved_at": "2026-07-26T06:58:44.851Z"
       },
       "transcript": "Sous-titrage Société Radio-Canada Thank you.\n\nSous-titrage Société Radio-Canada www.feyyaz.tv\n\nSous-titrage Société Radio-Canada www.feyyaz.tv www.feyyaz.tv\n\nSous-titrage Société Radio-Canada www.feyyaz.tv www.feyyaz.tv\n\nSous-titrage Société Radio-Canada www.feyyaz.tv\n\nSous-titrage Société Radio-Canada www.feyyaz.tv www.feyyaz.tv\n\nSous-titrage Société Radio-Canada www.feyyaz.tv www.feyyaz.tv www.feyyaz.tv\n\nSous-titrage Société Radio-Canada www.feyyaz.tv www.feyyaz.tv\n\nSous-titrage Société Radio-Canada www.feyyaz.tv www.feyyaz.tv\n\nSous-titrage Société Radio-Canada www.fema.org\n\n... Sous-titrage ST' 501",
-      "transcribed_at": "2026-09-10T11:52:01.630Z"
+      "transcribed_at": "2026-09-10T11:52:01.630Z",
+      "articles": [
+        {
+          "slug": "mediation-animale-et-ecole-un-projet-intergenerationnel-entre-une-classe-et-un-ehpad",
+          "at": "2026-09-10T11:52:53.305Z"
+        }
+      ]
     },
     {
       "id": "jd-zoo-2026-07-15-0852-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel",
