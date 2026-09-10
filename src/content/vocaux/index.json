@@ -1,6 +1,47 @@
 {
   "entries": [
     {
+      "id": "jd-zoo-2026-09-10-1319-exemple-d-article",
+      "sujet": "exemple d'article",
+      "categorie": "idee-article",
+      "categorie_label": "idee-article",
+      "attachments": [
+        {
+          "filename": "2026-09-10-1319-exemple-d-article-1.opus",
+          "r2_key": "jd-zoo/2026-09-10-1319-exemple-d-article-1.opus",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-09-10-1319-exemple-d-article-1.opus&e=1791631174&s=b8d32e12bf36528245ae5e5117ff08c5b8f2957e2f7bd30a79dc6f6ec1e9c0e2",
+          "audio_mime": "audio/ogg",
+          "audio_bytes": 10463
+        },
+        {
+          "filename": "2026-09-10-1319-exemple-d-article-2.opus",
+          "r2_key": "jd-zoo/2026-09-10-1319-exemple-d-article-2.opus",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-09-10-1319-exemple-d-article-2.opus&e=1791631174&s=dcdfcb56af053aa2ce4eab803cb0fa5e3c9db182a52bc633f2cf3c9c1a4b4c27",
+          "audio_mime": "audio/ogg",
+          "audio_bytes": 7186
+        },
+        {
+          "filename": "2026-09-10-1319-exemple-d-article-3.opus",
+          "r2_key": "jd-zoo/2026-09-10-1319-exemple-d-article-3.opus",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-09-10-1319-exemple-d-article-3.opus&e=1791631174&s=4a3e50850a03721a6f23dc72c22e712e55f651788d87b6574732f09961c4c00d",
+          "audio_mime": "audio/ogg",
+          "audio_bytes": 7482
+        }
+      ],
+      "media": [
+        {
+          "filename": "2026-09-10-1319-exemple-d-article-media.jpg",
+          "r2_key": "jd-zoo/2026-09-10-1319-exemple-d-article-media.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-09-10-1319-exemple-d-article-media.jpg&e=1791631174&s=90cee7c271c525c570d2fd296cb07a1e1eb0113fbde3bbaa0b7dafb2cb1af9e4",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 7236
+        }
+      ],
+      "uploaded_at": "2026-09-10T11:19:37.047Z",
+      "statut": "envoye"
+    },
+    {
       "id": "jd-zoo-2026-09-10-1059-test-42",
       "sujet": "test 42",
       "categorie": "idee-article",
