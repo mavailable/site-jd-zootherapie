@@ -1,73 +1,6 @@
 {
   "entries": [
     {
-      "id": "jd-zoo-2026-09-10-1350-mediation-animale-et-ecole-un-projet-intergenerationnel-entr",
-      "sujet": "Médiation animale et école : un projet intergénérationnel entre une classe et un EHPAD",
-      "categorie": "idee-article",
-      "categorie_label": "idee-article",
-      "attachments": [
-        {
-          "filename": "2026-09-10-1350-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-1.opus",
-          "r2_key": "jd-zoo/2026-09-10-1350-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-1.opus",
-          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-09-10-1350-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-1.opus&e=1791633043&s=99ccfef50574710a3d0762a8b4347b9b5ed58df8d5201bf24a1dd158a04a0726",
-          "audio_mime": "audio/ogg",
-          "audio_bytes": 24578
-        },
-        {
-          "filename": "2026-09-10-1350-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-2.opus",
-          "r2_key": "jd-zoo/2026-09-10-1350-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-2.opus",
-          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-09-10-1350-mediation-animale-et-ecole-un-projet-intergenerationnel-entr-2.opus&e=1791633043&s=3b827003769ebbec97353101515232d76a8ce1b20578bc05368f34d98c848609",
-          "audio_mime": "audio/ogg",
-          "audio_bytes": 22277
-        }
-      ],
-      "uploaded_at": "2026-09-10T11:50:44.626Z",
-      "statut": "envoye",
-      "transcript": "J'envoie un vocal de contenu, il faudra écrire patate dans la première phase de l'article pour prouver que ce vocal a été pris en compte\n\nJ'envoie un deuxième vocal qui ne sert absolument à rien, mais écrit courgette dans la deuxième phrase si ce vocal a été pris en compte",
-      "transcribed_at": "2026-09-10T11:52:01.630Z",
-      "articles": [
-        {
-          "slug": "mediation-animale-et-ecole-un-projet-intergenerationnel-entre-une-classe-et-un-ehpad",
-          "at": "2026-09-10T11:52:53.305Z"
-        }
-      ]
-    },
-    {
-      "id": "jd-zoo-2026-09-10-1342-nouvel-article-de-blog-comment-ecrire-un-article-de-blog-via",
-      "sujet": "nouvel article de blog : comment ecrire un article de blog via whatsapp",
-      "categorie": "idee-article",
-      "categorie_label": "idee-article",
-      "attachments": [
-        {
-          "filename": "2026-09-10-1342-nouvel-article-de-blog-comment-ecrire-un-article-de-blog-via.opus",
-          "r2_key": "jd-zoo/2026-09-10-1342-nouvel-article-de-blog-comment-ecrire-un-article-de-blog-via.opus",
-          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-09-10-1342-nouvel-article-de-blog-comment-ecrire-un-article-de-blog-via.opus&e=1791632529&s=172b4bbebb197a0ee8c8f24f182e1307b0aa2f1a9f4ef469cd447576cb3cdf1c",
-          "audio_mime": "audio/ogg",
-          "audio_bytes": 84773
-        }
-      ],
-      "media": [
-        {
-          "filename": "2026-09-10-1342-nouvel-article-de-blog-comment-ecrire-un-article-de-blog-via-media.jpg",
-          "r2_key": "jd-zoo/2026-09-10-1342-nouvel-article-de-blog-comment-ecrire-un-article-de-blog-via-media.jpg",
-          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-09-10-1342-nouvel-article-de-blog-comment-ecrire-un-article-de-blog-via-media.jpg&e=1791632529&s=6aca5d1c97dba547d6f02e5127a6cf151c821555c87add5777fa014e8b049a9a",
-          "kind": "image",
-          "media_mime": "image/jpeg",
-          "media_bytes": 133865
-        }
-      ],
-      "uploaded_at": "2026-09-10T11:42:11.610Z",
-      "statut": "envoye",
-      "transcript": "Bah du coup, déjà on reçoit un lien, on clique dessus, on envoie un code au bot WhatsApp, dans la conversation, le code est contenu dans le lien, on clique sur le lien, on clique sur envoyer, et on peut mettre, et après ça, dans la conversation, on envoie au bot l'idée d'articles de blog, des vocaux, du texte et des images, et ça génère un article de blog, en tout cas ça envoie le lien d'un brouillon.",
-      "transcribed_at": "2026-09-10T11:42:19.134Z",
-      "articles": [
-        {
-          "slug": "comment-j-ecris-un-article-de-blog-depuis-whatsapp-en-quelques-minutes",
-          "at": "2026-09-10T11:43:06.407Z"
-        }
-      ]
-    },
-    {
       "id": "jd-zoo-2026-09-08-0849-seance-individuelle-ou-en-petit-groupe-comment-choisir-le-bo",
       "sujet": "séance individuelle ou en petit groupe: comment choisir le bon format",
       "categorie": "idee-article",
@@ -569,15 +502,7 @@
       "resolution": {
         "note": "Enregistrement inaudible, à redicter.",
         "resolved_at": "2026-07-26T06:58:44.851Z"
-      },
-      "transcript": "Sous-titrage Société Radio-Canada Thank you.\n\nSous-titrage Société Radio-Canada www.feyyaz.tv\n\nSous-titrage Société Radio-Canada www.feyyaz.tv www.feyyaz.tv\n\nSous-titrage Société Radio-Canada www.feyyaz.tv www.feyyaz.tv\n\nSous-titrage Société Radio-Canada www.feyyaz.tv\n\nSous-titrage Société Radio-Canada www.feyyaz.tv www.feyyaz.tv\n\nSous-titrage Société Radio-Canada www.feyyaz.tv www.feyyaz.tv www.feyyaz.tv\n\nSous-titrage Société Radio-Canada www.feyyaz.tv www.feyyaz.tv\n\nSous-titrage Société Radio-Canada www.feyyaz.tv www.feyyaz.tv\n\nSous-titrage Société Radio-Canada www.fema.org\n\n... Sous-titrage ST' 501",
-      "transcribed_at": "2026-09-10T11:52:01.630Z",
-      "articles": [
-        {
-          "slug": "mediation-animale-et-ecole-un-projet-intergenerationnel-entre-une-classe-et-un-ehpad",
-          "at": "2026-09-10T11:52:53.305Z"
-        }
-      ]
+      }
     },
     {
       "id": "jd-zoo-2026-07-15-0852-quand-accompagner-un-proche-a-domicile-devient-epuisant-quel",
