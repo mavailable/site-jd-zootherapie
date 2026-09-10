@@ -39,7 +39,9 @@
         }
       ],
       "uploaded_at": "2026-09-10T11:19:37.047Z",
-      "statut": "envoye"
+      "statut": "envoye",
+      "transcript": "Premier vocal de test sur un exemple de sujet de blog\n\nJ'ajoute un autre vocal, j'ai d'autres trucs à dire\n\nEt encore un autre vocal avec une petite histoire",
+      "transcribed_at": "2026-09-10T11:19:49.379Z"
     },
     {
       "id": "jd-zoo-2026-09-10-1059-test-42",
