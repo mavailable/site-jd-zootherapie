@@ -2,8 +2,10 @@
   "ideas": [
     {
       "title": "nouvel article de blog : comment ecrire un article de blog via whatsapp",
-      "status": "a-faire",
-      "source": "client"
+      "status": "brouillon",
+      "source": "client",
+      "slug": "comment-j-ecris-un-article-de-blog-depuis-whatsapp-en-quelques-minutes",
+      "updated_at": "2026-09-10T11:43:07.682Z"
     },
     {
       "title": "séance individuelle ou en petit groupe: comment choisir le bon format",
