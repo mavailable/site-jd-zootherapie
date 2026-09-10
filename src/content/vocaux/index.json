@@ -1,6 +1,33 @@
 {
   "entries": [
     {
+      "id": "jd-zoo-2026-09-10-1956-test-ce-que-tips-m-a-appris-sur-la-patience-avec-les-enfants",
+      "sujet": "TEST - Ce que Tips m'a appris sur la patience avec les enfants timides",
+      "categorie": "idee-article",
+      "categorie_label": "idee-article",
+      "attachments": [
+        {
+          "filename": "2026-09-10-1956-test-ce-que-tips-m-a-appris-sur-la-patience-avec-les-enfants.opus",
+          "r2_key": "jd-zoo/2026-09-10-1956-test-ce-que-tips-m-a-appris-sur-la-patience-avec-les-enfants.opus",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-09-10-1956-test-ce-que-tips-m-a-appris-sur-la-patience-avec-les-enfants.opus&e=1791655010&s=d4f9080d03e7327a47671094400a0a2560e89b1e142f5c58b65cb1cd7c2968d7",
+          "audio_mime": "audio/ogg",
+          "audio_bytes": 76326
+        }
+      ],
+      "media": [
+        {
+          "filename": "2026-09-10-1956-test-ce-que-tips-m-a-appris-sur-la-patience-avec-les-enfants-media.jpg",
+          "r2_key": "jd-zoo/2026-09-10-1956-test-ce-que-tips-m-a-appris-sur-la-patience-avec-les-enfants-media.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-09-10-1956-test-ce-que-tips-m-a-appris-sur-la-patience-avec-les-enfants-media.jpg&e=1791655010&s=8fa2f09bf126def10fcdaa9ef9c75903a13e7583b99203f8d0575adfcab428a6",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 143323
+        }
+      ],
+      "uploaded_at": "2026-09-10T17:56:51.651Z",
+      "statut": "envoye"
+    },
+    {
       "id": "jd-zoo-2026-09-08-0849-seance-individuelle-ou-en-petit-groupe-comment-choisir-le-bo",
       "sujet": "séance individuelle ou en petit groupe: comment choisir le bon format",
       "categorie": "idee-article",
