@@ -17,7 +17,13 @@
         }
       ],
       "uploaded_at": "2026-09-10T12:48:42.382Z",
-      "statut": "envoye"
+      "statut": "envoye",
+      "articles": [
+        {
+          "slug": "test-apercu-mise-en-page",
+          "at": "2026-09-10T12:48:49.129Z"
+        }
+      ]
     },
     {
       "id": "jd-zoo-2026-09-08-0849-seance-individuelle-ou-en-petit-groupe-comment-choisir-le-bo",
