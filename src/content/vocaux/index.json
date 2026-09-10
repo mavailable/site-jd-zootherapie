@@ -40,7 +40,9 @@
         }
       ],
       "uploaded_at": "2026-09-10T08:59:27.576Z",
-      "statut": "envoye"
+      "statut": "envoye",
+      "transcript": "Test d'articles de blog, premier vocal\n\net d'autres vidéos.\n\nEncore un test où on parle un peu plus parce qu'il faut que ça dure un petit peu, merci",
+      "transcribed_at": "2026-09-10T09:00:17.461Z"
     },
     {
       "id": "jd-zoo-2026-09-08-0849-seance-individuelle-ou-en-petit-groupe-comment-choisir-le-bo",
