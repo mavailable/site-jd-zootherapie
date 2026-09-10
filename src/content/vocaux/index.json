@@ -27,7 +27,13 @@
       "uploaded_at": "2026-09-10T11:42:11.610Z",
       "statut": "envoye",
       "transcript": "Bah du coup, déjà on reçoit un lien, on clique dessus, on envoie un code au bot WhatsApp, dans la conversation, le code est contenu dans le lien, on clique sur le lien, on clique sur envoyer, et on peut mettre, et après ça, dans la conversation, on envoie au bot l'idée d'articles de blog, des vocaux, du texte et des images, et ça génère un article de blog, en tout cas ça envoie le lien d'un brouillon.",
-      "transcribed_at": "2026-09-10T11:42:19.134Z"
+      "transcribed_at": "2026-09-10T11:42:19.134Z",
+      "articles": [
+        {
+          "slug": "comment-j-ecris-un-article-de-blog-depuis-whatsapp-en-quelques-minutes",
+          "at": "2026-09-10T11:43:06.407Z"
+        }
+      ]
     },
     {
       "id": "jd-zoo-2026-09-08-0849-seance-individuelle-ou-en-petit-groupe-comment-choisir-le-bo",
