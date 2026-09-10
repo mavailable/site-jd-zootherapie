@@ -2,8 +2,10 @@
   "ideas": [
     {
       "title": "exemple d'article",
-      "status": "a-faire",
-      "source": "client"
+      "status": "brouillon",
+      "source": "client",
+      "slug": "ce-que-je-fais-vraiment-quand-j-arrive-avec-tips-et-uxo",
+      "updated_at": "2026-09-10T11:20:37.589Z"
     },
     {
       "title": "test 42",
