@@ -4,5 +4,22 @@
   "category": "Méthode",
   "body": "<p>Paragraphe de verification. Tips aime les seances courtes.</p><h2>Un intertitre</h2><p>Deuxieme paragraphe.</p>",
   "date": "2026-09-10",
-  "draft": true
+  "draft": true,
+  "image": "/img/jd-zoo/msg-2026-09-10-1448-test-apercu-mise-en-page-media.jpg",
+  "_sources": {
+    "revisions": [
+      {
+        "kind": "photos",
+        "entry_ids": [
+          "jd-zoo-2026-09-10-1448-test-apercu-mise-en-page"
+        ],
+        "note": "",
+        "transcript": "",
+        "media": [
+          "/img/jd-zoo/msg-2026-09-10-1448-test-apercu-mise-en-page-media.jpg"
+        ],
+        "generated_at": "2026-09-10T12:48:48.199Z"
+      }
+    ]
+  }
 }
