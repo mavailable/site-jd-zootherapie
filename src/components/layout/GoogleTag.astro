@@ -1,0 +1,72 @@
+---
+/**
+ * GoogleTag.astro : Google tag (GA4 + Google Ads) en Consent Mode v2 avance.
+ *
+ * Ordre garanti dans dataLayer, avant tout chargement de gtag.js :
+ *   1. stub gtag() + consent default, les 4 signaux refuses (wait_for_update 500)
+ *   2. choix memorise par ConsentBanner (cle consent_v2) rejoue en consent update
+ *   3. gtag('js') puis gtag('config') GA4 et Ads
+ * gtag.js n'est injecte qu'APRES la premiere frame reellement rendue
+ * (load, double requestAnimationFrame, puis requestIdleCallback) : charge plus tot,
+ * il finissait avant le premier rendu et ses ~350 Ko etaient comptes dans le LCP
+ * simule de Lighthouse / PSI (audit perf du 2026-09-11, mobile 73).
+ * Tout gtag('event', ...) appele avant le chargement reste en file dans dataLayer.
+ * Utilise par BaseLayout et AdsLayout.
+ */
+import { ads } from '@data/business';
+---
+{ads.enabled && ads.conversionId && (
+  <script is:inline define:vars={{ gtagId: ads.conversionId, adsId: ads.adsConversionId }}>
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
+      wait_for_update: 500,
+    });
+    (function () {
+      var record = null;
+      try {
+        var raw = localStorage.getItem('consent_v2');
+        if (raw) record = JSON.parse(raw);
+      } catch (e) {}
+      if (!record) {
+        var m = document.cookie.match(/(^|; )consent_v2=([^;]+)/);
+        if (m) { try { record = JSON.parse(decodeURIComponent(m[2])); } catch (e) {} }
+      }
+      if (record) {
+        var grant = record.ads ? 'granted' : 'denied';
+        gtag('consent', 'update', {
+          ad_storage: grant,
+          ad_user_data: grant,
+          ad_personalization: grant,
+          analytics_storage: grant,
+        });
+        window.__wfConsentRestored = true;
+      }
+    })();
+    gtag('js', new Date());
+    gtag('config', gtagId);
+    if (adsId) gtag('config', adsId);
+    (function () {
+      function inject() {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + gtagId;
+        document.head.appendChild(s);
+      }
+      function afterFirstPaint() {
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            if ('requestIdleCallback' in window) requestIdleCallback(inject, { timeout: 2000 });
+            else setTimeout(inject, 200);
+          });
+        });
+      }
+      if (document.readyState === 'complete') afterFirstPaint();
+      else window.addEventListener('load', afterFirstPaint, { once: true });
+    })();
+  </script>
+)}

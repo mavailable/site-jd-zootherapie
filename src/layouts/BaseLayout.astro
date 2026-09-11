@@ -4,6 +4,7 @@ import { getSiteInfo } from '@data/content';
 import { siteUrl, ads } from '@data/business';
 import { getPageSeo, getSeoGlobal } from '../data/seo';
 import ConsentBanner from '@components/layout/ConsentBanner.astro';
+import GoogleTag from '@components/layout/GoogleTag.astro';
 import CmsEditLoader from '@marc/cms-engine/astro';
 
 const siteInfo = await getSiteInfo();
@@ -95,6 +96,8 @@ const ogImageType = fullOgImage.endsWith('.png') ? 'image/png' : fullOgImage.end
   <link rel="preload" href="/fonts/lora-v37-latin-700.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/dm-sans-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/dm-sans-v17-latin-600.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/dm-sans-v17-latin-500.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/lora-v37-latin-600.woff2" as="font" type="font/woff2" crossorigin />
 
   <!-- Schema.org JSON-LD -->
   <slot name="schema" />
@@ -168,24 +171,8 @@ const ogImageType = fullOgImage.endsWith('.png') ? 'image/png' : fullOgImage.end
 
   {ads.enabled && ads.conversionId && (
     <>
-      {/* Consent Mode v2 — init en "denied" AVANT le gtag (requis Google) */}
-      <script is:inline>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('consent', 'default', {
-          ad_storage: 'denied',
-          ad_user_data: 'denied',
-          ad_personalization: 'denied',
-          analytics_storage: 'granted',
-          wait_for_update: 500,
-        });
-      </script>
-      <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${ads.conversionId}`}></script>
-      <script is:inline define:vars={{ conversionId: ads.conversionId, adsConversionId: ads.adsConversionId }}>
-        gtag('js', new Date());
-        gtag('config', conversionId);
-        if (adsConversionId) gtag('config', adsConversionId);
-      </script>
+      {/* Consent Mode v2 avance, gtag.js charge apres la premiere frame (cf. GoogleTag.astro) */}
+      <GoogleTag />
       <ConsentBanner />
     </>
   )}

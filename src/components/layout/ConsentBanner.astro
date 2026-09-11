@@ -7,7 +7,11 @@
  * analytics_storage).
  *
  * Comportement :
- * - Aucun tracking avant choix explicite (defaults all 'denied').
+ * - Consent Mode avance : les 4 signaux sont 'denied' par defaut (GoogleTag.astro),
+ *   aucun cookie Google avant choix explicite ; gtag.js envoie des pings sans cookie.
+ * - Accepter : update 'granted' sur les 4 signaux ; Refuser : reste 'denied'.
+ * - Choix memorise rejoue par GoogleTag.astro AVANT gtag('config') ; init() ne le
+ *   rejoue pas une seconde fois (window.__wfConsentRestored).
  * - Apparait 1.5s apres chargement (le visiteur voit le hero d'abord).
  * - 3 boutons visuellement equivalents (Refuser / Personnaliser / Accepter).
  * - Choix memorise 13 mois (localStorage + cookie 1st-party).
@@ -59,7 +63,7 @@
           <span class="sr-only">Activer les cookies publicitaires</span>
         </label>
       </div>
-      <p>Cookies Google Ads pour mesurer les conversions depuis les campagnes publicitaires et eviter de vous montrer la meme annonce plusieurs fois.</p>
+      <p>Cookies Google (Google Ads et Google Analytics) pour mesurer la frequentation du site et les conversions depuis les campagnes publicitaires, et eviter de vous montrer la meme annonce plusieurs fois.</p>
     </div>
 
     <div class="consent-modal-actions">
@@ -326,7 +330,7 @@
         ad_storage: grant,
         ad_user_data: grant,
         ad_personalization: grant,
-        analytics_storage: 'granted',
+        analytics_storage: grant,
       });
     }
 
@@ -382,7 +386,7 @@
     function init() {
       var existing = readChoice();
       if (existing) {
-        applyConsent(existing);
+        if (!window.__wfConsentRestored) applyConsent(existing);
         return;
       }
       setTimeout(showBanner, DELAY_MS);
