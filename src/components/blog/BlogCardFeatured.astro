@@ -1,4 +1,6 @@
 ---
+import CmsImage from '@marc/cms-engine/astro/image';
+
 interface Props {
   title: string;
   description: string;
@@ -31,7 +33,7 @@ const formattedDate = new Date(date).toLocaleDateString('fr-FR', {
     <!-- Side panel: image or decorative -->
     <div class="hidden md:flex md:w-48 lg:w-56 bg-primary-800 items-center justify-center shrink-0 relative overflow-hidden">
       {image ? (
-        <img src={image} alt={title} class="w-full h-full object-cover" loading="lazy" />
+        <CmsImage src={image} alt={title} sizes="(min-width: 1024px) 224px, 192px" width={448} height={448} class="w-full h-full object-cover" />
       ) : (
         <>
           <div class="absolute inset-0 bg-primary-700/30">

@@ -9,6 +9,7 @@ import CTABanner from '@components/sections/CTABanner.astro';
 import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
 import BlogCard from '@components/blog/BlogCard.astro';
 import { responsiveImages } from '@marc/cms-engine/html';
+import CmsImage from '@marc/cms-engine/astro/image';
 
 export async function getStaticPaths() {
   const posts = await getPublishedBlog();
@@ -27,6 +28,9 @@ const htmlContent = _body;
 // padding lg:px-8, soit 704px. Mesure, pas devinee.
 const htmlResponsive = responsiveImages(htmlContent, {
   sizes: '(max-width: 832px) calc(100vw - 2rem), 704px',
+  // Une couverture s'affiche AU-DESSUS du corps : c'est elle l'image LCP, pas la
+  // premiere photo du corps (constat 11/09 : JPEG de 2,1 Mo en fetchpriority="high").
+  priorityFirst: !post.data.image,
 });
 
 const allPosts = (await getPublishedBlog()).sort(
@@ -151,12 +155,13 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
     <figure class="bg-white pt-8 md:pt-10" data-wf-article="hero">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="aspect-[16/9] overflow-hidden rounded-xl bg-neutral-100 shadow-sm">
-          <img
+          <CmsImage
             src={heroImage}
             alt={post.data.title}
-            width="1920"
-            height="1080"
-            loading="eager"
+            sizes="(min-width: 1024px) 832px, (min-width: 640px) calc(100vw - 3rem), calc(100vw - 2rem)"
+            width={1920}
+            height={1080}
+            priority
             class="w-full h-full object-cover"
             data-wf-article="image"
           />

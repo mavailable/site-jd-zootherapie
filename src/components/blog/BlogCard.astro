@@ -1,4 +1,6 @@
 ---
+import CmsImage from '@marc/cms-engine/astro/image';
+
 interface Props {
   title: string;
   description: string;
@@ -30,7 +32,7 @@ const formattedDate = new Date(date).toLocaleDateString('fr-FR', {
   {image && (
     <a href={`/blog/${slug}/`} class="block">
       <div class="aspect-[16/9] overflow-hidden">
-        <img src={image} alt={title} class="w-full h-full object-cover" loading="lazy" />
+        <CmsImage src={image} alt={title} sizes="(min-width: 1024px) 468px, (min-width: 768px) calc(50vw - 2.25rem), calc(100vw - 2rem)" width={800} height={450} class="w-full h-full object-cover" />
       </div>
     </a>
   )}
