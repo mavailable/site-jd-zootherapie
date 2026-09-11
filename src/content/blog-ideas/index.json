@@ -2,8 +2,10 @@
   "ideas": [
     {
       "title": "Test pour article de blog sur le thème, la première rencontre, ce que j’observe chez les personnes accompagnées",
-      "status": "a-faire",
-      "source": "client"
+      "status": "brouillon",
+      "source": "client",
+      "slug": "la-premiere-rencontre-ce-que-j-observe-avant-de-construire-l-accompagnement",
+      "updated_at": "2026-09-11T08:24:03.766Z"
     },
     {
       "title": "séance individuelle ou en petit groupe: comment choisir le bon format",
