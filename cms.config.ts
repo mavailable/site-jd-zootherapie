@@ -51,6 +51,8 @@ const cmsConfig: CmsConfig = {
     enabled: true,
     vocalToArticle: true,
     vision: true,
+    // Bloc « Connecter WhatsApp » dans Mon compte (bot de depot, moteur >= v0.61.0) — ouvert le 11/09/26.
+    whatsapp: true,
     // Phrases d'attente de la popup de generation (façon Sims), aux couleurs
     // de la zoothérapie — défauts génériques du moteur sinon.
     waitPhrases: [
