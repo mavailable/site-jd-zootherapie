@@ -1,5 +1,6 @@
 ---
 import { getGallery } from '@data/content';
+import CmsImage from '@marc/cms-engine/astro/image';
 
 const gallery = await getGallery();
 
@@ -29,14 +30,13 @@ const layoutMap: Record<number, { colClass: string; aspect: string; objectPos: s
         const layout = layoutMap[photo.cols] || layoutMap[1];
         return (
           <div class={`${layout.colClass} rounded-xl overflow-hidden ${layout.aspect} shadow-sm`}>
-            <img
+            <CmsImage
               src={photo.src}
               alt={photo.alt}
+              sizes={photo.cols === 2 ? '(min-width: 1152px) 720px, calc(66vw - 1rem)' : '(min-width: 1152px) 352px, calc(33vw - 1rem)'}
               data-cms-field={`gallery.photos[${i}]`}
               data-cms-type="image"
               class={`w-full h-full object-cover ${layout.objectPos} transition-transform duration-500`}
-              loading="lazy"
-              decoding="async"
               width={layout.width}
               height={layout.height}
             />
