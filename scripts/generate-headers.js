@@ -26,8 +26,11 @@ import { join } from 'node:path';
 import { createHash } from 'node:crypto';
 
 const DIST = 'dist';
-/** Passe 1 = true (observation, rien n'est bloque). Passe 2 = false (CSP appliquee). */
-const REPORT_ONLY = true;
+/** Passe 1 = true (observation). Passe 2 = false : la CSP est appliquee.
+ *  Passe d'observation du 12/09 : 0 violation sur accueil, /lp/, article de blog,
+ *  contact, pages legales, tarifs, depot, merci, /admin et l'edition inline ouverte,
+ *  ainsi que sur les 3 parcours de consentement. */
+const REPORT_ONLY = false;
 const LIMITE_HEADERS = 2000;
 
 function htmlFiles(dir) {
@@ -65,15 +68,22 @@ const hashes = hashesInlineScripts();
 const GTM = 'https://www.googletagmanager.com';
 const UMAMI = 'https://cloud.umami.is';
 const UMAMI_GW = 'https://gateway.umami.is';
+// Domaines Google par pays : la doc Google ecrit « https://www.google.<TLD> » sans les
+// enumerer. Le site vise la Moselle et la Meurthe-et-Moselle, d'ou .fr, .com et les
+// voisins frontaliers. Un visiteur dont le domaine Google est autre (google.es...) verra
+// seulement le ping d'audience Ads bloque : ni le site ni la mesure GA4 n'en dependent.
+const GOOGLE_PAYS = ['https://www.google.com', 'https://google.com', 'https://www.google.fr', 'https://www.google.be', 'https://www.google.ch', 'https://www.google.de', 'https://www.google.lu'].join(' ');
 
 const cspPublique = [
   "default-src 'self'",
-  `script-src 'self' ${hashes.join(' ')} ${GTM} ${UMAMI} https://www.googleadservices.com https://googleads.g.doubleclick.net`,
+  // script-src : origines documentees par Google pour gtag, GA4 et le suivi de conversion
+  // Ads (developers.google.com/tag-platform/security/guides/csp), plus Umami.
+  `script-src 'self' ${hashes.join(' ')} ${GTM} ${UMAMI} https://www.googleadservices.com https://googleads.g.doubleclick.net https://pagead2.googlesyndication.com https://www.google.com`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
   "font-src 'self'",
   "media-src 'self' blob:",
-  `connect-src 'self' ${UMAMI} ${UMAMI_GW} ${GTM} https://*.google-analytics.com https://*.analytics.google.com https://*.g.doubleclick.net https://ad.doubleclick.net https://pagead2.googlesyndication.com https://www.google.com https://www.google.fr`,
+  `connect-src 'self' ${UMAMI} ${UMAMI_GW} ${GTM} https://*.google-analytics.com https://*.analytics.google.com https://*.g.doubleclick.net https://ad.doubleclick.net https://pagead2.googlesyndication.com https://www.googleadservices.com ${GOOGLE_PAYS}`,
   'frame-src https://td.doubleclick.net https://www.googletagmanager.com',
   "base-uri 'self'",
   "form-action 'self'",
