@@ -6,7 +6,7 @@
   "scripts": {
     "preinstall": "node ./scripts/setup-private-dep.mjs",
     "dev": "astro dev",
-    "build": "cms-engine-doctor && cms-engine-sync-assets && cms-engine-scaffold && astro build",
+    "build": "cms-engine-doctor && cms-engine-sync-assets && cms-engine-scaffold && astro build && node scripts/generate-headers.js",
     "preview": "astro preview"
   },
   "dependencies": {
