@@ -1,5 +1,6 @@
 ---
 import { getAbout } from '@data/content';
+import CmsImage from '@marc/cms-engine/astro/image';
 
 interface Props {
   /** Mode snippet pour la homepage (texte court) */
@@ -13,11 +14,8 @@ const about = await getAbout();
 // En mode complet : tous les paragraphes + section animaux
 const paragraphsToShow = snippet ? about.paragraphs.slice(0, 1) : about.paragraphs;
 
-const animalPhotos: Record<string, string> = {
-  'Tips':    '/images/animal-tips.webp',
-  'Uxo':     '/images/animal-uxo.webp',
-  'Tap-Tap': '/images/animal-tap-tap.webp',
-};
+// La vignette de chaque animal vient du CMS (about.animals[].photo) : Jennifer
+// peut en ajouter un sans passer par le code. Sans photo -> pastille a initiale.
 ---
 
 <section id="a-propos" class="bg-white py-16 md:py-20">
@@ -86,17 +84,19 @@ const animalPhotos: Record<string, string> = {
               </h3>
               <div class="space-y-3">
                 {about.animals.map((animal) => {
-                  const photo = animalPhotos[animal.name];
+                  const photo = animal.photo;
                   return (
                   <div class="flex items-start gap-3 p-3.5 bg-primary-50 rounded-lg border border-primary-100">
                     {photo ? (
-                      <img
+                      <CmsImage
                         src={photo}
                         alt={`${animal.name}, ${animal.breed} — animal médiateur de Jennifer De Groeve`}
+                        sizes="40px"
+                        width={40}
+                        height={40}
                         class="w-10 h-10 rounded-full object-cover shrink-0 border-2 border-primary-200"
-                        loading="lazy"
-                        width="40"
-                        height="40"
+                        data-cms-field={`about.animals[${about.animals.indexOf(animal)}].photo`}
+                        data-cms-type="image"
                       />
                     ) : (
                       <div class="w-10 h-10 bg-primary-200 rounded-full flex items-center justify-center shrink-0 text-primary-700 font-heading font-bold text-sm">

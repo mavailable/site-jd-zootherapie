@@ -217,6 +217,10 @@ const cmsConfig: CmsConfig = {
               name: { type: 'text', label: 'Nom' },
               breed: { type: 'text', label: 'Race' },
               role: { type: 'text', label: 'Rôle en séance', multiline: true },
+              // Vignette ronde de 40 px sur /a-propos : l'image est rognée au
+              // centre, donc choisir une photo où l'animal est bien au milieu.
+              // Vide = pastille avec l'initiale du nom.
+              photo: { type: 'image', label: 'Photo (vignette ronde, animal centré)' },
             },
           },
         },

@@ -10,6 +10,7 @@ import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
 import BlogCard from '@components/blog/BlogCard.astro';
 import { responsiveImages } from '@marc/cms-engine/html';
 import CmsImage from '@marc/cms-engine/astro/image';
+import { getAbout } from '@data/content';
 
 export async function getStaticPaths() {
   const posts = await getPublishedBlog();
@@ -65,6 +66,15 @@ const formattedDate = dateObj.toLocaleDateString('fr-FR', {
 // Estimate reading time from raw body
 const wordCount = post.data.body?.split(/\s+/).length ?? 0;
 const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+
+// Encart auteur : la liste des animaux vient du CMS (about.animals), jamais d'une
+// enumeration ecrite en dur — sinon elle devient fausse des que l'equipe change
+// (cas des cochons d'Inde, arrives en seance fin aout 2026).
+const animalNames = (await getAbout()).animals.map((a: any) => a.name);
+const animalList =
+  animalNames.length > 1
+    ? `${animalNames.slice(0, -1).join(', ')} et ${animalNames[animalNames.length - 1]}`
+    : (animalNames[0] ?? '');
 ---
 
 <BaseLayout
@@ -189,7 +199,7 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
           <p class="font-heading font-semibold text-primary-900 mb-1">Jennifer De Groeve</p>
           <p class="text-sm text-neutral-500 mb-2">Zoothérapeute certifiée IFZ — Moselle (57)</p>
           <p class="text-sm text-neutral-600 leading-relaxed">
-            Praticienne en médiation animale depuis plusieurs années, Jennifer intervient auprès de tous les publics avec Tips, Uxo et Tap-Tap. Elle partage ici ses observations de terrain et ses réflexions sur le métier.
+            Praticienne en médiation animale depuis plusieurs années, Jennifer intervient auprès de tous les publics avec {animalList}. Elle partage ici ses observations de terrain et ses réflexions sur le métier.
           </p>
         </div>
       </div>

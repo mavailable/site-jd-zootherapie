@@ -55,6 +55,9 @@ const about = defineCollection({
       name: z.string(),
       breed: z.string(),
       role: z.string(),
+      // Miroir de cms.config.ts -> about.animals.item.fields.photo.
+      // Optionnel : sans photo, About.astro rend la pastille a initiale.
+      photo: z.string().optional(),
     })),
     badges: z.array(z.object({
       icon: z.string(),
