@@ -12,7 +12,12 @@
     "name": "Médiation animale Alzheimer à domicile",
     "description": "Accompagnement structuré en médiation animale pour personne atteinte de la maladie d'Alzheimer, à domicile en Moselle et Meurthe-et-Moselle. Cycles de 5 séances, objectifs définis avec l'aidant, animaux collaborateurs du processus.",
     "serviceType": "Médiation animale",
-    "areaServed": ["Metz", "Nancy", "Moselle", "Meurthe-et-Moselle"]
+    "areaServed": [
+      "Metz",
+      "Nancy",
+      "Moselle",
+      "Meurthe-et-Moselle"
+    ]
   },
   "hero": {
     "h1": "Médiation animale Alzheimer, à domicile",
@@ -108,6 +113,18 @@
         "breed": "Lapin bélier",
         "image": "/images/animal-tap-tap.webp",
         "role": "Doux et rassurant. Support sensoriel apaisant pour les moments d'anxiété ou pour les personnes qui ont peur des chiens."
+      },
+      {
+        "name": "Gaston",
+        "breed": "Cochon d'Inde à poils longs",
+        "image": "/img/jd-zoo/msg-2026-09-11-0821-photo-pour-cochon-d-inde-m7.webp",
+        "role": "Arrivé fin juin, en séance depuis la fin du mois d'août. Plus réservé au départ : il vient moins vite vers l'humain et vocalise moins que Philippe. Une fois la confiance installée, il tolère d'être posé contre une personne, dans une proximité plus contenante."
+      },
+      {
+        "name": "Philippe",
+        "breed": "Cochon d'Inde à poil ras",
+        "image": "/img/jd-zoo/msg-2026-09-11-0821-photo-pour-cochon-d-inde-m6.webp",
+        "role": "Arrivé fin juin, en séance depuis la fin du mois d'août. Marron et blanc, extrêmement curieux : il vient de lui-même au contact et vocalise énormément. Il n'aime pas être porté — la rencontre passe alors par le laisser venir plutôt que par les bras."
       }
     ]
   },

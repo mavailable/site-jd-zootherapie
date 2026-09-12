@@ -12,7 +12,13 @@
     "name": "Médiation animale pour structures médico-sociales",
     "description": "Programme structuré de médiation animale pour EHPAD, MAS, IME, AEMO et autres structures médico-sociales du Grand Est. Cycles de 5 séances, objectifs co-construits avec vos équipes, bilan formalisé. Financement ProBTP, CPAM et mutuelles souvent activable.",
     "serviceType": "Médiation animale en structure",
-    "areaServed": ["Metz", "Nancy", "Moselle", "Meurthe-et-Moselle", "Grand Est"]
+    "areaServed": [
+      "Metz",
+      "Nancy",
+      "Moselle",
+      "Meurthe-et-Moselle",
+      "Grand Est"
+    ]
   },
   "hero": {
     "h1": "Médiation animale pour votre structure médico-sociale",
@@ -88,7 +94,7 @@
     "closing": "La médiation animale ne remplace aucune des prises en charge de vos équipes. Elle vient en complémentarité, en proposant des supports plus ludiques et plus accessibles à certains publics qui n'accrochent pas toujours aux formats traditionnels."
   },
   "animals": {
-    "title": "Cinq animaux médiateurs certifiés",
+    "title": "Cinq animaux médiateurs, dont un chien médiateur certifié",
     "subtitle": "Chaque animal est travaillé pour l'intervention en structure. Je choisis ceux qui accompagnent chaque séance selon le public et les objectifs.",
     "items": [
       {
@@ -108,6 +114,18 @@
         "breed": "Lapin bélier",
         "image": "/images/animal-tap-tap.webp",
         "role": "Doux et rassurant. Idéal pour les publics anxieux, les personnes qui ont peur des chiens, et les ateliers sensoriels."
+      },
+      {
+        "name": "Gaston",
+        "breed": "Cochon d'Inde à poils longs",
+        "image": "/img/jd-zoo/msg-2026-09-11-0821-photo-pour-cochon-d-inde-m7.webp",
+        "role": "Arrivé fin juin, en séance depuis la fin du mois d'août. Plus réservé au départ : il vient moins vite vers l'humain et vocalise moins que Philippe. Une fois la confiance installée, il tolère d'être posé contre une personne, dans une proximité plus contenante."
+      },
+      {
+        "name": "Philippe",
+        "breed": "Cochon d'Inde à poil ras",
+        "image": "/img/jd-zoo/msg-2026-09-11-0821-photo-pour-cochon-d-inde-m6.webp",
+        "role": "Arrivé fin juin, en séance depuis la fin du mois d'août. Marron et blanc, extrêmement curieux : il vient de lui-même au contact et vocalise énormément. Il n'aime pas être porté — la rencontre passe alors par le laisser venir plutôt que par les bras."
       }
     ]
   },

@@ -12,7 +12,12 @@
     "name": "Médiation animale enfant TDAH et TSA",
     "description": "Accompagnement en médiation animale pour enfants avec TDAH ou TSA, centré sur la gestion des émotions, la confiance et la communication. Séances structurées à domicile ou en structure, en Moselle et Meurthe-et-Moselle.",
     "serviceType": "Médiation animale",
-    "areaServed": ["Metz", "Nancy", "Moselle", "Meurthe-et-Moselle"]
+    "areaServed": [
+      "Metz",
+      "Nancy",
+      "Moselle",
+      "Meurthe-et-Moselle"
+    ]
   },
   "hero": {
     "h1": "Médiation animale pour enfants TDAH et TSA",
@@ -33,7 +38,7 @@
     "items": [
       { "value": "+20 ans", "label": "dans l'accompagnement" },
       { "value": "Cycles de 5", "label": "séances adaptées aux enfants" },
-      { "value": "5 animaux", "label": "médiateurs certifiés" },
+      { "value": "5 animaux", "label": "médiateurs formés et encadrés" },
       { "value": "AEMO Pompey", "label": "mission en cours (54)" }
     ]
   },
@@ -108,6 +113,18 @@
         "breed": "Finnois de Laponie",
         "image": "/images/animal-tips.webp",
         "role": "Calme, patient, attentif. Adapté aux enfants qui ont besoin d'un rythme lent et d'une présence posée pour s'autoriser à participer."
+      },
+      {
+        "name": "Gaston",
+        "breed": "Cochon d'Inde à poils longs",
+        "image": "/img/jd-zoo/msg-2026-09-11-0821-photo-pour-cochon-d-inde-m7.webp",
+        "role": "Arrivé fin juin, en séance depuis la fin du mois d'août. Plus réservé au départ : il vient moins vite vers l'humain et vocalise moins que Philippe. Une fois la confiance installée, il tolère d'être posé contre une personne, dans une proximité plus contenante."
+      },
+      {
+        "name": "Philippe",
+        "breed": "Cochon d'Inde à poil ras",
+        "image": "/img/jd-zoo/msg-2026-09-11-0821-photo-pour-cochon-d-inde-m6.webp",
+        "role": "Arrivé fin juin, en séance depuis la fin du mois d'août. Marron et blanc, extrêmement curieux : il vient de lui-même au contact et vocalise énormément. Il n'aime pas être porté — la rencontre passe alors par le laisser venir plutôt que par les bras."
       }
     ]
   },

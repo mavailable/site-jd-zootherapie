@@ -12,6 +12,7 @@ import { getCollection } from 'astro:content';
 import { ads } from '@data/business';
 import AdsLayout from '@layouts/AdsLayout.astro';
 import StickyMobileCTA from '@components/ui/StickyMobileCTA.astro';
+import CmsImage from '@marc/cms-engine/astro/image';
 
 export async function getStaticPaths() {
   const pages = await getCollection('landing-pages', ({ data }) => data.enabled !== false);
@@ -177,12 +178,16 @@ const overlayOpacity = (hero.overlayOpacity ?? 45) / 100;
         <div class="grid gap-6 md:grid-cols-3">
           {animals.items.map((animal) => (
             <article class="bg-white rounded-lg overflow-hidden shadow-sm border border-neutral-200 flex flex-col">
-              <img
+              {/* Photo pilotee par le CMS : CmsImage sert les variantes R2 (une photo
+                  de message fait 2 Mo en taille reelle pour une carte de 304 px).
+                  `sizes` = largeur peinte de la carte : conteneur max-w-5xl moins le
+                  padding, 3 colonnes, 2 gouttieres de 1,5rem. */}
+              <CmsImage
                 src={animal.image}
                 alt={`${animal.name}, ${animal.breed}`}
-                width="400"
-                height="300"
-                loading="lazy"
+                sizes="(min-width: 1088px) 304px, (min-width: 768px) calc((100vw - 6rem) / 3), calc(100vw - 2rem)"
+                width={400}
+                height={300}
                 class="w-full h-48 object-cover"
               />
               <div class="p-5 flex-1">

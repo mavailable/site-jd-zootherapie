@@ -26,7 +26,7 @@
   "stats": {
     "items": [
       { "value": "+20 ans", "label": "dans le soin et l'accompagnement" },
-      { "value": "5 animaux", "label": "médiateurs certifiés" },
+      { "value": "5 animaux", "label": "médiateurs formés et encadrés" },
       { "value": "Tous âges", "label": "de 3 à 99 ans" },
       { "value": "5,0 · 9 avis", "label": "sur Google Business" }
     ]
@@ -73,6 +73,18 @@
         "breed": "Lapin bélier",
         "image": "/images/animal-tap-tap.webp",
         "role": "Doux et rassurant. Parfait pour les ateliers sensoriels et les personnes qui ont peur des chiens."
+      },
+      {
+        "name": "Gaston",
+        "breed": "Cochon d'Inde à poils longs",
+        "image": "/img/jd-zoo/msg-2026-09-11-0821-photo-pour-cochon-d-inde-m7.webp",
+        "role": "Arrivé fin juin, en séance depuis la fin du mois d'août. Plus réservé au départ : il vient moins vite vers l'humain et vocalise moins que Philippe. Une fois la confiance installée, il tolère d'être posé contre une personne, dans une proximité plus contenante."
+      },
+      {
+        "name": "Philippe",
+        "breed": "Cochon d'Inde à poil ras",
+        "image": "/img/jd-zoo/msg-2026-09-11-0821-photo-pour-cochon-d-inde-m6.webp",
+        "role": "Arrivé fin juin, en séance depuis la fin du mois d'août. Marron et blanc, extrêmement curieux : il vient de lui-même au contact et vocalise énormément. Il n'aime pas être porté — la rencontre passe alors par le laisser venir plutôt que par les bras."
       }
     ]
   },
