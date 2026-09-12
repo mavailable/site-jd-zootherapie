@@ -1,18 +1,16 @@
 ---
 import { getSiteInfo, getContact } from '@data/content';
-import { web3formsKey as fallbackKey, ads } from '@data/business';
-import fs from 'node:fs';
+import { ads } from '@data/business';
 
 const siteInfo = await getSiteInfo();
 const contact = await getContact();
 
-// Web3Forms cascade: CMS content → env var → cle Marc (defaut agence)
-let cmsKey = '';
-try {
-  const raw = fs.readFileSync('src/content/contact/index.json', 'utf-8');
-  cmsKey = JSON.parse(raw).web3formsKey || '';
-} catch {}
-const web3formsKey = cmsKey || fallbackKey;
+// Libelles du parcours d'envoi (module « forms » du moteur). Repli code en dur
+// uniquement si le champ n'existe pas encore dans le contenu.
+const sending = contact.sending || 'Envoi en cours…';
+const successHeading = contact.successHeading || 'Merci, votre message est bien parti.';
+const successBody = contact.successBody || 'Jennifer a reçu votre demande et vous recontacte sous 48 heures.';
+const errorMessage = contact.errorMessage || `L'envoi a échoué. Réessayez, ou appelez Jennifer au ${siteInfo.phoneDisplay}.`;
 ---
 
 <section id="contact" class="bg-white py-16 md:py-20">
@@ -107,18 +105,18 @@ const web3formsKey = cmsKey || fallbackKey;
     <!-- Formulaire -->
     <div id="contact-form-section" class="max-w-2xl mx-auto">
       <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-6 md:p-8">
+        <div id="contact-form-wrap">
         <h3 class="font-heading font-semibold text-lg text-primary-900 mb-5">Envoyer un message</h3>
 
           <div aria-live="polite" aria-atomic="true" class="sr-only" id="form-status"></div>
-          <form action="https://api.web3forms.com/submit" method="POST" class="space-y-5">
-            <input type="hidden" name="access_key" value={web3formsKey} />
-            <input type="hidden" name="from_name" value="JD Zoothérapie — Site web" />
-            <input type="hidden" name="subject" value="Nouveau message depuis jdzootherapeute.fr" />
-            <input type="hidden" name="redirect" value="https://jdzootherapeute.fr/merci/" />
-            <!-- Reply-to : utilise le champ email si rempli -->
-            <input type="hidden" name="replyto" value="" id="replyto-field" />
-            <!-- Honeypot anti-spam -->
-            <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" aria-hidden="true" />
+          {/* Formulaire maison : envoi meme origine vers /api/form-submit. action +
+              method servent de repli sans JavaScript (le module redirige alors vers
+              la valeur du champ redirect). */}
+          <form id="contact-form" action="/api/form-submit" method="POST" class="space-y-5">
+            <input type="hidden" name="form_id" value="contact" />
+            <input type="hidden" name="redirect" value="/merci/" />
+            {/* Honeypot anti-spam : rempli = leurre, la demande n'est pas transmise. */}
+            <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
             <div>
               <label for="contact-name" class="block text-sm font-medium text-neutral-800 mb-1.5">
@@ -175,7 +173,7 @@ const web3formsKey = cmsKey || fallbackKey;
             </div>
 
             <div class="flex items-start gap-2">
-              <input type="checkbox" id="contact-consent" name="consent" required
+              <input type="checkbox" id="contact-consent" name="Consentement RGPD" value="oui" required
                 class="mt-1 w-4 h-4 rounded border-neutral-300 text-primary-600 focus:ring-primary-500" />
               <label for="contact-consent" class="text-neutral-500 text-xs leading-relaxed">
                 J'accepte que mes données soient utilisées pour répondre à ma demande.
@@ -185,7 +183,7 @@ const web3formsKey = cmsKey || fallbackKey;
 
             {ads.enabled && (
               <div class="flex items-start gap-2">
-                <input type="checkbox" id="contact-ads-consent" name="ads_consent"
+                <input type="checkbox" id="contact-ads-consent" name="Consentement mesure publicitaire" value="oui"
                   class="mt-1 w-4 h-4 rounded border-neutral-300 text-primary-600 focus:ring-primary-500" />
                 <label for="contact-ads-consent" class="text-neutral-500 text-xs leading-relaxed">
                   J'accepte de transmettre de manière hachée (anonyme) mon email et mon téléphone à Google Ads pour améliorer la mesure des conversions publicitaires. Facultatif.
@@ -193,23 +191,123 @@ const web3formsKey = cmsKey || fallbackKey;
               </div>
             )}
 
+            <p
+              id="contact-error"
+              role="alert"
+              aria-live="assertive"
+              class="hidden rounded border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+            ></p>
+
             <div class="flex flex-col sm:flex-row sm:items-center gap-4">
               <button
                 type="submit"
-                class="inline-flex items-center justify-center gap-2 bg-accent-700 text-white px-7 py-3.5 rounded font-semibold text-base hover:bg-accent-800 transition-colors min-h-[44px] w-full sm:w-auto"
+                id="contact-submit"
+                class="inline-flex items-center justify-center gap-2 bg-accent-700 text-white px-7 py-3.5 rounded font-semibold text-base hover:bg-accent-800 transition-colors min-h-[44px] w-full sm:w-auto disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                <span data-cms-field="contact.buttonText" data-cms-type="text">{contact.buttonText}</span>
+                <span class="contact-submit-label" data-cms-field="contact.buttonText" data-cms-type="text">{contact.buttonText}</span>
+                <span class="contact-submit-sending hidden items-center gap-2">
+                  <svg class="w-5 h-5 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                  </svg>
+                  <span data-cms-field="contact.sending" data-cms-type="text">{sending}</span>
+                </span>
               </button>
             </div>
           </form>
+        </div>
 
-          <script>
-            const emailInput = document.getElementById('contact-email') as HTMLInputElement | null;
-            const replytoField = document.getElementById('replyto-field') as HTMLInputElement | null;
-            if (emailInput && replytoField) {
-              emailInput.addEventListener('input', () => { replytoField.value = emailInput.value; });
+        {/* Confirmation d'envoi, revelee a la place du formulaire apres l'envoi.
+            Editable dans /admin, rubrique Contact. */}
+        <div id="contact-success" class="hidden" role="status" aria-live="polite" tabindex="-1">
+          <div class="text-center py-4">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-accent-700 text-white rounded-full mb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <h3 class="font-heading font-semibold text-xl text-primary-900 mb-3" data-cms-field="contact.successHeading" data-cms-type="text">{successHeading}</h3>
+            <p class="text-neutral-600 leading-relaxed max-w-md mx-auto" data-cms-field="contact.successBody" data-cms-type="text">{successBody}</p>
+            <div class="mt-7 flex flex-col sm:flex-row gap-3 justify-center">
+              <a href={`tel:${siteInfo.phone}`} class="inline-flex items-center justify-center gap-2 bg-accent-700 text-white px-6 py-3 rounded font-semibold text-sm hover:bg-accent-800 transition-colors min-h-[44px]">
+                Appeler Jennifer
+              </a>
+              <a href="/" class="inline-flex items-center justify-center gap-2 border-2 border-primary-200 text-primary-700 px-6 py-3 rounded font-semibold text-sm hover:border-primary-400 transition-colors min-h-[44px]">
+                Retour à l'accueil
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <script is:inline define:vars={{ errNetwork: errorMessage }}>
+          (function () {
+            function setup() {
+              var form = document.getElementById('contact-form');
+              if (!form || form.dataset.bound === '1') return;
+              form.dataset.bound = '1';
+              var shownAt = Date.now();
+
+              var wrap = document.getElementById('contact-form-wrap');
+              var succes = document.getElementById('contact-success');
+              var erreur = document.getElementById('contact-error');
+              var btn = document.getElementById('contact-submit');
+              var label = btn.querySelector('.contact-submit-label');
+              var sending = btn.querySelector('.contact-submit-sending');
+
+              function enEnvoi(on) {
+                btn.disabled = on;
+                label.classList.toggle('hidden', on);
+                sending.classList.toggle('hidden', !on);
+                sending.classList.toggle('inline-flex', on);
+              }
+
+              function reussi() {
+                var reduit = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                wrap.classList.add('hidden');
+                succes.classList.remove('hidden');
+                succes.style.opacity = '0';
+                succes.style.transform = reduit ? 'none' : 'translateY(12px)';
+                succes.style.transition = reduit ? 'none' : 'opacity 420ms ease, transform 420ms ease';
+                requestAnimationFrame(function () {
+                  requestAnimationFrame(function () {
+                    succes.style.opacity = '1';
+                    succes.style.transform = 'none';
+                  });
+                });
+                succes.focus({ preventScroll: true });
+                succes.scrollIntoView({ behavior: reduit ? 'auto' : 'smooth', block: 'center' });
+              }
+
+              form.addEventListener('submit', function (ev) {
+                ev.preventDefault();
+                if (!form.reportValidity()) return;
+                erreur.classList.add('hidden');
+                enEnvoi(true);
+
+                var envoi = new FormData(form);
+                envoi.append('_dt', String(Date.now() - shownAt));
+
+                fetch(form.action, {
+                  method: 'POST',
+                  headers: { Accept: 'application/json' },
+                  body: envoi,
+                })
+                  .then(function (r) { return r.json(); })
+                  .then(function (d) {
+                    if (d && d.success) reussi();
+                    else throw new Error('envoi');
+                  })
+                  .catch(function () {
+                    erreur.textContent = errNetwork;
+                    erreur.classList.remove('hidden');
+                    enEnvoi(false);
+                    erreur.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  });
+              });
             }
-          </script>
+            if (document.readyState !== 'loading') setup();
+            else document.addEventListener('DOMContentLoaded', setup);
+            document.addEventListener('astro:after-swap', setup);
+          })();
+        </script>
 
           {ads.enabled && (
             <script is:inline>
@@ -224,7 +322,7 @@ const web3formsKey = cmsKey || fallbackKey;
                     .map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
                 }
 
-                var form = document.querySelector('form[action*="web3forms"]');
+                var form = document.getElementById('contact-form');
                 if (!form) return;
 
                 form.addEventListener('submit', async function(e) {

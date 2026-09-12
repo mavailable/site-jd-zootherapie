@@ -102,7 +102,19 @@ const cmsConfig: CmsConfig = {
   },
 
   // Modules du moteur montés dans /admin (AdminIsland généré par le scaffold les importe).
-  modules: ['crm', 'marketing', 'vocaux', 'gallery', 'ai'],
+  modules: ['crm', 'marketing', 'vocaux', 'gallery', 'ai', 'forms'],
+
+  // Module « forms » (v0.73.1) — formulaires maison : le site poste sur
+  // /api/form-submit (meme origine), la demande est archivee dans la D1 `DB`
+  // (onglet Demandes) et notifiee par mail. Un { id, label } par formulaire :
+  // l'id est la valeur du champ cache form_id, le label sert d'objet de mail et
+  // de filtre dans /admin.
+  forms: {
+    enabled: true,
+    forms: [
+      { id: 'contact', label: 'Contact' },
+    ],
+  },
 
   site: {
     // Webmaster (agence) — valeurs explicites (les composants /admin n'ont plus de
@@ -221,6 +233,10 @@ const cmsConfig: CmsConfig = {
         title: { type: 'text', label: 'Titre' },
         subtitle: { type: 'text', label: 'Sous-titre', multiline: true },
         buttonText: { type: 'text', label: 'Texte du bouton' },
+        sending: { type: 'text', label: 'Bouton pendant l\'envoi', description: 'Affiche le temps que la demande parte.' },
+        successHeading: { type: 'text', label: 'Confirmation : titre', description: 'Affiche a la place du formulaire une fois la demande envoyee.' },
+        successBody: { type: 'text', label: 'Confirmation : message', multiline: true },
+        errorMessage: { type: 'text', label: 'Message si l\'envoi echoue', multiline: true, description: 'Doit toujours proposer un autre moyen de vous joindre (telephone).' },
         web3formsKey: { type: 'text', label: 'Cle Web3Forms (formulaire)', description: 'Collez votre cle pour recevoir vos formulaires directement. Guide : marcm.fr/aide/web3forms' },
       },
     },

@@ -27,3 +27,10 @@ functions/api/vocal-download.js
 functions/api/vocal-upload.js
 functions/api/vocaux-list.js
 functions/img/
+
+# Shims du module forms (generes au build)
+functions/api/form-submit.js
+functions/api/forms.js
+functions/api/forms-export.js
+functions/api/forms-settings.js
+functions/api/forms/

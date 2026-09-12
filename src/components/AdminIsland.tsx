@@ -6,6 +6,7 @@ import { marketingModule } from '@marc/cms-engine/modules/marketing';
 import { vocauxModule } from '@marc/cms-engine/modules/vocaux';
 import { galleryModule } from '@marc/cms-engine/modules/gallery';
 import { aiModule } from '@marc/cms-engine/modules/ai';
+import { formsModule } from '@marc/cms-engine/modules/forms';
 export default function AdminIsland({ config }: { config: CmsConfig }) {
-  return <CmsApp config={config} modules={[crmModule, marketingModule, vocauxModule, galleryModule, aiModule]} />;
+  return <CmsApp config={config} modules={[crmModule, marketingModule, vocauxModule, galleryModule, aiModule, formsModule]} />;
 }

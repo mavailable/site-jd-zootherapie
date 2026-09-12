@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Soumission formulaire contact
-  const contactForm = document.querySelector('form[action*="web3forms"]');
+  const contactForm = document.getElementById('contact-form');
   if (contactForm) {
     contactForm.addEventListener('submit', () => track('form-submit', { page: window.location.pathname }));
   }
