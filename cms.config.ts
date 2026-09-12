@@ -118,9 +118,8 @@ const cmsConfig: CmsConfig = {
 
   site: {
     // Webmaster (agence) — valeurs explicites (les composants /admin n'ont plus de
-    // defaut code en dur). helpUrl par defaut du parc agence.
+    // defaut code en dur).
     webmasterName: 'Marc',
-    helpUrl: 'https://marcm.fr/aide/web3forms/',
     ownerName: 'Jennifer De Groeve',
     phone: '+33754812122',
     phoneDisplay: '07 54 81 21 22',
@@ -237,7 +236,6 @@ const cmsConfig: CmsConfig = {
         successHeading: { type: 'text', label: 'Confirmation : titre', description: 'Affiche a la place du formulaire une fois la demande envoyee.' },
         successBody: { type: 'text', label: 'Confirmation : message', multiline: true },
         errorMessage: { type: 'text', label: 'Message si l\'envoi echoue', multiline: true, description: 'Doit toujours proposer un autre moyen de vous joindre (telephone).' },
-        web3formsKey: { type: 'text', label: 'Cle Web3Forms (formulaire)', description: 'Collez votre cle pour recevoir vos formulaires directement. Guide : marcm.fr/aide/web3forms' },
       },
     },
 
