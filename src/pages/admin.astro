@@ -3,9 +3,11 @@
 // par cms-engine-scaffold : importe CmsApp + les modules déclarés, les injecte en
 // prop ; config reste sérialisable). Seul fichier qui connait la config.
 import '@marc/cms-engine/cms.css';
+import { loginConfig } from '@marc/cms-engine/config';
 import AdminIsland from '../components/AdminIsland';
 import cmsConfig from '../../cms.config';
 
+const adminBootConfig = loginConfig(cmsConfig);
 const cmsLocale = (cmsConfig as { locale?: 'fr' | 'en' }).locale === 'en' ? 'en' : 'fr';
 const adminTitle = cmsLocale === 'en' ? 'Admin' : 'Administration';
 ---
@@ -30,9 +32,9 @@ const adminTitle = cmsLocale === 'en' ? 'Admin' : 'Administration';
     </style>
   </head>
   <body>
-    <script define:vars={{ cfg: cmsConfig }} is:inline>
+    <script define:vars={{ cfg: adminBootConfig }} is:inline>
       window.__cmsConfig = cfg;
     </script>
-    <AdminIsland config={cmsConfig} client:only="react" />
+    <AdminIsland config={adminBootConfig} client:only="react" />
   </body>
 </html>

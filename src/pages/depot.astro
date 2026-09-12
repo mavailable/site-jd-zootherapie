@@ -2,7 +2,11 @@
 // AUTO-GENERATED par @marc/cms-engine — ne pas editer. Regenerer : npx cms-engine-scaffold
 import '@marc/cms-engine/cms.css';
 import DepositIsland from '../components/DepositIsland';
+import { depositConfig } from '@marc/cms-engine/config';
 import cmsConfig from '../../cms.config';
+
+// Charge utile servie SANS session (v0.75.0) : liste blanche, rien de nominatif.
+const publicConfig = depositConfig(cmsConfig);
 
 const cmsLocale = (cmsConfig as { locale?: 'fr' | 'en' }).locale === 'en' ? 'en' : 'fr';
 const pageTitle = cmsLocale === 'en' ? 'Send your material' : 'Envoyer ma matière';
@@ -17,6 +21,6 @@ const pageTitle = cmsLocale === 'en' ? 'Send your material' : 'Envoyer ma matiè
     <title>{cmsConfig.siteName} — {pageTitle}</title>
   </head>
   <body>
-    <DepositIsland config={cmsConfig} client:only="react" />
+    <DepositIsland config={publicConfig} client:only="react" />
   </body>
 </html>
