@@ -26,7 +26,7 @@
   "stats": {
     "items": [
       { "value": "+20 ans", "label": "dans le soin et l'accompagnement" },
-      { "value": "3 animaux", "label": "médiateurs certifiés" },
+      { "value": "5 animaux", "label": "médiateurs certifiés" },
       { "value": "Tous âges", "label": "de 3 à 99 ans" },
       { "value": "5,0 · 9 avis", "label": "sur Google Business" }
     ]
@@ -53,7 +53,7 @@
     ]
   },
   "animals": {
-    "title": "Des animaux médiateurs, des approches différentes",
+    "title": "Cinq animaux médiateurs, cinq approches",
     "subtitle": "Selon votre situation et votre sensibilité, je choisis l'animal le plus adapté.",
     "items": [
       {

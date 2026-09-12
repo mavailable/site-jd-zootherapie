@@ -33,7 +33,7 @@
     "items": [
       { "value": "+20 ans", "label": "dans l'accompagnement" },
       { "value": "Cycles de 5", "label": "séances adaptées aux enfants" },
-      { "value": "3 animaux", "label": "médiateurs certifiés" },
+      { "value": "5 animaux", "label": "médiateurs certifiés" },
       { "value": "AEMO Pompey", "label": "mission en cours (54)" }
     ]
   },
@@ -88,7 +88,7 @@
     "closing": "La médiation animale ne remplace pas les prises en charge existantes de votre enfant (psychomotricité, orthophonie, suivi médical). Elle vient en complémentarité, sur un registre souvent plus accessible pour un enfant qui a du mal avec les formats traditionnels."
   },
   "animals": {
-    "title": "Des animaux médiateurs, selon la personnalité de votre enfant",
+    "title": "Cinq animaux médiateurs, selon la personnalité de votre enfant",
     "subtitle": "Je choisis avant chaque séance l'animal le plus adapté au profil de votre enfant et à l'objectif du jour.",
     "items": [
       {
