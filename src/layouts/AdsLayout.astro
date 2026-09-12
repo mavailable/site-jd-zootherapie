@@ -17,6 +17,7 @@ import { getSiteInfo } from '@data/content';
 import { siteUrl, ads, schemaData, business } from '@data/business';
 import ConsentBanner from '@components/layout/ConsentBanner.astro';
 import GoogleTag from '@components/layout/GoogleTag.astro';
+import UmamiTag from '@components/layout/UmamiTag.astro';
 
 const siteInfo = await getSiteInfo();
 
@@ -189,8 +190,8 @@ const serviceJsonLd = serviceSchema ? {
     </div>
   </footer>
 
-  <!-- Umami Analytics (cookieless) -->
-  <script is:inline defer src="https://cloud.umami.is/script.js" data-website-id="96fd46e0-47fa-4c79-abda-447fa79bd0f4" crossorigin="anonymous"></script>
+  <!-- Umami Analytics (cookieless), charge apres la premiere frame (cf. UmamiTag.astro) -->
+  <UmamiTag />
 
   {ads.enabled && ads.conversionId && (
     <>

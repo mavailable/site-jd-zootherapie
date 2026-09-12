@@ -58,7 +58,8 @@ const currentYear = new Date().getFullYear();
             <li>Contenu de votre message (obligatoire)</li>
           </ul>
           <p class="mt-3 text-sm text-neutral-500">
-            Aucune autre donnée n'est collectée automatiquement (pas d'adresse IP, pas de cookies de tracking).
+            En dehors de ces champs, rien ne vous est demandé pour vous répondre. La mesure d'audience du site et les outils Google
+            qui y sont utilisés sont décrits plus bas, dans la section « Cookies et mesure d'audience ».
           </p>
         </article>
 
@@ -93,7 +94,16 @@ const currentYear = new Date().getFullYear();
             Vos données ne sont jamais vendues, louées ou transmises à des tiers à des fins commerciales.
           </p>
           <p class="mt-3">
-            Le formulaire de contact utilise le service <strong>Web3Forms</strong> (web3forms.com) pour l'acheminement technique des messages. Web3Forms est utilisé comme prestataire de traitement et ne stocke pas vos données de manière permanente. Vous pouvez consulter leur politique de confidentialité sur <a href="https://web3forms.com/privacy" class="text-primary-600 hover:underline" target="_blank" rel="noopener noreferrer">web3forms.com/privacy</a>.
+            Le formulaire de contact est acheminé par <strong>Web3Forms</strong> (web3forms.com), exploité par la société Web3Creative, en Inde.
+            Les champs que vous remplissez transitent par ses serveurs, hébergés chez Amazon Web Services, Cloudflare et Hetzner (Allemagne et Finlande),
+            et y sont conservés jusqu'à trois ans. Deux services antispam, CleanTalk et Akismet (États-Unis), reçoivent votre adresse IP et votre adresse email.
+            Ces transferts hors de l'Union européenne sont encadrés par les clauses contractuelles types de la Commission européenne, intégrées à
+            l'accord de traitement de Web3Forms (<a href="https://web3forms.com/dpa" class="text-primary-600 hover:underline" target="_blank" rel="noopener noreferrer">web3forms.com/dpa</a>).
+            Leur politique de confidentialité : <a href="https://web3forms.com/privacy" class="text-primary-600 hover:underline" target="_blank" rel="noopener noreferrer">web3forms.com/privacy</a>.
+          </p>
+          <p class="mt-3">
+            Si vous acceptez les cookies de mesure, <strong>Google</strong> reçoit également des données de navigation. Le détail figure dans la section
+            « Cookies et mesure d'audience » ci-dessous.
           </p>
           <p class="mt-3">
             L'hébergement du site est assuré par Cloudflare, Inc. (États-Unis), société soumise au Data Privacy Framework EU–US.
@@ -142,13 +152,31 @@ const currentYear = new Date().getFullYear();
           {ads.enabled && (
             <>
               <p class="mt-3">
-                <strong>Google Ads (cookies publicitaires)</strong> : pour mesurer l'efficacité de nos campagnes publicitaires sur Google, des cookies de mesure de conversion peuvent être déposés si vous y consentez explicitement via la bannière de cookies. Ces cookies enregistrent la source de votre visite (annonce Google Ads) et les actions de conversion (envoi du formulaire, appel téléphonique).
+                <strong>Google Analytics et Google Ads</strong> : ce site utilise Google Analytics 4 (identifiant G-J8SY9MTLG4) pour comprendre comment il est consulté,
+                et le suivi de conversion Google Ads (identifiant AW-17890952261) pour savoir si nos annonces amènent des demandes de contact.
               </p>
               <p class="mt-3">
-                <strong>Sous-traitant</strong> : Google Ireland Limited (Gordon House, Barrow Street, Dublin 4, Irlande). Données transférées hors UE (États-Unis) dans le cadre du Data Privacy Framework certifié par la Commission européenne.
+                <strong>Rien n'est déposé sur votre appareil tant que vous n'avez pas accepté.</strong> Par défaut, les quatre autorisations Google
+                (mesure d'audience, publicité, données publicitaires, personnalisation) sont refusées. Tant que vous n'avez pas choisi, et si vous refusez,
+                Google reçoit tout de même une mesure sans cookie : la page consultée est comptée, sans identifiant conservé sur votre appareil et sans profil publicitaire.
+              </p>
+              <p class="mt-3">Si vous acceptez, les cookies suivants sont déposés :</p>
+              <ul class="mt-3 space-y-1 pl-5 list-disc text-neutral-600">
+                <li><strong>_ga</strong> et <strong>_ga_J8SY9MTLG4</strong> (Google Analytics), 400 jours : ils distinguent les visites les unes des autres.</li>
+                <li><strong>_gcl_au</strong> (Google Ads), 90 jours : il relie une visite venue d'une annonce à une demande de contact.</li>
+              </ul>
+              <p class="mt-3">
+                Un dernier cookie, <strong>consent_v2</strong> (390 jours, soit 13 mois), garde votre choix en mémoire pour ne pas vous reposer la question
+                à chaque visite. Il est déposé par le site, pas par Google, et ne sert qu'à cela.
               </p>
               <p class="mt-3">
-                <strong>Durée de conservation</strong> : 13 mois maximum (recommandation CNIL). Vous pouvez retirer ou modifier votre consentement à tout moment via le lien "Gérer mes cookies" dans le pied de page.
+                <strong>Revenir sur votre choix</strong> : le lien « Gérer mes cookies », en bas de chaque page, rouvre le panneau à tout moment.
+                Vous pouvez aussi supprimer ces cookies depuis les réglages de votre navigateur.
+              </p>
+              <p class="mt-3">
+                <strong>Qui reçoit ces données</strong> : Google Ireland Limited (Gordon House, Barrow Street, Dublin 4, Irlande). Elles peuvent être
+                transférées aux États-Unis, chez Google LLC, dans le cadre du Data Privacy Framework entre l'Union européenne et les États-Unis,
+                complété par les clauses contractuelles types de la Commission européenne.
               </p>
               <p class="mt-3">
                 <strong>Mesures de conversion avancées</strong> : lorsque vous remplissez le formulaire de contact et cochez la case de consentement dédiée, votre adresse email et/ou numéro de téléphone peuvent être transmis de manière hachée (SHA-256 irréversible) à Google Ads pour améliorer la mesure des conversions. Aucune donnée en clair n'est transmise.
@@ -168,7 +196,7 @@ const currentYear = new Date().getFullYear();
         <!-- Mise à jour -->
         <div class="pt-4 border-t border-neutral-100">
           <p class="text-sm text-neutral-400">
-            Dernière mise à jour : mars {currentYear}. Cette politique peut être modifiée à tout moment pour refléter les évolutions légales ou techniques. La date de mise à jour ci-dessus sera actualisée en conséquence.
+            Dernière mise à jour : septembre {currentYear}. Cette politique peut être modifiée à tout moment pour refléter les évolutions légales ou techniques. La date de mise à jour ci-dessus sera actualisée en conséquence.
           </p>
           <p class="mt-2 text-sm text-neutral-400">
             Retour aux <a href="/mentions-legales/" class="hover:text-neutral-600 underline">mentions légales</a>.

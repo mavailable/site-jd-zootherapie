@@ -5,6 +5,7 @@ import { siteUrl, ads } from '@data/business';
 import { getPageSeo, getSeoGlobal } from '../data/seo';
 import ConsentBanner from '@components/layout/ConsentBanner.astro';
 import GoogleTag from '@components/layout/GoogleTag.astro';
+import UmamiTag from '@components/layout/UmamiTag.astro';
 import CmsEditLoader from '@marc/cms-engine/astro';
 
 const siteInfo = await getSiteInfo();
@@ -163,8 +164,8 @@ const ogImageType = fullOgImage.endsWith('.png') ? 'image/png' : fullOgImage.end
   <!-- Footer -->
   <slot name="footer" />
 
-  <!-- Umami Analytics — sans cookies, RGPD-exempt (pas de bannière requise) -->
-  <script is:inline defer src="https://cloud.umami.is/script.js" data-website-id="96fd46e0-47fa-4c79-abda-447fa79bd0f4" crossorigin="anonymous"></script>
+  <!-- Umami Analytics — sans cookies, charge apres la premiere frame (cf. UmamiTag.astro) -->
+  <UmamiTag />
 
   <!-- Tracking conversions : téléphone, email, CTA, formulaire -->
   <script defer src="/js/analytics.js"></script>
