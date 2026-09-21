@@ -521,8 +521,8 @@
         "#ApprocheNonMédicamenteuse"
       ],
       "cta": "Message privé pour un premier échange structure, ou 30 minutes en visio.",
-      "status": "draft",
-      "published_at": null,
+      "status": "published",
+      "published_at": "2026-09-21T05:48:10.596Z",
       "client_modified_text": null,
       "client_comment": null
     },
