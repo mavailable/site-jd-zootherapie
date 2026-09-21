@@ -496,8 +496,8 @@
         "#aidants"
       ],
       "cta": "Une question sur un proche ? Écrivez-moi, en message privé si vous préférez",
-      "status": "draft",
-      "published_at": null,
+      "status": "published",
+      "published_at": "2026-09-21T05:41:04.125Z",
       "client_modified_text": null,
       "client_comment": null
     },
