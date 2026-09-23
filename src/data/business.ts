@@ -104,10 +104,9 @@ export const ads = {
   enabled: true,
   conversionId: 'G-J8SY9MTLG4' as string | null, // GA4 measurement ID (analytics)
   adsConversionId: 'AW-17890952261' as string | null, // Google Ads conversion ID (requis pour que les AW-XXX/LABEL fire)
-  // Conversion Google Ads native du formulaire de contact ('AW-17890952261/<label>').
-  // null au 2026-09-23 : le compte n'a AUCUNE action WEBPAGE pour le formulaire
-  // (seules les actions LP ont un label). L'action qui compte, « Nous contacter (1) »,
-  // est importee de GA4 (evenement ads_conversion_Nous_contacter_1). Ne jamais
-  // inventer ce label : le lire dans l'API Ads (conversion_action.tag_snippets).
-  contactConversionSendTo: null as string | null,
+  // Conversion Google Ads native du formulaire de contact : action WEBPAGE
+  // « Formulaire de contact » (id 7789584208, SUBMIT_LEAD_FORM, primaire),
+  // creee le 2026-09-23 par ads/create_conversion.py, label lu dans l'API Ads.
+  // « Nous contacter (1) » (GA4, simple visite de /contact) est secondaire depuis.
+  contactConversionSendTo: 'AW-17890952261/Jx5BCNC-roIdEMWIidNC' as string | null,
 } as const;

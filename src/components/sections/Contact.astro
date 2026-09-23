@@ -186,16 +186,6 @@ const errorMessage = contact.errorMessage || `L'envoi a échoué. Réessayez, ou
               </label>
             </div>
 
-            {ads.enabled && (
-              <div class="flex items-start gap-2">
-                <input type="checkbox" id="contact-ads-consent" name="Consentement mesure publicitaire" value="oui"
-                  class="mt-1 w-4 h-4 rounded border-neutral-300 text-primary-600 focus:ring-primary-500" />
-                <label for="contact-ads-consent" class="text-neutral-500 text-xs leading-relaxed">
-                  J'accepte de transmettre de manière hachée (anonyme) mon email et mon téléphone à Google Ads pour améliorer la mesure des conversions publicitaires. Facultatif.
-                </label>
-              </div>
-            )}
-
             <p
               id="contact-error"
               role="alert"
@@ -243,7 +233,7 @@ const errorMessage = contact.errorMessage || `L'envoi a échoué. Réessayez, ou
         </div>
 
         {/* Mesure du formulaire (Google tag) : declenchee UNE fois, sur un succes reel
-            de /api/form-submit. gtag.js n'est pas charge plus tot : window.gtag est le
+            de /api/form-submit (generate_lead GA4 + conversion Ads « Formulaire de contact »). gtag.js n'est pas charge plus tot : window.gtag est le
             stub de GoogleTag.astro, les appels attendent dans dataLayer. Une demande
             classee spam par le module forms recoit la meme reponse qu'un succes, elle
             est donc mesuree aussi (indetectable cote navigateur, par design). */}
@@ -296,8 +286,9 @@ const errorMessage = contact.errorMessage || `L'envoi a échoué. Réessayez, ou
 
             function mesurer(form) {
               if (!gtagId || typeof window.gtag !== 'function') return;
-              var optIn = document.getElementById('contact-ads-consent');
-              var avecDonnees = pubAcceptee() && optIn && optIn.checked;
+              // Donnees hachees seulement si les cookies publicitaires sont acceptes
+              // (ad_user_data accorde par le bandeau).
+              var avecDonnees = pubAcceptee();
               var email = avecDonnees && form.elements.email ? normEmail(form.elements.email.value) : '';
               var tel = avecDonnees && form.elements.phone ? normTel(form.elements.phone.value) : '';
               Promise.all([sha256(email), sha256(tel)]).catch(function () { return ['', '']; }).then(function (h) {
