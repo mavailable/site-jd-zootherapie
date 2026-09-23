@@ -83,7 +83,9 @@ const cspPublique = [
   "img-src 'self' data: blob: https:",
   "font-src 'self'",
   "media-src 'self' blob:",
-  `connect-src 'self' ${UMAMI} ${UMAMI_GW} ${GTM} https://*.google-analytics.com https://*.analytics.google.com https://*.g.doubleclick.net https://ad.doubleclick.net https://pagead2.googlesyndication.com https://www.googleadservices.com ${GOOGLE_PAYS}`,
+  // analytics.google.com (apex) : gtag GA4 y poste des que analytics_storage est
+  // accorde ; le joker *.analytics.google.com ne couvre pas l apex (releve 23/09).
+  `connect-src 'self' ${UMAMI} ${UMAMI_GW} ${GTM} https://*.google-analytics.com https://*.analytics.google.com https://analytics.google.com https://*.g.doubleclick.net https://ad.doubleclick.net https://pagead2.googlesyndication.com https://www.googleadservices.com ${GOOGLE_PAYS}`,
   'frame-src https://td.doubleclick.net https://www.googletagmanager.com',
   "base-uri 'self'",
   "form-action 'self'",
