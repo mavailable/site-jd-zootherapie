@@ -242,8 +242,76 @@ const errorMessage = contact.errorMessage || `L'envoi a échoué. Réessayez, ou
           </div>
         </div>
 
-        <script is:inline define:vars={{ errNetwork: errorMessage }}>
+        {/* Mesure du formulaire (Google tag) : declenchee UNE fois, sur un succes reel
+            de /api/form-submit. gtag.js n'est pas charge plus tot : window.gtag est le
+            stub de GoogleTag.astro, les appels attendent dans dataLayer. Une demande
+            classee spam par le module forms recoit la meme reponse qu'un succes, elle
+            est donc mesuree aussi (indetectable cote navigateur, par design). */}
+        <script is:inline define:vars={{
+          errNetwork: errorMessage,
+          gtagId: ads.enabled ? ads.conversionId : null,
+          adsSendTo: ads.enabled ? ads.contactConversionSendTo : null,
+        }}>
           (function () {
+            // Choix du bandeau cookies (meme stockage que ConsentBanner / GoogleTag).
+            function pubAcceptee() {
+              var record = null;
+              try {
+                var raw = localStorage.getItem('consent_v2');
+                if (raw) record = JSON.parse(raw);
+              } catch (e) {}
+              if (!record) {
+                var m = document.cookie.match(/(^|; )consent_v2=([^;]+)/);
+                if (m) { try { record = JSON.parse(decodeURIComponent(m[2])); } catch (e) {} }
+              }
+              return !!(record && record.ads);
+            }
+
+            function sha256(texte) {
+              if (!texte || !window.crypto || !crypto.subtle) return Promise.resolve('');
+              return crypto.subtle.digest('SHA-256', new TextEncoder().encode(texte)).then(function (buf) {
+                return Array.from(new Uint8Array(buf)).map(function (b) {
+                  return b.toString(16).padStart(2, '0');
+                }).join('');
+              });
+            }
+
+            // Normalisation Google (Enhanced Conversions) : email en minuscules sans
+            // espaces, points retires avant @gmail.com / @googlemail.com ; telephone
+            // au format E.164 (06 12 34 56 78 -> +33612345678).
+            function normEmail(v) {
+              var e = String(v || '').trim().toLowerCase().replace(/\s+/g, '');
+              var at = e.lastIndexOf('@');
+              if (at > 0 && /^(gmail|googlemail)\.com$/.test(e.slice(at + 1))) {
+                e = e.slice(0, at).replace(/\./g, '') + e.slice(at);
+              }
+              return e.indexOf('@') > 0 ? e : '';
+            }
+            function normTel(v) {
+              var t = String(v || '').replace(/[^0-9+]/g, '');
+              if (t.indexOf('00') === 0) t = '+' + t.slice(2);
+              else if (/^0[1-9][0-9]{8}$/.test(t)) t = '+33' + t.slice(1);
+              return /^\+[1-9][0-9]{7,14}$/.test(t) ? t : '';
+            }
+
+            function mesurer(form) {
+              if (!gtagId || typeof window.gtag !== 'function') return;
+              var optIn = document.getElementById('contact-ads-consent');
+              var avecDonnees = pubAcceptee() && optIn && optIn.checked;
+              var email = avecDonnees && form.elements.email ? normEmail(form.elements.email.value) : '';
+              var tel = avecDonnees && form.elements.phone ? normTel(form.elements.phone.value) : '';
+              Promise.all([sha256(email), sha256(tel)]).catch(function () { return ['', '']; }).then(function (h) {
+                if (avecDonnees && (h[0] || h[1])) {
+                  var ud = {};
+                  if (h[0]) ud.sha256_email_address = h[0];
+                  if (h[1]) ud.sha256_phone_number = h[1];
+                  window.gtag('set', 'user_data', ud);
+                }
+                window.gtag('event', 'generate_lead', { send_to: gtagId, form_id: 'contact' });
+                if (adsSendTo) window.gtag('event', 'conversion', { send_to: adsSendTo });
+              });
+            }
+
             function setup() {
               var form = document.getElementById('contact-form');
               if (!form || form.dataset.bound === '1') return;
@@ -297,8 +365,12 @@ const errorMessage = contact.errorMessage || `L'envoi a échoué. Réessayez, ou
                 })
                   .then(function (r) { return r.json(); })
                   .then(function (d) {
-                    if (d && d.success) reussi();
-                    else throw new Error('envoi');
+                    if (!(d && d.success)) throw new Error('envoi');
+                    reussi();
+                    if (form.dataset.mesure !== '1') {
+                      form.dataset.mesure = '1';
+                      try { mesurer(form); } catch (e) {}
+                    }
                   })
                   .catch(function () {
                     erreur.textContent = errNetwork;
@@ -314,49 +386,6 @@ const errorMessage = contact.errorMessage || `L'envoi a échoué. Réessayez, ou
           })();
         </script>
 
-          {ads.enabled && (
-            <script is:inline>
-              {`
-              (function() {
-                async function sha256(value) {
-                  if (!value) return '';
-                  var normalized = String(value).trim().toLowerCase().replace(/\\s+/g, '');
-                  var buf = new TextEncoder().encode(normalized);
-                  var hash = await crypto.subtle.digest('SHA-256', buf);
-                  return Array.from(new Uint8Array(hash))
-                    .map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
-                }
-
-                var form = document.getElementById('contact-form');
-                if (!form) return;
-
-                form.addEventListener('submit', async function(e) {
-                  var adsConsent = document.getElementById('contact-ads-consent');
-                  if (!adsConsent || !adsConsent.checked) return;
-                  if (typeof window.gtag !== 'function') return;
-
-                  var emailEl = document.getElementById('contact-email');
-                  var phoneEl = document.getElementById('contact-phone') || document.getElementById('contact-tel');
-                  var email = emailEl && emailEl.value ? emailEl.value : '';
-                  var phone = phoneEl && phoneEl.value ? phoneEl.value : '';
-
-                  var hashedEmail = email ? await sha256(email) : '';
-                  var hashedPhone = phone ? await sha256(phone.replace(/[^0-9+]/g, '')) : '';
-
-                  window.gtag('event', 'conversion', {
-                    send_to: '${ads.conversionId}',
-                    event_category: 'lead',
-                    event_label: 'contact_form',
-                    user_data: {
-                      sha256_email_address: hashedEmail,
-                      sha256_phone_number: hashedPhone,
-                    },
-                  });
-                });
-              })();
-              `}
-            </script>
-          )}
         </div>
       </div>
     </div>
