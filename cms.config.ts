@@ -114,6 +114,11 @@ const cmsConfig: CmsConfig = {
     forms: [
       { id: 'contact', label: 'Contact' },
     ],
+    // Anti-spam (moteur >= v0.84.1) : sans la mesure JS `_dt` (ajoutee par le script
+    // de Contact.astro), une demande part en quarantaine (Demandes > Spam), sans
+    // notification. Un envoi sans JavaScript (repli action/method) y arrive aussi,
+    // visible et recuperable dans /admin. Empreinte de message active par defaut.
+    requireTiming: ['contact'],
   },
 
   site: {

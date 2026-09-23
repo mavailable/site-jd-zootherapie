@@ -115,8 +115,13 @@ const errorMessage = contact.errorMessage || `L'envoi a échoué. Réessayez, ou
           <form id="contact-form" action="/api/form-submit" method="POST" class="space-y-5">
             <input type="hidden" name="form_id" value="contact" />
             <input type="hidden" name="redirect" value="/merci/" />
-            {/* Honeypot anti-spam : rempli = leurre, la demande n'est pas transmise. */}
-            <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            {/* Honeypot anti-spam : champ texte hors écran (pas display:none, que les
+                robots savent ignorer), hors accessibilité et hors clavier. Rempli =
+                leurre, la demande n'est pas transmise. Envoyé tel quel par
+                new FormData(form) et par le repli sans JS. */}
+            <div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">
+              <label>Ne pas remplir <input type="text" name="botcheck" value="" tabindex="-1" autocomplete="off" /></label>
+            </div>
 
             <div>
               <label for="contact-name" class="block text-sm font-medium text-neutral-800 mb-1.5">
