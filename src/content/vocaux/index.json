@@ -189,13 +189,17 @@
         }
       ],
       "uploaded_at": "2026-09-11T06:21:34.630Z",
-      "statut": "envoye",
+      "statut": "traite",
       "articles": [
         {
           "slug": "gaston-et-philippe-mes-deux-cochons-d-inde-mediateurs",
           "at": "2026-09-11T13:25:31.994Z"
         }
-      ]
+      ],
+      "resolution": {
+        "note": "Tes photos ont été retravaillées pour le site : Gaston et Philippe ont leurs fiches dans l'équipe animale, et elles illustrent aussi leur article.",
+        "resolved_at": "2026-09-27T13:02:23.190Z"
+      }
     },
     {
       "id": "jd-zoo-2026-09-08-0849-seance-individuelle-ou-en-petit-groupe-comment-choisir-le-bo",
