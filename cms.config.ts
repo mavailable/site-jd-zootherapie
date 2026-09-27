@@ -126,6 +126,9 @@ const cmsConfig: CmsConfig = {
     // defaut code en dur).
     webmasterName: 'Marc',
     ownerName: 'Jennifer De Groeve',
+    // Bot WhatsApp : Marc tutoie Jennifer (demande du 27/09/2026). N'affecte que la
+    // conversation WhatsApp, jamais les articles ni le site. Pris en compte a l'appairage.
+    tutoiement: true,
     phone: '+33754812122',
     phoneDisplay: '07 54 81 21 22',
     email: 'degroeve.j@gmail.com',
