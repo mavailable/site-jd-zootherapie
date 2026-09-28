@@ -1,6 +1,37 @@
 {
   "entries": [
     {
+      "id": "jd-zoo-2026-09-28-0913-qu-apporte-les-seances-aux-professionnel-qui-accompagne",
+      "sujet": "Qu’apporte les séances aux professionnel qui accompagne",
+      "categorie": "idee-article",
+      "categorie_label": "Idée d’article",
+      "attachments": [
+        {
+          "filename": "2026-09-28-0913-qu-apporte-les-seances-aux-professionnel-qui-accompagne-1.opus",
+          "r2_key": "jd-zoo/2026-09-28-0913-qu-apporte-les-seances-aux-professionnel-qui-accompagne-1.opus",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-09-28-0913-qu-apporte-les-seances-aux-professionnel-qui-accompagne-1.opus&e=1793171600&s=89a1acba0501f1e6ab56dd27225bf9caab8ecd43b716fcdbf891eb41edcd54a3",
+          "audio_mime": "audio/ogg",
+          "audio_bytes": 63382
+        },
+        {
+          "filename": "2026-09-28-0913-qu-apporte-les-seances-aux-professionnel-qui-accompagne-2.opus",
+          "r2_key": "jd-zoo/2026-09-28-0913-qu-apporte-les-seances-aux-professionnel-qui-accompagne-2.opus",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-09-28-0913-qu-apporte-les-seances-aux-professionnel-qui-accompagne-2.opus&e=1793171600&s=1d92f697669f4318ae794d5a0e4df5f66bed92db1abc791a8d7b1bf93afa8e3c",
+          "audio_mime": "audio/ogg",
+          "audio_bytes": 531394
+        },
+        {
+          "filename": "2026-09-28-0913-qu-apporte-les-seances-aux-professionnel-qui-accompagne-3.opus",
+          "r2_key": "jd-zoo/2026-09-28-0913-qu-apporte-les-seances-aux-professionnel-qui-accompagne-3.opus",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-09-28-0913-qu-apporte-les-seances-aux-professionnel-qui-accompagne-3.opus&e=1793171600&s=e478fa46fb76459d9b8af21778d0f0b5ca6e8537f15beefc2d1cebd3972c6d98",
+          "audio_mime": "audio/ogg",
+          "audio_bytes": 531394
+        }
+      ],
+      "uploaded_at": "2026-09-28T07:13:22.587Z",
+      "statut": "envoye"
+    },
+    {
       "id": "jd-zoo-2026-09-11-1023-test-pour-article-de-blog-sur-le-theme-la-premiere-rencontre",
       "sujet": "Test pour article de blog sur le thème, la première rencontre, ce que j’observe chez les personnes accompagnées",
       "categorie": "idee-article",
