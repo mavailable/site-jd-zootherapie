@@ -3,6 +3,7 @@
   "category": "Récits de terrain",
   "description": "Brouillon de test technique, supprime dans quelques minutes.",
   "body": "<p>Test technique.</p>",
-  "date": "2026-09-28",
-  "draft": true
+  "date": "2026-12-31",
+  "draft": false,
+  "publish_at": "2026-12-31T08:00:00.000Z"
 }
