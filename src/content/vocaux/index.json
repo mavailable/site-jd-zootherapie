@@ -17,7 +17,13 @@
         }
       ],
       "uploaded_at": "2026-09-28T07:18:48.063Z",
-      "statut": "envoye"
+      "statut": "envoye",
+      "articles": [
+        {
+          "slug": "ce-que-la-mediation-animale-apporte-aux-professionnels-qui-accompagnent",
+          "at": "2026-09-28T07:18:55.931Z"
+        }
+      ]
     },
     {
       "id": "jd-zoo-2026-09-28-0913-qu-apporte-les-seances-aux-professionnel-qui-accompagne",
