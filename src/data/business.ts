@@ -12,10 +12,11 @@ export const legal = {
   tvaExempt: true, // Micro-entreprise, article 293 B du CGI
 } as const;
 
-// Coordonnées GPS (pour Schema.org) — Verny 57420
+// Coordonnées GPS (pour Schema.org) — 17 rue Principale, 57420 Vigny (Nominatim).
+// Ne pas reprendre le pin de la fiche Google (49.0208, 6.7660) : il tombe à Laning, ~45 km à l est.
 export const geo = {
-  latitude: 49.0208014,
-  longitude: 6.7659488,
+  latitude: 48.969589,
+  longitude: 6.253099,
 } as const;
 
 // URL de production
@@ -64,8 +65,8 @@ export const schemaData = {
       '@type': 'GeoCircle',
       geoMidpoint: {
         '@type': 'GeoCoordinates',
-        latitude: 49.0208014,
-        longitude: 6.7659488,
+        latitude: 48.969589,
+        longitude: 6.253099,
       },
       geoRadius: '15000',
     },
