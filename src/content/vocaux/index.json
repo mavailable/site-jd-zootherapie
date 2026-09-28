@@ -1,6 +1,25 @@
 {
   "entries": [
     {
+      "id": "jd-zoo-2026-09-28-0918-qu-apporte-les-seances-aux-professionnel-qui-accompagne",
+      "sujet": "Qu’apporte les séances aux professionnel qui accompagne",
+      "categorie": "idee-article",
+      "categorie_label": "Idée d’article",
+      "attachments": [],
+      "media": [
+        {
+          "filename": "2026-09-28-0918-qu-apporte-les-seances-aux-professionnel-qui-accompagne-media.jpg",
+          "r2_key": "jd-zoo/2026-09-28-0918-qu-apporte-les-seances-aux-professionnel-qui-accompagne-media.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-09-28-0918-qu-apporte-les-seances-aux-professionnel-qui-accompagne-media.jpg&e=1793171926&s=45108f67e5cfd71faeb8d6e954a7faff563be29042b4d1ebb353689e1f95869f",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 807354
+        }
+      ],
+      "uploaded_at": "2026-09-28T07:18:48.063Z",
+      "statut": "envoye"
+    },
+    {
       "id": "jd-zoo-2026-09-28-0913-qu-apporte-les-seances-aux-professionnel-qui-accompagne",
       "sujet": "Qu’apporte les séances aux professionnel qui accompagne",
       "categorie": "idee-article",
