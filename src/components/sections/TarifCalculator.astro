@@ -171,8 +171,8 @@ const { compact = false } = Astro.props;
   import { geo } from '../../data/business';
   // ─── Configuration ───────────────────────────────────────────────
   // Point de depart = domicile de Jennifer, importe de business.ts (source unique).
-  // Jusqu'au 28/09 il etait code en dur sur le pin de la fiche Google, qui tombe a
-  // Laning (~45 km a l'est) : toutes les distances etaient faussees.
+  // Jusqu'au 28/09 il etait code en dur sur les coordonnees de l'URL de la fiche Google :
+  // centre de la zone desservie (Laning, ~38 km a l'est), pas le domicile. Distances faussees.
   const VERNY_LAT = geo.latitude;
   const VERNY_LNG = geo.longitude;
   const BASE_PRICE = 60;

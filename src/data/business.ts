@@ -13,7 +13,8 @@ export const legal = {
 } as const;
 
 // Coordonnées GPS (pour Schema.org) — 17 rue Principale, 57420 Vigny (Nominatim).
-// Ne pas reprendre le pin de la fiche Google (49.0208, 6.7660) : il tombe à Laning, ~45 km à l est.
+// Ne pas reprendre les coordonnées de l URL de la fiche Google (49.0208, 6.7660) : la fiche est une
+// zone desservie sans adresse, ces coordonnées sont le centre de la zone (commune de Laning), pas le domicile.
 export const geo = {
   latitude: 48.969589,
   longitude: 6.253099,
