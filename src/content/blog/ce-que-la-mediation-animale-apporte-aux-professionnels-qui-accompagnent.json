@@ -18,6 +18,21 @@
       "input_tokens": 6382,
       "output_tokens": 2537,
       "cost_eur": 0.0877082
-    }
-  }
+    },
+    "revisions": [
+      {
+        "kind": "photos",
+        "entry_ids": [
+          "jd-zoo-2026-09-28-0918-qu-apporte-les-seances-aux-professionnel-qui-accompagne"
+        ],
+        "note": "",
+        "transcript": "",
+        "media": [
+          "/img/jd-zoo/msg-2026-09-28-0918-qu-apporte-les-seances-aux-professionnel-qui-accompagne-media.webp"
+        ],
+        "generated_at": "2026-09-28T07:18:54.462Z"
+      }
+    ]
+  },
+  "image": "/img/jd-zoo/msg-2026-09-28-0918-qu-apporte-les-seances-aux-professionnel-qui-accompagne-media.webp"
 }
