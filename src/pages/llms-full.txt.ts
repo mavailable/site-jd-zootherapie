@@ -31,7 +31,7 @@ export async function GET() {
   const zoo = await getPageZootherapie();
   const ateliers = await getPageAteliers();
   const lps = await getLandingPagesOuvertes();
-  const posts = (await getPublishedBlog()).sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+  const posts = (await getPublishedBlog()).sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime() || a.id.localeCompare(b.id));
   const social = Object.entries(info.social ?? {}).filter(([, v]) => v).map(([k, v]) => `- ${k} : ${v}`).join('\n');
 
   const body = `${LLMS_FULL_HEAD}## Informations générales

@@ -9,5 +9,7 @@ import { getCollection } from 'astro:content';
 export async function getLandingPagesOuvertes() {
   const robots = fs.readFileSync(path.join(process.cwd(), 'public', 'robots.txt'), 'utf-8');
   const lps = await getCollection('landing-pages', ({ data }) => data.enabled !== false && data.indexable !== false);
-  return lps.filter((lp) => robots.includes(`Allow: /lp/${lp.data.slug}/`));
+  return lps
+    .filter((lp) => robots.includes(`Allow: /lp/${lp.data.slug}/`))
+    .sort((a, b) => a.data.slug.localeCompare(b.data.slug));
 }

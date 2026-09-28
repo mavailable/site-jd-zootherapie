@@ -11,7 +11,7 @@ export async function GET() {
   const tarifs = await getPageTarifs();
   const lps = await getLandingPagesOuvertes();
   // Meme helper que /blog/ et /blog/[slug]/ (brouillons et publications futures exclus).
-  const posts = (await getPublishedBlog()).sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+  const posts = (await getPublishedBlog()).sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime() || a.id.localeCompare(b.id));
 
   const body = `${LLMS_HEAD}## Pages principales
 
