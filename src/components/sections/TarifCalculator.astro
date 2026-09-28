@@ -1,7 +1,7 @@
 ---
 // TarifCalculator.astro
 // Calculateur de tarif avec géocodage Nominatim + distance routière OSRM
-// Base : 60€, déplacement inclus ≤50km depuis Verny (57420), +0,40€/km au-delà
+// Base : 60€, déplacement inclus ≤50km depuis Vigny (17 rue Principale, 57420), +0,40€/km au-delà
 interface Props {
   compact?: boolean; // version réduite pour la homepage
 }
@@ -297,7 +297,7 @@ const { compact = false } = Astro.props;
 
   // ─── Affichage résultat ──────────────────────────────────────────
   function showResult(cityName: string, distKm: number, price: ReturnType<typeof computePrice>) {
-    cityFoundEl.textContent = `Distance depuis Verny : ${Math.round(distKm * 10) / 10} km (route)`;
+    cityFoundEl.textContent = `Distance depuis Vigny : ${Math.round(distKm * 10) / 10} km (route)`;
     totalEl.textContent = `${price.total} €`;
 
     // Breakdown
