@@ -72,6 +72,11 @@ const UMAMI_GW = 'https://gateway.umami.is';
 // enumerer. Le site vise la Moselle et la Meurthe-et-Moselle, d'ou .fr, .com et les
 // voisins frontaliers. Un visiteur dont le domaine Google est autre (google.es...) verra
 // seulement le ping d'audience Ads bloque : ni le site ni la mesure GA4 n'en dependent.
+// API geographiques du calculateur de tarif (TarifCalculator.astro) : geocodage
+// Nominatim puis distance routiere OSRM, appelees depuis le navigateur. Absentes de
+// connect-src du 12/09 au 28/09 : calculateur casse (« Erreur de calcul ») sans
+// que le build ne dise rien, d'ou le controle verifierOriginesScripts() plus bas.
+const GEO_APIS = 'https://nominatim.openstreetmap.org https://router.project-osrm.org';
 const GOOGLE_PAYS = ['https://www.google.com', 'https://google.com', 'https://www.google.fr', 'https://www.google.be', 'https://www.google.ch', 'https://www.google.de', 'https://www.google.lu'].join(' ');
 
 const cspPublique = [
@@ -85,7 +90,7 @@ const cspPublique = [
   "media-src 'self' blob:",
   // analytics.google.com (apex) : gtag GA4 y poste des que analytics_storage est
   // accorde ; le joker *.analytics.google.com ne couvre pas l apex (releve 23/09).
-  `connect-src 'self' ${UMAMI} ${UMAMI_GW} ${GTM} https://*.google-analytics.com https://*.analytics.google.com https://analytics.google.com https://*.g.doubleclick.net https://ad.doubleclick.net https://pagead2.googlesyndication.com https://www.googleadservices.com ${GOOGLE_PAYS}`,
+  `connect-src 'self' ${UMAMI} ${UMAMI_GW} ${GTM} https://*.google-analytics.com https://*.analytics.google.com https://analytics.google.com https://*.g.doubleclick.net https://ad.doubleclick.net https://pagead2.googlesyndication.com https://www.googleadservices.com ${GEO_APIS} ${GOOGLE_PAYS}`,
   'frame-src https://td.doubleclick.net https://www.googletagmanager.com',
   "base-uri 'self'",
   "form-action 'self'",
@@ -109,6 +114,64 @@ const cspAdmin = [
   "object-src 'none'",
   "frame-ancestors 'none'",
 ].join('; ');
+
+// Garde-fou : toute origine externe ecrite dans un script des pages publiques (inline
+// ou chunk /_astro/ charge par ces pages) doit etre autorisee par connect-src ou
+// script-src. Sinon le build echoue : c'est ainsi qu'une fonctionnalite qui appelle
+// une API tierce ne peut plus etre cassee en silence par la CSP. La passe
+// d'observation ne suffit pas : elle ne voit que les appels declenches au chargement,
+// pas ceux declenches par une action du visiteur (saisie dans le calculateur).
+// Origines citees dans le code sans etre jamais appelees (espaces de noms SVG...) :
+const ORIGINES_NON_RESEAU = new Set(['http://www.w3.org']);
+
+function directive(csp, nom) {
+  const d = csp.split(';').map((x) => x.trim()).find((x) => x.startsWith(nom + ' '));
+  return d ? d.split(/\s+/).slice(1) : [];
+}
+
+function couverte(origine, sources) {
+  const hote = origine.replace(/^https?:\/\//, '');
+  return sources.some((src) => {
+    if (!/^https?:\/\//.test(src)) return false;
+    const h = src.replace(/^https?:\/\//, '').replace(/\/.*$/, '');
+    if (h.startsWith('*.')) return hote.endsWith(h.slice(1));
+    return h === hote && src.startsWith(origine.split('//')[0]);
+  });
+}
+
+function verifierOriginesScripts(csp) {
+  const sources = [...directive(csp, 'connect-src'), ...directive(csp, 'script-src')];
+  const trouvees = new Map();
+  const chunks = new Set();
+  const noter = (texte, fichier) => {
+    for (const [o] of texte.matchAll(/https?:\/\/[a-z0-9.-]+\.[a-z]{2,}/gi)) {
+      if (!trouvees.has(o)) trouvees.set(o, fichier);
+    }
+  };
+  for (const f of htmlFiles(DIST)) {
+    if (f.startsWith(join(DIST, 'admin'))) continue;
+    const html = readFileSync(f, 'utf8');
+    const re = /<script\b([^>]*)>([\s\S]*?)<\/script>/gi;
+    let m;
+    while ((m = re.exec(html)) !== null) {
+      const attrs = m[1] || '';
+      const src = attrs.match(/\bsrc\s*=\s*["']([^"']+)["']/);
+      if (src) { if (src[1].startsWith('/')) chunks.add(join(DIST, src[1])); continue; }
+      if (/application\/ld\+json/i.test(attrs)) continue;
+      noter(m[2], f);
+    }
+  }
+  for (const c of chunks) noter(readFileSync(c, 'utf8'), c);
+  const manquantes = [...trouvees].filter(([o]) => !ORIGINES_NON_RESEAU.has(o) && !couverte(o, sources));
+  if (manquantes.length) {
+    for (const [o, f] of manquantes) console.error(`[headers] ${o} (cite dans ${f}) n'est autorisee ni par connect-src ni par script-src : le navigateur bloquera l'appel.`);
+    console.error("[headers] ajouter l'origine a la CSP publique, ou a ORIGINES_NON_RESEAU si elle n'est jamais appelee.");
+    process.exit(1);
+  }
+  console.log(`[headers] ${trouvees.size} origines externes citees par les scripts publics, toutes couvertes par la CSP.`);
+}
+
+verifierOriginesScripts(cspPublique);
 
 const cle = REPORT_ONLY ? 'Content-Security-Policy-Report-Only' : 'Content-Security-Policy';
 
