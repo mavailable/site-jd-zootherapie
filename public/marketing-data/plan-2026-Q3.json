@@ -595,8 +595,8 @@
         "#moselle"
       ],
       "cta": "Un temps d'échange, sans engagement : 07 54 81 21 22 ou en message privé",
-      "status": "draft",
-      "published_at": null,
+      "status": "published",
+      "published_at": "2026-10-05T05:29:14.664Z",
       "client_modified_text": null,
       "client_comment": null
     },
