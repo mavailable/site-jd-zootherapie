@@ -1,6 +1,24 @@
 {
   "entries": [
     {
+      "id": "jd-zoo-2026-10-06-1559-mediation-animale-et-ecole-un-projet-intergenerationnel-entr",
+      "sujet": "Médiation animale et école : un projet intergénérationnel entre une classe et un EHPAD",
+      "categorie": "idee-article",
+      "categorie_label": "Idée d’article",
+      "attachments": [
+        {
+          "filename": "2026-10-06-1559-mediation-animale-et-ecole-un-projet-intergenerationnel-entr.opus",
+          "r2_key": "jd-zoo/2026-10-06-1559-mediation-animale-et-ecole-un-projet-intergenerationnel-entr.opus",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-10-06-1559-mediation-animale-et-ecole-un-projet-intergenerationnel-entr.opus&e=1793887198&s=82fd35dcc49032cec8ce3cc7c5ff716067907511a463f99aadc9e1e9e01d853e",
+          "audio_mime": "audio/ogg",
+          "audio_bytes": 320509
+        }
+      ],
+      "uploaded_at": "2026-10-06T14:00:00.052Z",
+      "source": "whatsapp",
+      "statut": "traite"
+    },
+    {
       "id": "jd-zoo-2026-09-28-0918-qu-apporte-les-seances-aux-professionnel-qui-accompagne",
       "sujet": "Qu’apporte les séances aux professionnel qui accompagne",
       "categorie": "idee-article",
