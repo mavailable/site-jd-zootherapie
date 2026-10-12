@@ -136,7 +136,7 @@ const cmsConfig: CmsConfig = {
     previewUrl: 'https://site-jd-zootherapie.pages.dev',
     clientType: 'freelance-consultant',
     tagline: 'Zoothérapeute en Moselle',
-    calUrl: 'https://cal.eu/jdzootherapie/30min',
+    calUrl: 'https://cal.com/jennifer-de-groeve-isr2b6/rdv-decouverte',
     umamiSiteId: '96fd46e0-47fa-4c79-abda-447fa79bd0f4',
     umamiShareUrl: 'https://cloud.umami.is/share/7qxMncBLuGRFA5uK/jdzootherapeute.fr',
     umamiProxyUrl: 'https://umami-proxy.marc-f10.workers.dev',
