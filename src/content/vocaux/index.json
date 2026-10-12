@@ -1,6 +1,24 @@
 {
   "entries": [
     {
+      "id": "jd-zoo-2026-10-12-1216-fabriquer-l-enclos-de-gaston-et-philippe-avec-des-jeunes-acc",
+      "sujet": "Fabriquer l'enclos de Gaston et Philippe avec des jeunes accompagnés : quand construire devient la séance",
+      "categorie": "idee-article",
+      "categorie_label": "Idée d’article",
+      "attachments": [
+        {
+          "filename": "2026-10-12-1216-fabriquer-l-enclos-de-gaston-et-philippe-avec-des-jeunes-acc.opus",
+          "r2_key": "jd-zoo/2026-10-12-1216-fabriquer-l-enclos-de-gaston-et-philippe-avec-des-jeunes-acc.opus",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-10-12-1216-fabriquer-l-enclos-de-gaston-et-philippe-avec-des-jeunes-acc.opus&e=1794392185&s=bdca41f511f439d3038962f700aa8f523f26aaf9f4f487fdb60017816137cefe",
+          "audio_mime": "audio/ogg",
+          "audio_bytes": 12957
+        }
+      ],
+      "uploaded_at": "2026-10-12T10:16:26.771Z",
+      "source": "whatsapp",
+      "statut": "traite"
+    },
+    {
       "id": "jd-zoo-2026-10-12-1213-fabriquer-l-enclos-de-gaston-et-philippe-avec-des-jeunes-acc",
       "sujet": "Fabriquer l'enclos de Gaston et Philippe avec des jeunes accompagnés : quand construire devient la séance",
       "categorie": "idee-article",
