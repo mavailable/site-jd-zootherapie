@@ -718,8 +718,8 @@
         "#MédicoSocial"
       ],
       "cta": "Vous sélectionnez un intervenant ? Je vous envoie ma grille de questions en message privé.",
-      "status": "draft",
-      "published_at": null,
+      "status": "published",
+      "published_at": "2026-10-14T07:12:53.354Z",
       "client_modified_text": null,
       "client_comment": null
     },
