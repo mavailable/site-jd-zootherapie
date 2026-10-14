@@ -693,8 +693,8 @@
         "#chienmédiateur"
       ],
       "cta": "Ça vous parle ? Dites-le-moi en commentaire",
-      "status": "draft",
-      "published_at": null,
+      "status": "published",
+      "published_at": "2026-10-14T06:58:49.580Z",
       "client_modified_text": null,
       "client_comment": null
     },
