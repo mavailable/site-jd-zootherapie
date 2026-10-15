@@ -743,8 +743,8 @@
         "#aidants"
       ],
       "cta": "07 54 81 21 22, ou un rendez-vous de 30 minutes : cal.com/jennifer-de-groeve-isr2b6/rdv-decouverte",
-      "status": "draft",
-      "published_at": null,
+      "status": "published",
+      "published_at": "2026-10-15T08:54:51.196Z",
       "client_modified_text": null,
       "client_comment": null
     },
