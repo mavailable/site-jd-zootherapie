@@ -769,8 +769,8 @@
         "#GrandEst"
       ],
       "cta": "Message privé pour construire un cycle à domicile sur votre territoire.",
-      "status": "draft",
-      "published_at": null,
+      "status": "published",
+      "published_at": "2026-10-15T08:58:39.695Z",
       "client_modified_text": null,
       "client_comment": null
     },
