@@ -1,6 +1,25 @@
 {
   "entries": [
     {
+      "id": "jd-zoo-2026-10-26-0909-la-lecture-assistee-par-l-animal-quand-une-histoire-devient-",
+      "sujet": "La lecture assistée par l’animal quand une histoire devient un outil de médiation",
+      "categorie": "idee-article",
+      "categorie_label": "Idée d’article",
+      "note": "Modifier",
+      "attachments": [
+        {
+          "filename": "2026-10-26-0909-la-lecture-assistee-par-l-animal-quand-une-histoire-devient-.opus",
+          "r2_key": "jd-zoo/2026-10-26-0909-la-lecture-assistee-par-l-animal-quand-une-histoire-devient-.opus",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-10-26-0909-la-lecture-assistee-par-l-animal-quand-une-histoire-devient-.opus&e=1795594181&s=7740ea66c0d9bd00c9d5f9afca6a79a680217ac2ea26fb746d3d55af8ae3201b",
+          "audio_mime": "audio/ogg",
+          "audio_bytes": 853261
+        }
+      ],
+      "uploaded_at": "2026-10-26T08:09:42.148Z",
+      "source": "whatsapp",
+      "statut": "traite"
+    },
+    {
       "id": "jd-zoo-2026-10-26-0900-la-lecture-assistee-par-l-animal-a-la-bibliotheque-de-marly-",
       "sujet": "La lecture assistée par l'animal à la bibliothèque de Marly : ce que la présence d'un chien change pour l'enfant qui lit",
       "categorie": "idee-article",
