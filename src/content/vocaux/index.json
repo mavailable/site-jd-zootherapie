@@ -18,7 +18,13 @@
       ],
       "uploaded_at": "2026-10-26T07:56:39.451Z",
       "source": "whatsapp",
-      "statut": "traite"
+      "statut": "traite",
+      "articles": [
+        {
+          "slug": "ce-que-les-soignants-vivent-pendant-une-seance-pas-seulement-les-residents",
+          "at": "2026-10-26T07:56:46.360Z"
+        }
+      ]
     },
     {
       "id": "jd-zoo-2026-10-26-0852-ce-que-les-soignants-vivent-pendant-une-seance-pas-seulement",
