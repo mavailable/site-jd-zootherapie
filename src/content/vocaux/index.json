@@ -1,6 +1,99 @@
 {
   "entries": [
     {
+      "id": "jd-zoo-2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient-",
+      "sujet": "La lecture assistée par l’animal quand une histoire devient un outil de médiation",
+      "categorie": "idee-article",
+      "categorie_label": "Idée d’article",
+      "note": "Modifier",
+      "attachments": [],
+      "media": [
+        {
+          "filename": "2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m1.jpg",
+          "r2_key": "jd-zoo/2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m1.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m1.jpg&e=1795594385&s=1e96309ba66a18e9035b1721908b2228e4db70ae684783ebddf724ab83d6397f",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 296048
+        },
+        {
+          "filename": "2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m2.jpg",
+          "r2_key": "jd-zoo/2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m2.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m2.jpg&e=1795594385&s=6d4ef07cf8945b104959a08e3e0340f6fc5629475f562109454944e9ebd66e87",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 293693
+        },
+        {
+          "filename": "2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m3.jpg",
+          "r2_key": "jd-zoo/2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m3.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m3.jpg&e=1795594385&s=bfc90d2acfefcf0c22f126c89b76acf1abc8cb00775d022babc7a6c05e8c5310",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 357685
+        },
+        {
+          "filename": "2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m4.jpg",
+          "r2_key": "jd-zoo/2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m4.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m4.jpg&e=1795594385&s=b1ba1f57c4f7312d09196fa9766423d0f610028d2c1a0ced631193b9f7aa1477",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 396180
+        },
+        {
+          "filename": "2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m5.jpg",
+          "r2_key": "jd-zoo/2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m5.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m5.jpg&e=1795594385&s=cf4ece5b6c90f6e1d6d4e100e0b2a272aeb0d9301fcdf8a07c536e5fa94190a0",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 406316
+        },
+        {
+          "filename": "2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m6.jpg",
+          "r2_key": "jd-zoo/2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m6.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m6.jpg&e=1795594385&s=f97677006918c406d1d50247d6213875a35464e8009cd72bb29e040e3e679e5f",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 610176
+        },
+        {
+          "filename": "2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m7.jpg",
+          "r2_key": "jd-zoo/2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m7.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m7.jpg&e=1795594385&s=d193a3ffb691478d832de90c0c9dd172df53bc034af27fde76f549065a77491f",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 874086
+        },
+        {
+          "filename": "2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m8.jpg",
+          "r2_key": "jd-zoo/2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m8.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m8.jpg&e=1795594385&s=0e335fcee902fc2da76c81b381491b91a581f49498d0088f5b54a4d6ccf9aa61",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 96418
+        },
+        {
+          "filename": "2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m9.jpg",
+          "r2_key": "jd-zoo/2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m9.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m9.jpg&e=1795594385&s=862e3d628cacc45503d1e840bce56aafe8b1409fd00667563fae0ff2b8ce009a",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 332207
+        },
+        {
+          "filename": "2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m10.jpg",
+          "r2_key": "jd-zoo/2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m10.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient--m10.jpg&e=1795594385&s=80df1fa33d9123f66800a9d6734e4c0c7a58671d56f94ac5d2f563ebd2577f8b",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 448093
+        }
+      ],
+      "uploaded_at": "2026-10-26T08:13:12.259Z",
+      "source": "whatsapp",
+      "statut": "traite"
+    },
+    {
       "id": "jd-zoo-2026-10-26-0909-la-lecture-assistee-par-l-animal-quand-une-histoire-devient-",
       "sujet": "La lecture assistée par l’animal quand une histoire devient un outil de médiation",
       "categorie": "idee-article",
