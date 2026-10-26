@@ -1,6 +1,24 @@
 {
   "entries": [
     {
+      "id": "jd-zoo-2026-10-26-0852-ce-que-les-soignants-vivent-pendant-une-seance-pas-seulement",
+      "sujet": "Ce que les soignants vivent pendant une séance, pas seulement les résidents",
+      "categorie": "idee-article",
+      "categorie_label": "Idée d’article",
+      "attachments": [
+        {
+          "filename": "2026-10-26-0852-ce-que-les-soignants-vivent-pendant-une-seance-pas-seulement.opus",
+          "r2_key": "jd-zoo/2026-10-26-0852-ce-que-les-soignants-vivent-pendant-une-seance-pas-seulement.opus",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-10-26-0852-ce-que-les-soignants-vivent-pendant-une-seance-pas-seulement.opus&e=1795593143&s=711e293dc4104d9d8c975a8de88fc0571fcbcc6ef75b3cd773b1f53c59fc98b7",
+          "audio_mime": "audio/ogg",
+          "audio_bytes": 847860
+        }
+      ],
+      "uploaded_at": "2026-10-26T07:52:24.058Z",
+      "source": "whatsapp",
+      "statut": "traite"
+    },
+    {
       "id": "jd-zoo-2026-10-12-1216-fabriquer-l-enclos-de-gaston-et-philippe-avec-des-jeunes-acc",
       "sujet": "Fabriquer l'enclos de Gaston et Philippe avec des jeunes accompagnés : quand construire devient la séance",
       "categorie": "idee-article",
