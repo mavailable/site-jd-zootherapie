@@ -1,6 +1,26 @@
 {
   "entries": [
     {
+      "id": "jd-zoo-2026-10-26-0856-ce-que-les-soignants-vivent-pendant-une-seance-pas-seulement",
+      "sujet": "Ce que les soignants vivent pendant une séance, pas seulement les résidents",
+      "categorie": "idee-article",
+      "categorie_label": "Idée d’article",
+      "attachments": [],
+      "media": [
+        {
+          "filename": "2026-10-26-0856-ce-que-les-soignants-vivent-pendant-une-seance-pas-seulement-media.jpg",
+          "r2_key": "jd-zoo/2026-10-26-0856-ce-que-les-soignants-vivent-pendant-une-seance-pas-seulement-media.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-10-26-0856-ce-que-les-soignants-vivent-pendant-une-seance-pas-seulement-media.jpg&e=1795593398&s=e9392ab1eaf8bc1eeb6b2cb2159494bf7cd42841af4aaca56e8aae472cd1667b",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 331112
+        }
+      ],
+      "uploaded_at": "2026-10-26T07:56:39.451Z",
+      "source": "whatsapp",
+      "statut": "traite"
+    },
+    {
       "id": "jd-zoo-2026-10-26-0852-ce-que-les-soignants-vivent-pendant-une-seance-pas-seulement",
       "sujet": "Ce que les soignants vivent pendant une séance, pas seulement les résidents",
       "categorie": "idee-article",
