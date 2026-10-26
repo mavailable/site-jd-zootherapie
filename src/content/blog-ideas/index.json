@@ -247,8 +247,10 @@
     {
       "title": "La lecture assistée par l'animal à la bibliothèque de Marly : ce que la présence d'un chien change pour l'enfant qui lit",
       "notes": "Je décris comment la présence calme d'un animal médiateur modifie le rapport au livre pendant ces séances, sans pression ni jugement sur la performance de lecture.",
-      "status": "a-faire",
-      "source": "ai"
+      "status": "brouillon",
+      "source": "ai",
+      "slug": "la-lecture-assistee-par-l-animal-a-la-bibliotheque-de-marly-ce-que-change-la-presence-d-un-chien-pour-l-enfant-qui-lit",
+      "updated_at": "2026-10-26T08:00:56.513Z"
     },
     {
       "title": "Apprends à parler chien : ce que j'enseigne aux enfants pendant l'atelier chez Doggoverse à Metz",
