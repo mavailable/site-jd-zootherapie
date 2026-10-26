@@ -9,7 +9,13 @@
       "attachments": [],
       "uploaded_at": "2026-10-26T08:00:07.220Z",
       "source": "whatsapp",
-      "statut": "traite"
+      "statut": "traite",
+      "articles": [
+        {
+          "slug": "la-lecture-assistee-par-l-animal-a-la-bibliotheque-de-marly-ce-que-change-la-presence-d-un-chien-pour-l-enfant-qui-lit",
+          "at": "2026-10-26T08:00:54.453Z"
+        }
+      ]
     },
     {
       "id": "jd-zoo-2026-10-26-0856-ce-que-les-soignants-vivent-pendant-une-seance-pas-seulement",
