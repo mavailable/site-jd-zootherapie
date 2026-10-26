@@ -18,6 +18,21 @@
       "input_tokens": 6014,
       "output_tokens": 2630,
       "cost_eur": 0.08815440000000001
-    }
-  }
+    },
+    "revisions": [
+      {
+        "kind": "photos",
+        "entry_ids": [
+          "jd-zoo-2026-10-26-0856-ce-que-les-soignants-vivent-pendant-une-seance-pas-seulement"
+        ],
+        "note": "",
+        "transcript": "",
+        "media": [
+          "/img/jd-zoo/msg-2026-10-26-0856-ce-que-les-soignants-vivent-pendant-une-seance-pas-seulement-media.webp"
+        ],
+        "generated_at": "2026-10-26T07:56:44.967Z"
+      }
+    ]
+  },
+  "image": "/img/jd-zoo/msg-2026-10-26-0856-ce-que-les-soignants-vivent-pendant-une-seance-pas-seulement-media.webp"
 }
