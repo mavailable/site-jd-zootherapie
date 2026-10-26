@@ -213,8 +213,10 @@
     {
       "title": "Ce que les soignants vivent pendant une séance, pas seulement les résidents",
       "notes": "Montrer l'effet des séances sur le personnel présent, dans son quotidien de travail, donne un argument concret et vécu aux directions qui hésitent encore.",
-      "status": "a-faire",
-      "source": "ai"
+      "status": "brouillon",
+      "source": "ai",
+      "slug": "ce-que-les-soignants-vivent-pendant-une-seance-pas-seulement-les-residents",
+      "updated_at": "2026-10-26T07:53:27.196Z"
     },
     {
       "title": "Autisme et médiation animale : ce que j'ajuste séance après séance",
