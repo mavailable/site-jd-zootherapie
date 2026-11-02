@@ -2,8 +2,10 @@
   "ideas": [
     {
       "title": "Harcèlement scolaire : quand la parole bloque, l'animal prend le relais.",
-      "status": "a-faire",
-      "source": "client"
+      "status": "brouillon",
+      "source": "client",
+      "slug": "harcelement-scolaire-quand-la-parole-bloque-l-animal-prend-le-relais",
+      "updated_at": "2026-11-02T08:38:35.887Z"
     },
     {
       "title": "La lecture assistée par l’animal quand une histoire devient un outil de médiation",
