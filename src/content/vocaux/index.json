@@ -1,6 +1,41 @@
 {
   "entries": [
     {
+      "id": "jd-zoo-2026-11-02-0925-harcelement-scolaire-quand-la-parole-bloque-l-animal-prend-l",
+      "sujet": "Harcèlement scolaire : quand la parole bloque, l'animal prend le relais.",
+      "categorie": "idee-article",
+      "categorie_label": "Idée d'article de blog",
+      "attachments": [
+        {
+          "filename": "2026-11-02-0925-harcelement-scolaire-quand-la-parole-bloque-l-animal-prend-l-1.webm",
+          "r2_key": "jd-zoo/2026-11-02-0925-harcelement-scolaire-quand-la-parole-bloque-l-animal-prend-l-1.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-11-02-0925-harcelement-scolaire-quand-la-parole-bloque-l-animal-prend-l-1.webm&e=1796199910&s=285bf17e838b5a1d914da82db3ed6bd77c553e21ccb23c24fab123936ce83198",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 1628518
+        },
+        {
+          "filename": "2026-11-02-0925-harcelement-scolaire-quand-la-parole-bloque-l-animal-prend-l-2.webm",
+          "r2_key": "jd-zoo/2026-11-02-0925-harcelement-scolaire-quand-la-parole-bloque-l-animal-prend-l-2.webm",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-11-02-0925-harcelement-scolaire-quand-la-parole-bloque-l-animal-prend-l-2.webm&e=1796199910&s=b5468afbe74e2dc5af283bb52332b3959ad7875a608f769485620f28472a7782",
+          "audio_mime": "audio/webm;codecs=opus",
+          "audio_bytes": 2975984
+        }
+      ],
+      "media": [
+        {
+          "filename": "2026-11-02-0925-harcelement-scolaire-quand-la-parole-bloque-l-animal-prend-l-media.png",
+          "r2_key": "jd-zoo/2026-11-02-0925-harcelement-scolaire-quand-la-parole-bloque-l-animal-prend-l-media.png",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-11-02-0925-harcelement-scolaire-quand-la-parole-bloque-l-animal-prend-l-media.png&e=1796199910&s=619f7c81b8c0407a92e38ec21ea2f09752ba0ede9ebe7ac835531b242f141700",
+          "kind": "image",
+          "media_mime": "image/png",
+          "media_bytes": 437656
+        }
+      ],
+      "uploaded_at": "2026-11-02T08:25:16.800Z",
+      "source": "admin",
+      "statut": "envoye"
+    },
+    {
       "id": "jd-zoo-2026-10-26-0913-la-lecture-assistee-par-l-animal-quand-une-histoire-devient-",
       "sujet": "La lecture assistée par l’animal quand une histoire devient un outil de médiation",
       "categorie": "idee-article",
