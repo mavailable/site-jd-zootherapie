@@ -1,6 +1,27 @@
 {
   "entries": [
     {
+      "id": "jd-zoo-2026-11-02-0941-harcelement-scolaire-quand-la-parole-bloque-l-animal-prend-l",
+      "sujet": "Harcèlement scolaire : quand la parole bloque, l'animal prend le relais.",
+      "categorie": "idee-article",
+      "categorie_label": "Idée d’article",
+      "note": "Publi",
+      "attachments": [],
+      "media": [
+        {
+          "filename": "2026-11-02-0941-harcelement-scolaire-quand-la-parole-bloque-l-animal-prend-l-media.jpg",
+          "r2_key": "jd-zoo/2026-11-02-0941-harcelement-scolaire-quand-la-parole-bloque-l-animal-prend-l-media.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-11-02-0941-harcelement-scolaire-quand-la-parole-bloque-l-animal-prend-l-media.jpg&e=1796200876&s=95a927f01b23d7bb91a8dce0c3704c5e93fb53227047d2be597a394a1df0a11a",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 180996
+        }
+      ],
+      "uploaded_at": "2026-11-02T08:41:17.743Z",
+      "source": "whatsapp",
+      "statut": "traite"
+    },
+    {
       "id": "jd-zoo-2026-11-02-0936-harcelement-scolaire-quand-la-parole-bloque-l-animal-prend-l",
       "sujet": "Harcèlement scolaire : quand la parole bloque, l'animal prend le relais.",
       "categorie": "idee-article",
