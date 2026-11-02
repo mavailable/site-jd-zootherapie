@@ -19,7 +19,13 @@
       ],
       "uploaded_at": "2026-11-02T08:41:17.743Z",
       "source": "whatsapp",
-      "statut": "traite"
+      "statut": "traite",
+      "articles": [
+        {
+          "slug": "harcelement-scolaire-quand-la-parole-bloque-l-animal-prend-le-relais",
+          "at": "2026-11-02T08:42:00.125Z"
+        }
+      ]
     },
     {
       "id": "jd-zoo-2026-11-02-0936-harcelement-scolaire-quand-la-parole-bloque-l-animal-prend-l",
