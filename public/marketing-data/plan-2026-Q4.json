@@ -1,0 +1,446 @@
+{
+  "client_slug": "jd-zootherapeute",
+  "trimester": "2026-Q4",
+  "trimester_label": "Novembre-Décembre 2026 (16 novembre → 31 décembre, 7 semaines)",
+  "generated_at": "2026-11-12T00:00:00",
+  "generator_version": "mkt-social-plan/1.0",
+  "em_dash_policy": "autorisé sur contenu social client (non-prospect) ; non utilisé dans ce plan",
+  "context_snapshot": {
+    "sources_used": [
+      "brief.md (brief Web Factory)",
+      "marketing/rdv1-debrief.md (USP figée RDV1)",
+      "marketing/social-facebook.json + social-linkedin.json (absorb du 18/04, non réabsorbés)",
+      "site/public/marketing-data/plan-2026-Q3.json (exécution réelle Q3 : 13 publiés, 5 sautés, 8 non traités sur 26)",
+      "site/src/content/blog/ (articles du 12/10 au 02/11 : enclos, soignants, lecture assistée, harcèlement scolaire)",
+      "site/src/content/ (cycle de 5 séances, Maison des Aidants Nancy, France Alzheimer 57, bibliothèque de Marly)",
+      "marketing/plaquette-v2-2026-10 (IFZ conservé, Syndicat retiré)",
+      "marketing/events.yml (calendrier FR)"
+    ],
+    "reviews_missing": true,
+    "cadence_inferred": {
+      "facebook": "Q3 : 7 publiés sur 13, par paquets (27/08, 21-23/09, 05/10, 14-15/10), rien depuis le 15/10",
+      "linkedin": "Q3 : 6 publiés sur 13"
+    },
+    "cadence_proposed": {
+      "facebook": "1/sem",
+      "linkedin": "1/sem"
+    },
+    "cadence_note": "Plan court de 7 semaines (16/11 → 31/12) demandé par Marc, 14 posts. Les semaines 8 à 13 du calendrier restent vides : le plan de janvier prendra le relais. Les 3 premières semaines du Q3, qui dépendaient d'une séance photo, ont toutes été sautées : ce plan n'exige aucune nouvelle photo (photos d'articles déjà en ligne + 3 citations IA).",
+    "usp_synthesis": "Accompagnement à objectifs concrets, animaux collaborateurs actifs, pas soin pathologique. Aide-soignante diplômée, plus de vingt ans dans le soin, formée à l'IFZ. Équipe : Tips, Uxo, Tap-Tap, Gaston et Philippe.",
+    "tone_adjectives": [
+      "chaleureux",
+      "pédagogique",
+      "engagé professionnellement"
+    ],
+    "offres_a_pousser": [
+      "Appel découverte 30 min (cal.com/jennifer-de-groeve-isr2b6/rdv-decouverte)",
+      "Cycles structures de 5 séances, ajustables (EHPAD, IME, ITEP, écoles, médiathèques)",
+      "Séances à domicile autour de Verny (Alzheimer, perte d'autonomie)",
+      "Atelier aidant-aidé (référence Maison des Aidants Nancy)",
+      "Lecture assistée par l'animal (bibliothèque de Marly, domicile, structures)"
+    ],
+    "note": "Réseaux actifs = facebook + linkedin (pas de bloc social explicite dans cms.config.ts, dérivation legacy). Aucun événement client connu sur la période : thèmes calés sur le calendrier (20/11 droits de l'enfant, 3/12 personnes handicapées, fêtes, nouvelle année) et sur les 4 derniers articles du blog, chaque post renvoyant vers l'article correspondant."
+  },
+  "themes": [
+    {
+      "week": 1,
+      "start_date": "2026-11-16",
+      "theme": "20 novembre, droits de l'enfant : quand la parole bloque, l'animal prend le relais",
+      "angle": "pédagogique"
+    },
+    {
+      "week": 2,
+      "start_date": "2026-11-23",
+      "theme": "Ce que vivent les soignants pendant une séance, pas seulement les résidents",
+      "angle": "inspiration"
+    },
+    {
+      "week": 3,
+      "start_date": "2026-11-30",
+      "theme": "3 décembre, Journée des personnes handicapées : l'enclos de Gaston et Philippe, quand construire devient la séance",
+      "angle": "preuve"
+    },
+    {
+      "week": 4,
+      "start_date": "2026-12-07",
+      "theme": "La lecture assistée par l'animal : à la bibliothèque, à domicile, en structure",
+      "angle": "offre"
+    },
+    {
+      "week": 5,
+      "start_date": "2026-12-14",
+      "theme": "Noël avec un proche qui vit avec la maladie d'Alzheimer : alléger plutôt que réussir",
+      "angle": "pédagogique"
+    },
+    {
+      "week": 6,
+      "start_date": "2026-12-21",
+      "theme": "2026 avec mon équipe animale : ce qui a changé cette année",
+      "angle": "preuve"
+    },
+    {
+      "week": 7,
+      "start_date": "2026-12-28",
+      "theme": "2027 : construire un accompagnement plutôt que réserver une séance",
+      "angle": "offre"
+    }
+  ],
+  "posts": [
+    {
+      "id": "2026-Q4-w01-fb",
+      "network": "facebook",
+      "week": 1,
+      "theme_ref": 1,
+      "scheduled_date": "2026-11-17",
+      "scheduled_time_hint": "10:00",
+      "format": "citation",
+      "visual_type": "ia",
+      "visual_brief": "Visuel citation : « Ce que l'on voit n'est pas un câlin, c'est un signal. » Fond beige crème, typographie serif élégante en teal foncé #4A7C7E, empreinte de patte discrète en filigrane, ratio 1:1. Pas de visage, pas d'enfant représenté. Carte livrée : rendu typographique (gabarit HTML, polices Lora et DM Sans du site), pas d'image IA, le quota Gemini était épuisé le 12/11.",
+      "visual_generated": "/marketing-visuals/2026-Q4-w01-fb.jpg",
+      "shooting_session_ref": null,
+      "text": "Vendredi 20 novembre, c'est la Journée internationale des droits de l'enfant. J'ai envie de parler d'un droit qu'on oublie souvent : celui de ne pas réussir à parler.\n\nUn enfant harcelé à l'école se renferme. Autour de lui, les adultes posent des questions, avec les meilleures intentions du monde : qu'est-ce qui s'est passé ? Pourquoi tu ne dis rien ? Mais quand la honte et la peur des représailles s'en mêlent, les mots restent coincés.\n\nEn séance, je ne force pas la parole. Un chien ne connaît ni les rumeurs de la cour, ni les notes, ni les étiquettes. Il ne juge pas un bégaiement ou des yeux gonflés par les larmes. Quand il vient poser la tête sur un genou, le message est clair : tu as de la valeur, exactement tel que tu es.\n\nComme je le dis souvent : ce que l'on voit n'est pas un câlin, c'est un signal. Quand un chien choisit de s'allonger contre un enfant, il dit : ici, je me sens en sécurité.\n\nEt parfois, la parole revient par un détour. Plutôt que de demander à l'enfant comment ça va à l'école, je lui demande pourquoi, à son avis, Tap-Tap s'est caché quand il y a eu du bruit. En expliquant l'animal, il parle un peu de lui.\n\nLa médiation animale ne remplace ni l'équipe éducative ni un suivi psychologique. Elle peut rouvrir une porte.\n\nL'article complet : jdzootherapeute.fr/blog/harcelement-scolaire-quand-la-parole-bloque-l-animal-prend-le-relais/",
+      "hashtags": [
+        "#médiationanimale",
+        "#harcèlementscolaire",
+        "#droitsdelenfant",
+        "#Moselle"
+      ],
+      "cta": "Vous accompagnez un enfant qui se renferme ? Écrivez-moi en MP, on en parle.",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q4-w01-li",
+      "network": "linkedin",
+      "week": 1,
+      "theme_ref": 1,
+      "scheduled_date": "2026-11-18",
+      "scheduled_time_hint": "09:00",
+      "format": "texte-long",
+      "visual_type": "brut",
+      "visual_brief": "Photo déjà en ligne de l'article harcèlement scolaire : Tips et le tapis de fouille (/img/jd-zoo/msg-2026-11-02-0925-harcelement-scolaire-quand-la-parole-bloque-l-animal-prend-l-media.webp). Aucune nouvelle photo à prendre.",
+      "visual_generated": null,
+      "shooting_session_ref": null,
+      "text": "Harcèlement scolaire : quand un enfant ne parle plus, multiplier les questions ne suffit pas toujours.\n\nLes équipes éducatives le savent : un enfant victime de harcèlement vit souvent dans un état d'hypervigilance. Il anticipe le jugement, la moquerie, les représailles. Lui demander de raconter, c'est parfois lui demander de franchir la marche la plus haute en premier.\n\nLa médiation animale propose une autre porte d'entrée. Pas à la place du suivi existant : en complément.\n\nCe que j'observe en séance :\n\n• L'animal est neutre. Il ne connaît ni la cour de récréation, ni les notes, ni la réputation de l'enfant. La pression chute.\n• L'animal sert de tiers. L'enfant ne parle pas directement à l'adulte : il parle à l'animal, ou à travers lui. Expliquer pourquoi Tap-Tap s'est caché au moindre bruit, c'est déjà mettre des mots sur ce qu'on traverse, sans se sentir exposé.\n• Guider un chien demande une voix claire et une posture ancrée. Sur un petit parcours avec Tips ou Uxo, l'enfant réapprend à redresser la tête et à poser un non ferme.\n• L'enfant qui s'est senti impuissant devient celui qui prend soin, avec Tap-Tap ou avec Gaston et Philippe, mes cochons d'Inde.\n\nJe choisis l'animal au cas par cas, et rien ne se construit sans l'équipe éducative ou les proches. La médiation animale ne soigne pas et ne garantit aucun résultat. Elle peut être un déclencheur, là où tout semblait bloqué.\n\nAide-soignante diplômée, plus de vingt ans dans le soin, formée à l'IFZ. J'interviens en Moselle autour de Verny, et ponctuellement sur Metz et Nancy.\n\nL'article complet : jdzootherapeute.fr/blog/harcelement-scolaire-quand-la-parole-bloque-l-animal-prend-le-relais/",
+      "hashtags": [
+        "#MédiationAnimale",
+        "#HarcèlementScolaire",
+        "#ProtectionDeLEnfance",
+        "#Éducation",
+        "#Moselle"
+      ],
+      "cta": "Vous travaillez en établissement scolaire ou en protection de l'enfance ? Échangeons en message privé.",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q4-w02-fb",
+      "network": "facebook",
+      "week": 2,
+      "theme_ref": 2,
+      "scheduled_date": "2026-11-24",
+      "scheduled_time_hint": "10:00",
+      "format": "photo-temoignage",
+      "visual_type": "brut",
+      "visual_brief": "Photo déjà en ligne de l'article sur les soignants (/img/jd-zoo/msg-2026-10-26-0856-ce-que-les-soignants-vivent-pendant-une-seance-pas-seulement-media.webp). Aucune nouvelle photo à prendre. Si un visage de résident ou de soignant est reconnaissable, recadrer sur les mains et l'animal.",
+      "visual_generated": null,
+      "shooting_session_ref": null,
+      "text": "On parle toujours de ce que la médiation animale apporte aux résidents. Rarement de ce qu'elle apporte aux soignants qui sont là, dans la pièce.\n\nJ'ai travaillé une vingtaine d'années dans le soin. Je connais ces journées où tout s'enchaîne : les toilettes, les repas, les transmissions, les imprévus. On aimerait s'arrêter cinq minutes pour écouter une histoire. Le temps manque. Ce n'est pas un manque d'envie, c'est la réalité du terrain.\n\nPendant une séance, il se passe quelque chose de particulier. Une résidente qui parle peu se met à parler au chien. Un monsieur qui ne participe jamais tend la main vers Tips. Quelqu'un retrouve un geste familier en prenant une brosse.\n\nEt le soignant découvre une facette de la personne qu'il n'avait pas eu l'occasion de voir.\n\nAutour de l'animal, on parle du chien qu'on avait enfant, on sourit, on partage une anecdote. Pendant quelques minutes, la relation ne passe plus seulement par le soin.\n\nJe ne vais pas prétendre qu'une séance règle la charge de travail ou l'épuisement d'une équipe. Ce serait faux. Mais ces moments redonnent de la place à ce qui fait souvent le sens du métier : la relation.\n\nÀ tous les soignants qui me laissent une place dans leur quotidien : merci.\n\nL'article : jdzootherapeute.fr/blog/ce-que-les-soignants-vivent-pendant-une-seance-pas-seulement-les-residents/",
+      "hashtags": [
+        "#médiationanimale",
+        "#soignants",
+        "#EHPAD",
+        "#Moselle"
+      ],
+      "cta": "Vous êtes soignant ? Racontez-moi en commentaire ce que vous avez vu pendant une séance.",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q4-w02-li",
+      "network": "linkedin",
+      "week": 2,
+      "theme_ref": 2,
+      "scheduled_date": "2026-11-25",
+      "scheduled_time_hint": "09:00",
+      "format": "texte-long",
+      "visual_type": "stock",
+      "visual_brief": "Pas de visuel obligatoire. Option : réutiliser la photo du post Facebook de la semaine.",
+      "visual_generated": null,
+      "shooting_session_ref": null,
+      "text": "Directions d'EHPAD, cadres de santé : dans une séance de médiation animale, l'équipe présente n'est pas spectatrice. Elle est une source d'information.\n\nLe soignant connaît les habitudes du résident, ses difficultés, ses réactions. Son regard m'aide à comprendre un comportement, un refus, un changement. De mon côté, je lui partage ce que j'observe au contact des animaux : une initiative, un choix exprimé, une manière inhabituelle d'entrer en relation.\n\nCes échanges font parfois émerger des points d'appui très concrets pour le quotidien :\n\n• Ce résident communique davantage quand on lui laisse le temps de prendre l'initiative.\n• Cette résidente s'investit quand elle peut prendre soin de l'animal : le brosser, lui donner à boire.\n• Cette personne, d'habitude en retrait, accepte un groupe quand l'animal est au centre.\n\nCe ne sont pas des conclusions médicales. Ce sont des éléments observables qui nourrissent la réflexion de l'équipe. C'est pour ça que je propose une évaluation en fin de séance ou en fin de cycle, construite avec les équipes, pas à côté d'elles.\n\nIl y a aussi ce que l'équipe vit elle-même : un moment de relation qui ne repose pas sur un geste de soin, dans un quotidien très exigeant. Je ne promets pas que ça règle la charge de travail. Mais ça compte.\n\nPlus de vingt ans comme aide-soignante, dont une grande partie auprès de personnes âgées et de personnes vivant avec des troubles cognitifs. J'interviens en EHPAD et en structures en Moselle, autour de Verny, et ponctuellement sur Metz et Nancy.\n\nL'article : jdzootherapeute.fr/blog/ce-que-les-soignants-vivent-pendant-une-seance-pas-seulement-les-residents/",
+      "hashtags": [
+        "#MédiationAnimale",
+        "#EHPAD",
+        "#QualitéDeVieAuTravail",
+        "#Soignants",
+        "#GrandEst"
+      ],
+      "cta": "Vous préparez vos activités 2027 ? Écrivez-moi pour en parler.",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q4-w03-fb",
+      "network": "facebook",
+      "week": 3,
+      "theme_ref": 3,
+      "scheduled_date": "2026-12-01",
+      "scheduled_time_hint": "10:00",
+      "format": "photo-temoignage",
+      "visual_type": "brut",
+      "visual_brief": "Photo déjà en ligne de l'article sur l'enclos (/img/jd-zoo/msg-2026-10-12-1213-fabriquer-l-enclos-de-gaston-et-philippe-avec-des-jeunes-acc-media.webp), ou toute photo de l'enclos en service avec Gaston et Philippe. Aucun visage de jeune.",
+      "visual_generated": null,
+      "shooting_session_ref": null,
+      "text": "Jeudi 3 décembre, c'est la Journée internationale des personnes handicapées. J'ai envie de vous raconter un projet de cet été.\n\nJ'ai proposé à un groupe d'adolescents accompagnés de construire un enclos transportable pour Gaston et Philippe, mes deux cochons d'Inde.\n\nOn a commencé par parler de leurs besoins : pourquoi ils ont besoin de cachettes, comment les laisser explorer sans les mettre en difficulté. Puis on est allés choisir le matériel dans un magasin de bricolage. Se repérer, comparer, décider ensemble : la sortie faisait déjà partie de la séance.\n\nL'un des jeunes avait très peur des chiens. Pas question de le confronter à sa peur. Il avait une mission : trouver le matériel. Petit à petit, son attention s'est portée sur ce qu'on faisait. Puis il a posé des questions, il a observé le chien. Ce n'était pas une peur disparue. C'était une expérience différente, à sa manière.\n\nAu retour, certains ont cloué et assemblé tout de suite. D'autres observaient. Et un jeune qui semblait peu intéressé a demandé de lui-même à faire la peinture.\n\nLe jour où Gaston et Philippe ont découvert leur enclos, les jeunes ont vu que leur travail servait vraiment à quelque chose.\n\nL'histoire complète : jdzootherapeute.fr/blog/fabriquer-l-enclos-de-gaston-et-philippe-avec-des-jeunes-accompagnes-quand-construire-devient-la-seance/",
+      "hashtags": [
+        "#médiationanimale",
+        "#handicap",
+        "#cochondinde",
+        "#Moselle"
+      ],
+      "cta": "Une question sur ce type de projet ? Écrivez-moi en MP.",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q4-w03-li",
+      "network": "linkedin",
+      "week": 3,
+      "theme_ref": 3,
+      "scheduled_date": "2026-12-02",
+      "scheduled_time_hint": "09:00",
+      "format": "texte-long",
+      "visual_type": "stock",
+      "visual_brief": "Pas de visuel obligatoire. Option : photo de l'assemblage de l'enclos tirée du même article.",
+      "visual_generated": null,
+      "shooting_session_ref": null,
+      "text": "IME, ITEP, services éducatifs : et si l'objectif de la séance n'était pas un exercice, mais un vrai projet ?\n\nCet été, j'ai proposé à un groupe d'adolescents accompagnés de construire un enclos transportable pour mes deux cochons d'Inde, Gaston et Philippe. Ce qui devait être un projet de bricolage est devenu un support de médiation à part entière.\n\nCe que le projet a mobilisé, étape par étape :\n\n• Partir des besoins des animaux : cachettes, exploration sans danger, matériel adapté. Penser à l'autre avant de penser à soi.\n• La sortie en magasin de bricolage : se repérer, comparer, prendre des décisions à plusieurs.\n• Une peur abordée autrement : un jeune très craintif des chiens avait une mission concrète. Sans contact imposé, sa vigilance a baissé et il a commencé à s'intéresser aux animaux.\n• Des initiatives qui émergent : un participant peu motivé a demandé spontanément à faire la peinture.\n• L'équipe éducative embarquée : les ajustements et les choix de matériel ont créé d'autres occasions de coopérer avec les jeunes.\n\nUn objectif réel, visible et utile change l'engagement dans une séance. Les jeunes ne faisaient plus un exercice avec l'adulte, ils contribuaient à quelque chose qui allait servir.\n\nPour la Journée internationale des personnes handicapées, le 3 décembre, c'est ce que j'ai envie de partager : on construit l'accompagnement avec les personnes, pas pour elles.\n\nLe récit complet : jdzootherapeute.fr/blog/fabriquer-l-enclos-de-gaston-et-philippe-avec-des-jeunes-accompagnes-quand-construire-devient-la-seance/",
+      "hashtags": [
+        "#MédiationAnimale",
+        "#IME",
+        "#ITEP",
+        "#Handicap",
+        "#Éducation"
+      ],
+      "cta": "Vous construisez un projet éducatif pour 2027 ? Parlons-en en message privé.",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q4-w04-fb",
+      "network": "facebook",
+      "week": 4,
+      "theme_ref": 4,
+      "scheduled_date": "2026-12-08",
+      "scheduled_time_hint": "10:00",
+      "format": "photo-concept",
+      "visual_type": "brut",
+      "visual_brief": "Photo déjà en ligne de l'article lecture assistée (/img/jd-zoo/whatsapp-image-2026-10-26-at-ll-l-mvozhf5t.webp). Aucune nouvelle photo à prendre. Pas de visage d'enfant reconnaissable.",
+      "visual_generated": null,
+      "shooting_session_ref": null,
+      "text": "Un chien ne corrige pas les mots. Il ne soupire pas quand ça traîne. Il ne demande pas de recommencer la phrase.\n\nC'est tout le principe de la lecture assistée par l'animal, que j'anime notamment à la bibliothèque de Marly.\n\nPour un enfant qui lit lentement, lire à voix haute devant un adulte, c'est souvent un test. Il anticipe la faute, il bute, il se crispe. Devant Tips, qui est simplement là, posé, la voix se pose aussi. On ose relire un passage, parce que personne ne note.\n\nL'objectif n'est pas de lire parfaitement. C'est de retrouver le plaisir d'oser.\n\nEt ça ne concerne pas que les enfants. Avec un adolescent, on travaille la prise de parole. Avec une personne âgée, un poème ou un livre illustré devient un support pour échanger et faire revenir des souvenirs. Parfois, lire un titre ou reconnaître une image, c'est déjà participer.\n\nJ'écris aussi mes propres histoires avec mes animaux comme personnages, pour adapter les mots et les thèmes à chaque personne.\n\nEt le chien a le droit de se reposer ou de s'éloigner. Même autour d'un livre, on apprend à respecter l'autre.\n\nEn bibliothèque, à domicile ou en structure, partout en Moselle.\n\nL'article : jdzootherapeute.fr/blog/la-lecture-assistee-par-l-animal-quand-une-histoire-devient-un-outil-de-mediation/",
+      "hashtags": [
+        "#lectureassistée",
+        "#médiationanimale",
+        "#bibliothèque",
+        "#Moselle"
+      ],
+      "cta": "Envie de mettre en place un temps de lecture avec Tips ? Écrivez-moi en MP.",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q4-w04-li",
+      "network": "linkedin",
+      "week": 4,
+      "theme_ref": 4,
+      "scheduled_date": "2026-12-09",
+      "scheduled_time_hint": "09:00",
+      "format": "texte-long",
+      "visual_type": "stock",
+      "visual_brief": "Pas de visuel obligatoire. Option : même photo que le post Facebook de la semaine.",
+      "visual_generated": null,
+      "shooting_session_ref": null,
+      "text": "Médiathèques, écoles, EHPAD : la lecture assistée par l'animal est un format simple à intégrer dans une programmation, et ses objectifs s'adaptent au public.\n\nLe principe : une personne lit, ou écoute une histoire, en présence d'un animal médiateur. Le chien ne corrige pas, ne compare pas, ne presse pas. Le contexte change, et la peur de se tromper recule.\n\nCe que l'on peut travailler, selon le public :\n\n• Enfants : confiance, expression orale, attention, plaisir de découvrir une histoire.\n• Adolescents : prise de parole, expression des émotions, confiance en ses capacités, sans mettre la performance scolaire au centre.\n• Adultes : concentration, expression, temps de partage.\n• Personnes âgées : stimulation cognitive et évocation de souvenirs autour d'un texte, d'une poésie, d'un livre illustré.\n\nCe qui fait la différence dans ma pratique :\n• J'écris mes propres histoires avec mes animaux comme personnages. Une histoire d'animal qui découvre un nouvel endroit ouvre un échange sur la peur ou le changement.\n• Je choisis l'animal selon le groupe : Tips, mon finnois de Laponie, calme et attentif, ou Tap-Tap, mon lapin bélier, pour les personnes impressionnées par le chien.\n• L'animal garde le droit de s'éloigner ou de se reposer. C'est aussi un support pour travailler l'empathie et le respect du vivant.\n\nJ'anime ces temps notamment à la bibliothèque de Marly, et en structure ou à domicile en Moselle.\n\nL'article : jdzootherapeute.fr/blog/la-lecture-assistee-par-l-animal-quand-une-histoire-devient-un-outil-de-mediation/",
+      "hashtags": [
+        "#LectureAssistée",
+        "#MédiationAnimale",
+        "#Médiathèques",
+        "#Éducation",
+        "#Moselle"
+      ],
+      "cta": "Vous construisez votre programmation 2027 ? Contactez-moi en message privé.",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q4-w05-fb",
+      "network": "facebook",
+      "week": 5,
+      "theme_ref": 5,
+      "scheduled_date": "2026-12-15",
+      "scheduled_time_hint": "10:00",
+      "format": "citation",
+      "visual_type": "ia",
+      "visual_brief": "Visuel citation : « À Noël, un moment simple et partagé vaut mieux qu'une journée parfaite. » Fond beige crème, typographie serif élégante en teal foncé #4A7C7E, petite branche de sapin et empreinte de patte discrètes, ratio 1:1. Aucune personne représentée. Carte livrée : rendu typographique (gabarit HTML, polices Lora et DM Sans du site), pas d'image IA, le quota Gemini était épuisé le 12/11.",
+      "visual_generated": "/marketing-visuals/2026-Q4-w05-fb.jpg",
+      "shooting_session_ref": null,
+      "text": "Noël avec un proche qui vit avec la maladie d'Alzheimer, ça se prépare un peu autrement.\n\nVingt ans dans le soin, beaucoup auprès de personnes vivant avec des troubles cognitifs, m'ont appris une chose : vouloir que tout se passe « comme avant » met souvent tout le monde en difficulté.\n\nQuelques repères que je partage volontiers :\n\n• Moins de monde à la fois. Une grande tablée bruyante peut désorienter. Deux ou trois personnes autour de lui, c'est souvent plus confortable.\n• Un coin calme pour se retirer, sans que ce soit vécu comme une mise à l'écart.\n• Garder les repères du quotidien : l'heure du repas, la sieste, le fauteuil habituel.\n• Lui donner un rôle à sa mesure : éplucher, plier les serviettes, choisir une musique. Se sentir utile compte énormément.\n• Miser sur les souvenirs anciens. Un chant de Noël d'enfance ou une vieille photo ouvrent parfois plus de portes que « tu te souviens de l'an dernier ? ».\n\nEt pour vous, l'aidant : vous avez le droit de ne pas tout réussir. Un moment simple et partagé vaut mieux qu'une journée parfaite et épuisante.\n\nSi vous arrivez à bout de souffle en cette fin d'année, vous n'êtes pas seul. Je propose des séances à domicile autour de Verny, et des ateliers qui réunissent aidant et aidé.",
+      "hashtags": [
+        "#Alzheimer",
+        "#aidants",
+        "#Noël",
+        "#Moselle"
+      ],
+      "cta": "Vous vivez cette situation ? Écrivez-moi en MP, on peut en parler simplement.",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q4-w05-li",
+      "network": "linkedin",
+      "week": 5,
+      "theme_ref": 5,
+      "scheduled_date": "2026-12-16",
+      "scheduled_time_hint": "09:00",
+      "format": "texte-long",
+      "visual_type": "stock",
+      "visual_brief": "Pas de visuel obligatoire.",
+      "visual_generated": null,
+      "shooting_session_ref": null,
+      "text": "Les fêtes de fin d'année mettent souvent en lumière la fatigue des aidants familiaux. C'est aussi le bon moment, pour les professionnels qui les accompagnent, de penser au début d'année.\n\nUn repas de famille avec un proche qui vit avec la maladie d'Alzheimer demande beaucoup d'anticipation : moins de monde à la fois, un coin calme, des repères préservés, un rôle à sa mesure. Beaucoup d'aidants abordent ces journées en voulant que tout se passe comme avant, et en sortent épuisés.\n\nCe que la médiation animale peut apporter au duo aidant-aidé, en complément de l'existant :\n\n• Un temps partagé qui ne tourne pas autour de la maladie. Autour de l'animal, on parle d'autre chose, on rit, on retrouve un geste familier.\n• Une autre façon d'entrer en communication avec son proche, quand les mots se font plus rares.\n• Pour l'aidant, la possibilité de voir son proche réagir, choisir, prendre une initiative. Ça change le regard.\n\nJ'ai conduit un cycle de médiation animale auprès des aidants à la Maison des Aidants de Nancy, et j'ai travaillé deux ans avec France Alzheimer 57. J'interviens aussi à domicile, autour de Verny.\n\nPlateformes de répit, CCAS, accueils de jour, associations d'aidants : si vous construisez votre programmation du premier semestre 2027, je serais heureuse d'en parler.\n\nPlus d'informations : cal.com/jennifer-de-groeve-isr2b6/rdv-decouverte",
+      "hashtags": [
+        "#Aidants",
+        "#Alzheimer",
+        "#Répit",
+        "#MédiationAnimale",
+        "#GrandEst"
+      ],
+      "cta": "Écrivez-moi en message privé, ou réservez 30 minutes d'échange via le lien.",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q4-w06-fb",
+      "network": "facebook",
+      "week": 6,
+      "theme_ref": 6,
+      "scheduled_date": "2026-12-22",
+      "scheduled_time_hint": "10:00",
+      "format": "carrousel",
+      "visual_type": "brut",
+      "visual_brief": "Carrousel de 4 à 5 photos déjà en ligne : Gaston et Philippe (/img/jd-zoo/msg-2026-09-11-0821-photo-pour-cochon-d-inde-m1.webp), l'enclos (/img/jd-zoo/msg-2026-10-12-1213-fabriquer-l-enclos-de-gaston-et-philippe-avec-des-jeunes-acc-media.webp), la lecture assistée (/img/jd-zoo/whatsapp-image-2026-10-26-at-ll-l-mvozhf5t.webp), Tips et Tap-Tap (photos animaux du site). Option : une photo de décembre 2025 du dossier « photos brut » pour l'effet « il y a un an ». Aucune nouvelle photo à prendre.",
+      "visual_generated": null,
+      "shooting_session_ref": null,
+      "text": "Dernier post avant les fêtes. Je regarde un peu l'année 2026 dans le rétroviseur.\n\nFin juin, Gaston et Philippe sont arrivés. Deux cochons d'Inde de trois ou quatre mois, que je n'ai pas fait travailler tout de suite. Des semaines d'habituation : ma présence, les bruits, les manipulations, les déplacements. Ils ont commencé à m'accompagner en séance fin août, tout doucement.\n\nPourquoi agrandir l'équipe ? Pour que Tips, Uxo et Tap-Tap ne soient pas toujours sollicités. Un animal médiateur reste un animal, avec ses jours avec et ses jours sans.\n\nCet été, un groupe d'adolescents a construit leur enclos transportable avec moi. Un vrai chantier, et de vraies séances.\n\nÀ la bibliothèque de Marly, des enfants ont lu des histoires à Tips, qui écoute sans jamais corriger.\n\nEt sur mon blog, j'ai pris le temps de raconter mon travail : comment je choisis l'animal, comment je sais qu'une séance a servi, ce que la médiation animale ne fait pas.\n\nMerci à toutes les familles, les équipes et les structures qui m'ont fait confiance cette année. Et merci à mes cinq collègues à poils, qui vont avoir droit à de vraies vacances.\n\nBelles fêtes à vous.",
+      "hashtags": [
+        "#médiationanimale",
+        "#bilan2026",
+        "#Moselle"
+      ],
+      "cta": "Quel moment de l'année vous a marqué ? Dites-le-moi en commentaire.",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q4-w06-li",
+      "network": "linkedin",
+      "week": 6,
+      "theme_ref": 6,
+      "scheduled_date": "2026-12-23",
+      "scheduled_time_hint": "09:00",
+      "format": "texte-long",
+      "visual_type": "stock",
+      "visual_brief": "Pas de visuel obligatoire. Option : photo de Gaston et Philippe ou de l'équipe animale.",
+      "visual_generated": null,
+      "shooting_session_ref": null,
+      "text": "2026 en quelques décisions professionnelles, et ce qu'elles m'ont appris.\n\n1. Agrandir l'équipe animale, pour protéger celle qui existe.\nGaston et Philippe, mes deux cochons d'Inde, sont arrivés fin juin et ont commencé en séance fin août, après des semaines d'habituation. L'objectif n'était pas d'avoir plus d'animaux, mais de mieux répartir les interventions et d'éviter l'épuisement de Tips, Uxo et Tap-Tap. Plus l'équipe est diversifiée, plus je peux choisir l'animal qui correspond vraiment aux objectifs de la séance.\n\n2. Faire d'un projet concret le support de l'accompagnement.\nConstruire un enclos avec un groupe d'adolescents accompagnés a montré qu'un objectif réel et utile change l'engagement en séance, pour les jeunes comme pour l'équipe éducative.\n\n3. Ouvrir la lecture assistée par l'animal à d'autres publics.\nÀ la bibliothèque de Marly, mais aussi à domicile et en structure : enfants, adolescents, adultes, personnes âgées.\n\n4. Écrire sur ma pratique.\nSur mon blog, j'explique comment je choisis l'animal, comment je mesure qu'une séance a servi, et ce que la médiation animale ne remplace pas. Être claire sur les limites, c'est ce qui permet de travailler sereinement avec les équipes soignantes et éducatives.\n\nCe qui ne change pas : des objectifs posés au départ, des observations partagées avec les équipes, et le respect du rythme de mes animaux.\n\nMerci aux structures, aux équipes et aux familles qui m'ont fait confiance cette année. Belles fêtes à toutes et à tous.",
+      "hashtags": [
+        "#MédiationAnimale",
+        "#Bilan2026",
+        "#BienÊtreAnimal",
+        "#Moselle"
+      ],
+      "cta": null,
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q4-w07-fb",
+      "network": "facebook",
+      "week": 7,
+      "theme_ref": 7,
+      "scheduled_date": "2026-12-29",
+      "scheduled_time_hint": "10:00",
+      "format": "citation",
+      "visual_type": "ia",
+      "visual_brief": "Visuel citation : « En 2027, on commence par un appel de 30 minutes. » Fond beige crème, typographie serif élégante en teal foncé #4A7C7E, petite empreinte de patte, ratio 1:1. Aucune personne représentée. Carte livrée : rendu typographique (gabarit HTML, polices Lora et DM Sans du site), pas d'image IA, le quota Gemini était épuisé le 12/11.",
+      "visual_generated": "/marketing-visuals/2026-Q4-w07-fb.jpg",
+      "shooting_session_ref": null,
+      "text": "Vous pensez à la médiation animale pour un proche, pour votre enfant, ou pour vous, et vous vous dites « on verra en janvier » ? Janvier, c'est dans trois jours.\n\nJe ne propose pas une séance au hasard. Je commence toujours par comprendre la situation : la personne, ses envies, ses difficultés, ce qu'on aimerait voir changer. C'est à partir de là que je choisis l'animal, le format, le rythme, et des objectifs concrets qu'on suit ensemble.\n\nPour démarrer, un appel découverte de 30 minutes, gratuit. On fait le point, et je vous dis honnêtement si la médiation animale est adaptée à votre situation.\n\nJ'interviens à domicile autour de Verny, et en structure en Moselle, ponctuellement sur Metz et Nancy.\n\nPour réserver votre créneau : cal.com/jennifer-de-groeve-isr2b6/rdv-decouverte\n\nBelle fin d'année à vous, et à très vite en 2027.",
+      "hashtags": [
+        "#médiationanimale",
+        "#zoothérapie",
+        "#Moselle",
+        "#Metz"
+      ],
+      "cta": "Réservez votre appel découverte, ou écrivez-moi en MP.",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    },
+    {
+      "id": "2026-Q4-w07-li",
+      "network": "linkedin",
+      "week": 7,
+      "theme_ref": 7,
+      "scheduled_date": "2026-12-30",
+      "scheduled_time_hint": "09:00",
+      "format": "texte-long",
+      "visual_type": "stock",
+      "visual_brief": "Pas de visuel obligatoire.",
+      "visual_generated": null,
+      "shooting_session_ref": null,
+      "text": "Pour les structures qui réfléchissent à la médiation animale en 2027, une recommandation : pensez cycle, pas séance.\n\nUne séance isolée peut être un beau moment. Un cycle permet d'avancer vers un objectif. C'est pour ça que je propose systématiquement un cycle de 5 séances, ajustable à votre format : taille du groupe, fréquence, durée.\n\nComment je construis un cycle avec une équipe :\n\n• En amont : on définit ensemble les objectifs et les personnes concernées. Communication, motivation à participer, mobilité, gestion des émotions, lien social : chaque objectif se décline en éléments observables.\n• Le choix de l'animal, selon le public : Tips pour les moments posés, Uxo pour les groupes plus dynamiques, Tap-Tap ou Gaston et Philippe pour les personnes impressionnées par le chien.\n• Pendant le cycle : les observations sont partagées avec l'équipe, dont le regard est indispensable.\n• En fin de cycle : une évaluation construite avec vous, pas à côté de vous.\n\nCe que la médiation animale ne fait pas : remplacer un traitement, un suivi médical ou paramédical. Elle vient en complément, et c'est précisément pour ça qu'elle trouve sa place dans un projet d'établissement.\n\nEHPAD, IME, ITEP, écoles, médiathèques, services d'aide à domicile : j'interviens en Moselle, et ponctuellement sur Metz et Nancy.\n\nPour en parler : cal.com/jennifer-de-groeve-isr2b6/rdv-decouverte",
+      "hashtags": [
+        "#MédiationAnimale",
+        "#ProjetDÉtablissement",
+        "#EHPAD",
+        "#MédicoSocial",
+        "#GrandEst"
+      ],
+      "cta": "Réservez 30 minutes d'échange, ou écrivez-moi en message privé.",
+      "status": "draft",
+      "published_at": null,
+      "client_modified_text": null,
+      "client_comment": null
+    }
+  ],
+  "shooting_sessions": []
+}
