@@ -200,7 +200,7 @@
         "#moselle"
       ],
       "cta": "Racontez-moi en commentaire, je réponds à tout le monde",
-      "status": "draft",
+      "status": "skipped",
       "published_at": null,
       "client_modified_text": null,
       "client_comment": null
