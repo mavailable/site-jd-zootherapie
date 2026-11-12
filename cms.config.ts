@@ -18,7 +18,10 @@ const cmsConfig: CmsConfig = {
       { status: 'gagne', label: 'Gagné', hint: 'Conclu ✅', dot: '#16a34a' },
       { status: 'perdu', label: 'Perdu', hint: 'Sans suite', dot: '#cbd5e1' },
     ],
-    billing: false,  // Jen ne facture pas — masque Facturation & vente (v0.12.1)
+    // Devis et factures depuis la fiche (décision Marc 12/11/2026, audit projets/jd-zootherapeute/docs/audit-devis-factures-2026-11-12.md du hub).
+    // Émetteur en D1 (crm_emitter) : franchise 293 B, contrat de cession désactivé.
+    billing: true,
+    catalog: true,   // Catalogue de prestations (table crm_catalog_items créée le 12/11 en prod et preview)
     einvoice: false, // explicite (défaut false)
   },
 
