@@ -22,6 +22,7 @@ const cmsConfig: CmsConfig = {
     // Émetteur en D1 (crm_emitter) : franchise 293 B, contrat de cession désactivé.
     billing: true,
     catalog: true,   // Catalogue de prestations (table crm_catalog_items créée le 12/11 en prod et preview)
+    clientKind: true, // Type de client Pro / Particulier (moteur v0.97.4). PRÉREQUIS : colonne contacts.client_kind (ALTER joué en preview le 13/11, À JOUER EN PROD avant la promotion de master)
     einvoice: false, // explicite (défaut false)
   },
 
