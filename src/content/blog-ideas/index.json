@@ -275,8 +275,10 @@
     {
       "title": "Le premier appel : ce qui se passe vraiment pendant l'échange téléphonique gratuit",
       "notes": "Avant toute séance, il y a un échange par téléphone, sans engagement : je détaille les questions que je pose, ce que j'écoute, et comment ça détermine la suite (ou pas) de l'accompagnement.",
-      "status": "a-faire",
-      "source": "ai"
+      "status": "brouillon",
+      "source": "ai",
+      "slug": "le-premier-appel-ce-qui-se-passe-vraiment-pendant-l-echange-telephonique-gratuit",
+      "updated_at": "2026-11-20T07:55:35.135Z"
     }
   ]
 }
