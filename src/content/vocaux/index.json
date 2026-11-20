@@ -1,6 +1,24 @@
 {
   "entries": [
     {
+      "id": "jd-zoo-2026-11-20-0854-le-premier-appel-ce-qui-se-passe-vraiment-pendant-l-echange-",
+      "sujet": "Le premier appel : ce qui se passe vraiment pendant l'échange téléphonique gratuit",
+      "categorie": "idee-article",
+      "categorie_label": "Idée d’article",
+      "attachments": [
+        {
+          "filename": "2026-11-20-0854-le-premier-appel-ce-qui-se-passe-vraiment-pendant-l-echange-.opus",
+          "r2_key": "jd-zoo/2026-11-20-0854-le-premier-appel-ce-qui-se-passe-vraiment-pendant-l-echange-.opus",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-11-20-0854-le-premier-appel-ce-qui-se-passe-vraiment-pendant-l-echange-.opus&e=1797753270&s=0cd10944b13725ba8406e7a8087bceeb9bafaada4fcd3866999856770edb0e5d",
+          "audio_mime": "audio/ogg",
+          "audio_bytes": 284590
+        }
+      ],
+      "uploaded_at": "2026-11-20T07:54:32.377Z",
+      "source": "whatsapp",
+      "statut": "traite"
+    },
+    {
       "id": "jd-zoo-2026-11-02-0941-harcelement-scolaire-quand-la-parole-bloque-l-animal-prend-l",
       "sujet": "Harcèlement scolaire : quand la parole bloque, l'animal prend le relais.",
       "categorie": "idee-article",
