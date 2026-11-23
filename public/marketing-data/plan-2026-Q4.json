@@ -157,8 +157,8 @@
         "#Moselle"
       ],
       "cta": "Vous êtes soignant ? Racontez-moi en commentaire ce que vous avez vu pendant une séance.",
-      "status": "draft",
-      "published_at": null,
+      "status": "published",
+      "published_at": "2026-11-23T08:36:41.176Z",
       "client_modified_text": null,
       "client_comment": null
     },
