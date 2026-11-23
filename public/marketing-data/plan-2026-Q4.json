@@ -183,8 +183,8 @@
         "#GrandEst"
       ],
       "cta": "Vous préparez vos activités 2027 ? Écrivez-moi pour en parler.",
-      "status": "draft",
-      "published_at": null,
+      "status": "published",
+      "published_at": "2026-11-23T08:28:18.679Z",
       "client_modified_text": null,
       "client_comment": null
     },
