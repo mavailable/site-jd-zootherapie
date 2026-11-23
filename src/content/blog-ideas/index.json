@@ -289,8 +289,10 @@
     {
       "title": "Tap-Tap, le lapin qui apprivoise la peur pas à pas",
       "notes": "Pour une personne impressionnée par les chiens, un lapin bélier change tout : je raconte comment Tap-Tap devient le premier contact possible dans un atelier sensoriel, sans brusquer personne.",
-      "status": "refusee",
-      "source": "ai"
+      "status": "brouillon",
+      "source": "ai",
+      "slug": "tap-tap-le-lapin-qui-apprivoise-la-peur-pas-a-pas",
+      "updated_at": "2026-11-23T07:53:11.513Z"
     },
     {
       "title": "TDAH et médiation animale : ce que je change dans le rythme d'une séance",
