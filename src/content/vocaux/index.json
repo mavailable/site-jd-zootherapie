@@ -1,6 +1,50 @@
 {
   "entries": [
     {
+      "id": "jd-zoo-2026-11-23-0852-tap-tap-le-lapin-qui-apprivoise-la-peur-pas-a-pas",
+      "sujet": "Tap-Tap, le lapin qui apprivoise la peur pas à pas",
+      "categorie": "idee-article",
+      "categorie_label": "Idée d’article",
+      "attachments": [
+        {
+          "filename": "2026-11-23-0852-tap-tap-le-lapin-qui-apprivoise-la-peur-pas-a-pas.opus",
+          "r2_key": "jd-zoo/2026-11-23-0852-tap-tap-le-lapin-qui-apprivoise-la-peur-pas-a-pas.opus",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-11-23-0852-tap-tap-le-lapin-qui-apprivoise-la-peur-pas-a-pas.opus&e=1798012324&s=c3b25bcf8901029f59ecbeac980fd691870a1c90398c85b5cbcc0663a5681403",
+          "audio_mime": "audio/ogg",
+          "audio_bytes": 378158
+        }
+      ],
+      "media": [
+        {
+          "filename": "2026-11-23-0852-tap-tap-le-lapin-qui-apprivoise-la-peur-pas-a-pas-m1.jpg",
+          "r2_key": "jd-zoo/2026-11-23-0852-tap-tap-le-lapin-qui-apprivoise-la-peur-pas-a-pas-m1.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-11-23-0852-tap-tap-le-lapin-qui-apprivoise-la-peur-pas-a-pas-m1.jpg&e=1798012324&s=8489315446cbbd1d83bba536ac9d127009f0ad67cc7abbe5f4da4608741b988e",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 476893
+        },
+        {
+          "filename": "2026-11-23-0852-tap-tap-le-lapin-qui-apprivoise-la-peur-pas-a-pas-m2.jpg",
+          "r2_key": "jd-zoo/2026-11-23-0852-tap-tap-le-lapin-qui-apprivoise-la-peur-pas-a-pas-m2.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-11-23-0852-tap-tap-le-lapin-qui-apprivoise-la-peur-pas-a-pas-m2.jpg&e=1798012324&s=dadc896fc29b59d01d844448c97a86eec692b39b1ecd78e97702246edb3d03bc",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 321719
+        },
+        {
+          "filename": "2026-11-23-0852-tap-tap-le-lapin-qui-apprivoise-la-peur-pas-a-pas-m3.jpg",
+          "r2_key": "jd-zoo/2026-11-23-0852-tap-tap-le-lapin-qui-apprivoise-la-peur-pas-a-pas-m3.jpg",
+          "vocal_url": "https://jdzootherapeute.fr/api/vocal-download?k=jd-zoo%2F2026-11-23-0852-tap-tap-le-lapin-qui-apprivoise-la-peur-pas-a-pas-m3.jpg&e=1798012324&s=2e93dcac372f875b5c510154501a6e7d50054c33ee7cee1feddf3405848ce2bb",
+          "kind": "image",
+          "media_mime": "image/jpeg",
+          "media_bytes": 394194
+        }
+      ],
+      "uploaded_at": "2026-11-23T07:52:07.836Z",
+      "source": "whatsapp",
+      "statut": "traite"
+    },
+    {
       "id": "jd-zoo-2026-11-20-0854-le-premier-appel-ce-qui-se-passe-vraiment-pendant-l-echange-",
       "sujet": "Le premier appel : ce qui se passe vraiment pendant l'échange téléphonique gratuit",
       "categorie": "idee-article",
